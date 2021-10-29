@@ -1,6 +1,6 @@
 # overledger-sdks
 
-This github repository provides different language SDKs for the Overledger API.
+This github repository provides different language SDKs, which can be found in the [SDK folder](https://github.com/quantnetwork/overledger-sdks/tree/main/SDKs), for the Overledger API.
 
 ## Generation Process
 
