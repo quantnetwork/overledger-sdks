@@ -1,0 +1,43 @@
+{
+  "name": "overledger-sdks",
+  "version": "0.0.1",
+  "description": "SDK Generator for Overledger APIs",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://app.clubhouse.io/quantnetwork",
+    "email": "support@quant.network"
+  },
+  "contributors": [
+    {
+      "name": "Luke Riley",
+      "email": "luke.riley@quant.network",
+      "url": "https://www.quant.network/"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quantnetwork/overledger-sdks"
+  },
+  "private": true,
+  "scripts": {
+    "generate-sdk-typescript": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g typescript-axios -o ./SDKs/typescript-axios/ --reserved-words-mappings protected=protected",
+    "generate-sdk-java": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g java -o ./SDKs/java/ --reserved-words-mappings protected=protected",
+    "generate-sdk-go": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g go -o ./SDKs/go/ --reserved-words-mappings protected=protected",
+    "generate-sdk-c": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g c -o ./SDKs/c/ --reserved-words-mappings protected=protected",
+    "generate-sdk-csharp": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g csharp -o ./SDKs/c#/ --reserved-words-mappings protected=protected",
+    "generate-sdk-haskell": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g haskell-http-client -o ./SDKs/haskell/ --reserved-words-mappings protected=protected",
+    "generate-sdk-javascript": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g javascript -o ./SDKs/javascript/ --reserved-words-mappings protected=protected",
+    "generate-sdk-kotlin": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g kotlin -o ./SDKs/kotlin/ --reserved-words-mappings protected=protected",
+    "generate-sdk-perl": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g perl -o ./SDKs/perl/ --reserved-words-mappings protected=protected",
+    "generate-sdk-php": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g php -o ./SDKs/php/ --reserved-words-mappings protected=protected",
+    "generate-sdk-ruby": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g ruby -o ./SDKs/ruby/ --reserved-words-mappings protected=protected",
+    "generate-sdk-rust": "openapi-generator-cli generate -i ./overledger-openAPI3/swagger.json -g rust -o ./SDKs/rust/ --reserved-words-mappings protected=protected"
+  },
+  "dependencies": {
+    "swagger-jsdoc": "6.1.0",
+    "swagger-ui-express": "4.0.2"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "2.4.12"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "quant_overledger_api",
+  "version": "2.0",
+  "description": "Quants_Overledger_API_allows_developers_to_create_applications_for_multiple_DLTs_using_a_single_standard_set_of_operations_and_data_structures_In_order_to_maintain_the_security_of_private_keys_most_operations_have_two_steps__prepare_and_execute__The_prepare_step_is_the_point_at_which_all_arguments_are_specified_and_standardised_payloads_are_sent__Overledger_converts_this_standard_payload_into_a_DLT_specific_transaction_object__In_the_execute_step_the_SDK_signs_the_transaction_object_that_Overledger_created_and_submits_it_to_Overledger_to_perform_the_operation_Authentication___ReDoc_Inject_security_definitions___",
+  "license": "Unlicense",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "prepare": "npm run build",
+    "test": "mocha --require @babel/register --recursive"
+  },
+  "browser": {
+    "fs": false
+  },
+  "dependencies": {
+    "@babel/cli": "^7.0.0",
+    "superagent": "^5.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-function-bind": "^7.0.0",
+    "@babel/plugin-proposal-function-sent": "^7.0.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.0.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "expect.js": "^0.3.1",
+    "mocha": "^8.0.1",
+    "sinon": "^7.2.0"
+  },
+  "files": [
+    "dist"
+  ]
+}
