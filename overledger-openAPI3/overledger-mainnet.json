@@ -2186,9 +2186,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -2312,9 +2312,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -2461,9 +2461,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -2593,9 +2593,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -2804,9 +2804,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -2931,9 +2931,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -3053,9 +3053,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -3298,9 +3298,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -3441,9 +3441,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -3675,9 +3675,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -3847,9 +3847,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -3986,9 +3986,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -4119,9 +4119,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -4478,9 +4478,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -4630,9 +4630,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -4753,9 +4753,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -4875,9 +4875,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -5002,9 +5002,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -5139,9 +5139,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -5262,9 +5262,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -5387,9 +5387,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -5520,9 +5520,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -5696,9 +5696,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -5842,9 +5842,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -5962,9 +5962,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -6085,9 +6085,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -6212,9 +6212,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -6375,9 +6375,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -6538,9 +6538,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -6699,9 +6699,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -6849,9 +6849,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -6971,9 +6971,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
@@ -7158,9 +7158,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,1024}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
               "type": "string",
-              "maxLength": 1024
+              "maxLength": 4096
             },
             "in": "header",
             "name": "Authorization",
