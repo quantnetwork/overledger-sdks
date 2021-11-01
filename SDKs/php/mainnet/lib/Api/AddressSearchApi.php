@@ -374,14 +374,14 @@ class AddressSearchApi
                 'Missing the required parameter $authorization when calling executePreparedSearchRequestAddressBalance'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.executePreparedSearchRequestAddressBalance, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.executePreparedSearchRequestAddressBalance, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.executePreparedSearchRequestAddressBalance, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling AddressSearchApi.executePreparedSearchRequestAddressBalance, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling AddressSearchApi.executePreparedSearchRequestAddressBalance, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'request_id' is set
@@ -747,14 +747,14 @@ class AddressSearchApi
                 'Missing the required parameter $authorization when calling executePreparedSearchRequestAddressSequence'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.executePreparedSearchRequestAddressSequence, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.executePreparedSearchRequestAddressSequence, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.executePreparedSearchRequestAddressSequence, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling AddressSearchApi.executePreparedSearchRequestAddressSequence, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling AddressSearchApi.executePreparedSearchRequestAddressSequence, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'request_id' is set
@@ -1105,14 +1105,14 @@ class AddressSearchApi
                 'Missing the required parameter $authorization when calling prepareAddressBalanceSearchRequest'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.prepareAddressBalanceSearchRequest, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.prepareAddressBalanceSearchRequest, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.prepareAddressBalanceSearchRequest, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling AddressSearchApi.prepareAddressBalanceSearchRequest, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling AddressSearchApi.prepareAddressBalanceSearchRequest, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'address_id' is set
@@ -1472,14 +1472,14 @@ class AddressSearchApi
                 'Missing the required parameter $authorization when calling prepareAddressSequenceSearchRequest'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.prepareAddressSequenceSearchRequest, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.prepareAddressSequenceSearchRequest, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling AddressSearchApi.prepareAddressSequenceSearchRequest, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling AddressSearchApi.prepareAddressSequenceSearchRequest, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling AddressSearchApi.prepareAddressSequenceSearchRequest, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'address_id' is set

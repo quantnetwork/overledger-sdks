@@ -308,7 +308,7 @@
         }
       },
       "PrepareTransactionSmartContractInvokeRequestSchema": {
-        "additionalProperties": true,
+        "additionalProperties": false,
         "type": "object",
         "properties": {
           "urgency": {
@@ -356,7 +356,7 @@
         }
       },
       "PrepareTransferTransactionRequestSchema": {
-        "additionalProperties": true,
+        "additionalProperties": false,
         "type": "object",
         "properties": {
           "urgency": {
@@ -1338,7 +1338,7 @@
         }
       },
       "PreparePaymentTransactionRequestSchema": {
-        "additionalProperties": true,
+        "additionalProperties": false,
         "type": "object",
         "properties": {
           "urgency": {
@@ -4158,17 +4158,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/PreparePaymentTransactionRequestSchema"
-                  },
-                  {
-                    "$ref": "#/components/schemas/PrepareTransferTransactionRequestSchema"
-                  },
-                  {
-                    "$ref": "#/components/schemas/PrepareTransactionSmartContractInvokeRequestSchema"
-                  }
-                ]
+                "$ref": "#/components/schemas/PreparePaymentTransactionRequestSchema"
               },
               "examples": {
                 "ERC20 Payment": {

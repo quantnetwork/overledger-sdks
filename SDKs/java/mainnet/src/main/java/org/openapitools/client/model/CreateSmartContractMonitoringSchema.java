@@ -30,7 +30,7 @@ import org.openapitools.client.model.ResourceMonitoringSubscriptionDetails;
 /**
  * CreateSmartContractMonitoringSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-29T12:38:46.604397+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-01T15:12:40.004989Z[Europe/London]")
 public class CreateSmartContractMonitoringSchema {
   public static final String SERIALIZED_NAME_SUBSCRIPTION_DETAILS = "subscriptionDetails";
   @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_DETAILS)

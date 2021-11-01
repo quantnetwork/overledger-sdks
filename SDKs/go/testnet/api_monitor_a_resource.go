@@ -89,8 +89,8 @@ func (a *MonitorAResourceApiService) ResourceMonitoringAddressExecute(r ApiResou
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if r.addressMonitoringRequestSchema == nil {
 		return localVarReturnValue, nil, reportError("addressMonitoringRequestSchema is required and must be specified")
@@ -235,8 +235,8 @@ func (a *MonitorAResourceApiService) TrackAndSubscribeEventExecute(r ApiTrackAnd
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if r.monitorSmartContractRequestSchema == nil {
 		return localVarReturnValue, nil, reportError("monitorSmartContractRequestSchema is required and must be specified")

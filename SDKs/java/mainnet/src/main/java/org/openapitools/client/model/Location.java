@@ -28,7 +28,7 @@ import java.io.IOException;
  * Unique reference to the ledger on a particular ledger network (optionally accessed from a particular node)
  */
 @ApiModel(description = "Unique reference to the ledger on a particular ledger network (optionally accessed from a particular node)")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-29T12:38:46.604397+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-01T15:12:40.004989Z[Europe/London]")
 public class Location {
   public static final String SERIALIZED_NAME_TECHNOLOGY = "technology";
   @SerializedName(SERIALIZED_NAME_TECHNOLOGY)

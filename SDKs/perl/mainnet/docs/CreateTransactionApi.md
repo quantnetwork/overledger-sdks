@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **prepare_transaction_request**
-> PrepareTransactionResponse prepare_transaction_request(authorization => $authorization, unknown_base_type => $unknown_base_type)
+> PrepareTransactionResponse prepare_transaction_request(authorization => $authorization, prepare_payment_transaction_request_schema => $prepare_payment_transaction_request_schema)
 
 Prepare a DLT transaction for signing
 
@@ -186,10 +186,10 @@ my $api_instance = WWW::OpenAPIClient::CreateTransactionApi->new(
 );
 
 my $authorization = "authorization_example"; # string | 
-my $unknown_base_type = WWW::OpenAPIClient::Object::UNKNOWN_BASE_TYPE->new(); # UNKNOWN_BASE_TYPE | 
+my $prepare_payment_transaction_request_schema = WWW::OpenAPIClient::Object::PreparePaymentTransactionRequestSchema->new(); # PreparePaymentTransactionRequestSchema | 
 
 eval {
-    my $result = $api_instance->prepare_transaction_request(authorization => $authorization, unknown_base_type => $unknown_base_type);
+    my $result = $api_instance->prepare_transaction_request(authorization => $authorization, prepare_payment_transaction_request_schema => $prepare_payment_transaction_request_schema);
     print Dumper($result);
 };
 if ($@) {
@@ -202,7 +202,7 @@ if ($@) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **prepare_payment_transaction_request_schema** | [**PreparePaymentTransactionRequestSchema**](PreparePaymentTransactionRequestSchema.md)|  | 
 
 ### Return type
 

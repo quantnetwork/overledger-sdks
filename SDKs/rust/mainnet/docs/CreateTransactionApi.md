@@ -106,7 +106,7 @@ Name | Type | Description  | Required | Notes
 
 ## prepare_transaction_request
 
-> crate::models::PrepareTransactionResponse prepare_transaction_request(authorization, UNKNOWN_BASE_TYPE)
+> crate::models::PrepareTransactionResponse prepare_transaction_request(authorization, prepare_payment_transaction_request_schema)
 Prepare a DLT transaction for signing
 
 Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
@@ -117,7 +117,7 @@ Transforms a transaction request into a payload ready for signing for the reques
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **authorization** | **String** |  | [required] |
-**UNKNOWN_BASE_TYPE** | Option<[**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)> |  | [required] |
+**prepare_payment_transaction_request_schema** | [**PreparePaymentTransactionRequestSchema**](PreparePaymentTransactionRequestSchema.md) |  | [required] |
 
 ### Return type
 

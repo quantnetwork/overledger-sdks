@@ -374,14 +374,14 @@ class CreateTransactionApi
                 'Missing the required parameter $authorization when calling executePreparedRequestNativeTransaction'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.executePreparedRequestNativeTransaction, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.executePreparedRequestNativeTransaction, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.executePreparedRequestNativeTransaction, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling CreateTransactionApi.executePreparedRequestNativeTransaction, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling CreateTransactionApi.executePreparedRequestNativeTransaction, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'execute_transaction_request' is set
@@ -732,14 +732,14 @@ class CreateTransactionApi
                 'Missing the required parameter $authorization when calling executePreparedRequestTransaction'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.executePreparedRequestTransaction, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.executePreparedRequestTransaction, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.executePreparedRequestTransaction, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling CreateTransactionApi.executePreparedRequestTransaction, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling CreateTransactionApi.executePreparedRequestTransaction, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'execute_transaction_request' is set
@@ -1070,14 +1070,14 @@ class CreateTransactionApi
                 'Missing the required parameter $authorization when calling prepareNativeTransaction'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.prepareNativeTransaction, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.prepareNativeTransaction, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.prepareNativeTransaction, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling CreateTransactionApi.prepareNativeTransaction, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling CreateTransactionApi.prepareNativeTransaction, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'prepare_native_transaction_request_schema' is set
@@ -1175,15 +1175,15 @@ class CreateTransactionApi
      * Prepare a DLT transaction for signing
      *
      * @param  string $authorization authorization (required)
-     * @param  \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE $unknown_base_type unknown_base_type (required)
+     * @param  \OpenAPI\Client\Model\PreparePaymentTransactionRequestSchema $prepare_payment_transaction_request_schema prepare_payment_transaction_request_schema (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\PrepareTransactionResponse|\OpenAPI\Client\Model\ErrorDetails|\OpenAPI\Client\Model\ErrorList|\OpenAPI\Client\Model\InternalServerErrorSchema
      */
-    public function prepareTransactionRequest($authorization, $unknown_base_type)
+    public function prepareTransactionRequest($authorization, $prepare_payment_transaction_request_schema)
     {
-        list($response) = $this->prepareTransactionRequestWithHttpInfo($authorization, $unknown_base_type);
+        list($response) = $this->prepareTransactionRequestWithHttpInfo($authorization, $prepare_payment_transaction_request_schema);
         return $response;
     }
 
@@ -1193,15 +1193,15 @@ class CreateTransactionApi
      * Prepare a DLT transaction for signing
      *
      * @param  string $authorization (required)
-     * @param  \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE $unknown_base_type (required)
+     * @param  \OpenAPI\Client\Model\PreparePaymentTransactionRequestSchema $prepare_payment_transaction_request_schema (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\PrepareTransactionResponse|\OpenAPI\Client\Model\ErrorDetails|\OpenAPI\Client\Model\ErrorList|\OpenAPI\Client\Model\InternalServerErrorSchema, HTTP status code, HTTP response headers (array of strings)
      */
-    public function prepareTransactionRequestWithHttpInfo($authorization, $unknown_base_type)
+    public function prepareTransactionRequestWithHttpInfo($authorization, $prepare_payment_transaction_request_schema)
     {
-        $request = $this->prepareTransactionRequestRequest($authorization, $unknown_base_type);
+        $request = $this->prepareTransactionRequestRequest($authorization, $prepare_payment_transaction_request_schema);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1347,14 +1347,14 @@ class CreateTransactionApi
      * Prepare a DLT transaction for signing
      *
      * @param  string $authorization (required)
-     * @param  \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE $unknown_base_type (required)
+     * @param  \OpenAPI\Client\Model\PreparePaymentTransactionRequestSchema $prepare_payment_transaction_request_schema (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function prepareTransactionRequestAsync($authorization, $unknown_base_type)
+    public function prepareTransactionRequestAsync($authorization, $prepare_payment_transaction_request_schema)
     {
-        return $this->prepareTransactionRequestAsyncWithHttpInfo($authorization, $unknown_base_type)
+        return $this->prepareTransactionRequestAsyncWithHttpInfo($authorization, $prepare_payment_transaction_request_schema)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1368,15 +1368,15 @@ class CreateTransactionApi
      * Prepare a DLT transaction for signing
      *
      * @param  string $authorization (required)
-     * @param  \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE $unknown_base_type (required)
+     * @param  \OpenAPI\Client\Model\PreparePaymentTransactionRequestSchema $prepare_payment_transaction_request_schema (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function prepareTransactionRequestAsyncWithHttpInfo($authorization, $unknown_base_type)
+    public function prepareTransactionRequestAsyncWithHttpInfo($authorization, $prepare_payment_transaction_request_schema)
     {
         $returnType = '\OpenAPI\Client\Model\PrepareTransactionResponse';
-        $request = $this->prepareTransactionRequestRequest($authorization, $unknown_base_type);
+        $request = $this->prepareTransactionRequestRequest($authorization, $prepare_payment_transaction_request_schema);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1415,12 +1415,12 @@ class CreateTransactionApi
      * Create request for operation 'prepareTransactionRequest'
      *
      * @param  string $authorization (required)
-     * @param  \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE $unknown_base_type (required)
+     * @param  \OpenAPI\Client\Model\PreparePaymentTransactionRequestSchema $prepare_payment_transaction_request_schema (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function prepareTransactionRequestRequest($authorization, $unknown_base_type)
+    public function prepareTransactionRequestRequest($authorization, $prepare_payment_transaction_request_schema)
     {
         // verify the required parameter 'authorization' is set
         if ($authorization === null || (is_array($authorization) && count($authorization) === 0)) {
@@ -1428,20 +1428,20 @@ class CreateTransactionApi
                 'Missing the required parameter $authorization when calling prepareTransactionRequest'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.prepareTransactionRequest, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.prepareTransactionRequest, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling CreateTransactionApi.prepareTransactionRequest, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling CreateTransactionApi.prepareTransactionRequest, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling CreateTransactionApi.prepareTransactionRequest, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
-        // verify the required parameter 'unknown_base_type' is set
-        if ($unknown_base_type === null || (is_array($unknown_base_type) && count($unknown_base_type) === 0)) {
+        // verify the required parameter 'prepare_payment_transaction_request_schema' is set
+        if ($prepare_payment_transaction_request_schema === null || (is_array($prepare_payment_transaction_request_schema) && count($prepare_payment_transaction_request_schema) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $unknown_base_type when calling prepareTransactionRequest'
+                'Missing the required parameter $prepare_payment_transaction_request_schema when calling prepareTransactionRequest'
             );
         }
 
@@ -1472,11 +1472,11 @@ class CreateTransactionApi
         }
 
         // for model (json/xml)
-        if (isset($unknown_base_type)) {
+        if (isset($prepare_payment_transaction_request_schema)) {
             if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($unknown_base_type));
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($prepare_payment_transaction_request_schema));
             } else {
-                $httpBody = $unknown_base_type;
+                $httpBody = $prepare_payment_transaction_request_schema;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

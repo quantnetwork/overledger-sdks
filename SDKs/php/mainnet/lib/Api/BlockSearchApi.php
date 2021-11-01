@@ -374,14 +374,14 @@ class BlockSearchApi
                 'Missing the required parameter $authorization when calling executePreparedSearchRequestBlock'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling BlockSearchApi.executePreparedSearchRequestBlock, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling BlockSearchApi.executePreparedSearchRequestBlock, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling BlockSearchApi.executePreparedSearchRequestBlock, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling BlockSearchApi.executePreparedSearchRequestBlock, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling BlockSearchApi.executePreparedSearchRequestBlock, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'request_id' is set
@@ -732,14 +732,14 @@ class BlockSearchApi
                 'Missing the required parameter $authorization when calling prepareSearchBlockByBlockId'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling BlockSearchApi.prepareSearchBlockByBlockId, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling BlockSearchApi.prepareSearchBlockByBlockId, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling BlockSearchApi.prepareSearchBlockByBlockId, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling BlockSearchApi.prepareSearchBlockByBlockId, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling BlockSearchApi.prepareSearchBlockByBlockId, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'block_id' is set

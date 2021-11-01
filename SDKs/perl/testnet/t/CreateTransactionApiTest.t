@@ -58,6 +58,6 @@ isa_ok($api, 'WWW::OpenAPIClient::CreateTransactionApi');
 #
 # uncomment below and update the test
 #my $prepare_transaction_request_authorization = undef; # replace NULL with a proper value
-#my $prepare_transaction_request_unknown_base_type = undef; # replace NULL with a proper value
-#my $prepare_transaction_request_result = $api->prepare_transaction_request(authorization => $prepare_transaction_request_authorization, unknown_base_type => $prepare_transaction_request_unknown_base_type);
+#my $prepare_transaction_request_prepare_payment_transaction_request_schema = undef; # replace NULL with a proper value
+#my $prepare_transaction_request_result = $api->prepare_transaction_request(authorization => $prepare_transaction_request_authorization, prepare_payment_transaction_request_schema => $prepare_transaction_request_prepare_payment_transaction_request_schema);
 

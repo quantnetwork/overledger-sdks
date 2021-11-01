@@ -161,18 +161,18 @@ instance Produces PrepareNativeTransaction MimeJSON
 -- AuthMethod: 'AuthOAuthOAuth2SecurityScheme'
 -- 
 prepareTransactionRequest
-  :: (Consumes PrepareTransactionRequest MimeJSON, MimeRender MimeJSON UNKNOWN_BASE_TYPE)
-  => UNKNOWN_BASE_TYPE -- ^ "unknownBaseType"
+  :: (Consumes PrepareTransactionRequest MimeJSON, MimeRender MimeJSON PreparePaymentTransactionRequestSchema)
+  => PreparePaymentTransactionRequestSchema -- ^ "preparePaymentTransactionRequestSchema"
   -> Authorization -- ^ "authorization"
   -> QuantOverledgerRequest PrepareTransactionRequest MimeJSON PrepareTransactionResponse MimeJSON
-prepareTransactionRequest unknownBaseType (Authorization authorization) =
+prepareTransactionRequest preparePaymentTransactionRequestSchema (Authorization authorization) =
   _mkRequest "POST" ["/v2/preparation/transaction"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthOAuthOAuth2SecurityScheme)
-    `setBodyParam` unknownBaseType
+    `setBodyParam` preparePaymentTransactionRequestSchema
     `addHeader` toHeader ("Authorization", authorization)
 
 data PrepareTransactionRequest 
-instance HasBodyParam PrepareTransactionRequest UNKNOWN_BASE_TYPE 
+instance HasBodyParam PrepareTransactionRequest PreparePaymentTransactionRequestSchema 
 
 -- | @application/json@
 instance Consumes PrepareTransactionRequest MimeJSON

@@ -2,7 +2,7 @@
 
 Quant Overledger API
 - API version: 2.0
-  - Build date: 2021-10-29T12:38:46.604397+01:00[Europe/London]
+  - Build date: 2021-11-01T15:12:40.004989Z[Europe/London]
 
 Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 

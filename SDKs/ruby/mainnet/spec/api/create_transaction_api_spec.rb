@@ -75,7 +75,7 @@ describe 'CreateTransactionApi' do
   # Prepare a DLT transaction for signing
   # Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
   # @param authorization 
-  # @param unknown_base_type 
+  # @param prepare_payment_transaction_request_schema 
   # @param [Hash] opts the optional parameters
   # @return [PrepareTransactionResponse]
   describe 'prepare_transaction_request test' do

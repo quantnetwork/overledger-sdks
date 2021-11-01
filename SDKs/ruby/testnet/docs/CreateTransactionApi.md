@@ -225,7 +225,7 @@ end
 
 ## prepare_transaction_request
 
-> <PrepareTransactionResponse> prepare_transaction_request(authorization, unknown_base_type)
+> <PrepareTransactionResponse> prepare_transaction_request(authorization, prepare_payment_transaction_request_schema)
 
 Prepare a DLT transaction for signing
 
@@ -244,11 +244,11 @@ end
 
 api_instance = OpenapiClient::CreateTransactionApi.new
 authorization = 'authorization_example' # String | 
-unknown_base_type = TODO # UNKNOWN_BASE_TYPE | 
+prepare_payment_transaction_request_schema = OpenapiClient::PreparePaymentTransactionRequestSchema.new # PreparePaymentTransactionRequestSchema | 
 
 begin
   # Prepare a DLT transaction for signing
-  result = api_instance.prepare_transaction_request(authorization, unknown_base_type)
+  result = api_instance.prepare_transaction_request(authorization, prepare_payment_transaction_request_schema)
   p result
 rescue OpenapiClient::ApiError => e
   puts "Error when calling CreateTransactionApi->prepare_transaction_request: #{e}"
@@ -259,12 +259,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<PrepareTransactionResponse>, Integer, Hash)> prepare_transaction_request_with_http_info(authorization, unknown_base_type)
+> <Array(<PrepareTransactionResponse>, Integer, Hash)> prepare_transaction_request_with_http_info(authorization, prepare_payment_transaction_request_schema)
 
 ```ruby
 begin
   # Prepare a DLT transaction for signing
-  data, status_code, headers = api_instance.prepare_transaction_request_with_http_info(authorization, unknown_base_type)
+  data, status_code, headers = api_instance.prepare_transaction_request_with_http_info(authorization, prepare_payment_transaction_request_schema)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <PrepareTransactionResponse>
@@ -278,7 +278,7 @@ end
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **authorization** | **String** |  |  |
-| **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md) |  |  |
+| **prepare_payment_transaction_request_schema** | [**PreparePaymentTransactionRequestSchema**](PreparePaymentTransactionRequestSchema.md) |  |  |
 
 ### Return type
 

@@ -89,8 +89,8 @@ func (a *ManageSubscriptionApiService) DeleteSubscriptionExecute(r ApiDeleteSubs
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if strlen(r.subscriptionId) < 0 {
 		return localVarReturnValue, nil, reportError("subscriptionId must have at least 0 elements")
@@ -241,8 +241,8 @@ func (a *ManageSubscriptionApiService) ListSubscriptionsExecute(r ApiListSubscri
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 
 	// to determine the Content-Type header
@@ -386,8 +386,8 @@ func (a *ManageSubscriptionApiService) UpdateSubscriptionExecute(r ApiUpdateSubs
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if strlen(r.subscriptionId) < 0 {
 		return localVarReturnValue, nil, reportError("subscriptionId must have at least 0 elements")

@@ -3260,15 +3260,15 @@ export const CreateTransactionApiAxiosParamCreator = function (configuration?: C
          * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
          * @summary Prepare a DLT transaction for signing
          * @param {string} authorization 
-         * @param {PreparePaymentTransactionRequestSchema | PrepareTransferTransactionRequestSchema | PrepareTransactionSmartContractInvokeRequestSchema} preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema 
+         * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        prepareTransactionRequest: async (authorization: string, preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema: PreparePaymentTransactionRequestSchema | PrepareTransferTransactionRequestSchema | PrepareTransactionSmartContractInvokeRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        prepareTransactionRequest: async (authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('prepareTransactionRequest', 'authorization', authorization)
-            // verify required parameter 'preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema' is not null or undefined
-            assertParamExists('prepareTransactionRequest', 'preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema', preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema)
+            // verify required parameter 'preparePaymentTransactionRequestSchema' is not null or undefined
+            assertParamExists('prepareTransactionRequest', 'preparePaymentTransactionRequestSchema', preparePaymentTransactionRequestSchema)
             const localVarPath = `/v2/preparation/transaction`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3296,7 +3296,7 @@ export const CreateTransactionApiAxiosParamCreator = function (configuration?: C
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(preparePaymentTransactionRequestSchema, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3353,12 +3353,12 @@ export const CreateTransactionApiFp = function(configuration?: Configuration) {
          * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
          * @summary Prepare a DLT transaction for signing
          * @param {string} authorization 
-         * @param {PreparePaymentTransactionRequestSchema | PrepareTransferTransactionRequestSchema | PrepareTransactionSmartContractInvokeRequestSchema} preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema 
+         * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema: PreparePaymentTransactionRequestSchema | PrepareTransferTransactionRequestSchema | PrepareTransactionSmartContractInvokeRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareTransactionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema, options);
+        async prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -3408,12 +3408,12 @@ export const CreateTransactionApiFactory = function (configuration?: Configurati
          * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
          * @summary Prepare a DLT transaction for signing
          * @param {string} authorization 
-         * @param {PreparePaymentTransactionRequestSchema | PrepareTransferTransactionRequestSchema | PrepareTransactionSmartContractInvokeRequestSchema} preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema 
+         * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema: PreparePaymentTransactionRequestSchema | PrepareTransferTransactionRequestSchema | PrepareTransactionSmartContractInvokeRequestSchema, options?: any): AxiosPromise<PrepareTransactionResponse> {
-            return localVarFp.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema, options).then((request) => request(axios, basePath));
+        prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: any): AxiosPromise<PrepareTransactionResponse> {
+            return localVarFp.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3468,13 +3468,13 @@ export class CreateTransactionApi extends BaseAPI {
      * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
      * @summary Prepare a DLT transaction for signing
      * @param {string} authorization 
-     * @param {PreparePaymentTransactionRequestSchema | PrepareTransferTransactionRequestSchema | PrepareTransactionSmartContractInvokeRequestSchema} preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema 
+     * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CreateTransactionApi
      */
-    public prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema: PreparePaymentTransactionRequestSchema | PrepareTransferTransactionRequestSchema | PrepareTransactionSmartContractInvokeRequestSchema, options?: AxiosRequestConfig) {
-        return CreateTransactionApiFp(this.configuration).prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    public prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: AxiosRequestConfig) {
+        return CreateTransactionApiFp(this.configuration).prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -199,7 +199,7 @@ Name | Type | Description  | Notes
 ## `prepareTransactionRequest()`
 
 ```php
-prepareTransactionRequest($authorization, $unknown_base_type): \OpenAPI\Client\Model\PrepareTransactionResponse
+prepareTransactionRequest($authorization, $prepare_payment_transaction_request_schema): \OpenAPI\Client\Model\PrepareTransactionResponse
 ```
 
 Prepare a DLT transaction for signing
@@ -224,10 +224,10 @@ $apiInstance = new OpenAPI\Client\Api\CreateTransactionApi(
     $config
 );
 $authorization = 'authorization_example'; // string
-$unknown_base_type = {"urgency":"normal","requestDetails":{"overledgerSigningType":"overledger-javascript-library","origin":[{"originId":"0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39d"}],"destination":[{"payment":{"amount":"0.001","unit":"QNT"},"destinationId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"}],"message":"Example message here"},"location":{"technology":"Ethereum","network":"Ropsten Testnet"},"type":"PAYMENT"}; // \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE
+$prepare_payment_transaction_request_schema = {"urgency":"normal","requestDetails":{"overledgerSigningType":"overledger-javascript-library","origin":[{"originId":"0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39d"}],"destination":[{"payment":{"amount":"0.001","unit":"QNT"},"destinationId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"}],"message":"Example message here"},"location":{"technology":"Ethereum","network":"Ropsten Testnet"},"type":"PAYMENT"}; // \OpenAPI\Client\Model\PreparePaymentTransactionRequestSchema
 
 try {
-    $result = $apiInstance->prepareTransactionRequest($authorization, $unknown_base_type);
+    $result = $apiInstance->prepareTransactionRequest($authorization, $prepare_payment_transaction_request_schema);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CreateTransactionApi->prepareTransactionRequest: ', $e->getMessage(), PHP_EOL;
@@ -239,7 +239,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **unknown_base_type** | [**\OpenAPI\Client\Model\UNKNOWN_BASE_TYPE**](../Model/UNKNOWN_BASE_TYPE.md)|  |
+ **prepare_payment_transaction_request_schema** | [**\OpenAPI\Client\Model\PreparePaymentTransactionRequestSchema**](../Model/PreparePaymentTransactionRequestSchema.md)|  |
 
 ### Return type
 

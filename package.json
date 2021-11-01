@@ -20,7 +20,7 @@
   },
   "private": true,
   "scripts": {
-    "generate-mainnet-sdk-typescript": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-mainnet.json -g typescript-axios -o ./SDKs/typescript-axios/mainnet/ --reserved-words-mappings protected=protected",
+    "generate-mainnet-sdk-typescript": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-mainnet.json -g typescript-axios -o ./SDKs/typescript/mainnet/ --reserved-words-mappings protected=protected",
     "generate-mainnet-sdk-java": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-mainnet.json -g java -o ./SDKs/java/mainnet/ --reserved-words-mappings protected=protected",
     "generate-mainnet-sdk-go": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-mainnet.json -g go -o ./SDKs/go/mainnet/ --reserved-words-mappings protected=protected",
     "generate-mainnet-sdk-c": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-mainnet.json -g c -o ./SDKs/c/mainnet/ --reserved-words-mappings protected=protected",
@@ -32,7 +32,7 @@
     "generate-mainnet-sdk-php": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-mainnet.json -g php -o ./SDKs/php/mainnet/ --reserved-words-mappings protected=protected",
     "generate-mainnet-sdk-ruby": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-mainnet.json -g ruby -o ./SDKs/ruby/mainnet/ --reserved-words-mappings protected=protected",
     "generate-mainnet-sdk-rust": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-mainnet.json -g rust -o ./SDKs/rust/mainnet/ --reserved-words-mappings protected=protected",
-    "generate-testnet-sdk-typescript": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-testnet.json -g typescript-axios -o ./SDKs/typescript-axios/testnet/ --reserved-words-mappings protected=protected",
+    "generate-testnet-sdk-typescript": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-testnet.json -g typescript-axios -o ./SDKs/typescript/testnet/ --reserved-words-mappings protected=protected",
     "generate-testnet-sdk-java": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-testnet.json -g java -o ./SDKs/java/testnet/ --reserved-words-mappings protected=protected",
     "generate-testnet-sdk-go": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-testnet.json -g go -o ./SDKs/go/testnet/ --reserved-words-mappings protected=protected",
     "generate-testnet-sdk-c": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-testnet.json -g c -o ./SDKs/c/testnet/ --reserved-words-mappings protected=protected",
@@ -44,7 +44,6 @@
     "generate-testnet-sdk-php": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-testnet.json -g php -o ./SDKs/php/testnet/ --reserved-words-mappings protected=protected",
     "generate-testnet-sdk-ruby": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-testnet.json -g ruby -o ./SDKs/ruby/testnet/ --reserved-words-mappings protected=protected",
     "generate-testnet-sdk-rust": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-testnet.json -g rust -o ./SDKs/rust/testnet/ --reserved-words-mappings protected=protected"
-
   },
   "dependencies": {
     "swagger-jsdoc": "6.1.0",

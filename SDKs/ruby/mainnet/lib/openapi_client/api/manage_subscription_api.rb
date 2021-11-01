@@ -44,15 +44,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageSubscriptionApi.delete_subscription"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 1024
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageSubscriptionApi.delete_subscription, the character length must be smaller than or equal to 1024.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageSubscriptionApi.delete_subscription, the character length must be smaller than or equal to 4096.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageSubscriptionApi.delete_subscription, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,1024}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageSubscriptionApi.delete_subscription, must conform to the pattern #{pattern}."
       end
@@ -138,15 +138,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageSubscriptionApi.list_subscriptions"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 1024
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageSubscriptionApi.list_subscriptions, the character length must be smaller than or equal to 1024.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageSubscriptionApi.list_subscriptions, the character length must be smaller than or equal to 4096.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageSubscriptionApi.list_subscriptions, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,1024}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageSubscriptionApi.list_subscriptions, must conform to the pattern #{pattern}."
       end
@@ -219,15 +219,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageSubscriptionApi.update_subscription"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 1024
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageSubscriptionApi.update_subscription, the character length must be smaller than or equal to 1024.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageSubscriptionApi.update_subscription, the character length must be smaller than or equal to 4096.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageSubscriptionApi.update_subscription, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,1024}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageSubscriptionApi.update_subscription, must conform to the pattern #{pattern}."
       end

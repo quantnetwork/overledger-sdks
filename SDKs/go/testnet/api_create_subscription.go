@@ -89,8 +89,8 @@ func (a *CreateSubscriptionApiService) SubscriptionExecute(r ApiSubscriptionRequ
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if r.createSubscriptionRequestSchema == nil {
 		return localVarReturnValue, nil, reportError("createSubscriptionRequestSchema is required and must be specified")

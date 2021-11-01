@@ -354,14 +354,14 @@ class ManageMonitoredResourcesApi
                 'Missing the required parameter $authorization when calling deleteEventMonitoring'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.deleteEventMonitoring, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.deleteEventMonitoring, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.deleteEventMonitoring, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.deleteEventMonitoring, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.deleteEventMonitoring, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'resource_monitoring_id' is set
@@ -704,14 +704,14 @@ class ManageMonitoredResourcesApi
                 'Missing the required parameter $authorization when calling deleteResourceMonitoringAddress'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.deleteResourceMonitoringAddress, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.deleteResourceMonitoringAddress, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.deleteResourceMonitoringAddress, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.deleteResourceMonitoringAddress, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.deleteResourceMonitoringAddress, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'resource_monitoring_id' is set
@@ -1049,14 +1049,14 @@ class ManageMonitoredResourcesApi
                 'Missing the required parameter $authorization when calling getListOfAddresses'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getListOfAddresses, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getListOfAddresses, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getListOfAddresses, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.getListOfAddresses, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.getListOfAddresses, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
 
@@ -1370,14 +1370,14 @@ class ManageMonitoredResourcesApi
                 'Missing the required parameter $authorization when calling getListOfResources'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getListOfResources, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getListOfResources, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getListOfResources, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.getListOfResources, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.getListOfResources, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
 
@@ -1691,14 +1691,14 @@ class ManageMonitoredResourcesApi
                 'Missing the required parameter $authorization when calling getListOfSmartContractEvents'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getListOfSmartContractEvents, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getListOfSmartContractEvents, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getListOfSmartContractEvents, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.getListOfSmartContractEvents, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.getListOfSmartContractEvents, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
 
@@ -2017,14 +2017,14 @@ class ManageMonitoredResourcesApi
                 'Missing the required parameter $authorization when calling getMonitoredAddress'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getMonitoredAddress, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getMonitoredAddress, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getMonitoredAddress, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.getMonitoredAddress, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.getMonitoredAddress, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'resource_monitoring_id' is set
@@ -2367,14 +2367,14 @@ class ManageMonitoredResourcesApi
                 'Missing the required parameter $authorization when calling getMonitoredSmartContractEventDetails'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getMonitoredSmartContractEventDetails, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getMonitoredSmartContractEventDetails, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.getMonitoredSmartContractEventDetails, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.getMonitoredSmartContractEventDetails, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.getMonitoredSmartContractEventDetails, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'resource_monitoring_id' is set
@@ -2722,14 +2722,14 @@ class ManageMonitoredResourcesApi
                 'Missing the required parameter $authorization when calling updateEventMonitoring'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.updateEventMonitoring, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.updateEventMonitoring, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.updateEventMonitoring, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.updateEventMonitoring, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.updateEventMonitoring, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'resource_monitoring_id' is set
@@ -3089,14 +3089,14 @@ class ManageMonitoredResourcesApi
                 'Missing the required parameter $authorization when calling updateResourceMonitoringAddress'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.updateResourceMonitoringAddress, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.updateResourceMonitoringAddress, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling ManageMonitoredResourcesApi.updateResourceMonitoringAddress, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.updateResourceMonitoringAddress, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling ManageMonitoredResourcesApi.updateResourceMonitoringAddress, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'resource_monitoring_id' is set

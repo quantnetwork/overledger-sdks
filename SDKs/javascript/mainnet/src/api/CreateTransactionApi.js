@@ -18,11 +18,10 @@ import ErrorList from '../model/ErrorList';
 import ExecuteTransactionRequest from '../model/ExecuteTransactionRequest';
 import ExecuteTransactionResponse from '../model/ExecuteTransactionResponse';
 import InternalServerErrorSchema from '../model/InternalServerErrorSchema';
-import OneOfPreparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema from '../model/OneOfPreparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema';
 import PrepareNativeTransactionRequestSchema from '../model/PrepareNativeTransactionRequestSchema';
+import PreparePaymentTransactionRequestSchema from '../model/PreparePaymentTransactionRequestSchema';
 import PrepareSearchResponseSchema from '../model/PrepareSearchResponseSchema';
 import PrepareTransactionResponse from '../model/PrepareTransactionResponse';
-import UNKNOWN_BASE_TYPE from '../model/UNKNOWN_BASE_TYPE';
 
 /**
 * CreateTransaction service.
@@ -199,19 +198,19 @@ export default class CreateTransactionApi {
      * Prepare a DLT transaction for signing
      * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
      * @param {String} authorization 
-     * @param {module:model/UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE 
+     * @param {module:model/PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
      * @param {module:api/CreateTransactionApi~prepareTransactionRequestCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/PrepareTransactionResponse}
      */
-    prepareTransactionRequest(authorization, UNKNOWN_BASE_TYPE, callback) {
-      let postBody = UNKNOWN_BASE_TYPE;
+    prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema, callback) {
+      let postBody = preparePaymentTransactionRequestSchema;
       // verify the required parameter 'authorization' is set
       if (authorization === undefined || authorization === null) {
         throw new Error("Missing the required parameter 'authorization' when calling prepareTransactionRequest");
       }
-      // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-      if (UNKNOWN_BASE_TYPE === undefined || UNKNOWN_BASE_TYPE === null) {
-        throw new Error("Missing the required parameter 'UNKNOWN_BASE_TYPE' when calling prepareTransactionRequest");
+      // verify the required parameter 'preparePaymentTransactionRequestSchema' is set
+      if (preparePaymentTransactionRequestSchema === undefined || preparePaymentTransactionRequestSchema === null) {
+        throw new Error("Missing the required parameter 'preparePaymentTransactionRequestSchema' when calling prepareTransactionRequest");
       }
 
       let pathParams = {

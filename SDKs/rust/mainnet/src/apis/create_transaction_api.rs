@@ -155,7 +155,7 @@ pub async fn prepare_native_transaction(configuration: &configuration::Configura
 }
 
 /// Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
-pub async fn prepare_transaction_request(configuration: &configuration::Configuration, authorization: &str, UNKNOWN_BASE_TYPE: Option<crate::models::UNKNOWN_BASE_TYPE>) -> Result<crate::models::PrepareTransactionResponse, Error<PrepareTransactionRequestError>> {
+pub async fn prepare_transaction_request(configuration: &configuration::Configuration, authorization: &str, prepare_payment_transaction_request_schema: crate::models::PreparePaymentTransactionRequestSchema) -> Result<crate::models::PrepareTransactionResponse, Error<PrepareTransactionRequestError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -170,7 +170,7 @@ pub async fn prepare_transaction_request(configuration: &configuration::Configur
     if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
         local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&UNKNOWN_BASE_TYPE);
+    local_var_req_builder = local_var_req_builder.json(&prepare_payment_transaction_request_schema);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

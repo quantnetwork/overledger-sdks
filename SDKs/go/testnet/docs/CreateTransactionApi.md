@@ -217,7 +217,7 @@ Name | Type | Description  | Notes
 
 ## PrepareTransactionRequest
 
-> PrepareTransactionResponse PrepareTransactionRequest(ctx).Authorization(authorization).UNKNOWNBASETYPE(uNKNOWNBASETYPE).Execute()
+> PrepareTransactionResponse PrepareTransactionRequest(ctx).Authorization(authorization).PreparePaymentTransactionRequestSchema(preparePaymentTransactionRequestSchema).Execute()
 
 Prepare a DLT transaction for signing
 
@@ -237,11 +237,11 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | 
-    uNKNOWNBASETYPE := TODO // UNKNOWN_BASE_TYPE | 
+    preparePaymentTransactionRequestSchema := *openapiclient.NewPreparePaymentTransactionRequestSchema() // PreparePaymentTransactionRequestSchema | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CreateTransactionApi.PrepareTransactionRequest(context.Background()).Authorization(authorization).UNKNOWNBASETYPE(uNKNOWNBASETYPE).Execute()
+    resp, r, err := api_client.CreateTransactionApi.PrepareTransactionRequest(context.Background()).Authorization(authorization).PreparePaymentTransactionRequestSchema(preparePaymentTransactionRequestSchema).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CreateTransactionApi.PrepareTransactionRequest``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -263,7 +263,7 @@ Other parameters are passed through a pointer to a apiPrepareTransactionRequestR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string** |  | 
- **uNKNOWNBASETYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md) |  | 
+ **preparePaymentTransactionRequestSchema** | [**PreparePaymentTransactionRequestSchema**](PreparePaymentTransactionRequestSchema.md) |  | 
 
 ### Return type
 

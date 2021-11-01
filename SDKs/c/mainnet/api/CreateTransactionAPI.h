@@ -5,14 +5,13 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/UNKNOWN_BASE_TYPE.h"
 #include "../model/error_details.h"
 #include "../model/error_list.h"
 #include "../model/execute_transaction_request.h"
 #include "../model/execute_transaction_response.h"
 #include "../model/internal_server_error_schema.h"
-#include "../model/one_of_prepare_payment_transaction_request_schema_prepare_transfer_transaction_request_schema_prepare_transaction_smart_contract_invoke_request_schema.h"
 #include "../model/prepare_native_transaction_request_schema.h"
+#include "../model/prepare_payment_transaction_request_schema.h"
 #include "../model/prepare_search_response_schema.h"
 #include "../model/prepare_transaction_response.h"
 
@@ -46,6 +45,6 @@ CreateTransactionAPI_prepareNativeTransaction(apiClient_t *apiClient, char * Aut
 // Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
 //
 prepare_transaction_response_t*
-CreateTransactionAPI_prepareTransactionRequest(apiClient_t *apiClient, char * Authorization ,  UNKNOWN_BASE_TYPE );
+CreateTransactionAPI_prepareTransactionRequest(apiClient_t *apiClient, char * Authorization , prepare_payment_transaction_request_schema_t * prepare_payment_transaction_request_schema );
 
 

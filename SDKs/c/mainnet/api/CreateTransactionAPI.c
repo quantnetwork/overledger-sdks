@@ -335,7 +335,7 @@ end:
 // Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
 //
 prepare_transaction_response_t*
-CreateTransactionAPI_prepareTransactionRequest(apiClient_t *apiClient, char * Authorization ,  UNKNOWN_BASE_TYPE )
+CreateTransactionAPI_prepareTransactionRequest(apiClient_t *apiClient, char * Authorization , prepare_payment_transaction_request_schema_t * prepare_payment_transaction_request_schema )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = list_create();
@@ -365,12 +365,12 @@ CreateTransactionAPI_prepareTransactionRequest(apiClient_t *apiClient, char * Au
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_UNKNOWN_BASE_TYPE = NULL;
-    if (UNKNOWN_BASE_TYPE != NULL)
+    cJSON *localVarSingleItemJSON_prepare_payment_transaction_request_schema = NULL;
+    if (prepare_payment_transaction_request_schema != NULL)
     {
         //string
-        localVarSingleItemJSON_UNKNOWN_BASE_TYPE = UNKNOWN_BASE_TYPE_convertToJSON(UNKNOWN_BASE_TYPE);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_UNKNOWN_BASE_TYPE);
+        localVarSingleItemJSON_prepare_payment_transaction_request_schema = prepare_payment_transaction_request_schema_convertToJSON(prepare_payment_transaction_request_schema);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_prepare_payment_transaction_request_schema);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -425,9 +425,9 @@ CreateTransactionAPI_prepareTransactionRequest(apiClient_t *apiClient, char * Au
         valueHeader_Authorization = NULL;
     }
     free(keyPairHeader_Authorization);
-    if (localVarSingleItemJSON_UNKNOWN_BASE_TYPE) {
-        cJSON_Delete(localVarSingleItemJSON_UNKNOWN_BASE_TYPE);
-        localVarSingleItemJSON_UNKNOWN_BASE_TYPE = NULL;
+    if (localVarSingleItemJSON_prepare_payment_transaction_request_schema) {
+        cJSON_Delete(localVarSingleItemJSON_prepare_payment_transaction_request_schema);
+        localVarSingleItemJSON_prepare_payment_transaction_request_schema = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

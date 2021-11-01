@@ -110,8 +110,8 @@ namespace Org.OpenAPITools.Test
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string authorization = null;
-            //UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = null;
-            //var response = instance.PrepareTransactionRequest(authorization, UNKNOWN_BASE_TYPE);
+            //PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema = null;
+            //var response = instance.PrepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema);
             //Assert.IsInstanceOf(typeof(PrepareTransactionResponse), response, "response is PrepareTransactionResponse");
         }
         

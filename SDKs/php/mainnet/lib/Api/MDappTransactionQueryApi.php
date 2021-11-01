@@ -374,14 +374,14 @@ class MDappTransactionQueryApi
                 'Missing the required parameter $authorization when calling getOvlTransactionByTxId'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling MDappTransactionQueryApi.getOvlTransactionByTxId, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling MDappTransactionQueryApi.getOvlTransactionByTxId, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling MDappTransactionQueryApi.getOvlTransactionByTxId, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling MDappTransactionQueryApi.getOvlTransactionByTxId, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling MDappTransactionQueryApi.getOvlTransactionByTxId, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
         // verify the required parameter 'overledgertransactionid' is set
@@ -729,14 +729,14 @@ class MDappTransactionQueryApi
                 'Missing the required parameter $authorization when calling getOvlTransactionsByClientId'
             );
         }
-        if (strlen($authorization) > 1024) {
-            throw new \InvalidArgumentException('invalid length for "$authorization" when calling MDappTransactionQueryApi.getOvlTransactionsByClientId, must be smaller than or equal to 1024.');
+        if (strlen($authorization) > 4096) {
+            throw new \InvalidArgumentException('invalid length for "$authorization" when calling MDappTransactionQueryApi.getOvlTransactionsByClientId, must be smaller than or equal to 4096.');
         }
         if (strlen($authorization) < 0) {
             throw new \InvalidArgumentException('invalid length for "$authorization" when calling MDappTransactionQueryApi.getOvlTransactionsByClientId, must be bigger than or equal to 0.');
         }
-        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/", $authorization)) {
-            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling MDappTransactionQueryApi.getOvlTransactionsByClientId, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,1024}$/.");
+        if (!preg_match("/^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/", $authorization)) {
+            throw new \InvalidArgumentException("invalid value for \"authorization\" when calling MDappTransactionQueryApi.getOvlTransactionsByClientId, must conform to the pattern /^Bearer [A-Za-z0-9\\-_. ]{1,4096}$/.");
         }
 
 

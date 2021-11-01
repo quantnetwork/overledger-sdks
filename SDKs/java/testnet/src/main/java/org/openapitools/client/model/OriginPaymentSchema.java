@@ -28,7 +28,7 @@ import java.io.IOException;
  * Where is this transaction coming from
  */
 @ApiModel(description = "Where is this transaction coming from")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-29T12:41:08.316065+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-01T15:18:10.790747Z[Europe/London]")
 public class OriginPaymentSchema {
   public static final String SERIALIZED_NAME_ORIGIN_ID = "originId";
   @SerializedName(SERIALIZED_NAME_ORIGIN_ID)

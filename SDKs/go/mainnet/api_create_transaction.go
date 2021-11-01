@@ -89,8 +89,8 @@ func (a *CreateTransactionApiService) ExecutePreparedRequestNativeTransactionExe
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if r.executeTransactionRequest == nil {
 		return localVarReturnValue, nil, reportError("executeTransactionRequest is required and must be specified")
@@ -245,8 +245,8 @@ func (a *CreateTransactionApiService) ExecutePreparedRequestTransactionExecute(r
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if r.executeTransactionRequest == nil {
 		return localVarReturnValue, nil, reportError("executeTransactionRequest is required and must be specified")
@@ -401,8 +401,8 @@ func (a *CreateTransactionApiService) PrepareNativeTransactionExecute(r ApiPrepa
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if r.prepareNativeTransactionRequestSchema == nil {
 		return localVarReturnValue, nil, reportError("prepareNativeTransactionRequestSchema is required and must be specified")
@@ -488,15 +488,15 @@ type ApiPrepareTransactionRequestRequest struct {
 	ctx _context.Context
 	ApiService *CreateTransactionApiService
 	authorization *string
-	uNKNOWNBASETYPE *UNKNOWN_BASE_TYPE
+	preparePaymentTransactionRequestSchema *PreparePaymentTransactionRequestSchema
 }
 
 func (r ApiPrepareTransactionRequestRequest) Authorization(authorization string) ApiPrepareTransactionRequestRequest {
 	r.authorization = &authorization
 	return r
 }
-func (r ApiPrepareTransactionRequestRequest) UNKNOWNBASETYPE(uNKNOWNBASETYPE UNKNOWN_BASE_TYPE) ApiPrepareTransactionRequestRequest {
-	r.uNKNOWNBASETYPE = &uNKNOWNBASETYPE
+func (r ApiPrepareTransactionRequestRequest) PreparePaymentTransactionRequestSchema(preparePaymentTransactionRequestSchema PreparePaymentTransactionRequestSchema) ApiPrepareTransactionRequestRequest {
+	r.preparePaymentTransactionRequestSchema = &preparePaymentTransactionRequestSchema
 	return r
 }
 
@@ -547,11 +547,11 @@ func (a *CreateTransactionApiService) PrepareTransactionRequestExecute(r ApiPrep
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
-	if r.uNKNOWNBASETYPE == nil {
-		return localVarReturnValue, nil, reportError("uNKNOWNBASETYPE is required and must be specified")
+	if r.preparePaymentTransactionRequestSchema == nil {
+		return localVarReturnValue, nil, reportError("preparePaymentTransactionRequestSchema is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -573,7 +573,7 @@ func (a *CreateTransactionApiService) PrepareTransactionRequestExecute(r ApiPrep
 	}
 	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
 	// body params
-	localVarPostBody = r.uNKNOWNBASETYPE
+	localVarPostBody = r.preparePaymentTransactionRequestSchema
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

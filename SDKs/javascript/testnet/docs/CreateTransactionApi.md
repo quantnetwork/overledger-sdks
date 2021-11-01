@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 ## prepareTransactionRequest
 
-> PrepareTransactionResponse prepareTransactionRequest(authorization, UNKNOWN_BASE_TYPE)
+> PrepareTransactionResponse prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema)
 
 Prepare a DLT transaction for signing
 
@@ -183,8 +183,8 @@ OAuth2_Security_Scheme.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new QuantOverledgerApi.CreateTransactionApi();
 let authorization = "authorization_example"; // String | 
-let UNKNOWN_BASE_TYPE = {"urgency":"normal","requestDetails":{"overledgerSigningType":"overledger-javascript-library","origin":[{"originId":"0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39d"}],"destination":[{"payment":{"amount":"0.001","unit":"QNT"},"destinationId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"}],"message":"Example message here"},"location":{"technology":"Ethereum","network":"Ropsten Testnet"},"type":"PAYMENT"}; // UNKNOWN_BASE_TYPE | 
-apiInstance.prepareTransactionRequest(authorization, UNKNOWN_BASE_TYPE, (error, data, response) => {
+let preparePaymentTransactionRequestSchema = {"urgency":"normal","requestDetails":{"overledgerSigningType":"overledger-javascript-library","origin":[{"originId":"0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39d"}],"destination":[{"payment":{"amount":"0.001","unit":"QNT"},"destinationId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"}],"message":"Example message here"},"location":{"technology":"Ethereum","network":"Ropsten Testnet"},"type":"PAYMENT"}; // PreparePaymentTransactionRequestSchema | 
+apiInstance.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -199,7 +199,7 @@ apiInstance.prepareTransactionRequest(authorization, UNKNOWN_BASE_TYPE, (error, 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**|  | 
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **preparePaymentTransactionRequestSchema** | [**PreparePaymentTransactionRequestSchema**](PreparePaymentTransactionRequestSchema.md)|  | 
 
 ### Return type
 

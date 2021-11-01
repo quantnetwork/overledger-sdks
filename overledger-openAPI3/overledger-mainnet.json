@@ -4158,17 +4158,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/PreparePaymentTransactionRequestSchema"
-                  },
-                  {
-                    "$ref": "#/components/schemas/PrepareTransferTransactionRequestSchema"
-                  },
-                  {
-                    "$ref": "#/components/schemas/PrepareTransactionSmartContractInvokeRequestSchema"
-                  }
-                ]
+                "$ref": "#/components/schemas/PreparePaymentTransactionRequestSchema"
               },
               "examples": {
                 "ERC20 Payment": {

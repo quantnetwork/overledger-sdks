@@ -165,7 +165,7 @@ Configure OAuth2_Security_Scheme:
 
 <a name="prepareTransactionRequest"></a>
 # **prepareTransactionRequest**
-> PrepareTransactionResponse prepareTransactionRequest(authorization, UNKNOWN_BASE_TYPE)
+> PrepareTransactionResponse prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema)
 
 Prepare a DLT transaction for signing
 
@@ -179,9 +179,9 @@ Transforms a transaction request into a payload ready for signing for the reques
 
 val apiInstance = CreateTransactionApi()
 val authorization : kotlin.String = authorization_example // kotlin.String | 
-val UNKNOWN_BASE_TYPE : UNKNOWN_BASE_TYPE = {"urgency":"normal","requestDetails":{"overledgerSigningType":"overledger-javascript-library","origin":[{"originId":"0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39d"}],"destination":[{"payment":{"amount":"0.001","unit":"QNT"},"destinationId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"}],"message":"Example message here"},"location":{"technology":"Ethereum","network":"Ropsten Testnet"},"type":"PAYMENT"} // UNKNOWN_BASE_TYPE | 
+val preparePaymentTransactionRequestSchema : PreparePaymentTransactionRequestSchema = {"urgency":"normal","requestDetails":{"overledgerSigningType":"overledger-javascript-library","origin":[{"originId":"0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39d"}],"destination":[{"payment":{"amount":"0.001","unit":"QNT"},"destinationId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"}],"message":"Example message here"},"location":{"technology":"Ethereum","network":"Ropsten Testnet"},"type":"PAYMENT"} // PreparePaymentTransactionRequestSchema | 
 try {
-    val result : PrepareTransactionResponse = apiInstance.prepareTransactionRequest(authorization, UNKNOWN_BASE_TYPE)
+    val result : PrepareTransactionResponse = apiInstance.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling CreateTransactionApi#prepareTransactionRequest")
@@ -197,7 +197,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **kotlin.String**|  |
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  |
+ **preparePaymentTransactionRequestSchema** | [**PreparePaymentTransactionRequestSchema**](PreparePaymentTransactionRequestSchema.md)|  |
 
 ### Return type
 

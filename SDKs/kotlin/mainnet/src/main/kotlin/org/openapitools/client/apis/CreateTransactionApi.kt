@@ -25,11 +25,10 @@ import org.openapitools.client.models.ErrorList
 import org.openapitools.client.models.ExecuteTransactionRequest
 import org.openapitools.client.models.ExecuteTransactionResponse
 import org.openapitools.client.models.InternalServerErrorSchema
-import org.openapitools.client.models.OneOfLessThanPreparePaymentTransactionRequestSchemaCommaPrepareTransferTransactionRequestSchemaCommaPrepareTransactionSmartContractInvokeRequestSchemaGreaterThan
 import org.openapitools.client.models.PrepareNativeTransactionRequestSchema
+import org.openapitools.client.models.PreparePaymentTransactionRequestSchema
 import org.openapitools.client.models.PrepareSearchResponseSchema
 import org.openapitools.client.models.PrepareTransactionResponse
-import org.openapitools.client.models.UNKNOWN_BASE_TYPE
 
 import org.openapitools.client.infrastructure.ApiClient
 import org.openapitools.client.infrastructure.ClientException
@@ -223,7 +222,7 @@ class CreateTransactionApi(basePath: kotlin.String = defaultBasePath) : ApiClien
     * Prepare a DLT transaction for signing
     * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
     * @param authorization  
-    * @param UNKNOWN_BASE_TYPE  
+    * @param preparePaymentTransactionRequestSchema  
     * @return PrepareTransactionResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -231,10 +230,10 @@ class CreateTransactionApi(basePath: kotlin.String = defaultBasePath) : ApiClien
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun prepareTransactionRequest(authorization: kotlin.String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE) : PrepareTransactionResponse {
-        val localVariableConfig = prepareTransactionRequestRequestConfig(authorization = authorization, UNKNOWN_BASE_TYPE = UNKNOWN_BASE_TYPE)
+    fun prepareTransactionRequest(authorization: kotlin.String, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema) : PrepareTransactionResponse {
+        val localVariableConfig = prepareTransactionRequestRequestConfig(authorization = authorization, preparePaymentTransactionRequestSchema = preparePaymentTransactionRequestSchema)
 
-        val localVarResponse = request<UNKNOWN_BASE_TYPE, PrepareTransactionResponse>(
+        val localVarResponse = request<PreparePaymentTransactionRequestSchema, PrepareTransactionResponse>(
             localVariableConfig
         )
 
@@ -257,11 +256,11 @@ class CreateTransactionApi(basePath: kotlin.String = defaultBasePath) : ApiClien
     * To obtain the request config of the operation prepareTransactionRequest
     *
     * @param authorization  
-    * @param UNKNOWN_BASE_TYPE  
+    * @param preparePaymentTransactionRequestSchema  
     * @return RequestConfig
     */
-    fun prepareTransactionRequestRequestConfig(authorization: kotlin.String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE) : RequestConfig<UNKNOWN_BASE_TYPE> {
-        val localVariableBody = UNKNOWN_BASE_TYPE
+    fun prepareTransactionRequestRequestConfig(authorization: kotlin.String, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema) : RequestConfig<PreparePaymentTransactionRequestSchema> {
+        val localVariableBody = preparePaymentTransactionRequestSchema
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         authorization.apply { localVariableHeaders["Authorization"] = this.toString() }

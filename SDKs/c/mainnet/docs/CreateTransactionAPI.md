@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 //
 // Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
 //
-prepare_transaction_response_t* CreateTransactionAPI_prepareTransactionRequest(apiClient_t *apiClient, char * Authorization,  UNKNOWN_BASE_TYPE);
+prepare_transaction_response_t* CreateTransactionAPI_prepareTransactionRequest(apiClient_t *apiClient, char * Authorization, prepare_payment_transaction_request_schema_t * prepare_payment_transaction_request_schema);
 ```
 
 ### Parameters
@@ -120,7 +120,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **Authorization** | **char \*** |  | 
-**UNKNOWN_BASE_TYPE** |  |  | 
+**prepare_payment_transaction_request_schema** | **[prepare_payment_transaction_request_schema_t](prepare_payment_transaction_request_schema.md) \*** |  | 
 
 ### Return type
 

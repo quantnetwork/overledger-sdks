@@ -19,11 +19,10 @@ import org.openapitools.client.model.ErrorList;
 import org.openapitools.client.model.ExecuteTransactionRequest;
 import org.openapitools.client.model.ExecuteTransactionResponse;
 import org.openapitools.client.model.InternalServerErrorSchema;
-import org.openapitools.client.model.OneOfPreparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema;
 import org.openapitools.client.model.PrepareNativeTransactionRequestSchema;
+import org.openapitools.client.model.PreparePaymentTransactionRequestSchema;
 import org.openapitools.client.model.PrepareSearchResponseSchema;
 import org.openapitools.client.model.PrepareTransactionResponse;
-import org.openapitools.client.model.UNKNOWN_BASE_TYPE;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -100,8 +99,8 @@ public class CreateTransactionApiTest {
     @Test
     public void prepareTransactionRequestTest() throws ApiException {
         String authorization = null;
-        UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = null;
-                PrepareTransactionResponse response = api.prepareTransactionRequest(authorization, UNKNOWN_BASE_TYPE);
+        PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema = null;
+                PrepareTransactionResponse response = api.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema);
         // TODO: test validations
     }
     

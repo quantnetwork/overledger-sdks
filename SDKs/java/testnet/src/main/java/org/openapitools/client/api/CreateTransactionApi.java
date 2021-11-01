@@ -32,11 +32,10 @@ import org.openapitools.client.model.ErrorList;
 import org.openapitools.client.model.ExecuteTransactionRequest;
 import org.openapitools.client.model.ExecuteTransactionResponse;
 import org.openapitools.client.model.InternalServerErrorSchema;
-import org.openapitools.client.model.OneOfPreparePaymentTransactionRequestSchemaPrepareTransferTransactionRequestSchemaPrepareTransactionSmartContractInvokeRequestSchema;
 import org.openapitools.client.model.PrepareNativeTransactionRequestSchema;
+import org.openapitools.client.model.PreparePaymentTransactionRequestSchema;
 import org.openapitools.client.model.PrepareSearchResponseSchema;
 import org.openapitools.client.model.PrepareTransactionResponse;
-import org.openapitools.client.model.UNKNOWN_BASE_TYPE;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -470,7 +469,7 @@ public class CreateTransactionApi {
     /**
      * Build call for prepareTransactionRequest
      * @param authorization  (required)
-     * @param UNKNOWN_BASE_TYPE  (required)
+     * @param preparePaymentTransactionRequestSchema  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -483,8 +482,8 @@ public class CreateTransactionApi {
         <tr><td> 500 </td><td> Something went wrong on our side </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call prepareTransactionRequestCall(String authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, final ApiCallback _callback) throws ApiException {
-        Object localVarPostBody = UNKNOWN_BASE_TYPE;
+    public okhttp3.Call prepareTransactionRequestCall(String authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = preparePaymentTransactionRequestSchema;
 
         // create path and map variables
         String localVarPath = "/v2/preparation/transaction";
@@ -518,20 +517,20 @@ public class CreateTransactionApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call prepareTransactionRequestValidateBeforeCall(String authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call prepareTransactionRequestValidateBeforeCall(String authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'authorization' is set
         if (authorization == null) {
             throw new ApiException("Missing the required parameter 'authorization' when calling prepareTransactionRequest(Async)");
         }
         
-        // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-        if (UNKNOWN_BASE_TYPE == null) {
-            throw new ApiException("Missing the required parameter 'UNKNOWN_BASE_TYPE' when calling prepareTransactionRequest(Async)");
+        // verify the required parameter 'preparePaymentTransactionRequestSchema' is set
+        if (preparePaymentTransactionRequestSchema == null) {
+            throw new ApiException("Missing the required parameter 'preparePaymentTransactionRequestSchema' when calling prepareTransactionRequest(Async)");
         }
         
 
-        okhttp3.Call localVarCall = prepareTransactionRequestCall(authorization, UNKNOWN_BASE_TYPE, _callback);
+        okhttp3.Call localVarCall = prepareTransactionRequestCall(authorization, preparePaymentTransactionRequestSchema, _callback);
         return localVarCall;
 
     }
@@ -540,7 +539,7 @@ public class CreateTransactionApi {
      * Prepare a DLT transaction for signing
      * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
      * @param authorization  (required)
-     * @param UNKNOWN_BASE_TYPE  (required)
+     * @param preparePaymentTransactionRequestSchema  (required)
      * @return PrepareTransactionResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -552,8 +551,8 @@ public class CreateTransactionApi {
         <tr><td> 500 </td><td> Something went wrong on our side </td><td>  -  </td></tr>
      </table>
      */
-    public PrepareTransactionResponse prepareTransactionRequest(String authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) throws ApiException {
-        ApiResponse<PrepareTransactionResponse> localVarResp = prepareTransactionRequestWithHttpInfo(authorization, UNKNOWN_BASE_TYPE);
+    public PrepareTransactionResponse prepareTransactionRequest(String authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema) throws ApiException {
+        ApiResponse<PrepareTransactionResponse> localVarResp = prepareTransactionRequestWithHttpInfo(authorization, preparePaymentTransactionRequestSchema);
         return localVarResp.getData();
     }
 
@@ -561,7 +560,7 @@ public class CreateTransactionApi {
      * Prepare a DLT transaction for signing
      * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
      * @param authorization  (required)
-     * @param UNKNOWN_BASE_TYPE  (required)
+     * @param preparePaymentTransactionRequestSchema  (required)
      * @return ApiResponse&lt;PrepareTransactionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -573,8 +572,8 @@ public class CreateTransactionApi {
         <tr><td> 500 </td><td> Something went wrong on our side </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PrepareTransactionResponse> prepareTransactionRequestWithHttpInfo(String authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) throws ApiException {
-        okhttp3.Call localVarCall = prepareTransactionRequestValidateBeforeCall(authorization, UNKNOWN_BASE_TYPE, null);
+    public ApiResponse<PrepareTransactionResponse> prepareTransactionRequestWithHttpInfo(String authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema) throws ApiException {
+        okhttp3.Call localVarCall = prepareTransactionRequestValidateBeforeCall(authorization, preparePaymentTransactionRequestSchema, null);
         Type localVarReturnType = new TypeToken<PrepareTransactionResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -583,7 +582,7 @@ public class CreateTransactionApi {
      * Prepare a DLT transaction for signing (asynchronously)
      * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
      * @param authorization  (required)
-     * @param UNKNOWN_BASE_TYPE  (required)
+     * @param preparePaymentTransactionRequestSchema  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -596,9 +595,9 @@ public class CreateTransactionApi {
         <tr><td> 500 </td><td> Something went wrong on our side </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call prepareTransactionRequestAsync(String authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, final ApiCallback<PrepareTransactionResponse> _callback) throws ApiException {
+    public okhttp3.Call prepareTransactionRequestAsync(String authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema, final ApiCallback<PrepareTransactionResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = prepareTransactionRequestValidateBeforeCall(authorization, UNKNOWN_BASE_TYPE, _callback);
+        okhttp3.Call localVarCall = prepareTransactionRequestValidateBeforeCall(authorization, preparePaymentTransactionRequestSchema, _callback);
         Type localVarReturnType = new TypeToken<PrepareTransactionResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

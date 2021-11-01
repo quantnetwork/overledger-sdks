@@ -31,9 +31,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       requestBody:
@@ -123,9 +123,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: true
@@ -216,9 +216,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: true
@@ -317,9 +317,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: true
@@ -408,9 +408,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: true
@@ -558,9 +558,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       responses:
@@ -635,9 +635,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -725,9 +725,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: true
@@ -909,9 +909,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: true
@@ -1017,9 +1017,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       requestBody:
@@ -1185,9 +1185,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -1285,9 +1285,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -1412,9 +1412,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -1504,9 +1504,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       requestBody:
@@ -1634,10 +1634,7 @@ paths:
                     network: Testnet
                   type: payment
             schema:
-              oneOf:
-              - $ref: '#/components/schemas/PreparePaymentTransactionRequestSchema'
-              - $ref: '#/components/schemas/PrepareTransferTransactionRequestSchema'
-              - $ref: '#/components/schemas/PrepareTransactionSmartContractInvokeRequestSchema'
+              $ref: '#/components/schemas/PreparePaymentTransactionRequestSchema'
         required: true
       responses:
         "200":
@@ -1726,9 +1723,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       requestBody:
@@ -1832,9 +1829,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       requestBody:
@@ -1913,9 +1910,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -2003,9 +2000,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       responses:
@@ -2081,9 +2078,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -2170,9 +2167,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -2258,9 +2255,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -2361,9 +2358,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - examples:
@@ -2459,9 +2456,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -2580,9 +2577,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -2666,9 +2663,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -2751,9 +2748,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: false
@@ -2851,9 +2848,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       responses:
@@ -2929,9 +2926,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       requestBody:
@@ -3040,9 +3037,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: true
@@ -3162,9 +3159,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       requestBody:
@@ -3267,9 +3264,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       responses:
@@ -3369,9 +3366,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       - explode: true
@@ -3462,9 +3459,9 @@ paths:
         name: Authorization
         required: true
         schema:
-          maxLength: 1024
+          maxLength: 4096
           minLength: 0
-          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,1024}$
+          pattern: ^Bearer [A-Za-z0-9\-_. ]{1,4096}$
           type: string
         style: simple
       requestBody:
@@ -3779,6 +3776,11 @@ components:
     DestinationPaymentSchema:
       additionalProperties: false
       description: The Destination of this transaction
+      example:
+        payment:
+          amount: amount
+          unit: unit
+        destinationId: destinationId
       properties:
         payment:
           $ref: '#/components/schemas/PaymentSchema'
@@ -3792,6 +3794,8 @@ components:
     OriginPaymentSchema:
       additionalProperties: false
       description: Where is this transaction coming from
+      example:
+        originId: originId
       properties:
         originId:
           description: Unique Identifier of the originator
@@ -5789,6 +5793,42 @@ components:
       type: object
     PreparePaymentTransactionRequestSchema:
       additionalProperties: false
+      example:
+        urgency: urgency
+        requestDetails:
+          overledgerSigningType: overledgerSigningType
+          origin:
+          - originId: originId
+          - originId: originId
+          - originId: originId
+          - originId: originId
+          - originId: originId
+          destination:
+          - payment:
+              amount: amount
+              unit: unit
+            destinationId: destinationId
+          - payment:
+              amount: amount
+              unit: unit
+            destinationId: destinationId
+          - payment:
+              amount: amount
+              unit: unit
+            destinationId: destinationId
+          - payment:
+              amount: amount
+              unit: unit
+            destinationId: destinationId
+          - payment:
+              amount: amount
+              unit: unit
+            destinationId: destinationId
+          message: message
+        location:
+          technology: technology
+          network: network
+        type: type
       properties:
         urgency:
           maxLength: 30
@@ -6664,6 +6704,9 @@ components:
       type: object
     PaymentSchema:
       additionalProperties: false
+      example:
+        amount: amount
+        unit: unit
       properties:
         amount:
           description: The amount of a currency
@@ -6785,6 +6828,36 @@ components:
       type: object
     PaymentRequestDetailsSchema:
       additionalProperties: false
+      example:
+        overledgerSigningType: overledgerSigningType
+        origin:
+        - originId: originId
+        - originId: originId
+        - originId: originId
+        - originId: originId
+        - originId: originId
+        destination:
+        - payment:
+            amount: amount
+            unit: unit
+          destinationId: destinationId
+        - payment:
+            amount: amount
+            unit: unit
+          destinationId: destinationId
+        - payment:
+            amount: amount
+            unit: unit
+          destinationId: destinationId
+        - payment:
+            amount: amount
+            unit: unit
+          destinationId: destinationId
+        - payment:
+            amount: amount
+            unit: unit
+          destinationId: destinationId
+        message: message
       properties:
         overledgerSigningType:
           maxLength: 30

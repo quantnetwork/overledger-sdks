@@ -90,8 +90,8 @@ func (a *AddressSearchApiService) ExecutePreparedSearchRequestAddressBalanceExec
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if r.requestId == nil {
 		return localVarReturnValue, nil, reportError("requestId is required and must be specified")
@@ -251,8 +251,8 @@ func (a *AddressSearchApiService) ExecutePreparedSearchRequestAddressSequenceExe
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if r.requestId == nil {
 		return localVarReturnValue, nil, reportError("requestId is required and must be specified")
@@ -416,8 +416,8 @@ func (a *AddressSearchApiService) PrepareAddressBalanceSearchRequestExecute(r Ap
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if strlen(r.addressId) < 0 {
 		return localVarReturnValue, nil, reportError("addressId must have at least 0 elements")
@@ -572,8 +572,8 @@ func (a *AddressSearchApiService) PrepareAddressSequenceSearchRequestExecute(r A
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if strlen(r.addressId) < 0 {
 		return localVarReturnValue, nil, reportError("addressId must have at least 0 elements")

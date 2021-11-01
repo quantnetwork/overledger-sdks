@@ -227,7 +227,7 @@ Name | Type | Description  | Notes
 
 <a name="prepareTransactionRequest"></a>
 # **prepareTransactionRequest**
-> PrepareTransactionResponse prepareTransactionRequest(authorization, UNKNOWN_BASE_TYPE)
+> PrepareTransactionResponse prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema)
 
 Prepare a DLT transaction for signing
 
@@ -254,9 +254,9 @@ public class Example {
 
     CreateTransactionApi apiInstance = new CreateTransactionApi(defaultClient);
     String authorization = "authorization_example"; // String | 
-    UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = {"urgency":"normal","requestDetails":{"overledgerSigningType":"overledger-javascript-library","origin":[{"originId":"0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39d"}],"destination":[{"payment":{"amount":"0.001","unit":"QNT"},"destinationId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"}],"message":"Example message here"},"location":{"technology":"Ethereum","network":"Ropsten Testnet"},"type":"PAYMENT"}; // UNKNOWN_BASE_TYPE | 
+    PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema = new PreparePaymentTransactionRequestSchema(); // PreparePaymentTransactionRequestSchema | 
     try {
-      PrepareTransactionResponse result = apiInstance.prepareTransactionRequest(authorization, UNKNOWN_BASE_TYPE);
+      PrepareTransactionResponse result = apiInstance.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CreateTransactionApi#prepareTransactionRequest");
@@ -274,7 +274,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**|  |
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  |
+ **preparePaymentTransactionRequestSchema** | [**PreparePaymentTransactionRequestSchema**](PreparePaymentTransactionRequestSchema.md)|  |
 
 ### Return type
 

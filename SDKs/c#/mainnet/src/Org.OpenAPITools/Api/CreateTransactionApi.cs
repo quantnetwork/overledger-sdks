@@ -102,9 +102,9 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="UNKNOWN_BASE_TYPE"></param>
+        /// <param name="preparePaymentTransactionRequestSchema"></param>
         /// <returns>PrepareTransactionResponse</returns>
-        PrepareTransactionResponse PrepareTransactionRequest (string authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE);
+        PrepareTransactionResponse PrepareTransactionRequest (string authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema);
 
         /// <summary>
         /// Prepare a DLT transaction for signing
@@ -114,9 +114,9 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="UNKNOWN_BASE_TYPE"></param>
+        /// <param name="preparePaymentTransactionRequestSchema"></param>
         /// <returns>ApiResponse of PrepareTransactionResponse</returns>
-        ApiResponse<PrepareTransactionResponse> PrepareTransactionRequestWithHttpInfo (string authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE);
+        ApiResponse<PrepareTransactionResponse> PrepareTransactionRequestWithHttpInfo (string authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -202,10 +202,10 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="UNKNOWN_BASE_TYPE"></param>
+        /// <param name="preparePaymentTransactionRequestSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of PrepareTransactionResponse</returns>
-        System.Threading.Tasks.Task<PrepareTransactionResponse> PrepareTransactionRequestAsync (string authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<PrepareTransactionResponse> PrepareTransactionRequestAsync (string authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Prepare a DLT transaction for signing
@@ -215,10 +215,10 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="UNKNOWN_BASE_TYPE"></param>
+        /// <param name="preparePaymentTransactionRequestSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (PrepareTransactionResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PrepareTransactionResponse>> PrepareTransactionRequestWithHttpInfoAsync (string authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, CancellationToken cancellationToken = default(CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PrepareTransactionResponse>> PrepareTransactionRequestWithHttpInfoAsync (string authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -860,11 +860,11 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="UNKNOWN_BASE_TYPE"></param>
+        /// <param name="preparePaymentTransactionRequestSchema"></param>
         /// <returns>PrepareTransactionResponse</returns>
-        public PrepareTransactionResponse PrepareTransactionRequest (string authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE)
+        public PrepareTransactionResponse PrepareTransactionRequest (string authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema)
         {
-             ApiResponse<PrepareTransactionResponse> localVarResponse = PrepareTransactionRequestWithHttpInfo(authorization, UNKNOWN_BASE_TYPE);
+             ApiResponse<PrepareTransactionResponse> localVarResponse = PrepareTransactionRequestWithHttpInfo(authorization, preparePaymentTransactionRequestSchema);
              return localVarResponse.Data;
         }
 
@@ -873,16 +873,16 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="UNKNOWN_BASE_TYPE"></param>
+        /// <param name="preparePaymentTransactionRequestSchema"></param>
         /// <returns>ApiResponse of PrepareTransactionResponse</returns>
-        public ApiResponse<PrepareTransactionResponse> PrepareTransactionRequestWithHttpInfo (string authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE)
+        public ApiResponse<PrepareTransactionResponse> PrepareTransactionRequestWithHttpInfo (string authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema)
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling CreateTransactionApi->PrepareTransactionRequest");
-            // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-            if (UNKNOWN_BASE_TYPE == null)
-                throw new ApiException(400, "Missing required parameter 'UNKNOWN_BASE_TYPE' when calling CreateTransactionApi->PrepareTransactionRequest");
+            // verify the required parameter 'preparePaymentTransactionRequestSchema' is set
+            if (preparePaymentTransactionRequestSchema == null)
+                throw new ApiException(400, "Missing required parameter 'preparePaymentTransactionRequestSchema' when calling CreateTransactionApi->PrepareTransactionRequest");
 
             var localVarPath = "/v2/preparation/transaction";
             var localVarPathParams = new Dictionary<String, String>();
@@ -907,13 +907,13 @@ namespace Org.OpenAPITools.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-            if (UNKNOWN_BASE_TYPE != null && UNKNOWN_BASE_TYPE.GetType() != typeof(byte[]))
+            if (preparePaymentTransactionRequestSchema != null && preparePaymentTransactionRequestSchema.GetType() != typeof(byte[]))
             {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(UNKNOWN_BASE_TYPE); // http body (model) parameter
+                localVarPostBody = this.Configuration.ApiClient.Serialize(preparePaymentTransactionRequestSchema); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = UNKNOWN_BASE_TYPE; // byte array
+                localVarPostBody = preparePaymentTransactionRequestSchema; // byte array
             }
 
             // authentication (OAuth2_Security_Scheme) required
@@ -946,12 +946,12 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="UNKNOWN_BASE_TYPE"></param>
+        /// <param name="preparePaymentTransactionRequestSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of PrepareTransactionResponse</returns>
-        public async System.Threading.Tasks.Task<PrepareTransactionResponse> PrepareTransactionRequestAsync (string authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<PrepareTransactionResponse> PrepareTransactionRequestAsync (string authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema, CancellationToken cancellationToken = default(CancellationToken))
         {
-             ApiResponse<PrepareTransactionResponse> localVarResponse = await PrepareTransactionRequestWithHttpInfoAsync(authorization, UNKNOWN_BASE_TYPE, cancellationToken);
+             ApiResponse<PrepareTransactionResponse> localVarResponse = await PrepareTransactionRequestWithHttpInfoAsync(authorization, preparePaymentTransactionRequestSchema, cancellationToken);
              return localVarResponse.Data;
 
         }
@@ -961,17 +961,17 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="UNKNOWN_BASE_TYPE"></param>
+        /// <param name="preparePaymentTransactionRequestSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (PrepareTransactionResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<PrepareTransactionResponse>> PrepareTransactionRequestWithHttpInfoAsync (string authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, CancellationToken cancellationToken = default(CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<PrepareTransactionResponse>> PrepareTransactionRequestWithHttpInfoAsync (string authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema, CancellationToken cancellationToken = default(CancellationToken))
         {
             // verify the required parameter 'authorization' is set
             if (authorization == null)
                 throw new ApiException(400, "Missing required parameter 'authorization' when calling CreateTransactionApi->PrepareTransactionRequest");
-            // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-            if (UNKNOWN_BASE_TYPE == null)
-                throw new ApiException(400, "Missing required parameter 'UNKNOWN_BASE_TYPE' when calling CreateTransactionApi->PrepareTransactionRequest");
+            // verify the required parameter 'preparePaymentTransactionRequestSchema' is set
+            if (preparePaymentTransactionRequestSchema == null)
+                throw new ApiException(400, "Missing required parameter 'preparePaymentTransactionRequestSchema' when calling CreateTransactionApi->PrepareTransactionRequest");
 
             var localVarPath = "/v2/preparation/transaction";
             var localVarPathParams = new Dictionary<String, String>();
@@ -996,13 +996,13 @@ namespace Org.OpenAPITools.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
-            if (UNKNOWN_BASE_TYPE != null && UNKNOWN_BASE_TYPE.GetType() != typeof(byte[]))
+            if (preparePaymentTransactionRequestSchema != null && preparePaymentTransactionRequestSchema.GetType() != typeof(byte[]))
             {
-                localVarPostBody = this.Configuration.ApiClient.Serialize(UNKNOWN_BASE_TYPE); // http body (model) parameter
+                localVarPostBody = this.Configuration.ApiClient.Serialize(preparePaymentTransactionRequestSchema); // http body (model) parameter
             }
             else
             {
-                localVarPostBody = UNKNOWN_BASE_TYPE; // byte array
+                localVarPostBody = preparePaymentTransactionRequestSchema; // byte array
             }
 
             // authentication (OAuth2_Security_Scheme) required

@@ -264,7 +264,7 @@ Name | Type | Description  | Notes
 
 ## PrepareTransactionRequest
 
-> PrepareTransactionResponse PrepareTransactionRequest (string authorization, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE)
+> PrepareTransactionResponse PrepareTransactionRequest (string authorization, PreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchema)
 
 Prepare a DLT transaction for signing
 
@@ -291,12 +291,12 @@ namespace Example
 
             var apiInstance = new CreateTransactionApi(Configuration.Default);
             var authorization = authorization_example;  // string | 
-            var UNKNOWN_BASE_TYPE = new UNKNOWN_BASE_TYPE(); // UNKNOWN_BASE_TYPE | 
+            var preparePaymentTransactionRequestSchema = new PreparePaymentTransactionRequestSchema(); // PreparePaymentTransactionRequestSchema | 
 
             try
             {
                 // Prepare a DLT transaction for signing
-                PrepareTransactionResponse result = apiInstance.PrepareTransactionRequest(authorization, UNKNOWN_BASE_TYPE);
+                PrepareTransactionResponse result = apiInstance.PrepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema);
                 Debug.WriteLine(result);
             }
             catch (ApiException e)
@@ -316,7 +316,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  | 
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **preparePaymentTransactionRequestSchema** | [**PreparePaymentTransactionRequestSchema**](PreparePaymentTransactionRequestSchema.md)|  | 
 
 ### Return type
 

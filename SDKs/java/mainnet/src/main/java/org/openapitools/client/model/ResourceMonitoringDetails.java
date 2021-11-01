@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * ResourceMonitoringDetails
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-29T12:38:46.604397+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-01T15:12:40.004989Z[Europe/London]")
 public class ResourceMonitoringDetails {
   public static final String SERIALIZED_NAME_RESOURCE_MONITORING_ID = "resourceMonitoringId";
   @SerializedName(SERIALIZED_NAME_RESOURCE_MONITORING_ID)

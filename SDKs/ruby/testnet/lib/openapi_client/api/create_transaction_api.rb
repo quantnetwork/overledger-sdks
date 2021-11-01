@@ -44,15 +44,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling CreateTransactionApi.execute_prepared_request_native_transaction"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 1024
-        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_native_transaction, the character length must be smaller than or equal to 1024.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
+        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_native_transaction, the character length must be smaller than or equal to 4096.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_native_transaction, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,1024}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling CreateTransactionApi.execute_prepared_request_native_transaction, must conform to the pattern #{pattern}."
       end
@@ -132,15 +132,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling CreateTransactionApi.execute_prepared_request_transaction"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 1024
-        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_transaction, the character length must be smaller than or equal to 1024.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
+        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_transaction, the character length must be smaller than or equal to 4096.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_transaction, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,1024}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling CreateTransactionApi.execute_prepared_request_transaction, must conform to the pattern #{pattern}."
       end
@@ -220,15 +220,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling CreateTransactionApi.prepare_native_transaction"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 1024
-        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_native_transaction, the character length must be smaller than or equal to 1024.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
+        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_native_transaction, the character length must be smaller than or equal to 4096.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_native_transaction, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,1024}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling CreateTransactionApi.prepare_native_transaction, must conform to the pattern #{pattern}."
       end
@@ -286,21 +286,21 @@ module OpenapiClient
     # Prepare a DLT transaction for signing
     # Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
     # @param authorization [String] 
-    # @param unknown_base_type [UNKNOWN_BASE_TYPE] 
+    # @param prepare_payment_transaction_request_schema [PreparePaymentTransactionRequestSchema] 
     # @param [Hash] opts the optional parameters
     # @return [PrepareTransactionResponse]
-    def prepare_transaction_request(authorization, unknown_base_type, opts = {})
-      data, _status_code, _headers = prepare_transaction_request_with_http_info(authorization, unknown_base_type, opts)
+    def prepare_transaction_request(authorization, prepare_payment_transaction_request_schema, opts = {})
+      data, _status_code, _headers = prepare_transaction_request_with_http_info(authorization, prepare_payment_transaction_request_schema, opts)
       data
     end
 
     # Prepare a DLT transaction for signing
     # Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
     # @param authorization [String] 
-    # @param unknown_base_type [UNKNOWN_BASE_TYPE] 
+    # @param prepare_payment_transaction_request_schema [PreparePaymentTransactionRequestSchema] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(PrepareTransactionResponse, Integer, Hash)>] PrepareTransactionResponse data, response status code and response headers
-    def prepare_transaction_request_with_http_info(authorization, unknown_base_type, opts = {})
+    def prepare_transaction_request_with_http_info(authorization, prepare_payment_transaction_request_schema, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CreateTransactionApi.prepare_transaction_request ...'
       end
@@ -308,19 +308,23 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling CreateTransactionApi.prepare_transaction_request"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 1024
-        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_transaction_request, the character length must be smaller than or equal to 1024.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
+        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_transaction_request, the character length must be smaller than or equal to 4096.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_transaction_request, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,1024}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling CreateTransactionApi.prepare_transaction_request, must conform to the pattern #{pattern}."
       end
 
+      # verify the required parameter 'prepare_payment_transaction_request_schema' is set
+      if @api_client.config.client_side_validation && prepare_payment_transaction_request_schema.nil?
+        fail ArgumentError, "Missing the required parameter 'prepare_payment_transaction_request_schema' when calling CreateTransactionApi.prepare_transaction_request"
+      end
       # resource path
       local_var_path = '/v2/preparation/transaction'
 
@@ -342,7 +346,7 @@ module OpenapiClient
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(unknown_base_type)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(prepare_payment_transaction_request_schema)
 
       # return_type
       return_type = opts[:debug_return_type] || 'PrepareTransactionResponse'

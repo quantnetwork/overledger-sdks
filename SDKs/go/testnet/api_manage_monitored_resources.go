@@ -89,8 +89,8 @@ func (a *ManageMonitoredResourcesApiService) DeleteEventMonitoringExecute(r ApiD
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if strlen(r.resourceMonitoringId) < 0 {
 		return localVarReturnValue, nil, reportError("resourceMonitoringId must have at least 0 elements")
@@ -235,8 +235,8 @@ func (a *ManageMonitoredResourcesApiService) DeleteResourceMonitoringAddressExec
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if strlen(r.resourceMonitoringId) < 0 {
 		return localVarReturnValue, nil, reportError("resourceMonitoringId must have at least 0 elements")
@@ -377,8 +377,8 @@ func (a *ManageMonitoredResourcesApiService) GetListOfAddressesExecute(r ApiGetL
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 
 	// to determine the Content-Type header
@@ -513,8 +513,8 @@ func (a *ManageMonitoredResourcesApiService) GetListOfResourcesExecute(r ApiGetL
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 
 	// to determine the Content-Type header
@@ -649,8 +649,8 @@ func (a *ManageMonitoredResourcesApiService) GetListOfSmartContractEventsExecute
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 
 	// to determine the Content-Type header
@@ -789,8 +789,8 @@ func (a *ManageMonitoredResourcesApiService) GetMonitoredAddressExecute(r ApiGet
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if strlen(r.resourceMonitoringId) < 0 {
 		return localVarReturnValue, nil, reportError("resourceMonitoringId must have at least 0 elements")
@@ -935,8 +935,8 @@ func (a *ManageMonitoredResourcesApiService) GetMonitoredSmartContractEventDetai
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if strlen(r.resourceMonitoringId) < 0 {
 		return localVarReturnValue, nil, reportError("resourceMonitoringId must have at least 0 elements")
@@ -1086,8 +1086,8 @@ func (a *ManageMonitoredResourcesApiService) UpdateEventMonitoringExecute(r ApiU
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if strlen(r.resourceMonitoringId) < 0 {
 		return localVarReturnValue, nil, reportError("resourceMonitoringId must have at least 0 elements")
@@ -1242,8 +1242,8 @@ func (a *ManageMonitoredResourcesApiService) UpdateResourceMonitoringAddressExec
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 1024 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 1024 elements")
+	if strlen(*r.authorization) > 4096 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
 	}
 	if strlen(r.resourceMonitoringId) < 0 {
 		return localVarReturnValue, nil, reportError("resourceMonitoringId must have at least 0 elements")

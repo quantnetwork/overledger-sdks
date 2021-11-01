@@ -297,7 +297,7 @@ sub prepare_native_transaction {
 # Prepare a DLT transaction for signing
 #
 # @param string $authorization  (required)
-# @param UNKNOWN_BASE_TYPE $unknown_base_type  (required)
+# @param PreparePaymentTransactionRequestSchema $prepare_payment_transaction_request_schema  (required)
 {
     my $params = {
     'authorization' => {
@@ -305,8 +305,8 @@ sub prepare_native_transaction {
         description => '',
         required => '1',
     },
-    'unknown_base_type' => {
-        data_type => 'UNKNOWN_BASE_TYPE',
+    'prepare_payment_transaction_request_schema' => {
+        data_type => 'PreparePaymentTransactionRequestSchema',
         description => '',
         required => '1',
     },
@@ -325,6 +325,11 @@ sub prepare_transaction_request {
     # verify the required parameter 'authorization' is set
     unless (exists $args{'authorization'}) {
       croak("Missing the required parameter 'authorization' when calling prepare_transaction_request");
+    }
+
+    # verify the required parameter 'prepare_payment_transaction_request_schema' is set
+    unless (exists $args{'prepare_payment_transaction_request_schema'}) {
+      croak("Missing the required parameter 'prepare_payment_transaction_request_schema' when calling prepare_transaction_request");
     }
 
     # parse inputs
@@ -349,8 +354,8 @@ sub prepare_transaction_request {
 
     my $_body_data;
     # body params
-    if ( exists $args{'unknown_base_type'}) {
-        $_body_data = $args{'unknown_base_type'};
+    if ( exists $args{'prepare_payment_transaction_request_schema'}) {
+        $_body_data = $args{'prepare_payment_transaction_request_schema'};
     }
 
     # authentication setting, if any

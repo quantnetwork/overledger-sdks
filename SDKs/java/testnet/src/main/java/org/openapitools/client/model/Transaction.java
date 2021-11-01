@@ -34,7 +34,7 @@ import org.openapitools.client.model.Payment;
  * Smallest unit of a work process related to interactions with distributed ledgers
  */
 @ApiModel(description = "Smallest unit of a work process related to interactions with distributed ledgers")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-29T12:41:08.316065+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-01T15:18:10.790747Z[Europe/London]")
 public class Transaction {
   public static final String SERIALIZED_NAME_SIGNATURE = "signature";
   @SerializedName(SERIALIZED_NAME_SIGNATURE)

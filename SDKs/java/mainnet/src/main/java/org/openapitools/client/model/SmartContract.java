@@ -29,7 +29,7 @@ import org.openapitools.client.model.Function;
  * Computer program storage in a DLT system where the outcome is recorded on the distributed ledger
  */
 @ApiModel(description = "Computer program storage in a DLT system where the outcome is recorded on the distributed ledger")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-29T12:38:46.604397+01:00[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-01T15:12:40.004989Z[Europe/London]")
 public class SmartContract {
   public static final String SERIALIZED_NAME_FUNCTION = "function";
   @SerializedName(SERIALIZED_NAME_FUNCTION)
