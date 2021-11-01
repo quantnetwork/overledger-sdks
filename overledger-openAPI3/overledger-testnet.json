@@ -308,7 +308,7 @@
         }
       },
       "PrepareTransactionSmartContractInvokeRequestSchema": {
-        "additionalProperties": false,
+        "additionalProperties": true,
         "type": "object",
         "properties": {
           "urgency": {
@@ -356,7 +356,7 @@
         }
       },
       "PrepareTransferTransactionRequestSchema": {
-        "additionalProperties": false,
+        "additionalProperties": true,
         "type": "object",
         "properties": {
           "urgency": {
