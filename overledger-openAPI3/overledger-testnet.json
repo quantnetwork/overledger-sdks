@@ -1338,7 +1338,7 @@
         }
       },
       "PreparePaymentTransactionRequestSchema": {
-        "additionalProperties": false,
+        "additionalProperties": true,
         "type": "object",
         "properties": {
           "urgency": {
