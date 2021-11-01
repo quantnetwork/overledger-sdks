@@ -1715,7 +1715,7 @@
         }
       },
       "SmartContractSearchRequestDetails": {
-        "additionalProperties": false,
+        "additionalProperties": true,
         "type": "object",
         "properties": {
           "destination": {
@@ -1753,7 +1753,7 @@
         }
       },
       "PaymentRequestDetailsSchema": {
-        "additionalProperties": false,
+        "additionalProperties": true,
         "type": "object",
         "properties": {
           "overledgerSigningType": {
@@ -2004,7 +2004,7 @@
       },
       "Location": {
         "description": "Unique reference to the ledger on a particular ledger network (optionally accessed from a particular node)",
-        "additionalProperties": false,
+        "additionalProperties": true,
         "type": "object",
         "required": [
           "network",
