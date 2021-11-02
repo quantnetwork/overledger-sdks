@@ -13,4 +13,4 @@ The SDKs are automatically generated from the [Overledger OpenAPI3 Document](htt
 npm run generate-{mainnet,testnet}-sdk-{c#,c,go,haskell,java,javascript,kotlin,perl,php,ruby,rust,typescript-axios}
 ```
 
-For a full set of available scripts see [this package.json](https://github.com/quantnetwork/overledger-sdks/blob/main/package.json)
+For a full set of available scripts see [this package.json](https://github.com/quantnetwork/overledger-sdks/blob/main/package.json).
