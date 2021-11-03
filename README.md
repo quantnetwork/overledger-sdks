@@ -4,7 +4,7 @@ This github repository provides different language SDKs, which can be found in t
 
 ## How To Use
 
-The SDK packages provide functions for interacting with Overledger according to the manner detailed in the openAPI3 documents in [this folder](https://github.com/quantnetwork/overledger-sdks/tree/main/overledger-openAPI3). A UI version of these documents can be found [here](https://docs.overledger.io/).
+The SDK packages provide functions for interacting with Overledger according to the manner detailed in the OpenAPI3 documents in [this folder](https://github.com/quantnetwork/overledger-sdks/tree/main/overledger-openAPI3). A UI version of these documents can be found [here](https://docs.overledger.io/).
 
 To use the SDKs with Overledger, you will need an Overledger client ID and client secret, which are generated via the [Overledger Developer Portal](https://developer.quant.network/).
 
