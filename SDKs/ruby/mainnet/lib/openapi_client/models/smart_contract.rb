@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -134,11 +134,6 @@ module OpenapiClient
         invalid_properties.push('invalid value for "smart_contract_id", the character length must be great than or equal to 0.')
       end
 
-      pattern = Regexp.new(/^[A-Za-z0-9]{1,44}$/)
-      if !@smart_contract_id.nil? && @smart_contract_id !~ pattern
-        invalid_properties.push("invalid value for \"smart_contract_id\", must conform to the pattern #{pattern}.")
-      end
-
       invalid_properties
     end
 
@@ -153,7 +148,6 @@ module OpenapiClient
       return false if !@type.nil? && @type !~ Regexp.new(/^[A-Za-z0-9]{1,20}$/)
       return false if !@smart_contract_id.nil? && @smart_contract_id.to_s.length > 44
       return false if !@smart_contract_id.nil? && @smart_contract_id.to_s.length < 0
-      return false if !@smart_contract_id.nil? && @smart_contract_id !~ Regexp.new(/^[A-Za-z0-9]{1,44}$/)
       true
     end
 
@@ -204,11 +198,6 @@ module OpenapiClient
 
       if !smart_contract_id.nil? && smart_contract_id.to_s.length < 0
         fail ArgumentError, 'invalid value for "smart_contract_id", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[A-Za-z0-9]{1,44}$/)
-      if !smart_contract_id.nil? && smart_contract_id !~ pattern
-        fail ArgumentError, "invalid value for \"smart_contract_id\", must conform to the pattern #{pattern}."
       end
 
       @smart_contract_id = smart_contract_id

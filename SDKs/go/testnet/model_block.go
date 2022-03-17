@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 API version: 2.0
 */
@@ -24,7 +24,7 @@ type Block struct {
 	LinkedBlocks *LinkedBlocks `json:"linkedBlocks,omitempty"`
 	NumberOfTransactions *int32 `json:"numberOfTransactions,omitempty"`
 	Message *string `json:"message,omitempty"`
-	Timestamp *int32 `json:"timestamp,omitempty"`
+	Timestamp *string `json:"timestamp,omitempty"`
 	NativeData *map[string]interface{} `json:"nativeData,omitempty"`
 }
 
@@ -302,9 +302,9 @@ func (o *Block) SetMessage(v string) {
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *Block) GetTimestamp() int32 {
+func (o *Block) GetTimestamp() string {
 	if o == nil || o.Timestamp == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.Timestamp
@@ -312,7 +312,7 @@ func (o *Block) GetTimestamp() int32 {
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Block) GetTimestampOk() (*int32, bool) {
+func (o *Block) GetTimestampOk() (*string, bool) {
 	if o == nil || o.Timestamp == nil {
 		return nil, false
 	}
@@ -328,8 +328,8 @@ func (o *Block) HasTimestamp() bool {
 	return false
 }
 
-// SetTimestamp gets a reference to the given int32 and assigns it to the Timestamp field.
-func (o *Block) SetTimestamp(v int32) {
+// SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
+func (o *Block) SetTimestamp(v string) {
 	o.Timestamp = &v
 }
 

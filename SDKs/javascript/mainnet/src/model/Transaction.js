@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -79,11 +79,11 @@ class Transaction {
             if (data.hasOwnProperty('encoded')) {
                 obj['encoded'] = ApiClient.convertToType(data['encoded'], ['String']);
             }
-            if (data.hasOwnProperty('nativeData')) {
-                obj['nativeData'] = ApiClient.convertToType(data['nativeData'], Object);
-            }
             if (data.hasOwnProperty('extraFields')) {
                 obj['extraFields'] = ApiClient.convertToType(data['extraFields'], Object);
+            }
+            if (data.hasOwnProperty('nativeData')) {
+                obj['nativeData'] = ApiClient.convertToType(data['nativeData'], Object);
             }
         }
         return obj;
@@ -141,14 +141,14 @@ Transaction.prototype['transactionId'] = undefined;
 Transaction.prototype['encoded'] = undefined;
 
 /**
- * @member {Object} nativeData
- */
-Transaction.prototype['nativeData'] = undefined;
-
-/**
  * @member {Object} extraFields
  */
 Transaction.prototype['extraFields'] = undefined;
+
+/**
+ * @member {Object} nativeData
+ */
+Transaction.prototype['nativeData'] = undefined;
 
 
 

@@ -204,7 +204,7 @@ prepareTransactionRequest($authorization, $prepare_payment_transaction_request_s
 
 Prepare a DLT transaction for signing
 
-Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
+Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \"Payment\" (to send payments) and \"Smart Contract Invoke\" (to invoke arbitrary smart contract functions).   Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
 
 ### Example
 

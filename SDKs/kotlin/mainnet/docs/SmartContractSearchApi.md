@@ -4,9 +4,61 @@ All URIs are relative to *https://api.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**autoExecuteSearchSmartContractQueryRequest**](SmartContractSearchApi.md#autoExecuteSearchSmartContractQueryRequest) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 [**executePreparedSearchRequest**](SmartContractSearchApi.md#executePreparedSearchRequest) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 [**prepareSmartContractQueryRequest**](SmartContractSearchApi.md#prepareSmartContractQueryRequest) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
 
+
+<a name="autoExecuteSearchSmartContractQueryRequest"></a>
+# **autoExecuteSearchSmartContractQueryRequest**
+> AutoExecuteSearchAddressBalanceResponseSchema autoExecuteSearchSmartContractQueryRequest(authorization, prepareSearchSchema)
+
+Prepare and automatically execute a search for a smart contract query on a DLT.
+
+Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = SmartContractSearchApi()
+val authorization : kotlin.String = authorization_example // kotlin.String | 
+val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}} // PrepareSearchSchema | 
+try {
+    val result : AutoExecuteSearchAddressBalanceResponseSchema = apiInstance.autoExecuteSearchSmartContractQueryRequest(authorization, prepareSearchSchema)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling SmartContractSearchApi#autoExecuteSearchSmartContractQueryRequest")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling SmartContractSearchApi#autoExecuteSearchSmartContractQueryRequest")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **kotlin.String**|  |
+ **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  |
+
+### Return type
+
+[**AutoExecuteSearchAddressBalanceResponseSchema**](AutoExecuteSearchAddressBalanceResponseSchema.md)
+
+### Authorization
+
+
+Configure OAuth2_Security_Scheme:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="executePreparedSearchRequest"></a>
 # **executePreparedSearchRequest**

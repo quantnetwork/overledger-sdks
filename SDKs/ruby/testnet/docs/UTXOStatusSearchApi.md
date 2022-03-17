@@ -4,8 +4,82 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**auto_execute_search_utxo_request**](UTXOStatusSearchApi.md#auto_execute_search_utxo_request) | **POST** /v2/autoexecution/search/utxo/{utxoId} | Prepare and automatically execute a search for a UTXO on a DLT. |
 | [**execute_utxo_prepared_search_request**](UTXOStatusSearchApi.md#execute_utxo_prepared_search_request) | **POST** /v2/execution/search/utxo | Execute a search for UTXO state on a DLT |
 | [**prepare_search_utxo_state**](UTXOStatusSearchApi.md#prepare_search_utxo_state) | **POST** /v2/preparation/search/utxo/{utxoId} | Prepare Search for a UTXO State. |
+
+
+## auto_execute_search_utxo_request
+
+> <AutoExecuteSearchUTXOResponseSchema> auto_execute_search_utxo_request(authorization, utxo_id, prepare_search_schema)
+
+Prepare and automatically execute a search for a UTXO on a DLT.
+
+Generates a request ID and automatically executes the utxo search on the requested DLT.
+
+### Examples
+
+```ruby
+require 'time'
+require 'openapi_client'
+# setup authorization
+OpenapiClient.configure do |config|
+  # Configure OAuth2 access token for authorization: OAuth2_Security_Scheme
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = OpenapiClient::UTXOStatusSearchApi.new
+authorization = 'authorization_example' # String | 
+utxo_id = 'utxo_id_example' # String | 
+prepare_search_schema = OpenapiClient::PrepareSearchSchema.new # PrepareSearchSchema | 
+
+begin
+  # Prepare and automatically execute a search for a UTXO on a DLT.
+  result = api_instance.auto_execute_search_utxo_request(authorization, utxo_id, prepare_search_schema)
+  p result
+rescue OpenapiClient::ApiError => e
+  puts "Error when calling UTXOStatusSearchApi->auto_execute_search_utxo_request: #{e}"
+end
+```
+
+#### Using the auto_execute_search_utxo_request_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<AutoExecuteSearchUTXOResponseSchema>, Integer, Hash)> auto_execute_search_utxo_request_with_http_info(authorization, utxo_id, prepare_search_schema)
+
+```ruby
+begin
+  # Prepare and automatically execute a search for a UTXO on a DLT.
+  data, status_code, headers = api_instance.auto_execute_search_utxo_request_with_http_info(authorization, utxo_id, prepare_search_schema)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <AutoExecuteSearchUTXOResponseSchema>
+rescue OpenapiClient::ApiError => e
+  puts "Error when calling UTXOStatusSearchApi->auto_execute_search_utxo_request_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **authorization** | **String** |  |  |
+| **utxo_id** | **String** |  |  |
+| **prepare_search_schema** | [**PrepareSearchSchema**](PrepareSearchSchema.md) |  |  |
+
+### Return type
+
+[**AutoExecuteSearchUTXOResponseSchema**](AutoExecuteSearchUTXOResponseSchema.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ## execute_utxo_prepared_search_request
@@ -85,7 +159,7 @@ end
 
 Prepare Search for a UTXO State.
 
-Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT's
 
 ### Examples
 

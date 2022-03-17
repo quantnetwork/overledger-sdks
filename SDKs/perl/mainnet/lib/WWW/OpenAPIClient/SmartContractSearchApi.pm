@@ -2,7 +2,7 @@
 
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -47,6 +47,87 @@ sub new {
 
 }
 
+
+#
+# auto_execute_search_smart_contract_query_request
+#
+# Prepare and automatically execute a search for a smart contract query on a DLT.
+#
+# @param string $authorization  (required)
+# @param PrepareSearchSchema $prepare_search_schema  (required)
+{
+    my $params = {
+    'authorization' => {
+        data_type => 'string',
+        description => '',
+        required => '1',
+    },
+    'prepare_search_schema' => {
+        data_type => 'PrepareSearchSchema',
+        description => '',
+        required => '1',
+    },
+    };
+    __PACKAGE__->method_documentation->{ 'auto_execute_search_smart_contract_query_request' } = {
+        summary => 'Prepare and automatically execute a search for a smart contract query on a DLT.',
+        params => $params,
+        returns => 'AutoExecuteSearchAddressBalanceResponseSchema',
+        };
+}
+# @return AutoExecuteSearchAddressBalanceResponseSchema
+#
+sub auto_execute_search_smart_contract_query_request {
+    my ($self, %args) = @_;
+
+    # verify the required parameter 'authorization' is set
+    unless (exists $args{'authorization'}) {
+      croak("Missing the required parameter 'authorization' when calling auto_execute_search_smart_contract_query_request");
+    }
+
+    # verify the required parameter 'prepare_search_schema' is set
+    unless (exists $args{'prepare_search_schema'}) {
+      croak("Missing the required parameter 'prepare_search_schema' when calling auto_execute_search_smart_contract_query_request");
+    }
+
+    # parse inputs
+    my $_resource_path = '/v2/autoexecution/search/smartcontract';
+
+    my $_method = 'POST';
+    my $query_params = {};
+    my $header_params = {};
+    my $form_params = {};
+
+    # 'Accept' and 'Content-Type' header
+    my $_header_accept = $self->{api_client}->select_header_accept('application/json');
+    if ($_header_accept) {
+        $header_params->{'Accept'} = $_header_accept;
+    }
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+
+    # header params
+    if ( exists $args{'authorization'}) {
+        $header_params->{'Authorization'} = $self->{api_client}->to_header_value($args{'authorization'});
+    }
+
+    my $_body_data;
+    # body params
+    if ( exists $args{'prepare_search_schema'}) {
+        $_body_data = $args{'prepare_search_schema'};
+    }
+
+    # authentication setting, if any
+    my $auth_settings = [qw(OAuth2_Security_Scheme )];
+
+    # make the API Call
+    my $response = $self->{api_client}->call_api($_resource_path, $_method,
+                                           $query_params, $form_params,
+                                           $header_params, $_body_data, $auth_settings);
+    if (!$response) {
+        return;
+    }
+    my $_response_object = $self->{api_client}->deserialize('AutoExecuteSearchAddressBalanceResponseSchema', $response);
+    return $_response_object;
+}
 
 #
 # execute_prepared_search_request

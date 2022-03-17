@@ -24,6 +24,7 @@ typedef struct execute_search_utxo_response_schema_t execute_search_utxo_respons
 
 
 typedef struct execute_search_utxo_response_schema_t {
+    char *utxo_id; // string
     list_t *destination; //nonprimitive container
     struct location_t *location; //model
     struct utxo_timestamp_schema_t *timestamp; //model
@@ -33,6 +34,7 @@ typedef struct execute_search_utxo_response_schema_t {
 } execute_search_utxo_response_schema_t;
 
 execute_search_utxo_response_schema_t *execute_search_utxo_response_schema_create(
+    char *utxo_id,
     list_t *destination,
     location_t *location,
     utxo_timestamp_schema_t *timestamp,

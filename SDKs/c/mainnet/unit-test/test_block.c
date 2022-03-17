@@ -32,7 +32,7 @@ block_t* instantiate_block(int include_optional) {
       instantiate_linked_blocks(0),
       56,
       "a",
-      56,
+      "0",
       0
     );
   } else {
@@ -45,7 +45,7 @@ block_t* instantiate_block(int include_optional) {
       NULL,
       56,
       "a",
-      56,
+      "0",
       0
     );
   }

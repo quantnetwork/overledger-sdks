@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 **Message** | **string** | Any text-based element of the data payload | [optional] 
 **TransactionId** | **string** | The unique identifier of the transaction on this DLN | [optional] 
 **Encoded** | **List&lt;string&gt;** |  | [optional] 
-**NativeData** | **Object** |  | [optional] 
 **ExtraFields** | **Object** |  | [optional] 
+**NativeData** | **Object** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)

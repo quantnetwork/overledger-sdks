@@ -1,7 +1,7 @@
 {-
    Quant Overledger API
 
-   Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+   Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
    OpenAPI Version: 3.0.1
    Quant Overledger API API version: 2.0
@@ -57,6 +57,38 @@ import qualified Prelude as P
 
 -- ** UTXOStatusSearch
 
+-- *** autoExecuteSearchUtxoRequest
+
+-- | @POST \/v2\/autoexecution\/search\/utxo\/{utxoId}@
+-- 
+-- Prepare and automatically execute a search for a UTXO on a DLT.
+-- 
+-- Generates a request ID and automatically executes the utxo search on the requested DLT.
+-- 
+-- AuthMethod: 'AuthOAuthOAuth2SecurityScheme'
+-- 
+autoExecuteSearchUtxoRequest
+  :: (Consumes AutoExecuteSearchUtxoRequest MimeJSON, MimeRender MimeJSON PrepareSearchSchema)
+  => PrepareSearchSchema -- ^ "prepareSearchSchema"
+  -> Authorization -- ^ "authorization"
+  -> UtxoId -- ^ "utxoId"
+  -> QuantOverledgerRequest AutoExecuteSearchUtxoRequest MimeJSON AutoExecuteSearchUTXOResponseSchema MimeJSON
+autoExecuteSearchUtxoRequest prepareSearchSchema (Authorization authorization) (UtxoId utxoId) =
+  _mkRequest "POST" ["/v2/autoexecution/search/utxo/",toPath utxoId]
+    `_hasAuthType` (P.Proxy :: P.Proxy AuthOAuthOAuth2SecurityScheme)
+    `setBodyParam` prepareSearchSchema
+    `addHeader` toHeader ("Authorization", authorization)
+
+data AutoExecuteSearchUtxoRequest 
+instance HasBodyParam AutoExecuteSearchUtxoRequest PrepareSearchSchema 
+
+-- | @application/json@
+instance Consumes AutoExecuteSearchUtxoRequest MimeJSON
+
+-- | @application/json@
+instance Produces AutoExecuteSearchUtxoRequest MimeJSON
+
+
 -- *** executeUTXOPreparedSearchRequest
 
 -- | @POST \/v2\/execution\/search\/utxo@
@@ -88,7 +120,7 @@ instance Produces ExecuteUTXOPreparedSearchRequest MimeJSON
 -- 
 -- Prepare Search for a UTXO State.
 -- 
--- Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+-- Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT's
 -- 
 -- AuthMethod: 'AuthOAuthOAuth2SecurityScheme'
 -- 

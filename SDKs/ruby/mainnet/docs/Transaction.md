@@ -13,8 +13,8 @@
 | **message** | **String** | Any text-based element of the data payload | [optional] |
 | **transaction_id** | **String** | The unique identifier of the transaction on this DLN | [optional] |
 | **encoded** | **Array&lt;String&gt;** |  | [optional] |
-| **native_data** | **Object** |  | [optional] |
 | **extra_fields** | **Object** |  | [optional] |
+| **native_data** | **Object** |  | [optional] |
 
 ## Example
 
@@ -31,8 +31,8 @@ instance = OpenapiClient::Transaction.new(
   message: null,
   transaction_id: null,
   encoded: null,
-  native_data: null,
-  extra_fields: null
+  extra_fields: null,
+  native_data: null
 )
 ```
 

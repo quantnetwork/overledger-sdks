@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 API version: 2.0
 */
@@ -26,6 +26,172 @@ var (
 
 // AddressSearchApiService AddressSearchApi service
 type AddressSearchApiService service
+
+type ApiAutoExecuteSearchAddressBalanceRequestRequest struct {
+	ctx _context.Context
+	ApiService *AddressSearchApiService
+	authorization *string
+	addressId string
+	prepareSearchSchema *PrepareSearchSchema
+}
+
+func (r ApiAutoExecuteSearchAddressBalanceRequestRequest) Authorization(authorization string) ApiAutoExecuteSearchAddressBalanceRequestRequest {
+	r.authorization = &authorization
+	return r
+}
+func (r ApiAutoExecuteSearchAddressBalanceRequestRequest) PrepareSearchSchema(prepareSearchSchema PrepareSearchSchema) ApiAutoExecuteSearchAddressBalanceRequestRequest {
+	r.prepareSearchSchema = &prepareSearchSchema
+	return r
+}
+
+func (r ApiAutoExecuteSearchAddressBalanceRequestRequest) Execute() (AutoExecuteSearchAddressBalanceResponseSchema, *_nethttp.Response, error) {
+	return r.ApiService.AutoExecuteSearchAddressBalanceRequestExecute(r)
+}
+
+/*
+AutoExecuteSearchAddressBalanceRequest Prepare and automatically execute a search for an address balance on a DLT.
+
+Generates a request ID and automatically executes the address balance search on the requested DLT.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param addressId
+ @return ApiAutoExecuteSearchAddressBalanceRequestRequest
+*/
+func (a *AddressSearchApiService) AutoExecuteSearchAddressBalanceRequest(ctx _context.Context, addressId string) ApiAutoExecuteSearchAddressBalanceRequestRequest {
+	return ApiAutoExecuteSearchAddressBalanceRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+		addressId: addressId,
+	}
+}
+
+// Execute executes the request
+//  @return AutoExecuteSearchAddressBalanceResponseSchema
+func (a *AddressSearchApiService) AutoExecuteSearchAddressBalanceRequestExecute(r ApiAutoExecuteSearchAddressBalanceRequestRequest) (AutoExecuteSearchAddressBalanceResponseSchema, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  AutoExecuteSearchAddressBalanceResponseSchema
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressSearchApiService.AutoExecuteSearchAddressBalanceRequest")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/autoexecution/search/address/balance/{addressId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"addressId"+"}", _neturl.PathEscape(parameterToString(r.addressId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if strlen(*r.authorization) < 0 {
+		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
+	}
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
+	}
+	if strlen(r.addressId) < 0 {
+		return localVarReturnValue, nil, reportError("addressId must have at least 0 elements")
+	}
+	if strlen(r.addressId) > 100 {
+		return localVarReturnValue, nil, reportError("addressId must have less than 100 elements")
+	}
+	if r.prepareSearchSchema == nil {
+		return localVarReturnValue, nil, reportError("prepareSearchSchema is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	// body params
+	localVarPostBody = r.prepareSearchSchema
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorList
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerErrorSchema
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiExecutePreparedSearchRequestAddressBalanceRequest struct {
 	ctx _context.Context
@@ -90,8 +256,8 @@ func (a *AddressSearchApiService) ExecutePreparedSearchRequestAddressBalanceExec
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if r.requestId == nil {
 		return localVarReturnValue, nil, reportError("requestId is required and must be specified")
@@ -211,7 +377,7 @@ func (r ApiExecutePreparedSearchRequestAddressSequenceRequest) Execute() (Execut
 /*
 ExecutePreparedSearchRequestAddressSequence Execute a search for an address sequence on a DLT
 
-Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT's
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiExecutePreparedSearchRequestAddressSequenceRequest
@@ -251,8 +417,8 @@ func (a *AddressSearchApiService) ExecutePreparedSearchRequestAddressSequenceExe
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if r.requestId == nil {
 		return localVarReturnValue, nil, reportError("requestId is required and must be specified")
@@ -416,8 +582,8 @@ func (a *AddressSearchApiService) PrepareAddressBalanceSearchRequestExecute(r Ap
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if strlen(r.addressId) < 0 {
 		return localVarReturnValue, nil, reportError("addressId must have at least 0 elements")
@@ -572,8 +738,8 @@ func (a *AddressSearchApiService) PrepareAddressSequenceSearchRequestExecute(r A
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if strlen(r.addressId) < 0 {
 		return localVarReturnValue, nil, reportError("addressId must have at least 0 elements")
@@ -626,6 +792,172 @@ func (a *AddressSearchApiService) PrepareAddressSequenceSearchRequestExecute(r A
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorList
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerErrorSchema
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPrepareAddressSequenceSearchRequest1Request struct {
+	ctx _context.Context
+	ApiService *AddressSearchApiService
+	authorization *string
+	addressId string
+	prepareSearchSchema *PrepareSearchSchema
+}
+
+func (r ApiPrepareAddressSequenceSearchRequest1Request) Authorization(authorization string) ApiPrepareAddressSequenceSearchRequest1Request {
+	r.authorization = &authorization
+	return r
+}
+func (r ApiPrepareAddressSequenceSearchRequest1Request) PrepareSearchSchema(prepareSearchSchema PrepareSearchSchema) ApiPrepareAddressSequenceSearchRequest1Request {
+	r.prepareSearchSchema = &prepareSearchSchema
+	return r
+}
+
+func (r ApiPrepareAddressSequenceSearchRequest1Request) Execute() (AutoExecSearchAddressSequenceResponseSchema, *_nethttp.Response, error) {
+	return r.ApiService.PrepareAddressSequenceSearchRequest1Execute(r)
+}
+
+/*
+PrepareAddressSequenceSearchRequest1 Prepare and automatically execute a search for an Address Sequence.
+
+Generates a request ID and automatically executes the address sequence search on the requested DLT.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param addressId
+ @return ApiPrepareAddressSequenceSearchRequest1Request
+*/
+func (a *AddressSearchApiService) PrepareAddressSequenceSearchRequest1(ctx _context.Context, addressId string) ApiPrepareAddressSequenceSearchRequest1Request {
+	return ApiPrepareAddressSequenceSearchRequest1Request{
+		ApiService: a,
+		ctx: ctx,
+		addressId: addressId,
+	}
+}
+
+// Execute executes the request
+//  @return AutoExecSearchAddressSequenceResponseSchema
+func (a *AddressSearchApiService) PrepareAddressSequenceSearchRequest1Execute(r ApiPrepareAddressSequenceSearchRequest1Request) (AutoExecSearchAddressSequenceResponseSchema, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  AutoExecSearchAddressSequenceResponseSchema
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddressSearchApiService.PrepareAddressSequenceSearchRequest1")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/autoexecution/search/address/sequence/{addressId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"addressId"+"}", _neturl.PathEscape(parameterToString(r.addressId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if strlen(*r.authorization) < 0 {
+		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
+	}
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
+	}
+	if strlen(r.addressId) < 0 {
+		return localVarReturnValue, nil, reportError("addressId must have at least 0 elements")
+	}
+	if strlen(r.addressId) > 100 {
+		return localVarReturnValue, nil, reportError("addressId must have less than 100 elements")
+	}
+	if r.prepareSearchSchema == nil {
+		return localVarReturnValue, nil, reportError("prepareSearchSchema is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	// body params
+	localVarPostBody = r.prepareSearchSchema
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorList

@@ -14,7 +14,7 @@ block_t *block_create(
     linked_blocks_t *linked_blocks,
     int number_of_transactions,
     char *message,
-    int timestamp,
+    char *timestamp,
     object_t *native_data
     ) {
     block_t *block_local_var = malloc(sizeof(block_t));
@@ -73,6 +73,10 @@ void block_free(block_t *block) {
     if (block->message) {
         free(block->message);
         block->message = NULL;
+    }
+    if (block->timestamp) {
+        free(block->timestamp);
+        block->timestamp = NULL;
     }
     if (block->native_data) {
         object_free(block->native_data);
@@ -188,8 +192,8 @@ cJSON *block_convertToJSON(block_t *block) {
 
     // block->timestamp
     if(block->timestamp) { 
-    if(cJSON_AddNumberToObject(item, "timestamp", block->timestamp) == NULL) {
-    goto fail; //Numeric
+    if(cJSON_AddStringToObject(item, "timestamp", block->timestamp) == NULL) {
+    goto fail; //String
     }
      } 
 
@@ -328,9 +332,9 @@ block_t *block_parseFromJSON(cJSON *blockJSON){
     // block->timestamp
     cJSON *timestamp = cJSON_GetObjectItemCaseSensitive(blockJSON, "timestamp");
     if (timestamp) { 
-    if(!cJSON_IsNumber(timestamp))
+    if(!cJSON_IsString(timestamp))
     {
-    goto end; //Numeric
+    goto end; //String
     }
     }
 
@@ -351,7 +355,7 @@ block_t *block_parseFromJSON(cJSON *blockJSON){
         linked_blocks ? linked_blocks_local_nonprim : NULL,
         number_of_transactions ? number_of_transactions->valuedouble : 0,
         message ? strdup(message->valuestring) : NULL,
-        timestamp ? timestamp->valuedouble : 0,
+        timestamp ? strdup(timestamp->valuestring) : NULL,
         native_data ? native_data_local_object : NULL
         );
 

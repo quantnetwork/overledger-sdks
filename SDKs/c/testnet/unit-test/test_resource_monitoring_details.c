@@ -28,7 +28,7 @@ resource_monitoring_details_t* instantiate_resource_monitoring_details(int inclu
        // false, not to have infinite recursion
       instantiate_location(0),
       "a",
-      "2013-10-20T19:20:30+01:00",
+      "0",
        // false, not to have infinite recursion
       instantiate_status(0)
     );
@@ -37,7 +37,7 @@ resource_monitoring_details_t* instantiate_resource_monitoring_details(int inclu
       "0",
       NULL,
       "a",
-      "2013-10-20T19:20:30+01:00",
+      "0",
       NULL
     );
   }

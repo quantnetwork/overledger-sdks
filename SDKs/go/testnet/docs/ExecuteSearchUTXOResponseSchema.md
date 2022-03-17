@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**UtxoId** | Pointer to **string** |  | [optional] 
 **Destination** | Pointer to [**[]UTXODestination**](UTXODestination.md) |  | [optional] 
 **Location** | Pointer to [**Location**](Location.md) |  | [optional] 
 **Timestamp** | Pointer to [**UTXOTimestampSchema**](UTXOTimestampSchema.md) |  | [optional] 
@@ -28,6 +29,31 @@ will change when the set of required properties is changed
 NewExecuteSearchUTXOResponseSchemaWithDefaults instantiates a new ExecuteSearchUTXOResponseSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetUtxoId
+
+`func (o *ExecuteSearchUTXOResponseSchema) GetUtxoId() string`
+
+GetUtxoId returns the UtxoId field if non-nil, zero value otherwise.
+
+### GetUtxoIdOk
+
+`func (o *ExecuteSearchUTXOResponseSchema) GetUtxoIdOk() (*string, bool)`
+
+GetUtxoIdOk returns a tuple with the UtxoId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUtxoId
+
+`func (o *ExecuteSearchUTXOResponseSchema) SetUtxoId(v string)`
+
+SetUtxoId sets UtxoId field to given value.
+
+### HasUtxoId
+
+`func (o *ExecuteSearchUTXOResponseSchema) HasUtxoId() bool`
+
+HasUtxoId returns a boolean if a field has been set.
 
 ### GetDestination
 

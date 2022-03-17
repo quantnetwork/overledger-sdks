@@ -4,9 +4,42 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**SmartContractSearchAPI_autoExecuteSearchSmartContractQueryRequest**](SmartContractSearchAPI.md#SmartContractSearchAPI_autoExecuteSearchSmartContractQueryRequest) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 [**SmartContractSearchAPI_executePreparedSearchRequest**](SmartContractSearchAPI.md#SmartContractSearchAPI_executePreparedSearchRequest) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 [**SmartContractSearchAPI_prepareSmartContractQueryRequest**](SmartContractSearchAPI.md#SmartContractSearchAPI_prepareSmartContractQueryRequest) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
 
+
+# **SmartContractSearchAPI_autoExecuteSearchSmartContractQueryRequest**
+```c
+// Prepare and automatically execute a search for a smart contract query on a DLT.
+//
+// Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+//
+auto_execute_search_address_balance_response_schema_t* SmartContractSearchAPI_autoExecuteSearchSmartContractQueryRequest(apiClient_t *apiClient, char * Authorization, prepare_search_schema_t * prepare_search_schema);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**Authorization** | **char \*** |  | 
+**prepare_search_schema** | **[prepare_search_schema_t](prepare_search_schema.md) \*** |  | 
+
+### Return type
+
+[auto_execute_search_address_balance_response_schema_t](auto_execute_search_address_balance_response_schema.md) *
+
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SmartContractSearchAPI_executePreparedSearchRequest**
 ```c

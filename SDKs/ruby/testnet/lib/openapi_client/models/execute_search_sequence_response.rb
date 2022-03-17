@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -19,6 +19,8 @@ module OpenapiClient
 
     attr_accessor :location
 
+    attr_accessor :timestamp
+
     attr_accessor :address_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -26,6 +28,7 @@ module OpenapiClient
       {
         :'sequence' => :'sequence',
         :'location' => :'location',
+        :'timestamp' => :'timestamp',
         :'address_id' => :'addressId'
       }
     end
@@ -40,6 +43,7 @@ module OpenapiClient
       {
         :'sequence' => :'String',
         :'location' => :'Location',
+        :'timestamp' => :'String',
         :'address_id' => :'String'
       }
     end
@@ -71,6 +75,10 @@ module OpenapiClient
 
       if attributes.key?(:'location')
         self.location = attributes[:'location']
+      end
+
+      if attributes.key?(:'timestamp')
+        self.timestamp = attributes[:'timestamp']
       end
 
       if attributes.key?(:'address_id')
@@ -168,6 +176,7 @@ module OpenapiClient
       self.class == o.class &&
           sequence == o.sequence &&
           location == o.location &&
+          timestamp == o.timestamp &&
           address_id == o.address_id
     end
 
@@ -180,7 +189,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [sequence, location, address_id].hash
+      [sequence, location, timestamp, address_id].hash
     end
 
     # Builds the object from hash

@@ -12,6 +12,124 @@
 }while(0)
 
 
+// Prepare and automatically execute a search for a UTXO on a DLT.
+//
+// Generates a request ID and automatically executes the utxo search on the requested DLT.
+//
+auto_execute_search_utxo_response_schema_t*
+UTXOStatusSearchAPI_autoExecuteSearchUtxoRequest(apiClient_t *apiClient, char * Authorization , char * utxoId , prepare_search_schema_t * prepare_search_schema )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = list_create();
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_create();
+    list_t *localVarContentType = list_create();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/v2/autoexecution/search/utxo/{utxoId}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/v2/autoexecution/search/utxo/{utxoId}");
+
+
+    // Path Params
+    long sizeOfPathParams_utxoId = strlen(utxoId)+3 + strlen("{ utxoId }");
+    if(utxoId == NULL) {
+        goto end;
+    }
+    char* localVarToReplace_utxoId = malloc(sizeOfPathParams_utxoId);
+    sprintf(localVarToReplace_utxoId, "{%s}", "utxoId");
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_utxoId, utxoId);
+
+
+
+    // header parameters
+    char *keyHeader_Authorization = NULL;
+    char * valueHeader_Authorization = 0;
+    keyValuePair_t *keyPairHeader_Authorization = 0;
+    if (Authorization) {
+        keyHeader_Authorization = strdup("Authorization");
+        valueHeader_Authorization = strdup((Authorization));
+        keyPairHeader_Authorization = keyValuePair_create(keyHeader_Authorization, valueHeader_Authorization);
+        list_addElement(localVarHeaderParameters,keyPairHeader_Authorization);
+    }
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_prepare_search_schema = NULL;
+    if (prepare_search_schema != NULL)
+    {
+        //string
+        localVarSingleItemJSON_prepare_search_schema = prepare_search_schema_convertToJSON(prepare_search_schema);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_prepare_search_schema);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    if (apiClient->response_code == 200) {
+        printf("%s\n","All good!");
+    }
+    if (apiClient->response_code == 400) {
+        printf("%s\n","Bad Request");
+    }
+    if (apiClient->response_code == 401) {
+        printf("%s\n","Unauthorised");
+    }
+    if (apiClient->response_code == 500) {
+        printf("%s\n","Something went wrong on our side");
+    }
+    //nonprimitive not container
+    cJSON *UTXOStatusSearchAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    auto_execute_search_utxo_response_schema_t *elementToReturn = auto_execute_search_utxo_response_schema_parseFromJSON(UTXOStatusSearchAPIlocalVarJSON);
+    cJSON_Delete(UTXOStatusSearchAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    list_free(localVarHeaderParameters);
+    
+    list_free(localVarHeaderType);
+    list_free(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_utxoId);
+    if (keyHeader_Authorization) {
+        free(keyHeader_Authorization);
+        keyHeader_Authorization = NULL;
+    }
+    if (valueHeader_Authorization) {
+        free(valueHeader_Authorization);
+        valueHeader_Authorization = NULL;
+    }
+    free(keyPairHeader_Authorization);
+    if (localVarSingleItemJSON_prepare_search_schema) {
+        cJSON_Delete(localVarSingleItemJSON_prepare_search_schema);
+        localVarSingleItemJSON_prepare_search_schema = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Execute a search for UTXO state on a DLT
 //
 // Takes a request ID, searches for the UTXO state and retrieves the details on the requested DLT. This API is only applicable for Bitcoin.
@@ -130,7 +248,7 @@ end:
 
 // Prepare Search for a UTXO State.
 //
-// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT's
 //
 prepare_search_response_schema_t*
 UTXOStatusSearchAPI_prepareSearchUTXOState(apiClient_t *apiClient, char * Authorization , char * utxoId , prepare_search_schema_t * prepare_search_schema )

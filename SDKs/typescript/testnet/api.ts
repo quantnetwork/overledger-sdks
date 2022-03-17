@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant\'s Overledger API allows developers to create applications for multiple DLT\'s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -35,16 +35,10 @@ export interface AddressBalanceResponse {
     'unit'?: string;
     /**
      * 
-     * @type {number}
-     * @memberof AddressBalanceResponse
-     */
-    'value'?: number;
-    /**
-     * 
      * @type {string}
      * @memberof AddressBalanceResponse
      */
-    'addressId'?: string;
+    'amount'?: string;
 }
 /**
  * 
@@ -130,6 +124,131 @@ export interface AddressMonitoringResponseSchema {
 /**
  * 
  * @export
+ * @interface ApproveRequestDetailsSchema
+ */
+export interface ApproveRequestDetailsSchema {
+    /**
+     * Who are the payees of this transaction
+     * @type {Array<PayeeCreditSchema>}
+     * @memberof ApproveRequestDetailsSchema
+     */
+    'mandate'?: Array<PayeeCreditSchema>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApproveRequestDetailsSchema
+     */
+    'overledgerSigningType'?: string;
+    /**
+     * Who are the payers of this transaction
+     * @type {Array<PayerCreditSchema>}
+     * @memberof ApproveRequestDetailsSchema
+     */
+    'payer'?: Array<PayerCreditSchema>;
+}
+/**
+ * 
+ * @export
+ * @interface AutoExecSearchAddressSequenceResponseSchema
+ */
+export interface AutoExecSearchAddressSequenceResponseSchema {
+    /**
+     * 
+     * @type {PrepareSearchResponseSchema}
+     * @memberof AutoExecSearchAddressSequenceResponseSchema
+     */
+    'preparationAddressSequenceSearchResponse'?: PrepareSearchResponseSchema;
+    /**
+     * 
+     * @type {PrepareAndExecuteOverledgerErrorResponse}
+     * @memberof AutoExecSearchAddressSequenceResponseSchema
+     */
+    'prepareAndExecuteOverledgerErrorResponse'?: PrepareAndExecuteOverledgerErrorResponse;
+    /**
+     * 
+     * @type {ExecuteSearchSequenceResponse}
+     * @memberof AutoExecSearchAddressSequenceResponseSchema
+     */
+    'executionAddressSequenceSearchResponse'?: ExecuteSearchSequenceResponse;
+}
+/**
+ * 
+ * @export
+ * @interface AutoExecuteSearchAddressBalanceResponseSchema
+ */
+export interface AutoExecuteSearchAddressBalanceResponseSchema {
+    /**
+     * 
+     * @type {PrepareAndExecuteSearchAddressBalanceResponse}
+     * @memberof AutoExecuteSearchAddressBalanceResponseSchema
+     */
+    'executionAddressBalanceSearchResponse'?: PrepareAndExecuteSearchAddressBalanceResponse;
+    /**
+     * 
+     * @type {PrepareAndExecuteOverledgerErrorResponse}
+     * @memberof AutoExecuteSearchAddressBalanceResponseSchema
+     */
+    'prepareAndExecuteOverledgerErrorResponse'?: PrepareAndExecuteOverledgerErrorResponse;
+    /**
+     * 
+     * @type {PrepareSearchResponseSchema}
+     * @memberof AutoExecuteSearchAddressBalanceResponseSchema
+     */
+    'preparationAddressBalanceSearchResponse'?: PrepareSearchResponseSchema;
+}
+/**
+ * 
+ * @export
+ * @interface AutoExecuteSearchBlockResponseSchema
+ */
+export interface AutoExecuteSearchBlockResponseSchema {
+    /**
+     * 
+     * @type {ExecuteSearchBlockResponse}
+     * @memberof AutoExecuteSearchBlockResponseSchema
+     */
+    'executionBlockSearchResponse'?: ExecuteSearchBlockResponse;
+    /**
+     * 
+     * @type {PrepareAndExecuteOverledgerErrorResponse}
+     * @memberof AutoExecuteSearchBlockResponseSchema
+     */
+    'prepareAndExecuteOverledgerErrorResponse'?: PrepareAndExecuteOverledgerErrorResponse;
+    /**
+     * 
+     * @type {PrepareSearchResponseSchema}
+     * @memberof AutoExecuteSearchBlockResponseSchema
+     */
+    'preparationBlockSearchResponse'?: PrepareSearchResponseSchema;
+}
+/**
+ * 
+ * @export
+ * @interface AutoExecuteSearchUTXOResponseSchema
+ */
+export interface AutoExecuteSearchUTXOResponseSchema {
+    /**
+     * 
+     * @type {ExecuteSearchUTXOResponse}
+     * @memberof AutoExecuteSearchUTXOResponseSchema
+     */
+    'executionUtxoSearchResponse'?: ExecuteSearchUTXOResponse;
+    /**
+     * 
+     * @type {PrepareAndExecuteOverledgerErrorResponse}
+     * @memberof AutoExecuteSearchUTXOResponseSchema
+     */
+    'prepareAndExecuteOverledgerErrorResponse'?: PrepareAndExecuteOverledgerErrorResponse;
+    /**
+     * 
+     * @type {PrepareTransactionResponse}
+     * @memberof AutoExecuteSearchUTXOResponseSchema
+     */
+    'preparationUtxoSearchResponse'?: PrepareTransactionResponse;
+}
+/**
+ * 
+ * @export
  * @interface Block
  */
 export interface Block {
@@ -183,10 +302,10 @@ export interface Block {
     'message'?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Block
      */
-    'timestamp'?: number;
+    'timestamp'?: string;
     /**
      * 
      * @type {object}
@@ -306,6 +425,37 @@ export interface CreateSubscriptionResponseSchema {
      * @memberof CreateSubscriptionResponseSchema
      */
     'subscriptionId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface CreditRequestDetailsSchema
+ */
+export interface CreditRequestDetailsSchema {
+    /**
+     * Who are the payees of this transaction
+     * @type {Array<PayeeCreditSchema>}
+     * @memberof CreditRequestDetailsSchema
+     */
+    'payee'?: Array<PayeeCreditSchema>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreditRequestDetailsSchema
+     */
+    'overledgerSigningType'?: string;
+    /**
+     * Any text-based element of the data payload
+     * @type {string}
+     * @memberof CreditRequestDetailsSchema
+     */
+    'message'?: string;
+    /**
+     * Who are the payers of this transaction
+     * @type {Array<PayerCreditSchema>}
+     * @memberof CreditRequestDetailsSchema
+     */
+    'payer'?: Array<PayerCreditSchema>;
 }
 /**
  * 
@@ -457,6 +607,18 @@ export interface ExecuteSearchBalanceResponse {
      * @memberof ExecuteSearchBalanceResponse
      */
     'location'?: Location;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExecuteSearchBalanceResponse
+     */
+    'timestamp'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExecuteSearchBalanceResponse
+     */
+    'addressId'?: string;
 }
 /**
  * 
@@ -501,6 +663,12 @@ export interface ExecuteSearchSequenceResponse {
      * @memberof ExecuteSearchSequenceResponse
      */
     'location'?: Location;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExecuteSearchSequenceResponse
+     */
+    'timestamp'?: string;
     /**
      * 
      * @type {string}
@@ -554,9 +722,58 @@ export interface ExecuteSearchTransactionResponse {
 /**
  * 
  * @export
+ * @interface ExecuteSearchUTXOResponse
+ */
+export interface ExecuteSearchUTXOResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof ExecuteSearchUTXOResponse
+     */
+    'utxoId'?: string;
+    /**
+     * 
+     * @type {Array<Destination>}
+     * @memberof ExecuteSearchUTXOResponse
+     */
+    'destination'?: Array<Destination>;
+    /**
+     * 
+     * @type {Location}
+     * @memberof ExecuteSearchUTXOResponse
+     */
+    'location'?: Location;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExecuteSearchUTXOResponse
+     */
+    'timestamp'?: string;
+    /**
+     * 
+     * @type {Status}
+     * @memberof ExecuteSearchUTXOResponse
+     */
+    'status'?: Status;
+    /**
+     * 
+     * @type {object}
+     * @memberof ExecuteSearchUTXOResponse
+     */
+    'nativeData'?: object;
+}
+/**
+ * 
+ * @export
  * @interface ExecuteSearchUTXOResponseSchema
  */
 export interface ExecuteSearchUTXOResponseSchema {
+    /**
+     * 
+     * @type {string}
+     * @memberof ExecuteSearchUTXOResponseSchema
+     */
+    'utxoId'?: string;
     /**
      * 
      * @type {Array<UTXODestination>}
@@ -1087,6 +1304,38 @@ export interface Parameter {
     'key'?: string;
 }
 /**
+ * Who are the payees of this transaction
+ * @export
+ * @interface PayeeCreditSchema
+ */
+export interface PayeeCreditSchema {
+    /**
+     * 
+     * @type {PaymentSchema}
+     * @memberof PayeeCreditSchema
+     */
+    'payment'?: PaymentSchema;
+    /**
+     * The unique identifiers of the payees
+     * @type {string}
+     * @memberof PayeeCreditSchema
+     */
+    'payeeId'?: string;
+}
+/**
+ * Who are the payers of this transaction
+ * @export
+ * @interface PayerCreditSchema
+ */
+export interface PayerCreditSchema {
+    /**
+     * Unique Identifier of the payer
+     * @type {string}
+     * @memberof PayerCreditSchema
+     */
+    'payerId'?: string;
+}
+/**
  * 
  * @export
  * @interface Payment
@@ -1160,6 +1409,168 @@ export interface PaymentSchema {
      * @memberof PaymentSchema
      */
     'unit'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PrepareAndExecuteBalanceDetails
+ */
+export interface PrepareAndExecuteBalanceDetails {
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareAndExecuteBalanceDetails
+     */
+    'unit'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareAndExecuteBalanceDetails
+     */
+    'amount'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PrepareAndExecuteOverledgerErrorResponse
+ */
+export interface PrepareAndExecuteOverledgerErrorResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareAndExecuteOverledgerErrorResponse
+     */
+    'code'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareAndExecuteOverledgerErrorResponse
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareAndExecuteOverledgerErrorResponse
+     */
+    'category'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PrepareAndExecuteSearchAddressBalanceResponse
+ */
+export interface PrepareAndExecuteSearchAddressBalanceResponse {
+    /**
+     * 
+     * @type {Array<PrepareAndExecuteBalanceDetails>}
+     * @memberof PrepareAndExecuteSearchAddressBalanceResponse
+     */
+    'balances'?: Array<PrepareAndExecuteBalanceDetails>;
+    /**
+     * 
+     * @type {Location}
+     * @memberof PrepareAndExecuteSearchAddressBalanceResponse
+     */
+    'location'?: Location;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareAndExecuteSearchAddressBalanceResponse
+     */
+    'timestamp'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareAndExecuteSearchAddressBalanceResponse
+     */
+    'addressId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PrepareAndExecuteTransactionResponse
+ */
+export interface PrepareAndExecuteTransactionResponse {
+    /**
+     * 
+     * @type {PrepareAndExecuteOverledgerErrorResponse}
+     * @memberof PrepareAndExecuteTransactionResponse
+     */
+    'executionTransactionSearchOverledgerErrorResponse'?: PrepareAndExecuteOverledgerErrorResponse;
+    /**
+     * 
+     * @type {PrepareTransactionResponse}
+     * @memberof PrepareAndExecuteTransactionResponse
+     */
+    'preparationTransactionSearchResponse'?: PrepareTransactionResponse;
+    /**
+     * 
+     * @type {ExecuteSearchTransactionResponse}
+     * @memberof PrepareAndExecuteTransactionResponse
+     */
+    'executionTransactionSearchResponse'?: ExecuteSearchTransactionResponse;
+}
+/**
+ * 
+ * @export
+ * @interface PrepareApproveDebitTransactionRequestSchema
+ */
+export interface PrepareApproveDebitTransactionRequestSchema {
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareApproveDebitTransactionRequestSchema
+     */
+    'urgency'?: string;
+    /**
+     * 
+     * @type {ApproveRequestDetailsSchema}
+     * @memberof PrepareApproveDebitTransactionRequestSchema
+     */
+    'requestDetails'?: ApproveRequestDetailsSchema;
+    /**
+     * 
+     * @type {Location}
+     * @memberof PrepareApproveDebitTransactionRequestSchema
+     */
+    'location'?: Location;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareApproveDebitTransactionRequestSchema
+     */
+    'type'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PrepareCreditTransactionRequestSchema
+ */
+export interface PrepareCreditTransactionRequestSchema {
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareCreditTransactionRequestSchema
+     */
+    'urgency'?: string;
+    /**
+     * 
+     * @type {CreditRequestDetailsSchema}
+     * @memberof PrepareCreditTransactionRequestSchema
+     */
+    'requestDetails'?: CreditRequestDetailsSchema;
+    /**
+     * 
+     * @type {Location}
+     * @memberof PrepareCreditTransactionRequestSchema
+     */
+    'location'?: Location;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareCreditTransactionRequestSchema
+     */
+    'type'?: string;
 }
 /**
  * 
@@ -2167,13 +2578,13 @@ export interface Transaction {
      * @type {object}
      * @memberof Transaction
      */
-    'nativeData'?: object;
+    'extraFields'?: object;
     /**
      * 
      * @type {object}
      * @memberof Transaction
      */
-    'extraFields'?: object;
+    'nativeData'?: object;
 }
 /**
  * 
@@ -2397,6 +2808,57 @@ export interface Vout {
 export const AddressSearchApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Generates a request ID and automatically executes the address balance search on the requested DLT.
+         * @summary Prepare and automatically execute a search for an address balance on a DLT.
+         * @param {string} authorization 
+         * @param {string} addressId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        autoExecuteSearchAddressBalanceRequest: async (authorization: string, addressId: string, prepareSearchSchema: PrepareSearchSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('autoExecuteSearchAddressBalanceRequest', 'authorization', authorization)
+            // verify required parameter 'addressId' is not null or undefined
+            assertParamExists('autoExecuteSearchAddressBalanceRequest', 'addressId', addressId)
+            // verify required parameter 'prepareSearchSchema' is not null or undefined
+            assertParamExists('autoExecuteSearchAddressBalanceRequest', 'prepareSearchSchema', prepareSearchSchema)
+            const localVarPath = `/v2/autoexecution/search/address/balance/{addressId}`
+                .replace(`{${"addressId"}}`, encodeURIComponent(String(addressId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareSearchSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Takes a request ID, searches for the address and retrieves the balance on the requested DLT. This API is only applicable for account based DLTs
          * @summary Execute a search for an address balance on a DLT
          * @param {string} authorization 
@@ -2445,7 +2907,7 @@ export const AddressSearchApiAxiosParamCreator = function (configuration?: Confi
             };
         },
         /**
-         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT\'s
          * @summary Execute a search for an address sequence on a DLT
          * @param {string} authorization 
          * @param {string} requestId 
@@ -2594,6 +3056,57 @@ export const AddressSearchApiAxiosParamCreator = function (configuration?: Confi
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Generates a request ID and automatically executes the address sequence search on the requested DLT.
+         * @summary Prepare and automatically execute a search for an Address Sequence.
+         * @param {string} authorization 
+         * @param {string} addressId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareAddressSequenceSearchRequest1: async (authorization: string, addressId: string, prepareSearchSchema: PrepareSearchSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('prepareAddressSequenceSearchRequest1', 'authorization', authorization)
+            // verify required parameter 'addressId' is not null or undefined
+            assertParamExists('prepareAddressSequenceSearchRequest1', 'addressId', addressId)
+            // verify required parameter 'prepareSearchSchema' is not null or undefined
+            assertParamExists('prepareAddressSequenceSearchRequest1', 'prepareSearchSchema', prepareSearchSchema)
+            const localVarPath = `/v2/autoexecution/search/address/sequence/{addressId}`
+                .replace(`{${"addressId"}}`, encodeURIComponent(String(addressId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareSearchSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -2604,6 +3117,19 @@ export const AddressSearchApiAxiosParamCreator = function (configuration?: Confi
 export const AddressSearchApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AddressSearchApiAxiosParamCreator(configuration)
     return {
+        /**
+         * Generates a request ID and automatically executes the address balance search on the requested DLT.
+         * @summary Prepare and automatically execute a search for an address balance on a DLT.
+         * @param {string} authorization 
+         * @param {string} addressId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async autoExecuteSearchAddressBalanceRequest(authorization: string, addressId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AutoExecuteSearchAddressBalanceResponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.autoExecuteSearchAddressBalanceRequest(authorization, addressId, prepareSearchSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
         /**
          * Takes a request ID, searches for the address and retrieves the balance on the requested DLT. This API is only applicable for account based DLTs
          * @summary Execute a search for an address balance on a DLT
@@ -2617,7 +3143,7 @@ export const AddressSearchApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT\'s
          * @summary Execute a search for an address sequence on a DLT
          * @param {string} authorization 
          * @param {string} requestId 
@@ -2654,6 +3180,19 @@ export const AddressSearchApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.prepareAddressSequenceSearchRequest(authorization, addressId, prepareSearchSchema, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
+        /**
+         * Generates a request ID and automatically executes the address sequence search on the requested DLT.
+         * @summary Prepare and automatically execute a search for an Address Sequence.
+         * @param {string} authorization 
+         * @param {string} addressId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async prepareAddressSequenceSearchRequest1(authorization: string, addressId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AutoExecSearchAddressSequenceResponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareAddressSequenceSearchRequest1(authorization, addressId, prepareSearchSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
     }
 };
 
@@ -2664,6 +3203,18 @@ export const AddressSearchApiFp = function(configuration?: Configuration) {
 export const AddressSearchApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = AddressSearchApiFp(configuration)
     return {
+        /**
+         * Generates a request ID and automatically executes the address balance search on the requested DLT.
+         * @summary Prepare and automatically execute a search for an address balance on a DLT.
+         * @param {string} authorization 
+         * @param {string} addressId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        autoExecuteSearchAddressBalanceRequest(authorization: string, addressId: string, prepareSearchSchema: PrepareSearchSchema, options?: any): AxiosPromise<AutoExecuteSearchAddressBalanceResponseSchema> {
+            return localVarFp.autoExecuteSearchAddressBalanceRequest(authorization, addressId, prepareSearchSchema, options).then((request) => request(axios, basePath));
+        },
         /**
          * Takes a request ID, searches for the address and retrieves the balance on the requested DLT. This API is only applicable for account based DLTs
          * @summary Execute a search for an address balance on a DLT
@@ -2676,7 +3227,7 @@ export const AddressSearchApiFactory = function (configuration?: Configuration, 
             return localVarFp.executePreparedSearchRequestAddressBalance(authorization, requestId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT\'s
          * @summary Execute a search for an address sequence on a DLT
          * @param {string} authorization 
          * @param {string} requestId 
@@ -2710,6 +3261,18 @@ export const AddressSearchApiFactory = function (configuration?: Configuration, 
         prepareAddressSequenceSearchRequest(authorization: string, addressId: string, prepareSearchSchema: PrepareSearchSchema, options?: any): AxiosPromise<PrepareSearchResponseSchema> {
             return localVarFp.prepareAddressSequenceSearchRequest(authorization, addressId, prepareSearchSchema, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Generates a request ID and automatically executes the address sequence search on the requested DLT.
+         * @summary Prepare and automatically execute a search for an Address Sequence.
+         * @param {string} authorization 
+         * @param {string} addressId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareAddressSequenceSearchRequest1(authorization: string, addressId: string, prepareSearchSchema: PrepareSearchSchema, options?: any): AxiosPromise<AutoExecSearchAddressSequenceResponseSchema> {
+            return localVarFp.prepareAddressSequenceSearchRequest1(authorization, addressId, prepareSearchSchema, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -2720,6 +3283,20 @@ export const AddressSearchApiFactory = function (configuration?: Configuration, 
  * @extends {BaseAPI}
  */
 export class AddressSearchApi extends BaseAPI {
+    /**
+     * Generates a request ID and automatically executes the address balance search on the requested DLT.
+     * @summary Prepare and automatically execute a search for an address balance on a DLT.
+     * @param {string} authorization 
+     * @param {string} addressId 
+     * @param {PrepareSearchSchema} prepareSearchSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AddressSearchApi
+     */
+    public autoExecuteSearchAddressBalanceRequest(authorization: string, addressId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig) {
+        return AddressSearchApiFp(this.configuration).autoExecuteSearchAddressBalanceRequest(authorization, addressId, prepareSearchSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Takes a request ID, searches for the address and retrieves the balance on the requested DLT. This API is only applicable for account based DLTs
      * @summary Execute a search for an address balance on a DLT
@@ -2734,7 +3311,7 @@ export class AddressSearchApi extends BaseAPI {
     }
 
     /**
-     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT\'s
      * @summary Execute a search for an address sequence on a DLT
      * @param {string} authorization 
      * @param {string} requestId 
@@ -2773,6 +3350,20 @@ export class AddressSearchApi extends BaseAPI {
     public prepareAddressSequenceSearchRequest(authorization: string, addressId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig) {
         return AddressSearchApiFp(this.configuration).prepareAddressSequenceSearchRequest(authorization, addressId, prepareSearchSchema, options).then((request) => request(this.axios, this.basePath));
     }
+
+    /**
+     * Generates a request ID and automatically executes the address sequence search on the requested DLT.
+     * @summary Prepare and automatically execute a search for an Address Sequence.
+     * @param {string} authorization 
+     * @param {string} addressId 
+     * @param {PrepareSearchSchema} prepareSearchSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AddressSearchApi
+     */
+    public prepareAddressSequenceSearchRequest1(authorization: string, addressId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig) {
+        return AddressSearchApiFp(this.configuration).prepareAddressSequenceSearchRequest1(authorization, addressId, prepareSearchSchema, options).then((request) => request(this.axios, this.basePath));
+    }
 }
 
 
@@ -2782,6 +3373,57 @@ export class AddressSearchApi extends BaseAPI {
  */
 export const BlockSearchApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Generates a request ID and automatically executes the block search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a block on a DLT.
+         * @param {string} authorization 
+         * @param {string} blockId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        autoExecuteSearchBlockRequest: async (authorization: string, blockId: string, prepareSearchSchema: PrepareSearchSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('autoExecuteSearchBlockRequest', 'authorization', authorization)
+            // verify required parameter 'blockId' is not null or undefined
+            assertParamExists('autoExecuteSearchBlockRequest', 'blockId', blockId)
+            // verify required parameter 'prepareSearchSchema' is not null or undefined
+            assertParamExists('autoExecuteSearchBlockRequest', 'prepareSearchSchema', prepareSearchSchema)
+            const localVarPath = `/v2/autoexecution/search/block/{blockId}`
+                .replace(`{${"blockId"}}`, encodeURIComponent(String(blockId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareSearchSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Takes a request ID and searches for the block on the requested DLT based on the parameters specified in the prepare request
          * @summary Execute a search for a block on a DLT
@@ -2892,6 +3534,19 @@ export const BlockSearchApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = BlockSearchApiAxiosParamCreator(configuration)
     return {
         /**
+         * Generates a request ID and automatically executes the block search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a block on a DLT.
+         * @param {string} authorization 
+         * @param {string} blockId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async autoExecuteSearchBlockRequest(authorization: string, blockId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AutoExecuteSearchBlockResponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Takes a request ID and searches for the block on the requested DLT based on the parameters specified in the prepare request
          * @summary Execute a search for a block on a DLT
          * @param {string} authorization 
@@ -2927,6 +3582,18 @@ export const BlockSearchApiFactory = function (configuration?: Configuration, ba
     const localVarFp = BlockSearchApiFp(configuration)
     return {
         /**
+         * Generates a request ID and automatically executes the block search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a block on a DLT.
+         * @param {string} authorization 
+         * @param {string} blockId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        autoExecuteSearchBlockRequest(authorization: string, blockId: string, prepareSearchSchema: PrepareSearchSchema, options?: any): AxiosPromise<AutoExecuteSearchBlockResponseSchema> {
+            return localVarFp.autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Takes a request ID and searches for the block on the requested DLT based on the parameters specified in the prepare request
          * @summary Execute a search for a block on a DLT
          * @param {string} authorization 
@@ -2960,6 +3627,20 @@ export const BlockSearchApiFactory = function (configuration?: Configuration, ba
  */
 export class BlockSearchApi extends BaseAPI {
     /**
+     * Generates a request ID and automatically executes the block search on the requested DLT.
+     * @summary Prepare and automatically execute a search for a block on a DLT.
+     * @param {string} authorization 
+     * @param {string} blockId 
+     * @param {PrepareSearchSchema} prepareSearchSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BlockSearchApi
+     */
+    public autoExecuteSearchBlockRequest(authorization: string, blockId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig) {
+        return BlockSearchApiFp(this.configuration).autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Takes a request ID and searches for the block on the requested DLT based on the parameters specified in the prepare request
      * @summary Execute a search for a block on a DLT
      * @param {string} authorization 
@@ -2984,6 +3665,248 @@ export class BlockSearchApi extends BaseAPI {
      */
     public prepareSearchBlockByBlockId(authorization: string, blockId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig) {
         return BlockSearchApiFp(this.configuration).prepareSearchBlockByBlockId(authorization, blockId, prepareSearchSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * CreateAQRC20CreditTransactionApi - axios parameter creator
+ * @export
+ */
+export const CreateAQRC20CreditTransactionApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is \"Create Credit\" which will allow you to make a payment to another specified account.
+         * @summary Prepare a QRC20 token credit transaction for signing
+         * @param {string} authorization 
+         * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareCreditRequest: async (authorization: string, prepareCreditTransactionRequestSchema: PrepareCreditTransactionRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('prepareCreditRequest', 'authorization', authorization)
+            // verify required parameter 'prepareCreditTransactionRequestSchema' is not null or undefined
+            assertParamExists('prepareCreditRequest', 'prepareCreditTransactionRequestSchema', prepareCreditTransactionRequestSchema)
+            const localVarPath = `/v2/preparation/credit`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareCreditTransactionRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CreateAQRC20CreditTransactionApi - functional programming interface
+ * @export
+ */
+export const CreateAQRC20CreditTransactionApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CreateAQRC20CreditTransactionApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is \"Create Credit\" which will allow you to make a payment to another specified account.
+         * @summary Prepare a QRC20 token credit transaction for signing
+         * @param {string} authorization 
+         * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async prepareCreditRequest(authorization: string, prepareCreditTransactionRequestSchema: PrepareCreditTransactionRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareCreditRequest(authorization, prepareCreditTransactionRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * CreateAQRC20CreditTransactionApi - factory interface
+ * @export
+ */
+export const CreateAQRC20CreditTransactionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CreateAQRC20CreditTransactionApiFp(configuration)
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is \"Create Credit\" which will allow you to make a payment to another specified account.
+         * @summary Prepare a QRC20 token credit transaction for signing
+         * @param {string} authorization 
+         * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareCreditRequest(authorization: string, prepareCreditTransactionRequestSchema: PrepareCreditTransactionRequestSchema, options?: any): AxiosPromise<PrepareTransactionResponse> {
+            return localVarFp.prepareCreditRequest(authorization, prepareCreditTransactionRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * CreateAQRC20CreditTransactionApi - object-oriented interface
+ * @export
+ * @class CreateAQRC20CreditTransactionApi
+ * @extends {BaseAPI}
+ */
+export class CreateAQRC20CreditTransactionApi extends BaseAPI {
+    /**
+     * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is \"Create Credit\" which will allow you to make a payment to another specified account.
+     * @summary Prepare a QRC20 token credit transaction for signing
+     * @param {string} authorization 
+     * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CreateAQRC20CreditTransactionApi
+     */
+    public prepareCreditRequest(authorization: string, prepareCreditTransactionRequestSchema: PrepareCreditTransactionRequestSchema, options?: AxiosRequestConfig) {
+        return CreateAQRC20CreditTransactionApiFp(this.configuration).prepareCreditRequest(authorization, prepareCreditTransactionRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * CreateAQRC20DebitTransactionApi - axios parameter creator
+ * @export
+ */
+export const CreateAQRC20DebitTransactionApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \"Approve Debit\" and \"Create Debit\". The \'Approve Debit\' transaction type will allow you to approve someone to make a pull payment from your account and the \"Create Debit\" transaction type will create the payment to pull the approved amount from an account.
+         * @summary Prepare a QRC20 token debit transaction for signing
+         * @param {string} authorization 
+         * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareDebitRequest: async (authorization: string, prepareCreditTransactionRequestSchema: PrepareCreditTransactionRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('prepareDebitRequest', 'authorization', authorization)
+            // verify required parameter 'prepareCreditTransactionRequestSchema' is not null or undefined
+            assertParamExists('prepareDebitRequest', 'prepareCreditTransactionRequestSchema', prepareCreditTransactionRequestSchema)
+            const localVarPath = `/v2/preparation/debit`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareCreditTransactionRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CreateAQRC20DebitTransactionApi - functional programming interface
+ * @export
+ */
+export const CreateAQRC20DebitTransactionApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CreateAQRC20DebitTransactionApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \"Approve Debit\" and \"Create Debit\". The \'Approve Debit\' transaction type will allow you to approve someone to make a pull payment from your account and the \"Create Debit\" transaction type will create the payment to pull the approved amount from an account.
+         * @summary Prepare a QRC20 token debit transaction for signing
+         * @param {string} authorization 
+         * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async prepareDebitRequest(authorization: string, prepareCreditTransactionRequestSchema: PrepareCreditTransactionRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareDebitRequest(authorization, prepareCreditTransactionRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * CreateAQRC20DebitTransactionApi - factory interface
+ * @export
+ */
+export const CreateAQRC20DebitTransactionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CreateAQRC20DebitTransactionApiFp(configuration)
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \"Approve Debit\" and \"Create Debit\". The \'Approve Debit\' transaction type will allow you to approve someone to make a pull payment from your account and the \"Create Debit\" transaction type will create the payment to pull the approved amount from an account.
+         * @summary Prepare a QRC20 token debit transaction for signing
+         * @param {string} authorization 
+         * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareDebitRequest(authorization: string, prepareCreditTransactionRequestSchema: PrepareCreditTransactionRequestSchema, options?: any): AxiosPromise<PrepareTransactionResponse> {
+            return localVarFp.prepareDebitRequest(authorization, prepareCreditTransactionRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * CreateAQRC20DebitTransactionApi - object-oriented interface
+ * @export
+ * @class CreateAQRC20DebitTransactionApi
+ * @extends {BaseAPI}
+ */
+export class CreateAQRC20DebitTransactionApi extends BaseAPI {
+    /**
+     * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \"Approve Debit\" and \"Create Debit\". The \'Approve Debit\' transaction type will allow you to approve someone to make a pull payment from your account and the \"Create Debit\" transaction type will create the payment to pull the approved amount from an account.
+     * @summary Prepare a QRC20 token debit transaction for signing
+     * @param {string} authorization 
+     * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CreateAQRC20DebitTransactionApi
+     */
+    public prepareDebitRequest(authorization: string, prepareCreditTransactionRequestSchema: PrepareCreditTransactionRequestSchema, options?: AxiosRequestConfig) {
+        return CreateAQRC20DebitTransactionApiFp(this.configuration).prepareDebitRequest(authorization, prepareCreditTransactionRequestSchema, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3257,7 +4180,7 @@ export const CreateTransactionApiAxiosParamCreator = function (configuration?: C
             };
         },
         /**
-         * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
+         * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \"Payment\" (to send payments) and \"Smart Contract Invoke\" (to invoke arbitrary smart contract functions).   Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
          * @summary Prepare a DLT transaction for signing
          * @param {string} authorization 
          * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
@@ -3350,7 +4273,7 @@ export const CreateTransactionApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
+         * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \"Payment\" (to send payments) and \"Smart Contract Invoke\" (to invoke arbitrary smart contract functions).   Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
          * @summary Prepare a DLT transaction for signing
          * @param {string} authorization 
          * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
@@ -3405,7 +4328,7 @@ export const CreateTransactionApiFactory = function (configuration?: Configurati
             return localVarFp.prepareNativeTransaction(authorization, prepareNativeTransactionRequestSchema, options).then((request) => request(axios, basePath));
         },
         /**
-         * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
+         * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \"Payment\" (to send payments) and \"Smart Contract Invoke\" (to invoke arbitrary smart contract functions).   Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
          * @summary Prepare a DLT transaction for signing
          * @param {string} authorization 
          * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
@@ -3465,7 +4388,7 @@ export class CreateTransactionApi extends BaseAPI {
     }
 
     /**
-     * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
+     * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \"Payment\" (to send payments) and \"Smart Contract Invoke\" (to invoke arbitrary smart contract functions).   Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
      * @summary Prepare a DLT transaction for signing
      * @param {string} authorization 
      * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
@@ -4946,6 +5869,53 @@ export class MonitorAResourceApi extends BaseAPI {
 export const SmartContractSearchApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a smart contract query on a DLT.
+         * @param {string} authorization 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        autoExecuteSearchSmartContractQueryRequest: async (authorization: string, prepareSearchSchema: PrepareSearchSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('autoExecuteSearchSmartContractQueryRequest', 'authorization', authorization)
+            // verify required parameter 'prepareSearchSchema' is not null or undefined
+            assertParamExists('autoExecuteSearchSmartContractQueryRequest', 'prepareSearchSchema', prepareSearchSchema)
+            const localVarPath = `/v2/autoexecution/search/smartcontract`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareSearchSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Takes a request ID and reads the smart contract on Ethereum based on the parameters specified in the prepare request.
          * @summary Execute a read of a smart contract on a DLT
          * @param {string} authorization 
@@ -5051,6 +6021,18 @@ export const SmartContractSearchApiFp = function(configuration?: Configuration) 
     const localVarAxiosParamCreator = SmartContractSearchApiAxiosParamCreator(configuration)
     return {
         /**
+         * Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a smart contract query on a DLT.
+         * @param {string} authorization 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async autoExecuteSearchSmartContractQueryRequest(authorization: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AutoExecuteSearchAddressBalanceResponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.autoExecuteSearchSmartContractQueryRequest(authorization, prepareSearchSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Takes a request ID and reads the smart contract on Ethereum based on the parameters specified in the prepare request.
          * @summary Execute a read of a smart contract on a DLT
          * @param {string} authorization 
@@ -5085,6 +6067,17 @@ export const SmartContractSearchApiFactory = function (configuration?: Configura
     const localVarFp = SmartContractSearchApiFp(configuration)
     return {
         /**
+         * Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a smart contract query on a DLT.
+         * @param {string} authorization 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        autoExecuteSearchSmartContractQueryRequest(authorization: string, prepareSearchSchema: PrepareSearchSchema, options?: any): AxiosPromise<AutoExecuteSearchAddressBalanceResponseSchema> {
+            return localVarFp.autoExecuteSearchSmartContractQueryRequest(authorization, prepareSearchSchema, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Takes a request ID and reads the smart contract on Ethereum based on the parameters specified in the prepare request.
          * @summary Execute a read of a smart contract on a DLT
          * @param {string} authorization 
@@ -5116,6 +6109,19 @@ export const SmartContractSearchApiFactory = function (configuration?: Configura
  * @extends {BaseAPI}
  */
 export class SmartContractSearchApi extends BaseAPI {
+    /**
+     * Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+     * @summary Prepare and automatically execute a search for a smart contract query on a DLT.
+     * @param {string} authorization 
+     * @param {PrepareSearchSchema} prepareSearchSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SmartContractSearchApi
+     */
+    public autoExecuteSearchSmartContractQueryRequest(authorization: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig) {
+        return SmartContractSearchApiFp(this.configuration).autoExecuteSearchSmartContractQueryRequest(authorization, prepareSearchSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Takes a request ID and reads the smart contract on Ethereum based on the parameters specified in the prepare request.
      * @summary Execute a read of a smart contract on a DLT
@@ -5150,6 +6156,60 @@ export class SmartContractSearchApi extends BaseAPI {
  */
 export const TransactionSearchApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Generates a request ID and automatically executes the transaction search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a transaction on a DLT.
+         * @param {string} authorization 
+         * @param {string} transactionId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        autoExecuteSearchTransactionRequest: async (authorization: string, transactionId: string, prepareSearchSchema: PrepareSearchSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('autoExecuteSearchTransactionRequest', 'authorization', authorization)
+            // verify required parameter 'transactionId' is not null or undefined
+            assertParamExists('autoExecuteSearchTransactionRequest', 'transactionId', transactionId)
+            // verify required parameter 'prepareSearchSchema' is not null or undefined
+            assertParamExists('autoExecuteSearchTransactionRequest', 'prepareSearchSchema', prepareSearchSchema)
+            const localVarPath = `/v2/autoexecution/search/transaction`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (transactionId !== undefined) {
+                localVarQueryParameter['transactionId'] = transactionId;
+            }
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareSearchSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Takes a request ID and searches for the transaction on the requested DLT
          * @summary Execute a search for a transaction on a DLT
@@ -5263,6 +6323,19 @@ export const TransactionSearchApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = TransactionSearchApiAxiosParamCreator(configuration)
     return {
         /**
+         * Generates a request ID and automatically executes the transaction search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a transaction on a DLT.
+         * @param {string} authorization 
+         * @param {string} transactionId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async autoExecuteSearchTransactionRequest(authorization: string, transactionId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareAndExecuteTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.autoExecuteSearchTransactionRequest(authorization, transactionId, prepareSearchSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Takes a request ID and searches for the transaction on the requested DLT
          * @summary Execute a search for a transaction on a DLT
          * @param {string} authorization 
@@ -5298,6 +6371,18 @@ export const TransactionSearchApiFactory = function (configuration?: Configurati
     const localVarFp = TransactionSearchApiFp(configuration)
     return {
         /**
+         * Generates a request ID and automatically executes the transaction search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a transaction on a DLT.
+         * @param {string} authorization 
+         * @param {string} transactionId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        autoExecuteSearchTransactionRequest(authorization: string, transactionId: string, prepareSearchSchema: PrepareSearchSchema, options?: any): AxiosPromise<PrepareAndExecuteTransactionResponse> {
+            return localVarFp.autoExecuteSearchTransactionRequest(authorization, transactionId, prepareSearchSchema, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Takes a request ID and searches for the transaction on the requested DLT
          * @summary Execute a search for a transaction on a DLT
          * @param {string} authorization 
@@ -5330,6 +6415,20 @@ export const TransactionSearchApiFactory = function (configuration?: Configurati
  * @extends {BaseAPI}
  */
 export class TransactionSearchApi extends BaseAPI {
+    /**
+     * Generates a request ID and automatically executes the transaction search on the requested DLT.
+     * @summary Prepare and automatically execute a search for a transaction on a DLT.
+     * @param {string} authorization 
+     * @param {string} transactionId 
+     * @param {PrepareSearchSchema} prepareSearchSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TransactionSearchApi
+     */
+    public autoExecuteSearchTransactionRequest(authorization: string, transactionId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig) {
+        return TransactionSearchApiFp(this.configuration).autoExecuteSearchTransactionRequest(authorization, transactionId, prepareSearchSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Takes a request ID and searches for the transaction on the requested DLT
      * @summary Execute a search for a transaction on a DLT
@@ -5365,6 +6464,57 @@ export class TransactionSearchApi extends BaseAPI {
  */
 export const UTXOStatusSearchApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Generates a request ID and automatically executes the utxo search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a UTXO on a DLT.
+         * @param {string} authorization 
+         * @param {string} utxoId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        autoExecuteSearchUtxoRequest: async (authorization: string, utxoId: string, prepareSearchSchema: PrepareSearchSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('autoExecuteSearchUtxoRequest', 'authorization', authorization)
+            // verify required parameter 'utxoId' is not null or undefined
+            assertParamExists('autoExecuteSearchUtxoRequest', 'utxoId', utxoId)
+            // verify required parameter 'prepareSearchSchema' is not null or undefined
+            assertParamExists('autoExecuteSearchUtxoRequest', 'prepareSearchSchema', prepareSearchSchema)
+            const localVarPath = `/v2/autoexecution/search/utxo/{utxoId}`
+                .replace(`{${"utxoId"}}`, encodeURIComponent(String(utxoId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareSearchSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Takes a request ID, searches for the UTXO state and retrieves the details on the requested DLT. This API is only applicable for Bitcoin.
          * @summary Execute a search for UTXO state on a DLT
@@ -5414,7 +6564,7 @@ export const UTXOStatusSearchApiAxiosParamCreator = function (configuration?: Co
             };
         },
         /**
-         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT\'s
          * @summary Prepare Search for a UTXO State.
          * @param {string} authorization 
          * @param {string} utxoId 
@@ -5475,6 +6625,19 @@ export const UTXOStatusSearchApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = UTXOStatusSearchApiAxiosParamCreator(configuration)
     return {
         /**
+         * Generates a request ID and automatically executes the utxo search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a UTXO on a DLT.
+         * @param {string} authorization 
+         * @param {string} utxoId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async autoExecuteSearchUtxoRequest(authorization: string, utxoId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AutoExecuteSearchUTXOResponseSchema>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.autoExecuteSearchUtxoRequest(authorization, utxoId, prepareSearchSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * Takes a request ID, searches for the UTXO state and retrieves the details on the requested DLT. This API is only applicable for Bitcoin.
          * @summary Execute a search for UTXO state on a DLT
          * @param {string} authorization 
@@ -5487,7 +6650,7 @@ export const UTXOStatusSearchApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT\'s
          * @summary Prepare Search for a UTXO State.
          * @param {string} authorization 
          * @param {string} utxoId 
@@ -5510,6 +6673,18 @@ export const UTXOStatusSearchApiFactory = function (configuration?: Configuratio
     const localVarFp = UTXOStatusSearchApiFp(configuration)
     return {
         /**
+         * Generates a request ID and automatically executes the utxo search on the requested DLT.
+         * @summary Prepare and automatically execute a search for a UTXO on a DLT.
+         * @param {string} authorization 
+         * @param {string} utxoId 
+         * @param {PrepareSearchSchema} prepareSearchSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        autoExecuteSearchUtxoRequest(authorization: string, utxoId: string, prepareSearchSchema: PrepareSearchSchema, options?: any): AxiosPromise<AutoExecuteSearchUTXOResponseSchema> {
+            return localVarFp.autoExecuteSearchUtxoRequest(authorization, utxoId, prepareSearchSchema, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Takes a request ID, searches for the UTXO state and retrieves the details on the requested DLT. This API is only applicable for Bitcoin.
          * @summary Execute a search for UTXO state on a DLT
          * @param {string} authorization 
@@ -5521,7 +6696,7 @@ export const UTXOStatusSearchApiFactory = function (configuration?: Configuratio
             return localVarFp.executeUTXOPreparedSearchRequest(authorization, requestId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT\'s
          * @summary Prepare Search for a UTXO State.
          * @param {string} authorization 
          * @param {string} utxoId 
@@ -5543,6 +6718,20 @@ export const UTXOStatusSearchApiFactory = function (configuration?: Configuratio
  */
 export class UTXOStatusSearchApi extends BaseAPI {
     /**
+     * Generates a request ID and automatically executes the utxo search on the requested DLT.
+     * @summary Prepare and automatically execute a search for a UTXO on a DLT.
+     * @param {string} authorization 
+     * @param {string} utxoId 
+     * @param {PrepareSearchSchema} prepareSearchSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UTXOStatusSearchApi
+     */
+    public autoExecuteSearchUtxoRequest(authorization: string, utxoId: string, prepareSearchSchema: PrepareSearchSchema, options?: AxiosRequestConfig) {
+        return UTXOStatusSearchApiFp(this.configuration).autoExecuteSearchUtxoRequest(authorization, utxoId, prepareSearchSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Takes a request ID, searches for the UTXO state and retrieves the details on the requested DLT. This API is only applicable for Bitcoin.
      * @summary Execute a search for UTXO state on a DLT
      * @param {string} authorization 
@@ -5556,7 +6745,7 @@ export class UTXOStatusSearchApi extends BaseAPI {
     }
 
     /**
-     * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+     * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT\'s
      * @summary Prepare Search for a UTXO State.
      * @param {string} authorization 
      * @param {string} utxoId 

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**utxo_id** | Option<**String**> |  | [optional]
 **destination** | Option<[**Vec<crate::models::UtxoDestination>**](UTXODestination.md)> |  | [optional]
 **location** | Option<[**crate::models::Location**](Location.md)> |  | [optional]
 **timestamp** | Option<[**crate::models::UtxoTimestampSchema**](UTXOTimestampSchema.md)> |  | [optional]

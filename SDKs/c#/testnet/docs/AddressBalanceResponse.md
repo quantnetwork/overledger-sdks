@@ -6,8 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Unit** | **string** |  | [optional] 
-**Value** | **decimal** |  | [optional] 
-**AddressId** | **string** |  | [optional] 
+**Amount** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)

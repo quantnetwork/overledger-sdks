@@ -4,8 +4,80 @@ All URIs are relative to *https://api.overledger.io*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**auto_execute_search_smart_contract_query_request**](SmartContractSearchApi.md#auto_execute_search_smart_contract_query_request) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT. |
 | [**execute_prepared_search_request**](SmartContractSearchApi.md#execute_prepared_search_request) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT |
 | [**prepare_smart_contract_query_request**](SmartContractSearchApi.md#prepare_smart_contract_query_request) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT |
+
+
+## auto_execute_search_smart_contract_query_request
+
+> <AutoExecuteSearchAddressBalanceResponseSchema> auto_execute_search_smart_contract_query_request(authorization, prepare_search_schema)
+
+Prepare and automatically execute a search for a smart contract query on a DLT.
+
+Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+
+### Examples
+
+```ruby
+require 'time'
+require 'openapi_client'
+# setup authorization
+OpenapiClient.configure do |config|
+  # Configure OAuth2 access token for authorization: OAuth2_Security_Scheme
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = OpenapiClient::SmartContractSearchApi.new
+authorization = 'authorization_example' # String | 
+prepare_search_schema = OpenapiClient::PrepareSearchSchema.new # PrepareSearchSchema | 
+
+begin
+  # Prepare and automatically execute a search for a smart contract query on a DLT.
+  result = api_instance.auto_execute_search_smart_contract_query_request(authorization, prepare_search_schema)
+  p result
+rescue OpenapiClient::ApiError => e
+  puts "Error when calling SmartContractSearchApi->auto_execute_search_smart_contract_query_request: #{e}"
+end
+```
+
+#### Using the auto_execute_search_smart_contract_query_request_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<AutoExecuteSearchAddressBalanceResponseSchema>, Integer, Hash)> auto_execute_search_smart_contract_query_request_with_http_info(authorization, prepare_search_schema)
+
+```ruby
+begin
+  # Prepare and automatically execute a search for a smart contract query on a DLT.
+  data, status_code, headers = api_instance.auto_execute_search_smart_contract_query_request_with_http_info(authorization, prepare_search_schema)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <AutoExecuteSearchAddressBalanceResponseSchema>
+rescue OpenapiClient::ApiError => e
+  puts "Error when calling SmartContractSearchApi->auto_execute_search_smart_contract_query_request_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **authorization** | **String** |  |  |
+| **prepare_search_schema** | [**PrepareSearchSchema**](PrepareSearchSchema.md) |  |  |
+
+### Return type
+
+[**AutoExecuteSearchAddressBalanceResponseSchema**](AutoExecuteSearchAddressBalanceResponseSchema.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ## execute_prepared_search_request

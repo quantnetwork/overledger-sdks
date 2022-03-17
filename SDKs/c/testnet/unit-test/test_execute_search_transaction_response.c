@@ -30,7 +30,7 @@ execute_search_transaction_response_t* instantiate_execute_search_transaction_re
       "a",
        // false, not to have infinite recursion
       instantiate_transaction(0),
-      "2013-10-20T19:20:30+01:00",
+      "0",
        // false, not to have infinite recursion
       instantiate_status(0),
       0
@@ -40,7 +40,7 @@ execute_search_transaction_response_t* instantiate_execute_search_transaction_re
       NULL,
       "a",
       NULL,
-      "2013-10-20T19:20:30+01:00",
+      "0",
       NULL,
       0
     );

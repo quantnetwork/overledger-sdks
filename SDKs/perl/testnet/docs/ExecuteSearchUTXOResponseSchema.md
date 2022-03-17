@@ -8,6 +8,7 @@ use WWW::OpenAPIClient::Object::ExecuteSearchUTXOResponseSchema;
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**utxo_id** | **string** |  | [optional] 
 **destination** | [**ARRAY[UTXODestination]**](UTXODestination.md) |  | [optional] 
 **location** | [**Location**](Location.md) |  | [optional] 
 **timestamp** | [**UTXOTimestampSchema**](UTXOTimestampSchema.md) |  | [optional] 

@@ -2,9 +2,9 @@
 
 Quant Overledger API
 - API version: 2.0
-  - Build date: 2021-11-01T15:18:10.790747Z[Europe/London]
+  - Build date: 2022-03-17T18:03:02.158365Z[Europe/London]
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 # Authentication
 
@@ -95,12 +95,13 @@ public class Example {
 
     AddressSearchApi apiInstance = new AddressSearchApi(defaultClient);
     String authorization = "authorization_example"; // String | 
-    String requestId = "requestId_example"; // String | 
+    String addressId = "addressId_example"; // String | 
+    PrepareSearchSchema prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
     try {
-      ExecuteSearchBalanceResponse result = apiInstance.executePreparedSearchRequestAddressBalance(authorization, requestId);
+      AutoExecuteSearchAddressBalanceResponseSchema result = apiInstance.autoExecuteSearchAddressBalanceRequest(authorization, addressId, prepareSearchSchema);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AddressSearchApi#executePreparedSearchRequestAddressBalance");
+      System.err.println("Exception when calling AddressSearchApi#autoExecuteSearchAddressBalanceRequest");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -117,12 +118,17 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AddressSearchApi* | [**autoExecuteSearchAddressBalanceRequest**](docs/AddressSearchApi.md#autoExecuteSearchAddressBalanceRequest) | **POST** /v2/autoexecution/search/address/balance/{addressId} | Prepare and automatically execute a search for an address balance on a DLT.
 *AddressSearchApi* | [**executePreparedSearchRequestAddressBalance**](docs/AddressSearchApi.md#executePreparedSearchRequestAddressBalance) | **POST** /v2/execution/search/address/balance | Execute a search for an address balance on a DLT
 *AddressSearchApi* | [**executePreparedSearchRequestAddressSequence**](docs/AddressSearchApi.md#executePreparedSearchRequestAddressSequence) | **POST** /v2/execution/search/address/sequence | Execute a search for an address sequence on a DLT
 *AddressSearchApi* | [**prepareAddressBalanceSearchRequest**](docs/AddressSearchApi.md#prepareAddressBalanceSearchRequest) | **POST** /v2/preparation/search/address/balance/{addressId} | Prepare Search for an Address Balance.
 *AddressSearchApi* | [**prepareAddressSequenceSearchRequest**](docs/AddressSearchApi.md#prepareAddressSequenceSearchRequest) | **POST** /v2/preparation/search/address/sequence/{addressId} | Prepare Search for an Address Sequence.
+*AddressSearchApi* | [**prepareAddressSequenceSearchRequest1**](docs/AddressSearchApi.md#prepareAddressSequenceSearchRequest1) | **POST** /v2/autoexecution/search/address/sequence/{addressId} | Prepare and automatically execute a search for an Address Sequence.
+*BlockSearchApi* | [**autoExecuteSearchBlockRequest**](docs/BlockSearchApi.md#autoExecuteSearchBlockRequest) | **POST** /v2/autoexecution/search/block/{blockId} | Prepare and automatically execute a search for a block on a DLT.
 *BlockSearchApi* | [**executePreparedSearchRequestBlock**](docs/BlockSearchApi.md#executePreparedSearchRequestBlock) | **POST** /v2/execution/search/block | Execute a search for a block on a DLT
 *BlockSearchApi* | [**prepareSearchBlockByBlockId**](docs/BlockSearchApi.md#prepareSearchBlockByBlockId) | **POST** /v2/preparation/search/block/{blockId} | Prepare Search Block by Block Id.
+*CreateAQrc20CreditTransactionApi* | [**prepareCreditRequest**](docs/CreateAQrc20CreditTransactionApi.md#prepareCreditRequest) | **POST** /v2/preparation/credit | Prepare a QRC20 token credit transaction for signing
+*CreateAQrc20DebitTransactionApi* | [**prepareDebitRequest**](docs/CreateAQrc20DebitTransactionApi.md#prepareDebitRequest) | **POST** /v2/preparation/debit | Prepare a QRC20 token debit transaction for signing
 *CreateSubscriptionApi* | [**subscription**](docs/CreateSubscriptionApi.md#subscription) | **POST** /v2/webhook/subscription | Create a subscription for a transaction or monitored resource 
 *CreateTransactionApi* | [**executePreparedRequestNativeTransaction**](docs/CreateTransactionApi.md#executePreparedRequestNativeTransaction) | **POST** /v2/execution/nativetransaction | Execute a native transaction on the DLT
 *CreateTransactionApi* | [**executePreparedRequestTransaction**](docs/CreateTransactionApi.md#executePreparedRequestTransaction) | **POST** /v2/execution/transaction | Execute a transaction on the DLT
@@ -144,10 +150,13 @@ Class | Method | HTTP request | Description
 *ManageSubscriptionApi* | [**updateSubscription**](docs/ManageSubscriptionApi.md#updateSubscription) | **PATCH** /v2/webhook/subscription/{subscriptionId} | Update a specific subscription created by your application
 *MonitorAResourceApi* | [**resourceMonitoringAddress**](docs/MonitorAResourceApi.md#resourceMonitoringAddress) | **POST** /v2/resourcemonitoring/address | Monitor an address for incoming and outgoing transactions
 *MonitorAResourceApi* | [**trackAndSubscribeEvent**](docs/MonitorAResourceApi.md#trackAndSubscribeEvent) | **POST** /v2/resourcemonitoring/smartcontractevent | Monitor a smart contract for an event
+*SmartContractSearchApi* | [**autoExecuteSearchSmartContractQueryRequest**](docs/SmartContractSearchApi.md#autoExecuteSearchSmartContractQueryRequest) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 *SmartContractSearchApi* | [**executePreparedSearchRequest**](docs/SmartContractSearchApi.md#executePreparedSearchRequest) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 *SmartContractSearchApi* | [**prepareSmartContractQueryRequest**](docs/SmartContractSearchApi.md#prepareSmartContractQueryRequest) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
+*TransactionSearchApi* | [**autoExecuteSearchTransactionRequest**](docs/TransactionSearchApi.md#autoExecuteSearchTransactionRequest) | **POST** /v2/autoexecution/search/transaction | Prepare and automatically execute a search for a transaction on a DLT.
 *TransactionSearchApi* | [**executePreparedSearchRequestTransaction**](docs/TransactionSearchApi.md#executePreparedSearchRequestTransaction) | **POST** /v2/execution/search/transaction | Execute a search for a transaction on a DLT
 *TransactionSearchApi* | [**prepareSearchRequest**](docs/TransactionSearchApi.md#prepareSearchRequest) | **POST** /v2/preparation/search/transaction | Prepare a search for a transaction on a DLT
+*UtxoStatusSearchApi* | [**autoExecuteSearchUtxoRequest**](docs/UtxoStatusSearchApi.md#autoExecuteSearchUtxoRequest) | **POST** /v2/autoexecution/search/utxo/{utxoId} | Prepare and automatically execute a search for a UTXO on a DLT.
 *UtxoStatusSearchApi* | [**executeUTXOPreparedSearchRequest**](docs/UtxoStatusSearchApi.md#executeUTXOPreparedSearchRequest) | **POST** /v2/execution/search/utxo | Execute a search for UTXO state on a DLT
 *UtxoStatusSearchApi* | [**prepareSearchUTXOState**](docs/UtxoStatusSearchApi.md#prepareSearchUTXOState) | **POST** /v2/preparation/search/utxo/{utxoId} | Prepare Search for a UTXO State.
 
@@ -158,12 +167,18 @@ Class | Method | HTTP request | Description
  - [AddressMonitoringDetailsSchema](docs/AddressMonitoringDetailsSchema.md)
  - [AddressMonitoringRequestSchema](docs/AddressMonitoringRequestSchema.md)
  - [AddressMonitoringResponseSchema](docs/AddressMonitoringResponseSchema.md)
+ - [ApproveRequestDetailsSchema](docs/ApproveRequestDetailsSchema.md)
+ - [AutoExecSearchAddressSequenceResponseSchema](docs/AutoExecSearchAddressSequenceResponseSchema.md)
+ - [AutoExecuteSearchAddressBalanceResponseSchema](docs/AutoExecuteSearchAddressBalanceResponseSchema.md)
+ - [AutoExecuteSearchBlockResponseSchema](docs/AutoExecuteSearchBlockResponseSchema.md)
+ - [AutoExecuteSearchUTXOResponseSchema](docs/AutoExecuteSearchUTXOResponseSchema.md)
  - [Block](docs/Block.md)
  - [BlockHash](docs/BlockHash.md)
  - [BlockSize](docs/BlockSize.md)
  - [CreateSmartContractMonitoringSchema](docs/CreateSmartContractMonitoringSchema.md)
  - [CreateSubscriptionRequestSchema](docs/CreateSubscriptionRequestSchema.md)
  - [CreateSubscriptionResponseSchema](docs/CreateSubscriptionResponseSchema.md)
+ - [CreditRequestDetailsSchema](docs/CreditRequestDetailsSchema.md)
  - [DeleteResourceMonitoringAddressSchema](docs/DeleteResourceMonitoringAddressSchema.md)
  - [Destination](docs/Destination.md)
  - [DestinationPaymentSchema](docs/DestinationPaymentSchema.md)
@@ -175,6 +190,7 @@ Class | Method | HTTP request | Description
  - [ExecuteSearchBlockResponse](docs/ExecuteSearchBlockResponse.md)
  - [ExecuteSearchSequenceResponse](docs/ExecuteSearchSequenceResponse.md)
  - [ExecuteSearchTransactionResponse](docs/ExecuteSearchTransactionResponse.md)
+ - [ExecuteSearchUTXOResponse](docs/ExecuteSearchUTXOResponse.md)
  - [ExecuteSearchUTXOResponseSchema](docs/ExecuteSearchUTXOResponseSchema.md)
  - [ExecuteSmartContractReadResponseSchema](docs/ExecuteSmartContractReadResponseSchema.md)
  - [ExecuteTransactionRequest](docs/ExecuteTransactionRequest.md)
@@ -193,9 +209,17 @@ Class | Method | HTTP request | Description
  - [OriginTransferSchema](docs/OriginTransferSchema.md)
  - [OverledgerTransactionResponseSchema](docs/OverledgerTransactionResponseSchema.md)
  - [Parameter](docs/Parameter.md)
+ - [PayeeCreditSchema](docs/PayeeCreditSchema.md)
+ - [PayerCreditSchema](docs/PayerCreditSchema.md)
  - [Payment](docs/Payment.md)
  - [PaymentRequestDetailsSchema](docs/PaymentRequestDetailsSchema.md)
  - [PaymentSchema](docs/PaymentSchema.md)
+ - [PrepareAndExecuteBalanceDetails](docs/PrepareAndExecuteBalanceDetails.md)
+ - [PrepareAndExecuteOverledgerErrorResponse](docs/PrepareAndExecuteOverledgerErrorResponse.md)
+ - [PrepareAndExecuteSearchAddressBalanceResponse](docs/PrepareAndExecuteSearchAddressBalanceResponse.md)
+ - [PrepareAndExecuteTransactionResponse](docs/PrepareAndExecuteTransactionResponse.md)
+ - [PrepareApproveDebitTransactionRequestSchema](docs/PrepareApproveDebitTransactionRequestSchema.md)
+ - [PrepareCreditTransactionRequestSchema](docs/PrepareCreditTransactionRequestSchema.md)
  - [PrepareNativeTransactionRequestSchema](docs/PrepareNativeTransactionRequestSchema.md)
  - [PreparePaymentTransactionRequestSchema](docs/PreparePaymentTransactionRequestSchema.md)
  - [PrepareSearchResponseSchema](docs/PrepareSearchResponseSchema.md)

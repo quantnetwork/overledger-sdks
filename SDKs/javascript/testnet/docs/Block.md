@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **linkedBlocks** | [**LinkedBlocks**](LinkedBlocks.md) |  | [optional] 
 **numberOfTransactions** | **Number** |  | [optional] 
 **message** | **String** |  | [optional] 
-**timestamp** | **Number** |  | [optional] 
+**timestamp** | **String** |  | [optional] 
 **nativeData** | **Object** |  | [optional] 
 
 

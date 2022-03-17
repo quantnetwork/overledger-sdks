@@ -25,12 +25,16 @@ execute_search_balance_response_t* instantiate_execute_search_balance_response(i
     execute_search_balance_response = execute_search_balance_response_create(
       list_create(),
        // false, not to have infinite recursion
-      instantiate_location(0)
+      instantiate_location(0),
+      "0",
+      "a"
     );
   } else {
     execute_search_balance_response = execute_search_balance_response_create(
       list_create(),
-      NULL
+      NULL,
+      "0",
+      "a"
     );
   }
 

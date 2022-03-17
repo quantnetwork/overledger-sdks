@@ -4,9 +4,84 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**autoExecuteSearchBlockRequest**](BlockSearchApi.md#autoExecuteSearchBlockRequest) | **POST** /v2/autoexecution/search/block/{blockId} | Prepare and automatically execute a search for a block on a DLT.
 [**executePreparedSearchRequestBlock**](BlockSearchApi.md#executePreparedSearchRequestBlock) | **POST** /v2/execution/search/block | Execute a search for a block on a DLT
 [**prepareSearchBlockByBlockId**](BlockSearchApi.md#prepareSearchBlockByBlockId) | **POST** /v2/preparation/search/block/{blockId} | Prepare Search Block by Block Id.
 
+
+<a name="autoExecuteSearchBlockRequest"></a>
+# **autoExecuteSearchBlockRequest**
+> AutoExecuteSearchBlockResponseSchema autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema)
+
+Prepare and automatically execute a search for a block on a DLT.
+
+Generates a request ID and automatically executes the block search on the requested DLT.
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.BlockSearchApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.sandbox.overledger.io");
+    
+    // Configure OAuth2 access token for authorization: OAuth2_Security_Scheme
+    OAuth OAuth2_Security_Scheme = (OAuth) defaultClient.getAuthentication("OAuth2_Security_Scheme");
+    OAuth2_Security_Scheme.setAccessToken("YOUR ACCESS TOKEN");
+
+    BlockSearchApi apiInstance = new BlockSearchApi(defaultClient);
+    String authorization = "authorization_example"; // String | 
+    String blockId = "latest"; // String | 
+    PrepareSearchSchema prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
+    try {
+      AutoExecuteSearchBlockResponseSchema result = apiInstance.autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlockSearchApi#autoExecuteSearchBlockRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **String**|  |
+ **blockId** | **String**|  |
+ **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  |
+
+### Return type
+
+[**AutoExecuteSearchBlockResponseSchema**](AutoExecuteSearchBlockResponseSchema.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | All good! |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorised |  -  |
+**500** | Something went wrong on our side |  -  |
 
 <a name="executePreparedSearchRequestBlock"></a>
 # **executePreparedSearchRequestBlock**

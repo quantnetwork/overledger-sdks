@@ -64,12 +64,17 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Category | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AddressSearchAPI* | [**AddressSearchAPI_autoExecuteSearchAddressBalanceRequest**](docs/AddressSearchAPI.md#AddressSearchAPI_autoExecuteSearchAddressBalanceRequest) | **POST** /v2/autoexecution/search/address/balance/{addressId} | Prepare and automatically execute a search for an address balance on a DLT.
 *AddressSearchAPI* | [**AddressSearchAPI_executePreparedSearchRequestAddressBalance**](docs/AddressSearchAPI.md#AddressSearchAPI_executePreparedSearchRequestAddressBalance) | **POST** /v2/execution/search/address/balance | Execute a search for an address balance on a DLT
 *AddressSearchAPI* | [**AddressSearchAPI_executePreparedSearchRequestAddressSequence**](docs/AddressSearchAPI.md#AddressSearchAPI_executePreparedSearchRequestAddressSequence) | **POST** /v2/execution/search/address/sequence | Execute a search for an address sequence on a DLT
 *AddressSearchAPI* | [**AddressSearchAPI_prepareAddressBalanceSearchRequest**](docs/AddressSearchAPI.md#AddressSearchAPI_prepareAddressBalanceSearchRequest) | **POST** /v2/preparation/search/address/balance/{addressId} | Prepare Search for an Address Balance.
 *AddressSearchAPI* | [**AddressSearchAPI_prepareAddressSequenceSearchRequest**](docs/AddressSearchAPI.md#AddressSearchAPI_prepareAddressSequenceSearchRequest) | **POST** /v2/preparation/search/address/sequence/{addressId} | Prepare Search for an Address Sequence.
+*AddressSearchAPI* | [**AddressSearchAPI_prepareAddressSequenceSearchRequest1**](docs/AddressSearchAPI.md#AddressSearchAPI_prepareAddressSequenceSearchRequest1) | **POST** /v2/autoexecution/search/address/sequence/{addressId} | Prepare and automatically execute a search for an Address Sequence.
+*BlockSearchAPI* | [**BlockSearchAPI_autoExecuteSearchBlockRequest**](docs/BlockSearchAPI.md#BlockSearchAPI_autoExecuteSearchBlockRequest) | **POST** /v2/autoexecution/search/block/{blockId} | Prepare and automatically execute a search for a block on a DLT.
 *BlockSearchAPI* | [**BlockSearchAPI_executePreparedSearchRequestBlock**](docs/BlockSearchAPI.md#BlockSearchAPI_executePreparedSearchRequestBlock) | **POST** /v2/execution/search/block | Execute a search for a block on a DLT
 *BlockSearchAPI* | [**BlockSearchAPI_prepareSearchBlockByBlockId**](docs/BlockSearchAPI.md#BlockSearchAPI_prepareSearchBlockByBlockId) | **POST** /v2/preparation/search/block/{blockId} | Prepare Search Block by Block Id.
+*CreateAQRC20CreditTransactionAPI* | [**CreateAQRC20CreditTransactionAPI_prepareCreditRequest**](docs/CreateAQRC20CreditTransactionAPI.md#CreateAQRC20CreditTransactionAPI_prepareCreditRequest) | **POST** /v2/preparation/credit | Prepare a QRC20 token credit transaction for signing
+*CreateAQRC20DebitTransactionAPI* | [**CreateAQRC20DebitTransactionAPI_prepareDebitRequest**](docs/CreateAQRC20DebitTransactionAPI.md#CreateAQRC20DebitTransactionAPI_prepareDebitRequest) | **POST** /v2/preparation/debit | Prepare a QRC20 token debit transaction for signing
 *CreateSubscriptionAPI* | [**CreateSubscriptionAPI_subscription**](docs/CreateSubscriptionAPI.md#CreateSubscriptionAPI_subscription) | **POST** /v2/webhook/subscription | Create a subscription for a transaction or monitored resource 
 *CreateTransactionAPI* | [**CreateTransactionAPI_executePreparedRequestNativeTransaction**](docs/CreateTransactionAPI.md#CreateTransactionAPI_executePreparedRequestNativeTransaction) | **POST** /v2/execution/nativetransaction | Execute a native transaction on the DLT
 *CreateTransactionAPI* | [**CreateTransactionAPI_executePreparedRequestTransaction**](docs/CreateTransactionAPI.md#CreateTransactionAPI_executePreparedRequestTransaction) | **POST** /v2/execution/transaction | Execute a transaction on the DLT
@@ -91,10 +96,13 @@ Category | Method | HTTP request | Description
 *ManageSubscriptionAPI* | [**ManageSubscriptionAPI_updateSubscription**](docs/ManageSubscriptionAPI.md#ManageSubscriptionAPI_updateSubscription) | **PATCH** /v2/webhook/subscription/{subscriptionId} | Update a specific subscription created by your application
 *MonitorAResourceAPI* | [**MonitorAResourceAPI_resourceMonitoringAddress**](docs/MonitorAResourceAPI.md#MonitorAResourceAPI_resourceMonitoringAddress) | **POST** /v2/resourcemonitoring/address | Monitor an address for incoming and outgoing transactions
 *MonitorAResourceAPI* | [**MonitorAResourceAPI_trackAndSubscribeEvent**](docs/MonitorAResourceAPI.md#MonitorAResourceAPI_trackAndSubscribeEvent) | **POST** /v2/resourcemonitoring/smartcontractevent | Monitor a smart contract for an event
+*SmartContractSearchAPI* | [**SmartContractSearchAPI_autoExecuteSearchSmartContractQueryRequest**](docs/SmartContractSearchAPI.md#SmartContractSearchAPI_autoExecuteSearchSmartContractQueryRequest) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 *SmartContractSearchAPI* | [**SmartContractSearchAPI_executePreparedSearchRequest**](docs/SmartContractSearchAPI.md#SmartContractSearchAPI_executePreparedSearchRequest) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 *SmartContractSearchAPI* | [**SmartContractSearchAPI_prepareSmartContractQueryRequest**](docs/SmartContractSearchAPI.md#SmartContractSearchAPI_prepareSmartContractQueryRequest) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
+*TransactionSearchAPI* | [**TransactionSearchAPI_autoExecuteSearchTransactionRequest**](docs/TransactionSearchAPI.md#TransactionSearchAPI_autoExecuteSearchTransactionRequest) | **POST** /v2/autoexecution/search/transaction | Prepare and automatically execute a search for a transaction on a DLT.
 *TransactionSearchAPI* | [**TransactionSearchAPI_executePreparedSearchRequestTransaction**](docs/TransactionSearchAPI.md#TransactionSearchAPI_executePreparedSearchRequestTransaction) | **POST** /v2/execution/search/transaction | Execute a search for a transaction on a DLT
 *TransactionSearchAPI* | [**TransactionSearchAPI_prepareSearchRequest**](docs/TransactionSearchAPI.md#TransactionSearchAPI_prepareSearchRequest) | **POST** /v2/preparation/search/transaction | Prepare a search for a transaction on a DLT
+*UTXOStatusSearchAPI* | [**UTXOStatusSearchAPI_autoExecuteSearchUtxoRequest**](docs/UTXOStatusSearchAPI.md#UTXOStatusSearchAPI_autoExecuteSearchUtxoRequest) | **POST** /v2/autoexecution/search/utxo/{utxoId} | Prepare and automatically execute a search for a UTXO on a DLT.
 *UTXOStatusSearchAPI* | [**UTXOStatusSearchAPI_executeUTXOPreparedSearchRequest**](docs/UTXOStatusSearchAPI.md#UTXOStatusSearchAPI_executeUTXOPreparedSearchRequest) | **POST** /v2/execution/search/utxo | Execute a search for UTXO state on a DLT
 *UTXOStatusSearchAPI* | [**UTXOStatusSearchAPI_prepareSearchUTXOState**](docs/UTXOStatusSearchAPI.md#UTXOStatusSearchAPI_prepareSearchUTXOState) | **POST** /v2/preparation/search/utxo/{utxoId} | Prepare Search for a UTXO State.
 
@@ -105,12 +113,18 @@ Category | Method | HTTP request | Description
  - [address_monitoring_details_schema_t](docs/address_monitoring_details_schema.md)
  - [address_monitoring_request_schema_t](docs/address_monitoring_request_schema.md)
  - [address_monitoring_response_schema_t](docs/address_monitoring_response_schema.md)
+ - [approve_request_details_schema_t](docs/approve_request_details_schema.md)
+ - [auto_exec_search_address_sequence_response_schema_t](docs/auto_exec_search_address_sequence_response_schema.md)
+ - [auto_execute_search_address_balance_response_schema_t](docs/auto_execute_search_address_balance_response_schema.md)
+ - [auto_execute_search_block_response_schema_t](docs/auto_execute_search_block_response_schema.md)
+ - [auto_execute_search_utxo_response_schema_t](docs/auto_execute_search_utxo_response_schema.md)
  - [block_t](docs/block.md)
  - [block_hash_t](docs/block_hash.md)
  - [block_size_t](docs/block_size.md)
  - [create_smart_contract_monitoring_schema_t](docs/create_smart_contract_monitoring_schema.md)
  - [create_subscription_request_schema_t](docs/create_subscription_request_schema.md)
  - [create_subscription_response_schema_t](docs/create_subscription_response_schema.md)
+ - [credit_request_details_schema_t](docs/credit_request_details_schema.md)
  - [delete_resource_monitoring_address_schema_t](docs/delete_resource_monitoring_address_schema.md)
  - [destination_t](docs/destination.md)
  - [destination_payment_schema_t](docs/destination_payment_schema.md)
@@ -122,6 +136,7 @@ Category | Method | HTTP request | Description
  - [execute_search_block_response_t](docs/execute_search_block_response.md)
  - [execute_search_sequence_response_t](docs/execute_search_sequence_response.md)
  - [execute_search_transaction_response_t](docs/execute_search_transaction_response.md)
+ - [execute_search_utxo_response_t](docs/execute_search_utxo_response.md)
  - [execute_search_utxo_response_schema_t](docs/execute_search_utxo_response_schema.md)
  - [execute_smart_contract_read_response_schema_t](docs/execute_smart_contract_read_response_schema.md)
  - [execute_transaction_request_t](docs/execute_transaction_request.md)
@@ -140,9 +155,17 @@ Category | Method | HTTP request | Description
  - [origin_transfer_schema_t](docs/origin_transfer_schema.md)
  - [overledger_transaction_response_schema_t](docs/overledger_transaction_response_schema.md)
  - [parameter_t](docs/parameter.md)
+ - [payee_credit_schema_t](docs/payee_credit_schema.md)
+ - [payer_credit_schema_t](docs/payer_credit_schema.md)
  - [payment_t](docs/payment.md)
  - [payment_request_details_schema_t](docs/payment_request_details_schema.md)
  - [payment_schema_t](docs/payment_schema.md)
+ - [prepare_and_execute_balance_details_t](docs/prepare_and_execute_balance_details.md)
+ - [prepare_and_execute_overledger_error_response_t](docs/prepare_and_execute_overledger_error_response.md)
+ - [prepare_and_execute_search_address_balance_response_t](docs/prepare_and_execute_search_address_balance_response.md)
+ - [prepare_and_execute_transaction_response_t](docs/prepare_and_execute_transaction_response.md)
+ - [prepare_approve_debit_transaction_request_schema_t](docs/prepare_approve_debit_transaction_request_schema.md)
+ - [prepare_credit_transaction_request_schema_t](docs/prepare_credit_transaction_request_schema.md)
  - [prepare_native_transaction_request_schema_t](docs/prepare_native_transaction_request_schema.md)
  - [prepare_payment_transaction_request_schema_t](docs/prepare_payment_transaction_request_schema.md)
  - [prepare_search_response_schema_t](docs/prepare_search_response_schema.md)

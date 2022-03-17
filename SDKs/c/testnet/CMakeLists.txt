@@ -49,12 +49,18 @@ set(SRCS
     model/address_monitoring_details_schema.c
     model/address_monitoring_request_schema.c
     model/address_monitoring_response_schema.c
+    model/approve_request_details_schema.c
+    model/auto_exec_search_address_sequence_response_schema.c
+    model/auto_execute_search_address_balance_response_schema.c
+    model/auto_execute_search_block_response_schema.c
+    model/auto_execute_search_utxo_response_schema.c
     model/block.c
     model/block_hash.c
     model/block_size.c
     model/create_smart_contract_monitoring_schema.c
     model/create_subscription_request_schema.c
     model/create_subscription_response_schema.c
+    model/credit_request_details_schema.c
     model/delete_resource_monitoring_address_schema.c
     model/destination.c
     model/destination_payment_schema.c
@@ -66,6 +72,7 @@ set(SRCS
     model/execute_search_block_response.c
     model/execute_search_sequence_response.c
     model/execute_search_transaction_response.c
+    model/execute_search_utxo_response.c
     model/execute_search_utxo_response_schema.c
     model/execute_smart_contract_read_response_schema.c
     model/execute_transaction_request.c
@@ -84,9 +91,17 @@ set(SRCS
     model/origin_transfer_schema.c
     model/overledger_transaction_response_schema.c
     model/parameter.c
+    model/payee_credit_schema.c
+    model/payer_credit_schema.c
     model/payment.c
     model/payment_request_details_schema.c
     model/payment_schema.c
+    model/prepare_and_execute_balance_details.c
+    model/prepare_and_execute_overledger_error_response.c
+    model/prepare_and_execute_search_address_balance_response.c
+    model/prepare_and_execute_transaction_response.c
+    model/prepare_approve_debit_transaction_request_schema.c
+    model/prepare_credit_transaction_request_schema.c
     model/prepare_native_transaction_request_schema.c
     model/prepare_payment_transaction_request_schema.c
     model/prepare_search_response_schema.c
@@ -141,6 +156,8 @@ set(SRCS
     model/vout.c
     api/AddressSearchAPI.c
     api/BlockSearchAPI.c
+    api/CreateAQRC20CreditTransactionAPI.c
+    api/CreateAQRC20DebitTransactionAPI.c
     api/CreateSubscriptionAPI.c
     api/CreateTransactionAPI.c
     api/MDappTransactionQueryAPI.c
@@ -164,12 +181,18 @@ set(HDRS
     model/address_monitoring_details_schema.h
     model/address_monitoring_request_schema.h
     model/address_monitoring_response_schema.h
+    model/approve_request_details_schema.h
+    model/auto_exec_search_address_sequence_response_schema.h
+    model/auto_execute_search_address_balance_response_schema.h
+    model/auto_execute_search_block_response_schema.h
+    model/auto_execute_search_utxo_response_schema.h
     model/block.h
     model/block_hash.h
     model/block_size.h
     model/create_smart_contract_monitoring_schema.h
     model/create_subscription_request_schema.h
     model/create_subscription_response_schema.h
+    model/credit_request_details_schema.h
     model/delete_resource_monitoring_address_schema.h
     model/destination.h
     model/destination_payment_schema.h
@@ -181,6 +204,7 @@ set(HDRS
     model/execute_search_block_response.h
     model/execute_search_sequence_response.h
     model/execute_search_transaction_response.h
+    model/execute_search_utxo_response.h
     model/execute_search_utxo_response_schema.h
     model/execute_smart_contract_read_response_schema.h
     model/execute_transaction_request.h
@@ -199,9 +223,17 @@ set(HDRS
     model/origin_transfer_schema.h
     model/overledger_transaction_response_schema.h
     model/parameter.h
+    model/payee_credit_schema.h
+    model/payer_credit_schema.h
     model/payment.h
     model/payment_request_details_schema.h
     model/payment_schema.h
+    model/prepare_and_execute_balance_details.h
+    model/prepare_and_execute_overledger_error_response.h
+    model/prepare_and_execute_search_address_balance_response.h
+    model/prepare_and_execute_transaction_response.h
+    model/prepare_approve_debit_transaction_request_schema.h
+    model/prepare_credit_transaction_request_schema.h
     model/prepare_native_transaction_request_schema.h
     model/prepare_payment_transaction_request_schema.h
     model/prepare_search_response_schema.h
@@ -256,6 +288,8 @@ set(HDRS
     model/vout.h
     api/AddressSearchAPI.h
     api/BlockSearchAPI.h
+    api/CreateAQRC20CreditTransactionAPI.h
+    api/CreateAQRC20DebitTransactionAPI.h
     api/CreateSubscriptionAPI.h
     api/CreateTransactionAPI.h
     api/MDappTransactionQueryAPI.h
@@ -343,6 +377,8 @@ set(HDRS "")
 #set(SRCS
 #    unit-tests/manual-AddressSearchAPI.c
 #    unit-tests/manual-BlockSearchAPI.c
+#    unit-tests/manual-CreateAQRC20CreditTransactionAPI.c
+#    unit-tests/manual-CreateAQRC20DebitTransactionAPI.c
 #    unit-tests/manual-CreateSubscriptionAPI.c
 #    unit-tests/manual-CreateTransactionAPI.c
 #    unit-tests/manual-MDappTransactionQueryAPI.c

@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -25,6 +25,29 @@ namespace Org.OpenAPITools.Api
     public interface ISmartContractSearchApi : IApiAccessor
     {
         #region Synchronous Operations
+        /// <summary>
+        /// Prepare and automatically execute a search for a smart contract query on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        AutoExecuteSearchAddressBalanceResponseSchema AutoExecuteSearchSmartContractQueryRequest (string authorization, PrepareSearchSchema prepareSearchSchema);
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a smart contract query on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>ApiResponse of AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema> AutoExecuteSearchSmartContractQueryRequestWithHttpInfo (string authorization, PrepareSearchSchema prepareSearchSchema);
         /// <summary>
         /// Execute a read of a smart contract on a DLT
         /// </summary>
@@ -73,6 +96,31 @@ namespace Org.OpenAPITools.Api
         ApiResponse<PrepareSearchResponseSchema> PrepareSmartContractQueryRequestWithHttpInfo (string authorization, PrepareSearchSmartContractRequestSchema prepareSearchSmartContractRequestSchema);
         #endregion Synchronous Operations
         #region Asynchronous Operations
+        /// <summary>
+        /// Prepare and automatically execute a search for a smart contract query on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        System.Threading.Tasks.Task<AutoExecuteSearchAddressBalanceResponseSchema> AutoExecuteSearchSmartContractQueryRequestAsync (string authorization, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a smart contract query on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ApiResponse (AutoExecuteSearchAddressBalanceResponseSchema)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema>> AutoExecuteSearchSmartContractQueryRequestWithHttpInfoAsync (string authorization, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Execute a read of a smart contract on a DLT
         /// </summary>
@@ -232,6 +280,181 @@ namespace Org.OpenAPITools.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a smart contract query on a DLT. Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        public AutoExecuteSearchAddressBalanceResponseSchema AutoExecuteSearchSmartContractQueryRequest (string authorization, PrepareSearchSchema prepareSearchSchema)
+        {
+             ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema> localVarResponse = AutoExecuteSearchSmartContractQueryRequestWithHttpInfo(authorization, prepareSearchSchema);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a smart contract query on a DLT. Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>ApiResponse of AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        public ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema> AutoExecuteSearchSmartContractQueryRequestWithHttpInfo (string authorization, PrepareSearchSchema prepareSearchSchema)
+        {
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling SmartContractSearchApi->AutoExecuteSearchSmartContractQueryRequest");
+            // verify the required parameter 'prepareSearchSchema' is set
+            if (prepareSearchSchema == null)
+                throw new ApiException(400, "Missing required parameter 'prepareSearchSchema' when calling SmartContractSearchApi->AutoExecuteSearchSmartContractQueryRequest");
+
+            var localVarPath = "/v2/autoexecution/search/smartcontract";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            if (prepareSearchSchema != null && prepareSearchSchema.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(prepareSearchSchema); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = prepareSearchSchema; // byte array
+            }
+
+            // authentication (OAuth2_Security_Scheme) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AutoExecuteSearchSmartContractQueryRequest", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (AutoExecuteSearchAddressBalanceResponseSchema) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AutoExecuteSearchAddressBalanceResponseSchema)));
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a smart contract query on a DLT. Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        public async System.Threading.Tasks.Task<AutoExecuteSearchAddressBalanceResponseSchema> AutoExecuteSearchSmartContractQueryRequestAsync (string authorization, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken))
+        {
+             ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema> localVarResponse = await AutoExecuteSearchSmartContractQueryRequestWithHttpInfoAsync(authorization, prepareSearchSchema, cancellationToken);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a smart contract query on a DLT. Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ApiResponse (AutoExecuteSearchAddressBalanceResponseSchema)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema>> AutoExecuteSearchSmartContractQueryRequestWithHttpInfoAsync (string authorization, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling SmartContractSearchApi->AutoExecuteSearchSmartContractQueryRequest");
+            // verify the required parameter 'prepareSearchSchema' is set
+            if (prepareSearchSchema == null)
+                throw new ApiException(400, "Missing required parameter 'prepareSearchSchema' when calling SmartContractSearchApi->AutoExecuteSearchSmartContractQueryRequest");
+
+            var localVarPath = "/v2/autoexecution/search/smartcontract";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            if (prepareSearchSchema != null && prepareSearchSchema.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(prepareSearchSchema); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = prepareSearchSchema; // byte array
+            }
+
+            // authentication (OAuth2_Security_Scheme) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType, cancellationToken);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AutoExecuteSearchSmartContractQueryRequest", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (AutoExecuteSearchAddressBalanceResponseSchema) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AutoExecuteSearchAddressBalanceResponseSchema)));
         }
 
         /// <summary>

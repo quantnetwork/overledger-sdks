@@ -4,11 +4,99 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AutoExecuteSearchAddressBalanceRequest**](AddressSearchApi.md#autoexecutesearchaddressbalancerequest) | **POST** /v2/autoexecution/search/address/balance/{addressId} | Prepare and automatically execute a search for an address balance on a DLT.
 [**ExecutePreparedSearchRequestAddressBalance**](AddressSearchApi.md#executepreparedsearchrequestaddressbalance) | **POST** /v2/execution/search/address/balance | Execute a search for an address balance on a DLT
 [**ExecutePreparedSearchRequestAddressSequence**](AddressSearchApi.md#executepreparedsearchrequestaddresssequence) | **POST** /v2/execution/search/address/sequence | Execute a search for an address sequence on a DLT
 [**PrepareAddressBalanceSearchRequest**](AddressSearchApi.md#prepareaddressbalancesearchrequest) | **POST** /v2/preparation/search/address/balance/{addressId} | Prepare Search for an Address Balance.
 [**PrepareAddressSequenceSearchRequest**](AddressSearchApi.md#prepareaddresssequencesearchrequest) | **POST** /v2/preparation/search/address/sequence/{addressId} | Prepare Search for an Address Sequence.
+[**PrepareAddressSequenceSearchRequest1**](AddressSearchApi.md#prepareaddresssequencesearchrequest1) | **POST** /v2/autoexecution/search/address/sequence/{addressId} | Prepare and automatically execute a search for an Address Sequence.
 
+
+
+## AutoExecuteSearchAddressBalanceRequest
+
+> AutoExecuteSearchAddressBalanceResponseSchema AutoExecuteSearchAddressBalanceRequest (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema)
+
+Prepare and automatically execute a search for an address balance on a DLT.
+
+Generates a request ID and automatically executes the address balance search on the requested DLT.
+
+### Example
+
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class AutoExecuteSearchAddressBalanceRequestExample
+    {
+        public static void Main()
+        {
+            Configuration.Default.BasePath = "https://api.sandbox.overledger.io";
+            // Configure OAuth2 access token for authorization: OAuth2_Security_Scheme
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new AddressSearchApi(Configuration.Default);
+            var authorization = authorization_example;  // string | 
+            var addressId = addressId_example;  // string | 
+            var prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
+
+            try
+            {
+                // Prepare and automatically execute a search for an address balance on a DLT.
+                AutoExecuteSearchAddressBalanceResponseSchema result = apiInstance.AutoExecuteSearchAddressBalanceRequest(authorization, addressId, prepareSearchSchema);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print("Exception when calling AddressSearchApi.AutoExecuteSearchAddressBalanceRequest: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string**|  | 
+ **addressId** | **string**|  | 
+ **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  | 
+
+### Return type
+
+[**AutoExecuteSearchAddressBalanceResponseSchema**](AutoExecuteSearchAddressBalanceResponseSchema.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | All good! |  -  |
+| **400** | Bad Request |  -  |
+| **401** | Unauthorised |  -  |
+| **500** | Something went wrong on our side |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## ExecutePreparedSearchRequestAddressBalance
@@ -101,7 +189,7 @@ Name | Type | Description  | Notes
 
 Execute a search for an address sequence on a DLT
 
-Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT's
 
 ### Example
 
@@ -340,6 +428,92 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | All good! |  -  |
+| **401** | Unauthorised |  -  |
+| **500** | Something went wrong on our side |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PrepareAddressSequenceSearchRequest1
+
+> AutoExecSearchAddressSequenceResponseSchema PrepareAddressSequenceSearchRequest1 (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema)
+
+Prepare and automatically execute a search for an Address Sequence.
+
+Generates a request ID and automatically executes the address sequence search on the requested DLT.
+
+### Example
+
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class PrepareAddressSequenceSearchRequest1Example
+    {
+        public static void Main()
+        {
+            Configuration.Default.BasePath = "https://api.sandbox.overledger.io";
+            // Configure OAuth2 access token for authorization: OAuth2_Security_Scheme
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new AddressSearchApi(Configuration.Default);
+            var authorization = authorization_example;  // string | 
+            var addressId = addressId_example;  // string | 
+            var prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
+
+            try
+            {
+                // Prepare and automatically execute a search for an Address Sequence.
+                AutoExecSearchAddressSequenceResponseSchema result = apiInstance.PrepareAddressSequenceSearchRequest1(authorization, addressId, prepareSearchSchema);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print("Exception when calling AddressSearchApi.PrepareAddressSequenceSearchRequest1: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string**|  | 
+ **addressId** | **string**|  | 
+ **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  | 
+
+### Return type
+
+[**AutoExecSearchAddressSequenceResponseSchema**](AutoExecSearchAddressSequenceResponseSchema.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | All good! |  -  |
+| **400** | Bad Request |  -  |
 | **401** | Unauthorised |  -  |
 | **500** | Something went wrong on our side |  -  |
 

@@ -7,7 +7,7 @@
 | **location** | [**Location**](Location.md) |  | [optional] |
 | **type** | **String** | The type of the transaction object returned | [optional] |
 | **transaction** | [**Transaction**](Transaction.md) |  | [optional] |
-| **timestamp** | **Time** | The unix time to read the object from | [optional] |
+| **timestamp** | **String** | The unix time to read the object from | [optional] |
 | **status** | [**Status**](Status.md) |  | [optional] |
 | **extra_fields** | **Object** |  | [optional] |
 

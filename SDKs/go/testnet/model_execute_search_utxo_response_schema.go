@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 API version: 2.0
 */
@@ -16,6 +16,7 @@ import (
 
 // ExecuteSearchUTXOResponseSchema struct for ExecuteSearchUTXOResponseSchema
 type ExecuteSearchUTXOResponseSchema struct {
+	UtxoId *string `json:"utxoId,omitempty"`
 	Destination *[]UTXODestination `json:"destination,omitempty"`
 	Location *Location `json:"location,omitempty"`
 	Timestamp *UTXOTimestampSchema `json:"timestamp,omitempty"`
@@ -38,6 +39,38 @@ func NewExecuteSearchUTXOResponseSchema() *ExecuteSearchUTXOResponseSchema {
 func NewExecuteSearchUTXOResponseSchemaWithDefaults() *ExecuteSearchUTXOResponseSchema {
 	this := ExecuteSearchUTXOResponseSchema{}
 	return &this
+}
+
+// GetUtxoId returns the UtxoId field value if set, zero value otherwise.
+func (o *ExecuteSearchUTXOResponseSchema) GetUtxoId() string {
+	if o == nil || o.UtxoId == nil {
+		var ret string
+		return ret
+	}
+	return *o.UtxoId
+}
+
+// GetUtxoIdOk returns a tuple with the UtxoId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExecuteSearchUTXOResponseSchema) GetUtxoIdOk() (*string, bool) {
+	if o == nil || o.UtxoId == nil {
+		return nil, false
+	}
+	return o.UtxoId, true
+}
+
+// HasUtxoId returns a boolean if a field has been set.
+func (o *ExecuteSearchUTXOResponseSchema) HasUtxoId() bool {
+	if o != nil && o.UtxoId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUtxoId gets a reference to the given string and assigns it to the UtxoId field.
+func (o *ExecuteSearchUTXOResponseSchema) SetUtxoId(v string) {
+	o.UtxoId = &v
 }
 
 // GetDestination returns the Destination field value if set, zero value otherwise.
@@ -202,6 +235,9 @@ func (o *ExecuteSearchUTXOResponseSchema) SetNativeData(v UTXONativeData) {
 
 func (o ExecuteSearchUTXOResponseSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.UtxoId != nil {
+		toSerialize["utxoId"] = o.UtxoId
+	}
 	if o.Destination != nil {
 		toSerialize["destination"] = o.Destination
 	}

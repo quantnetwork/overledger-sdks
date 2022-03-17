@@ -26,7 +26,7 @@ typedef struct execute_search_transaction_response_t {
     struct location_t *location; //model
     char *type; // string
     struct transaction_t *transaction; //model
-    char *timestamp; //date time
+    char *timestamp; // string
     struct status_t *status; //model
     object_t *extra_fields; //object
 

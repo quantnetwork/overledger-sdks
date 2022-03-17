@@ -63,6 +63,8 @@ pub fn urlencode<T: AsRef<str>>(s: T) -> String {
 
 pub mod address_search_api;
 pub mod block_search_api;
+pub mod create_aqrc20_credit_transaction_api;
+pub mod create_aqrc20_debit_transaction_api;
 pub mod create_subscription_api;
 pub mod create_transaction_api;
 pub mod m_dapp_transaction_query_api;

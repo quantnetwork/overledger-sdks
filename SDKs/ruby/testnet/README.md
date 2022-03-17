@@ -2,7 +2,7 @@
 
 OpenapiClient - the Ruby gem for the Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 # Authentication
 
@@ -68,14 +68,15 @@ end
 
 api_instance = OpenapiClient::AddressSearchApi.new
 authorization = 'authorization_example' # String | 
-request_id = 'request_id_example' # String | 
+address_id = 'address_id_example' # String | 
+prepare_search_schema = OpenapiClient::PrepareSearchSchema.new # PrepareSearchSchema | 
 
 begin
-  #Execute a search for an address balance on a DLT
-  result = api_instance.execute_prepared_search_request_address_balance(authorization, request_id)
+  #Prepare and automatically execute a search for an address balance on a DLT.
+  result = api_instance.auto_execute_search_address_balance_request(authorization, address_id, prepare_search_schema)
   p result
 rescue OpenapiClient::ApiError => e
-  puts "Exception when calling AddressSearchApi->execute_prepared_search_request_address_balance: #{e}"
+  puts "Exception when calling AddressSearchApi->auto_execute_search_address_balance_request: #{e}"
 end
 
 ```
@@ -86,12 +87,17 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*OpenapiClient::AddressSearchApi* | [**auto_execute_search_address_balance_request**](docs/AddressSearchApi.md#auto_execute_search_address_balance_request) | **POST** /v2/autoexecution/search/address/balance/{addressId} | Prepare and automatically execute a search for an address balance on a DLT.
 *OpenapiClient::AddressSearchApi* | [**execute_prepared_search_request_address_balance**](docs/AddressSearchApi.md#execute_prepared_search_request_address_balance) | **POST** /v2/execution/search/address/balance | Execute a search for an address balance on a DLT
 *OpenapiClient::AddressSearchApi* | [**execute_prepared_search_request_address_sequence**](docs/AddressSearchApi.md#execute_prepared_search_request_address_sequence) | **POST** /v2/execution/search/address/sequence | Execute a search for an address sequence on a DLT
 *OpenapiClient::AddressSearchApi* | [**prepare_address_balance_search_request**](docs/AddressSearchApi.md#prepare_address_balance_search_request) | **POST** /v2/preparation/search/address/balance/{addressId} | Prepare Search for an Address Balance.
 *OpenapiClient::AddressSearchApi* | [**prepare_address_sequence_search_request**](docs/AddressSearchApi.md#prepare_address_sequence_search_request) | **POST** /v2/preparation/search/address/sequence/{addressId} | Prepare Search for an Address Sequence.
+*OpenapiClient::AddressSearchApi* | [**prepare_address_sequence_search_request1**](docs/AddressSearchApi.md#prepare_address_sequence_search_request1) | **POST** /v2/autoexecution/search/address/sequence/{addressId} | Prepare and automatically execute a search for an Address Sequence.
+*OpenapiClient::BlockSearchApi* | [**auto_execute_search_block_request**](docs/BlockSearchApi.md#auto_execute_search_block_request) | **POST** /v2/autoexecution/search/block/{blockId} | Prepare and automatically execute a search for a block on a DLT.
 *OpenapiClient::BlockSearchApi* | [**execute_prepared_search_request_block**](docs/BlockSearchApi.md#execute_prepared_search_request_block) | **POST** /v2/execution/search/block | Execute a search for a block on a DLT
 *OpenapiClient::BlockSearchApi* | [**prepare_search_block_by_block_id**](docs/BlockSearchApi.md#prepare_search_block_by_block_id) | **POST** /v2/preparation/search/block/{blockId} | Prepare Search Block by Block Id.
+*OpenapiClient::CreateAQRC20CreditTransactionApi* | [**prepare_credit_request**](docs/CreateAQRC20CreditTransactionApi.md#prepare_credit_request) | **POST** /v2/preparation/credit | Prepare a QRC20 token credit transaction for signing
+*OpenapiClient::CreateAQRC20DebitTransactionApi* | [**prepare_debit_request**](docs/CreateAQRC20DebitTransactionApi.md#prepare_debit_request) | **POST** /v2/preparation/debit | Prepare a QRC20 token debit transaction for signing
 *OpenapiClient::CreateSubscriptionApi* | [**subscription**](docs/CreateSubscriptionApi.md#subscription) | **POST** /v2/webhook/subscription | Create a subscription for a transaction or monitored resource 
 *OpenapiClient::CreateTransactionApi* | [**execute_prepared_request_native_transaction**](docs/CreateTransactionApi.md#execute_prepared_request_native_transaction) | **POST** /v2/execution/nativetransaction | Execute a native transaction on the DLT
 *OpenapiClient::CreateTransactionApi* | [**execute_prepared_request_transaction**](docs/CreateTransactionApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on the DLT
@@ -113,10 +119,13 @@ Class | Method | HTTP request | Description
 *OpenapiClient::ManageSubscriptionApi* | [**update_subscription**](docs/ManageSubscriptionApi.md#update_subscription) | **PATCH** /v2/webhook/subscription/{subscriptionId} | Update a specific subscription created by your application
 *OpenapiClient::MonitorAResourceApi* | [**resource_monitoring_address**](docs/MonitorAResourceApi.md#resource_monitoring_address) | **POST** /v2/resourcemonitoring/address | Monitor an address for incoming and outgoing transactions
 *OpenapiClient::MonitorAResourceApi* | [**track_and_subscribe_event**](docs/MonitorAResourceApi.md#track_and_subscribe_event) | **POST** /v2/resourcemonitoring/smartcontractevent | Monitor a smart contract for an event
+*OpenapiClient::SmartContractSearchApi* | [**auto_execute_search_smart_contract_query_request**](docs/SmartContractSearchApi.md#auto_execute_search_smart_contract_query_request) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 *OpenapiClient::SmartContractSearchApi* | [**execute_prepared_search_request**](docs/SmartContractSearchApi.md#execute_prepared_search_request) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 *OpenapiClient::SmartContractSearchApi* | [**prepare_smart_contract_query_request**](docs/SmartContractSearchApi.md#prepare_smart_contract_query_request) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
+*OpenapiClient::TransactionSearchApi* | [**auto_execute_search_transaction_request**](docs/TransactionSearchApi.md#auto_execute_search_transaction_request) | **POST** /v2/autoexecution/search/transaction | Prepare and automatically execute a search for a transaction on a DLT.
 *OpenapiClient::TransactionSearchApi* | [**execute_prepared_search_request_transaction**](docs/TransactionSearchApi.md#execute_prepared_search_request_transaction) | **POST** /v2/execution/search/transaction | Execute a search for a transaction on a DLT
 *OpenapiClient::TransactionSearchApi* | [**prepare_search_request**](docs/TransactionSearchApi.md#prepare_search_request) | **POST** /v2/preparation/search/transaction | Prepare a search for a transaction on a DLT
+*OpenapiClient::UTXOStatusSearchApi* | [**auto_execute_search_utxo_request**](docs/UTXOStatusSearchApi.md#auto_execute_search_utxo_request) | **POST** /v2/autoexecution/search/utxo/{utxoId} | Prepare and automatically execute a search for a UTXO on a DLT.
 *OpenapiClient::UTXOStatusSearchApi* | [**execute_utxo_prepared_search_request**](docs/UTXOStatusSearchApi.md#execute_utxo_prepared_search_request) | **POST** /v2/execution/search/utxo | Execute a search for UTXO state on a DLT
 *OpenapiClient::UTXOStatusSearchApi* | [**prepare_search_utxo_state**](docs/UTXOStatusSearchApi.md#prepare_search_utxo_state) | **POST** /v2/preparation/search/utxo/{utxoId} | Prepare Search for a UTXO State.
 
@@ -127,12 +136,18 @@ Class | Method | HTTP request | Description
  - [OpenapiClient::AddressMonitoringDetailsSchema](docs/AddressMonitoringDetailsSchema.md)
  - [OpenapiClient::AddressMonitoringRequestSchema](docs/AddressMonitoringRequestSchema.md)
  - [OpenapiClient::AddressMonitoringResponseSchema](docs/AddressMonitoringResponseSchema.md)
+ - [OpenapiClient::ApproveRequestDetailsSchema](docs/ApproveRequestDetailsSchema.md)
+ - [OpenapiClient::AutoExecSearchAddressSequenceResponseSchema](docs/AutoExecSearchAddressSequenceResponseSchema.md)
+ - [OpenapiClient::AutoExecuteSearchAddressBalanceResponseSchema](docs/AutoExecuteSearchAddressBalanceResponseSchema.md)
+ - [OpenapiClient::AutoExecuteSearchBlockResponseSchema](docs/AutoExecuteSearchBlockResponseSchema.md)
+ - [OpenapiClient::AutoExecuteSearchUTXOResponseSchema](docs/AutoExecuteSearchUTXOResponseSchema.md)
  - [OpenapiClient::Block](docs/Block.md)
  - [OpenapiClient::BlockHash](docs/BlockHash.md)
  - [OpenapiClient::BlockSize](docs/BlockSize.md)
  - [OpenapiClient::CreateSmartContractMonitoringSchema](docs/CreateSmartContractMonitoringSchema.md)
  - [OpenapiClient::CreateSubscriptionRequestSchema](docs/CreateSubscriptionRequestSchema.md)
  - [OpenapiClient::CreateSubscriptionResponseSchema](docs/CreateSubscriptionResponseSchema.md)
+ - [OpenapiClient::CreditRequestDetailsSchema](docs/CreditRequestDetailsSchema.md)
  - [OpenapiClient::DeleteResourceMonitoringAddressSchema](docs/DeleteResourceMonitoringAddressSchema.md)
  - [OpenapiClient::Destination](docs/Destination.md)
  - [OpenapiClient::DestinationPaymentSchema](docs/DestinationPaymentSchema.md)
@@ -144,6 +159,7 @@ Class | Method | HTTP request | Description
  - [OpenapiClient::ExecuteSearchBlockResponse](docs/ExecuteSearchBlockResponse.md)
  - [OpenapiClient::ExecuteSearchSequenceResponse](docs/ExecuteSearchSequenceResponse.md)
  - [OpenapiClient::ExecuteSearchTransactionResponse](docs/ExecuteSearchTransactionResponse.md)
+ - [OpenapiClient::ExecuteSearchUTXOResponse](docs/ExecuteSearchUTXOResponse.md)
  - [OpenapiClient::ExecuteSearchUTXOResponseSchema](docs/ExecuteSearchUTXOResponseSchema.md)
  - [OpenapiClient::ExecuteSmartContractReadResponseSchema](docs/ExecuteSmartContractReadResponseSchema.md)
  - [OpenapiClient::ExecuteTransactionRequest](docs/ExecuteTransactionRequest.md)
@@ -162,9 +178,17 @@ Class | Method | HTTP request | Description
  - [OpenapiClient::OriginTransferSchema](docs/OriginTransferSchema.md)
  - [OpenapiClient::OverledgerTransactionResponseSchema](docs/OverledgerTransactionResponseSchema.md)
  - [OpenapiClient::Parameter](docs/Parameter.md)
+ - [OpenapiClient::PayeeCreditSchema](docs/PayeeCreditSchema.md)
+ - [OpenapiClient::PayerCreditSchema](docs/PayerCreditSchema.md)
  - [OpenapiClient::Payment](docs/Payment.md)
  - [OpenapiClient::PaymentRequestDetailsSchema](docs/PaymentRequestDetailsSchema.md)
  - [OpenapiClient::PaymentSchema](docs/PaymentSchema.md)
+ - [OpenapiClient::PrepareAndExecuteBalanceDetails](docs/PrepareAndExecuteBalanceDetails.md)
+ - [OpenapiClient::PrepareAndExecuteOverledgerErrorResponse](docs/PrepareAndExecuteOverledgerErrorResponse.md)
+ - [OpenapiClient::PrepareAndExecuteSearchAddressBalanceResponse](docs/PrepareAndExecuteSearchAddressBalanceResponse.md)
+ - [OpenapiClient::PrepareAndExecuteTransactionResponse](docs/PrepareAndExecuteTransactionResponse.md)
+ - [OpenapiClient::PrepareApproveDebitTransactionRequestSchema](docs/PrepareApproveDebitTransactionRequestSchema.md)
+ - [OpenapiClient::PrepareCreditTransactionRequestSchema](docs/PrepareCreditTransactionRequestSchema.md)
  - [OpenapiClient::PrepareNativeTransactionRequestSchema](docs/PrepareNativeTransactionRequestSchema.md)
  - [OpenapiClient::PreparePaymentTransactionRequestSchema](docs/PreparePaymentTransactionRequestSchema.md)
  - [OpenapiClient::PrepareSearchResponseSchema](docs/PrepareSearchResponseSchema.md)

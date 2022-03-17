@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **LinkedBlocks** | Pointer to [**LinkedBlocks**](LinkedBlocks.md) |  | [optional] 
 **NumberOfTransactions** | Pointer to **int32** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **int32** |  | [optional] 
+**Timestamp** | Pointer to **string** |  | [optional] 
 **NativeData** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
@@ -236,20 +236,20 @@ HasMessage returns a boolean if a field has been set.
 
 ### GetTimestamp
 
-`func (o *Block) GetTimestamp() int32`
+`func (o *Block) GetTimestamp() string`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *Block) GetTimestampOk() (*int32, bool)`
+`func (o *Block) GetTimestampOk() (*string, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *Block) SetTimestamp(v int32)`
+`func (o *Block) SetTimestamp(v string)`
 
 SetTimestamp sets Timestamp field to given value.
 

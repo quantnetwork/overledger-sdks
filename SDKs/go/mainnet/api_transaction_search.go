@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 API version: 2.0
 */
@@ -25,6 +25,187 @@ var (
 
 // TransactionSearchApiService TransactionSearchApi service
 type TransactionSearchApiService service
+
+type ApiAutoExecuteSearchTransactionRequestRequest struct {
+	ctx _context.Context
+	ApiService *TransactionSearchApiService
+	authorization *string
+	transactionId *string
+	prepareSearchSchema *PrepareSearchSchema
+}
+
+func (r ApiAutoExecuteSearchTransactionRequestRequest) Authorization(authorization string) ApiAutoExecuteSearchTransactionRequestRequest {
+	r.authorization = &authorization
+	return r
+}
+func (r ApiAutoExecuteSearchTransactionRequestRequest) TransactionId(transactionId string) ApiAutoExecuteSearchTransactionRequestRequest {
+	r.transactionId = &transactionId
+	return r
+}
+func (r ApiAutoExecuteSearchTransactionRequestRequest) PrepareSearchSchema(prepareSearchSchema PrepareSearchSchema) ApiAutoExecuteSearchTransactionRequestRequest {
+	r.prepareSearchSchema = &prepareSearchSchema
+	return r
+}
+
+func (r ApiAutoExecuteSearchTransactionRequestRequest) Execute() (PrepareAndExecuteTransactionResponse, *_nethttp.Response, error) {
+	return r.ApiService.AutoExecuteSearchTransactionRequestExecute(r)
+}
+
+/*
+AutoExecuteSearchTransactionRequest Prepare and automatically execute a search for a transaction on a DLT.
+
+Generates a request ID and automatically executes the transaction search on the requested DLT.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiAutoExecuteSearchTransactionRequestRequest
+*/
+func (a *TransactionSearchApiService) AutoExecuteSearchTransactionRequest(ctx _context.Context) ApiAutoExecuteSearchTransactionRequestRequest {
+	return ApiAutoExecuteSearchTransactionRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return PrepareAndExecuteTransactionResponse
+func (a *TransactionSearchApiService) AutoExecuteSearchTransactionRequestExecute(r ApiAutoExecuteSearchTransactionRequestRequest) (PrepareAndExecuteTransactionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  PrepareAndExecuteTransactionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransactionSearchApiService.AutoExecuteSearchTransactionRequest")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/autoexecution/search/transaction"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if strlen(*r.authorization) < 0 {
+		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
+	}
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
+	}
+	if r.transactionId == nil {
+		return localVarReturnValue, nil, reportError("transactionId is required and must be specified")
+	}
+	if strlen(*r.transactionId) < 0 {
+		return localVarReturnValue, nil, reportError("transactionId must have at least 0 elements")
+	}
+	if strlen(*r.transactionId) > 100 {
+		return localVarReturnValue, nil, reportError("transactionId must have less than 100 elements")
+	}
+	if r.prepareSearchSchema == nil {
+		return localVarReturnValue, nil, reportError("prepareSearchSchema is required and must be specified")
+	}
+
+	localVarQueryParams.Add("transactionId", parameterToString(*r.transactionId, ""))
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	// body params
+	localVarPostBody = r.prepareSearchSchema
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorList
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerErrorSchema
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiExecutePreparedSearchRequestTransactionRequest struct {
 	ctx _context.Context
@@ -89,8 +270,8 @@ func (a *TransactionSearchApiService) ExecutePreparedSearchRequestTransactionExe
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if r.requestId == nil {
 		return localVarReturnValue, nil, reportError("requestId is required and must be specified")
@@ -265,8 +446,8 @@ func (a *TransactionSearchApiService) PrepareSearchRequestExecute(r ApiPrepareSe
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if r.transactionId == nil {
 		return localVarReturnValue, nil, reportError("transactionId is required and must be specified")

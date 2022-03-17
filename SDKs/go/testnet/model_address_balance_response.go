@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 API version: 2.0
 */
@@ -17,8 +17,7 @@ import (
 // AddressBalanceResponse struct for AddressBalanceResponse
 type AddressBalanceResponse struct {
 	Unit *string `json:"unit,omitempty"`
-	Value *float32 `json:"value,omitempty"`
-	AddressId *string `json:"addressId,omitempty"`
+	Amount *string `json:"amount,omitempty"`
 }
 
 // NewAddressBalanceResponse instantiates a new AddressBalanceResponse object
@@ -70,68 +69,36 @@ func (o *AddressBalanceResponse) SetUnit(v string) {
 	o.Unit = &v
 }
 
-// GetValue returns the Value field value if set, zero value otherwise.
-func (o *AddressBalanceResponse) GetValue() float32 {
-	if o == nil || o.Value == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Value
-}
-
-// GetValueOk returns a tuple with the Value field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AddressBalanceResponse) GetValueOk() (*float32, bool) {
-	if o == nil || o.Value == nil {
-		return nil, false
-	}
-	return o.Value, true
-}
-
-// HasValue returns a boolean if a field has been set.
-func (o *AddressBalanceResponse) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetValue gets a reference to the given float32 and assigns it to the Value field.
-func (o *AddressBalanceResponse) SetValue(v float32) {
-	o.Value = &v
-}
-
-// GetAddressId returns the AddressId field value if set, zero value otherwise.
-func (o *AddressBalanceResponse) GetAddressId() string {
-	if o == nil || o.AddressId == nil {
+// GetAmount returns the Amount field value if set, zero value otherwise.
+func (o *AddressBalanceResponse) GetAmount() string {
+	if o == nil || o.Amount == nil {
 		var ret string
 		return ret
 	}
-	return *o.AddressId
+	return *o.Amount
 }
 
-// GetAddressIdOk returns a tuple with the AddressId field value if set, nil otherwise
+// GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddressBalanceResponse) GetAddressIdOk() (*string, bool) {
-	if o == nil || o.AddressId == nil {
+func (o *AddressBalanceResponse) GetAmountOk() (*string, bool) {
+	if o == nil || o.Amount == nil {
 		return nil, false
 	}
-	return o.AddressId, true
+	return o.Amount, true
 }
 
-// HasAddressId returns a boolean if a field has been set.
-func (o *AddressBalanceResponse) HasAddressId() bool {
-	if o != nil && o.AddressId != nil {
+// HasAmount returns a boolean if a field has been set.
+func (o *AddressBalanceResponse) HasAmount() bool {
+	if o != nil && o.Amount != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetAddressId gets a reference to the given string and assigns it to the AddressId field.
-func (o *AddressBalanceResponse) SetAddressId(v string) {
-	o.AddressId = &v
+// SetAmount gets a reference to the given string and assigns it to the Amount field.
+func (o *AddressBalanceResponse) SetAmount(v string) {
+	o.Amount = &v
 }
 
 func (o AddressBalanceResponse) MarshalJSON() ([]byte, error) {
@@ -139,11 +106,8 @@ func (o AddressBalanceResponse) MarshalJSON() ([]byte, error) {
 	if o.Unit != nil {
 		toSerialize["unit"] = o.Unit
 	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
-	}
-	if o.AddressId != nil {
-		toSerialize["addressId"] = o.AddressId
+	if o.Amount != nil {
+		toSerialize["amount"] = o.Amount
 	}
 	return json.Marshal(toSerialize)
 }

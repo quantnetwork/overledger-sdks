@@ -15,8 +15,8 @@ transaction_t *transaction_create(
     char *message,
     char *transaction_id,
     list_t *encoded,
-    object_t *native_data,
-    object_t *extra_fields
+    object_t *extra_fields,
+    object_t *native_data
     ) {
     transaction_t *transaction_local_var = malloc(sizeof(transaction_t));
     if (!transaction_local_var) {
@@ -31,8 +31,8 @@ transaction_t *transaction_create(
     transaction_local_var->message = message;
     transaction_local_var->transaction_id = transaction_id;
     transaction_local_var->encoded = encoded;
-    transaction_local_var->native_data = native_data;
     transaction_local_var->extra_fields = extra_fields;
+    transaction_local_var->native_data = native_data;
 
     return transaction_local_var;
 }
@@ -94,13 +94,13 @@ void transaction_free(transaction_t *transaction) {
         list_free(transaction->encoded);
         transaction->encoded = NULL;
     }
-    if (transaction->native_data) {
-        object_free(transaction->native_data);
-        transaction->native_data = NULL;
-    }
     if (transaction->extra_fields) {
         object_free(transaction->extra_fields);
         transaction->extra_fields = NULL;
+    }
+    if (transaction->native_data) {
+        object_free(transaction->native_data);
+        transaction->native_data = NULL;
     }
     free(transaction);
 }
@@ -239,19 +239,6 @@ cJSON *transaction_convertToJSON(transaction_t *transaction) {
      } 
 
 
-    // transaction->native_data
-    if(transaction->native_data) { 
-    cJSON *native_data_object = object_convertToJSON(transaction->native_data);
-    if(native_data_object == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "nativeData", native_data_object);
-    if(item->child == NULL) {
-    goto fail;
-    }
-     } 
-
-
     // transaction->extra_fields
     if(transaction->extra_fields) { 
     cJSON *extra_fields_object = object_convertToJSON(transaction->extra_fields);
@@ -259,6 +246,19 @@ cJSON *transaction_convertToJSON(transaction_t *transaction) {
     goto fail; //model
     }
     cJSON_AddItemToObject(item, "extraFields", extra_fields_object);
+    if(item->child == NULL) {
+    goto fail;
+    }
+     } 
+
+
+    // transaction->native_data
+    if(transaction->native_data) { 
+    cJSON *native_data_object = object_convertToJSON(transaction->native_data);
+    if(native_data_object == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "nativeData", native_data_object);
     if(item->child == NULL) {
     goto fail;
     }
@@ -416,18 +416,18 @@ transaction_t *transaction_parseFromJSON(cJSON *transactionJSON){
     }
     }
 
-    // transaction->native_data
-    cJSON *native_data = cJSON_GetObjectItemCaseSensitive(transactionJSON, "nativeData");
-    object_t *native_data_local_object = NULL;
-    if (native_data) { 
-    native_data_local_object = object_parseFromJSON(native_data); //object
-    }
-
     // transaction->extra_fields
     cJSON *extra_fields = cJSON_GetObjectItemCaseSensitive(transactionJSON, "extraFields");
     object_t *extra_fields_local_object = NULL;
     if (extra_fields) { 
     extra_fields_local_object = object_parseFromJSON(extra_fields); //object
+    }
+
+    // transaction->native_data
+    cJSON *native_data = cJSON_GetObjectItemCaseSensitive(transactionJSON, "nativeData");
+    object_t *native_data_local_object = NULL;
+    if (native_data) { 
+    native_data_local_object = object_parseFromJSON(native_data); //object
     }
 
 
@@ -441,8 +441,8 @@ transaction_t *transaction_parseFromJSON(cJSON *transactionJSON){
         message ? strdup(message->valuestring) : NULL,
         transaction_id ? strdup(transaction_id->valuestring) : NULL,
         encoded ? encodedList : NULL,
-        native_data ? native_data_local_object : NULL,
-        extra_fields ? extra_fields_local_object : NULL
+        extra_fields ? extra_fields_local_object : NULL,
+        native_data ? native_data_local_object : NULL
         );
 
     return transaction_local_var;

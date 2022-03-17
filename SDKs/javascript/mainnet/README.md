@@ -1,7 +1,7 @@
 # quant_overledger_api
 
 QuantOverledgerApi - JavaScript client for quant_overledger_api
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 # Authentication
 
@@ -111,7 +111,8 @@ OAuth2_Security_Scheme.accessToken = "YOUR ACCESS TOKEN"
 
 var api = new QuantOverledgerApi.AddressSearchApi()
 var authorization = "authorization_example"; // {String} 
-var requestId = "requestId_example"; // {String} 
+var addressId = "addressId_example"; // {String} 
+var prepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // {PrepareSearchSchema} 
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -119,7 +120,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.executePreparedSearchRequestAddressBalance(authorization, requestId, callback);
+api.autoExecuteSearchAddressBalanceRequest(authorization, addressId, prepareSearchSchema, callback);
 
 ```
 
@@ -129,12 +130,17 @@ All URIs are relative to *https://api.overledger.io*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*QuantOverledgerApi.AddressSearchApi* | [**autoExecuteSearchAddressBalanceRequest**](docs/AddressSearchApi.md#autoExecuteSearchAddressBalanceRequest) | **POST** /v2/autoexecution/search/address/balance/{addressId} | Prepare and automatically execute a search for an address balance on a DLT.
 *QuantOverledgerApi.AddressSearchApi* | [**executePreparedSearchRequestAddressBalance**](docs/AddressSearchApi.md#executePreparedSearchRequestAddressBalance) | **POST** /v2/execution/search/address/balance | Execute a search for an address balance on a DLT
 *QuantOverledgerApi.AddressSearchApi* | [**executePreparedSearchRequestAddressSequence**](docs/AddressSearchApi.md#executePreparedSearchRequestAddressSequence) | **POST** /v2/execution/search/address/sequence | Execute a search for an address sequence on a DLT
 *QuantOverledgerApi.AddressSearchApi* | [**prepareAddressBalanceSearchRequest**](docs/AddressSearchApi.md#prepareAddressBalanceSearchRequest) | **POST** /v2/preparation/search/address/balance/{addressId} | Prepare Search for an Address Balance.
 *QuantOverledgerApi.AddressSearchApi* | [**prepareAddressSequenceSearchRequest**](docs/AddressSearchApi.md#prepareAddressSequenceSearchRequest) | **POST** /v2/preparation/search/address/sequence/{addressId} | Prepare Search for an Address Sequence.
+*QuantOverledgerApi.AddressSearchApi* | [**prepareAddressSequenceSearchRequest1**](docs/AddressSearchApi.md#prepareAddressSequenceSearchRequest1) | **POST** /v2/autoexecution/search/address/sequence/{addressId} | Prepare and automatically execute a search for an Address Sequence.
+*QuantOverledgerApi.BlockSearchApi* | [**autoExecuteSearchBlockRequest**](docs/BlockSearchApi.md#autoExecuteSearchBlockRequest) | **POST** /v2/autoexecution/search/block/{blockId} | Prepare and automatically execute a search for a block on a DLT.
 *QuantOverledgerApi.BlockSearchApi* | [**executePreparedSearchRequestBlock**](docs/BlockSearchApi.md#executePreparedSearchRequestBlock) | **POST** /v2/execution/search/block | Execute a search for a block on a DLT
 *QuantOverledgerApi.BlockSearchApi* | [**prepareSearchBlockByBlockId**](docs/BlockSearchApi.md#prepareSearchBlockByBlockId) | **POST** /v2/preparation/search/block/{blockId} | Prepare Search Block by Block Id.
+*QuantOverledgerApi.CreateAQRC20CreditTransactionApi* | [**prepareCreditRequest**](docs/CreateAQRC20CreditTransactionApi.md#prepareCreditRequest) | **POST** /v2/preparation/credit | Prepare a QRC20 token credit transaction for signing
+*QuantOverledgerApi.CreateAQRC20DebitTransactionApi* | [**prepareDebitRequest**](docs/CreateAQRC20DebitTransactionApi.md#prepareDebitRequest) | **POST** /v2/preparation/debit | Prepare a QRC20 token debit transaction for signing
 *QuantOverledgerApi.CreateSubscriptionApi* | [**subscription**](docs/CreateSubscriptionApi.md#subscription) | **POST** /v2/webhook/subscription | Create a subscription for a transaction or monitored resource 
 *QuantOverledgerApi.CreateTransactionApi* | [**executePreparedRequestNativeTransaction**](docs/CreateTransactionApi.md#executePreparedRequestNativeTransaction) | **POST** /v2/execution/nativetransaction | Execute a native transaction on the DLT
 *QuantOverledgerApi.CreateTransactionApi* | [**executePreparedRequestTransaction**](docs/CreateTransactionApi.md#executePreparedRequestTransaction) | **POST** /v2/execution/transaction | Execute a transaction on the DLT
@@ -156,10 +162,13 @@ Class | Method | HTTP request | Description
 *QuantOverledgerApi.ManageSubscriptionApi* | [**updateSubscription**](docs/ManageSubscriptionApi.md#updateSubscription) | **PATCH** /v2/webhook/subscription/{subscriptionId} | Update a specific subscription created by your application
 *QuantOverledgerApi.MonitorAResourceApi* | [**resourceMonitoringAddress**](docs/MonitorAResourceApi.md#resourceMonitoringAddress) | **POST** /v2/resourcemonitoring/address | Monitor an address for incoming and outgoing transactions
 *QuantOverledgerApi.MonitorAResourceApi* | [**trackAndSubscribeEvent**](docs/MonitorAResourceApi.md#trackAndSubscribeEvent) | **POST** /v2/resourcemonitoring/smartcontractevent | Monitor a smart contract for an event
+*QuantOverledgerApi.SmartContractSearchApi* | [**autoExecuteSearchSmartContractQueryRequest**](docs/SmartContractSearchApi.md#autoExecuteSearchSmartContractQueryRequest) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 *QuantOverledgerApi.SmartContractSearchApi* | [**executePreparedSearchRequest**](docs/SmartContractSearchApi.md#executePreparedSearchRequest) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 *QuantOverledgerApi.SmartContractSearchApi* | [**prepareSmartContractQueryRequest**](docs/SmartContractSearchApi.md#prepareSmartContractQueryRequest) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
+*QuantOverledgerApi.TransactionSearchApi* | [**autoExecuteSearchTransactionRequest**](docs/TransactionSearchApi.md#autoExecuteSearchTransactionRequest) | **POST** /v2/autoexecution/search/transaction | Prepare and automatically execute a search for a transaction on a DLT.
 *QuantOverledgerApi.TransactionSearchApi* | [**executePreparedSearchRequestTransaction**](docs/TransactionSearchApi.md#executePreparedSearchRequestTransaction) | **POST** /v2/execution/search/transaction | Execute a search for a transaction on a DLT
 *QuantOverledgerApi.TransactionSearchApi* | [**prepareSearchRequest**](docs/TransactionSearchApi.md#prepareSearchRequest) | **POST** /v2/preparation/search/transaction | Prepare a search for a transaction on a DLT
+*QuantOverledgerApi.UTXOStatusSearchApi* | [**autoExecuteSearchUtxoRequest**](docs/UTXOStatusSearchApi.md#autoExecuteSearchUtxoRequest) | **POST** /v2/autoexecution/search/utxo/{utxoId} | Prepare and automatically execute a search for a UTXO on a DLT.
 *QuantOverledgerApi.UTXOStatusSearchApi* | [**executeUTXOPreparedSearchRequest**](docs/UTXOStatusSearchApi.md#executeUTXOPreparedSearchRequest) | **POST** /v2/execution/search/utxo | Execute a search for UTXO state on a DLT
 *QuantOverledgerApi.UTXOStatusSearchApi* | [**prepareSearchUTXOState**](docs/UTXOStatusSearchApi.md#prepareSearchUTXOState) | **POST** /v2/preparation/search/utxo/{utxoId} | Prepare Search for a UTXO State.
 
@@ -170,12 +179,18 @@ Class | Method | HTTP request | Description
  - [QuantOverledgerApi.AddressMonitoringDetailsSchema](docs/AddressMonitoringDetailsSchema.md)
  - [QuantOverledgerApi.AddressMonitoringRequestSchema](docs/AddressMonitoringRequestSchema.md)
  - [QuantOverledgerApi.AddressMonitoringResponseSchema](docs/AddressMonitoringResponseSchema.md)
+ - [QuantOverledgerApi.ApproveRequestDetailsSchema](docs/ApproveRequestDetailsSchema.md)
+ - [QuantOverledgerApi.AutoExecSearchAddressSequenceResponseSchema](docs/AutoExecSearchAddressSequenceResponseSchema.md)
+ - [QuantOverledgerApi.AutoExecuteSearchAddressBalanceResponseSchema](docs/AutoExecuteSearchAddressBalanceResponseSchema.md)
+ - [QuantOverledgerApi.AutoExecuteSearchBlockResponseSchema](docs/AutoExecuteSearchBlockResponseSchema.md)
+ - [QuantOverledgerApi.AutoExecuteSearchUTXOResponseSchema](docs/AutoExecuteSearchUTXOResponseSchema.md)
  - [QuantOverledgerApi.Block](docs/Block.md)
  - [QuantOverledgerApi.BlockHash](docs/BlockHash.md)
  - [QuantOverledgerApi.BlockSize](docs/BlockSize.md)
  - [QuantOverledgerApi.CreateSmartContractMonitoringSchema](docs/CreateSmartContractMonitoringSchema.md)
  - [QuantOverledgerApi.CreateSubscriptionRequestSchema](docs/CreateSubscriptionRequestSchema.md)
  - [QuantOverledgerApi.CreateSubscriptionResponseSchema](docs/CreateSubscriptionResponseSchema.md)
+ - [QuantOverledgerApi.CreditRequestDetailsSchema](docs/CreditRequestDetailsSchema.md)
  - [QuantOverledgerApi.DeleteResourceMonitoringAddressSchema](docs/DeleteResourceMonitoringAddressSchema.md)
  - [QuantOverledgerApi.Destination](docs/Destination.md)
  - [QuantOverledgerApi.DestinationPaymentSchema](docs/DestinationPaymentSchema.md)
@@ -187,6 +202,7 @@ Class | Method | HTTP request | Description
  - [QuantOverledgerApi.ExecuteSearchBlockResponse](docs/ExecuteSearchBlockResponse.md)
  - [QuantOverledgerApi.ExecuteSearchSequenceResponse](docs/ExecuteSearchSequenceResponse.md)
  - [QuantOverledgerApi.ExecuteSearchTransactionResponse](docs/ExecuteSearchTransactionResponse.md)
+ - [QuantOverledgerApi.ExecuteSearchUTXOResponse](docs/ExecuteSearchUTXOResponse.md)
  - [QuantOverledgerApi.ExecuteSearchUTXOResponseSchema](docs/ExecuteSearchUTXOResponseSchema.md)
  - [QuantOverledgerApi.ExecuteSmartContractReadResponseSchema](docs/ExecuteSmartContractReadResponseSchema.md)
  - [QuantOverledgerApi.ExecuteTransactionRequest](docs/ExecuteTransactionRequest.md)
@@ -205,9 +221,17 @@ Class | Method | HTTP request | Description
  - [QuantOverledgerApi.OriginTransferSchema](docs/OriginTransferSchema.md)
  - [QuantOverledgerApi.OverledgerTransactionResponseSchema](docs/OverledgerTransactionResponseSchema.md)
  - [QuantOverledgerApi.Parameter](docs/Parameter.md)
+ - [QuantOverledgerApi.PayeeCreditSchema](docs/PayeeCreditSchema.md)
+ - [QuantOverledgerApi.PayerCreditSchema](docs/PayerCreditSchema.md)
  - [QuantOverledgerApi.Payment](docs/Payment.md)
  - [QuantOverledgerApi.PaymentRequestDetailsSchema](docs/PaymentRequestDetailsSchema.md)
  - [QuantOverledgerApi.PaymentSchema](docs/PaymentSchema.md)
+ - [QuantOverledgerApi.PrepareAndExecuteBalanceDetails](docs/PrepareAndExecuteBalanceDetails.md)
+ - [QuantOverledgerApi.PrepareAndExecuteOverledgerErrorResponse](docs/PrepareAndExecuteOverledgerErrorResponse.md)
+ - [QuantOverledgerApi.PrepareAndExecuteSearchAddressBalanceResponse](docs/PrepareAndExecuteSearchAddressBalanceResponse.md)
+ - [QuantOverledgerApi.PrepareAndExecuteTransactionResponse](docs/PrepareAndExecuteTransactionResponse.md)
+ - [QuantOverledgerApi.PrepareApproveDebitTransactionRequestSchema](docs/PrepareApproveDebitTransactionRequestSchema.md)
+ - [QuantOverledgerApi.PrepareCreditTransactionRequestSchema](docs/PrepareCreditTransactionRequestSchema.md)
  - [QuantOverledgerApi.PrepareNativeTransactionRequestSchema](docs/PrepareNativeTransactionRequestSchema.md)
  - [QuantOverledgerApi.PreparePaymentTransactionRequestSchema](docs/PreparePaymentTransactionRequestSchema.md)
  - [QuantOverledgerApi.PrepareSearchResponseSchema](docs/PrepareSearchResponseSchema.md)

@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 API version: 2.0
 */
@@ -89,8 +89,8 @@ func (a *CreateTransactionApiService) ExecutePreparedRequestNativeTransactionExe
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if r.executeTransactionRequest == nil {
 		return localVarReturnValue, nil, reportError("executeTransactionRequest is required and must be specified")
@@ -245,8 +245,8 @@ func (a *CreateTransactionApiService) ExecutePreparedRequestTransactionExecute(r
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if r.executeTransactionRequest == nil {
 		return localVarReturnValue, nil, reportError("executeTransactionRequest is required and must be specified")
@@ -401,8 +401,8 @@ func (a *CreateTransactionApiService) PrepareNativeTransactionExecute(r ApiPrepa
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if r.prepareNativeTransactionRequestSchema == nil {
 		return localVarReturnValue, nil, reportError("prepareNativeTransactionRequestSchema is required and must be specified")
@@ -507,7 +507,8 @@ func (r ApiPrepareTransactionRequestRequest) Execute() (PrepareTransactionRespon
 /*
 PrepareTransactionRequest Prepare a DLT transaction for signing
 
-Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
+Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are "Payment" (to send payments) and "Smart Contract Invoke" (to invoke arbitrary smart contract functions). 
+ Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPrepareTransactionRequestRequest
@@ -547,8 +548,8 @@ func (a *CreateTransactionApiService) PrepareTransactionRequestExecute(r ApiPrep
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if r.preparePaymentTransactionRequestSchema == nil {
 		return localVarReturnValue, nil, reportError("preparePaymentTransactionRequestSchema is required and must be specified")

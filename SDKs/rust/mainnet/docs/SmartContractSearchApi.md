@@ -4,9 +4,41 @@ All URIs are relative to *https://api.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**auto_execute_search_smart_contract_query_request**](SmartContractSearchApi.md#auto_execute_search_smart_contract_query_request) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 [**execute_prepared_search_request**](SmartContractSearchApi.md#execute_prepared_search_request) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 [**prepare_smart_contract_query_request**](SmartContractSearchApi.md#prepare_smart_contract_query_request) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
 
+
+
+## auto_execute_search_smart_contract_query_request
+
+> crate::models::AutoExecuteSearchAddressBalanceResponseSchema auto_execute_search_smart_contract_query_request(authorization, prepare_search_schema)
+Prepare and automatically execute a search for a smart contract query on a DLT.
+
+Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**authorization** | **String** |  | [required] |
+**prepare_search_schema** | [**PrepareSearchSchema**](PrepareSearchSchema.md) |  | [required] |
+
+### Return type
+
+[**crate::models::AutoExecuteSearchAddressBalanceResponseSchema**](AutoExecuteSearchAddressBalanceResponseSchema.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## execute_prepared_search_request

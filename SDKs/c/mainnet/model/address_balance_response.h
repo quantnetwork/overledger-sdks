@@ -20,15 +20,13 @@ typedef struct address_balance_response_t address_balance_response_t;
 
 typedef struct address_balance_response_t {
     char *unit; // string
-    double value; //numeric
-    char *address_id; // string
+    char *amount; // string
 
 } address_balance_response_t;
 
 address_balance_response_t *address_balance_response_create(
     char *unit,
-    double value,
-    char *address_id
+    char *amount
 );
 
 void address_balance_response_free(address_balance_response_t *address_balance_response);

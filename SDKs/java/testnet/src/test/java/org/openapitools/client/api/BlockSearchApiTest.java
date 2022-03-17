@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -14,6 +14,7 @@
 package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
+import org.openapitools.client.model.AutoExecuteSearchBlockResponseSchema;
 import org.openapitools.client.model.ErrorDetails;
 import org.openapitools.client.model.ErrorList;
 import org.openapitools.client.model.ExecuteSearchBlockResponse;
@@ -36,6 +37,23 @@ public class BlockSearchApiTest {
 
     private final BlockSearchApi api = new BlockSearchApi();
 
+    
+    /**
+     * Prepare and automatically execute a search for a block on a DLT.
+     *
+     * Generates a request ID and automatically executes the block search on the requested DLT.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void autoExecuteSearchBlockRequestTest() throws ApiException {
+        String authorization = null;
+        String blockId = null;
+        PrepareSearchSchema prepareSearchSchema = null;
+                AutoExecuteSearchBlockResponseSchema response = api.autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema);
+        // TODO: test validations
+    }
     
     /**
      * Execute a search for a block on a DLT

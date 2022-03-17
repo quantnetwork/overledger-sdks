@@ -23,12 +23,16 @@ typedef struct execute_search_balance_response_t execute_search_balance_response
 typedef struct execute_search_balance_response_t {
     list_t *balances; //nonprimitive container
     struct location_t *location; //model
+    char *timestamp; // string
+    char *address_id; // string
 
 } execute_search_balance_response_t;
 
 execute_search_balance_response_t *execute_search_balance_response_create(
     list_t *balances,
-    location_t *location
+    location_t *location,
+    char *timestamp,
+    char *address_id
 );
 
 void execute_search_balance_response_free(execute_search_balance_response_t *execute_search_balance_response);

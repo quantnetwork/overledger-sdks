@@ -1,7 +1,7 @@
 {-
    Quant Overledger API
 
-   Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+   Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
    OpenAPI Version: 3.0.1
    Quant Overledger API API version: 2.0
@@ -57,6 +57,38 @@ import qualified Prelude as P
 
 -- ** AddressSearch
 
+-- *** autoExecuteSearchAddressBalanceRequest
+
+-- | @POST \/v2\/autoexecution\/search\/address\/balance\/{addressId}@
+-- 
+-- Prepare and automatically execute a search for an address balance on a DLT.
+-- 
+-- Generates a request ID and automatically executes the address balance search on the requested DLT.
+-- 
+-- AuthMethod: 'AuthOAuthOAuth2SecurityScheme'
+-- 
+autoExecuteSearchAddressBalanceRequest
+  :: (Consumes AutoExecuteSearchAddressBalanceRequest MimeJSON, MimeRender MimeJSON PrepareSearchSchema)
+  => PrepareSearchSchema -- ^ "prepareSearchSchema"
+  -> Authorization -- ^ "authorization"
+  -> AddressId -- ^ "addressId"
+  -> QuantOverledgerRequest AutoExecuteSearchAddressBalanceRequest MimeJSON AutoExecuteSearchAddressBalanceResponseSchema MimeJSON
+autoExecuteSearchAddressBalanceRequest prepareSearchSchema (Authorization authorization) (AddressId addressId) =
+  _mkRequest "POST" ["/v2/autoexecution/search/address/balance/",toPath addressId]
+    `_hasAuthType` (P.Proxy :: P.Proxy AuthOAuthOAuth2SecurityScheme)
+    `setBodyParam` prepareSearchSchema
+    `addHeader` toHeader ("Authorization", authorization)
+
+data AutoExecuteSearchAddressBalanceRequest 
+instance HasBodyParam AutoExecuteSearchAddressBalanceRequest PrepareSearchSchema 
+
+-- | @application/json@
+instance Consumes AutoExecuteSearchAddressBalanceRequest MimeJSON
+
+-- | @application/json@
+instance Produces AutoExecuteSearchAddressBalanceRequest MimeJSON
+
+
 -- *** executePreparedSearchRequestAddressBalance
 
 -- | @POST \/v2\/execution\/search\/address\/balance@
@@ -88,7 +120,7 @@ instance Produces ExecutePreparedSearchRequestAddressBalance MimeJSON
 -- 
 -- Execute a search for an address sequence on a DLT
 -- 
--- Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+-- Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT's
 -- 
 -- AuthMethod: 'AuthOAuthOAuth2SecurityScheme'
 -- 
@@ -169,4 +201,36 @@ instance Consumes PrepareAddressSequenceSearchRequest MimeJSON
 
 -- | @application/json@
 instance Produces PrepareAddressSequenceSearchRequest MimeJSON
+
+
+-- *** prepareAddressSequenceSearchRequest1
+
+-- | @POST \/v2\/autoexecution\/search\/address\/sequence\/{addressId}@
+-- 
+-- Prepare and automatically execute a search for an Address Sequence.
+-- 
+-- Generates a request ID and automatically executes the address sequence search on the requested DLT.
+-- 
+-- AuthMethod: 'AuthOAuthOAuth2SecurityScheme'
+-- 
+prepareAddressSequenceSearchRequest1
+  :: (Consumes PrepareAddressSequenceSearchRequest1 MimeJSON, MimeRender MimeJSON PrepareSearchSchema)
+  => PrepareSearchSchema -- ^ "prepareSearchSchema"
+  -> Authorization -- ^ "authorization"
+  -> AddressId -- ^ "addressId"
+  -> QuantOverledgerRequest PrepareAddressSequenceSearchRequest1 MimeJSON AutoExecSearchAddressSequenceResponseSchema MimeJSON
+prepareAddressSequenceSearchRequest1 prepareSearchSchema (Authorization authorization) (AddressId addressId) =
+  _mkRequest "POST" ["/v2/autoexecution/search/address/sequence/",toPath addressId]
+    `_hasAuthType` (P.Proxy :: P.Proxy AuthOAuthOAuth2SecurityScheme)
+    `setBodyParam` prepareSearchSchema
+    `addHeader` toHeader ("Authorization", authorization)
+
+data PrepareAddressSequenceSearchRequest1 
+instance HasBodyParam PrepareAddressSequenceSearchRequest1 PrepareSearchSchema 
+
+-- | @application/json@
+instance Consumes PrepareAddressSequenceSearchRequest1 MimeJSON
+
+-- | @application/json@
+instance Produces PrepareAddressSequenceSearchRequest1 MimeJSON
 

@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 API version: 2.0
 */
@@ -18,6 +18,7 @@ import (
 type ExecuteSearchSequenceResponse struct {
 	Sequence *string `json:"sequence,omitempty"`
 	Location *Location `json:"location,omitempty"`
+	Timestamp *string `json:"timestamp,omitempty"`
 	AddressId *string `json:"addressId,omitempty"`
 }
 
@@ -102,6 +103,38 @@ func (o *ExecuteSearchSequenceResponse) SetLocation(v Location) {
 	o.Location = &v
 }
 
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
+func (o *ExecuteSearchSequenceResponse) GetTimestamp() string {
+	if o == nil || o.Timestamp == nil {
+		var ret string
+		return ret
+	}
+	return *o.Timestamp
+}
+
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExecuteSearchSequenceResponse) GetTimestampOk() (*string, bool) {
+	if o == nil || o.Timestamp == nil {
+		return nil, false
+	}
+	return o.Timestamp, true
+}
+
+// HasTimestamp returns a boolean if a field has been set.
+func (o *ExecuteSearchSequenceResponse) HasTimestamp() bool {
+	if o != nil && o.Timestamp != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
+func (o *ExecuteSearchSequenceResponse) SetTimestamp(v string) {
+	o.Timestamp = &v
+}
+
 // GetAddressId returns the AddressId field value if set, zero value otherwise.
 func (o *ExecuteSearchSequenceResponse) GetAddressId() string {
 	if o == nil || o.AddressId == nil {
@@ -141,6 +174,9 @@ func (o ExecuteSearchSequenceResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Location != nil {
 		toSerialize["location"] = o.Location
+	}
+	if o.Timestamp != nil {
+		toSerialize["timestamp"] = o.Timestamp
 	}
 	if o.AddressId != nil {
 		toSerialize["addressId"] = o.AddressId

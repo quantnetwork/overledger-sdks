@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -23,24 +23,19 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * AddressBalanceResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-01T15:18:10.790747Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
 public class AddressBalanceResponse {
   public static final String SERIALIZED_NAME_UNIT = "unit";
   @SerializedName(SERIALIZED_NAME_UNIT)
   private String unit;
 
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
-  private BigDecimal value;
-
-  public static final String SERIALIZED_NAME_ADDRESS_ID = "addressId";
-  @SerializedName(SERIALIZED_NAME_ADDRESS_ID)
-  private String addressId;
+  public static final String SERIALIZED_NAME_AMOUNT = "amount";
+  @SerializedName(SERIALIZED_NAME_AMOUNT)
+  private String amount;
 
 
   public AddressBalanceResponse unit(String unit) {
@@ -66,49 +61,26 @@ public class AddressBalanceResponse {
   }
 
 
-  public AddressBalanceResponse value(BigDecimal value) {
+  public AddressBalanceResponse amount(String amount) {
     
-    this.value = value;
+    this.amount = amount;
     return this;
   }
 
    /**
-   * Get value
-   * @return value
+   * Get amount
+   * @return amount
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public BigDecimal getValue() {
-    return value;
+  public String getAmount() {
+    return amount;
   }
 
 
-  public void setValue(BigDecimal value) {
-    this.value = value;
-  }
-
-
-  public AddressBalanceResponse addressId(String addressId) {
-    
-    this.addressId = addressId;
-    return this;
-  }
-
-   /**
-   * Get addressId
-   * @return addressId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getAddressId() {
-    return addressId;
-  }
-
-
-  public void setAddressId(String addressId) {
-    this.addressId = addressId;
+  public void setAmount(String amount) {
+    this.amount = amount;
   }
 
 
@@ -122,13 +94,12 @@ public class AddressBalanceResponse {
     }
     AddressBalanceResponse addressBalanceResponse = (AddressBalanceResponse) o;
     return Objects.equals(this.unit, addressBalanceResponse.unit) &&
-        Objects.equals(this.value, addressBalanceResponse.value) &&
-        Objects.equals(this.addressId, addressBalanceResponse.addressId);
+        Objects.equals(this.amount, addressBalanceResponse.amount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(unit, value, addressId);
+    return Objects.hash(unit, amount);
   }
 
   @Override
@@ -136,8 +107,7 @@ public class AddressBalanceResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddressBalanceResponse {\n");
     sb.append("    unit: ").append(toIndentedString(unit)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    addressId: ").append(toIndentedString(addressId)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

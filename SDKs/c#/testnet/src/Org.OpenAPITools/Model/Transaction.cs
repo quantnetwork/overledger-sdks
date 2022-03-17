@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -42,9 +42,9 @@ namespace Org.OpenAPITools.Model
         /// <param name="message">Any text-based element of the data payload.</param>
         /// <param name="transactionId">The unique identifier of the transaction on this DLN.</param>
         /// <param name="encoded">encoded.</param>
-        /// <param name="nativeData">nativeData.</param>
         /// <param name="extraFields">extraFields.</param>
-        public Transaction(List<string> signature = default(List<string>), List<Origin> origin = default(List<Origin>), Fee fee = default(Fee), List<Destination> destination = default(List<Destination>), string signed = default(string), List<Payment> totalPaymentAmount = default(List<Payment>), string message = default(string), string transactionId = default(string), List<string> encoded = default(List<string>), Object nativeData = default(Object), Object extraFields = default(Object))
+        /// <param name="nativeData">nativeData.</param>
+        public Transaction(List<string> signature = default(List<string>), List<Origin> origin = default(List<Origin>), Fee fee = default(Fee), List<Destination> destination = default(List<Destination>), string signed = default(string), List<Payment> totalPaymentAmount = default(List<Payment>), string message = default(string), string transactionId = default(string), List<string> encoded = default(List<string>), Object extraFields = default(Object), Object nativeData = default(Object))
         {
             this.Signature = signature;
             this.Origin = origin;
@@ -55,8 +55,8 @@ namespace Org.OpenAPITools.Model
             this.Message = message;
             this.TransactionId = transactionId;
             this.Encoded = encoded;
-            this.NativeData = nativeData;
             this.ExtraFields = extraFields;
+            this.NativeData = nativeData;
         }
 
         /// <summary>
@@ -117,16 +117,16 @@ namespace Org.OpenAPITools.Model
         public List<string> Encoded { get; set; }
 
         /// <summary>
-        /// Gets or Sets NativeData
-        /// </summary>
-        [DataMember(Name="nativeData", EmitDefaultValue=false)]
-        public Object NativeData { get; set; }
-
-        /// <summary>
         /// Gets or Sets ExtraFields
         /// </summary>
         [DataMember(Name="extraFields", EmitDefaultValue=false)]
         public Object ExtraFields { get; set; }
+
+        /// <summary>
+        /// Gets or Sets NativeData
+        /// </summary>
+        [DataMember(Name="nativeData", EmitDefaultValue=false)]
+        public Object NativeData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -145,8 +145,8 @@ namespace Org.OpenAPITools.Model
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  TransactionId: ").Append(TransactionId).Append("\n");
             sb.Append("  Encoded: ").Append(Encoded).Append("\n");
-            sb.Append("  NativeData: ").Append(NativeData).Append("\n");
             sb.Append("  ExtraFields: ").Append(ExtraFields).Append("\n");
+            sb.Append("  NativeData: ").Append(NativeData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -232,14 +232,14 @@ namespace Org.OpenAPITools.Model
                     this.Encoded.SequenceEqual(input.Encoded)
                 ) && 
                 (
-                    this.NativeData == input.NativeData ||
-                    (this.NativeData != null &&
-                    this.NativeData.Equals(input.NativeData))
-                ) && 
-                (
                     this.ExtraFields == input.ExtraFields ||
                     (this.ExtraFields != null &&
                     this.ExtraFields.Equals(input.ExtraFields))
+                ) && 
+                (
+                    this.NativeData == input.NativeData ||
+                    (this.NativeData != null &&
+                    this.NativeData.Equals(input.NativeData))
                 );
         }
 
@@ -270,10 +270,10 @@ namespace Org.OpenAPITools.Model
                     hashCode = hashCode * 59 + this.TransactionId.GetHashCode();
                 if (this.Encoded != null)
                     hashCode = hashCode * 59 + this.Encoded.GetHashCode();
-                if (this.NativeData != null)
-                    hashCode = hashCode * 59 + this.NativeData.GetHashCode();
                 if (this.ExtraFields != null)
                     hashCode = hashCode * 59 + this.ExtraFields.GetHashCode();
+                if (this.NativeData != null)
+                    hashCode = hashCode * 59 + this.NativeData.GetHashCode();
                 return hashCode;
             }
         }

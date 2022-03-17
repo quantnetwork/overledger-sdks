@@ -8,6 +8,7 @@
 execute_search_sequence_response_t *execute_search_sequence_response_create(
     char *sequence,
     location_t *location,
+    char *timestamp,
     char *address_id
     ) {
     execute_search_sequence_response_t *execute_search_sequence_response_local_var = malloc(sizeof(execute_search_sequence_response_t));
@@ -16,6 +17,7 @@ execute_search_sequence_response_t *execute_search_sequence_response_create(
     }
     execute_search_sequence_response_local_var->sequence = sequence;
     execute_search_sequence_response_local_var->location = location;
+    execute_search_sequence_response_local_var->timestamp = timestamp;
     execute_search_sequence_response_local_var->address_id = address_id;
 
     return execute_search_sequence_response_local_var;
@@ -34,6 +36,10 @@ void execute_search_sequence_response_free(execute_search_sequence_response_t *e
     if (execute_search_sequence_response->location) {
         location_free(execute_search_sequence_response->location);
         execute_search_sequence_response->location = NULL;
+    }
+    if (execute_search_sequence_response->timestamp) {
+        free(execute_search_sequence_response->timestamp);
+        execute_search_sequence_response->timestamp = NULL;
     }
     if (execute_search_sequence_response->address_id) {
         free(execute_search_sequence_response->address_id);
@@ -62,6 +68,14 @@ cJSON *execute_search_sequence_response_convertToJSON(execute_search_sequence_re
     cJSON_AddItemToObject(item, "location", location_local_JSON);
     if(item->child == NULL) {
     goto fail;
+    }
+     } 
+
+
+    // execute_search_sequence_response->timestamp
+    if(execute_search_sequence_response->timestamp) { 
+    if(cJSON_AddStringToObject(item, "timestamp", execute_search_sequence_response->timestamp) == NULL) {
+    goto fail; //String
     }
      } 
 
@@ -101,6 +115,15 @@ execute_search_sequence_response_t *execute_search_sequence_response_parseFromJS
     location_local_nonprim = location_parseFromJSON(location); //nonprimitive
     }
 
+    // execute_search_sequence_response->timestamp
+    cJSON *timestamp = cJSON_GetObjectItemCaseSensitive(execute_search_sequence_responseJSON, "timestamp");
+    if (timestamp) { 
+    if(!cJSON_IsString(timestamp))
+    {
+    goto end; //String
+    }
+    }
+
     // execute_search_sequence_response->address_id
     cJSON *address_id = cJSON_GetObjectItemCaseSensitive(execute_search_sequence_responseJSON, "addressId");
     if (address_id) { 
@@ -114,6 +137,7 @@ execute_search_sequence_response_t *execute_search_sequence_response_parseFromJS
     execute_search_sequence_response_local_var = execute_search_sequence_response_create (
         sequence ? strdup(sequence->valuestring) : NULL,
         location ? location_local_nonprim : NULL,
+        timestamp ? strdup(timestamp->valuestring) : NULL,
         address_id ? strdup(address_id->valuestring) : NULL
         );
 

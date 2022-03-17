@@ -9,9 +9,63 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**auto_execute_search_transaction_request**](TransactionSearchApi.md#auto_execute_search_transaction_request) | **POST** /v2/autoexecution/search/transaction | Prepare and automatically execute a search for a transaction on a DLT.
 [**execute_prepared_search_request_transaction**](TransactionSearchApi.md#execute_prepared_search_request_transaction) | **POST** /v2/execution/search/transaction | Execute a search for a transaction on a DLT
 [**prepare_search_request**](TransactionSearchApi.md#prepare_search_request) | **POST** /v2/preparation/search/transaction | Prepare a search for a transaction on a DLT
 
+
+# **auto_execute_search_transaction_request**
+> PrepareAndExecuteTransactionResponse auto_execute_search_transaction_request(authorization => $authorization, transaction_id => $transaction_id, prepare_search_schema => $prepare_search_schema)
+
+Prepare and automatically execute a search for a transaction on a DLT.
+
+Generates a request ID and automatically executes the transaction search on the requested DLT.
+
+### Example
+```perl
+use Data::Dumper;
+use WWW::OpenAPIClient::TransactionSearchApi;
+my $api_instance = WWW::OpenAPIClient::TransactionSearchApi->new(
+
+    # Configure OAuth2 access token for authorization: OAuth2_Security_Scheme
+    access_token => 'YOUR_ACCESS_TOKEN',
+);
+
+my $authorization = "authorization_example"; # string | 
+my $transaction_id = "transaction_id_example"; # string | 
+my $prepare_search_schema = WWW::OpenAPIClient::Object::PrepareSearchSchema->new(); # PrepareSearchSchema | 
+
+eval {
+    my $result = $api_instance->auto_execute_search_transaction_request(authorization => $authorization, transaction_id => $transaction_id, prepare_search_schema => $prepare_search_schema);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling TransactionSearchApi->auto_execute_search_transaction_request: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string**|  | 
+ **transaction_id** | **string**|  | 
+ **prepare_search_schema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  | 
+
+### Return type
+
+[**PrepareAndExecuteTransactionResponse**](PrepareAndExecuteTransactionResponse.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **execute_prepared_search_request_transaction**
 > ExecuteSearchTransactionResponse execute_prepared_search_request_transaction(authorization => $authorization, request_id => $request_id)

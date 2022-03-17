@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -25,6 +25,31 @@ namespace Org.OpenAPITools.Api
     public interface ITransactionSearchApi : IApiAccessor
     {
         #region Synchronous Operations
+        /// <summary>
+        /// Prepare and automatically execute a search for a transaction on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the transaction search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>PrepareAndExecuteTransactionResponse</returns>
+        PrepareAndExecuteTransactionResponse AutoExecuteSearchTransactionRequest (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema);
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a transaction on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the transaction search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>ApiResponse of PrepareAndExecuteTransactionResponse</returns>
+        ApiResponse<PrepareAndExecuteTransactionResponse> AutoExecuteSearchTransactionRequestWithHttpInfo (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema);
         /// <summary>
         /// Execute a search for a transaction on a DLT
         /// </summary>
@@ -75,6 +100,33 @@ namespace Org.OpenAPITools.Api
         ApiResponse<PrepareSearchResponseSchema> PrepareSearchRequestWithHttpInfo (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema);
         #endregion Synchronous Operations
         #region Asynchronous Operations
+        /// <summary>
+        /// Prepare and automatically execute a search for a transaction on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the transaction search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of PrepareAndExecuteTransactionResponse</returns>
+        System.Threading.Tasks.Task<PrepareAndExecuteTransactionResponse> AutoExecuteSearchTransactionRequestAsync (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a transaction on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the transaction search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ApiResponse (PrepareAndExecuteTransactionResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PrepareAndExecuteTransactionResponse>> AutoExecuteSearchTransactionRequestWithHttpInfoAsync (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Execute a search for a transaction on a DLT
         /// </summary>
@@ -236,6 +288,193 @@ namespace Org.OpenAPITools.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a transaction on a DLT. Generates a request ID and automatically executes the transaction search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>PrepareAndExecuteTransactionResponse</returns>
+        public PrepareAndExecuteTransactionResponse AutoExecuteSearchTransactionRequest (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema)
+        {
+             ApiResponse<PrepareAndExecuteTransactionResponse> localVarResponse = AutoExecuteSearchTransactionRequestWithHttpInfo(authorization, transactionId, prepareSearchSchema);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a transaction on a DLT. Generates a request ID and automatically executes the transaction search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>ApiResponse of PrepareAndExecuteTransactionResponse</returns>
+        public ApiResponse<PrepareAndExecuteTransactionResponse> AutoExecuteSearchTransactionRequestWithHttpInfo (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema)
+        {
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling TransactionSearchApi->AutoExecuteSearchTransactionRequest");
+            // verify the required parameter 'transactionId' is set
+            if (transactionId == null)
+                throw new ApiException(400, "Missing required parameter 'transactionId' when calling TransactionSearchApi->AutoExecuteSearchTransactionRequest");
+            // verify the required parameter 'prepareSearchSchema' is set
+            if (prepareSearchSchema == null)
+                throw new ApiException(400, "Missing required parameter 'prepareSearchSchema' when calling TransactionSearchApi->AutoExecuteSearchTransactionRequest");
+
+            var localVarPath = "/v2/autoexecution/search/transaction";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (transactionId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "transactionId", transactionId)); // query parameter
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            if (prepareSearchSchema != null && prepareSearchSchema.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(prepareSearchSchema); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = prepareSearchSchema; // byte array
+            }
+
+            // authentication (OAuth2_Security_Scheme) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AutoExecuteSearchTransactionRequest", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PrepareAndExecuteTransactionResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (PrepareAndExecuteTransactionResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PrepareAndExecuteTransactionResponse)));
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a transaction on a DLT. Generates a request ID and automatically executes the transaction search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of PrepareAndExecuteTransactionResponse</returns>
+        public async System.Threading.Tasks.Task<PrepareAndExecuteTransactionResponse> AutoExecuteSearchTransactionRequestAsync (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken))
+        {
+             ApiResponse<PrepareAndExecuteTransactionResponse> localVarResponse = await AutoExecuteSearchTransactionRequestWithHttpInfoAsync(authorization, transactionId, prepareSearchSchema, cancellationToken);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for a transaction on a DLT. Generates a request ID and automatically executes the transaction search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ApiResponse (PrepareAndExecuteTransactionResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<PrepareAndExecuteTransactionResponse>> AutoExecuteSearchTransactionRequestWithHttpInfoAsync (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling TransactionSearchApi->AutoExecuteSearchTransactionRequest");
+            // verify the required parameter 'transactionId' is set
+            if (transactionId == null)
+                throw new ApiException(400, "Missing required parameter 'transactionId' when calling TransactionSearchApi->AutoExecuteSearchTransactionRequest");
+            // verify the required parameter 'prepareSearchSchema' is set
+            if (prepareSearchSchema == null)
+                throw new ApiException(400, "Missing required parameter 'prepareSearchSchema' when calling TransactionSearchApi->AutoExecuteSearchTransactionRequest");
+
+            var localVarPath = "/v2/autoexecution/search/transaction";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (transactionId != null) localVarQueryParams.AddRange(this.Configuration.ApiClient.ParameterToKeyValuePairs("", "transactionId", transactionId)); // query parameter
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            if (prepareSearchSchema != null && prepareSearchSchema.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(prepareSearchSchema); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = prepareSearchSchema; // byte array
+            }
+
+            // authentication (OAuth2_Security_Scheme) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType, cancellationToken);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AutoExecuteSearchTransactionRequest", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<PrepareAndExecuteTransactionResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (PrepareAndExecuteTransactionResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PrepareAndExecuteTransactionResponse)));
         }
 
         /// <summary>

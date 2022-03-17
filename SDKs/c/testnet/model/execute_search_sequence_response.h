@@ -22,6 +22,7 @@ typedef struct execute_search_sequence_response_t execute_search_sequence_respon
 typedef struct execute_search_sequence_response_t {
     char *sequence; // string
     struct location_t *location; //model
+    char *timestamp; // string
     char *address_id; // string
 
 } execute_search_sequence_response_t;
@@ -29,6 +30,7 @@ typedef struct execute_search_sequence_response_t {
 execute_search_sequence_response_t *execute_search_sequence_response_create(
     char *sequence,
     location_t *location,
+    char *timestamp,
     char *address_id
 );
 

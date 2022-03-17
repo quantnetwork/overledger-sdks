@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -34,8 +34,12 @@ import org.openapitools.client.model.UTXOTimestampSchema;
 /**
  * ExecuteSearchUTXOResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-01T15:12:40.004989Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
 public class ExecuteSearchUTXOResponseSchema {
+  public static final String SERIALIZED_NAME_UTXO_ID = "utxoId";
+  @SerializedName(SERIALIZED_NAME_UTXO_ID)
+  private String utxoId;
+
   public static final String SERIALIZED_NAME_DESTINATION = "destination";
   @SerializedName(SERIALIZED_NAME_DESTINATION)
   private List<UTXODestination> destination = null;
@@ -55,6 +59,29 @@ public class ExecuteSearchUTXOResponseSchema {
   public static final String SERIALIZED_NAME_NATIVE_DATA = "nativeData";
   @SerializedName(SERIALIZED_NAME_NATIVE_DATA)
   private UTXONativeData nativeData;
+
+
+  public ExecuteSearchUTXOResponseSchema utxoId(String utxoId) {
+    
+    this.utxoId = utxoId;
+    return this;
+  }
+
+   /**
+   * Get utxoId
+   * @return utxoId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getUtxoId() {
+    return utxoId;
+  }
+
+
+  public void setUtxoId(String utxoId) {
+    this.utxoId = utxoId;
+  }
 
 
   public ExecuteSearchUTXOResponseSchema destination(List<UTXODestination> destination) {
@@ -189,7 +216,8 @@ public class ExecuteSearchUTXOResponseSchema {
       return false;
     }
     ExecuteSearchUTXOResponseSchema executeSearchUTXOResponseSchema = (ExecuteSearchUTXOResponseSchema) o;
-    return Objects.equals(this.destination, executeSearchUTXOResponseSchema.destination) &&
+    return Objects.equals(this.utxoId, executeSearchUTXOResponseSchema.utxoId) &&
+        Objects.equals(this.destination, executeSearchUTXOResponseSchema.destination) &&
         Objects.equals(this.location, executeSearchUTXOResponseSchema.location) &&
         Objects.equals(this.timestamp, executeSearchUTXOResponseSchema.timestamp) &&
         Objects.equals(this.status, executeSearchUTXOResponseSchema.status) &&
@@ -198,13 +226,14 @@ public class ExecuteSearchUTXOResponseSchema {
 
   @Override
   public int hashCode() {
-    return Objects.hash(destination, location, timestamp, status, nativeData);
+    return Objects.hash(utxoId, destination, location, timestamp, status, nativeData);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExecuteSearchUTXOResponseSchema {\n");
+    sb.append("    utxoId: ").append(toIndentedString(utxoId)).append("\n");
     sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");

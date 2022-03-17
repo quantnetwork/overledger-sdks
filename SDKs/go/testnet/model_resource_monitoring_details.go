@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 API version: 2.0
 */
@@ -12,7 +12,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // ResourceMonitoringDetails struct for ResourceMonitoringDetails
@@ -20,7 +19,7 @@ type ResourceMonitoringDetails struct {
 	ResourceMonitoringId *string `json:"resourceMonitoringId,omitempty"`
 	Location *Location `json:"location,omitempty"`
 	Type *string `json:"type,omitempty"`
-	Timestamp *time.Time `json:"timestamp,omitempty"`
+	Timestamp *string `json:"timestamp,omitempty"`
 	Status *Status `json:"status,omitempty"`
 }
 
@@ -138,9 +137,9 @@ func (o *ResourceMonitoringDetails) SetType(v string) {
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *ResourceMonitoringDetails) GetTimestamp() time.Time {
+func (o *ResourceMonitoringDetails) GetTimestamp() string {
 	if o == nil || o.Timestamp == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Timestamp
@@ -148,7 +147,7 @@ func (o *ResourceMonitoringDetails) GetTimestamp() time.Time {
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResourceMonitoringDetails) GetTimestampOk() (*time.Time, bool) {
+func (o *ResourceMonitoringDetails) GetTimestampOk() (*string, bool) {
 	if o == nil || o.Timestamp == nil {
 		return nil, false
 	}
@@ -164,8 +163,8 @@ func (o *ResourceMonitoringDetails) HasTimestamp() bool {
 	return false
 }
 
-// SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.
-func (o *ResourceMonitoringDetails) SetTimestamp(v time.Time) {
+// SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
+func (o *ResourceMonitoringDetails) SetTimestamp(v string) {
 	o.Timestamp = &v
 }
 

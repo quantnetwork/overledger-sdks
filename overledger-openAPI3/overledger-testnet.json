@@ -23,90 +23,20 @@
           }
         }
       },
-      "AddressMonitoringRequestSchema": {
+      "PayeeCreditSchema": {
+        "description": "Who are the payees of this transaction",
         "additionalProperties": false,
         "type": "object",
         "properties": {
-          "callBackURL": {
+          "payment": {
+            "$ref": "#/components/schemas/PaymentSchema"
+          },
+          "payeeId": {
             "minLength": 0,
-            "pattern": "^http[\\S\\s]{1,300}$",
+            "pattern": "^[A-Za-z0-9:]{1,66}",
+            "description": "The unique identifiers of the payees",
             "type": "string",
-            "maxLength": 300
-          },
-          "location": {
-            "$ref": "#/components/schemas/Location"
-          },
-          "addressId": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9]{1,100}$",
-            "type": "string",
-            "maxLength": 200
-          }
-        }
-      },
-      "ResourceMonitoringAddressDetails": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "addressId": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9]{1,100}$",
-            "type": "string",
-            "maxLength": 100
-          }
-        }
-      },
-      "ResourceMonitoringDetails": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "resourceMonitoringId": {
-            "format": "uuid",
-            "type": "string"
-          },
-          "location": {
-            "$ref": "#/components/schemas/Location"
-          },
-          "type": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9-_ ]{1,50}$",
-            "type": "string",
-            "maxLength": 50
-          },
-          "timestamp": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "status": {
-            "$ref": "#/components/schemas/Status"
-          }
-        }
-      },
-      "SmartContractReadFunctionSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "functionId": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "inputParameters": {
-            "minItems": 0,
-            "maxItems": 20,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SmartContractInputParameterSchema"
-            }
-          },
-          "outputParameters": {
-            "minItems": 0,
-            "maxItems": 10,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SmartContractInputParameterSchema"
-            }
+            "maxLength": 66
           }
         }
       },
@@ -137,49 +67,6 @@
           }
         }
       },
-      "DestinationPaymentSchema": {
-        "description": "The Destination of this transaction",
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "payment": {
-            "$ref": "#/components/schemas/PaymentSchema"
-          },
-          "destinationId": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9:]{1,66}",
-            "description": "The unique identifiers of the destination",
-            "type": "string",
-            "maxLength": 66
-          }
-        }
-      },
-      "OriginPaymentSchema": {
-        "description": "Where is this transaction coming from",
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "originId": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9:]{1,66}$",
-            "description": "Unique Identifier of the originator",
-            "type": "string",
-            "maxLength": 66
-          }
-        }
-      },
-      "DeleteResourceMonitoringAddressSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "addressMonitoringDetails": {
-            "$ref": "#/components/schemas/ResourceMonitoringAddressDetails"
-          },
-          "resourceMonitoring": {
-            "$ref": "#/components/schemas/ResourceMonitoringDetails"
-          }
-        }
-      },
       "SmartContractOutputParameterSchema": {
         "additionalProperties": false,
         "type": "object",
@@ -204,22 +91,6 @@
           }
         }
       },
-      "SubscriptionDetails": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "ids": {
-            "type": "array",
-            "items": {
-              "format": "uuid",
-              "type": "string"
-            }
-          },
-          "status": {
-            "$ref": "#/components/schemas/Status"
-          }
-        }
-      },
       "Vout": {
         "additionalProperties": false,
         "type": "object",
@@ -232,18 +103,6 @@
           },
           "n": {
             "type": "number"
-          }
-        }
-      },
-      "ExecuteSmartContractReadResponseSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "smartContract": {
-            "$ref": "#/components/schemas/SmartContractReadSchema"
-          },
-          "location": {
-            "$ref": "#/components/schemas/Location"
           }
         }
       },
@@ -262,120 +121,6 @@
             "pattern": "^[a-zA-Z0-9_ ]{1,50}$",
             "type": "string",
             "maxLength": 50
-          }
-        }
-      },
-      "SubscriptionUpdateResponse": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "subscriptionDetails": {
-            "$ref": "#/components/schemas/SubscriptionDetails"
-          },
-          "callbackUrl": {
-            "minLength": 0,
-            "pattern": "^http[\\S\\s]{1,300}$",
-            "type": "string",
-            "maxLength": 300
-          },
-          "subscriptionId": {
-            "minLength": 0,
-            "pattern": "^[a-z0-9-]{1,24}$",
-            "type": "string",
-            "maxLength": 24
-          },
-          "type": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9-_ ]{1,50}$",
-            "type": "string",
-            "maxLength": 50
-          }
-        }
-      },
-      "CreateSmartContractMonitoringSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "subscriptionDetails": {
-            "$ref": "#/components/schemas/ResourceMonitoringSubscriptionDetails"
-          },
-          "resourceMonitoring": {
-            "$ref": "#/components/schemas/ResourceMonitoringDetails"
-          },
-          "subscription": {
-            "$ref": "#/components/schemas/ResourceMonitoringSubscription"
-          }
-        }
-      },
-      "PrepareTransactionSmartContractInvokeRequestSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "urgency": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z ]{1,30}",
-            "type": "string",
-            "maxLength": 30
-          },
-          "requestDetails": {
-            "$ref": "#/components/schemas/SmartContractInvokeRequestDetailsSchema"
-          },
-          "location": {
-            "$ref": "#/components/schemas/Location"
-          },
-          "type": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z ]{1,30}",
-            "type": "string",
-            "maxLength": 30
-          }
-        }
-      },
-      "MonitorSmartContractEventParam": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "selectedIntegerLength": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9]{1,30}$",
-            "type": "string",
-            "maxLength": 30
-          },
-          "type": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z]{1,30}$",
-            "type": "string",
-            "maxLength": 30
-          },
-          "value": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9_ ]{1,150}$",
-            "type": "string",
-            "maxLength": 150
-          }
-        }
-      },
-      "PrepareTransferTransactionRequestSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "urgency": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z ]{1,30}",
-            "type": "string",
-            "maxLength": 30
-          },
-          "requestDetails": {
-            "$ref": "#/components/schemas/TransferRequestDetailsSchema"
-          },
-          "location": {
-            "$ref": "#/components/schemas/Location"
-          },
-          "type": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z ]{1,30}",
-            "type": "string",
-            "maxLength": 30
           }
         }
       },
@@ -499,21 +244,6 @@
           }
         }
       },
-      "AddressMonitoringResponseSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "subscriptionDetails": {
-            "$ref": "#/components/schemas/ResourceMonitoringSubscriptionDetails"
-          },
-          "resourceMonitoring": {
-            "$ref": "#/components/schemas/ResourceMonitoringDetails"
-          },
-          "subscription": {
-            "$ref": "#/components/schemas/ResourceMonitoringSubscription"
-          }
-        }
-      },
       "SmartContractMonitoringSchema": {
         "additionalProperties": false,
         "type": "object",
@@ -535,18 +265,6 @@
             "pattern": "^[a-zA-Z0-9]{1,100}$",
             "type": "string",
             "maxLength": 100
-          }
-        }
-      },
-      "PrepareSearchSmartContractRequestSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "requestDetails": {
-            "$ref": "#/components/schemas/SmartContractSearchRequestDetails"
-          },
-          "location": {
-            "$ref": "#/components/schemas/Location"
           }
         }
       },
@@ -574,19 +292,15 @@
           }
         }
       },
-      "SmartContractDestinationSchema": {
+      "PayerCreditSchema": {
+        "description": "Who are the payers of this transaction",
         "additionalProperties": false,
         "type": "object",
         "properties": {
-          "smartContract": {
-            "$ref": "#/components/schemas/SmartContractSchema"
-          },
-          "payment": {
-            "$ref": "#/components/schemas/SmartContractPaymentSchema"
-          },
-          "destinationId": {
+          "payerId": {
             "minLength": 0,
             "pattern": "^[A-Za-z0-9:]{1,66}$",
+            "description": "Unique Identifier of the payer",
             "type": "string",
             "maxLength": 66
           }
@@ -649,41 +363,6 @@
           }
         }
       },
-      "UpdateSubscriptionRequestSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "statusUpdate": {
-            "$ref": "#/components/schemas/StatusUpdateSchema"
-          },
-          "callbackUrl": {
-            "minLength": 0,
-            "pattern": "^http[\\S\\s]{1,300}$",
-            "type": "string",
-            "maxLength": 300
-          }
-        }
-      },
-      "SmartContractFunctionSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "name": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9,_ ]{1,50}$",
-            "type": "string",
-            "maxLength": 50
-          },
-          "inputParameters": {
-            "minItems": 0,
-            "maxItems": 20,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SmartContractInputParameterSchema"
-            }
-          }
-        }
-      },
       "ExecuteSearchBalanceResponse": {
         "additionalProperties": false,
         "type": "object",
@@ -698,18 +377,15 @@
           },
           "location": {
             "$ref": "#/components/schemas/Location"
-          }
-        }
-      },
-      "UpdateAddressMonitoringSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "addressMonitoringDetails": {
-            "$ref": "#/components/schemas/ResourceMonitoringAddressDetails"
           },
-          "resourceMonitoring": {
-            "$ref": "#/components/schemas/ResourceMonitoringDetails"
+          "timestamp": {
+            "type": "string"
+          },
+          "addressId": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9]{1,100}$",
+            "type": "string",
+            "maxLength": 100
           }
         }
       },
@@ -744,163 +420,6 @@
             "pattern": "^[\\S\\s]{1,150}$",
             "type": "string",
             "maxLength": 150
-          }
-        }
-      },
-      "PrepareNativeTransactionRequestSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "location": {
-            "$ref": "#/components/schemas/Location"
-          },
-          "type": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z ]{1,30}",
-            "description": "The type of the object",
-            "type": "string",
-            "maxLength": 30
-          }
-        }
-      },
-      "Payment": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "amount": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9. ]{1,100}",
-            "description": "The amount of a currency",
-            "type": "string",
-            "maxLength": 100
-          },
-          "unit": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9 ]{1,5}",
-            "description": "The unit of this currency/token",
-            "type": "string",
-            "maxLength": 5
-          },
-          "issuer": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9 ]{1,20}",
-            "type": "string",
-            "maxLength": 20
-          }
-        }
-      },
-      "ExecuteSearchSequenceResponse": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "sequence": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9]{1,100}$",
-            "type": "string",
-            "maxLength": 100
-          },
-          "location": {
-            "$ref": "#/components/schemas/Location"
-          },
-          "addressId": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9]{1,100}$",
-            "type": "string",
-            "maxLength": 100
-          }
-        }
-      },
-      "ErrorList": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "errors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Error"
-            }
-          },
-          "errorCount": {
-            "format": "int32",
-            "type": "integer"
-          }
-        }
-      },
-      "Transaction": {
-        "description": "Smallest unit of a work process related to interactions with distributed ledgers",
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "signature": {
-            "minItems": 0,
-            "maxItems": 20000,
-            "description": "The signatures of this transaction",
-            "type": "array",
-            "items": {
-              "description": "The signatures of this transaction",
-              "type": "string"
-            }
-          },
-          "origin": {
-            "minItems": 0,
-            "maxItems": 20000,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Origin"
-            }
-          },
-          "fee": {
-            "$ref": "#/components/schemas/Fee"
-          },
-          "destination": {
-            "minItems": 0,
-            "maxItems": 13107,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Destination"
-            }
-          },
-          "signed": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9-]{1,400}$",
-            "type": "string",
-            "maxLength": 400
-          },
-          "totalPaymentAmount": {
-            "minItems": 0,
-            "maxItems": 20,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Payment"
-            }
-          },
-          "message": {
-            "minLength": 0,
-            "pattern": "^[\\S\\s]{1,150}$",
-            "description": "Any text-based element of the data payload",
-            "type": "string",
-            "maxLength": 150
-          },
-          "transactionId": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9]{1,100}$",
-            "description": "The unique identifier of the transaction on this DLN",
-            "type": "string",
-            "maxLength": 100
-          },
-          "encoded": {
-            "minItems": 0,
-            "maxItems": 100,
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "nativeData": {
-            "type": "object"
-          },
-          "extraFields": {
-            "type": "object"
           }
         }
       },
@@ -944,85 +463,12 @@
           }
         }
       },
-      "Block": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "blockId": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9]{1,150}$",
-            "type": "string",
-            "maxLength": 150
-          },
-          "number": {
-            "type": "integer"
-          },
-          "transactionIds": {
-            "minItems": 0,
-            "maxItems": 10000,
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "size": {
-            "minItems": 0,
-            "maxItems": 10,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BlockSize"
-            }
-          },
-          "hashes": {
-            "minItems": 0,
-            "maxItems": 10,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BlockHash"
-            }
-          },
-          "linkedBlocks": {
-            "$ref": "#/components/schemas/LinkedBlocks"
-          },
-          "numberOfTransactions": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "message": {
-            "minLength": 0,
-            "pattern": "^[\\S\\s]{1,150}$",
-            "type": "string",
-            "maxLength": 150
-          },
-          "timestamp": {
-            "type": "integer"
-          },
-          "nativeData": {
-            "type": "object"
-          }
-        }
-      },
       "SmartContractSearchDestinationSchema": {
         "additionalProperties": false,
         "type": "object",
         "properties": {
           "smartContract": {
             "$ref": "#/components/schemas/SmartContractSearchSchema"
-          }
-        }
-      },
-      "ResourceMonitoringSubscriptionDetails": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "ids": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "status": {
-            "$ref": "#/components/schemas/Status"
           }
         }
       },
@@ -1126,32 +572,6 @@
           }
         }
       },
-      "ExecuteSearchUTXOResponseSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "destination": {
-            "minItems": 0,
-            "maxItems": 1,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UTXODestination"
-            }
-          },
-          "location": {
-            "$ref": "#/components/schemas/Location"
-          },
-          "timestamp": {
-            "$ref": "#/components/schemas/UTXOTimestampSchema"
-          },
-          "status": {
-            "$ref": "#/components/schemas/Status"
-          },
-          "nativeData": {
-            "$ref": "#/components/schemas/UTXONativeData"
-          }
-        }
-      },
       "ExecuteSearchBlockResponse": {
         "additionalProperties": false,
         "type": "object",
@@ -1164,43 +584,6 @@
           },
           "status": {
             "$ref": "#/components/schemas/Status"
-          }
-        }
-      },
-      "UTXONativeData": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "vout": {
-            "minItems": 0,
-            "maxItems": 1,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Vout"
-            }
-          }
-        }
-      },
-      "Destination": {
-        "description": "The Destination of this transaction",
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "transfer": {
-            "$ref": "#/components/schemas/Transfer"
-          },
-          "smartContract": {
-            "$ref": "#/components/schemas/SmartContract"
-          },
-          "payment": {
-            "$ref": "#/components/schemas/Payment"
-          },
-          "destinationId": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9:]{1,66}",
-            "description": "The unique identifiers of the destination",
-            "type": "string",
-            "maxLength": 66
           }
         }
       },
@@ -1270,18 +653,9 @@
           },
           "smartContractId": {
             "minLength": 0,
-            "pattern": "^[a-zA-Z0-9,_ ]{1,100}$",
+            "pattern": "^[a-zA-Z0-9]{1,100}$",
             "type": "string",
             "maxLength": 100
-          }
-        }
-      },
-      "ExtraFields": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "requiredSignatures": {
-            "type": "number"
           }
         }
       },
@@ -1306,6 +680,1273 @@
             "pattern": "^[\\S\\s]{1,50}$",
             "type": "string",
             "maxLength": 50
+          }
+        }
+      },
+      "PrepareApproveDebitTransactionRequestSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "urgency": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z ]{1,30}",
+            "type": "string",
+            "maxLength": 30
+          },
+          "requestDetails": {
+            "$ref": "#/components/schemas/ApproveRequestDetailsSchema"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "type": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z ]{1,30}",
+            "type": "string",
+            "maxLength": 30
+          }
+        }
+      },
+      "MonitorSmartContractRequestSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "callBackURL": {
+            "minLength": 0,
+            "pattern": "^http[\\S\\s]{1,300}$",
+            "type": "string",
+            "maxLength": 300
+          },
+          "eventParams": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MonitorSmartContractEventParam"
+            }
+          },
+          "eventName": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9 ]{1,100}$",
+            "type": "string",
+            "maxLength": 100
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "smartContractId": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9]{1,100}$",
+            "type": "string",
+            "maxLength": 100
+          }
+        }
+      },
+      "SmartContractEventHistory": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9,_ ]{1,200}$",
+            "type": "string",
+            "maxLength": 200
+          },
+          "eventName": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9 ]{1,100}$",
+            "type": "string",
+            "maxLength": 100
+          },
+          "eventParameters": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9,_ ]{1,100}$",
+            "type": "string",
+            "maxLength": 100
+          },
+          "transactionId": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9]{1,100}$",
+            "type": "string",
+            "maxLength": 100
+          },
+          "timestamp": {
+            "format": "date-time",
+            "type": "string"
+          }
+        }
+      },
+      "ExecuteSearchTransactionResponse": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "type": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9-_ ]{1,50}$",
+            "description": "The type of the transaction object returned",
+            "type": "string",
+            "maxLength": 50
+          },
+          "transaction": {
+            "$ref": "#/components/schemas/Transaction"
+          },
+          "timestamp": {
+            "minLength": 0,
+            "description": "The unix time to read the object from",
+            "type": "string",
+            "maxLength": 50
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "extraFields": {
+            "type": "object"
+          }
+        }
+      },
+      "AddressBalanceResponse": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "unit": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z_ ]{1,10}$",
+            "type": "string",
+            "maxLength": 10
+          },
+          "amount": {
+            "type": "string"
+          }
+        }
+      },
+      "PrepareSearchSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          }
+        }
+      },
+      "SmartContract": {
+        "description": "Computer program storage in a DLT system where the outcome is recorded on the distributed ledger",
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "function": {
+            "$ref": "#/components/schemas/Function"
+          },
+          "detail": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9]{1,20}$",
+            "type": "string",
+            "maxLength": 20
+          },
+          "type": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9]{1,20}$",
+            "description": "Information on the object type",
+            "type": "string",
+            "maxLength": 20
+          },
+          "smartContractId": {
+            "minLength": 0,
+            "type": "string",
+            "maxLength": 44
+          },
+          "extraFields": {
+            "type": "object"
+          }
+        }
+      },
+      "PrepareSearchResponseSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "gatewayFee": {
+            "$ref": "#/components/schemas/Fee"
+          },
+          "requestId": {
+            "description": "The ID assigned to a preparation request in Overledger",
+            "type": "string"
+          }
+        }
+      },
+      "SmartContractInputParameterSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "SmartContractSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "function": {
+            "$ref": "#/components/schemas/SmartContractFunctionSchema"
+          }
+        }
+      },
+      "Fee": {
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "amount"
+        ],
+        "properties": {
+          "amount": {
+            "minLength": 0,
+            "pattern": "^[0-9. ]{1,100}$",
+            "description": "The amount of a currency",
+            "type": "string",
+            "maxLength": 100
+          },
+          "unit": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z_ ]{1,10}$",
+            "description": "The unit of this currency/token",
+            "type": "string",
+            "maxLength": 10
+          }
+        }
+      },
+      "PaymentRequestDetailsSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "overledgerSigningType": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z- ]{1,30}",
+            "type": "string",
+            "maxLength": 30
+          },
+          "origin": {
+            "minItems": 0,
+            "maxItems": 100,
+            "description": "Where is this transaction coming from",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OriginPaymentSchema"
+            }
+          },
+          "destination": {
+            "minItems": 0,
+            "maxItems": 100,
+            "description": "The Destination of this transaction",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DestinationPaymentSchema"
+            }
+          },
+          "message": {
+            "minLength": 0,
+            "pattern": "^[\\S\\s]{1,150}$",
+            "description": "Any text-based element of the data payload",
+            "type": "string",
+            "maxLength": 150
+          }
+        }
+      },
+      "UTXOSmartContract": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "detail": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "extraFields": {
+            "$ref": "#/components/schemas/ExtraFields"
+          }
+        }
+      },
+      "ResourceMonitoringAddressSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "addressMonitoringDetails": {
+            "$ref": "#/components/schemas/ResourceMonitoringAddressDetails"
+          },
+          "resourceMonitoring": {
+            "$ref": "#/components/schemas/ResourceMonitoringDetails"
+          }
+        }
+      },
+      "AutoExecuteSearchBlockResponseSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "executionBlockSearchResponse": {
+            "$ref": "#/components/schemas/ExecuteSearchBlockResponse"
+          },
+          "prepareAndExecuteOverledgerErrorResponse": {
+            "$ref": "#/components/schemas/PrepareAndExecuteOverledgerErrorResponse"
+          },
+          "preparationBlockSearchResponse": {
+            "$ref": "#/components/schemas/PrepareSearchResponseSchema"
+          }
+        }
+      },
+      "PrepareAndExecuteBalanceDetails": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "unit": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z_ ]{1,10}$",
+            "type": "string",
+            "maxLength": 10
+          },
+          "amount": {
+            "type": "string"
+          }
+        }
+      },
+      "PrepareTransactionResponse": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "gatewayFee": {
+            "$ref": "#/components/schemas/Fee"
+          },
+          "requestId": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9-]{1,36}$",
+            "description": "The ID assigned to a preparation request in Overledger",
+            "type": "string",
+            "maxLength": 36
+          },
+          "dltFee": {
+            "$ref": "#/components/schemas/Fee"
+          },
+          "nativeData": {
+            "type": "object"
+          }
+        }
+      },
+      "BlockHash": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "type": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9_]{1,50}$",
+            "type": "string",
+            "maxLength": 50
+          },
+          "value": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9]{1,150}$",
+            "type": "string",
+            "maxLength": 150
+          }
+        }
+      },
+      "Parameter": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "type": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9]{1,20}$",
+            "type": "string",
+            "maxLength": 20
+          },
+          "value": {
+            "type": "object"
+          },
+          "key": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9]{1,20}$",
+            "type": "string",
+            "maxLength": 20
+          }
+        }
+      },
+      "BlockSize": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "type": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9_]{1,50}$",
+            "type": "string",
+            "maxLength": 50
+          },
+          "value": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9_]{1,50}$",
+            "type": "string",
+            "maxLength": 50
+          },
+          "key": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9_]{1,50}$",
+            "type": "string",
+            "maxLength": 50
+          }
+        }
+      },
+      "AddressMonitoringRequestSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "callBackURL": {
+            "minLength": 0,
+            "pattern": "^http[\\S\\s]{1,300}$",
+            "type": "string",
+            "maxLength": 300
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "addressId": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9]{1,100}$",
+            "type": "string",
+            "maxLength": 200
+          }
+        }
+      },
+      "AutoExecuteSearchUTXOResponseSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "executionUtxoSearchResponse": {
+            "$ref": "#/components/schemas/ExecuteSearchUTXOResponse"
+          },
+          "prepareAndExecuteOverledgerErrorResponse": {
+            "$ref": "#/components/schemas/PrepareAndExecuteOverledgerErrorResponse"
+          },
+          "preparationUtxoSearchResponse": {
+            "$ref": "#/components/schemas/PrepareTransactionResponse"
+          }
+        }
+      },
+      "PrepareAndExecuteTransactionResponse": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "executionTransactionSearchOverledgerErrorResponse": {
+            "$ref": "#/components/schemas/PrepareAndExecuteOverledgerErrorResponse"
+          },
+          "preparationTransactionSearchResponse": {
+            "$ref": "#/components/schemas/PrepareTransactionResponse"
+          },
+          "executionTransactionSearchResponse": {
+            "$ref": "#/components/schemas/ExecuteSearchTransactionResponse"
+          }
+        }
+      },
+      "ResourceMonitoringAddressDetails": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "addressId": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9]{1,100}$",
+            "type": "string",
+            "maxLength": 100
+          }
+        }
+      },
+      "ResourceMonitoringDetails": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "resourceMonitoringId": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "type": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9-_ ]{1,50}$",
+            "type": "string",
+            "maxLength": 50
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          }
+        }
+      },
+      "SmartContractReadFunctionSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "functionId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "inputParameters": {
+            "minItems": 0,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SmartContractInputParameterSchema"
+            }
+          },
+          "outputParameters": {
+            "minItems": 0,
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SmartContractInputParameterSchema"
+            }
+          }
+        }
+      },
+      "PrepareCreditTransactionRequestSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "urgency": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z ]{1,30}",
+            "type": "string",
+            "maxLength": 30
+          },
+          "requestDetails": {
+            "$ref": "#/components/schemas/CreditRequestDetailsSchema"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "type": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z ]{1,30}",
+            "type": "string",
+            "maxLength": 30
+          }
+        }
+      },
+      "DestinationPaymentSchema": {
+        "description": "The Destination of this transaction",
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "payment": {
+            "$ref": "#/components/schemas/PaymentSchema"
+          },
+          "destinationId": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9:]{1,66}",
+            "description": "The unique identifiers of the destination",
+            "type": "string",
+            "maxLength": 66
+          }
+        }
+      },
+      "OriginPaymentSchema": {
+        "description": "Where is this transaction coming from",
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "originId": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9:]{1,66}$",
+            "description": "Unique Identifier of the originator",
+            "type": "string",
+            "maxLength": 66
+          }
+        }
+      },
+      "DeleteResourceMonitoringAddressSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "addressMonitoringDetails": {
+            "$ref": "#/components/schemas/ResourceMonitoringAddressDetails"
+          },
+          "resourceMonitoring": {
+            "$ref": "#/components/schemas/ResourceMonitoringDetails"
+          }
+        }
+      },
+      "SubscriptionDetails": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          }
+        }
+      },
+      "ExecuteSmartContractReadResponseSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "smartContract": {
+            "$ref": "#/components/schemas/SmartContractReadSchema"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          }
+        }
+      },
+      "SubscriptionUpdateResponse": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "subscriptionDetails": {
+            "$ref": "#/components/schemas/SubscriptionDetails"
+          },
+          "callbackUrl": {
+            "minLength": 0,
+            "pattern": "^http[\\S\\s]{1,300}$",
+            "type": "string",
+            "maxLength": 300
+          },
+          "subscriptionId": {
+            "minLength": 0,
+            "pattern": "^[a-z0-9-]{1,24}$",
+            "type": "string",
+            "maxLength": 24
+          },
+          "type": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9-_ ]{1,50}$",
+            "type": "string",
+            "maxLength": 50
+          }
+        }
+      },
+      "CreateSmartContractMonitoringSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "subscriptionDetails": {
+            "$ref": "#/components/schemas/ResourceMonitoringSubscriptionDetails"
+          },
+          "resourceMonitoring": {
+            "$ref": "#/components/schemas/ResourceMonitoringDetails"
+          },
+          "subscription": {
+            "$ref": "#/components/schemas/ResourceMonitoringSubscription"
+          }
+        }
+      },
+      "PrepareTransactionSmartContractInvokeRequestSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "urgency": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z ]{1,30}",
+            "type": "string",
+            "maxLength": 30
+          },
+          "requestDetails": {
+            "$ref": "#/components/schemas/SmartContractInvokeRequestDetailsSchema"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "type": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z ]{1,30}",
+            "type": "string",
+            "maxLength": 30
+          }
+        }
+      },
+      "MonitorSmartContractEventParam": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "selectedIntegerLength": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9]{1,30}$",
+            "type": "string",
+            "maxLength": 30
+          },
+          "type": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z]{1,30}$",
+            "type": "string",
+            "maxLength": 30
+          },
+          "value": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9_ ]{1,150}$",
+            "type": "string",
+            "maxLength": 150
+          }
+        }
+      },
+      "PrepareTransferTransactionRequestSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "urgency": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z ]{1,30}",
+            "type": "string",
+            "maxLength": 30
+          },
+          "requestDetails": {
+            "$ref": "#/components/schemas/TransferRequestDetailsSchema"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "type": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z ]{1,30}",
+            "type": "string",
+            "maxLength": 30
+          }
+        }
+      },
+      "AddressMonitoringResponseSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "subscriptionDetails": {
+            "$ref": "#/components/schemas/ResourceMonitoringSubscriptionDetails"
+          },
+          "resourceMonitoring": {
+            "$ref": "#/components/schemas/ResourceMonitoringDetails"
+          },
+          "subscription": {
+            "$ref": "#/components/schemas/ResourceMonitoringSubscription"
+          }
+        }
+      },
+      "PrepareSearchSmartContractRequestSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "requestDetails": {
+            "$ref": "#/components/schemas/SmartContractSearchRequestDetails"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          }
+        }
+      },
+      "SmartContractDestinationSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "smartContract": {
+            "$ref": "#/components/schemas/SmartContractSchema"
+          },
+          "payment": {
+            "$ref": "#/components/schemas/SmartContractPaymentSchema"
+          },
+          "destinationId": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9:]{1,66}$",
+            "type": "string",
+            "maxLength": 66
+          }
+        }
+      },
+      "UpdateSubscriptionRequestSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "statusUpdate": {
+            "$ref": "#/components/schemas/StatusUpdateSchema"
+          },
+          "callbackUrl": {
+            "minLength": 0,
+            "pattern": "^http[\\S\\s]{1,300}$",
+            "type": "string",
+            "maxLength": 300
+          }
+        }
+      },
+      "SmartContractFunctionSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "name": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9,_ ]{1,50}$",
+            "type": "string",
+            "maxLength": 50
+          },
+          "inputParameters": {
+            "minItems": 0,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SmartContractInputParameterSchema"
+            }
+          }
+        }
+      },
+      "ExecuteSearchUTXOResponse": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "utxoId": {
+            "type": "string"
+          },
+          "destination": {
+            "minItems": 0,
+            "maxItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Destination"
+            }
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "timestamp": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z_0-9.,:\\- ]{1,50}",
+            "type": "string",
+            "maxLength": 50
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "nativeData": {
+            "type": "object"
+          }
+        }
+      },
+      "UpdateAddressMonitoringSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "addressMonitoringDetails": {
+            "$ref": "#/components/schemas/ResourceMonitoringAddressDetails"
+          },
+          "resourceMonitoring": {
+            "$ref": "#/components/schemas/ResourceMonitoringDetails"
+          }
+        }
+      },
+      "PrepareNativeTransactionRequestSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "type": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z ]{1,30}",
+            "description": "The type of the object",
+            "type": "string",
+            "maxLength": 30
+          }
+        }
+      },
+      "Payment": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "amount": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9. ]{1,100}",
+            "description": "The amount of a currency",
+            "type": "string",
+            "maxLength": 100
+          },
+          "unit": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9 ]{1,5}",
+            "description": "The unit of this currency/token",
+            "type": "string",
+            "maxLength": 5
+          },
+          "issuer": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9 ]{1,20}",
+            "type": "string",
+            "maxLength": 20
+          }
+        }
+      },
+      "ExecuteSearchSequenceResponse": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "sequence": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9]{1,100}$",
+            "type": "string",
+            "maxLength": 100
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "addressId": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9]{1,100}$",
+            "type": "string",
+            "maxLength": 100
+          }
+        }
+      },
+      "PrepareAndExecuteOverledgerErrorResponse": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorList": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "errorCount": {
+            "format": "int32",
+            "type": "integer"
+          }
+        }
+      },
+      "Transaction": {
+        "description": "Smallest unit of a work process related to interactions with distributed ledgers",
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "signature": {
+            "minItems": 0,
+            "maxItems": 20000,
+            "description": "The signatures of this transaction",
+            "type": "array",
+            "items": {
+              "description": "The signatures of this transaction",
+              "type": "string"
+            }
+          },
+          "origin": {
+            "minItems": 0,
+            "maxItems": 20000,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Origin"
+            }
+          },
+          "fee": {
+            "$ref": "#/components/schemas/Fee"
+          },
+          "destination": {
+            "minItems": 0,
+            "maxItems": 13107,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Destination"
+            }
+          },
+          "signed": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9-]{1,400}$",
+            "type": "string",
+            "maxLength": 400
+          },
+          "totalPaymentAmount": {
+            "minItems": 0,
+            "maxItems": 20,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Payment"
+            }
+          },
+          "message": {
+            "minLength": 0,
+            "pattern": "^[\\S\\s]{1,150}$",
+            "description": "Any text-based element of the data payload",
+            "type": "string",
+            "maxLength": 150
+          },
+          "transactionId": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9]{1,100}$",
+            "description": "The unique identifier of the transaction on this DLN",
+            "type": "string",
+            "maxLength": 100
+          },
+          "encoded": {
+            "minItems": 0,
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "extraFields": {
+            "type": "object"
+          },
+          "nativeData": {
+            "type": "object"
+          }
+        }
+      },
+      "CreditRequestDetailsSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "payee": {
+            "minItems": 0,
+            "maxItems": 100,
+            "description": "Who are the payees of this transaction",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayeeCreditSchema"
+            }
+          },
+          "overledgerSigningType": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z- ]{1,30}",
+            "type": "string",
+            "maxLength": 30
+          },
+          "message": {
+            "minLength": 0,
+            "pattern": "^[\\S\\s]{1,150}$",
+            "description": "Any text-based element of the data payload",
+            "type": "string",
+            "maxLength": 150
+          },
+          "payer": {
+            "minItems": 0,
+            "maxItems": 100,
+            "description": "Who are the payers of this transaction",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayerCreditSchema"
+            }
+          }
+        }
+      },
+      "Block": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "blockId": {
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9]{1,150}$",
+            "type": "string",
+            "maxLength": 150
+          },
+          "number": {
+            "type": "integer"
+          },
+          "transactionIds": {
+            "minItems": 0,
+            "maxItems": 10000,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "size": {
+            "minItems": 0,
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlockSize"
+            }
+          },
+          "hashes": {
+            "minItems": 0,
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlockHash"
+            }
+          },
+          "linkedBlocks": {
+            "$ref": "#/components/schemas/LinkedBlocks"
+          },
+          "numberOfTransactions": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "message": {
+            "minLength": 0,
+            "pattern": "^[\\S\\s]{1,150}$",
+            "type": "string",
+            "maxLength": 150
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "nativeData": {
+            "type": "object"
+          }
+        }
+      },
+      "ResourceMonitoringSubscriptionDetails": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          }
+        }
+      },
+      "ExecuteSearchUTXOResponseSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "utxoId": {
+            "type": "string"
+          },
+          "destination": {
+            "minItems": 0,
+            "maxItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UTXODestination"
+            }
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "timestamp": {
+            "$ref": "#/components/schemas/UTXOTimestampSchema"
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "nativeData": {
+            "$ref": "#/components/schemas/UTXONativeData"
+          }
+        }
+      },
+      "AutoExecuteSearchAddressBalanceResponseSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "executionAddressBalanceSearchResponse": {
+            "$ref": "#/components/schemas/PrepareAndExecuteSearchAddressBalanceResponse"
+          },
+          "prepareAndExecuteOverledgerErrorResponse": {
+            "$ref": "#/components/schemas/PrepareAndExecuteOverledgerErrorResponse"
+          },
+          "preparationAddressBalanceSearchResponse": {
+            "$ref": "#/components/schemas/PrepareSearchResponseSchema"
+          }
+        }
+      },
+      "UTXONativeData": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "vout": {
+            "minItems": 0,
+            "maxItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vout"
+            }
+          }
+        }
+      },
+      "Destination": {
+        "description": "The Destination of this transaction",
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "transfer": {
+            "$ref": "#/components/schemas/Transfer"
+          },
+          "smartContract": {
+            "$ref": "#/components/schemas/SmartContract"
+          },
+          "payment": {
+            "$ref": "#/components/schemas/Payment"
+          },
+          "destinationId": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z0-9:]{1,66}",
+            "description": "The unique identifiers of the destination",
+            "type": "string",
+            "maxLength": 66
+          }
+        }
+      },
+      "ExtraFields": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "requiredSignatures": {
+            "type": "number"
+          }
+        }
+      },
+      "ApproveRequestDetailsSchema": {
+        "additionalProperties": false,
+        "type": "object",
+        "properties": {
+          "mandate": {
+            "minItems": 0,
+            "maxItems": 100,
+            "description": "Who are the payees of this transaction",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayeeCreditSchema"
+            }
+          },
+          "overledgerSigningType": {
+            "minLength": 0,
+            "pattern": "^[A-Za-z- ]{1,30}",
+            "type": "string",
+            "maxLength": 30
+          },
+          "payer": {
+            "minItems": 0,
+            "maxItems": 100,
+            "description": "Who are the payers of this transaction",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PayerCreditSchema"
+            }
           }
         }
       },
@@ -1388,7 +2029,6 @@
           },
           "name": {
             "minLength": 0,
-            "pattern": "^[a-zA-Z0-9,_ ]{1,50}$",
             "type": "string",
             "maxLength": 50
           },
@@ -1407,165 +2047,6 @@
             "items": {
               "$ref": "#/components/schemas/Parameter"
             }
-          }
-        }
-      },
-      "MonitorSmartContractRequestSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "callBackURL": {
-            "minLength": 0,
-            "pattern": "^http[\\S\\s]{1,300}$",
-            "type": "string",
-            "maxLength": 300
-          },
-          "eventParams": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MonitorSmartContractEventParam"
-            }
-          },
-          "eventName": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9 ]{1,100}$",
-            "type": "string",
-            "maxLength": 100
-          },
-          "location": {
-            "$ref": "#/components/schemas/Location"
-          },
-          "smartContractId": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9,_ ]{1,100}$",
-            "type": "string",
-            "maxLength": 100
-          }
-        }
-      },
-      "SmartContractEventHistory": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "eventId": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9,_ ]{1,200}$",
-            "type": "string",
-            "maxLength": 200
-          },
-          "eventName": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9 ]{1,100}$",
-            "type": "string",
-            "maxLength": 100
-          },
-          "eventParameters": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9,_ ]{1,100}$",
-            "type": "string",
-            "maxLength": 100
-          },
-          "transactionId": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9]{1,100}$",
-            "type": "string",
-            "maxLength": 100
-          },
-          "timestamp": {
-            "format": "date-time",
-            "type": "string"
-          }
-        }
-      },
-      "ExecuteSearchTransactionResponse": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "location": {
-            "$ref": "#/components/schemas/Location"
-          },
-          "type": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9-_ ]{1,50}$",
-            "description": "The type of the transaction object returned",
-            "type": "string",
-            "maxLength": 50
-          },
-          "transaction": {
-            "$ref": "#/components/schemas/Transaction"
-          },
-          "timestamp": {
-            "format": "date-time",
-            "description": "The unix time to read the object from",
-            "type": "string"
-          },
-          "status": {
-            "$ref": "#/components/schemas/Status"
-          },
-          "extraFields": {
-            "type": "object"
-          }
-        }
-      },
-      "AddressBalanceResponse": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "unit": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z_ ]{1,10}$",
-            "type": "string",
-            "maxLength": 10
-          },
-          "value": {
-            "type": "number"
-          },
-          "addressId": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9]{1,100}$",
-            "type": "string",
-            "maxLength": 100
-          }
-        }
-      },
-      "PrepareSearchSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "location": {
-            "$ref": "#/components/schemas/Location"
-          }
-        }
-      },
-      "SmartContract": {
-        "description": "Computer program storage in a DLT system where the outcome is recorded on the distributed ledger",
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "function": {
-            "$ref": "#/components/schemas/Function"
-          },
-          "detail": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9]{1,20}$",
-            "type": "string",
-            "maxLength": 20
-          },
-          "type": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9]{1,20}$",
-            "description": "Information on the object type",
-            "type": "string",
-            "maxLength": 20
-          },
-          "smartContractId": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9]{1,44}$",
-            "type": "string",
-            "maxLength": 44
-          },
-          "extraFields": {
-            "type": "object"
           }
         }
       },
@@ -1595,16 +2076,18 @@
           }
         }
       },
-      "PrepareSearchResponseSchema": {
+      "AutoExecSearchAddressSequenceResponseSchema": {
         "additionalProperties": false,
         "type": "object",
         "properties": {
-          "gatewayFee": {
-            "$ref": "#/components/schemas/Fee"
+          "preparationAddressSequenceSearchResponse": {
+            "$ref": "#/components/schemas/PrepareSearchResponseSchema"
           },
-          "requestId": {
-            "description": "The ID assigned to a preparation request in Overledger",
-            "type": "string"
+          "prepareAndExecuteOverledgerErrorResponse": {
+            "$ref": "#/components/schemas/PrepareAndExecuteOverledgerErrorResponse"
+          },
+          "executionAddressSequenceSearchResponse": {
+            "$ref": "#/components/schemas/ExecuteSearchSequenceResponse"
           }
         }
       },
@@ -1670,52 +2153,8 @@
           }
         }
       },
-      "SmartContractInputParameterSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
-        }
-      },
-      "SmartContractSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "function": {
-            "$ref": "#/components/schemas/SmartContractFunctionSchema"
-          }
-        }
-      },
-      "Fee": {
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "amount"
-        ],
-        "properties": {
-          "amount": {
-            "minLength": 0,
-            "pattern": "^[0-9. ]{1,100}$",
-            "description": "The amount of a currency",
-            "type": "string",
-            "maxLength": 100
-          },
-          "unit": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z_ ]{1,10}$",
-            "description": "The unit of this currency/token",
-            "type": "string",
-            "maxLength": 10
-          }
-        }
-      },
       "SmartContractSearchRequestDetails": {
-        "additionalProperties": true,
+        "additionalProperties": false,
         "type": "object",
         "properties": {
           "destination": {
@@ -1752,58 +2191,6 @@
           }
         }
       },
-      "PaymentRequestDetailsSchema": {
-        "additionalProperties": true,
-        "type": "object",
-        "properties": {
-          "overledgerSigningType": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z- ]{1,30}",
-            "type": "string",
-            "maxLength": 30
-          },
-          "origin": {
-            "minItems": 0,
-            "maxItems": 100,
-            "description": "Where is this transaction coming from",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OriginPaymentSchema"
-            }
-          },
-          "destination": {
-            "minItems": 0,
-            "maxItems": 100,
-            "description": "The Destination of this transaction",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DestinationPaymentSchema"
-            }
-          },
-          "message": {
-            "minLength": 0,
-            "pattern": "^[\\S\\s]{1,150}$",
-            "description": "Any text-based element of the data payload",
-            "type": "string",
-            "maxLength": 150
-          }
-        }
-      },
-      "UTXOSmartContract": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "detail": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "extraFields": {
-            "$ref": "#/components/schemas/ExtraFields"
-          }
-        }
-      },
       "Error": {
         "additionalProperties": false,
         "type": "object",
@@ -1832,18 +2219,6 @@
           }
         }
       },
-      "ResourceMonitoringAddressSchema": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "addressMonitoringDetails": {
-            "$ref": "#/components/schemas/ResourceMonitoringAddressDetails"
-          },
-          "resourceMonitoring": {
-            "$ref": "#/components/schemas/ResourceMonitoringDetails"
-          }
-        }
-      },
       "SmartContractReadSchema": {
         "description": "Computer program storage in a DLT system where the outcome is recorded on the distributed ledger",
         "additionalProperties": false,
@@ -1869,28 +2244,6 @@
           },
           "status": {
             "$ref": "#/components/schemas/Status"
-          }
-        }
-      },
-      "PrepareTransactionResponse": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "gatewayFee": {
-            "$ref": "#/components/schemas/Fee"
-          },
-          "requestId": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9-]{1,36}$",
-            "description": "The ID assigned to a preparation request in Overledger",
-            "type": "string",
-            "maxLength": 36
-          },
-          "dltFee": {
-            "$ref": "#/components/schemas/Fee"
-          },
-          "nativeData": {
-            "type": "object"
           }
         }
       },
@@ -1924,21 +2277,29 @@
           }
         }
       },
-      "BlockHash": {
+      "PrepareAndExecuteSearchAddressBalanceResponse": {
         "additionalProperties": false,
         "type": "object",
         "properties": {
-          "type": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9_]{1,50}$",
-            "type": "string",
-            "maxLength": 50
+          "balances": {
+            "minItems": 0,
+            "maxItems": 100,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PrepareAndExecuteBalanceDetails"
+            }
           },
-          "value": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "timestamp": {
+            "type": "string"
+          },
+          "addressId": {
             "minLength": 0,
-            "pattern": "^[a-zA-Z0-9]{1,150}$",
+            "pattern": "^[a-zA-Z0-9]{1,100}$",
             "type": "string",
-            "maxLength": 150
+            "maxLength": 100
           }
         }
       },
@@ -1957,54 +2318,9 @@
           }
         }
       },
-      "Parameter": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "type": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9]{1,20}$",
-            "type": "string",
-            "maxLength": 20
-          },
-          "value": {
-            "type": "object"
-          },
-          "key": {
-            "minLength": 0,
-            "pattern": "^[A-Za-z0-9]{1,20}$",
-            "type": "string",
-            "maxLength": 20
-          }
-        }
-      },
-      "BlockSize": {
-        "additionalProperties": false,
-        "type": "object",
-        "properties": {
-          "type": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9_]{1,50}$",
-            "type": "string",
-            "maxLength": 50
-          },
-          "value": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9_]{1,50}$",
-            "type": "string",
-            "maxLength": 50
-          },
-          "key": {
-            "minLength": 0,
-            "pattern": "^[a-zA-Z0-9_]{1,50}$",
-            "type": "string",
-            "maxLength": 50
-          }
-        }
-      },
       "Location": {
         "description": "Unique reference to the ledger on a particular ledger network (optionally accessed from a particular node)",
-        "additionalProperties": true,
+        "additionalProperties": false,
         "type": "object",
         "required": [
           "network",
@@ -2032,7 +2348,7 @@
       "OAuth2_Security_Scheme": {
         "flows": {
           "clientCredentials": {
-            "tokenUrl": "https://api.sandbox.overledger.io/",
+            "tokenUrl": "https://auth.overledger.io/oauth2/token",
             "scopes": {
               "aws.cognito.signin.user.admin": "Grants access to all the User Pool APIs that can be accessed using access tokens alone.",
               "phone": "Grants returning the phone claim, which contains the user's phone number, and phone_number_verified.",
@@ -2050,11 +2366,216 @@
   },
   "servers": [
     {
-      "url": "https://api.sandbox.overledger.io/"
+      "url": "https://api.sandbox.overledger.io"
     }
   ],
   "openapi": "3.0.1",
   "paths": {
+    "/v2/preparation/debit": {
+      "post": {
+        "summary": "Prepare a QRC20 token debit transaction for signing",
+        "security": [
+          {
+            "OAuth2_Security_Scheme": [
+              "overledger/read.scope"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrepareCreditTransactionRequestSchema"
+              },
+              "examples": {
+                "QRC20 Create Debit": {
+                  "summary": "QRC20 Create Debit",
+                  "description": "QRC20 Create Debit",
+                  "value": {
+                    "urgency": "normal",
+                    "requestDetails": {
+                      "payee": [
+                        {
+                          "payment": {
+                            "amount": "1.0",
+                            "unit": "QNT"
+                          },
+                          "payeeId": "0x8917cf2A57DF39D311a96c53FCCA76dAFB25392B"
+                        }
+                      ],
+                      "overledgerSigningType": "overledger-javascript-library",
+                      "message": "OVL Transaction Message",
+                      "payer": [
+                        {
+                          "payerId": "0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39d"
+                        }
+                      ]
+                    },
+                    "location": {
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
+                    },
+                    "type": "Create Debit"
+                  }
+                },
+                "QRC20 Approve Debit": {
+                  "summary": "QRC20 Approve Debit",
+                  "description": "QRC20 Approve Debit",
+                  "value": {
+                    "urgency": "normal",
+                    "requestDetails": {
+                      "mandate": [
+                        {
+                          "payment": {
+                            "amount": "1.0",
+                            "unit": "QNT"
+                          },
+                          "payeeId": "0x8917cf2A57DF39D311a96c53FCCA76dAFB25392B"
+                        }
+                      ],
+                      "overledgerSigningType": "overledger-javascript-library",
+                      "message": "OVL Transaction Message",
+                      "payer": [
+                        {
+                          "payerId": "0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39d"
+                        }
+                      ]
+                    },
+                    "location": {
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
+                    },
+                    "type": "Approve Debit"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \"Approve Debit\" and \"Create Debit\". The 'Approve Debit' transaction type will allow you to approve someone to make a pull payment from your account and the \"Create Debit\" transaction type will create the payment to pull the approved amount from an account.",
+        "operationId": "prepareDebitRequest",
+        "responses": {
+          "200": {
+            "description": "All good!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrepareTransactionResponse"
+                },
+                "examples": {
+                  "Prepare Response": {
+                    "description": "Prepare Response",
+                    "value": {
+                      "gatewayFee": {
+                        "amount": "0",
+                        "unit": "QNT"
+                      },
+                      "requestId": "e566fab4-141d-445e-8c3c-e936c553cc99",
+                      "dltFee": {
+                        "amount": "0.000061839000453486",
+                        "unit": "ETH"
+                      },
+                      "nativeData": {
+                        "data": "0xa9059cbb000000000000000000000000d8b31b65878a6b1a6caf9f4819c1a42d68a7a11600000000000000000000000000000000000000000000000000038d7ea4c68000",
+                        "chainId": 3,
+                        "gas": "41226",
+                        "to": "0xF9cd6C86992Fce1481dBc4bDB7E1b101c1e8cEE2",
+                        "nonce": 122,
+                        "value": "0",
+                        "gasPrice": "1500000011"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDetails"
+                },
+                "examples": {
+                  "Bad Request": {
+                    "description": "Bad Request",
+                    "value": {
+                      "code": "TXN04036",
+                      "description": "Technology data object is required and must be either Ethereum, XRP Ledger or Bitcoin.",
+                      "category": "Validation Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorList"
+                },
+                "examples": {
+                  "Bad Request": {
+                    "description": "Bad Request",
+                    "value": {
+                      "errors": [
+                        {
+                          "code": 401,
+                          "message": "Not authorised for the access to the endpoint!"
+                        }
+                      ],
+                      "errorCount": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our side",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorSchema"
+                },
+                "examples": {
+                  "500 Something went wrong on our side": {
+                    "description": "500 Something went wrong on our side",
+                    "value": {
+                      "path": "/v2/preparation/transaction",
+                      "error": "Internal Server Error",
+                      "message": "No message available",
+                      "timestamp": "2021-09-15T11:26:19.935+0000",
+                      "status": 500
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
+              "type": "string",
+              "maxLength": 5010
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Create a QRC20 Debit Transaction"
+        ]
+      }
+    },
     "/v2/preparation/search/smartcontract": {
       "post": {
         "summary": "Prepare a read of a smart contract on a DLT",
@@ -2186,9 +2707,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -2227,14 +2748,14 @@
                       "balances": [
                         {
                           "unit": "ETH",
-                          "value": 4.9971911695538545,
-                          "addressId": "0x650A87cfB9165C9F4Ccc7B971D971f50f753e761"
+                          "amount": "4.99719116955385472"
                         }
                       ],
                       "location": {
                         "technology": "Ethereum",
                         "network": "Ropsten Testnet"
-                      }
+                      },
+                      "addressId": "0x650A87cfB9165C9F4Ccc7B971D971f50f753e761"
                     }
                   }
                 }
@@ -2312,9 +2833,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -2461,9 +2982,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -2486,6 +3007,453 @@
         ]
       }
     },
+    "/v2/autoexecution/search/address/sequence/{addressId}": {
+      "post": {
+        "summary": "Prepare and automatically execute a search for an Address Sequence.",
+        "security": [
+          {
+            "OAuth2_Security_Scheme": [
+              "overledger/read.scope"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrepareSearchSchema"
+              },
+              "examples": {
+                "Address Sequence Search": {
+                  "summary": "Address Sequence Search",
+                  "description": "Address Sequence Search",
+                  "value": {
+                    "location": {
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "Generates a request ID and automatically executes the address sequence search on the requested DLT.",
+        "operationId": "prepareAddressSequenceSearchRequest_1",
+        "responses": {
+          "200": {
+            "description": "All good!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutoExecSearchAddressSequenceResponseSchema"
+                },
+                "examples": {
+                  "Successful Prepare and Address not found Execute Response": {
+                    "description": "Successful Prepare and Address not found Execute Response",
+                    "value": {
+                      "preparationAddressSequenceSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "ba74dab3-0012-4dfe-ade4-4f4b045b8bf1"
+                      },
+                      "prepareAndExecuteOverledgerErrorResponse": {
+                        "code": "ADD04024",
+                        "description": "Address rUy24rW7XnhWLWMcmQ9AbMx6wvjKa6iqaD cannot be found on xrp ledger testnet.",
+                        "category": "Validation Error"
+                      }
+                    }
+                  },
+                  "Successful Prepare and Failed Execute Response": {
+                    "description": "Successful Prepare and Failed Execute Response",
+                    "value": {
+                      "preparationAddressSequenceSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "db52bd25-ff9f-49e2-ad07-7e782a70cec2"
+                      },
+                      "prepareAndExecuteOverledgerErrorResponse": {
+                        "code": "TRS04004",
+                        "description": "Your free trial has ended.",
+                        "category": "Validation Error"
+                      }
+                    }
+                  },
+                  "Successful Prepare and Execute Response": {
+                    "description": "Successful Prepare and Execute Response",
+                    "value": {
+                      "preparationAddressSequenceSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "117f8ee7-8b16-480d-adc9-4a76a7b15b54"
+                      },
+                      "executionAddressSequenceSearchResponse": {
+                        "sequence": "160",
+                        "location": {
+                          "technology": "Ethereum",
+                          "network": "Ropsten Testnet"
+                        },
+                        "addressId": "0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39d"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDetails"
+                },
+                "examples": {
+                  "Address not valid": {
+                    "description": "Address not valid",
+                    "value": {
+                      "code": "ADD04002",
+                      "description": "The address provided: 0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39, is not valid a valid address for ethereum",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Bitcoin not supported": {
+                    "description": "Bitcoin not supported",
+                    "value": {
+                      "code": "PRP04001",
+                      "description": "Currently, the address-sequence-query is not supported on the bitcoin testnet",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Address id param must be provided": {
+                    "description": "Address id param must be provided",
+                    "value": {
+                      "code": "ADD04005",
+                      "description": "API request must include an address as a path parameter.",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Technology or network not supported": {
+                    "description": "Technology or network not supported",
+                    "value": {
+                      "code": "TXN04005",
+                      "description": "Overledger does not currently support the requested technology or network.",
+                      "category": "Validation Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorList"
+                },
+                "examples": {
+                  "Not Authorized": {
+                    "description": "Not Authorized",
+                    "value": {
+                      "errors": [
+                        {
+                          "code": 401,
+                          "message": "Not authorised for the access to the endpoint!"
+                        }
+                      ],
+                      "errorCount": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our side",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorSchema"
+                },
+                "examples": {
+                  "500 Something went wrong on our side": {
+                    "description": "500 Something went wrong on our side",
+                    "value": {
+                      "path": "/v2/autoexecution/search/address/sequence/rUy24rW7XnhWLWMcmQ9AbMx6wvjKa6iqaD",
+                      "error": "Internal Server Error",
+                      "message": "No message available",
+                      "timestamp": "2021-09-15T11:26:19.935+0000",
+                      "status": 500
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
+              "type": "string",
+              "maxLength": 5010
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^[a-zA-Z0-9]{1,100}$",
+              "type": "string",
+              "maxLength": 100
+            },
+            "in": "path",
+            "name": "addressId",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Address Search"
+        ]
+      }
+    },
+    "/v2/autoexecution/search/address/balance/{addressId}": {
+      "post": {
+        "summary": "Prepare and automatically execute a search for an address balance on a DLT.",
+        "security": [
+          {
+            "OAuth2_Security_Scheme": [
+              "overledger/read.scope"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrepareSearchSchema"
+              },
+              "examples": {
+                "Address Balance Search": {
+                  "summary": "Address Balance Search",
+                  "description": "Address Balance Search",
+                  "value": {
+                    "location": {
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "Generates a request ID and automatically executes the address balance search on the requested DLT.",
+        "operationId": "autoExecuteSearchAddressBalanceRequest",
+        "responses": {
+          "200": {
+            "description": "All good!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutoExecuteSearchAddressBalanceResponseSchema"
+                },
+                "examples": {
+                  "Successful Prepare and Address not found Execute Response": {
+                    "description": "Successful Prepare and Address not found Execute Response",
+                    "value": {
+                      "prepareAndExecuteOverledgerErrorResponse": {
+                        "code": "ADD04024",
+                        "description": "Address rUy24rW7XnhWLWMcmQ9AbMx6wvjKa6iqaD cannot be found on xrp ledger testnet.",
+                        "category": "Validation Error"
+                      },
+                      "preparationAddressBalanceSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "ba74dab3-0012-4dfe-ade4-4f4b045b8bf1"
+                      }
+                    }
+                  },
+                  "Successful Prepare and Failed Execute Response": {
+                    "description": "Successful Prepare and Failed Execute Response",
+                    "value": {
+                      "prepareAndExecuteOverledgerErrorResponse": {
+                        "code": "TRS04004",
+                        "description": "Your free trial has ended.",
+                        "category": "Validation Error"
+                      },
+                      "preparationAddressBalanceSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "db52bd25-ff9f-49e2-ad07-7e782a70cec2"
+                      }
+                    }
+                  },
+                  "Successful Prepare and Execute Response": {
+                    "description": "Successful Prepare and Execute Response",
+                    "value": {
+                      "executionAddressBalanceSearchResponse": {
+                        "balances": [
+                          {
+                            "unit": "ETH",
+                            "amount": "0"
+                          }
+                        ],
+                        "addressId": "0x316D046b0Ce356F248b215B01b459f8b8f77E5a7"
+                      },
+                      "preparationAddressBalanceSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "82a03be0-4612-4eec-80da-85724b0db769"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDetails"
+                },
+                "examples": {
+                  "Address not valid": {
+                    "summary": "Invalid address",
+                    "description": "Address not valid",
+                    "value": {
+                      "code": "ADD04002",
+                      "description": "The address provided: rJWA2US129duH761aoRsX3qZv6ubAKLCX, is not valid a valid address for xrp ledger",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Bitcoin not supported": {
+                    "summary": "Bitcoin Not Supported",
+                    "description": "Bitcoin not supported",
+                    "value": {
+                      "code": "PRP04001",
+                      "description": "Currently, the address-balance-query is not supported on the bitcoin testnet",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Address id param must be provided": {
+                    "summary": "Empty Path Parameter",
+                    "description": "Address id param must be provided",
+                    "value": {
+                      "code": "ADD04009",
+                      "description": "API request must include an address as a path parameter.",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Technology or network not supported": {
+                    "summary": "Technology or Network Not Supported",
+                    "description": "Technology or network not supported",
+                    "value": {
+                      "code": "TXN04005",
+                      "description": "Overledger does not currently support the requested technology or network.",
+                      "category": "Validation Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorList"
+                },
+                "examples": {
+                  "Not Authorized": {
+                    "description": "Not Authorized",
+                    "value": {
+                      "errors": [
+                        {
+                          "code": 401,
+                          "message": "Not authorised for the access to the endpoint!"
+                        }
+                      ],
+                      "errorCount": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our side",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorSchema"
+                },
+                "examples": {
+                  "500 Something went wrong on our side": {
+                    "description": "500 Something went wrong on our side",
+                    "value": {
+                      "path": "/v2/autoexecution/search/address/balance/0x316d046b0ce356f248b215b01b459f8b8f77e5a7",
+                      "error": "Internal Server Error",
+                      "message": "No message available",
+                      "timestamp": "2021-09-15T11:26:19.935+0000",
+                      "status": 500
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
+              "type": "string",
+              "maxLength": 5010
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^[a-zA-Z0-9]{1,100}$",
+              "type": "string",
+              "maxLength": 100
+            },
+            "in": "path",
+            "name": "addressId",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Address Search"
+        ]
+      }
+    },
     "/v2/execution/search/address/sequence": {
       "post": {
         "summary": "Execute a search for an address sequence on a DLT",
@@ -2496,7 +3464,7 @@
             ]
           }
         ],
-        "description": "Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s",
+        "description": "Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT's",
         "operationId": "executePreparedSearchRequestAddressSequence",
         "responses": {
           "200": {
@@ -2593,9 +3561,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -2615,6 +3583,321 @@
         ],
         "tags": [
           "Address Search"
+        ]
+      }
+    },
+    "/v2/autoexecution/search/smartcontract": {
+      "post": {
+        "summary": "Prepare and automatically execute a search for a smart contract query on a DLT.",
+        "security": [
+          {
+            "OAuth2_Security_Scheme": [
+              "overledger/read.scope"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrepareSearchSchema"
+              },
+              "examples": {
+                "Smart contract query Search": {
+                  "description": "Smart contract query Search",
+                  "value": {
+                    "location": {
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "Generates a request ID and automatically executes the smart contract query search on the requested DLT.",
+        "operationId": "autoExecuteSearchSmartContractQueryRequest",
+        "responses": {
+          "200": {
+            "description": "All good!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutoExecuteSearchAddressBalanceResponseSchema"
+                },
+                "examples": {
+                  "Successful Prepare and Failed Execute Response": {
+                    "description": "Successful Prepare and Failed Execute Response",
+                    "value": {
+                      "prepareAndExecuteOverledgerErrorResponse": {
+                        "code": "TRS04004",
+                        "description": "Your free trial has ended.",
+                        "category": "Validation Error"
+                      },
+                      "preparationSmartContractSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "db52bd25-ff9f-49e2-ad07-7e782a70cec2"
+                      }
+                    }
+                  },
+                  "Successful Prepare and Smart Contract not found Execute Response": {
+                    "description": "Successful Prepare and Smart Contract not found Execute Response",
+                    "value": {
+                      "prepareAndExecuteOverledgerErrorResponse": {
+                        "code": "404",
+                        "description": "Smart contract 0x8688b56bC4f46e6B02Bd5DFA2708adcd047d641 could not be found.",
+                        "category": "Validation Error"
+                      },
+                      "preparationSmartContractSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "5a20a258-fa74-4a14-b9cf-d5d2b69d7b5c"
+                      }
+                    }
+                  },
+                  "Successful Prepare and Execute Response": {
+                    "description": "Successful Prepare and Execute Response",
+                    "value": {
+                      "executionSmartContractSearchResponse": {
+                        "smartContract": {
+                          "function": {
+                            "functionId": "0xd4d14c42",
+                            "name": "addBytes5",
+                            "inputParameters": [
+                              {
+                                "type": "bytes5",
+                                "value": "0000000001"
+                              }
+                            ],
+                            "outputParameters": []
+                          },
+                          "smartContractId": "0x8688B56Bc4f46E6b02bD5DFA2708aDcd047D6410"
+                        },
+                        "location": {
+                          "technology": "Ethereum",
+                          "network": "ropsten testnet"
+                        }
+                      },
+                      "preparationSmartContractSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "6c076084-509c-4bfd-bbfd-4ea32af3bcb7"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDetails"
+                },
+                "examples": {
+                  "Bitcoin not supported": {
+                    "summary": "Bitcoin Not Supported",
+                    "description": "Bitcoin not supported",
+                    "value": {
+                      "code": "PRP04001",
+                      "description": "Currently, the smart-contract-query is not supported on the bitcoin testnet",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Network is required": {
+                    "summary": "Network data object is required.",
+                    "description": "Network is required",
+                    "value": {
+                      "code": "LOC4001",
+                      "description": "Network data object is required.",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "OutputParameters type not supported": {
+                    "summary": "OutputParameters type not supported.",
+                    "description": "OutputParameters type not supported",
+                    "value": {
+                      "code": "SMC04008",
+                      "description": "SmartContact.function.outputParameters.type data object is not a supported type.",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "InputParameters type not supported": {
+                    "summary": "InputParameters type not supported.",
+                    "description": "InputParameters type not supported",
+                    "value": {
+                      "code": "SMC04005",
+                      "description": "SmartContact.function.inputParameters.type data object is not a supported type.",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Technology is required": {
+                    "summary": "Technology data object is required.",
+                    "description": "Technology is required",
+                    "value": {
+                      "code": "LOC4001",
+                      "description": "Technology data object is required.",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "SmartContract Id is required": {
+                    "summary": "smartContract Id data object is required.",
+                    "description": "SmartContract Id is required",
+                    "value": {
+                      "code": "400",
+                      "description": "SmartContract.smartContractId data object is required.",
+                      "category": "Validation error"
+                    }
+                  },
+                  "InputParameters type is required": {
+                    "summary": "InputParameters type is required.",
+                    "description": "InputParameters type is required",
+                    "value": {
+                      "code": "SMC04007",
+                      "description": "SmartContract.function.inputParameters.type data object is required.",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Function name invalid pattern": {
+                    "summary": "function name invalid pattern.",
+                    "description": "Function name invalid pattern",
+                    "value": {
+                      "code": "400",
+                      "description": "SmartContract.function.name must match ^[a-zA-Z0-9,_ ]{1,50}$",
+                      "category": "Validation error"
+                    }
+                  },
+                  "Function name is required": {
+                    "summary": "function name data object is required.",
+                    "description": "Function name is required",
+                    "value": {
+                      "code": "400",
+                      "description": "SmartContract.function.name data object is required.",
+                      "category": "Validation error"
+                    }
+                  },
+                  "Technology or network not supported": {
+                    "summary": "Technology or Network Not Supported",
+                    "description": "Technology or network not supported",
+                    "value": {
+                      "code": "TXN04005",
+                      "description": "Overledger does not currently support the requested technology or network.",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "smartContract Id size limitation": {
+                    "summary": "smartContract Id size must be between 0 and 44.",
+                    "description": "smartContract Id size limitation",
+                    "value": {
+                      "code": "400",
+                      "description": "smartContractId size must be between 0 and 44",
+                      "category": "Validation error"
+                    }
+                  },
+                  "InputParameters value is required": {
+                    "summary": "InputParameters value is required.",
+                    "description": "InputParameters value is required",
+                    "value": {
+                      "code": "SMC04006",
+                      "description": "SmartContract.function.inputParameters.value data object is required.",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "smartContract Id invalid pattern": {
+                    "summary": "smartContract Id invalid pattern.",
+                    "description": "smartContract Id invalid pattern",
+                    "value": {
+                      "code": "400",
+                      "description": "smartContractId must match the pattern ^[A-Za-z0-9]{1,44}$",
+                      "category": "Validation error"
+                    }
+                  },
+                  "OutputParameters type is required": {
+                    "summary": "OutputParameters type is required.",
+                    "description": "OutputParameters type is required",
+                    "value": {
+                      "code": "SMC04010",
+                      "description": "SmartContract.function.outputParameters.type data object is required.",
+                      "category": "Validation Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorList"
+                },
+                "examples": {
+                  "Not Authorized": {
+                    "description": "Not Authorized",
+                    "value": {
+                      "errors": [
+                        {
+                          "code": 401,
+                          "message": "Not authorised for the access to the endpoint!"
+                        }
+                      ],
+                      "errorCount": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our side",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorSchema"
+                },
+                "examples": {
+                  "500 Something went wrong on our side": {
+                    "description": "500 Something went wrong on our side",
+                    "value": {
+                      "path": "/v2/autoexecution/search/smartcontract",
+                      "error": "Internal Server Error",
+                      "message": "No message available",
+                      "timestamp": "1624007506",
+                      "status": 500
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
+              "type": "string",
+              "maxLength": 5010
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Smart Contract Search"
         ]
       }
     },
@@ -2696,16 +3979,13 @@
                           "gasPrice": 8000000000
                         }
                       },
-                      "timestamp": {
-                        "nano": 807000000,
-                        "epochSecond": 1618910
-                      },
+                      "timestamp": "1624007506",
                       "status": {
                         "code": "TXN1003",
                         "description": "Transaction successful",
                         "message": "Transaction successful",
                         "value": "SUCCESSFUL",
-                        "timestamp": "2021-04-20T09:28:28Z"
+                        "timestamp": "1624007506"
                       }
                     }
                   }
@@ -2804,9 +4084,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -2931,9 +4211,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -2942,6 +4222,261 @@
         ],
         "tags": [
           "Manage Monitored Resources"
+        ]
+      }
+    },
+    "/v2/autoexecution/search/transaction": {
+      "post": {
+        "summary": "Prepare and automatically execute a search for a transaction on a DLT.",
+        "security": [
+          {
+            "OAuth2_Security_Scheme": [
+              "overledger/read.scope"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrepareSearchSchema"
+              },
+              "examples": {
+                "Prepare And Execute Transaction Search": {
+                  "summary": "Prepare And Execute Transaction Search",
+                  "description": "Prepare And Execute Transaction Search",
+                  "value": {
+                    "location": {
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "Generates a request ID and automatically executes the transaction search on the requested DLT.",
+        "operationId": "autoExecuteSearchTransactionRequest",
+        "responses": {
+          "200": {
+            "description": "All good!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrepareAndExecuteTransactionResponse"
+                },
+                "examples": {
+                  "Successful Prepare and Failed Execute Response": {
+                    "description": "Successful Prepare and Failed Execute Response",
+                    "value": {
+                      "executionTransactionSearchOverledgerErrorResponse": {
+                        "code": "TRS04004",
+                        "description": "Your free trial has ended.",
+                        "category": "Validation Error"
+                      },
+                      "preparationTransactionSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "db52bd25-ff9f-49e2-ad07-7e782a70cec2"
+                      }
+                    }
+                  },
+                  "Successful Prepare and Execute Response": {
+                    "description": "Successful Prepare and Execute Response",
+                    "value": {
+                      "preparationTransactionSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "50574948-b140-47a7-a897-1bd9f6ef0929"
+                      },
+                      "executionTransactionSearchResponse": {
+                        "location": {
+                          "technology": "Ethereum",
+                          "network": "Ropsten Testnet"
+                        },
+                        "type": "CONTRACT_CREATION",
+                        "transaction": {
+                          "signature": [
+                            "0xeaae6e89e19d65daf570f7926e19dddcec5c0cba81fc8b15794f05e6cc49a924",
+                            "0x45048a7377deeab5b29b3a497107f616be27d46b5127188613f1cff9f5d087e9",
+                            "28"
+                          ],
+                          "origin": [
+                            {
+                              "sequence": "3",
+                              "originId": "0xfc4f441e29a38a6323fa4da998227b0ff9e0cd45"
+                            }
+                          ],
+                          "destination": [
+                            {
+                              "destinationId": "0x4a02c0dc2658b12c77a35307c091b8eec60c1a62"
+                            }
+                          ],
+                          "totalPaymentAmount": [
+                            {
+                              "amount": "0",
+                              "unit": "ETH"
+                            }
+                          ],
+                          "transactionId": "0x64c8b77426e500e7ac9af3c1c79c60ea5b325bc6b5f4238fb6d62a91f6b70275",
+                          "nativeData": {
+                            "gasRaw": "0x5817f",
+                            "blockHash": "0xad8d1b5d73ae5384202f4455c498b86ea42d12ea1473128e6300bf4529964fd9",
+                            "transactionIndexRaw": "0x4",
+                            "valueRaw": "0x0",
+                            "transactionIndex": 4,
+                            "type": "0x0",
+                            "nonce": 3,
+                            "gasPriceRaw": "0x3b9aca0e",
+                            "input": "0x608060405234801561001057600080fd5b506127106000803273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055506103d6806100656000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80637bd703e81461004657806390b98a111461009e578063f8b2cb4f14610104575b600080fd5b6100886004803603602081101561005c57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061015c565b6040518082815260200191505060405180910390f35b6100ea600480360360408110156100b457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610200565b604051808215151515815260200191505060405180910390f35b6101466004803603602081101561011a57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610359565b6040518082815260200191505060405180910390f35b60007388c1ca5917c29a361fed82d98a1492617515f8146396e4ee3d61018184610359565b60026040518363ffffffff1660e01b8152600401808381526020018281526020019250505060206040518083038186803b1580156101be57600080fd5b505af41580156101d2573d6000803e3d6000fd5b505050506040513d60208110156101e857600080fd5b81019080805190602001909291905050509050919050565b6000816000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000205410156102515760009050610353565b816000803373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008282540392505081905550816000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600082825401925050819055508273ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef846040518082815260200191505060405180910390a3600190505b92915050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054905091905056fea265627a7a72315820dc4476efcd2381d275d9c3bced7d4316d8c557c2e03ece057484ee7dfdc733ac64736f6c63430005100032",
+                            "r": "0xeaae6e89e19d65daf570f7926e19dddcec5c0cba81fc8b15794f05e6cc49a924",
+                            "s": "0x45048a7377deeab5b29b3a497107f616be27d46b5127188613f1cff9f5d087e9",
+                            "blockNumberRaw": "0xab53b0",
+                            "nonceRaw": "0x3",
+                            "v": 28,
+                            "blockNumber": 11228080,
+                            "gas": 360831,
+                            "creates": "0x4a02c0dc2658b12c77a35307c091b8eec60c1a62",
+                            "from": "0xfc4f441e29a38a6323fa4da998227b0ff9e0cd45",
+                            "value": 0,
+                            "hash": "0x64c8b77426e500e7ac9af3c1c79c60ea5b325bc6b5f4238fb6d62a91f6b70275",
+                            "gasPrice": 1000000014
+                          }
+                        },
+                        "timestamp": "1624007506",
+                        "status": {
+                          "code": "TXN1003",
+                          "description": "Transaction successful",
+                          "message": "Transaction successful",
+                          "value": "SUCCESSFUL",
+                          "timestamp": "1624007506"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDetails"
+                },
+                "examples": {
+                  "Bad Request": {
+                    "description": "Bad Request",
+                    "value": {
+                      "code": "",
+                      "description": "transaction ID 0x64c8b77426e500e7ac9af3c1c79c60ea5b325bc6b5f4238fb6d62a91f6b702 for Ethereum is the incorrect format.",
+                      "category": ""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorList"
+                },
+                "examples": {
+                  "Not Authorized": {
+                    "description": "Not Authorized",
+                    "value": {
+                      "errors": [
+                        {
+                          "code": 401,
+                          "message": "Not authorised for the access to the endpoint!"
+                        }
+                      ],
+                      "errorCount": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDetails"
+                },
+                "examples": {
+                  "Bad Request": {
+                    "description": "Bad Request",
+                    "value": {
+                      "code": "",
+                      "description": "Transaction ID da2e77de3edb175744ff8502ad9dbcfbfe070a156aec6714823a621cd4bf355f was not found on Bitcoin DLT Connector.",
+                      "category": ""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our side",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorSchema"
+                },
+                "examples": {
+                  "500 Something went wrong on our side": {
+                    "description": "500 Something went wrong on our side",
+                    "value": {
+                      "path": "/v2/preparation/transaction",
+                      "error": "Internal Server Error",
+                      "message": "No message available",
+                      "timestamp": "2021-09-15T11:26:19.935+0000",
+                      "status": 500
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
+              "type": "string",
+              "maxLength": 5010
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^[a-zA-Z0-9]{1,100}$",
+              "type": "string",
+              "maxLength": 100
+            },
+            "in": "query",
+            "name": "transactionId",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Transaction Search"
         ]
       }
     },
@@ -2977,7 +4512,7 @@
           },
           "required": true
         },
-        "description": "Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s",
+        "description": "Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT's",
         "operationId": "prepareSearchUTXOState",
         "responses": {
           "200": {
@@ -3053,9 +4588,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -3169,7 +4704,7 @@
                         },
                         "numberOfTransactions": 20,
                         "message": "0xdb830302068c4f70656e457468657265756d86312e35312e30826c69",
-                        "timestamp": 1624007506,
+                        "timestamp": "1624007506",
                         "nativeData": {
                           "logsBloom": "0x01280000010400000000000080004082000000444020400008010100000800100000820000001480000000000000000000000000104200200c0080014820040004060000000840000000000800044060080001084018002000c000008000000802a0800802001082510080000440280800000a0000000000010000120020408000800300030800800044000000410400000004212320802c88008040000060808000000001a000020010000000000000000020022208005000001005000000000000000200c000000400001004805040040000214880001000002200080030002000220800010101020a00000010000004602000000000400021202800080408",
                           "totalDifficulty": 33823156854004820,
@@ -3211,7 +4746,7 @@
                           "mixHash": "0xfbbb4da4c5f2bc6c53a220e41a6576e824b6042eca78087b1f32a38edfb244c5",
                           "parentHash": "0xc8638744e19f70f5cb3f04b5972ba7a66ba1070ec4fe3ccf7bb82976b1d69407",
                           "hash": "0xb67dd34c0182e3da1db437914dcac38349a4565177ed1fabf2bf430a10a51002",
-                          "timestamp": 1624007506
+                          "timestamp": "1624007506"
                         }
                       },
                       "status": {
@@ -3219,7 +4754,7 @@
                         "description": "Block is confirmed in the blockchain",
                         "message": "Block is successful.",
                         "value": "SUCCESSFUL",
-                        "timestamp": "2021-06-18T09:12:47Z"
+                        "timestamp": "1624007506"
                       }
                     }
                   }
@@ -3298,9 +4833,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -3441,9 +4976,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -3533,7 +5068,7 @@
                         "description": "The transaction has been successfully broadcasted to the network. The status will next be updated after a sufficient block number has been reached. At this point we can be confident that the transaction will be successful or will have failed.",
                         "message": "Transaction is pending.",
                         "value": "PENDING",
-                        "timestamp": "2021-09-16T11:50:15.862784Z"
+                        "timestamp": "1624007506"
                       }
                     }
                   },
@@ -3554,7 +5089,7 @@
                         "description": "The transaction has been successfully broadcasted to the network. The status will next be updated after a sufficient block number has been reached. At this point we can be confident that the transaction will be successful or will have failed.",
                         "message": "Transaction is pending.",
                         "value": "PENDING",
-                        "timestamp": "2021-09-16T11:43:24.128633Z"
+                        "timestamp": "1624007506"
                       }
                     }
                   },
@@ -3575,7 +5110,7 @@
                         "description": "The transaction has been successfully broadcasted to the network. The status will next be updated after a sufficient block number has been reached. At this point we can be confident that the transaction will be successful or will have failed.",
                         "message": "Transaction is pending.",
                         "value": "PENDING",
-                        "timestamp": "2021-09-16T10:23:45.043376Z"
+                        "timestamp": "1624007506"
                       }
                     }
                   },
@@ -3596,7 +5131,7 @@
                         "description": "The transaction has been successfully broadcasted to the network. The status will next be updated after a sufficient block number has been reached. At this point we can be confident that the transaction will be successful or will have failed.",
                         "message": "The transaction was applied. Only final in a validated ledger.",
                         "value": "PENDING",
-                        "timestamp": "2021-09-16T11:46:57Z"
+                        "timestamp": "1624007506"
                       }
                     }
                   }
@@ -3675,9 +5210,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -3847,9 +5382,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -3986,9 +5521,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -4033,8 +5568,8 @@
                   "description": "Address Sequence Search",
                   "value": {
                     "location": {
-                      "technology": "Bitcoin",
-                      "network": "Testnet"
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
                     }
                   }
                 }
@@ -4119,9 +5654,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -4324,6 +5859,36 @@
                     "type": "Contract Invoke"
                   }
                 },
+                "Polygon": {
+                  "summary": "Polygon Payment",
+                  "description": "Polygon",
+                  "value": {
+                    "urgency": "normal",
+                    "requestDetails": {
+                      "overledgerSigningType": "overledger-javascript-library",
+                      "origin": [
+                        {
+                          "originId": "0x03B651d2251eA03cf3ceD600E3B4948303A94BE6"
+                        }
+                      ],
+                      "destination": [
+                        {
+                          "payment": {
+                            "amount": "0.00001",
+                            "unit": "MATIC"
+                          },
+                          "destinationId": "0xfD218E9A20400535ffaa8FAe54D07d375B3A3827"
+                        }
+                      ],
+                      "message": "sample Message"
+                    },
+                    "location": {
+                      "technology": "Ethereum",
+                      "network": "Polygon Mumbai Testnet"
+                    },
+                    "type": "PAYMENT"
+                  }
+                },
                 "XRP Ledger": {
                   "summary": "XRP Ledger Payment",
                   "description": "XRP Ledger",
@@ -4359,7 +5924,7 @@
           },
           "required": true
         },
-        "description": "Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)",
+        "description": "Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \"Payment\" (to send payments) and \"Smart Contract Invoke\" (to invoke arbitrary smart contract functions). \n Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.",
         "operationId": "prepareTransactionRequest",
         "responses": {
           "200": {
@@ -4468,9 +6033,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -4620,9 +6185,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -4743,9 +6308,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -4779,8 +6344,8 @@
                   "description": "Address Balance Search",
                   "value": {
                     "location": {
-                      "technology": "Bitcoin",
-                      "network": "Testnet"
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
                     }
                   }
                 }
@@ -4865,9 +6430,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -4992,9 +6557,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -5003,6 +6568,270 @@
         ],
         "tags": [
           "Manage Monitored Resources"
+        ]
+      }
+    },
+    "/v2/autoexecution/search/utxo/{utxoId}": {
+      "post": {
+        "summary": "Prepare and automatically execute a search for a UTXO on a DLT.",
+        "security": [
+          {
+            "OAuth2_Security_Scheme": [
+              "overledger/read.scope"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrepareSearchSchema"
+              },
+              "examples": {
+                "UTXO Search": {
+                  "summary": "UTXO Search",
+                  "description": "UTXO Search",
+                  "value": {
+                    "location": {
+                      "technology": "Bitcoin",
+                      "network": "Testnet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "Generates a request ID and automatically executes the utxo search on the requested DLT.",
+        "operationId": "autoExecuteSearchUtxoRequest",
+        "responses": {
+          "200": {
+            "description": "All good!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutoExecuteSearchUTXOResponseSchema"
+                },
+                "examples": {
+                  "Successful Prepare and Address transaction not found Execute Response": {
+                    "description": "Successful Prepare and Address transaction not found Execute Response",
+                    "value": {
+                      "prepareAndExecuteOverledgerErrorResponse": {
+                        "code": "404",
+                        "description": "No Transaction can be found for UTXO:74f513dae1a7c238eda6e2b3e667a4b0e75f422882512466dd2d5ea702c43466 on Bitcoin testnet",
+                        "category": "Overledger Error"
+                      },
+                      "preparationUtxoSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "d96894c1-e516-42dd-bbdb-0cdd9b961885"
+                      }
+                    }
+                  },
+                  "Successful Prepare and Address vout not found Execute Response": {
+                    "description": "Successful Prepare and Address vout not found Execute Response",
+                    "value": {
+                      "prepareAndExecuteOverledgerErrorResponse": {
+                        "code": "404",
+                        "description": "UTXO not found for transaction Id: 74f513dae1a7c238eda6e2b3e667a4b0e75f422882512466dd2d5ea702c43465, vout: 2",
+                        "category": "Overledger Error"
+                      },
+                      "preparationUtxoSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "f02447b2-33bf-4dc8-a94c-730ff7e55a3d"
+                      }
+                    }
+                  },
+                  "Successful Prepare and Execute Response": {
+                    "description": "Successful Prepare and Execute Response",
+                    "value": {
+                      "executionUtxoSearchResponse": {
+                        "destination": [
+                          {
+                            "smartContract": {
+                              "detail": "OP_DUP OP_HASH160 8c202dc31b453e900cc7c14c17dd852ac517a504 OP_EQUALVERIFY OP_CHECKSIG",
+                              "type": "pubkeyhash",
+                              "extraFields": {
+                                "requiredSignatures": 1
+                              }
+                            },
+                            "payment": {
+                              "amount": "0.0001",
+                              "unit": "BTC"
+                            },
+                            "destinationId": "mtHsSjGeVhSQVqcM3fv5A79qoSJ5TgEjtj"
+                          }
+                        ],
+                        "location": {
+                          "technology": "Bitcoin",
+                          "network": "testnet"
+                        },
+                        "timestamp": "1624007506",
+                        "status": {
+                          "code": "UNSPENT_SUCCESSFUL",
+                          "description": "The UTXO has been created in a transaction that is in successful status and can be spent.",
+                          "message": "UTXO can be spent.",
+                          "value": "UTX1000",
+                          "timestamp": "1624007506"
+                        },
+                        "nativeData": {
+                          "vout": [
+                            {
+                              "scriptPubKey": {
+                                "addresses": [
+                                  "mtHsSjGeVhSQVqcM3fv5A79qoSJ5TgEjtj"
+                                ],
+                                "asm": "OP_DUP OP_HASH160 8c202dc31b453e900cc7c14c17dd852ac517a504 OP_EQUALVERIFY OP_CHECKSIG",
+                                "hex": "76a9148c202dc31b453e900cc7c14c17dd852ac517a50488ac",
+                                "type": "pubkeyhash",
+                                "reqSigs": 1
+                              },
+                              "value": 0.0001,
+                              "n": 0
+                            }
+                          ]
+                        }
+                      },
+                      "preparationUtxoSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "970b955d-bb70-4ad4-aafe-95aebe3ec0a3"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDetails"
+                },
+                "examples": {
+                  "Utxo not valid": {
+                    "summary": "Invalid utxo",
+                    "description": "Utxo not valid",
+                    "value": {
+                      "code": "UTX04006",
+                      "description": "UTXO ID format is incorrect, the UTXO must be TransactionHash:Integer",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Utxo id param must be provided": {
+                    "summary": "Empty Path Parameter",
+                    "description": "Utxo id param must be provided",
+                    "value": {
+                      "code": "UTX04002",
+                      "description": "API request must include a valid utxo ID as a path parameter.",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Ethereum not supported": {
+                    "summary": "Ethereum Not Supported",
+                    "description": "Ethereum not supported",
+                    "value": {
+                      "code": "PRP04001",
+                      "description": "Currently, the utxo-query is not supported on the ethereum ropsten testnet",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Technology or network not supported": {
+                    "summary": "Technology or Network Not Supported",
+                    "description": "Technology or network not supported",
+                    "value": {
+                      "code": "TXN04005",
+                      "description": "Overledger does not currently support the requested technology or network.",
+                      "category": "Validation Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorList"
+                },
+                "examples": {
+                  "Not Authorized": {
+                    "description": "Not Authorized",
+                    "value": {
+                      "errors": [
+                        {
+                          "code": 401,
+                          "message": "Not authorised for the access to the endpoint!"
+                        }
+                      ],
+                      "errorCount": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our side",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorSchema"
+                },
+                "examples": {
+                  "500 Something went wrong on our side": {
+                    "description": "500 Something went wrong on our side",
+                    "value": {
+                      "path": "/v2/autoexecution/search/address/balance/0x316d046b0ce356f248b215b01b459f8b8f77e5a7",
+                      "error": "Internal Server Error",
+                      "message": "No message available",
+                      "timestamp": "2021-09-15T11:26:19.935+0000",
+                      "status": 500
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
+              "type": "string",
+              "maxLength": 5010
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^[a-zA-Z0-9-: ]{1,100}$",
+              "type": "string",
+              "maxLength": 100
+            },
+            "in": "path",
+            "name": "utxoId",
+            "required": true
+          }
+        ],
+        "tags": [
+          "UTXO Status Search"
         ]
       }
     },
@@ -5129,9 +6958,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -5252,9 +7081,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -5377,9 +7206,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -5424,8 +7253,8 @@
                   "description": "Block Search",
                   "value": {
                     "location": {
-                      "technology": "Bitcoin",
-                      "network": "Testnet"
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
                     }
                   }
                 }
@@ -5510,9 +7339,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -5543,6 +7372,181 @@
         ],
         "tags": [
           "Block Search"
+        ]
+      }
+    },
+    "/v2/preparation/credit": {
+      "post": {
+        "summary": "Prepare a QRC20 token credit transaction for signing",
+        "security": [
+          {
+            "OAuth2_Security_Scheme": [
+              "overledger/read.scope"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrepareCreditTransactionRequestSchema"
+              },
+              "examples": {
+                "QRC20 Create Credit": {
+                  "summary": "QRC20 Create Credit",
+                  "description": "QRC20 Create Credit",
+                  "value": {
+                    "urgency": "normal",
+                    "requestDetails": {
+                      "payee": [
+                        {
+                          "payment": {
+                            "amount": "0.0000001",
+                            "unit": "TEST"
+                          },
+                          "payeeId": "0x8917cf2A57DF39D311a96c53FCCA76dAFB25392B"
+                        }
+                      ],
+                      "overledgerSigningType": "overledger-javascript-library",
+                      "message": "OVL Transaction Message",
+                      "payer": [
+                        {
+                          "payerId": "0x08f0C8451eC8283638F35D863DfFD8c1e1b3E39d"
+                        }
+                      ]
+                    },
+                    "location": {
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
+                    },
+                    "type": "Create Credit"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is \"Create Credit\" which will allow you to make a payment to another specified account.",
+        "operationId": "prepareCreditRequest",
+        "responses": {
+          "200": {
+            "description": "All good!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrepareTransactionResponse"
+                },
+                "examples": {
+                  "Prepare Response": {
+                    "description": "Prepare Response",
+                    "value": {
+                      "gatewayFee": {
+                        "amount": "0",
+                        "unit": "QNT"
+                      },
+                      "requestId": "e566fab4-141d-445e-8c3c-e936c553cc99",
+                      "dltFee": {
+                        "amount": "0.000061839000453486",
+                        "unit": "ETH"
+                      },
+                      "nativeData": {
+                        "data": "0xa9059cbb000000000000000000000000d8b31b65878a6b1a6caf9f4819c1a42d68a7a11600000000000000000000000000000000000000000000000000038d7ea4c68000",
+                        "chainId": 3,
+                        "gas": "41226",
+                        "to": "0xF9cd6C86992Fce1481dBc4bDB7E1b101c1e8cEE2",
+                        "nonce": 122,
+                        "value": "0",
+                        "gasPrice": "1500000011"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDetails"
+                },
+                "examples": {
+                  "Bad Request": {
+                    "description": "Bad Request",
+                    "value": {
+                      "code": "TXN04036",
+                      "description": "Technology data object is required and must be either Ethereum, XRP Ledger or Bitcoin.",
+                      "category": "Validation Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorList"
+                },
+                "examples": {
+                  "Bad Request": {
+                    "description": "Bad Request",
+                    "value": {
+                      "errors": [
+                        {
+                          "code": 401,
+                          "message": "Not authorised for the access to the endpoint!"
+                        }
+                      ],
+                      "errorCount": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our side",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorSchema"
+                },
+                "examples": {
+                  "500 Something went wrong on our side": {
+                    "description": "500 Something went wrong on our side",
+                    "value": {
+                      "path": "/v2/preparation/transaction",
+                      "error": "Internal Server Error",
+                      "message": "No message available",
+                      "timestamp": "2021-09-15T11:26:19.935+0000",
+                      "status": 500
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
+              "type": "string",
+              "maxLength": 5010
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Create a QRC20 Credit Transaction"
         ]
       }
     },
@@ -5686,9 +7690,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -5708,6 +7712,271 @@
         ],
         "tags": [
           "mDapp Transaction Query"
+        ]
+      }
+    },
+    "/v2/autoexecution/search/block/{blockId}": {
+      "post": {
+        "summary": "Prepare and automatically execute a search for a block on a DLT.",
+        "security": [
+          {
+            "OAuth2_Security_Scheme": [
+              "overledger/read.scope"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PrepareSearchSchema"
+              },
+              "examples": {
+                "Block Search": {
+                  "summary": "Block Search",
+                  "description": "Block Search",
+                  "value": {
+                    "location": {
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "description": "Generates a request ID and automatically executes the block search on the requested DLT.",
+        "operationId": "autoExecuteSearchBlockRequest",
+        "responses": {
+          "200": {
+            "description": "All good!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutoExecuteSearchBlockResponseSchema"
+                },
+                "examples": {
+                  "Successful Prepare and Failed Execute Response": {
+                    "description": "Successful Prepare and Failed Execute Response",
+                    "value": {
+                      "prepareAndExecuteOverledgerErrorResponse": {
+                        "code": "TRS04004",
+                        "description": "Your free trial has ended.",
+                        "category": "Validation Error"
+                      },
+                      "preparationBlockSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "4f4822f7-ea3d-400c-b51c-289cc5f77746"
+                      }
+                    }
+                  },
+                  "Successful Prepare and Block not found Execute Response": {
+                    "description": "Successful Prepare and Block not found Execute Response",
+                    "value": {
+                      "prepareAndExecuteOverledgerErrorResponse": {
+                        "code": "BLK04008",
+                        "description": "blockId 0x0538cd36b3d04801c3d0493c2c04cb13da825f51d5f00cd4f39e6eae13d6d857 is not a valid block for ethereum on ropsten testnet",
+                        "category": "Validation Error"
+                      },
+                      "preparationBlockSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "55b51d7c-2847-4002-acb7-49929cd3284c"
+                      }
+                    }
+                  },
+                  "Successful Prepare and Execute Response": {
+                    "description": "Successful Prepare and Execute Response",
+                    "value": {
+                      "executionBlockSearchResponse": {
+                        "location": {
+                          "technology": "XRP Ledger",
+                          "network": "Testnet"
+                        },
+                        "block": {
+                          "blockId": "7AD0BFBE6757A0C5B6B89EA0ED8F6D68545563525A376E2524148D98F960C879",
+                          "number": 22046922,
+                          "hashes": [
+                            {
+                              "type": "BLOCK_HASH",
+                              "value": "7AD0BFBE6757A0C5B6B89EA0ED8F6D68545563525A376E2524148D98F960C879"
+                            },
+                            {
+                              "type": "STATE_HASH",
+                              "value": "42CB597D6EFE93EB2367AC44D7C06D8E054FADB63EAD2CEBAB26FF2A8F8DE69A"
+                            },
+                            {
+                              "type": "TRANSACTIONS_HASH",
+                              "value": "0000000000000000000000000000000000000000000000000000000000000000"
+                            }
+                          ],
+                          "linkedBlocks": {
+                            "parent": "4968A53C996DD227038C9D60CC8213F5C0A17D8A9483198344C39D81F37DE4B6",
+                            "child": "8EA6177A0EC009DDFF6C8479ACBC6BB3A3570C43E40EDA3333FE2144513EFDB2"
+                          },
+                          "numberOfTransactions": 0,
+                          "timestamp": "1624007506",
+                          "nativeData": {
+                            "closeTimeResolution": 10,
+                            "ledgerHash": "7AD0BFBE6757A0C5B6B89EA0ED8F6D68545563525A376E2524148D98F960C879",
+                            "closeFlags": 0,
+                            "parentLedgerHash": "4968A53C996DD227038C9D60CC8213F5C0A17D8A9483198344C39D81F37DE4B6",
+                            "totalDrops": "99999631436700408",
+                            "closeTime": "2021-10-21T13:34:21.000Z",
+                            "parentCloseTime": "2021-10-21T13:34:20.000Z",
+                            "stateHash": "42CB597D6EFE93EB2367AC44D7C06D8E054FADB63EAD2CEBAB26FF2A8F8DE69A",
+                            "ledgerVersion": 22046922,
+                            "transactionHash": "0000000000000000000000000000000000000000000000000000000000000000"
+                          }
+                        },
+                        "status": {
+                          "code": "BLK1003",
+                          "description": "Block is confirmed in the blockchain.",
+                          "message": "Block is successful.",
+                          "value": "SUCCESSFUL",
+                          "timestamp": "1624007506"
+                        }
+                      },
+                      "preparationBlockSearchResponse": {
+                        "gatewayFee": {
+                          "amount": "0",
+                          "unit": "QNT"
+                        },
+                        "requestId": "a9946b1f-bfa3-46e2-bdff-d5836740f88a"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDetails"
+                },
+                "examples": {
+                  "Block not valid": {
+                    "description": "Block not valid",
+                    "value": {
+                      "code": "BLK04003",
+                      "description": "blockId 0x90f89636cc04a82d25fad013d7bdf03ceaf2d27d56f0975566017eeebe7c41c7v is not a valid block for ethereum on ropsten testnet",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Technology or network not supported": {
+                    "description": "Technology or network not supported",
+                    "value": {
+                      "code": "TXN04005",
+                      "description": "Overledger does not currently support the requested technology or network.",
+                      "category": "Validation Error"
+                    }
+                  },
+                  "Block id param must be provided": {
+                    "description": "Block id param must be provided",
+                    "value": {
+                      "code": "BLK04001",
+                      "description": "API request must include a valid path parameter of either blockId, number or latest.",
+                      "category": "Validation Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorised",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorList"
+                },
+                "examples": {
+                  "Not Authorized": {
+                    "description": "Not Authorized",
+                    "value": {
+                      "errors": [
+                        {
+                          "code": 401,
+                          "message": "Not authorised for the access to the endpoint!"
+                        }
+                      ],
+                      "errorCount": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on our side",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorSchema"
+                },
+                "examples": {
+                  "500 Something went wrong on our side": {
+                    "description": "500 Something went wrong on our side",
+                    "value": {
+                      "path": "/v2/autoexecution/search/block/10463066",
+                      "error": "Internal Server Error",
+                      "message": "No message available",
+                      "timestamp": "2021-11-02T13:09:53.874+0000",
+                      "status": 500
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "minLength": 0,
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
+              "type": "string",
+              "maxLength": 5010
+            },
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Latest Block": {
+                "description": "Search latest block",
+                "value": "latest"
+              },
+              "Number": {
+                "description": "Search block by Block ID",
+                "value": 54678
+              },
+              "Block Hash": {
+                "description": "Search block by Block Hash",
+                "value": "0x1032d0f10fad4a5ada02960f552063e862e952d7d808ecf43b25a4f26d640a56"
+              }
+            },
+            "in": "path",
+            "name": "blockId",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Block Search"
         ]
       }
     },
@@ -5832,9 +8101,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -5952,9 +8221,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -6075,9 +8344,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -6202,9 +8471,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -6365,9 +8634,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -6403,6 +8672,7 @@
                   "Execute Response": {
                     "description": "Execute Response",
                     "value": {
+                      "utxoId": "96ad36032c3ea15dcd05388910e37c2d81d9904035910a32b6b15ea1664a72b8",
                       "destination": [
                         {
                           "smartContract": {
@@ -6423,16 +8693,13 @@
                         "technology": "Bitcoin",
                         "network": "Bitcoin Testnet"
                       },
-                      "timestamp": {
-                        "nano": 0,
-                        "epochSecond": 1620210761
-                      },
+                      "timestamp": "1624007506",
                       "status": {
                         "code": "SPENT",
                         "description": "The UTXO has been spent in a transaction that is either in pending or successful status.",
                         "message": "UTXO has been spent.",
                         "value": "UTX1002",
-                        "timestamp": "2021-05-05T12:17:02Z"
+                        "timestamp": "1624007506"
                       },
                       "nativeData": {
                         "vout": [
@@ -6528,9 +8795,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -6610,7 +8877,7 @@
                         "description": "The transaction has been successfully broadcasted to the network. The status will next be updated after a sufficient block number has been reached. At this point we can be confident that the transaction will be successful or will have failed.",
                         "message": "Transaction is pending.",
                         "value": "PENDING",
-                        "timestamp": "2021-09-16T11:19:57.495855Z"
+                        "timestamp": "1624007506"
                       }
                     }
                   }
@@ -6689,9 +8956,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -6839,9 +9106,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -6875,8 +9142,8 @@
                   "description": "Transaction Search",
                   "value": {
                     "location": {
-                      "technology": "Bitcoin",
-                      "network": "Testnet"
+                      "technology": "Ethereum",
+                      "network": "Ropsten Testnet"
                     }
                   }
                 }
@@ -6961,9 +9228,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -7148,9 +9415,9 @@
           {
             "schema": {
               "minLength": 0,
-              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,4096}$",
+              "pattern": "^Bearer [A-Za-z0-9\\-_. ]{1,5010}$",
               "type": "string",
-              "maxLength": 4096
+              "maxLength": 5010
             },
             "in": "header",
             "name": "Authorization",
@@ -7167,7 +9434,7 @@
     "x-logo": {
       "url": "https://developer.quant.network/images/quant_logo_white.png"
     },
-    "description": "Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->",
+    "description": "Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->",
     "title": "Quant Overledger API",
     "version": "2.0"
   },

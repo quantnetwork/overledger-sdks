@@ -4,9 +4,42 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**auto_execute_search_transaction_request**](TransactionSearchApi.md#auto_execute_search_transaction_request) | **POST** /v2/autoexecution/search/transaction | Prepare and automatically execute a search for a transaction on a DLT.
 [**execute_prepared_search_request_transaction**](TransactionSearchApi.md#execute_prepared_search_request_transaction) | **POST** /v2/execution/search/transaction | Execute a search for a transaction on a DLT
 [**prepare_search_request**](TransactionSearchApi.md#prepare_search_request) | **POST** /v2/preparation/search/transaction | Prepare a search for a transaction on a DLT
 
+
+
+## auto_execute_search_transaction_request
+
+> crate::models::PrepareAndExecuteTransactionResponse auto_execute_search_transaction_request(authorization, transaction_id, prepare_search_schema)
+Prepare and automatically execute a search for a transaction on a DLT.
+
+Generates a request ID and automatically executes the transaction search on the requested DLT.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**authorization** | **String** |  | [required] |
+**transaction_id** | **String** |  | [required] |
+**prepare_search_schema** | [**PrepareSearchSchema**](PrepareSearchSchema.md) |  | [required] |
+
+### Return type
+
+[**crate::models::PrepareAndExecuteTransactionResponse**](PrepareAndExecuteTransactionResponse.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## execute_prepared_search_request_transaction

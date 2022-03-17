@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **LinkedBlocks** | [**LinkedBlocks**](LinkedBlocks.md) |  | [optional] 
 **NumberOfTransactions** | **int** |  | [optional] 
 **Message** | **string** |  | [optional] 
-**Timestamp** | **int** |  | [optional] 
+**Timestamp** | **string** |  | [optional] 
 **NativeData** | **Object** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -2,7 +2,7 @@
 
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -44,7 +44,7 @@ use base ("Class::Accessor", "Class::Data::Inheritable");
 
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -167,16 +167,9 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
-    'value' => {
-        datatype => 'double',
-        base_name => 'value',
-        description => '',
-        format => '',
-        read_only => '',
-            },
-    'address_id' => {
+    'amount' => {
         datatype => 'string',
-        base_name => 'addressId',
+        base_name => 'amount',
         description => '',
         format => '',
         read_only => '',
@@ -185,14 +178,12 @@ __PACKAGE__->method_documentation({
 
 __PACKAGE__->openapi_types( {
     'unit' => 'string',
-    'value' => 'double',
-    'address_id' => 'string'
+    'amount' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
     'unit' => 'unit',
-    'value' => 'value',
-    'address_id' => 'addressId'
+    'amount' => 'amount'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

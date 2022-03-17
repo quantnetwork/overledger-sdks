@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -38,7 +38,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="type">type.</param>
         /// <param name="timestamp">timestamp.</param>
         /// <param name="status">status.</param>
-        public ResourceMonitoringDetails(Guid resourceMonitoringId = default(Guid), Location location = default(Location), string type = default(string), DateTime timestamp = default(DateTime), Status status = default(Status))
+        public ResourceMonitoringDetails(Guid resourceMonitoringId = default(Guid), Location location = default(Location), string type = default(string), string timestamp = default(string), Status status = default(Status))
         {
             this.ResourceMonitoringId = resourceMonitoringId;
             this.Location = location;
@@ -69,7 +69,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public DateTime Timestamp { get; set; }
+        public string Timestamp { get; set; }
 
         /// <summary>
         /// Gets or Sets Status

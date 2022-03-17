@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Balances** | Pointer to [**[]AddressBalanceResponse**](AddressBalanceResponse.md) |  | [optional] 
 **Location** | Pointer to [**Location**](Location.md) |  | [optional] 
+**Timestamp** | Pointer to **string** |  | [optional] 
+**AddressId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -75,6 +77,56 @@ SetLocation sets Location field to given value.
 `func (o *ExecuteSearchBalanceResponse) HasLocation() bool`
 
 HasLocation returns a boolean if a field has been set.
+
+### GetTimestamp
+
+`func (o *ExecuteSearchBalanceResponse) GetTimestamp() string`
+
+GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
+
+### GetTimestampOk
+
+`func (o *ExecuteSearchBalanceResponse) GetTimestampOk() (*string, bool)`
+
+GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimestamp
+
+`func (o *ExecuteSearchBalanceResponse) SetTimestamp(v string)`
+
+SetTimestamp sets Timestamp field to given value.
+
+### HasTimestamp
+
+`func (o *ExecuteSearchBalanceResponse) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
+
+### GetAddressId
+
+`func (o *ExecuteSearchBalanceResponse) GetAddressId() string`
+
+GetAddressId returns the AddressId field if non-nil, zero value otherwise.
+
+### GetAddressIdOk
+
+`func (o *ExecuteSearchBalanceResponse) GetAddressIdOk() (*string, bool)`
+
+GetAddressIdOk returns a tuple with the AddressId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddressId
+
+`func (o *ExecuteSearchBalanceResponse) SetAddressId(v string)`
+
+SetAddressId sets AddressId field to given value.
+
+### HasAddressId
+
+`func (o *ExecuteSearchBalanceResponse) HasAddressId() bool`
+
+HasAddressId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

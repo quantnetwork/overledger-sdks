@@ -1,6 +1,6 @@
 # Go API client for openapi
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 # Authentication
 
@@ -82,12 +82,17 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AddressSearchApi* | [**AutoExecuteSearchAddressBalanceRequest**](docs/AddressSearchApi.md#autoexecutesearchaddressbalancerequest) | **Post** /v2/autoexecution/search/address/balance/{addressId} | Prepare and automatically execute a search for an address balance on a DLT.
 *AddressSearchApi* | [**ExecutePreparedSearchRequestAddressBalance**](docs/AddressSearchApi.md#executepreparedsearchrequestaddressbalance) | **Post** /v2/execution/search/address/balance | Execute a search for an address balance on a DLT
 *AddressSearchApi* | [**ExecutePreparedSearchRequestAddressSequence**](docs/AddressSearchApi.md#executepreparedsearchrequestaddresssequence) | **Post** /v2/execution/search/address/sequence | Execute a search for an address sequence on a DLT
 *AddressSearchApi* | [**PrepareAddressBalanceSearchRequest**](docs/AddressSearchApi.md#prepareaddressbalancesearchrequest) | **Post** /v2/preparation/search/address/balance/{addressId} | Prepare Search for an Address Balance.
 *AddressSearchApi* | [**PrepareAddressSequenceSearchRequest**](docs/AddressSearchApi.md#prepareaddresssequencesearchrequest) | **Post** /v2/preparation/search/address/sequence/{addressId} | Prepare Search for an Address Sequence.
+*AddressSearchApi* | [**PrepareAddressSequenceSearchRequest1**](docs/AddressSearchApi.md#prepareaddresssequencesearchrequest1) | **Post** /v2/autoexecution/search/address/sequence/{addressId} | Prepare and automatically execute a search for an Address Sequence.
+*BlockSearchApi* | [**AutoExecuteSearchBlockRequest**](docs/BlockSearchApi.md#autoexecutesearchblockrequest) | **Post** /v2/autoexecution/search/block/{blockId} | Prepare and automatically execute a search for a block on a DLT.
 *BlockSearchApi* | [**ExecutePreparedSearchRequestBlock**](docs/BlockSearchApi.md#executepreparedsearchrequestblock) | **Post** /v2/execution/search/block | Execute a search for a block on a DLT
 *BlockSearchApi* | [**PrepareSearchBlockByBlockId**](docs/BlockSearchApi.md#preparesearchblockbyblockid) | **Post** /v2/preparation/search/block/{blockId} | Prepare Search Block by Block Id.
+*CreateAQRC20CreditTransactionApi* | [**PrepareCreditRequest**](docs/CreateAQRC20CreditTransactionApi.md#preparecreditrequest) | **Post** /v2/preparation/credit | Prepare a QRC20 token credit transaction for signing
+*CreateAQRC20DebitTransactionApi* | [**PrepareDebitRequest**](docs/CreateAQRC20DebitTransactionApi.md#preparedebitrequest) | **Post** /v2/preparation/debit | Prepare a QRC20 token debit transaction for signing
 *CreateSubscriptionApi* | [**Subscription**](docs/CreateSubscriptionApi.md#subscription) | **Post** /v2/webhook/subscription | Create a subscription for a transaction or monitored resource 
 *CreateTransactionApi* | [**ExecutePreparedRequestNativeTransaction**](docs/CreateTransactionApi.md#executepreparedrequestnativetransaction) | **Post** /v2/execution/nativetransaction | Execute a native transaction on the DLT
 *CreateTransactionApi* | [**ExecutePreparedRequestTransaction**](docs/CreateTransactionApi.md#executepreparedrequesttransaction) | **Post** /v2/execution/transaction | Execute a transaction on the DLT
@@ -109,10 +114,13 @@ Class | Method | HTTP request | Description
 *ManageSubscriptionApi* | [**UpdateSubscription**](docs/ManageSubscriptionApi.md#updatesubscription) | **Patch** /v2/webhook/subscription/{subscriptionId} | Update a specific subscription created by your application
 *MonitorAResourceApi* | [**ResourceMonitoringAddress**](docs/MonitorAResourceApi.md#resourcemonitoringaddress) | **Post** /v2/resourcemonitoring/address | Monitor an address for incoming and outgoing transactions
 *MonitorAResourceApi* | [**TrackAndSubscribeEvent**](docs/MonitorAResourceApi.md#trackandsubscribeevent) | **Post** /v2/resourcemonitoring/smartcontractevent | Monitor a smart contract for an event
+*SmartContractSearchApi* | [**AutoExecuteSearchSmartContractQueryRequest**](docs/SmartContractSearchApi.md#autoexecutesearchsmartcontractqueryrequest) | **Post** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 *SmartContractSearchApi* | [**ExecutePreparedSearchRequest**](docs/SmartContractSearchApi.md#executepreparedsearchrequest) | **Post** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 *SmartContractSearchApi* | [**PrepareSmartContractQueryRequest**](docs/SmartContractSearchApi.md#preparesmartcontractqueryrequest) | **Post** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
+*TransactionSearchApi* | [**AutoExecuteSearchTransactionRequest**](docs/TransactionSearchApi.md#autoexecutesearchtransactionrequest) | **Post** /v2/autoexecution/search/transaction | Prepare and automatically execute a search for a transaction on a DLT.
 *TransactionSearchApi* | [**ExecutePreparedSearchRequestTransaction**](docs/TransactionSearchApi.md#executepreparedsearchrequesttransaction) | **Post** /v2/execution/search/transaction | Execute a search for a transaction on a DLT
 *TransactionSearchApi* | [**PrepareSearchRequest**](docs/TransactionSearchApi.md#preparesearchrequest) | **Post** /v2/preparation/search/transaction | Prepare a search for a transaction on a DLT
+*UTXOStatusSearchApi* | [**AutoExecuteSearchUtxoRequest**](docs/UTXOStatusSearchApi.md#autoexecutesearchutxorequest) | **Post** /v2/autoexecution/search/utxo/{utxoId} | Prepare and automatically execute a search for a UTXO on a DLT.
 *UTXOStatusSearchApi* | [**ExecuteUTXOPreparedSearchRequest**](docs/UTXOStatusSearchApi.md#executeutxopreparedsearchrequest) | **Post** /v2/execution/search/utxo | Execute a search for UTXO state on a DLT
 *UTXOStatusSearchApi* | [**PrepareSearchUTXOState**](docs/UTXOStatusSearchApi.md#preparesearchutxostate) | **Post** /v2/preparation/search/utxo/{utxoId} | Prepare Search for a UTXO State.
 
@@ -123,12 +131,18 @@ Class | Method | HTTP request | Description
  - [AddressMonitoringDetailsSchema](docs/AddressMonitoringDetailsSchema.md)
  - [AddressMonitoringRequestSchema](docs/AddressMonitoringRequestSchema.md)
  - [AddressMonitoringResponseSchema](docs/AddressMonitoringResponseSchema.md)
+ - [ApproveRequestDetailsSchema](docs/ApproveRequestDetailsSchema.md)
+ - [AutoExecSearchAddressSequenceResponseSchema](docs/AutoExecSearchAddressSequenceResponseSchema.md)
+ - [AutoExecuteSearchAddressBalanceResponseSchema](docs/AutoExecuteSearchAddressBalanceResponseSchema.md)
+ - [AutoExecuteSearchBlockResponseSchema](docs/AutoExecuteSearchBlockResponseSchema.md)
+ - [AutoExecuteSearchUTXOResponseSchema](docs/AutoExecuteSearchUTXOResponseSchema.md)
  - [Block](docs/Block.md)
  - [BlockHash](docs/BlockHash.md)
  - [BlockSize](docs/BlockSize.md)
  - [CreateSmartContractMonitoringSchema](docs/CreateSmartContractMonitoringSchema.md)
  - [CreateSubscriptionRequestSchema](docs/CreateSubscriptionRequestSchema.md)
  - [CreateSubscriptionResponseSchema](docs/CreateSubscriptionResponseSchema.md)
+ - [CreditRequestDetailsSchema](docs/CreditRequestDetailsSchema.md)
  - [DeleteResourceMonitoringAddressSchema](docs/DeleteResourceMonitoringAddressSchema.md)
  - [Destination](docs/Destination.md)
  - [DestinationPaymentSchema](docs/DestinationPaymentSchema.md)
@@ -140,6 +154,7 @@ Class | Method | HTTP request | Description
  - [ExecuteSearchBlockResponse](docs/ExecuteSearchBlockResponse.md)
  - [ExecuteSearchSequenceResponse](docs/ExecuteSearchSequenceResponse.md)
  - [ExecuteSearchTransactionResponse](docs/ExecuteSearchTransactionResponse.md)
+ - [ExecuteSearchUTXOResponse](docs/ExecuteSearchUTXOResponse.md)
  - [ExecuteSearchUTXOResponseSchema](docs/ExecuteSearchUTXOResponseSchema.md)
  - [ExecuteSmartContractReadResponseSchema](docs/ExecuteSmartContractReadResponseSchema.md)
  - [ExecuteTransactionRequest](docs/ExecuteTransactionRequest.md)
@@ -158,9 +173,17 @@ Class | Method | HTTP request | Description
  - [OriginTransferSchema](docs/OriginTransferSchema.md)
  - [OverledgerTransactionResponseSchema](docs/OverledgerTransactionResponseSchema.md)
  - [Parameter](docs/Parameter.md)
+ - [PayeeCreditSchema](docs/PayeeCreditSchema.md)
+ - [PayerCreditSchema](docs/PayerCreditSchema.md)
  - [Payment](docs/Payment.md)
  - [PaymentRequestDetailsSchema](docs/PaymentRequestDetailsSchema.md)
  - [PaymentSchema](docs/PaymentSchema.md)
+ - [PrepareAndExecuteBalanceDetails](docs/PrepareAndExecuteBalanceDetails.md)
+ - [PrepareAndExecuteOverledgerErrorResponse](docs/PrepareAndExecuteOverledgerErrorResponse.md)
+ - [PrepareAndExecuteSearchAddressBalanceResponse](docs/PrepareAndExecuteSearchAddressBalanceResponse.md)
+ - [PrepareAndExecuteTransactionResponse](docs/PrepareAndExecuteTransactionResponse.md)
+ - [PrepareApproveDebitTransactionRequestSchema](docs/PrepareApproveDebitTransactionRequestSchema.md)
+ - [PrepareCreditTransactionRequestSchema](docs/PrepareCreditTransactionRequestSchema.md)
  - [PrepareNativeTransactionRequestSchema](docs/PrepareNativeTransactionRequestSchema.md)
  - [PreparePaymentTransactionRequestSchema](docs/PreparePaymentTransactionRequestSchema.md)
  - [PrepareSearchResponseSchema](docs/PrepareSearchResponseSchema.md)

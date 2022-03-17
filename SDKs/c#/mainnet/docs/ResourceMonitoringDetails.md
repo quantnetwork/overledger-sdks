@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **ResourceMonitoringId** | **Guid** |  | [optional] 
 **Location** | [**Location**](Location.md) |  | [optional] 
 **Type** | **string** |  | [optional] 
-**Timestamp** | **DateTime** |  | [optional] 
+**Timestamp** | **string** |  | [optional] 
 **Status** | [**Status**](Status.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)

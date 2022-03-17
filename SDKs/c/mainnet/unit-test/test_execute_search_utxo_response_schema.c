@@ -26,6 +26,7 @@ execute_search_utxo_response_schema_t* instantiate_execute_search_utxo_response_
   execute_search_utxo_response_schema_t* execute_search_utxo_response_schema = NULL;
   if (include_optional) {
     execute_search_utxo_response_schema = execute_search_utxo_response_schema_create(
+      "0",
       list_create(),
        // false, not to have infinite recursion
       instantiate_location(0),
@@ -38,6 +39,7 @@ execute_search_utxo_response_schema_t* instantiate_execute_search_utxo_response_
     );
   } else {
     execute_search_utxo_response_schema = execute_search_utxo_response_schema_create(
+      "0",
       list_create(),
       NULL,
       NULL,

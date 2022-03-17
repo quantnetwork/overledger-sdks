@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -34,7 +34,7 @@ import org.openapitools.client.model.Payment;
  * Smallest unit of a work process related to interactions with distributed ledgers
  */
 @ApiModel(description = "Smallest unit of a work process related to interactions with distributed ledgers")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-01T15:18:10.790747Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
 public class Transaction {
   public static final String SERIALIZED_NAME_SIGNATURE = "signature";
   @SerializedName(SERIALIZED_NAME_SIGNATURE)
@@ -72,13 +72,13 @@ public class Transaction {
   @SerializedName(SERIALIZED_NAME_ENCODED)
   private List<String> encoded = null;
 
-  public static final String SERIALIZED_NAME_NATIVE_DATA = "nativeData";
-  @SerializedName(SERIALIZED_NAME_NATIVE_DATA)
-  private Object nativeData;
-
   public static final String SERIALIZED_NAME_EXTRA_FIELDS = "extraFields";
   @SerializedName(SERIALIZED_NAME_EXTRA_FIELDS)
   private Object extraFields;
+
+  public static final String SERIALIZED_NAME_NATIVE_DATA = "nativeData";
+  @SerializedName(SERIALIZED_NAME_NATIVE_DATA)
+  private Object nativeData;
 
 
   public Transaction signature(List<String> signature) {
@@ -328,29 +328,6 @@ public class Transaction {
   }
 
 
-  public Transaction nativeData(Object nativeData) {
-    
-    this.nativeData = nativeData;
-    return this;
-  }
-
-   /**
-   * Get nativeData
-   * @return nativeData
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Object getNativeData() {
-    return nativeData;
-  }
-
-
-  public void setNativeData(Object nativeData) {
-    this.nativeData = nativeData;
-  }
-
-
   public Transaction extraFields(Object extraFields) {
     
     this.extraFields = extraFields;
@@ -374,6 +351,29 @@ public class Transaction {
   }
 
 
+  public Transaction nativeData(Object nativeData) {
+    
+    this.nativeData = nativeData;
+    return this;
+  }
+
+   /**
+   * Get nativeData
+   * @return nativeData
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Object getNativeData() {
+    return nativeData;
+  }
+
+
+  public void setNativeData(Object nativeData) {
+    this.nativeData = nativeData;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -392,13 +392,13 @@ public class Transaction {
         Objects.equals(this.message, transaction.message) &&
         Objects.equals(this.transactionId, transaction.transactionId) &&
         Objects.equals(this.encoded, transaction.encoded) &&
-        Objects.equals(this.nativeData, transaction.nativeData) &&
-        Objects.equals(this.extraFields, transaction.extraFields);
+        Objects.equals(this.extraFields, transaction.extraFields) &&
+        Objects.equals(this.nativeData, transaction.nativeData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(signature, origin, fee, destination, signed, totalPaymentAmount, message, transactionId, encoded, nativeData, extraFields);
+    return Objects.hash(signature, origin, fee, destination, signed, totalPaymentAmount, message, transactionId, encoded, extraFields, nativeData);
   }
 
   @Override
@@ -414,8 +414,8 @@ public class Transaction {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    transactionId: ").append(toIndentedString(transactionId)).append("\n");
     sb.append("    encoded: ").append(toIndentedString(encoded)).append("\n");
-    sb.append("    nativeData: ").append(toIndentedString(nativeData)).append("\n");
     sb.append("    extraFields: ").append(toIndentedString(extraFields)).append("\n");
+    sb.append("    nativeData: ").append(toIndentedString(nativeData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

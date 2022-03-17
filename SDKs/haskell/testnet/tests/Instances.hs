@@ -111,8 +111,7 @@ genAddressBalanceResponse :: Int -> Gen AddressBalanceResponse
 genAddressBalanceResponse n =
   AddressBalanceResponse
     <$> arbitraryReducedMaybe n -- addressBalanceResponseUnit :: Maybe Text
-    <*> arbitraryReducedMaybe n -- addressBalanceResponseValue :: Maybe Double
-    <*> arbitraryReducedMaybe n -- addressBalanceResponseAddressId :: Maybe Text
+    <*> arbitraryReducedMaybe n -- addressBalanceResponseAmount :: Maybe Text
   
 instance Arbitrary AddressMonitoringDetailsSchema where
   arbitrary = sized genAddressMonitoringDetailsSchema
@@ -145,6 +144,56 @@ genAddressMonitoringResponseSchema n =
     <*> arbitraryReducedMaybe n -- addressMonitoringResponseSchemaResourceMonitoring :: Maybe ResourceMonitoringDetails
     <*> arbitraryReducedMaybe n -- addressMonitoringResponseSchemaSubscription :: Maybe ResourceMonitoringSubscription
   
+instance Arbitrary ApproveRequestDetailsSchema where
+  arbitrary = sized genApproveRequestDetailsSchema
+
+genApproveRequestDetailsSchema :: Int -> Gen ApproveRequestDetailsSchema
+genApproveRequestDetailsSchema n =
+  ApproveRequestDetailsSchema
+    <$> arbitraryReducedMaybe n -- approveRequestDetailsSchemaMandate :: Maybe [PayeeCreditSchema]
+    <*> arbitraryReducedMaybe n -- approveRequestDetailsSchemaOverledgerSigningType :: Maybe Text
+    <*> arbitraryReducedMaybe n -- approveRequestDetailsSchemaPayer :: Maybe [PayerCreditSchema]
+  
+instance Arbitrary AutoExecSearchAddressSequenceResponseSchema where
+  arbitrary = sized genAutoExecSearchAddressSequenceResponseSchema
+
+genAutoExecSearchAddressSequenceResponseSchema :: Int -> Gen AutoExecSearchAddressSequenceResponseSchema
+genAutoExecSearchAddressSequenceResponseSchema n =
+  AutoExecSearchAddressSequenceResponseSchema
+    <$> arbitraryReducedMaybe n -- autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse :: Maybe PrepareSearchResponseSchema
+    <*> arbitraryReducedMaybe n -- autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse :: Maybe PrepareAndExecuteOverledgerErrorResponse
+    <*> arbitraryReducedMaybe n -- autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponse :: Maybe ExecuteSearchSequenceResponse
+  
+instance Arbitrary AutoExecuteSearchAddressBalanceResponseSchema where
+  arbitrary = sized genAutoExecuteSearchAddressBalanceResponseSchema
+
+genAutoExecuteSearchAddressBalanceResponseSchema :: Int -> Gen AutoExecuteSearchAddressBalanceResponseSchema
+genAutoExecuteSearchAddressBalanceResponseSchema n =
+  AutoExecuteSearchAddressBalanceResponseSchema
+    <$> arbitraryReducedMaybe n -- autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse :: Maybe PrepareAndExecuteSearchAddressBalanceResponse
+    <*> arbitraryReducedMaybe n -- autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse :: Maybe PrepareAndExecuteOverledgerErrorResponse
+    <*> arbitraryReducedMaybe n -- autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponse :: Maybe PrepareSearchResponseSchema
+  
+instance Arbitrary AutoExecuteSearchBlockResponseSchema where
+  arbitrary = sized genAutoExecuteSearchBlockResponseSchema
+
+genAutoExecuteSearchBlockResponseSchema :: Int -> Gen AutoExecuteSearchBlockResponseSchema
+genAutoExecuteSearchBlockResponseSchema n =
+  AutoExecuteSearchBlockResponseSchema
+    <$> arbitraryReducedMaybe n -- autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse :: Maybe ExecuteSearchBlockResponse
+    <*> arbitraryReducedMaybe n -- autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse :: Maybe PrepareAndExecuteOverledgerErrorResponse
+    <*> arbitraryReducedMaybe n -- autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponse :: Maybe PrepareSearchResponseSchema
+  
+instance Arbitrary AutoExecuteSearchUTXOResponseSchema where
+  arbitrary = sized genAutoExecuteSearchUTXOResponseSchema
+
+genAutoExecuteSearchUTXOResponseSchema :: Int -> Gen AutoExecuteSearchUTXOResponseSchema
+genAutoExecuteSearchUTXOResponseSchema n =
+  AutoExecuteSearchUTXOResponseSchema
+    <$> arbitraryReducedMaybe n -- autoExecuteSearchUTXOResponseSchemaExecutionUtxoSearchResponse :: Maybe ExecuteSearchUTXOResponse
+    <*> arbitraryReducedMaybe n -- autoExecuteSearchUTXOResponseSchemaPrepareAndExecuteOverledgerErrorResponse :: Maybe PrepareAndExecuteOverledgerErrorResponse
+    <*> arbitraryReducedMaybe n -- autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponse :: Maybe PrepareTransactionResponse
+  
 instance Arbitrary Block where
   arbitrary = sized genBlock
 
@@ -159,7 +208,7 @@ genBlock n =
     <*> arbitraryReducedMaybe n -- blockLinkedBlocks :: Maybe LinkedBlocks
     <*> arbitraryReducedMaybe n -- blockNumberOfTransactions :: Maybe Int
     <*> arbitraryReducedMaybe n -- blockMessage :: Maybe Text
-    <*> arbitraryReducedMaybe n -- blockTimestamp :: Maybe Int
+    <*> arbitraryReducedMaybe n -- blockTimestamp :: Maybe Text
     <*> arbitraryReducedMaybeValue n -- blockNativeData :: Maybe A.Value
   
 instance Arbitrary BlockHash where
@@ -209,6 +258,17 @@ genCreateSubscriptionResponseSchema n =
   CreateSubscriptionResponseSchema
     <$> arbitraryReducedMaybe n -- createSubscriptionResponseSchemaScubscriptionDetails :: Maybe SubscriptionDetailsSchema
     <*> arbitraryReducedMaybe n -- createSubscriptionResponseSchemaSubscriptionId :: Maybe Text
+  
+instance Arbitrary CreditRequestDetailsSchema where
+  arbitrary = sized genCreditRequestDetailsSchema
+
+genCreditRequestDetailsSchema :: Int -> Gen CreditRequestDetailsSchema
+genCreditRequestDetailsSchema n =
+  CreditRequestDetailsSchema
+    <$> arbitraryReducedMaybe n -- creditRequestDetailsSchemaPayee :: Maybe [PayeeCreditSchema]
+    <*> arbitraryReducedMaybe n -- creditRequestDetailsSchemaOverledgerSigningType :: Maybe Text
+    <*> arbitraryReducedMaybe n -- creditRequestDetailsSchemaMessage :: Maybe Text
+    <*> arbitraryReducedMaybe n -- creditRequestDetailsSchemaPayer :: Maybe [PayerCreditSchema]
   
 instance Arbitrary DeleteResourceMonitoringAddressSchema where
   arbitrary = sized genDeleteResourceMonitoringAddressSchema
@@ -286,6 +346,8 @@ genExecuteSearchBalanceResponse n =
   ExecuteSearchBalanceResponse
     <$> arbitraryReducedMaybe n -- executeSearchBalanceResponseBalances :: Maybe [AddressBalanceResponse]
     <*> arbitraryReducedMaybe n -- executeSearchBalanceResponseLocation :: Maybe Location
+    <*> arbitraryReducedMaybe n -- executeSearchBalanceResponseTimestamp :: Maybe Text
+    <*> arbitraryReducedMaybe n -- executeSearchBalanceResponseAddressId :: Maybe Text
   
 instance Arbitrary ExecuteSearchBlockResponse where
   arbitrary = sized genExecuteSearchBlockResponse
@@ -305,6 +367,7 @@ genExecuteSearchSequenceResponse n =
   ExecuteSearchSequenceResponse
     <$> arbitraryReducedMaybe n -- executeSearchSequenceResponseSequence :: Maybe Text
     <*> arbitraryReducedMaybe n -- executeSearchSequenceResponseLocation :: Maybe Location
+    <*> arbitraryReducedMaybe n -- executeSearchSequenceResponseTimestamp :: Maybe Text
     <*> arbitraryReducedMaybe n -- executeSearchSequenceResponseAddressId :: Maybe Text
   
 instance Arbitrary ExecuteSearchTransactionResponse where
@@ -316,9 +379,22 @@ genExecuteSearchTransactionResponse n =
     <$> arbitraryReducedMaybe n -- executeSearchTransactionResponseLocation :: Maybe Location
     <*> arbitraryReducedMaybe n -- executeSearchTransactionResponseType :: Maybe Text
     <*> arbitraryReducedMaybe n -- executeSearchTransactionResponseTransaction :: Maybe Transaction
-    <*> arbitraryReducedMaybe n -- executeSearchTransactionResponseTimestamp :: Maybe DateTime
+    <*> arbitraryReducedMaybe n -- executeSearchTransactionResponseTimestamp :: Maybe Text
     <*> arbitraryReducedMaybe n -- executeSearchTransactionResponseStatus :: Maybe Status
     <*> arbitraryReducedMaybeValue n -- executeSearchTransactionResponseExtraFields :: Maybe A.Value
+  
+instance Arbitrary ExecuteSearchUTXOResponse where
+  arbitrary = sized genExecuteSearchUTXOResponse
+
+genExecuteSearchUTXOResponse :: Int -> Gen ExecuteSearchUTXOResponse
+genExecuteSearchUTXOResponse n =
+  ExecuteSearchUTXOResponse
+    <$> arbitraryReducedMaybe n -- executeSearchUTXOResponseUtxoId :: Maybe Text
+    <*> arbitraryReducedMaybe n -- executeSearchUTXOResponseDestination :: Maybe [Destination]
+    <*> arbitraryReducedMaybe n -- executeSearchUTXOResponseLocation :: Maybe Location
+    <*> arbitraryReducedMaybe n -- executeSearchUTXOResponseTimestamp :: Maybe Text
+    <*> arbitraryReducedMaybe n -- executeSearchUTXOResponseStatus :: Maybe Status
+    <*> arbitraryReducedMaybeValue n -- executeSearchUTXOResponseNativeData :: Maybe A.Value
   
 instance Arbitrary ExecuteSearchUTXOResponseSchema where
   arbitrary = sized genExecuteSearchUTXOResponseSchema
@@ -326,7 +402,8 @@ instance Arbitrary ExecuteSearchUTXOResponseSchema where
 genExecuteSearchUTXOResponseSchema :: Int -> Gen ExecuteSearchUTXOResponseSchema
 genExecuteSearchUTXOResponseSchema n =
   ExecuteSearchUTXOResponseSchema
-    <$> arbitraryReducedMaybe n -- executeSearchUTXOResponseSchemaDestination :: Maybe [UTXODestination]
+    <$> arbitraryReducedMaybe n -- executeSearchUTXOResponseSchemaUtxoId :: Maybe Text
+    <*> arbitraryReducedMaybe n -- executeSearchUTXOResponseSchemaDestination :: Maybe [UTXODestination]
     <*> arbitraryReducedMaybe n -- executeSearchUTXOResponseSchemaLocation :: Maybe Location
     <*> arbitraryReducedMaybe n -- executeSearchUTXOResponseSchemaTimestamp :: Maybe UTXOTimestampSchema
     <*> arbitraryReducedMaybe n -- executeSearchUTXOResponseSchemaStatus :: Maybe Status
@@ -509,6 +586,23 @@ genParameter n =
     <*> arbitraryReducedMaybeValue n -- parameterValue :: Maybe A.Value
     <*> arbitraryReducedMaybe n -- parameterKey :: Maybe Text
   
+instance Arbitrary PayeeCreditSchema where
+  arbitrary = sized genPayeeCreditSchema
+
+genPayeeCreditSchema :: Int -> Gen PayeeCreditSchema
+genPayeeCreditSchema n =
+  PayeeCreditSchema
+    <$> arbitraryReducedMaybe n -- payeeCreditSchemaPayment :: Maybe PaymentSchema
+    <*> arbitraryReducedMaybe n -- payeeCreditSchemaPayeeId :: Maybe Text
+  
+instance Arbitrary PayerCreditSchema where
+  arbitrary = sized genPayerCreditSchema
+
+genPayerCreditSchema :: Int -> Gen PayerCreditSchema
+genPayerCreditSchema n =
+  PayerCreditSchema
+    <$> arbitraryReducedMaybe n -- payerCreditSchemaPayerId :: Maybe Text
+  
 instance Arbitrary Payment where
   arbitrary = sized genPayment
 
@@ -538,6 +632,68 @@ genPaymentSchema n =
   PaymentSchema
     <$> arbitrary -- paymentSchemaAmount :: Text
     <*> arbitraryReducedMaybe n -- paymentSchemaUnit :: Maybe Text
+  
+instance Arbitrary PrepareAndExecuteBalanceDetails where
+  arbitrary = sized genPrepareAndExecuteBalanceDetails
+
+genPrepareAndExecuteBalanceDetails :: Int -> Gen PrepareAndExecuteBalanceDetails
+genPrepareAndExecuteBalanceDetails n =
+  PrepareAndExecuteBalanceDetails
+    <$> arbitraryReducedMaybe n -- prepareAndExecuteBalanceDetailsUnit :: Maybe Text
+    <*> arbitraryReducedMaybe n -- prepareAndExecuteBalanceDetailsAmount :: Maybe Text
+  
+instance Arbitrary PrepareAndExecuteOverledgerErrorResponse where
+  arbitrary = sized genPrepareAndExecuteOverledgerErrorResponse
+
+genPrepareAndExecuteOverledgerErrorResponse :: Int -> Gen PrepareAndExecuteOverledgerErrorResponse
+genPrepareAndExecuteOverledgerErrorResponse n =
+  PrepareAndExecuteOverledgerErrorResponse
+    <$> arbitraryReducedMaybe n -- prepareAndExecuteOverledgerErrorResponseCode :: Maybe Text
+    <*> arbitraryReducedMaybe n -- prepareAndExecuteOverledgerErrorResponseDescription :: Maybe Text
+    <*> arbitraryReducedMaybe n -- prepareAndExecuteOverledgerErrorResponseCategory :: Maybe Text
+  
+instance Arbitrary PrepareAndExecuteSearchAddressBalanceResponse where
+  arbitrary = sized genPrepareAndExecuteSearchAddressBalanceResponse
+
+genPrepareAndExecuteSearchAddressBalanceResponse :: Int -> Gen PrepareAndExecuteSearchAddressBalanceResponse
+genPrepareAndExecuteSearchAddressBalanceResponse n =
+  PrepareAndExecuteSearchAddressBalanceResponse
+    <$> arbitraryReducedMaybe n -- prepareAndExecuteSearchAddressBalanceResponseBalances :: Maybe [PrepareAndExecuteBalanceDetails]
+    <*> arbitraryReducedMaybe n -- prepareAndExecuteSearchAddressBalanceResponseLocation :: Maybe Location
+    <*> arbitraryReducedMaybe n -- prepareAndExecuteSearchAddressBalanceResponseTimestamp :: Maybe Text
+    <*> arbitraryReducedMaybe n -- prepareAndExecuteSearchAddressBalanceResponseAddressId :: Maybe Text
+  
+instance Arbitrary PrepareAndExecuteTransactionResponse where
+  arbitrary = sized genPrepareAndExecuteTransactionResponse
+
+genPrepareAndExecuteTransactionResponse :: Int -> Gen PrepareAndExecuteTransactionResponse
+genPrepareAndExecuteTransactionResponse n =
+  PrepareAndExecuteTransactionResponse
+    <$> arbitraryReducedMaybe n -- prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse :: Maybe PrepareAndExecuteOverledgerErrorResponse
+    <*> arbitraryReducedMaybe n -- prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse :: Maybe PrepareTransactionResponse
+    <*> arbitraryReducedMaybe n -- prepareAndExecuteTransactionResponseExecutionTransactionSearchResponse :: Maybe ExecuteSearchTransactionResponse
+  
+instance Arbitrary PrepareApproveDebitTransactionRequestSchema where
+  arbitrary = sized genPrepareApproveDebitTransactionRequestSchema
+
+genPrepareApproveDebitTransactionRequestSchema :: Int -> Gen PrepareApproveDebitTransactionRequestSchema
+genPrepareApproveDebitTransactionRequestSchema n =
+  PrepareApproveDebitTransactionRequestSchema
+    <$> arbitraryReducedMaybe n -- prepareApproveDebitTransactionRequestSchemaUrgency :: Maybe Text
+    <*> arbitraryReducedMaybe n -- prepareApproveDebitTransactionRequestSchemaRequestDetails :: Maybe ApproveRequestDetailsSchema
+    <*> arbitraryReducedMaybe n -- prepareApproveDebitTransactionRequestSchemaLocation :: Maybe Location
+    <*> arbitraryReducedMaybe n -- prepareApproveDebitTransactionRequestSchemaType :: Maybe Text
+  
+instance Arbitrary PrepareCreditTransactionRequestSchema where
+  arbitrary = sized genPrepareCreditTransactionRequestSchema
+
+genPrepareCreditTransactionRequestSchema :: Int -> Gen PrepareCreditTransactionRequestSchema
+genPrepareCreditTransactionRequestSchema n =
+  PrepareCreditTransactionRequestSchema
+    <$> arbitraryReducedMaybe n -- prepareCreditTransactionRequestSchemaUrgency :: Maybe Text
+    <*> arbitraryReducedMaybe n -- prepareCreditTransactionRequestSchemaRequestDetails :: Maybe CreditRequestDetailsSchema
+    <*> arbitraryReducedMaybe n -- prepareCreditTransactionRequestSchemaLocation :: Maybe Location
+    <*> arbitraryReducedMaybe n -- prepareCreditTransactionRequestSchemaType :: Maybe Text
   
 instance Arbitrary PrepareNativeTransactionRequestSchema where
   arbitrary = sized genPrepareNativeTransactionRequestSchema
@@ -652,7 +808,7 @@ genResourceMonitoringDetails n =
     <$> arbitraryReducedMaybe n -- resourceMonitoringDetailsResourceMonitoringId :: Maybe Text
     <*> arbitraryReducedMaybe n -- resourceMonitoringDetailsLocation :: Maybe Location
     <*> arbitraryReducedMaybe n -- resourceMonitoringDetailsType :: Maybe Text
-    <*> arbitraryReducedMaybe n -- resourceMonitoringDetailsTimestamp :: Maybe DateTime
+    <*> arbitraryReducedMaybe n -- resourceMonitoringDetailsTimestamp :: Maybe Text
     <*> arbitraryReducedMaybe n -- resourceMonitoringDetailsStatus :: Maybe Status
   
 instance Arbitrary ResourceMonitoringSmartContractEventDetails where
@@ -950,8 +1106,8 @@ genTransaction n =
     <*> arbitraryReducedMaybe n -- transactionMessage :: Maybe Text
     <*> arbitraryReducedMaybe n -- transactionTransactionId :: Maybe Text
     <*> arbitraryReducedMaybe n -- transactionEncoded :: Maybe [Text]
-    <*> arbitraryReducedMaybeValue n -- transactionNativeData :: Maybe A.Value
     <*> arbitraryReducedMaybeValue n -- transactionExtraFields :: Maybe A.Value
+    <*> arbitraryReducedMaybeValue n -- transactionNativeData :: Maybe A.Value
   
 instance Arbitrary Transfer where
   arbitrary = sized genTransfer

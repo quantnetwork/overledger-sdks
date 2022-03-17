@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -32,6 +32,20 @@ describe 'AddressSearchApi' do
     end
   end
 
+  # unit tests for auto_execute_search_address_balance_request
+  # Prepare and automatically execute a search for an address balance on a DLT.
+  # Generates a request ID and automatically executes the address balance search on the requested DLT.
+  # @param authorization 
+  # @param address_id 
+  # @param prepare_search_schema 
+  # @param [Hash] opts the optional parameters
+  # @return [AutoExecuteSearchAddressBalanceResponseSchema]
+  describe 'auto_execute_search_address_balance_request test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for execute_prepared_search_request_address_balance
   # Execute a search for an address balance on a DLT
   # Takes a request ID, searches for the address and retrieves the balance on the requested DLT. This API is only applicable for account based DLTs
@@ -47,7 +61,7 @@ describe 'AddressSearchApi' do
 
   # unit tests for execute_prepared_search_request_address_sequence
   # Execute a search for an address sequence on a DLT
-  # Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+  # Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
   # @param authorization 
   # @param request_id 
   # @param [Hash] opts the optional parameters
@@ -81,6 +95,20 @@ describe 'AddressSearchApi' do
   # @param [Hash] opts the optional parameters
   # @return [PrepareSearchResponseSchema]
   describe 'prepare_address_sequence_search_request test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for prepare_address_sequence_search_request1
+  # Prepare and automatically execute a search for an Address Sequence.
+  # Generates a request ID and automatically executes the address sequence search on the requested DLT.
+  # @param authorization 
+  # @param address_id 
+  # @param prepare_search_schema 
+  # @param [Hash] opts the optional parameters
+  # @return [AutoExecSearchAddressSequenceResponseSchema]
+  describe 'prepare_address_sequence_search_request1 test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

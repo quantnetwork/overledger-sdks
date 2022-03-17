@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **linked_blocks** | [**linked_blocks_t**](linked_blocks.md) \* |  | [optional] 
 **number_of_transactions** | **int** |  | [optional] 
 **message** | **char \*** |  | [optional] 
-**timestamp** | **int** |  | [optional] 
+**timestamp** | **char \*** |  | [optional] 
 **native_data** | [**object_t**](.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

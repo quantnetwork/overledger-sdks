@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ResourceMonitoringId** | Pointer to **string** |  | [optional] 
 **Location** | Pointer to [**Location**](Location.md) |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**Timestamp** | Pointer to **time.Time** |  | [optional] 
+**Timestamp** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**Status**](Status.md) |  | [optional] 
 
 ## Methods
@@ -106,20 +106,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetTimestamp
 
-`func (o *ResourceMonitoringDetails) GetTimestamp() time.Time`
+`func (o *ResourceMonitoringDetails) GetTimestamp() string`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *ResourceMonitoringDetails) GetTimestampOk() (*time.Time, bool)`
+`func (o *ResourceMonitoringDetails) GetTimestampOk() (*string, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *ResourceMonitoringDetails) SetTimestamp(v time.Time)`
+`func (o *ResourceMonitoringDetails) SetTimestamp(v string)`
 
 SetTimestamp sets Timestamp field to given value.
 

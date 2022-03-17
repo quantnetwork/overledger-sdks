@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **unit** | **String** |  | [optional] 
-**value** | **Number** |  | [optional] 
-**addressId** | **String** |  | [optional] 
+**amount** | **String** |  | [optional] 
 
 

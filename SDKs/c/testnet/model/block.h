@@ -31,7 +31,7 @@ typedef struct block_t {
     struct linked_blocks_t *linked_blocks; //model
     int number_of_transactions; //numeric
     char *message; // string
-    int timestamp; //numeric
+    char *timestamp; // string
     object_t *native_data; //object
 
 } block_t;
@@ -45,7 +45,7 @@ block_t *block_create(
     linked_blocks_t *linked_blocks,
     int number_of_transactions,
     char *message,
-    int timestamp,
+    char *timestamp,
     object_t *native_data
 );
 

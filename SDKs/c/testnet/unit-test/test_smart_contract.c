@@ -27,7 +27,7 @@ smart_contract_t* instantiate_smart_contract(int include_optional) {
       instantiate_function(0),
       "a",
       "a",
-      "a",
+      "0",
       0
     );
   } else {
@@ -35,7 +35,7 @@ smart_contract_t* instantiate_smart_contract(int include_optional) {
       NULL,
       "a",
       "a",
-      "a",
+      "0",
       0
     );
   }

@@ -7,16 +7,14 @@
 
 address_balance_response_t *address_balance_response_create(
     char *unit,
-    double value,
-    char *address_id
+    char *amount
     ) {
     address_balance_response_t *address_balance_response_local_var = malloc(sizeof(address_balance_response_t));
     if (!address_balance_response_local_var) {
         return NULL;
     }
     address_balance_response_local_var->unit = unit;
-    address_balance_response_local_var->value = value;
-    address_balance_response_local_var->address_id = address_id;
+    address_balance_response_local_var->amount = amount;
 
     return address_balance_response_local_var;
 }
@@ -31,9 +29,9 @@ void address_balance_response_free(address_balance_response_t *address_balance_r
         free(address_balance_response->unit);
         address_balance_response->unit = NULL;
     }
-    if (address_balance_response->address_id) {
-        free(address_balance_response->address_id);
-        address_balance_response->address_id = NULL;
+    if (address_balance_response->amount) {
+        free(address_balance_response->amount);
+        address_balance_response->amount = NULL;
     }
     free(address_balance_response);
 }
@@ -49,17 +47,9 @@ cJSON *address_balance_response_convertToJSON(address_balance_response_t *addres
      } 
 
 
-    // address_balance_response->value
-    if(address_balance_response->value) { 
-    if(cJSON_AddNumberToObject(item, "value", address_balance_response->value) == NULL) {
-    goto fail; //Numeric
-    }
-     } 
-
-
-    // address_balance_response->address_id
-    if(address_balance_response->address_id) { 
-    if(cJSON_AddStringToObject(item, "addressId", address_balance_response->address_id) == NULL) {
+    // address_balance_response->amount
+    if(address_balance_response->amount) { 
+    if(cJSON_AddStringToObject(item, "amount", address_balance_response->amount) == NULL) {
     goto fail; //String
     }
      } 
@@ -85,19 +75,10 @@ address_balance_response_t *address_balance_response_parseFromJSON(cJSON *addres
     }
     }
 
-    // address_balance_response->value
-    cJSON *value = cJSON_GetObjectItemCaseSensitive(address_balance_responseJSON, "value");
-    if (value) { 
-    if(!cJSON_IsNumber(value))
-    {
-    goto end; //Numeric
-    }
-    }
-
-    // address_balance_response->address_id
-    cJSON *address_id = cJSON_GetObjectItemCaseSensitive(address_balance_responseJSON, "addressId");
-    if (address_id) { 
-    if(!cJSON_IsString(address_id))
+    // address_balance_response->amount
+    cJSON *amount = cJSON_GetObjectItemCaseSensitive(address_balance_responseJSON, "amount");
+    if (amount) { 
+    if(!cJSON_IsString(amount))
     {
     goto end; //String
     }
@@ -106,8 +87,7 @@ address_balance_response_t *address_balance_response_parseFromJSON(cJSON *addres
 
     address_balance_response_local_var = address_balance_response_create (
         unit ? strdup(unit->valuestring) : NULL,
-        value ? value->valuedouble : 0,
-        address_id ? strdup(address_id->valuestring) : NULL
+        amount ? strdup(amount->valuestring) : NULL
         );
 
     return address_balance_response_local_var;

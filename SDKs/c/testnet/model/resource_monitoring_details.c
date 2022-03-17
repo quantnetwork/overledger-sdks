@@ -89,7 +89,7 @@ cJSON *resource_monitoring_details_convertToJSON(resource_monitoring_details_t *
     // resource_monitoring_details->timestamp
     if(resource_monitoring_details->timestamp) { 
     if(cJSON_AddStringToObject(item, "timestamp", resource_monitoring_details->timestamp) == NULL) {
-    goto fail; //Date-Time
+    goto fail; //String
     }
      } 
 
@@ -148,7 +148,7 @@ resource_monitoring_details_t *resource_monitoring_details_parseFromJSON(cJSON *
     if (timestamp) { 
     if(!cJSON_IsString(timestamp))
     {
-    goto end; //DateTime
+    goto end; //String
     }
     }
 

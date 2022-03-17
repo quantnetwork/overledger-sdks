@@ -5,12 +5,21 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/auto_execute_search_block_response_schema.h"
 #include "../model/error_details.h"
 #include "../model/error_list.h"
 #include "../model/execute_search_block_response.h"
 #include "../model/internal_server_error_schema.h"
 #include "../model/prepare_search_response_schema.h"
 #include "../model/prepare_search_schema.h"
+
+
+// Prepare and automatically execute a search for a block on a DLT.
+//
+// Generates a request ID and automatically executes the block search on the requested DLT.
+//
+auto_execute_search_block_response_schema_t*
+BlockSearchAPI_autoExecuteSearchBlockRequest(apiClient_t *apiClient, char * Authorization , char * blockId , prepare_search_schema_t * prepare_search_schema );
 
 
 // Execute a search for a block on a DLT

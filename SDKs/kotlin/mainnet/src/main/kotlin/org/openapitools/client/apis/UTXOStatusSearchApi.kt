@@ -1,7 +1,7 @@
 /**
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -20,6 +20,7 @@
 
 package org.openapitools.client.apis
 
+import org.openapitools.client.models.AutoExecuteSearchUTXOResponseSchema
 import org.openapitools.client.models.ErrorDetails
 import org.openapitools.client.models.ErrorList
 import org.openapitools.client.models.ExecuteSearchUTXOResponseSchema
@@ -45,6 +46,64 @@ class UTXOStatusSearchApi(basePath: kotlin.String = defaultBasePath) : ApiClient
         val defaultBasePath: String by lazy {
             System.getProperties().getProperty("org.openapitools.client.baseUrl", "https://api.overledger.io")
         }
+    }
+
+    /**
+    * Prepare and automatically execute a search for a UTXO on a DLT.
+    * Generates a request ID and automatically executes the utxo search on the requested DLT.
+    * @param authorization  
+    * @param utxoId  
+    * @param prepareSearchSchema  
+    * @return AutoExecuteSearchUTXOResponseSchema
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun autoExecuteSearchUtxoRequest(authorization: kotlin.String, utxoId: kotlin.String, prepareSearchSchema: PrepareSearchSchema) : AutoExecuteSearchUTXOResponseSchema {
+        val localVariableConfig = autoExecuteSearchUtxoRequestRequestConfig(authorization = authorization, utxoId = utxoId, prepareSearchSchema = prepareSearchSchema)
+
+        val localVarResponse = request<PrepareSearchSchema, AutoExecuteSearchUTXOResponseSchema>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AutoExecuteSearchUTXOResponseSchema
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation autoExecuteSearchUtxoRequest
+    *
+    * @param authorization  
+    * @param utxoId  
+    * @param prepareSearchSchema  
+    * @return RequestConfig
+    */
+    fun autoExecuteSearchUtxoRequestRequestConfig(authorization: kotlin.String, utxoId: kotlin.String, prepareSearchSchema: PrepareSearchSchema) : RequestConfig<PrepareSearchSchema> {
+        val localVariableBody = prepareSearchSchema
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        authorization.apply { localVariableHeaders["Authorization"] = this.toString() }
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/v2/autoexecution/search/utxo/{utxoId}".replace("{"+"utxoId"+"}", "$utxoId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
     }
 
     /**
@@ -108,7 +167,7 @@ class UTXOStatusSearchApi(basePath: kotlin.String = defaultBasePath) : ApiClient
 
     /**
     * Prepare Search for a UTXO State.
-    * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+    * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
     * @param authorization  
     * @param utxoId  
     * @param prepareSearchSchema  

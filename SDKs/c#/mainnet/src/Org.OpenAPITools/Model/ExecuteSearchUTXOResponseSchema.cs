@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,19 +33,27 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ExecuteSearchUTXOResponseSchema" /> class.
         /// </summary>
+        /// <param name="utxoId">utxoId.</param>
         /// <param name="destination">destination.</param>
         /// <param name="location">location.</param>
         /// <param name="timestamp">timestamp.</param>
         /// <param name="status">status.</param>
         /// <param name="nativeData">nativeData.</param>
-        public ExecuteSearchUTXOResponseSchema(List<UTXODestination> destination = default(List<UTXODestination>), Location location = default(Location), UTXOTimestampSchema timestamp = default(UTXOTimestampSchema), Status status = default(Status), UTXONativeData nativeData = default(UTXONativeData))
+        public ExecuteSearchUTXOResponseSchema(string utxoId = default(string), List<UTXODestination> destination = default(List<UTXODestination>), Location location = default(Location), UTXOTimestampSchema timestamp = default(UTXOTimestampSchema), Status status = default(Status), UTXONativeData nativeData = default(UTXONativeData))
         {
+            this.UtxoId = utxoId;
             this.Destination = destination;
             this.Location = location;
             this.Timestamp = timestamp;
             this.Status = status;
             this.NativeData = nativeData;
         }
+
+        /// <summary>
+        /// Gets or Sets UtxoId
+        /// </summary>
+        [DataMember(Name="utxoId", EmitDefaultValue=false)]
+        public string UtxoId { get; set; }
 
         /// <summary>
         /// Gets or Sets Destination
@@ -85,6 +93,7 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ExecuteSearchUTXOResponseSchema {\n");
+            sb.Append("  UtxoId: ").Append(UtxoId).Append("\n");
             sb.Append("  Destination: ").Append(Destination).Append("\n");
             sb.Append("  Location: ").Append(Location).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
@@ -125,6 +134,11 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
+                    this.UtxoId == input.UtxoId ||
+                    (this.UtxoId != null &&
+                    this.UtxoId.Equals(input.UtxoId))
+                ) && 
+                (
                     this.Destination == input.Destination ||
                     this.Destination != null &&
                     input.Destination != null &&
@@ -161,6 +175,8 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.UtxoId != null)
+                    hashCode = hashCode * 59 + this.UtxoId.GetHashCode();
                 if (this.Destination != null)
                     hashCode = hashCode * 59 + this.Destination.GetHashCode();
                 if (this.Location != null)

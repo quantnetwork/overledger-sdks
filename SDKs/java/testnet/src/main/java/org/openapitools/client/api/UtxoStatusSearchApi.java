@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import org.openapitools.client.model.AutoExecuteSearchUTXOResponseSchema;
 import org.openapitools.client.model.ErrorDetails;
 import org.openapitools.client.model.ErrorList;
 import org.openapitools.client.model.ExecuteSearchUTXOResponseSchema;
@@ -59,6 +60,152 @@ public class UtxoStatusSearchApi {
         this.localVarApiClient = apiClient;
     }
 
+    /**
+     * Build call for autoExecuteSearchUtxoRequest
+     * @param authorization  (required)
+     * @param utxoId  (required)
+     * @param prepareSearchSchema  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> All good! </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorised </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Something went wrong on our side </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call autoExecuteSearchUtxoRequestCall(String authorization, String utxoId, PrepareSearchSchema prepareSearchSchema, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = prepareSearchSchema;
+
+        // create path and map variables
+        String localVarPath = "/v2/autoexecution/search/utxo/{utxoId}"
+            .replaceAll("\\{" + "utxoId" + "\\}", localVarApiClient.escapeString(utxoId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (authorization != null) {
+            localVarHeaderParams.put("Authorization", localVarApiClient.parameterToString(authorization));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] { "OAuth2_Security_Scheme" };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call autoExecuteSearchUtxoRequestValidateBeforeCall(String authorization, String utxoId, PrepareSearchSchema prepareSearchSchema, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'authorization' is set
+        if (authorization == null) {
+            throw new ApiException("Missing the required parameter 'authorization' when calling autoExecuteSearchUtxoRequest(Async)");
+        }
+        
+        // verify the required parameter 'utxoId' is set
+        if (utxoId == null) {
+            throw new ApiException("Missing the required parameter 'utxoId' when calling autoExecuteSearchUtxoRequest(Async)");
+        }
+        
+        // verify the required parameter 'prepareSearchSchema' is set
+        if (prepareSearchSchema == null) {
+            throw new ApiException("Missing the required parameter 'prepareSearchSchema' when calling autoExecuteSearchUtxoRequest(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = autoExecuteSearchUtxoRequestCall(authorization, utxoId, prepareSearchSchema, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * Prepare and automatically execute a search for a UTXO on a DLT.
+     * Generates a request ID and automatically executes the utxo search on the requested DLT.
+     * @param authorization  (required)
+     * @param utxoId  (required)
+     * @param prepareSearchSchema  (required)
+     * @return AutoExecuteSearchUTXOResponseSchema
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> All good! </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorised </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Something went wrong on our side </td><td>  -  </td></tr>
+     </table>
+     */
+    public AutoExecuteSearchUTXOResponseSchema autoExecuteSearchUtxoRequest(String authorization, String utxoId, PrepareSearchSchema prepareSearchSchema) throws ApiException {
+        ApiResponse<AutoExecuteSearchUTXOResponseSchema> localVarResp = autoExecuteSearchUtxoRequestWithHttpInfo(authorization, utxoId, prepareSearchSchema);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Prepare and automatically execute a search for a UTXO on a DLT.
+     * Generates a request ID and automatically executes the utxo search on the requested DLT.
+     * @param authorization  (required)
+     * @param utxoId  (required)
+     * @param prepareSearchSchema  (required)
+     * @return ApiResponse&lt;AutoExecuteSearchUTXOResponseSchema&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> All good! </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorised </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Something went wrong on our side </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<AutoExecuteSearchUTXOResponseSchema> autoExecuteSearchUtxoRequestWithHttpInfo(String authorization, String utxoId, PrepareSearchSchema prepareSearchSchema) throws ApiException {
+        okhttp3.Call localVarCall = autoExecuteSearchUtxoRequestValidateBeforeCall(authorization, utxoId, prepareSearchSchema, null);
+        Type localVarReturnType = new TypeToken<AutoExecuteSearchUTXOResponseSchema>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Prepare and automatically execute a search for a UTXO on a DLT. (asynchronously)
+     * Generates a request ID and automatically executes the utxo search on the requested DLT.
+     * @param authorization  (required)
+     * @param utxoId  (required)
+     * @param prepareSearchSchema  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> All good! </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad Request </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorised </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Something went wrong on our side </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call autoExecuteSearchUtxoRequestAsync(String authorization, String utxoId, PrepareSearchSchema prepareSearchSchema, final ApiCallback<AutoExecuteSearchUTXOResponseSchema> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = autoExecuteSearchUtxoRequestValidateBeforeCall(authorization, utxoId, prepareSearchSchema, _callback);
+        Type localVarReturnType = new TypeToken<AutoExecuteSearchUTXOResponseSchema>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
     /**
      * Build call for executeUTXOPreparedSearchRequest
      * @param authorization  (required)
@@ -276,7 +423,7 @@ public class UtxoStatusSearchApi {
 
     /**
      * Prepare Search for a UTXO State.
-     * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+     * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
      * @param authorization  (required)
      * @param utxoId  (required)
      * @param prepareSearchSchema  (required)
@@ -297,7 +444,7 @@ public class UtxoStatusSearchApi {
 
     /**
      * Prepare Search for a UTXO State.
-     * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+     * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
      * @param authorization  (required)
      * @param utxoId  (required)
      * @param prepareSearchSchema  (required)
@@ -319,7 +466,7 @@ public class UtxoStatusSearchApi {
 
     /**
      * Prepare Search for a UTXO State. (asynchronously)
-     * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+     * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
      * @param authorization  (required)
      * @param utxoId  (required)
      * @param prepareSearchSchema  (required)

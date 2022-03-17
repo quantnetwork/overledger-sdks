@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -35,11 +35,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="sequence">sequence.</param>
         /// <param name="location">location.</param>
+        /// <param name="timestamp">timestamp.</param>
         /// <param name="addressId">addressId.</param>
-        public ExecuteSearchSequenceResponse(string sequence = default(string), Location location = default(Location), string addressId = default(string))
+        public ExecuteSearchSequenceResponse(string sequence = default(string), Location location = default(Location), string timestamp = default(string), string addressId = default(string))
         {
             this.Sequence = sequence;
             this.Location = location;
+            this.Timestamp = timestamp;
             this.AddressId = addressId;
         }
 
@@ -54,6 +56,12 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name="location", EmitDefaultValue=false)]
         public Location Location { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Timestamp
+        /// </summary>
+        [DataMember(Name="timestamp", EmitDefaultValue=false)]
+        public string Timestamp { get; set; }
 
         /// <summary>
         /// Gets or Sets AddressId
@@ -71,6 +79,7 @@ namespace Org.OpenAPITools.Model
             sb.Append("class ExecuteSearchSequenceResponse {\n");
             sb.Append("  Sequence: ").Append(Sequence).Append("\n");
             sb.Append("  Location: ").Append(Location).Append("\n");
+            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  AddressId: ").Append(AddressId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -117,6 +126,11 @@ namespace Org.OpenAPITools.Model
                     this.Location.Equals(input.Location))
                 ) && 
                 (
+                    this.Timestamp == input.Timestamp ||
+                    (this.Timestamp != null &&
+                    this.Timestamp.Equals(input.Timestamp))
+                ) && 
+                (
                     this.AddressId == input.AddressId ||
                     (this.AddressId != null &&
                     this.AddressId.Equals(input.AddressId))
@@ -136,6 +150,8 @@ namespace Org.OpenAPITools.Model
                     hashCode = hashCode * 59 + this.Sequence.GetHashCode();
                 if (this.Location != null)
                     hashCode = hashCode * 59 + this.Location.GetHashCode();
+                if (this.Timestamp != null)
+                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
                 if (this.AddressId != null)
                     hashCode = hashCode * 59 + this.AddressId.GetHashCode();
                 return hashCode;

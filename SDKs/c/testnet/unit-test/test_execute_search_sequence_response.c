@@ -26,12 +26,14 @@ execute_search_sequence_response_t* instantiate_execute_search_sequence_response
       "a",
        // false, not to have infinite recursion
       instantiate_location(0),
+      "0",
       "a"
     );
   } else {
     execute_search_sequence_response = execute_search_sequence_response_create(
       "a",
       NULL,
+      "0",
       "a"
     );
   }

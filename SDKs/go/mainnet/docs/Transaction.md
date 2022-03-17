@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **Message** | Pointer to **string** | Any text-based element of the data payload | [optional] 
 **TransactionId** | Pointer to **string** | The unique identifier of the transaction on this DLN | [optional] 
 **Encoded** | Pointer to **[]string** |  | [optional] 
-**NativeData** | Pointer to **map[string]interface{}** |  | [optional] 
 **ExtraFields** | Pointer to **map[string]interface{}** |  | [optional] 
+**NativeData** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -260,31 +260,6 @@ SetEncoded sets Encoded field to given value.
 
 HasEncoded returns a boolean if a field has been set.
 
-### GetNativeData
-
-`func (o *Transaction) GetNativeData() map[string]interface{}`
-
-GetNativeData returns the NativeData field if non-nil, zero value otherwise.
-
-### GetNativeDataOk
-
-`func (o *Transaction) GetNativeDataOk() (*map[string]interface{}, bool)`
-
-GetNativeDataOk returns a tuple with the NativeData field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNativeData
-
-`func (o *Transaction) SetNativeData(v map[string]interface{})`
-
-SetNativeData sets NativeData field to given value.
-
-### HasNativeData
-
-`func (o *Transaction) HasNativeData() bool`
-
-HasNativeData returns a boolean if a field has been set.
-
 ### GetExtraFields
 
 `func (o *Transaction) GetExtraFields() map[string]interface{}`
@@ -309,6 +284,31 @@ SetExtraFields sets ExtraFields field to given value.
 `func (o *Transaction) HasExtraFields() bool`
 
 HasExtraFields returns a boolean if a field has been set.
+
+### GetNativeData
+
+`func (o *Transaction) GetNativeData() map[string]interface{}`
+
+GetNativeData returns the NativeData field if non-nil, zero value otherwise.
+
+### GetNativeDataOk
+
+`func (o *Transaction) GetNativeDataOk() (*map[string]interface{}, bool)`
+
+GetNativeDataOk returns a tuple with the NativeData field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNativeData
+
+`func (o *Transaction) SetNativeData(v map[string]interface{})`
+
+SetNativeData sets NativeData field to given value.
+
+### HasNativeData
+
+`func (o *Transaction) HasNativeData() bool`
+
+HasNativeData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **linked_blocks** | [**\OpenAPI\Client\Model\LinkedBlocks**](LinkedBlocks.md) |  | [optional]
 **number_of_transactions** | **int** |  | [optional]
 **message** | **string** |  | [optional]
-**timestamp** | **int** |  | [optional]
+**timestamp** | **string** |  | [optional]
 **native_data** | **object** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

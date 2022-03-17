@@ -12,7 +12,7 @@
 | **linked_blocks** | [**LinkedBlocks**](LinkedBlocks.md) |  | [optional] |
 | **number_of_transactions** | **Integer** |  | [optional] |
 | **message** | **String** |  | [optional] |
-| **timestamp** | **Integer** |  | [optional] |
+| **timestamp** | **String** |  | [optional] |
 | **native_data** | **Object** |  | [optional] |
 
 ## Example

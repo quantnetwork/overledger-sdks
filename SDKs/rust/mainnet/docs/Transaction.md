@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **message** | Option<**String**> | Any text-based element of the data payload | [optional]
 **transaction_id** | Option<**String**> | The unique identifier of the transaction on this DLN | [optional]
 **encoded** | Option<**Vec<String>**> |  | [optional]
-**native_data** | Option<[**serde_json::Value**](.md)> |  | [optional]
 **extra_fields** | Option<[**serde_json::Value**](.md)> |  | [optional]
+**native_data** | Option<[**serde_json::Value**](.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

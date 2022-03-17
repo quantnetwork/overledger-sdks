@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -14,6 +14,8 @@
 package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
+import org.openapitools.client.model.AutoExecSearchAddressSequenceResponseSchema;
+import org.openapitools.client.model.AutoExecuteSearchAddressBalanceResponseSchema;
 import org.openapitools.client.model.ErrorDetails;
 import org.openapitools.client.model.ErrorList;
 import org.openapitools.client.model.ExecuteSearchBalanceResponse;
@@ -39,6 +41,23 @@ public class AddressSearchApiTest {
 
     
     /**
+     * Prepare and automatically execute a search for an address balance on a DLT.
+     *
+     * Generates a request ID and automatically executes the address balance search on the requested DLT.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void autoExecuteSearchAddressBalanceRequestTest() throws ApiException {
+        String authorization = null;
+        String addressId = null;
+        PrepareSearchSchema prepareSearchSchema = null;
+                AutoExecuteSearchAddressBalanceResponseSchema response = api.autoExecuteSearchAddressBalanceRequest(authorization, addressId, prepareSearchSchema);
+        // TODO: test validations
+    }
+    
+    /**
      * Execute a search for an address balance on a DLT
      *
      * Takes a request ID, searches for the address and retrieves the balance on the requested DLT. This API is only applicable for account based DLTs
@@ -57,7 +76,7 @@ public class AddressSearchApiTest {
     /**
      * Execute a search for an address sequence on a DLT
      *
-     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
      *
      * @throws ApiException
      *          if the Api call fails
@@ -101,6 +120,23 @@ public class AddressSearchApiTest {
         String addressId = null;
         PrepareSearchSchema prepareSearchSchema = null;
                 PrepareSearchResponseSchema response = api.prepareAddressSequenceSearchRequest(authorization, addressId, prepareSearchSchema);
+        // TODO: test validations
+    }
+    
+    /**
+     * Prepare and automatically execute a search for an Address Sequence.
+     *
+     * Generates a request ID and automatically executes the address sequence search on the requested DLT.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void prepareAddressSequenceSearchRequest1Test() throws ApiException {
+        String authorization = null;
+        String addressId = null;
+        PrepareSearchSchema prepareSearchSchema = null;
+                AutoExecSearchAddressSequenceResponseSchema response = api.prepareAddressSequenceSearchRequest1(authorization, addressId, prepareSearchSchema);
         // TODO: test validations
     }
     

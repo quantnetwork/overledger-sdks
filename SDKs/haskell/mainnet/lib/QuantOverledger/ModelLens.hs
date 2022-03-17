@@ -1,7 +1,7 @@
 {-
    Quant Overledger API
 
-   Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+   Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
    OpenAPI Version: 3.0.1
    Quant Overledger API API version: 2.0
@@ -43,15 +43,10 @@ addressBalanceResponseUnitL :: Lens_' AddressBalanceResponse (Maybe Text)
 addressBalanceResponseUnitL f AddressBalanceResponse{..} = (\addressBalanceResponseUnit -> AddressBalanceResponse { addressBalanceResponseUnit, ..} ) <$> f addressBalanceResponseUnit
 {-# INLINE addressBalanceResponseUnitL #-}
 
--- | 'addressBalanceResponseValue' Lens
-addressBalanceResponseValueL :: Lens_' AddressBalanceResponse (Maybe Double)
-addressBalanceResponseValueL f AddressBalanceResponse{..} = (\addressBalanceResponseValue -> AddressBalanceResponse { addressBalanceResponseValue, ..} ) <$> f addressBalanceResponseValue
-{-# INLINE addressBalanceResponseValueL #-}
-
--- | 'addressBalanceResponseAddressId' Lens
-addressBalanceResponseAddressIdL :: Lens_' AddressBalanceResponse (Maybe Text)
-addressBalanceResponseAddressIdL f AddressBalanceResponse{..} = (\addressBalanceResponseAddressId -> AddressBalanceResponse { addressBalanceResponseAddressId, ..} ) <$> f addressBalanceResponseAddressId
-{-# INLINE addressBalanceResponseAddressIdL #-}
+-- | 'addressBalanceResponseAmount' Lens
+addressBalanceResponseAmountL :: Lens_' AddressBalanceResponse (Maybe Text)
+addressBalanceResponseAmountL f AddressBalanceResponse{..} = (\addressBalanceResponseAmount -> AddressBalanceResponse { addressBalanceResponseAmount, ..} ) <$> f addressBalanceResponseAmount
+{-# INLINE addressBalanceResponseAmountL #-}
 
 
 
@@ -117,6 +112,101 @@ addressMonitoringResponseSchemaSubscriptionL f AddressMonitoringResponseSchema{.
 
 
 
+-- * ApproveRequestDetailsSchema
+
+-- | 'approveRequestDetailsSchemaMandate' Lens
+approveRequestDetailsSchemaMandateL :: Lens_' ApproveRequestDetailsSchema (Maybe [PayeeCreditSchema])
+approveRequestDetailsSchemaMandateL f ApproveRequestDetailsSchema{..} = (\approveRequestDetailsSchemaMandate -> ApproveRequestDetailsSchema { approveRequestDetailsSchemaMandate, ..} ) <$> f approveRequestDetailsSchemaMandate
+{-# INLINE approveRequestDetailsSchemaMandateL #-}
+
+-- | 'approveRequestDetailsSchemaOverledgerSigningType' Lens
+approveRequestDetailsSchemaOverledgerSigningTypeL :: Lens_' ApproveRequestDetailsSchema (Maybe Text)
+approveRequestDetailsSchemaOverledgerSigningTypeL f ApproveRequestDetailsSchema{..} = (\approveRequestDetailsSchemaOverledgerSigningType -> ApproveRequestDetailsSchema { approveRequestDetailsSchemaOverledgerSigningType, ..} ) <$> f approveRequestDetailsSchemaOverledgerSigningType
+{-# INLINE approveRequestDetailsSchemaOverledgerSigningTypeL #-}
+
+-- | 'approveRequestDetailsSchemaPayer' Lens
+approveRequestDetailsSchemaPayerL :: Lens_' ApproveRequestDetailsSchema (Maybe [PayerCreditSchema])
+approveRequestDetailsSchemaPayerL f ApproveRequestDetailsSchema{..} = (\approveRequestDetailsSchemaPayer -> ApproveRequestDetailsSchema { approveRequestDetailsSchemaPayer, ..} ) <$> f approveRequestDetailsSchemaPayer
+{-# INLINE approveRequestDetailsSchemaPayerL #-}
+
+
+
+-- * AutoExecSearchAddressSequenceResponseSchema
+
+-- | 'autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse' Lens
+autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponseL :: Lens_' AutoExecSearchAddressSequenceResponseSchema (Maybe PrepareSearchResponseSchema)
+autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponseL f AutoExecSearchAddressSequenceResponseSchema{..} = (\autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse -> AutoExecSearchAddressSequenceResponseSchema { autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse, ..} ) <$> f autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse
+{-# INLINE autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponseL #-}
+
+-- | 'autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse' Lens
+autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponseL :: Lens_' AutoExecSearchAddressSequenceResponseSchema (Maybe PrepareAndExecuteOverledgerErrorResponse)
+autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponseL f AutoExecSearchAddressSequenceResponseSchema{..} = (\autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse -> AutoExecSearchAddressSequenceResponseSchema { autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse, ..} ) <$> f autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse
+{-# INLINE autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponseL #-}
+
+-- | 'autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponse' Lens
+autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponseL :: Lens_' AutoExecSearchAddressSequenceResponseSchema (Maybe ExecuteSearchSequenceResponse)
+autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponseL f AutoExecSearchAddressSequenceResponseSchema{..} = (\autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponse -> AutoExecSearchAddressSequenceResponseSchema { autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponse, ..} ) <$> f autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponse
+{-# INLINE autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponseL #-}
+
+
+
+-- * AutoExecuteSearchAddressBalanceResponseSchema
+
+-- | 'autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse' Lens
+autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponseL :: Lens_' AutoExecuteSearchAddressBalanceResponseSchema (Maybe PrepareAndExecuteSearchAddressBalanceResponse)
+autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponseL f AutoExecuteSearchAddressBalanceResponseSchema{..} = (\autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse -> AutoExecuteSearchAddressBalanceResponseSchema { autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse, ..} ) <$> f autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse
+{-# INLINE autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponseL #-}
+
+-- | 'autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse' Lens
+autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponseL :: Lens_' AutoExecuteSearchAddressBalanceResponseSchema (Maybe PrepareAndExecuteOverledgerErrorResponse)
+autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponseL f AutoExecuteSearchAddressBalanceResponseSchema{..} = (\autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse -> AutoExecuteSearchAddressBalanceResponseSchema { autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse, ..} ) <$> f autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse
+{-# INLINE autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponseL #-}
+
+-- | 'autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponse' Lens
+autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponseL :: Lens_' AutoExecuteSearchAddressBalanceResponseSchema (Maybe PrepareSearchResponseSchema)
+autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponseL f AutoExecuteSearchAddressBalanceResponseSchema{..} = (\autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponse -> AutoExecuteSearchAddressBalanceResponseSchema { autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponse, ..} ) <$> f autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponse
+{-# INLINE autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponseL #-}
+
+
+
+-- * AutoExecuteSearchBlockResponseSchema
+
+-- | 'autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse' Lens
+autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponseL :: Lens_' AutoExecuteSearchBlockResponseSchema (Maybe ExecuteSearchBlockResponse)
+autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponseL f AutoExecuteSearchBlockResponseSchema{..} = (\autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse -> AutoExecuteSearchBlockResponseSchema { autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse, ..} ) <$> f autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse
+{-# INLINE autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponseL #-}
+
+-- | 'autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse' Lens
+autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponseL :: Lens_' AutoExecuteSearchBlockResponseSchema (Maybe PrepareAndExecuteOverledgerErrorResponse)
+autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponseL f AutoExecuteSearchBlockResponseSchema{..} = (\autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse -> AutoExecuteSearchBlockResponseSchema { autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse, ..} ) <$> f autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse
+{-# INLINE autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponseL #-}
+
+-- | 'autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponse' Lens
+autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponseL :: Lens_' AutoExecuteSearchBlockResponseSchema (Maybe PrepareSearchResponseSchema)
+autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponseL f AutoExecuteSearchBlockResponseSchema{..} = (\autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponse -> AutoExecuteSearchBlockResponseSchema { autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponse, ..} ) <$> f autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponse
+{-# INLINE autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponseL #-}
+
+
+
+-- * AutoExecuteSearchUTXOResponseSchema
+
+-- | 'autoExecuteSearchUTXOResponseSchemaExecutionUtxoSearchResponse' Lens
+autoExecuteSearchUTXOResponseSchemaExecutionUtxoSearchResponseL :: Lens_' AutoExecuteSearchUTXOResponseSchema (Maybe ExecuteSearchUTXOResponse)
+autoExecuteSearchUTXOResponseSchemaExecutionUtxoSearchResponseL f AutoExecuteSearchUTXOResponseSchema{..} = (\autoExecuteSearchUTXOResponseSchemaExecutionUtxoSearchResponse -> AutoExecuteSearchUTXOResponseSchema { autoExecuteSearchUTXOResponseSchemaExecutionUtxoSearchResponse, ..} ) <$> f autoExecuteSearchUTXOResponseSchemaExecutionUtxoSearchResponse
+{-# INLINE autoExecuteSearchUTXOResponseSchemaExecutionUtxoSearchResponseL #-}
+
+-- | 'autoExecuteSearchUTXOResponseSchemaPrepareAndExecuteOverledgerErrorResponse' Lens
+autoExecuteSearchUTXOResponseSchemaPrepareAndExecuteOverledgerErrorResponseL :: Lens_' AutoExecuteSearchUTXOResponseSchema (Maybe PrepareAndExecuteOverledgerErrorResponse)
+autoExecuteSearchUTXOResponseSchemaPrepareAndExecuteOverledgerErrorResponseL f AutoExecuteSearchUTXOResponseSchema{..} = (\autoExecuteSearchUTXOResponseSchemaPrepareAndExecuteOverledgerErrorResponse -> AutoExecuteSearchUTXOResponseSchema { autoExecuteSearchUTXOResponseSchemaPrepareAndExecuteOverledgerErrorResponse, ..} ) <$> f autoExecuteSearchUTXOResponseSchemaPrepareAndExecuteOverledgerErrorResponse
+{-# INLINE autoExecuteSearchUTXOResponseSchemaPrepareAndExecuteOverledgerErrorResponseL #-}
+
+-- | 'autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponse' Lens
+autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponseL :: Lens_' AutoExecuteSearchUTXOResponseSchema (Maybe PrepareTransactionResponse)
+autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponseL f AutoExecuteSearchUTXOResponseSchema{..} = (\autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponse -> AutoExecuteSearchUTXOResponseSchema { autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponse, ..} ) <$> f autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponse
+{-# INLINE autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponseL #-}
+
+
+
 -- * Block
 
 -- | 'blockBlockId' Lens
@@ -160,7 +250,7 @@ blockMessageL f Block{..} = (\blockMessage -> Block { blockMessage, ..} ) <$> f 
 {-# INLINE blockMessageL #-}
 
 -- | 'blockTimestamp' Lens
-blockTimestampL :: Lens_' Block (Maybe Int)
+blockTimestampL :: Lens_' Block (Maybe Text)
 blockTimestampL f Block{..} = (\blockTimestamp -> Block { blockTimestamp, ..} ) <$> f blockTimestamp
 {-# INLINE blockTimestampL #-}
 
@@ -253,6 +343,30 @@ createSubscriptionResponseSchemaScubscriptionDetailsL f CreateSubscriptionRespon
 createSubscriptionResponseSchemaSubscriptionIdL :: Lens_' CreateSubscriptionResponseSchema (Maybe Text)
 createSubscriptionResponseSchemaSubscriptionIdL f CreateSubscriptionResponseSchema{..} = (\createSubscriptionResponseSchemaSubscriptionId -> CreateSubscriptionResponseSchema { createSubscriptionResponseSchemaSubscriptionId, ..} ) <$> f createSubscriptionResponseSchemaSubscriptionId
 {-# INLINE createSubscriptionResponseSchemaSubscriptionIdL #-}
+
+
+
+-- * CreditRequestDetailsSchema
+
+-- | 'creditRequestDetailsSchemaPayee' Lens
+creditRequestDetailsSchemaPayeeL :: Lens_' CreditRequestDetailsSchema (Maybe [PayeeCreditSchema])
+creditRequestDetailsSchemaPayeeL f CreditRequestDetailsSchema{..} = (\creditRequestDetailsSchemaPayee -> CreditRequestDetailsSchema { creditRequestDetailsSchemaPayee, ..} ) <$> f creditRequestDetailsSchemaPayee
+{-# INLINE creditRequestDetailsSchemaPayeeL #-}
+
+-- | 'creditRequestDetailsSchemaOverledgerSigningType' Lens
+creditRequestDetailsSchemaOverledgerSigningTypeL :: Lens_' CreditRequestDetailsSchema (Maybe Text)
+creditRequestDetailsSchemaOverledgerSigningTypeL f CreditRequestDetailsSchema{..} = (\creditRequestDetailsSchemaOverledgerSigningType -> CreditRequestDetailsSchema { creditRequestDetailsSchemaOverledgerSigningType, ..} ) <$> f creditRequestDetailsSchemaOverledgerSigningType
+{-# INLINE creditRequestDetailsSchemaOverledgerSigningTypeL #-}
+
+-- | 'creditRequestDetailsSchemaMessage' Lens
+creditRequestDetailsSchemaMessageL :: Lens_' CreditRequestDetailsSchema (Maybe Text)
+creditRequestDetailsSchemaMessageL f CreditRequestDetailsSchema{..} = (\creditRequestDetailsSchemaMessage -> CreditRequestDetailsSchema { creditRequestDetailsSchemaMessage, ..} ) <$> f creditRequestDetailsSchemaMessage
+{-# INLINE creditRequestDetailsSchemaMessageL #-}
+
+-- | 'creditRequestDetailsSchemaPayer' Lens
+creditRequestDetailsSchemaPayerL :: Lens_' CreditRequestDetailsSchema (Maybe [PayerCreditSchema])
+creditRequestDetailsSchemaPayerL f CreditRequestDetailsSchema{..} = (\creditRequestDetailsSchemaPayer -> CreditRequestDetailsSchema { creditRequestDetailsSchemaPayer, ..} ) <$> f creditRequestDetailsSchemaPayer
+{-# INLINE creditRequestDetailsSchemaPayerL #-}
 
 
 
@@ -391,6 +505,16 @@ executeSearchBalanceResponseLocationL :: Lens_' ExecuteSearchBalanceResponse (Ma
 executeSearchBalanceResponseLocationL f ExecuteSearchBalanceResponse{..} = (\executeSearchBalanceResponseLocation -> ExecuteSearchBalanceResponse { executeSearchBalanceResponseLocation, ..} ) <$> f executeSearchBalanceResponseLocation
 {-# INLINE executeSearchBalanceResponseLocationL #-}
 
+-- | 'executeSearchBalanceResponseTimestamp' Lens
+executeSearchBalanceResponseTimestampL :: Lens_' ExecuteSearchBalanceResponse (Maybe Text)
+executeSearchBalanceResponseTimestampL f ExecuteSearchBalanceResponse{..} = (\executeSearchBalanceResponseTimestamp -> ExecuteSearchBalanceResponse { executeSearchBalanceResponseTimestamp, ..} ) <$> f executeSearchBalanceResponseTimestamp
+{-# INLINE executeSearchBalanceResponseTimestampL #-}
+
+-- | 'executeSearchBalanceResponseAddressId' Lens
+executeSearchBalanceResponseAddressIdL :: Lens_' ExecuteSearchBalanceResponse (Maybe Text)
+executeSearchBalanceResponseAddressIdL f ExecuteSearchBalanceResponse{..} = (\executeSearchBalanceResponseAddressId -> ExecuteSearchBalanceResponse { executeSearchBalanceResponseAddressId, ..} ) <$> f executeSearchBalanceResponseAddressId
+{-# INLINE executeSearchBalanceResponseAddressIdL #-}
+
 
 
 -- * ExecuteSearchBlockResponse
@@ -424,6 +548,11 @@ executeSearchSequenceResponseLocationL :: Lens_' ExecuteSearchSequenceResponse (
 executeSearchSequenceResponseLocationL f ExecuteSearchSequenceResponse{..} = (\executeSearchSequenceResponseLocation -> ExecuteSearchSequenceResponse { executeSearchSequenceResponseLocation, ..} ) <$> f executeSearchSequenceResponseLocation
 {-# INLINE executeSearchSequenceResponseLocationL #-}
 
+-- | 'executeSearchSequenceResponseTimestamp' Lens
+executeSearchSequenceResponseTimestampL :: Lens_' ExecuteSearchSequenceResponse (Maybe Text)
+executeSearchSequenceResponseTimestampL f ExecuteSearchSequenceResponse{..} = (\executeSearchSequenceResponseTimestamp -> ExecuteSearchSequenceResponse { executeSearchSequenceResponseTimestamp, ..} ) <$> f executeSearchSequenceResponseTimestamp
+{-# INLINE executeSearchSequenceResponseTimestampL #-}
+
 -- | 'executeSearchSequenceResponseAddressId' Lens
 executeSearchSequenceResponseAddressIdL :: Lens_' ExecuteSearchSequenceResponse (Maybe Text)
 executeSearchSequenceResponseAddressIdL f ExecuteSearchSequenceResponse{..} = (\executeSearchSequenceResponseAddressId -> ExecuteSearchSequenceResponse { executeSearchSequenceResponseAddressId, ..} ) <$> f executeSearchSequenceResponseAddressId
@@ -449,7 +578,7 @@ executeSearchTransactionResponseTransactionL f ExecuteSearchTransactionResponse{
 {-# INLINE executeSearchTransactionResponseTransactionL #-}
 
 -- | 'executeSearchTransactionResponseTimestamp' Lens
-executeSearchTransactionResponseTimestampL :: Lens_' ExecuteSearchTransactionResponse (Maybe DateTime)
+executeSearchTransactionResponseTimestampL :: Lens_' ExecuteSearchTransactionResponse (Maybe Text)
 executeSearchTransactionResponseTimestampL f ExecuteSearchTransactionResponse{..} = (\executeSearchTransactionResponseTimestamp -> ExecuteSearchTransactionResponse { executeSearchTransactionResponseTimestamp, ..} ) <$> f executeSearchTransactionResponseTimestamp
 {-# INLINE executeSearchTransactionResponseTimestampL #-}
 
@@ -465,7 +594,46 @@ executeSearchTransactionResponseExtraFieldsL f ExecuteSearchTransactionResponse{
 
 
 
+-- * ExecuteSearchUTXOResponse
+
+-- | 'executeSearchUTXOResponseUtxoId' Lens
+executeSearchUTXOResponseUtxoIdL :: Lens_' ExecuteSearchUTXOResponse (Maybe Text)
+executeSearchUTXOResponseUtxoIdL f ExecuteSearchUTXOResponse{..} = (\executeSearchUTXOResponseUtxoId -> ExecuteSearchUTXOResponse { executeSearchUTXOResponseUtxoId, ..} ) <$> f executeSearchUTXOResponseUtxoId
+{-# INLINE executeSearchUTXOResponseUtxoIdL #-}
+
+-- | 'executeSearchUTXOResponseDestination' Lens
+executeSearchUTXOResponseDestinationL :: Lens_' ExecuteSearchUTXOResponse (Maybe [Destination])
+executeSearchUTXOResponseDestinationL f ExecuteSearchUTXOResponse{..} = (\executeSearchUTXOResponseDestination -> ExecuteSearchUTXOResponse { executeSearchUTXOResponseDestination, ..} ) <$> f executeSearchUTXOResponseDestination
+{-# INLINE executeSearchUTXOResponseDestinationL #-}
+
+-- | 'executeSearchUTXOResponseLocation' Lens
+executeSearchUTXOResponseLocationL :: Lens_' ExecuteSearchUTXOResponse (Maybe Location)
+executeSearchUTXOResponseLocationL f ExecuteSearchUTXOResponse{..} = (\executeSearchUTXOResponseLocation -> ExecuteSearchUTXOResponse { executeSearchUTXOResponseLocation, ..} ) <$> f executeSearchUTXOResponseLocation
+{-# INLINE executeSearchUTXOResponseLocationL #-}
+
+-- | 'executeSearchUTXOResponseTimestamp' Lens
+executeSearchUTXOResponseTimestampL :: Lens_' ExecuteSearchUTXOResponse (Maybe Text)
+executeSearchUTXOResponseTimestampL f ExecuteSearchUTXOResponse{..} = (\executeSearchUTXOResponseTimestamp -> ExecuteSearchUTXOResponse { executeSearchUTXOResponseTimestamp, ..} ) <$> f executeSearchUTXOResponseTimestamp
+{-# INLINE executeSearchUTXOResponseTimestampL #-}
+
+-- | 'executeSearchUTXOResponseStatus' Lens
+executeSearchUTXOResponseStatusL :: Lens_' ExecuteSearchUTXOResponse (Maybe Status)
+executeSearchUTXOResponseStatusL f ExecuteSearchUTXOResponse{..} = (\executeSearchUTXOResponseStatus -> ExecuteSearchUTXOResponse { executeSearchUTXOResponseStatus, ..} ) <$> f executeSearchUTXOResponseStatus
+{-# INLINE executeSearchUTXOResponseStatusL #-}
+
+-- | 'executeSearchUTXOResponseNativeData' Lens
+executeSearchUTXOResponseNativeDataL :: Lens_' ExecuteSearchUTXOResponse (Maybe A.Value)
+executeSearchUTXOResponseNativeDataL f ExecuteSearchUTXOResponse{..} = (\executeSearchUTXOResponseNativeData -> ExecuteSearchUTXOResponse { executeSearchUTXOResponseNativeData, ..} ) <$> f executeSearchUTXOResponseNativeData
+{-# INLINE executeSearchUTXOResponseNativeDataL #-}
+
+
+
 -- * ExecuteSearchUTXOResponseSchema
+
+-- | 'executeSearchUTXOResponseSchemaUtxoId' Lens
+executeSearchUTXOResponseSchemaUtxoIdL :: Lens_' ExecuteSearchUTXOResponseSchema (Maybe Text)
+executeSearchUTXOResponseSchemaUtxoIdL f ExecuteSearchUTXOResponseSchema{..} = (\executeSearchUTXOResponseSchemaUtxoId -> ExecuteSearchUTXOResponseSchema { executeSearchUTXOResponseSchemaUtxoId, ..} ) <$> f executeSearchUTXOResponseSchemaUtxoId
+{-# INLINE executeSearchUTXOResponseSchemaUtxoIdL #-}
 
 -- | 'executeSearchUTXOResponseSchemaDestination' Lens
 executeSearchUTXOResponseSchemaDestinationL :: Lens_' ExecuteSearchUTXOResponseSchema (Maybe [UTXODestination])
@@ -852,6 +1020,29 @@ parameterKeyL f Parameter{..} = (\parameterKey -> Parameter { parameterKey, ..} 
 
 
 
+-- * PayeeCreditSchema
+
+-- | 'payeeCreditSchemaPayment' Lens
+payeeCreditSchemaPaymentL :: Lens_' PayeeCreditSchema (Maybe PaymentSchema)
+payeeCreditSchemaPaymentL f PayeeCreditSchema{..} = (\payeeCreditSchemaPayment -> PayeeCreditSchema { payeeCreditSchemaPayment, ..} ) <$> f payeeCreditSchemaPayment
+{-# INLINE payeeCreditSchemaPaymentL #-}
+
+-- | 'payeeCreditSchemaPayeeId' Lens
+payeeCreditSchemaPayeeIdL :: Lens_' PayeeCreditSchema (Maybe Text)
+payeeCreditSchemaPayeeIdL f PayeeCreditSchema{..} = (\payeeCreditSchemaPayeeId -> PayeeCreditSchema { payeeCreditSchemaPayeeId, ..} ) <$> f payeeCreditSchemaPayeeId
+{-# INLINE payeeCreditSchemaPayeeIdL #-}
+
+
+
+-- * PayerCreditSchema
+
+-- | 'payerCreditSchemaPayerId' Lens
+payerCreditSchemaPayerIdL :: Lens_' PayerCreditSchema (Maybe Text)
+payerCreditSchemaPayerIdL f PayerCreditSchema{..} = (\payerCreditSchemaPayerId -> PayerCreditSchema { payerCreditSchemaPayerId, ..} ) <$> f payerCreditSchemaPayerId
+{-# INLINE payerCreditSchemaPayerIdL #-}
+
+
+
 -- * Payment
 
 -- | 'paymentAmount' Lens
@@ -906,6 +1097,130 @@ paymentSchemaAmountL f PaymentSchema{..} = (\paymentSchemaAmount -> PaymentSchem
 paymentSchemaUnitL :: Lens_' PaymentSchema (Maybe Text)
 paymentSchemaUnitL f PaymentSchema{..} = (\paymentSchemaUnit -> PaymentSchema { paymentSchemaUnit, ..} ) <$> f paymentSchemaUnit
 {-# INLINE paymentSchemaUnitL #-}
+
+
+
+-- * PrepareAndExecuteBalanceDetails
+
+-- | 'prepareAndExecuteBalanceDetailsUnit' Lens
+prepareAndExecuteBalanceDetailsUnitL :: Lens_' PrepareAndExecuteBalanceDetails (Maybe Text)
+prepareAndExecuteBalanceDetailsUnitL f PrepareAndExecuteBalanceDetails{..} = (\prepareAndExecuteBalanceDetailsUnit -> PrepareAndExecuteBalanceDetails { prepareAndExecuteBalanceDetailsUnit, ..} ) <$> f prepareAndExecuteBalanceDetailsUnit
+{-# INLINE prepareAndExecuteBalanceDetailsUnitL #-}
+
+-- | 'prepareAndExecuteBalanceDetailsAmount' Lens
+prepareAndExecuteBalanceDetailsAmountL :: Lens_' PrepareAndExecuteBalanceDetails (Maybe Text)
+prepareAndExecuteBalanceDetailsAmountL f PrepareAndExecuteBalanceDetails{..} = (\prepareAndExecuteBalanceDetailsAmount -> PrepareAndExecuteBalanceDetails { prepareAndExecuteBalanceDetailsAmount, ..} ) <$> f prepareAndExecuteBalanceDetailsAmount
+{-# INLINE prepareAndExecuteBalanceDetailsAmountL #-}
+
+
+
+-- * PrepareAndExecuteOverledgerErrorResponse
+
+-- | 'prepareAndExecuteOverledgerErrorResponseCode' Lens
+prepareAndExecuteOverledgerErrorResponseCodeL :: Lens_' PrepareAndExecuteOverledgerErrorResponse (Maybe Text)
+prepareAndExecuteOverledgerErrorResponseCodeL f PrepareAndExecuteOverledgerErrorResponse{..} = (\prepareAndExecuteOverledgerErrorResponseCode -> PrepareAndExecuteOverledgerErrorResponse { prepareAndExecuteOverledgerErrorResponseCode, ..} ) <$> f prepareAndExecuteOverledgerErrorResponseCode
+{-# INLINE prepareAndExecuteOverledgerErrorResponseCodeL #-}
+
+-- | 'prepareAndExecuteOverledgerErrorResponseDescription' Lens
+prepareAndExecuteOverledgerErrorResponseDescriptionL :: Lens_' PrepareAndExecuteOverledgerErrorResponse (Maybe Text)
+prepareAndExecuteOverledgerErrorResponseDescriptionL f PrepareAndExecuteOverledgerErrorResponse{..} = (\prepareAndExecuteOverledgerErrorResponseDescription -> PrepareAndExecuteOverledgerErrorResponse { prepareAndExecuteOverledgerErrorResponseDescription, ..} ) <$> f prepareAndExecuteOverledgerErrorResponseDescription
+{-# INLINE prepareAndExecuteOverledgerErrorResponseDescriptionL #-}
+
+-- | 'prepareAndExecuteOverledgerErrorResponseCategory' Lens
+prepareAndExecuteOverledgerErrorResponseCategoryL :: Lens_' PrepareAndExecuteOverledgerErrorResponse (Maybe Text)
+prepareAndExecuteOverledgerErrorResponseCategoryL f PrepareAndExecuteOverledgerErrorResponse{..} = (\prepareAndExecuteOverledgerErrorResponseCategory -> PrepareAndExecuteOverledgerErrorResponse { prepareAndExecuteOverledgerErrorResponseCategory, ..} ) <$> f prepareAndExecuteOverledgerErrorResponseCategory
+{-# INLINE prepareAndExecuteOverledgerErrorResponseCategoryL #-}
+
+
+
+-- * PrepareAndExecuteSearchAddressBalanceResponse
+
+-- | 'prepareAndExecuteSearchAddressBalanceResponseBalances' Lens
+prepareAndExecuteSearchAddressBalanceResponseBalancesL :: Lens_' PrepareAndExecuteSearchAddressBalanceResponse (Maybe [PrepareAndExecuteBalanceDetails])
+prepareAndExecuteSearchAddressBalanceResponseBalancesL f PrepareAndExecuteSearchAddressBalanceResponse{..} = (\prepareAndExecuteSearchAddressBalanceResponseBalances -> PrepareAndExecuteSearchAddressBalanceResponse { prepareAndExecuteSearchAddressBalanceResponseBalances, ..} ) <$> f prepareAndExecuteSearchAddressBalanceResponseBalances
+{-# INLINE prepareAndExecuteSearchAddressBalanceResponseBalancesL #-}
+
+-- | 'prepareAndExecuteSearchAddressBalanceResponseLocation' Lens
+prepareAndExecuteSearchAddressBalanceResponseLocationL :: Lens_' PrepareAndExecuteSearchAddressBalanceResponse (Maybe Location)
+prepareAndExecuteSearchAddressBalanceResponseLocationL f PrepareAndExecuteSearchAddressBalanceResponse{..} = (\prepareAndExecuteSearchAddressBalanceResponseLocation -> PrepareAndExecuteSearchAddressBalanceResponse { prepareAndExecuteSearchAddressBalanceResponseLocation, ..} ) <$> f prepareAndExecuteSearchAddressBalanceResponseLocation
+{-# INLINE prepareAndExecuteSearchAddressBalanceResponseLocationL #-}
+
+-- | 'prepareAndExecuteSearchAddressBalanceResponseTimestamp' Lens
+prepareAndExecuteSearchAddressBalanceResponseTimestampL :: Lens_' PrepareAndExecuteSearchAddressBalanceResponse (Maybe Text)
+prepareAndExecuteSearchAddressBalanceResponseTimestampL f PrepareAndExecuteSearchAddressBalanceResponse{..} = (\prepareAndExecuteSearchAddressBalanceResponseTimestamp -> PrepareAndExecuteSearchAddressBalanceResponse { prepareAndExecuteSearchAddressBalanceResponseTimestamp, ..} ) <$> f prepareAndExecuteSearchAddressBalanceResponseTimestamp
+{-# INLINE prepareAndExecuteSearchAddressBalanceResponseTimestampL #-}
+
+-- | 'prepareAndExecuteSearchAddressBalanceResponseAddressId' Lens
+prepareAndExecuteSearchAddressBalanceResponseAddressIdL :: Lens_' PrepareAndExecuteSearchAddressBalanceResponse (Maybe Text)
+prepareAndExecuteSearchAddressBalanceResponseAddressIdL f PrepareAndExecuteSearchAddressBalanceResponse{..} = (\prepareAndExecuteSearchAddressBalanceResponseAddressId -> PrepareAndExecuteSearchAddressBalanceResponse { prepareAndExecuteSearchAddressBalanceResponseAddressId, ..} ) <$> f prepareAndExecuteSearchAddressBalanceResponseAddressId
+{-# INLINE prepareAndExecuteSearchAddressBalanceResponseAddressIdL #-}
+
+
+
+-- * PrepareAndExecuteTransactionResponse
+
+-- | 'prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse' Lens
+prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponseL :: Lens_' PrepareAndExecuteTransactionResponse (Maybe PrepareAndExecuteOverledgerErrorResponse)
+prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponseL f PrepareAndExecuteTransactionResponse{..} = (\prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse -> PrepareAndExecuteTransactionResponse { prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse, ..} ) <$> f prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse
+{-# INLINE prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponseL #-}
+
+-- | 'prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse' Lens
+prepareAndExecuteTransactionResponsePreparationTransactionSearchResponseL :: Lens_' PrepareAndExecuteTransactionResponse (Maybe PrepareTransactionResponse)
+prepareAndExecuteTransactionResponsePreparationTransactionSearchResponseL f PrepareAndExecuteTransactionResponse{..} = (\prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse -> PrepareAndExecuteTransactionResponse { prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse, ..} ) <$> f prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse
+{-# INLINE prepareAndExecuteTransactionResponsePreparationTransactionSearchResponseL #-}
+
+-- | 'prepareAndExecuteTransactionResponseExecutionTransactionSearchResponse' Lens
+prepareAndExecuteTransactionResponseExecutionTransactionSearchResponseL :: Lens_' PrepareAndExecuteTransactionResponse (Maybe ExecuteSearchTransactionResponse)
+prepareAndExecuteTransactionResponseExecutionTransactionSearchResponseL f PrepareAndExecuteTransactionResponse{..} = (\prepareAndExecuteTransactionResponseExecutionTransactionSearchResponse -> PrepareAndExecuteTransactionResponse { prepareAndExecuteTransactionResponseExecutionTransactionSearchResponse, ..} ) <$> f prepareAndExecuteTransactionResponseExecutionTransactionSearchResponse
+{-# INLINE prepareAndExecuteTransactionResponseExecutionTransactionSearchResponseL #-}
+
+
+
+-- * PrepareApproveDebitTransactionRequestSchema
+
+-- | 'prepareApproveDebitTransactionRequestSchemaUrgency' Lens
+prepareApproveDebitTransactionRequestSchemaUrgencyL :: Lens_' PrepareApproveDebitTransactionRequestSchema (Maybe Text)
+prepareApproveDebitTransactionRequestSchemaUrgencyL f PrepareApproveDebitTransactionRequestSchema{..} = (\prepareApproveDebitTransactionRequestSchemaUrgency -> PrepareApproveDebitTransactionRequestSchema { prepareApproveDebitTransactionRequestSchemaUrgency, ..} ) <$> f prepareApproveDebitTransactionRequestSchemaUrgency
+{-# INLINE prepareApproveDebitTransactionRequestSchemaUrgencyL #-}
+
+-- | 'prepareApproveDebitTransactionRequestSchemaRequestDetails' Lens
+prepareApproveDebitTransactionRequestSchemaRequestDetailsL :: Lens_' PrepareApproveDebitTransactionRequestSchema (Maybe ApproveRequestDetailsSchema)
+prepareApproveDebitTransactionRequestSchemaRequestDetailsL f PrepareApproveDebitTransactionRequestSchema{..} = (\prepareApproveDebitTransactionRequestSchemaRequestDetails -> PrepareApproveDebitTransactionRequestSchema { prepareApproveDebitTransactionRequestSchemaRequestDetails, ..} ) <$> f prepareApproveDebitTransactionRequestSchemaRequestDetails
+{-# INLINE prepareApproveDebitTransactionRequestSchemaRequestDetailsL #-}
+
+-- | 'prepareApproveDebitTransactionRequestSchemaLocation' Lens
+prepareApproveDebitTransactionRequestSchemaLocationL :: Lens_' PrepareApproveDebitTransactionRequestSchema (Maybe Location)
+prepareApproveDebitTransactionRequestSchemaLocationL f PrepareApproveDebitTransactionRequestSchema{..} = (\prepareApproveDebitTransactionRequestSchemaLocation -> PrepareApproveDebitTransactionRequestSchema { prepareApproveDebitTransactionRequestSchemaLocation, ..} ) <$> f prepareApproveDebitTransactionRequestSchemaLocation
+{-# INLINE prepareApproveDebitTransactionRequestSchemaLocationL #-}
+
+-- | 'prepareApproveDebitTransactionRequestSchemaType' Lens
+prepareApproveDebitTransactionRequestSchemaTypeL :: Lens_' PrepareApproveDebitTransactionRequestSchema (Maybe Text)
+prepareApproveDebitTransactionRequestSchemaTypeL f PrepareApproveDebitTransactionRequestSchema{..} = (\prepareApproveDebitTransactionRequestSchemaType -> PrepareApproveDebitTransactionRequestSchema { prepareApproveDebitTransactionRequestSchemaType, ..} ) <$> f prepareApproveDebitTransactionRequestSchemaType
+{-# INLINE prepareApproveDebitTransactionRequestSchemaTypeL #-}
+
+
+
+-- * PrepareCreditTransactionRequestSchema
+
+-- | 'prepareCreditTransactionRequestSchemaUrgency' Lens
+prepareCreditTransactionRequestSchemaUrgencyL :: Lens_' PrepareCreditTransactionRequestSchema (Maybe Text)
+prepareCreditTransactionRequestSchemaUrgencyL f PrepareCreditTransactionRequestSchema{..} = (\prepareCreditTransactionRequestSchemaUrgency -> PrepareCreditTransactionRequestSchema { prepareCreditTransactionRequestSchemaUrgency, ..} ) <$> f prepareCreditTransactionRequestSchemaUrgency
+{-# INLINE prepareCreditTransactionRequestSchemaUrgencyL #-}
+
+-- | 'prepareCreditTransactionRequestSchemaRequestDetails' Lens
+prepareCreditTransactionRequestSchemaRequestDetailsL :: Lens_' PrepareCreditTransactionRequestSchema (Maybe CreditRequestDetailsSchema)
+prepareCreditTransactionRequestSchemaRequestDetailsL f PrepareCreditTransactionRequestSchema{..} = (\prepareCreditTransactionRequestSchemaRequestDetails -> PrepareCreditTransactionRequestSchema { prepareCreditTransactionRequestSchemaRequestDetails, ..} ) <$> f prepareCreditTransactionRequestSchemaRequestDetails
+{-# INLINE prepareCreditTransactionRequestSchemaRequestDetailsL #-}
+
+-- | 'prepareCreditTransactionRequestSchemaLocation' Lens
+prepareCreditTransactionRequestSchemaLocationL :: Lens_' PrepareCreditTransactionRequestSchema (Maybe Location)
+prepareCreditTransactionRequestSchemaLocationL f PrepareCreditTransactionRequestSchema{..} = (\prepareCreditTransactionRequestSchemaLocation -> PrepareCreditTransactionRequestSchema { prepareCreditTransactionRequestSchemaLocation, ..} ) <$> f prepareCreditTransactionRequestSchemaLocation
+{-# INLINE prepareCreditTransactionRequestSchemaLocationL #-}
+
+-- | 'prepareCreditTransactionRequestSchemaType' Lens
+prepareCreditTransactionRequestSchemaTypeL :: Lens_' PrepareCreditTransactionRequestSchema (Maybe Text)
+prepareCreditTransactionRequestSchemaTypeL f PrepareCreditTransactionRequestSchema{..} = (\prepareCreditTransactionRequestSchemaType -> PrepareCreditTransactionRequestSchema { prepareCreditTransactionRequestSchemaType, ..} ) <$> f prepareCreditTransactionRequestSchemaType
+{-# INLINE prepareCreditTransactionRequestSchemaTypeL #-}
 
 
 
@@ -1106,7 +1421,7 @@ resourceMonitoringDetailsTypeL f ResourceMonitoringDetails{..} = (\resourceMonit
 {-# INLINE resourceMonitoringDetailsTypeL #-}
 
 -- | 'resourceMonitoringDetailsTimestamp' Lens
-resourceMonitoringDetailsTimestampL :: Lens_' ResourceMonitoringDetails (Maybe DateTime)
+resourceMonitoringDetailsTimestampL :: Lens_' ResourceMonitoringDetails (Maybe Text)
 resourceMonitoringDetailsTimestampL f ResourceMonitoringDetails{..} = (\resourceMonitoringDetailsTimestamp -> ResourceMonitoringDetails { resourceMonitoringDetailsTimestamp, ..} ) <$> f resourceMonitoringDetailsTimestamp
 {-# INLINE resourceMonitoringDetailsTimestampL #-}
 
@@ -1665,15 +1980,15 @@ transactionEncodedL :: Lens_' Transaction (Maybe [Text])
 transactionEncodedL f Transaction{..} = (\transactionEncoded -> Transaction { transactionEncoded, ..} ) <$> f transactionEncoded
 {-# INLINE transactionEncodedL #-}
 
--- | 'transactionNativeData' Lens
-transactionNativeDataL :: Lens_' Transaction (Maybe A.Value)
-transactionNativeDataL f Transaction{..} = (\transactionNativeData -> Transaction { transactionNativeData, ..} ) <$> f transactionNativeData
-{-# INLINE transactionNativeDataL #-}
-
 -- | 'transactionExtraFields' Lens
 transactionExtraFieldsL :: Lens_' Transaction (Maybe A.Value)
 transactionExtraFieldsL f Transaction{..} = (\transactionExtraFields -> Transaction { transactionExtraFields, ..} ) <$> f transactionExtraFields
 {-# INLINE transactionExtraFieldsL #-}
+
+-- | 'transactionNativeData' Lens
+transactionNativeDataL :: Lens_' Transaction (Maybe A.Value)
+transactionNativeDataL f Transaction{..} = (\transactionNativeData -> Transaction { transactionNativeData, ..} ) <$> f transactionNativeData
+{-# INLINE transactionNativeDataL #-}
 
 
 

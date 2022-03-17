@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -50,11 +50,8 @@ class AddressBalanceResponse {
             if (data.hasOwnProperty('unit')) {
                 obj['unit'] = ApiClient.convertToType(data['unit'], 'String');
             }
-            if (data.hasOwnProperty('value')) {
-                obj['value'] = ApiClient.convertToType(data['value'], 'Number');
-            }
-            if (data.hasOwnProperty('addressId')) {
-                obj['addressId'] = ApiClient.convertToType(data['addressId'], 'String');
+            if (data.hasOwnProperty('amount')) {
+                obj['amount'] = ApiClient.convertToType(data['amount'], 'String');
             }
         }
         return obj;
@@ -69,14 +66,9 @@ class AddressBalanceResponse {
 AddressBalanceResponse.prototype['unit'] = undefined;
 
 /**
- * @member {Number} value
+ * @member {String} amount
  */
-AddressBalanceResponse.prototype['value'] = undefined;
-
-/**
- * @member {String} addressId
- */
-AddressBalanceResponse.prototype['addressId'] = undefined;
+AddressBalanceResponse.prototype['amount'] = undefined;
 
 
 

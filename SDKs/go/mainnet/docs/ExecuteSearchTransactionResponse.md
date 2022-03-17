@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Location** | Pointer to [**Location**](Location.md) |  | [optional] 
 **Type** | Pointer to **string** | The type of the transaction object returned | [optional] 
 **Transaction** | Pointer to [**Transaction**](Transaction.md) |  | [optional] 
-**Timestamp** | Pointer to **time.Time** | The unix time to read the object from | [optional] 
+**Timestamp** | Pointer to **string** | The unix time to read the object from | [optional] 
 **Status** | Pointer to [**Status**](Status.md) |  | [optional] 
 **ExtraFields** | Pointer to **map[string]interface{}** |  | [optional] 
 
@@ -107,20 +107,20 @@ HasTransaction returns a boolean if a field has been set.
 
 ### GetTimestamp
 
-`func (o *ExecuteSearchTransactionResponse) GetTimestamp() time.Time`
+`func (o *ExecuteSearchTransactionResponse) GetTimestamp() string`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *ExecuteSearchTransactionResponse) GetTimestampOk() (*time.Time, bool)`
+`func (o *ExecuteSearchTransactionResponse) GetTimestampOk() (*string, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *ExecuteSearchTransactionResponse) SetTimestamp(v time.Time)`
+`func (o *ExecuteSearchTransactionResponse) SetTimestamp(v string)`
 
 SetTimestamp sets Timestamp field to given value.
 

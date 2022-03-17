@@ -33,8 +33,8 @@ typedef struct transaction_t {
     char *message; // string
     char *transaction_id; // string
     list_t *encoded; //primitive container
-    object_t *native_data; //object
     object_t *extra_fields; //object
+    object_t *native_data; //object
 
 } transaction_t;
 
@@ -48,8 +48,8 @@ transaction_t *transaction_create(
     char *message,
     char *transaction_id,
     list_t *encoded,
-    object_t *native_data,
-    object_t *extra_fields
+    object_t *extra_fields,
+    object_t *native_data
 );
 
 void transaction_free(transaction_t *transaction);

@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -31,7 +31,7 @@ import org.openapitools.client.model.Location;
 /**
  * ExecuteSearchBalanceResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-01T15:18:10.790747Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
 public class ExecuteSearchBalanceResponse {
   public static final String SERIALIZED_NAME_BALANCES = "balances";
   @SerializedName(SERIALIZED_NAME_BALANCES)
@@ -40,6 +40,14 @@ public class ExecuteSearchBalanceResponse {
   public static final String SERIALIZED_NAME_LOCATION = "location";
   @SerializedName(SERIALIZED_NAME_LOCATION)
   private Location location;
+
+  public static final String SERIALIZED_NAME_TIMESTAMP = "timestamp";
+  @SerializedName(SERIALIZED_NAME_TIMESTAMP)
+  private String timestamp;
+
+  public static final String SERIALIZED_NAME_ADDRESS_ID = "addressId";
+  @SerializedName(SERIALIZED_NAME_ADDRESS_ID)
+  private String addressId;
 
 
   public ExecuteSearchBalanceResponse balances(List<AddressBalanceResponse> balances) {
@@ -96,6 +104,52 @@ public class ExecuteSearchBalanceResponse {
   }
 
 
+  public ExecuteSearchBalanceResponse timestamp(String timestamp) {
+    
+    this.timestamp = timestamp;
+    return this;
+  }
+
+   /**
+   * Get timestamp
+   * @return timestamp
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getTimestamp() {
+    return timestamp;
+  }
+
+
+  public void setTimestamp(String timestamp) {
+    this.timestamp = timestamp;
+  }
+
+
+  public ExecuteSearchBalanceResponse addressId(String addressId) {
+    
+    this.addressId = addressId;
+    return this;
+  }
+
+   /**
+   * Get addressId
+   * @return addressId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getAddressId() {
+    return addressId;
+  }
+
+
+  public void setAddressId(String addressId) {
+    this.addressId = addressId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -106,12 +160,14 @@ public class ExecuteSearchBalanceResponse {
     }
     ExecuteSearchBalanceResponse executeSearchBalanceResponse = (ExecuteSearchBalanceResponse) o;
     return Objects.equals(this.balances, executeSearchBalanceResponse.balances) &&
-        Objects.equals(this.location, executeSearchBalanceResponse.location);
+        Objects.equals(this.location, executeSearchBalanceResponse.location) &&
+        Objects.equals(this.timestamp, executeSearchBalanceResponse.timestamp) &&
+        Objects.equals(this.addressId, executeSearchBalanceResponse.addressId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(balances, location);
+    return Objects.hash(balances, location, timestamp, addressId);
   }
 
   @Override
@@ -120,6 +176,8 @@ public class ExecuteSearchBalanceResponse {
     sb.append("class ExecuteSearchBalanceResponse {\n");
     sb.append("    balances: ").append(toIndentedString(balances)).append("\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
+    sb.append("    addressId: ").append(toIndentedString(addressId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

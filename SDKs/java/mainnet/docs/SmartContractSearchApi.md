@@ -4,9 +4,82 @@ All URIs are relative to *https://api.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**autoExecuteSearchSmartContractQueryRequest**](SmartContractSearchApi.md#autoExecuteSearchSmartContractQueryRequest) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 [**executePreparedSearchRequest**](SmartContractSearchApi.md#executePreparedSearchRequest) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 [**prepareSmartContractQueryRequest**](SmartContractSearchApi.md#prepareSmartContractQueryRequest) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
 
+
+<a name="autoExecuteSearchSmartContractQueryRequest"></a>
+# **autoExecuteSearchSmartContractQueryRequest**
+> AutoExecuteSearchAddressBalanceResponseSchema autoExecuteSearchSmartContractQueryRequest(authorization, prepareSearchSchema)
+
+Prepare and automatically execute a search for a smart contract query on a DLT.
+
+Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.SmartContractSearchApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.overledger.io");
+    
+    // Configure OAuth2 access token for authorization: OAuth2_Security_Scheme
+    OAuth OAuth2_Security_Scheme = (OAuth) defaultClient.getAuthentication("OAuth2_Security_Scheme");
+    OAuth2_Security_Scheme.setAccessToken("YOUR ACCESS TOKEN");
+
+    SmartContractSearchApi apiInstance = new SmartContractSearchApi(defaultClient);
+    String authorization = "authorization_example"; // String | 
+    PrepareSearchSchema prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
+    try {
+      AutoExecuteSearchAddressBalanceResponseSchema result = apiInstance.autoExecuteSearchSmartContractQueryRequest(authorization, prepareSearchSchema);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SmartContractSearchApi#autoExecuteSearchSmartContractQueryRequest");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **String**|  |
+ **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  |
+
+### Return type
+
+[**AutoExecuteSearchAddressBalanceResponseSchema**](AutoExecuteSearchAddressBalanceResponseSchema.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | All good! |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorised |  -  |
+**500** | Something went wrong on our side |  -  |
 
 <a name="executePreparedSearchRequest"></a>
 # **executePreparedSearchRequest**

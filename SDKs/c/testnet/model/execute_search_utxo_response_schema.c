@@ -6,6 +6,7 @@
 
 
 execute_search_utxo_response_schema_t *execute_search_utxo_response_schema_create(
+    char *utxo_id,
     list_t *destination,
     location_t *location,
     utxo_timestamp_schema_t *timestamp,
@@ -16,6 +17,7 @@ execute_search_utxo_response_schema_t *execute_search_utxo_response_schema_creat
     if (!execute_search_utxo_response_schema_local_var) {
         return NULL;
     }
+    execute_search_utxo_response_schema_local_var->utxo_id = utxo_id;
     execute_search_utxo_response_schema_local_var->destination = destination;
     execute_search_utxo_response_schema_local_var->location = location;
     execute_search_utxo_response_schema_local_var->timestamp = timestamp;
@@ -31,6 +33,10 @@ void execute_search_utxo_response_schema_free(execute_search_utxo_response_schem
         return ;
     }
     listEntry_t *listEntry;
+    if (execute_search_utxo_response_schema->utxo_id) {
+        free(execute_search_utxo_response_schema->utxo_id);
+        execute_search_utxo_response_schema->utxo_id = NULL;
+    }
     if (execute_search_utxo_response_schema->destination) {
         list_ForEach(listEntry, execute_search_utxo_response_schema->destination) {
             utxo_destination_free(listEntry->data);
@@ -59,6 +65,14 @@ void execute_search_utxo_response_schema_free(execute_search_utxo_response_schem
 
 cJSON *execute_search_utxo_response_schema_convertToJSON(execute_search_utxo_response_schema_t *execute_search_utxo_response_schema) {
     cJSON *item = cJSON_CreateObject();
+
+    // execute_search_utxo_response_schema->utxo_id
+    if(execute_search_utxo_response_schema->utxo_id) { 
+    if(cJSON_AddStringToObject(item, "utxoId", execute_search_utxo_response_schema->utxo_id) == NULL) {
+    goto fail; //String
+    }
+     } 
+
 
     // execute_search_utxo_response_schema->destination
     if(execute_search_utxo_response_schema->destination) { 
@@ -143,6 +157,15 @@ execute_search_utxo_response_schema_t *execute_search_utxo_response_schema_parse
 
     execute_search_utxo_response_schema_t *execute_search_utxo_response_schema_local_var = NULL;
 
+    // execute_search_utxo_response_schema->utxo_id
+    cJSON *utxo_id = cJSON_GetObjectItemCaseSensitive(execute_search_utxo_response_schemaJSON, "utxoId");
+    if (utxo_id) { 
+    if(!cJSON_IsString(utxo_id))
+    {
+    goto end; //String
+    }
+    }
+
     // execute_search_utxo_response_schema->destination
     cJSON *destination = cJSON_GetObjectItemCaseSensitive(execute_search_utxo_response_schemaJSON, "destination");
     list_t *destinationList;
@@ -195,6 +218,7 @@ execute_search_utxo_response_schema_t *execute_search_utxo_response_schema_parse
 
 
     execute_search_utxo_response_schema_local_var = execute_search_utxo_response_schema_create (
+        utxo_id ? strdup(utxo_id->valuestring) : NULL,
         destination ? destinationList : NULL,
         location ? location_local_nonprim : NULL,
         timestamp ? timestamp_local_nonprim : NULL,

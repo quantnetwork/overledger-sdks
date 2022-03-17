@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -19,6 +19,100 @@ module OpenapiClient
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
+    # Prepare and automatically execute a search for a block on a DLT.
+    # Generates a request ID and automatically executes the block search on the requested DLT.
+    # @param authorization [String] 
+    # @param block_id [String] 
+    # @param prepare_search_schema [PrepareSearchSchema] 
+    # @param [Hash] opts the optional parameters
+    # @return [AutoExecuteSearchBlockResponseSchema]
+    def auto_execute_search_block_request(authorization, block_id, prepare_search_schema, opts = {})
+      data, _status_code, _headers = auto_execute_search_block_request_with_http_info(authorization, block_id, prepare_search_schema, opts)
+      data
+    end
+
+    # Prepare and automatically execute a search for a block on a DLT.
+    # Generates a request ID and automatically executes the block search on the requested DLT.
+    # @param authorization [String] 
+    # @param block_id [String] 
+    # @param prepare_search_schema [PrepareSearchSchema] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(AutoExecuteSearchBlockResponseSchema, Integer, Hash)>] AutoExecuteSearchBlockResponseSchema data, response status code and response headers
+    def auto_execute_search_block_request_with_http_info(authorization, block_id, prepare_search_schema, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: BlockSearchApi.auto_execute_search_block_request ...'
+      end
+      # verify the required parameter 'authorization' is set
+      if @api_client.config.client_side_validation && authorization.nil?
+        fail ArgumentError, "Missing the required parameter 'authorization' when calling BlockSearchApi.auto_execute_search_block_request"
+      end
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling BlockSearchApi.auto_execute_search_block_request, the character length must be smaller than or equal to 5010.'
+      end
+
+      if @api_client.config.client_side_validation && authorization.to_s.length < 0
+        fail ArgumentError, 'invalid value for "authorization" when calling BlockSearchApi.auto_execute_search_block_request, the character length must be great than or equal to 0.'
+      end
+
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
+      if @api_client.config.client_side_validation && authorization !~ pattern
+        fail ArgumentError, "invalid value for 'authorization' when calling BlockSearchApi.auto_execute_search_block_request, must conform to the pattern #{pattern}."
+      end
+
+      # verify the required parameter 'block_id' is set
+      if @api_client.config.client_side_validation && block_id.nil?
+        fail ArgumentError, "Missing the required parameter 'block_id' when calling BlockSearchApi.auto_execute_search_block_request"
+      end
+      # verify the required parameter 'prepare_search_schema' is set
+      if @api_client.config.client_side_validation && prepare_search_schema.nil?
+        fail ArgumentError, "Missing the required parameter 'prepare_search_schema' when calling BlockSearchApi.auto_execute_search_block_request"
+      end
+      # resource path
+      local_var_path = '/v2/autoexecution/search/block/{blockId}'.sub('{' + 'blockId' + '}', CGI.escape(block_id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+      header_params[:'Authorization'] = authorization
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(prepare_search_schema)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'AutoExecuteSearchBlockResponseSchema'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['OAuth2_Security_Scheme']
+
+      new_options = opts.merge(
+        :operation => :"BlockSearchApi.auto_execute_search_block_request",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: BlockSearchApi#auto_execute_search_block_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Execute a search for a block on a DLT
     # Takes a request ID and searches for the block on the requested DLT based on the parameters specified in the prepare request
     # @param authorization [String] 
@@ -44,15 +138,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling BlockSearchApi.execute_prepared_search_request_block"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling BlockSearchApi.execute_prepared_search_request_block, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling BlockSearchApi.execute_prepared_search_request_block, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling BlockSearchApi.execute_prepared_search_request_block, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling BlockSearchApi.execute_prepared_search_request_block, must conform to the pattern #{pattern}."
       end
@@ -143,15 +237,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling BlockSearchApi.prepare_search_block_by_block_id"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling BlockSearchApi.prepare_search_block_by_block_id, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling BlockSearchApi.prepare_search_block_by_block_id, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling BlockSearchApi.prepare_search_block_by_block_id, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling BlockSearchApi.prepare_search_block_by_block_id, must conform to the pattern #{pattern}."
       end

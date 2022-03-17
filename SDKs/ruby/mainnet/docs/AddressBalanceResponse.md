@@ -5,8 +5,7 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **unit** | **String** |  | [optional] |
-| **value** | **Float** |  | [optional] |
-| **address_id** | **String** |  | [optional] |
+| **amount** | **String** |  | [optional] |
 
 ## Example
 
@@ -15,8 +14,7 @@ require 'openapi_client'
 
 instance = OpenapiClient::AddressBalanceResponse.new(
   unit: null,
-  value: null,
-  address_id: null
+  amount: null
 )
 ```
 

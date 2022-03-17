@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sequence** | Pointer to **string** |  | [optional] 
 **Location** | Pointer to [**Location**](Location.md) |  | [optional] 
+**Timestamp** | Pointer to **string** |  | [optional] 
 **AddressId** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -76,6 +77,31 @@ SetLocation sets Location field to given value.
 `func (o *ExecuteSearchSequenceResponse) HasLocation() bool`
 
 HasLocation returns a boolean if a field has been set.
+
+### GetTimestamp
+
+`func (o *ExecuteSearchSequenceResponse) GetTimestamp() string`
+
+GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
+
+### GetTimestampOk
+
+`func (o *ExecuteSearchSequenceResponse) GetTimestampOk() (*string, bool)`
+
+GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTimestamp
+
+`func (o *ExecuteSearchSequenceResponse) SetTimestamp(v string)`
+
+SetTimestamp sets Timestamp field to given value.
+
+### HasTimestamp
+
+`func (o *ExecuteSearchSequenceResponse) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
 
 ### GetAddressId
 

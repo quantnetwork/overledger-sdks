@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -15,6 +15,8 @@ require 'time'
 
 module OpenapiClient
   class ExecuteSearchUTXOResponseSchema
+    attr_accessor :utxo_id
+
     attr_accessor :destination
 
     attr_accessor :location
@@ -28,6 +30,7 @@ module OpenapiClient
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'utxo_id' => :'utxoId',
         :'destination' => :'destination',
         :'location' => :'location',
         :'timestamp' => :'timestamp',
@@ -44,6 +47,7 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'utxo_id' => :'String',
         :'destination' => :'Array<UTXODestination>',
         :'location' => :'Location',
         :'timestamp' => :'UTXOTimestampSchema',
@@ -72,6 +76,10 @@ module OpenapiClient
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'utxo_id')
+        self.utxo_id = attributes[:'utxo_id']
+      end
 
       if attributes.key?(:'destination')
         if (value = attributes[:'destination']).is_a?(Array)
@@ -138,6 +146,7 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          utxo_id == o.utxo_id &&
           destination == o.destination &&
           location == o.location &&
           timestamp == o.timestamp &&
@@ -154,7 +163,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [destination, location, timestamp, status, native_data].hash
+      [utxo_id, destination, location, timestamp, status, native_data].hash
     end
 
     # Builds the object from hash

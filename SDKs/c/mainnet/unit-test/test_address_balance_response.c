@@ -23,14 +23,12 @@ address_balance_response_t* instantiate_address_balance_response(int include_opt
   if (include_optional) {
     address_balance_response = address_balance_response_create(
       "a",
-      1.337,
-      "a"
+      "0"
     );
   } else {
     address_balance_response = address_balance_response_create(
       "a",
-      1.337,
-      "a"
+      "0"
     );
   }
 

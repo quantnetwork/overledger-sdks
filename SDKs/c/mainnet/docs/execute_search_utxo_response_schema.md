@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**utxo_id** | **char \*** |  | [optional] 
 **destination** | [**list_t**](utxo_destination.md) \* |  | [optional] 
 **location** | [**location_t**](location.md) \* |  | [optional] 
 **timestamp** | [**utxo_timestamp_schema_t**](utxo_timestamp_schema.md) \* |  | [optional] 

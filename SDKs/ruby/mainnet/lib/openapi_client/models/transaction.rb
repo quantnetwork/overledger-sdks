@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -37,9 +37,9 @@ module OpenapiClient
 
     attr_accessor :encoded
 
-    attr_accessor :native_data
-
     attr_accessor :extra_fields
+
+    attr_accessor :native_data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -53,8 +53,8 @@ module OpenapiClient
         :'message' => :'message',
         :'transaction_id' => :'transactionId',
         :'encoded' => :'encoded',
-        :'native_data' => :'nativeData',
-        :'extra_fields' => :'extraFields'
+        :'extra_fields' => :'extraFields',
+        :'native_data' => :'nativeData'
       }
     end
 
@@ -75,8 +75,8 @@ module OpenapiClient
         :'message' => :'String',
         :'transaction_id' => :'String',
         :'encoded' => :'Array<String>',
-        :'native_data' => :'Object',
-        :'extra_fields' => :'Object'
+        :'extra_fields' => :'Object',
+        :'native_data' => :'Object'
       }
     end
 
@@ -147,12 +147,12 @@ module OpenapiClient
         end
       end
 
-      if attributes.key?(:'native_data')
-        self.native_data = attributes[:'native_data']
-      end
-
       if attributes.key?(:'extra_fields')
         self.extra_fields = attributes[:'extra_fields']
+      end
+
+      if attributes.key?(:'native_data')
+        self.native_data = attributes[:'native_data']
       end
     end
 
@@ -408,8 +408,8 @@ module OpenapiClient
           message == o.message &&
           transaction_id == o.transaction_id &&
           encoded == o.encoded &&
-          native_data == o.native_data &&
-          extra_fields == o.extra_fields
+          extra_fields == o.extra_fields &&
+          native_data == o.native_data
     end
 
     # @see the `==` method
@@ -421,7 +421,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [signature, origin, fee, destination, signed, total_payment_amount, message, transaction_id, encoded, native_data, extra_fields].hash
+      [signature, origin, fee, destination, signed, total_payment_amount, message, transaction_id, encoded, extra_fields, native_data].hash
     end
 
     # Builds the object from hash

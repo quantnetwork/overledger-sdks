@@ -8,6 +8,8 @@ lib/QuantOverledger.hs
 lib/QuantOverledger/API.hs
 lib/QuantOverledger/API/AddressSearch.hs
 lib/QuantOverledger/API/BlockSearch.hs
+lib/QuantOverledger/API/CreateAQRC20CreditTransaction.hs
+lib/QuantOverledger/API/CreateAQRC20DebitTransaction.hs
 lib/QuantOverledger/API/CreateSubscription.hs
 lib/QuantOverledger/API/CreateTransaction.hs
 lib/QuantOverledger/API/MDappTransactionQuery.hs

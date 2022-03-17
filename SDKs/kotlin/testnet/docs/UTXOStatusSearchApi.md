@@ -4,9 +4,63 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**autoExecuteSearchUtxoRequest**](UTXOStatusSearchApi.md#autoExecuteSearchUtxoRequest) | **POST** /v2/autoexecution/search/utxo/{utxoId} | Prepare and automatically execute a search for a UTXO on a DLT.
 [**executeUTXOPreparedSearchRequest**](UTXOStatusSearchApi.md#executeUTXOPreparedSearchRequest) | **POST** /v2/execution/search/utxo | Execute a search for UTXO state on a DLT
 [**prepareSearchUTXOState**](UTXOStatusSearchApi.md#prepareSearchUTXOState) | **POST** /v2/preparation/search/utxo/{utxoId} | Prepare Search for a UTXO State.
 
+
+<a name="autoExecuteSearchUtxoRequest"></a>
+# **autoExecuteSearchUtxoRequest**
+> AutoExecuteSearchUTXOResponseSchema autoExecuteSearchUtxoRequest(authorization, utxoId, prepareSearchSchema)
+
+Prepare and automatically execute a search for a UTXO on a DLT.
+
+Generates a request ID and automatically executes the utxo search on the requested DLT.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = UTXOStatusSearchApi()
+val authorization : kotlin.String = authorization_example // kotlin.String | 
+val utxoId : kotlin.String = utxoId_example // kotlin.String | 
+val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Bitcoin","network":"Testnet"}} // PrepareSearchSchema | 
+try {
+    val result : AutoExecuteSearchUTXOResponseSchema = apiInstance.autoExecuteSearchUtxoRequest(authorization, utxoId, prepareSearchSchema)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling UTXOStatusSearchApi#autoExecuteSearchUtxoRequest")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling UTXOStatusSearchApi#autoExecuteSearchUtxoRequest")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **kotlin.String**|  |
+ **utxoId** | **kotlin.String**|  |
+ **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  |
+
+### Return type
+
+[**AutoExecuteSearchUTXOResponseSchema**](AutoExecuteSearchUTXOResponseSchema.md)
+
+### Authorization
+
+
+Configure OAuth2_Security_Scheme:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="executeUTXOPreparedSearchRequest"></a>
 # **executeUTXOPreparedSearchRequest**
@@ -65,7 +119,7 @@ Configure OAuth2_Security_Scheme:
 
 Prepare Search for a UTXO State.
 
-Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
 
 ### Example
 ```kotlin

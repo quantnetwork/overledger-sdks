@@ -7,7 +7,9 @@
 
 execute_search_balance_response_t *execute_search_balance_response_create(
     list_t *balances,
-    location_t *location
+    location_t *location,
+    char *timestamp,
+    char *address_id
     ) {
     execute_search_balance_response_t *execute_search_balance_response_local_var = malloc(sizeof(execute_search_balance_response_t));
     if (!execute_search_balance_response_local_var) {
@@ -15,6 +17,8 @@ execute_search_balance_response_t *execute_search_balance_response_create(
     }
     execute_search_balance_response_local_var->balances = balances;
     execute_search_balance_response_local_var->location = location;
+    execute_search_balance_response_local_var->timestamp = timestamp;
+    execute_search_balance_response_local_var->address_id = address_id;
 
     return execute_search_balance_response_local_var;
 }
@@ -35,6 +39,14 @@ void execute_search_balance_response_free(execute_search_balance_response_t *exe
     if (execute_search_balance_response->location) {
         location_free(execute_search_balance_response->location);
         execute_search_balance_response->location = NULL;
+    }
+    if (execute_search_balance_response->timestamp) {
+        free(execute_search_balance_response->timestamp);
+        execute_search_balance_response->timestamp = NULL;
+    }
+    if (execute_search_balance_response->address_id) {
+        free(execute_search_balance_response->address_id);
+        execute_search_balance_response->address_id = NULL;
     }
     free(execute_search_balance_response);
 }
@@ -71,6 +83,22 @@ cJSON *execute_search_balance_response_convertToJSON(execute_search_balance_resp
     cJSON_AddItemToObject(item, "location", location_local_JSON);
     if(item->child == NULL) {
     goto fail;
+    }
+     } 
+
+
+    // execute_search_balance_response->timestamp
+    if(execute_search_balance_response->timestamp) { 
+    if(cJSON_AddStringToObject(item, "timestamp", execute_search_balance_response->timestamp) == NULL) {
+    goto fail; //String
+    }
+     } 
+
+
+    // execute_search_balance_response->address_id
+    if(execute_search_balance_response->address_id) { 
+    if(cJSON_AddStringToObject(item, "addressId", execute_search_balance_response->address_id) == NULL) {
+    goto fail; //String
     }
      } 
 
@@ -115,10 +143,30 @@ execute_search_balance_response_t *execute_search_balance_response_parseFromJSON
     location_local_nonprim = location_parseFromJSON(location); //nonprimitive
     }
 
+    // execute_search_balance_response->timestamp
+    cJSON *timestamp = cJSON_GetObjectItemCaseSensitive(execute_search_balance_responseJSON, "timestamp");
+    if (timestamp) { 
+    if(!cJSON_IsString(timestamp))
+    {
+    goto end; //String
+    }
+    }
+
+    // execute_search_balance_response->address_id
+    cJSON *address_id = cJSON_GetObjectItemCaseSensitive(execute_search_balance_responseJSON, "addressId");
+    if (address_id) { 
+    if(!cJSON_IsString(address_id))
+    {
+    goto end; //String
+    }
+    }
+
 
     execute_search_balance_response_local_var = execute_search_balance_response_create (
         balances ? balancesList : NULL,
-        location ? location_local_nonprim : NULL
+        location ? location_local_nonprim : NULL,
+        timestamp ? strdup(timestamp->valuestring) : NULL,
+        address_id ? strdup(address_id->valuestring) : NULL
         );
 
     return execute_search_balance_response_local_var;

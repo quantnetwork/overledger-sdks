@@ -4,8 +4,82 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
+| [**auto_execute_search_block_request**](BlockSearchApi.md#auto_execute_search_block_request) | **POST** /v2/autoexecution/search/block/{blockId} | Prepare and automatically execute a search for a block on a DLT. |
 | [**execute_prepared_search_request_block**](BlockSearchApi.md#execute_prepared_search_request_block) | **POST** /v2/execution/search/block | Execute a search for a block on a DLT |
 | [**prepare_search_block_by_block_id**](BlockSearchApi.md#prepare_search_block_by_block_id) | **POST** /v2/preparation/search/block/{blockId} | Prepare Search Block by Block Id. |
+
+
+## auto_execute_search_block_request
+
+> <AutoExecuteSearchBlockResponseSchema> auto_execute_search_block_request(authorization, block_id, prepare_search_schema)
+
+Prepare and automatically execute a search for a block on a DLT.
+
+Generates a request ID and automatically executes the block search on the requested DLT.
+
+### Examples
+
+```ruby
+require 'time'
+require 'openapi_client'
+# setup authorization
+OpenapiClient.configure do |config|
+  # Configure OAuth2 access token for authorization: OAuth2_Security_Scheme
+  config.access_token = 'YOUR ACCESS TOKEN'
+end
+
+api_instance = OpenapiClient::BlockSearchApi.new
+authorization = 'authorization_example' # String | 
+block_id = 'latest' # String | 
+prepare_search_schema = OpenapiClient::PrepareSearchSchema.new # PrepareSearchSchema | 
+
+begin
+  # Prepare and automatically execute a search for a block on a DLT.
+  result = api_instance.auto_execute_search_block_request(authorization, block_id, prepare_search_schema)
+  p result
+rescue OpenapiClient::ApiError => e
+  puts "Error when calling BlockSearchApi->auto_execute_search_block_request: #{e}"
+end
+```
+
+#### Using the auto_execute_search_block_request_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<AutoExecuteSearchBlockResponseSchema>, Integer, Hash)> auto_execute_search_block_request_with_http_info(authorization, block_id, prepare_search_schema)
+
+```ruby
+begin
+  # Prepare and automatically execute a search for a block on a DLT.
+  data, status_code, headers = api_instance.auto_execute_search_block_request_with_http_info(authorization, block_id, prepare_search_schema)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <AutoExecuteSearchBlockResponseSchema>
+rescue OpenapiClient::ApiError => e
+  puts "Error when calling BlockSearchApi->auto_execute_search_block_request_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **authorization** | **String** |  |  |
+| **block_id** | **String** |  |  |
+| **prepare_search_schema** | [**PrepareSearchSchema**](PrepareSearchSchema.md) |  |  |
+
+### Return type
+
+[**AutoExecuteSearchBlockResponseSchema**](AutoExecuteSearchBlockResponseSchema.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ## execute_prepared_search_request_block

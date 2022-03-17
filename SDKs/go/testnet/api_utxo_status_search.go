@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 API version: 2.0
 */
@@ -26,6 +26,172 @@ var (
 
 // UTXOStatusSearchApiService UTXOStatusSearchApi service
 type UTXOStatusSearchApiService service
+
+type ApiAutoExecuteSearchUtxoRequestRequest struct {
+	ctx _context.Context
+	ApiService *UTXOStatusSearchApiService
+	authorization *string
+	utxoId string
+	prepareSearchSchema *PrepareSearchSchema
+}
+
+func (r ApiAutoExecuteSearchUtxoRequestRequest) Authorization(authorization string) ApiAutoExecuteSearchUtxoRequestRequest {
+	r.authorization = &authorization
+	return r
+}
+func (r ApiAutoExecuteSearchUtxoRequestRequest) PrepareSearchSchema(prepareSearchSchema PrepareSearchSchema) ApiAutoExecuteSearchUtxoRequestRequest {
+	r.prepareSearchSchema = &prepareSearchSchema
+	return r
+}
+
+func (r ApiAutoExecuteSearchUtxoRequestRequest) Execute() (AutoExecuteSearchUTXOResponseSchema, *_nethttp.Response, error) {
+	return r.ApiService.AutoExecuteSearchUtxoRequestExecute(r)
+}
+
+/*
+AutoExecuteSearchUtxoRequest Prepare and automatically execute a search for a UTXO on a DLT.
+
+Generates a request ID and automatically executes the utxo search on the requested DLT.
+
+ @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param utxoId
+ @return ApiAutoExecuteSearchUtxoRequestRequest
+*/
+func (a *UTXOStatusSearchApiService) AutoExecuteSearchUtxoRequest(ctx _context.Context, utxoId string) ApiAutoExecuteSearchUtxoRequestRequest {
+	return ApiAutoExecuteSearchUtxoRequestRequest{
+		ApiService: a,
+		ctx: ctx,
+		utxoId: utxoId,
+	}
+}
+
+// Execute executes the request
+//  @return AutoExecuteSearchUTXOResponseSchema
+func (a *UTXOStatusSearchApiService) AutoExecuteSearchUtxoRequestExecute(r ApiAutoExecuteSearchUtxoRequestRequest) (AutoExecuteSearchUTXOResponseSchema, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  AutoExecuteSearchUTXOResponseSchema
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UTXOStatusSearchApiService.AutoExecuteSearchUtxoRequest")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/autoexecution/search/utxo/{utxoId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"utxoId"+"}", _neturl.PathEscape(parameterToString(r.utxoId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.authorization == nil {
+		return localVarReturnValue, nil, reportError("authorization is required and must be specified")
+	}
+	if strlen(*r.authorization) < 0 {
+		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
+	}
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
+	}
+	if strlen(r.utxoId) < 0 {
+		return localVarReturnValue, nil, reportError("utxoId must have at least 0 elements")
+	}
+	if strlen(r.utxoId) > 100 {
+		return localVarReturnValue, nil, reportError("utxoId must have less than 100 elements")
+	}
+	if r.prepareSearchSchema == nil {
+		return localVarReturnValue, nil, reportError("prepareSearchSchema is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	localVarHeaderParams["Authorization"] = parameterToString(*r.authorization, "")
+	// body params
+	localVarPostBody = r.prepareSearchSchema
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorDetails
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorList
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v InternalServerErrorSchema
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiExecuteUTXOPreparedSearchRequestRequest struct {
 	ctx _context.Context
@@ -90,8 +256,8 @@ func (a *UTXOStatusSearchApiService) ExecuteUTXOPreparedSearchRequestExecute(r A
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if r.requestId == nil {
 		return localVarReturnValue, nil, reportError("requestId is required and must be specified")
@@ -212,7 +378,7 @@ func (r ApiPrepareSearchUTXOStateRequest) Execute() (PrepareSearchResponseSchema
 /*
 PrepareSearchUTXOState Prepare Search for a UTXO State.
 
-Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
+Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT's
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param utxoId
@@ -255,8 +421,8 @@ func (a *UTXOStatusSearchApiService) PrepareSearchUTXOStateExecute(r ApiPrepareS
 	if strlen(*r.authorization) < 0 {
 		return localVarReturnValue, nil, reportError("authorization must have at least 0 elements")
 	}
-	if strlen(*r.authorization) > 4096 {
-		return localVarReturnValue, nil, reportError("authorization must have less than 4096 elements")
+	if strlen(*r.authorization) > 5010 {
+		return localVarReturnValue, nil, reportError("authorization must have less than 5010 elements")
 	}
 	if strlen(r.utxoId) < 0 {
 		return localVarReturnValue, nil, reportError("utxoId must have at least 0 elements")

@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -17,6 +17,7 @@ import ErrorDetails from '../model/ErrorDetails';
 import ErrorList from '../model/ErrorList';
 import ExecuteSearchTransactionResponse from '../model/ExecuteSearchTransactionResponse';
 import InternalServerErrorSchema from '../model/InternalServerErrorSchema';
+import PrepareAndExecuteTransactionResponse from '../model/PrepareAndExecuteTransactionResponse';
 import PrepareSearchResponseSchema from '../model/PrepareSearchResponseSchema';
 import PrepareSearchSchema from '../model/PrepareSearchSchema';
 
@@ -38,6 +39,60 @@ export default class TransactionSearchApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+
+    /**
+     * Callback function to receive the result of the autoExecuteSearchTransactionRequest operation.
+     * @callback module:api/TransactionSearchApi~autoExecuteSearchTransactionRequestCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/PrepareAndExecuteTransactionResponse} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Prepare and automatically execute a search for a transaction on a DLT.
+     * Generates a request ID and automatically executes the transaction search on the requested DLT.
+     * @param {String} authorization 
+     * @param {String} transactionId 
+     * @param {module:model/PrepareSearchSchema} prepareSearchSchema 
+     * @param {module:api/TransactionSearchApi~autoExecuteSearchTransactionRequestCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/PrepareAndExecuteTransactionResponse}
+     */
+    autoExecuteSearchTransactionRequest(authorization, transactionId, prepareSearchSchema, callback) {
+      let postBody = prepareSearchSchema;
+      // verify the required parameter 'authorization' is set
+      if (authorization === undefined || authorization === null) {
+        throw new Error("Missing the required parameter 'authorization' when calling autoExecuteSearchTransactionRequest");
+      }
+      // verify the required parameter 'transactionId' is set
+      if (transactionId === undefined || transactionId === null) {
+        throw new Error("Missing the required parameter 'transactionId' when calling autoExecuteSearchTransactionRequest");
+      }
+      // verify the required parameter 'prepareSearchSchema' is set
+      if (prepareSearchSchema === undefined || prepareSearchSchema === null) {
+        throw new Error("Missing the required parameter 'prepareSearchSchema' when calling autoExecuteSearchTransactionRequest");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'transactionId': transactionId
+      };
+      let headerParams = {
+        'Authorization': authorization
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2_Security_Scheme'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = PrepareAndExecuteTransactionResponse;
+      return this.apiClient.callApi(
+        '/v2/autoexecution/search/transaction', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the executePreparedSearchRequestTransaction operation.

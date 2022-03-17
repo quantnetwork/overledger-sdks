@@ -4,9 +4,80 @@ All URIs are relative to *https://api.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AutoExecuteSearchTransactionRequest**](TransactionSearchApi.md#AutoExecuteSearchTransactionRequest) | **Post** /v2/autoexecution/search/transaction | Prepare and automatically execute a search for a transaction on a DLT.
 [**ExecutePreparedSearchRequestTransaction**](TransactionSearchApi.md#ExecutePreparedSearchRequestTransaction) | **Post** /v2/execution/search/transaction | Execute a search for a transaction on a DLT
 [**PrepareSearchRequest**](TransactionSearchApi.md#PrepareSearchRequest) | **Post** /v2/preparation/search/transaction | Prepare a search for a transaction on a DLT
 
+
+
+## AutoExecuteSearchTransactionRequest
+
+> PrepareAndExecuteTransactionResponse AutoExecuteSearchTransactionRequest(ctx).Authorization(authorization).TransactionId(transactionId).PrepareSearchSchema(prepareSearchSchema).Execute()
+
+Prepare and automatically execute a search for a transaction on a DLT.
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    authorization := "authorization_example" // string | 
+    transactionId := "transactionId_example" // string | 
+    prepareSearchSchema := *openapiclient.NewPrepareSearchSchema() // PrepareSearchSchema | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.TransactionSearchApi.AutoExecuteSearchTransactionRequest(context.Background()).Authorization(authorization).TransactionId(transactionId).PrepareSearchSchema(prepareSearchSchema).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `TransactionSearchApi.AutoExecuteSearchTransactionRequest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AutoExecuteSearchTransactionRequest`: PrepareAndExecuteTransactionResponse
+    fmt.Fprintf(os.Stdout, "Response from `TransactionSearchApi.AutoExecuteSearchTransactionRequest`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAutoExecuteSearchTransactionRequestRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string** |  | 
+ **transactionId** | **string** |  | 
+ **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md) |  | 
+
+### Return type
+
+[**PrepareAndExecuteTransactionResponse**](PrepareAndExecuteTransactionResponse.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## ExecutePreparedSearchRequestTransaction

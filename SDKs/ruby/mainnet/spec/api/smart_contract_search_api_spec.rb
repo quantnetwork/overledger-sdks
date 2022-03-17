@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -29,6 +29,19 @@ describe 'SmartContractSearchApi' do
   describe 'test an instance of SmartContractSearchApi' do
     it 'should create an instance of SmartContractSearchApi' do
       expect(@api_instance).to be_instance_of(OpenapiClient::SmartContractSearchApi)
+    end
+  end
+
+  # unit tests for auto_execute_search_smart_contract_query_request
+  # Prepare and automatically execute a search for a smart contract query on a DLT.
+  # Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+  # @param authorization 
+  # @param prepare_search_schema 
+  # @param [Hash] opts the optional parameters
+  # @return [AutoExecuteSearchAddressBalanceResponseSchema]
+  describe 'auto_execute_search_smart_contract_query_request test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 

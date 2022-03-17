@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**UtxoId** | **string** |  | [optional] 
 **Destination** | [**List&lt;UTXODestination&gt;**](UTXODestination.md) |  | [optional] 
 **Location** | [**Location**](Location.md) |  | [optional] 
 **Timestamp** | [**UTXOTimestampSchema**](UTXOTimestampSchema.md) |  | [optional] 

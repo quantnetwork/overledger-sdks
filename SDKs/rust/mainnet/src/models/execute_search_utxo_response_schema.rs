@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -13,6 +13,8 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ExecuteSearchUtxoResponseSchema {
+    #[serde(rename = "utxoId", skip_serializing_if = "Option::is_none")]
+    pub utxo_id: Option<String>,
     #[serde(rename = "destination", skip_serializing_if = "Option::is_none")]
     pub destination: Option<Vec<crate::models::UtxoDestination>>,
     #[serde(rename = "location", skip_serializing_if = "Option::is_none")]
@@ -28,6 +30,7 @@ pub struct ExecuteSearchUtxoResponseSchema {
 impl ExecuteSearchUtxoResponseSchema {
     pub fn new() -> ExecuteSearchUtxoResponseSchema {
         ExecuteSearchUtxoResponseSchema {
+            utxo_id: None,
             destination: None,
             location: None,
             timestamp: None,

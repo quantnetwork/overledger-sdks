@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -28,7 +28,7 @@ import org.openapitools.client.model.Location;
 /**
  * ExecuteSearchSequenceResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-11-01T15:12:40.004989Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
 public class ExecuteSearchSequenceResponse {
   public static final String SERIALIZED_NAME_SEQUENCE = "sequence";
   @SerializedName(SERIALIZED_NAME_SEQUENCE)
@@ -37,6 +37,10 @@ public class ExecuteSearchSequenceResponse {
   public static final String SERIALIZED_NAME_LOCATION = "location";
   @SerializedName(SERIALIZED_NAME_LOCATION)
   private Location location;
+
+  public static final String SERIALIZED_NAME_TIMESTAMP = "timestamp";
+  @SerializedName(SERIALIZED_NAME_TIMESTAMP)
+  private String timestamp;
 
   public static final String SERIALIZED_NAME_ADDRESS_ID = "addressId";
   @SerializedName(SERIALIZED_NAME_ADDRESS_ID)
@@ -89,6 +93,29 @@ public class ExecuteSearchSequenceResponse {
   }
 
 
+  public ExecuteSearchSequenceResponse timestamp(String timestamp) {
+    
+    this.timestamp = timestamp;
+    return this;
+  }
+
+   /**
+   * Get timestamp
+   * @return timestamp
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getTimestamp() {
+    return timestamp;
+  }
+
+
+  public void setTimestamp(String timestamp) {
+    this.timestamp = timestamp;
+  }
+
+
   public ExecuteSearchSequenceResponse addressId(String addressId) {
     
     this.addressId = addressId;
@@ -123,12 +150,13 @@ public class ExecuteSearchSequenceResponse {
     ExecuteSearchSequenceResponse executeSearchSequenceResponse = (ExecuteSearchSequenceResponse) o;
     return Objects.equals(this.sequence, executeSearchSequenceResponse.sequence) &&
         Objects.equals(this.location, executeSearchSequenceResponse.location) &&
+        Objects.equals(this.timestamp, executeSearchSequenceResponse.timestamp) &&
         Objects.equals(this.addressId, executeSearchSequenceResponse.addressId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sequence, location, addressId);
+    return Objects.hash(sequence, location, timestamp, addressId);
   }
 
   @Override
@@ -137,6 +165,7 @@ public class ExecuteSearchSequenceResponse {
     sb.append("class ExecuteSearchSequenceResponse {\n");
     sb.append("    sequence: ").append(toIndentedString(sequence)).append("\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    addressId: ").append(toIndentedString(addressId)).append("\n");
     sb.append("}");
     return sb.toString();

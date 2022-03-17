@@ -9,9 +9,61 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**auto_execute_search_smart_contract_query_request**](SmartContractSearchApi.md#auto_execute_search_smart_contract_query_request) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 [**execute_prepared_search_request**](SmartContractSearchApi.md#execute_prepared_search_request) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 [**prepare_smart_contract_query_request**](SmartContractSearchApi.md#prepare_smart_contract_query_request) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
 
+
+# **auto_execute_search_smart_contract_query_request**
+> AutoExecuteSearchAddressBalanceResponseSchema auto_execute_search_smart_contract_query_request(authorization => $authorization, prepare_search_schema => $prepare_search_schema)
+
+Prepare and automatically execute a search for a smart contract query on a DLT.
+
+Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+
+### Example
+```perl
+use Data::Dumper;
+use WWW::OpenAPIClient::SmartContractSearchApi;
+my $api_instance = WWW::OpenAPIClient::SmartContractSearchApi->new(
+
+    # Configure OAuth2 access token for authorization: OAuth2_Security_Scheme
+    access_token => 'YOUR_ACCESS_TOKEN',
+);
+
+my $authorization = "authorization_example"; # string | 
+my $prepare_search_schema = WWW::OpenAPIClient::Object::PrepareSearchSchema->new(); # PrepareSearchSchema | 
+
+eval {
+    my $result = $api_instance->auto_execute_search_smart_contract_query_request(authorization => $authorization, prepare_search_schema => $prepare_search_schema);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling SmartContractSearchApi->auto_execute_search_smart_contract_query_request: $@\n";
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string**|  | 
+ **prepare_search_schema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  | 
+
+### Return type
+
+[**AutoExecuteSearchAddressBalanceResponseSchema**](AutoExecuteSearchAddressBalanceResponseSchema.md)
+
+### Authorization
+
+[OAuth2_Security_Scheme](../README.md#OAuth2_Security_Scheme)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **execute_prepared_search_request**
 > ExecuteSmartContractReadResponseSchema execute_prepared_search_request(authorization => $authorization, request_id => $request_id)

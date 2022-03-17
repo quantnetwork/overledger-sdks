@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -44,15 +44,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageMonitoredResourcesApi.delete_event_monitoring"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.delete_event_monitoring, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.delete_event_monitoring, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.delete_event_monitoring, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageMonitoredResourcesApi.delete_event_monitoring, must conform to the pattern #{pattern}."
       end
@@ -140,15 +140,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageMonitoredResourcesApi.delete_resource_monitoring_address"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.delete_resource_monitoring_address, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.delete_resource_monitoring_address, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.delete_resource_monitoring_address, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageMonitoredResourcesApi.delete_resource_monitoring_address, must conform to the pattern #{pattern}."
       end
@@ -234,15 +234,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageMonitoredResourcesApi.get_list_of_addresses"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_list_of_addresses, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_list_of_addresses, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_list_of_addresses, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageMonitoredResourcesApi.get_list_of_addresses, must conform to the pattern #{pattern}."
       end
@@ -311,15 +311,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageMonitoredResourcesApi.get_list_of_resources"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_list_of_resources, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_list_of_resources, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_list_of_resources, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageMonitoredResourcesApi.get_list_of_resources, must conform to the pattern #{pattern}."
       end
@@ -388,15 +388,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageMonitoredResourcesApi.get_list_of_smart_contract_events"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_list_of_smart_contract_events, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_list_of_smart_contract_events, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_list_of_smart_contract_events, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageMonitoredResourcesApi.get_list_of_smart_contract_events, must conform to the pattern #{pattern}."
       end
@@ -467,15 +467,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageMonitoredResourcesApi.get_monitored_address"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_monitored_address, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_monitored_address, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_monitored_address, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageMonitoredResourcesApi.get_monitored_address, must conform to the pattern #{pattern}."
       end
@@ -563,15 +563,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageMonitoredResourcesApi.get_monitored_smart_contract_event_details"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_monitored_smart_contract_event_details, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_monitored_smart_contract_event_details, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.get_monitored_smart_contract_event_details, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageMonitoredResourcesApi.get_monitored_smart_contract_event_details, must conform to the pattern #{pattern}."
       end
@@ -661,15 +661,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageMonitoredResourcesApi.update_event_monitoring"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.update_event_monitoring, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.update_event_monitoring, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.update_event_monitoring, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageMonitoredResourcesApi.update_event_monitoring, must conform to the pattern #{pattern}."
       end
@@ -768,15 +768,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling ManageMonitoredResourcesApi.update_resource_monitoring_address"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.update_resource_monitoring_address, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.update_resource_monitoring_address, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling ManageMonitoredResourcesApi.update_resource_monitoring_address, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling ManageMonitoredResourcesApi.update_resource_monitoring_address, must conform to the pattern #{pattern}."
       end

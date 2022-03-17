@@ -17,8 +17,8 @@ Name | Type | Description | Notes
 **message** | **String** | Any text-based element of the data payload |  [optional]
 **transactionId** | **String** | The unique identifier of the transaction on this DLN |  [optional]
 **encoded** | **List&lt;String&gt;** |  |  [optional]
-**nativeData** | **Object** |  |  [optional]
 **extraFields** | **Object** |  |  [optional]
+**nativeData** | **Object** |  |  [optional]
 
 
 

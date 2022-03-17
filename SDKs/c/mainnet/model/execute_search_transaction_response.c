@@ -100,7 +100,7 @@ cJSON *execute_search_transaction_response_convertToJSON(execute_search_transact
     // execute_search_transaction_response->timestamp
     if(execute_search_transaction_response->timestamp) { 
     if(cJSON_AddStringToObject(item, "timestamp", execute_search_transaction_response->timestamp) == NULL) {
-    goto fail; //Date-Time
+    goto fail; //String
     }
      } 
 
@@ -170,7 +170,7 @@ execute_search_transaction_response_t *execute_search_transaction_response_parse
     if (timestamp) { 
     if(!cJSON_IsString(timestamp))
     {
-    goto end; //DateTime
+    goto end; //String
     }
     }
 

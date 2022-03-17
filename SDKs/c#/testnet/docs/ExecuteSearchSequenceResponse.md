@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sequence** | **string** |  | [optional] 
 **Location** | [**Location**](Location.md) |  | [optional] 
+**Timestamp** | **string** |  | [optional] 
 **AddressId** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)

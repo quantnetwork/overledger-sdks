@@ -24,7 +24,7 @@ function_t* instantiate_function(int include_optional) {
     function = function_create(
       "a",
       "a",
-      "a",
+      "0",
       list_create(),
       list_create()
     );
@@ -32,7 +32,7 @@ function_t* instantiate_function(int include_optional) {
     function = function_create(
       "a",
       "a",
-      "a",
+      "0",
       list_create(),
       list_create()
     );

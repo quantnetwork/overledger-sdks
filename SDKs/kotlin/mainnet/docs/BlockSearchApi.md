@@ -4,9 +4,63 @@ All URIs are relative to *https://api.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**autoExecuteSearchBlockRequest**](BlockSearchApi.md#autoExecuteSearchBlockRequest) | **POST** /v2/autoexecution/search/block/{blockId} | Prepare and automatically execute a search for a block on a DLT.
 [**executePreparedSearchRequestBlock**](BlockSearchApi.md#executePreparedSearchRequestBlock) | **POST** /v2/execution/search/block | Execute a search for a block on a DLT
 [**prepareSearchBlockByBlockId**](BlockSearchApi.md#prepareSearchBlockByBlockId) | **POST** /v2/preparation/search/block/{blockId} | Prepare Search Block by Block Id.
 
+
+<a name="autoExecuteSearchBlockRequest"></a>
+# **autoExecuteSearchBlockRequest**
+> AutoExecuteSearchBlockResponseSchema autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema)
+
+Prepare and automatically execute a search for a block on a DLT.
+
+Generates a request ID and automatically executes the block search on the requested DLT.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = BlockSearchApi()
+val authorization : kotlin.String = authorization_example // kotlin.String | 
+val blockId : kotlin.String = latest // kotlin.String | 
+val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}} // PrepareSearchSchema | 
+try {
+    val result : AutoExecuteSearchBlockResponseSchema = apiInstance.autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling BlockSearchApi#autoExecuteSearchBlockRequest")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling BlockSearchApi#autoExecuteSearchBlockRequest")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **kotlin.String**|  |
+ **blockId** | **kotlin.String**|  |
+ **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  |
+
+### Return type
+
+[**AutoExecuteSearchBlockResponseSchema**](AutoExecuteSearchBlockResponseSchema.md)
+
+### Authorization
+
+
+Configure OAuth2_Security_Scheme:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="executePreparedSearchRequestBlock"></a>
 # **executePreparedSearchRequestBlock**
@@ -76,7 +130,7 @@ Returns a request ID for executing a block search on the requested DLT. Block se
 val apiInstance = BlockSearchApi()
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 val blockId : kotlin.String = latest // kotlin.String | 
-val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Bitcoin","network":"Testnet"}} // PrepareSearchSchema | 
+val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}} // PrepareSearchSchema | 
 try {
     val result : PrepareSearchResponseSchema = apiInstance.prepareSearchBlockByBlockId(authorization, blockId, prepareSearchSchema)
     println(result)

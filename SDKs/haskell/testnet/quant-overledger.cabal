@@ -66,6 +66,8 @@ library
       QuantOverledger.API
       QuantOverledger.API.AddressSearch
       QuantOverledger.API.BlockSearch
+      QuantOverledger.API.CreateAQRC20CreditTransaction
+      QuantOverledger.API.CreateAQRC20DebitTransaction
       QuantOverledger.API.CreateSubscription
       QuantOverledger.API.CreateTransaction
       QuantOverledger.API.MDappTransactionQuery

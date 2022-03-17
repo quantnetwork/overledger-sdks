@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -25,6 +25,31 @@ namespace Org.OpenAPITools.Api
     public interface IAddressSearchApi : IApiAccessor
     {
         #region Synchronous Operations
+        /// <summary>
+        /// Prepare and automatically execute a search for an address balance on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the address balance search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        AutoExecuteSearchAddressBalanceResponseSchema AutoExecuteSearchAddressBalanceRequest (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema);
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an address balance on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the address balance search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>ApiResponse of AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema> AutoExecuteSearchAddressBalanceRequestWithHttpInfo (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema);
         /// <summary>
         /// Execute a search for an address balance on a DLT
         /// </summary>
@@ -52,7 +77,7 @@ namespace Org.OpenAPITools.Api
         /// Execute a search for an address sequence on a DLT
         /// </summary>
         /// <remarks>
-        /// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+        /// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -64,7 +89,7 @@ namespace Org.OpenAPITools.Api
         /// Execute a search for an address sequence on a DLT
         /// </summary>
         /// <remarks>
-        /// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+        /// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -121,8 +146,60 @@ namespace Org.OpenAPITools.Api
         /// <param name="prepareSearchSchema"></param>
         /// <returns>ApiResponse of PrepareSearchResponseSchema</returns>
         ApiResponse<PrepareSearchResponseSchema> PrepareAddressSequenceSearchRequestWithHttpInfo (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema);
+        /// <summary>
+        /// Prepare and automatically execute a search for an Address Sequence.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the address sequence search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>AutoExecSearchAddressSequenceResponseSchema</returns>
+        AutoExecSearchAddressSequenceResponseSchema PrepareAddressSequenceSearchRequest1 (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema);
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an Address Sequence.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the address sequence search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>ApiResponse of AutoExecSearchAddressSequenceResponseSchema</returns>
+        ApiResponse<AutoExecSearchAddressSequenceResponseSchema> PrepareAddressSequenceSearchRequest1WithHttpInfo (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema);
         #endregion Synchronous Operations
         #region Asynchronous Operations
+        /// <summary>
+        /// Prepare and automatically execute a search for an address balance on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the address balance search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        System.Threading.Tasks.Task<AutoExecuteSearchAddressBalanceResponseSchema> AutoExecuteSearchAddressBalanceRequestAsync (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an address balance on a DLT.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the address balance search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ApiResponse (AutoExecuteSearchAddressBalanceResponseSchema)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema>> AutoExecuteSearchAddressBalanceRequestWithHttpInfoAsync (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Execute a search for an address balance on a DLT
         /// </summary>
@@ -152,7 +229,7 @@ namespace Org.OpenAPITools.Api
         /// Execute a search for an address sequence on a DLT
         /// </summary>
         /// <remarks>
-        /// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+        /// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -165,7 +242,7 @@ namespace Org.OpenAPITools.Api
         /// Execute a search for an address sequence on a DLT
         /// </summary>
         /// <remarks>
-        /// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+        /// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -227,6 +304,33 @@ namespace Org.OpenAPITools.Api
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (PrepareSearchResponseSchema)</returns>
         System.Threading.Tasks.Task<ApiResponse<PrepareSearchResponseSchema>> PrepareAddressSequenceSearchRequestWithHttpInfoAsync (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// Prepare and automatically execute a search for an Address Sequence.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the address sequence search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of AutoExecSearchAddressSequenceResponseSchema</returns>
+        System.Threading.Tasks.Task<AutoExecSearchAddressSequenceResponseSchema> PrepareAddressSequenceSearchRequest1Async (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an Address Sequence.
+        /// </summary>
+        /// <remarks>
+        /// Generates a request ID and automatically executes the address sequence search on the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ApiResponse (AutoExecSearchAddressSequenceResponseSchema)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AutoExecSearchAddressSequenceResponseSchema>> PrepareAddressSequenceSearchRequest1WithHttpInfoAsync (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -336,6 +440,193 @@ namespace Org.OpenAPITools.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an address balance on a DLT. Generates a request ID and automatically executes the address balance search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        public AutoExecuteSearchAddressBalanceResponseSchema AutoExecuteSearchAddressBalanceRequest (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema)
+        {
+             ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema> localVarResponse = AutoExecuteSearchAddressBalanceRequestWithHttpInfo(authorization, addressId, prepareSearchSchema);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an address balance on a DLT. Generates a request ID and automatically executes the address balance search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>ApiResponse of AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        public ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema> AutoExecuteSearchAddressBalanceRequestWithHttpInfo (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema)
+        {
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling AddressSearchApi->AutoExecuteSearchAddressBalanceRequest");
+            // verify the required parameter 'addressId' is set
+            if (addressId == null)
+                throw new ApiException(400, "Missing required parameter 'addressId' when calling AddressSearchApi->AutoExecuteSearchAddressBalanceRequest");
+            // verify the required parameter 'prepareSearchSchema' is set
+            if (prepareSearchSchema == null)
+                throw new ApiException(400, "Missing required parameter 'prepareSearchSchema' when calling AddressSearchApi->AutoExecuteSearchAddressBalanceRequest");
+
+            var localVarPath = "/v2/autoexecution/search/address/balance/{addressId}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (addressId != null) localVarPathParams.Add("addressId", this.Configuration.ApiClient.ParameterToString(addressId)); // path parameter
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            if (prepareSearchSchema != null && prepareSearchSchema.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(prepareSearchSchema); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = prepareSearchSchema; // byte array
+            }
+
+            // authentication (OAuth2_Security_Scheme) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AutoExecuteSearchAddressBalanceRequest", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (AutoExecuteSearchAddressBalanceResponseSchema) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AutoExecuteSearchAddressBalanceResponseSchema)));
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an address balance on a DLT. Generates a request ID and automatically executes the address balance search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of AutoExecuteSearchAddressBalanceResponseSchema</returns>
+        public async System.Threading.Tasks.Task<AutoExecuteSearchAddressBalanceResponseSchema> AutoExecuteSearchAddressBalanceRequestAsync (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken))
+        {
+             ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema> localVarResponse = await AutoExecuteSearchAddressBalanceRequestWithHttpInfoAsync(authorization, addressId, prepareSearchSchema, cancellationToken);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an address balance on a DLT. Generates a request ID and automatically executes the address balance search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ApiResponse (AutoExecuteSearchAddressBalanceResponseSchema)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema>> AutoExecuteSearchAddressBalanceRequestWithHttpInfoAsync (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling AddressSearchApi->AutoExecuteSearchAddressBalanceRequest");
+            // verify the required parameter 'addressId' is set
+            if (addressId == null)
+                throw new ApiException(400, "Missing required parameter 'addressId' when calling AddressSearchApi->AutoExecuteSearchAddressBalanceRequest");
+            // verify the required parameter 'prepareSearchSchema' is set
+            if (prepareSearchSchema == null)
+                throw new ApiException(400, "Missing required parameter 'prepareSearchSchema' when calling AddressSearchApi->AutoExecuteSearchAddressBalanceRequest");
+
+            var localVarPath = "/v2/autoexecution/search/address/balance/{addressId}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (addressId != null) localVarPathParams.Add("addressId", this.Configuration.ApiClient.ParameterToString(addressId)); // path parameter
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            if (prepareSearchSchema != null && prepareSearchSchema.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(prepareSearchSchema); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = prepareSearchSchema; // byte array
+            }
+
+            // authentication (OAuth2_Security_Scheme) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType, cancellationToken);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("AutoExecuteSearchAddressBalanceRequest", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AutoExecuteSearchAddressBalanceResponseSchema>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (AutoExecuteSearchAddressBalanceResponseSchema) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AutoExecuteSearchAddressBalanceResponseSchema)));
         }
 
         /// <summary>
@@ -498,7 +789,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Execute a search for an address sequence on a DLT Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+        /// Execute a search for an address sequence on a DLT Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -511,7 +802,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Execute a search for an address sequence on a DLT Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+        /// Execute a search for an address sequence on a DLT Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -576,7 +867,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Execute a search for an address sequence on a DLT Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+        /// Execute a search for an address sequence on a DLT Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -591,7 +882,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Execute a search for an address sequence on a DLT Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+        /// Execute a search for an address sequence on a DLT Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -1028,6 +1319,193 @@ namespace Org.OpenAPITools.Api
             return new ApiResponse<PrepareSearchResponseSchema>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
                 (PrepareSearchResponseSchema) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(PrepareSearchResponseSchema)));
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an Address Sequence. Generates a request ID and automatically executes the address sequence search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>AutoExecSearchAddressSequenceResponseSchema</returns>
+        public AutoExecSearchAddressSequenceResponseSchema PrepareAddressSequenceSearchRequest1 (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema)
+        {
+             ApiResponse<AutoExecSearchAddressSequenceResponseSchema> localVarResponse = PrepareAddressSequenceSearchRequest1WithHttpInfo(authorization, addressId, prepareSearchSchema);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an Address Sequence. Generates a request ID and automatically executes the address sequence search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <returns>ApiResponse of AutoExecSearchAddressSequenceResponseSchema</returns>
+        public ApiResponse<AutoExecSearchAddressSequenceResponseSchema> PrepareAddressSequenceSearchRequest1WithHttpInfo (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema)
+        {
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling AddressSearchApi->PrepareAddressSequenceSearchRequest1");
+            // verify the required parameter 'addressId' is set
+            if (addressId == null)
+                throw new ApiException(400, "Missing required parameter 'addressId' when calling AddressSearchApi->PrepareAddressSequenceSearchRequest1");
+            // verify the required parameter 'prepareSearchSchema' is set
+            if (prepareSearchSchema == null)
+                throw new ApiException(400, "Missing required parameter 'prepareSearchSchema' when calling AddressSearchApi->PrepareAddressSequenceSearchRequest1");
+
+            var localVarPath = "/v2/autoexecution/search/address/sequence/{addressId}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (addressId != null) localVarPathParams.Add("addressId", this.Configuration.ApiClient.ParameterToString(addressId)); // path parameter
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            if (prepareSearchSchema != null && prepareSearchSchema.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(prepareSearchSchema); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = prepareSearchSchema; // byte array
+            }
+
+            // authentication (OAuth2_Security_Scheme) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PrepareAddressSequenceSearchRequest1", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AutoExecSearchAddressSequenceResponseSchema>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (AutoExecSearchAddressSequenceResponseSchema) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AutoExecSearchAddressSequenceResponseSchema)));
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an Address Sequence. Generates a request ID and automatically executes the address sequence search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of AutoExecSearchAddressSequenceResponseSchema</returns>
+        public async System.Threading.Tasks.Task<AutoExecSearchAddressSequenceResponseSchema> PrepareAddressSequenceSearchRequest1Async (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken))
+        {
+             ApiResponse<AutoExecSearchAddressSequenceResponseSchema> localVarResponse = await PrepareAddressSequenceSearchRequest1WithHttpInfoAsync(authorization, addressId, prepareSearchSchema, cancellationToken);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Prepare and automatically execute a search for an Address Sequence. Generates a request ID and automatically executes the address sequence search on the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="addressId"></param>
+        /// <param name="prepareSearchSchema"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ApiResponse (AutoExecSearchAddressSequenceResponseSchema)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<AutoExecSearchAddressSequenceResponseSchema>> PrepareAddressSequenceSearchRequest1WithHttpInfoAsync (string authorization, string addressId, PrepareSearchSchema prepareSearchSchema, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling AddressSearchApi->PrepareAddressSequenceSearchRequest1");
+            // verify the required parameter 'addressId' is set
+            if (addressId == null)
+                throw new ApiException(400, "Missing required parameter 'addressId' when calling AddressSearchApi->PrepareAddressSequenceSearchRequest1");
+            // verify the required parameter 'prepareSearchSchema' is set
+            if (prepareSearchSchema == null)
+                throw new ApiException(400, "Missing required parameter 'prepareSearchSchema' when calling AddressSearchApi->PrepareAddressSequenceSearchRequest1");
+
+            var localVarPath = "/v2/autoexecution/search/address/sequence/{addressId}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (addressId != null) localVarPathParams.Add("addressId", this.Configuration.ApiClient.ParameterToString(addressId)); // path parameter
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            if (prepareSearchSchema != null && prepareSearchSchema.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(prepareSearchSchema); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = prepareSearchSchema; // byte array
+            }
+
+            // authentication (OAuth2_Security_Scheme) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType, cancellationToken);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("PrepareAddressSequenceSearchRequest1", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<AutoExecSearchAddressSequenceResponseSchema>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (AutoExecSearchAddressSequenceResponseSchema) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(AutoExecSearchAddressSequenceResponseSchema)));
         }
 
     }

@@ -7,6 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**utxoId** | **String** |  |  [optional]
 **destination** | [**List&lt;UTXODestination&gt;**](UTXODestination.md) |  |  [optional]
 **location** | [**Location**](Location.md) |  |  [optional]
 **timestamp** | [**UTXOTimestampSchema**](UTXOTimestampSchema.md) |  |  [optional]

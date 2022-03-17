@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -13,6 +13,8 @@
 
 
 import ApiClient from "../ApiClient";
+import AutoExecSearchAddressSequenceResponseSchema from '../model/AutoExecSearchAddressSequenceResponseSchema';
+import AutoExecuteSearchAddressBalanceResponseSchema from '../model/AutoExecuteSearchAddressBalanceResponseSchema';
 import ErrorDetails from '../model/ErrorDetails';
 import ErrorList from '../model/ErrorList';
 import ExecuteSearchBalanceResponse from '../model/ExecuteSearchBalanceResponse';
@@ -39,6 +41,60 @@ export default class AddressSearchApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+
+    /**
+     * Callback function to receive the result of the autoExecuteSearchAddressBalanceRequest operation.
+     * @callback module:api/AddressSearchApi~autoExecuteSearchAddressBalanceRequestCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/AutoExecuteSearchAddressBalanceResponseSchema} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Prepare and automatically execute a search for an address balance on a DLT.
+     * Generates a request ID and automatically executes the address balance search on the requested DLT.
+     * @param {String} authorization 
+     * @param {String} addressId 
+     * @param {module:model/PrepareSearchSchema} prepareSearchSchema 
+     * @param {module:api/AddressSearchApi~autoExecuteSearchAddressBalanceRequestCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/AutoExecuteSearchAddressBalanceResponseSchema}
+     */
+    autoExecuteSearchAddressBalanceRequest(authorization, addressId, prepareSearchSchema, callback) {
+      let postBody = prepareSearchSchema;
+      // verify the required parameter 'authorization' is set
+      if (authorization === undefined || authorization === null) {
+        throw new Error("Missing the required parameter 'authorization' when calling autoExecuteSearchAddressBalanceRequest");
+      }
+      // verify the required parameter 'addressId' is set
+      if (addressId === undefined || addressId === null) {
+        throw new Error("Missing the required parameter 'addressId' when calling autoExecuteSearchAddressBalanceRequest");
+      }
+      // verify the required parameter 'prepareSearchSchema' is set
+      if (prepareSearchSchema === undefined || prepareSearchSchema === null) {
+        throw new Error("Missing the required parameter 'prepareSearchSchema' when calling autoExecuteSearchAddressBalanceRequest");
+      }
+
+      let pathParams = {
+        'addressId': addressId
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+        'Authorization': authorization
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2_Security_Scheme'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = AutoExecuteSearchAddressBalanceResponseSchema;
+      return this.apiClient.callApi(
+        '/v2/autoexecution/search/address/balance/{addressId}', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the executePreparedSearchRequestAddressBalance operation.
@@ -99,7 +155,7 @@ export default class AddressSearchApi {
 
     /**
      * Execute a search for an address sequence on a DLT
-     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT's
      * @param {String} authorization 
      * @param {String} requestId 
      * @param {module:api/AddressSearchApi~executePreparedSearchRequestAddressSequenceCallback} callback The callback function, accepting three arguments: error, data, response
@@ -241,6 +297,60 @@ export default class AddressSearchApi {
       let returnType = PrepareSearchResponseSchema;
       return this.apiClient.callApi(
         '/v2/preparation/search/address/sequence/{addressId}', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the prepareAddressSequenceSearchRequest1 operation.
+     * @callback module:api/AddressSearchApi~prepareAddressSequenceSearchRequest1Callback
+     * @param {String} error Error message, if any.
+     * @param {module:model/AutoExecSearchAddressSequenceResponseSchema} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Prepare and automatically execute a search for an Address Sequence.
+     * Generates a request ID and automatically executes the address sequence search on the requested DLT.
+     * @param {String} authorization 
+     * @param {String} addressId 
+     * @param {module:model/PrepareSearchSchema} prepareSearchSchema 
+     * @param {module:api/AddressSearchApi~prepareAddressSequenceSearchRequest1Callback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/AutoExecSearchAddressSequenceResponseSchema}
+     */
+    prepareAddressSequenceSearchRequest1(authorization, addressId, prepareSearchSchema, callback) {
+      let postBody = prepareSearchSchema;
+      // verify the required parameter 'authorization' is set
+      if (authorization === undefined || authorization === null) {
+        throw new Error("Missing the required parameter 'authorization' when calling prepareAddressSequenceSearchRequest1");
+      }
+      // verify the required parameter 'addressId' is set
+      if (addressId === undefined || addressId === null) {
+        throw new Error("Missing the required parameter 'addressId' when calling prepareAddressSequenceSearchRequest1");
+      }
+      // verify the required parameter 'prepareSearchSchema' is set
+      if (prepareSearchSchema === undefined || prepareSearchSchema === null) {
+        throw new Error("Missing the required parameter 'prepareSearchSchema' when calling prepareAddressSequenceSearchRequest1");
+      }
+
+      let pathParams = {
+        'addressId': addressId
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+        'Authorization': authorization
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2_Security_Scheme'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = AutoExecSearchAddressSequenceResponseSchema;
+      return this.apiClient.callApi(
+        '/v2/autoexecution/search/address/sequence/{addressId}', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

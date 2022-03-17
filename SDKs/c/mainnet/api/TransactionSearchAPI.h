@@ -9,8 +9,17 @@
 #include "../model/error_list.h"
 #include "../model/execute_search_transaction_response.h"
 #include "../model/internal_server_error_schema.h"
+#include "../model/prepare_and_execute_transaction_response.h"
 #include "../model/prepare_search_response_schema.h"
 #include "../model/prepare_search_schema.h"
+
+
+// Prepare and automatically execute a search for a transaction on a DLT.
+//
+// Generates a request ID and automatically executes the transaction search on the requested DLT.
+//
+prepare_and_execute_transaction_response_t*
+TransactionSearchAPI_autoExecuteSearchTransactionRequest(apiClient_t *apiClient, char * Authorization , char * transactionId , prepare_search_schema_t * prepare_search_schema );
 
 
 // Execute a search for a transaction on a DLT

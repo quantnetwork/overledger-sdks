@@ -1,0 +1,11 @@
+# prepare_and_execute_balance_details_t
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**unit** | **char \*** |  | [optional] 
+**amount** | **char \*** |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

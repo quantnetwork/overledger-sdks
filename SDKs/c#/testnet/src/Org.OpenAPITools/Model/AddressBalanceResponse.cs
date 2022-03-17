@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -34,13 +34,11 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="AddressBalanceResponse" /> class.
         /// </summary>
         /// <param name="unit">unit.</param>
-        /// <param name="value">value.</param>
-        /// <param name="addressId">addressId.</param>
-        public AddressBalanceResponse(string unit = default(string), decimal value = default(decimal), string addressId = default(string))
+        /// <param name="amount">amount.</param>
+        public AddressBalanceResponse(string unit = default(string), string amount = default(string))
         {
             this.Unit = unit;
-            this.Value = value;
-            this.AddressId = addressId;
+            this.Amount = amount;
         }
 
         /// <summary>
@@ -50,16 +48,10 @@ namespace Org.OpenAPITools.Model
         public string Unit { get; set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name="value", EmitDefaultValue=false)]
-        public decimal Value { get; set; }
-
-        /// <summary>
-        /// Gets or Sets AddressId
-        /// </summary>
-        [DataMember(Name="addressId", EmitDefaultValue=false)]
-        public string AddressId { get; set; }
+        [DataMember(Name="amount", EmitDefaultValue=false)]
+        public string Amount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -70,8 +62,7 @@ namespace Org.OpenAPITools.Model
             var sb = new StringBuilder();
             sb.Append("class AddressBalanceResponse {\n");
             sb.Append("  Unit: ").Append(Unit).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
-            sb.Append("  AddressId: ").Append(AddressId).Append("\n");
+            sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -112,14 +103,9 @@ namespace Org.OpenAPITools.Model
                     this.Unit.Equals(input.Unit))
                 ) && 
                 (
-                    this.Value == input.Value ||
-                    (this.Value != null &&
-                    this.Value.Equals(input.Value))
-                ) && 
-                (
-                    this.AddressId == input.AddressId ||
-                    (this.AddressId != null &&
-                    this.AddressId.Equals(input.AddressId))
+                    this.Amount == input.Amount ||
+                    (this.Amount != null &&
+                    this.Amount.Equals(input.Amount))
                 );
         }
 
@@ -134,10 +120,8 @@ namespace Org.OpenAPITools.Model
                 int hashCode = 41;
                 if (this.Unit != null)
                     hashCode = hashCode * 59 + this.Unit.GetHashCode();
-                if (this.Value != null)
-                    hashCode = hashCode * 59 + this.Value.GetHashCode();
-                if (this.AddressId != null)
-                    hashCode = hashCode * 59 + this.AddressId.GetHashCode();
+                if (this.Amount != null)
+                    hashCode = hashCode * 59 + this.Amount.GetHashCode();
                 return hashCode;
             }
         }
@@ -166,25 +150,6 @@ namespace Org.OpenAPITools.Model
             if (false == regexUnit.Match(this.Unit).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Unit, must match a pattern of " + regexUnit, new [] { "Unit" });
-            }
-
-            // AddressId (string) maxLength
-            if(this.AddressId != null && this.AddressId.Length > 100)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AddressId, length must be less than 100.", new [] { "AddressId" });
-            }
-
-            // AddressId (string) minLength
-            if(this.AddressId != null && this.AddressId.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AddressId, length must be greater than 0.", new [] { "AddressId" });
-            }
-
-            // AddressId (string) pattern
-            Regex regexAddressId = new Regex(@"^[a-zA-Z0-9]{1,100}$", RegexOptions.CultureInvariant);
-            if (false == regexAddressId.Match(this.AddressId).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AddressId, must match a pattern of " + regexAddressId, new [] { "AddressId" });
             }
 
             yield break;

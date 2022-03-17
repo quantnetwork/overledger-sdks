@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 API version: 2.0
 */
@@ -28,8 +28,8 @@ type Transaction struct {
 	// The unique identifier of the transaction on this DLN
 	TransactionId *string `json:"transactionId,omitempty"`
 	Encoded *[]string `json:"encoded,omitempty"`
-	NativeData *map[string]interface{} `json:"nativeData,omitempty"`
 	ExtraFields *map[string]interface{} `json:"extraFields,omitempty"`
+	NativeData *map[string]interface{} `json:"nativeData,omitempty"`
 }
 
 // NewTransaction instantiates a new Transaction object
@@ -337,38 +337,6 @@ func (o *Transaction) SetEncoded(v []string) {
 	o.Encoded = &v
 }
 
-// GetNativeData returns the NativeData field value if set, zero value otherwise.
-func (o *Transaction) GetNativeData() map[string]interface{} {
-	if o == nil || o.NativeData == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-	return *o.NativeData
-}
-
-// GetNativeDataOk returns a tuple with the NativeData field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Transaction) GetNativeDataOk() (*map[string]interface{}, bool) {
-	if o == nil || o.NativeData == nil {
-		return nil, false
-	}
-	return o.NativeData, true
-}
-
-// HasNativeData returns a boolean if a field has been set.
-func (o *Transaction) HasNativeData() bool {
-	if o != nil && o.NativeData != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNativeData gets a reference to the given map[string]interface{} and assigns it to the NativeData field.
-func (o *Transaction) SetNativeData(v map[string]interface{}) {
-	o.NativeData = &v
-}
-
 // GetExtraFields returns the ExtraFields field value if set, zero value otherwise.
 func (o *Transaction) GetExtraFields() map[string]interface{} {
 	if o == nil || o.ExtraFields == nil {
@@ -401,6 +369,38 @@ func (o *Transaction) SetExtraFields(v map[string]interface{}) {
 	o.ExtraFields = &v
 }
 
+// GetNativeData returns the NativeData field value if set, zero value otherwise.
+func (o *Transaction) GetNativeData() map[string]interface{} {
+	if o == nil || o.NativeData == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return *o.NativeData
+}
+
+// GetNativeDataOk returns a tuple with the NativeData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Transaction) GetNativeDataOk() (*map[string]interface{}, bool) {
+	if o == nil || o.NativeData == nil {
+		return nil, false
+	}
+	return o.NativeData, true
+}
+
+// HasNativeData returns a boolean if a field has been set.
+func (o *Transaction) HasNativeData() bool {
+	if o != nil && o.NativeData != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNativeData gets a reference to the given map[string]interface{} and assigns it to the NativeData field.
+func (o *Transaction) SetNativeData(v map[string]interface{}) {
+	o.NativeData = &v
+}
+
 func (o Transaction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Signature != nil {
@@ -430,11 +430,11 @@ func (o Transaction) MarshalJSON() ([]byte, error) {
 	if o.Encoded != nil {
 		toSerialize["encoded"] = o.Encoded
 	}
-	if o.NativeData != nil {
-		toSerialize["nativeData"] = o.NativeData
-	}
 	if o.ExtraFields != nil {
 		toSerialize["extraFields"] = o.ExtraFields
+	}
+	if o.NativeData != nil {
+		toSerialize["nativeData"] = o.NativeData
 	}
 	return json.Marshal(toSerialize)
 }

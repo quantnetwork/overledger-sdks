@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -35,10 +35,10 @@ pub struct Transaction {
     pub transaction_id: Option<String>,
     #[serde(rename = "encoded", skip_serializing_if = "Option::is_none")]
     pub encoded: Option<Vec<String>>,
-    #[serde(rename = "nativeData", skip_serializing_if = "Option::is_none")]
-    pub native_data: Option<serde_json::Value>,
     #[serde(rename = "extraFields", skip_serializing_if = "Option::is_none")]
     pub extra_fields: Option<serde_json::Value>,
+    #[serde(rename = "nativeData", skip_serializing_if = "Option::is_none")]
+    pub native_data: Option<serde_json::Value>,
 }
 
 impl Transaction {
@@ -54,8 +54,8 @@ impl Transaction {
             message: None,
             transaction_id: None,
             encoded: None,
-            native_data: None,
             extra_fields: None,
+            native_data: None,
         }
     }
 }

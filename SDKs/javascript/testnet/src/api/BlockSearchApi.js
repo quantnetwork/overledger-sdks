@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -13,6 +13,7 @@
 
 
 import ApiClient from "../ApiClient";
+import AutoExecuteSearchBlockResponseSchema from '../model/AutoExecuteSearchBlockResponseSchema';
 import ErrorDetails from '../model/ErrorDetails';
 import ErrorList from '../model/ErrorList';
 import ExecuteSearchBlockResponse from '../model/ExecuteSearchBlockResponse';
@@ -38,6 +39,60 @@ export default class BlockSearchApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+
+    /**
+     * Callback function to receive the result of the autoExecuteSearchBlockRequest operation.
+     * @callback module:api/BlockSearchApi~autoExecuteSearchBlockRequestCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/AutoExecuteSearchBlockResponseSchema} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Prepare and automatically execute a search for a block on a DLT.
+     * Generates a request ID and automatically executes the block search on the requested DLT.
+     * @param {String} authorization 
+     * @param {String} blockId 
+     * @param {module:model/PrepareSearchSchema} prepareSearchSchema 
+     * @param {module:api/BlockSearchApi~autoExecuteSearchBlockRequestCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/AutoExecuteSearchBlockResponseSchema}
+     */
+    autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema, callback) {
+      let postBody = prepareSearchSchema;
+      // verify the required parameter 'authorization' is set
+      if (authorization === undefined || authorization === null) {
+        throw new Error("Missing the required parameter 'authorization' when calling autoExecuteSearchBlockRequest");
+      }
+      // verify the required parameter 'blockId' is set
+      if (blockId === undefined || blockId === null) {
+        throw new Error("Missing the required parameter 'blockId' when calling autoExecuteSearchBlockRequest");
+      }
+      // verify the required parameter 'prepareSearchSchema' is set
+      if (prepareSearchSchema === undefined || prepareSearchSchema === null) {
+        throw new Error("Missing the required parameter 'prepareSearchSchema' when calling autoExecuteSearchBlockRequest");
+      }
+
+      let pathParams = {
+        'blockId': blockId
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+        'Authorization': authorization
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2_Security_Scheme'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = AutoExecuteSearchBlockResponseSchema;
+      return this.apiClient.callApi(
+        '/v2/autoexecution/search/block/{blockId}', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the executePreparedSearchRequestBlock operation.

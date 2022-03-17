@@ -24,7 +24,7 @@ typedef struct resource_monitoring_details_t {
     char *resource_monitoring_id; // string
     struct location_t *location; //model
     char *type; // string
-    char *timestamp; //date time
+    char *timestamp; // string
     struct status_t *status; //model
 
 } resource_monitoring_details_t;

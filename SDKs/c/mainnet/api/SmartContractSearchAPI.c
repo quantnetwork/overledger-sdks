@@ -12,6 +12,113 @@
 }while(0)
 
 
+// Prepare and automatically execute a search for a smart contract query on a DLT.
+//
+// Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+//
+auto_execute_search_address_balance_response_schema_t*
+SmartContractSearchAPI_autoExecuteSearchSmartContractQueryRequest(apiClient_t *apiClient, char * Authorization , prepare_search_schema_t * prepare_search_schema )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = list_create();
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_create();
+    list_t *localVarContentType = list_create();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/v2/autoexecution/search/smartcontract")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/v2/autoexecution/search/smartcontract");
+
+
+
+
+    // header parameters
+    char *keyHeader_Authorization = NULL;
+    char * valueHeader_Authorization = 0;
+    keyValuePair_t *keyPairHeader_Authorization = 0;
+    if (Authorization) {
+        keyHeader_Authorization = strdup("Authorization");
+        valueHeader_Authorization = strdup((Authorization));
+        keyPairHeader_Authorization = keyValuePair_create(keyHeader_Authorization, valueHeader_Authorization);
+        list_addElement(localVarHeaderParameters,keyPairHeader_Authorization);
+    }
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_prepare_search_schema = NULL;
+    if (prepare_search_schema != NULL)
+    {
+        //string
+        localVarSingleItemJSON_prepare_search_schema = prepare_search_schema_convertToJSON(prepare_search_schema);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_prepare_search_schema);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    if (apiClient->response_code == 200) {
+        printf("%s\n","All good!");
+    }
+    if (apiClient->response_code == 400) {
+        printf("%s\n","Bad Request");
+    }
+    if (apiClient->response_code == 401) {
+        printf("%s\n","Unauthorised");
+    }
+    if (apiClient->response_code == 500) {
+        printf("%s\n","Something went wrong on our side");
+    }
+    //nonprimitive not container
+    cJSON *SmartContractSearchAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    auto_execute_search_address_balance_response_schema_t *elementToReturn = auto_execute_search_address_balance_response_schema_parseFromJSON(SmartContractSearchAPIlocalVarJSON);
+    cJSON_Delete(SmartContractSearchAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    list_free(localVarHeaderParameters);
+    
+    list_free(localVarHeaderType);
+    list_free(localVarContentType);
+    free(localVarPath);
+    if (keyHeader_Authorization) {
+        free(keyHeader_Authorization);
+        keyHeader_Authorization = NULL;
+    }
+    if (valueHeader_Authorization) {
+        free(valueHeader_Authorization);
+        valueHeader_Authorization = NULL;
+    }
+    free(keyPairHeader_Authorization);
+    if (localVarSingleItemJSON_prepare_search_schema) {
+        cJSON_Delete(localVarSingleItemJSON_prepare_search_schema);
+        localVarSingleItemJSON_prepare_search_schema = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Execute a read of a smart contract on a DLT
 //
 // Takes a request ID and reads the smart contract on Ethereum based on the parameters specified in the prepare request.

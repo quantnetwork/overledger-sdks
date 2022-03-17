@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -13,11 +13,13 @@
 
 
 import ApiClient from "../ApiClient";
+import AutoExecuteSearchAddressBalanceResponseSchema from '../model/AutoExecuteSearchAddressBalanceResponseSchema';
 import ErrorDetails from '../model/ErrorDetails';
 import ErrorList from '../model/ErrorList';
 import ExecuteSmartContractReadResponseSchema from '../model/ExecuteSmartContractReadResponseSchema';
 import InternalServerErrorSchema from '../model/InternalServerErrorSchema';
 import PrepareSearchResponseSchema from '../model/PrepareSearchResponseSchema';
+import PrepareSearchSchema from '../model/PrepareSearchSchema';
 import PrepareSearchSmartContractRequestSchema from '../model/PrepareSearchSmartContractRequestSchema';
 
 /**
@@ -38,6 +40,54 @@ export default class SmartContractSearchApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+
+    /**
+     * Callback function to receive the result of the autoExecuteSearchSmartContractQueryRequest operation.
+     * @callback module:api/SmartContractSearchApi~autoExecuteSearchSmartContractQueryRequestCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/AutoExecuteSearchAddressBalanceResponseSchema} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Prepare and automatically execute a search for a smart contract query on a DLT.
+     * Generates a request ID and automatically executes the smart contract query search on the requested DLT.
+     * @param {String} authorization 
+     * @param {module:model/PrepareSearchSchema} prepareSearchSchema 
+     * @param {module:api/SmartContractSearchApi~autoExecuteSearchSmartContractQueryRequestCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/AutoExecuteSearchAddressBalanceResponseSchema}
+     */
+    autoExecuteSearchSmartContractQueryRequest(authorization, prepareSearchSchema, callback) {
+      let postBody = prepareSearchSchema;
+      // verify the required parameter 'authorization' is set
+      if (authorization === undefined || authorization === null) {
+        throw new Error("Missing the required parameter 'authorization' when calling autoExecuteSearchSmartContractQueryRequest");
+      }
+      // verify the required parameter 'prepareSearchSchema' is set
+      if (prepareSearchSchema === undefined || prepareSearchSchema === null) {
+        throw new Error("Missing the required parameter 'prepareSearchSchema' when calling autoExecuteSearchSmartContractQueryRequest");
+      }
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+        'Authorization': authorization
+      };
+      let formParams = {
+      };
+
+      let authNames = ['OAuth2_Security_Scheme'];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = AutoExecuteSearchAddressBalanceResponseSchema;
+      return this.apiClient.callApi(
+        '/v2/autoexecution/search/smartcontract', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the executePreparedSearchRequest operation.

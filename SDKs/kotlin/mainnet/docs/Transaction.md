@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **message** | **kotlin.String** | Any text-based element of the data payload |  [optional]
 **transactionId** | **kotlin.String** | The unique identifier of the transaction on this DLN |  [optional]
 **encoded** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional]
-**nativeData** | [**kotlin.Any**](.md) |  |  [optional]
 **extraFields** | [**kotlin.Any**](.md) |  |  [optional]
+**nativeData** | [**kotlin.Any**](.md) |  |  [optional]
 
 
 

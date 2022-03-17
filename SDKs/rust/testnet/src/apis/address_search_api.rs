@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -14,6 +14,16 @@ use reqwest;
 use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
+
+/// struct for typed errors of method [`auto_execute_search_address_balance_request`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AutoExecuteSearchAddressBalanceRequestError {
+    Status400(crate::models::ErrorDetails),
+    Status401(crate::models::ErrorList),
+    Status500(crate::models::InternalServerErrorSchema),
+    UnknownValue(serde_json::Value),
+}
 
 /// struct for typed errors of method [`execute_prepared_search_request_address_balance`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -53,6 +63,49 @@ pub enum PrepareAddressSequenceSearchRequestError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`prepare_address_sequence_search_request1`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum PrepareAddressSequenceSearchRequest1Error {
+    Status400(crate::models::ErrorDetails),
+    Status401(crate::models::ErrorList),
+    Status500(crate::models::InternalServerErrorSchema),
+    UnknownValue(serde_json::Value),
+}
+
+
+/// Generates a request ID and automatically executes the address balance search on the requested DLT.
+pub async fn auto_execute_search_address_balance_request(configuration: &configuration::Configuration, authorization: &str, address_id: &str, prepare_search_schema: crate::models::PrepareSearchSchema) -> Result<crate::models::AutoExecuteSearchAddressBalanceResponseSchema, Error<AutoExecuteSearchAddressBalanceRequestError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/autoexecution/search/address/balance/{addressId}", local_var_configuration.base_path, addressId=crate::apis::urlencode(address_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    local_var_req_builder = local_var_req_builder.header("Authorization", authorization.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&prepare_search_schema);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AutoExecuteSearchAddressBalanceRequestError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
 
 /// Takes a request ID, searches for the address and retrieves the balance on the requested DLT. This API is only applicable for account based DLTs
 pub async fn execute_prepared_search_request_address_balance(configuration: &configuration::Configuration, authorization: &str, request_id: &str) -> Result<crate::models::ExecuteSearchBalanceResponse, Error<ExecutePreparedSearchRequestAddressBalanceError>> {
@@ -87,7 +140,7 @@ pub async fn execute_prepared_search_request_address_balance(configuration: &con
     }
 }
 
-/// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
+/// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT's
 pub async fn execute_prepared_search_request_address_sequence(configuration: &configuration::Configuration, authorization: &str, request_id: &str) -> Result<crate::models::ExecuteSearchSequenceResponse, Error<ExecutePreparedSearchRequestAddressSequenceError>> {
     let local_var_configuration = configuration;
 
@@ -181,6 +234,39 @@ pub async fn prepare_address_sequence_search_request(configuration: &configurati
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<PrepareAddressSequenceSearchRequestError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Generates a request ID and automatically executes the address sequence search on the requested DLT.
+pub async fn prepare_address_sequence_search_request1(configuration: &configuration::Configuration, authorization: &str, address_id: &str, prepare_search_schema: crate::models::PrepareSearchSchema) -> Result<crate::models::AutoExecSearchAddressSequenceResponseSchema, Error<PrepareAddressSequenceSearchRequest1Error>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/v2/autoexecution/search/address/sequence/{addressId}", local_var_configuration.base_path, addressId=crate::apis::urlencode(address_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    local_var_req_builder = local_var_req_builder.header("Authorization", authorization.to_string());
+    if let Some(ref local_var_token) = local_var_configuration.oauth_access_token {
+        local_var_req_builder = local_var_req_builder.bearer_auth(local_var_token.to_owned());
+    };
+    local_var_req_builder = local_var_req_builder.json(&prepare_search_schema);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<PrepareAddressSequenceSearchRequest1Error> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

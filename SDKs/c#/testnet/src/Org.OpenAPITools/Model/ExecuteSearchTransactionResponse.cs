@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -39,7 +39,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="timestamp">The unix time to read the object from.</param>
         /// <param name="status">status.</param>
         /// <param name="extraFields">extraFields.</param>
-        public ExecuteSearchTransactionResponse(Location location = default(Location), string type = default(string), Transaction transaction = default(Transaction), DateTime timestamp = default(DateTime), Status status = default(Status), Object extraFields = default(Object))
+        public ExecuteSearchTransactionResponse(Location location = default(Location), string type = default(string), Transaction transaction = default(Transaction), string timestamp = default(string), Status status = default(Status), Object extraFields = default(Object))
         {
             this.Location = location;
             this.Type = type;
@@ -73,7 +73,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>The unix time to read the object from</value>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public DateTime Timestamp { get; set; }
+        public string Timestamp { get; set; }
 
         /// <summary>
         /// Gets or Sets Status
@@ -216,6 +216,18 @@ namespace Org.OpenAPITools.Model
             if (false == regexType.Match(this.Type).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, must match a pattern of " + regexType, new [] { "Type" });
+            }
+
+            // Timestamp (string) maxLength
+            if(this.Timestamp != null && this.Timestamp.Length > 50)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Timestamp, length must be less than 50.", new [] { "Timestamp" });
+            }
+
+            // Timestamp (string) minLength
+            if(this.Timestamp != null && this.Timestamp.Length < 0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Timestamp, length must be greater than 0.", new [] { "Timestamp" });
             }
 
             yield break;

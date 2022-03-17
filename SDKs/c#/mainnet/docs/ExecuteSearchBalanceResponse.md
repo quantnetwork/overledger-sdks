@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Balances** | [**List&lt;AddressBalanceResponse&gt;**](AddressBalanceResponse.md) |  | [optional] 
 **Location** | [**Location**](Location.md) |  | [optional] 
+**Timestamp** | **string** |  | [optional] 
+**AddressId** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)

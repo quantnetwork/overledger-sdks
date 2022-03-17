@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **linkedBlocks** | [**LinkedBlocks**](LinkedBlocks.md) |  |  [optional]
 **numberOfTransactions** | **kotlin.Int** |  |  [optional]
 **message** | **kotlin.String** |  |  [optional]
-**timestamp** | **kotlin.Int** |  |  [optional]
+**timestamp** | **kotlin.String** |  |  [optional]
 **nativeData** | [**kotlin.Any**](.md) |  |  [optional]
 
 

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **linkedBlocks** | [**LinkedBlocks**](LinkedBlocks.md) |  |  [optional]
 **numberOfTransactions** | **Integer** |  |  [optional]
 **message** | **String** |  |  [optional]
-**timestamp** | **Integer** |  |  [optional]
+**timestamp** | **String** |  |  [optional]
 **nativeData** | **Object** |  |  [optional]
 
 

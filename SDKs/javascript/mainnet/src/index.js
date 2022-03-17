@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -17,12 +17,18 @@ import AddressBalanceResponse from './model/AddressBalanceResponse';
 import AddressMonitoringDetailsSchema from './model/AddressMonitoringDetailsSchema';
 import AddressMonitoringRequestSchema from './model/AddressMonitoringRequestSchema';
 import AddressMonitoringResponseSchema from './model/AddressMonitoringResponseSchema';
+import ApproveRequestDetailsSchema from './model/ApproveRequestDetailsSchema';
+import AutoExecSearchAddressSequenceResponseSchema from './model/AutoExecSearchAddressSequenceResponseSchema';
+import AutoExecuteSearchAddressBalanceResponseSchema from './model/AutoExecuteSearchAddressBalanceResponseSchema';
+import AutoExecuteSearchBlockResponseSchema from './model/AutoExecuteSearchBlockResponseSchema';
+import AutoExecuteSearchUTXOResponseSchema from './model/AutoExecuteSearchUTXOResponseSchema';
 import Block from './model/Block';
 import BlockHash from './model/BlockHash';
 import BlockSize from './model/BlockSize';
 import CreateSmartContractMonitoringSchema from './model/CreateSmartContractMonitoringSchema';
 import CreateSubscriptionRequestSchema from './model/CreateSubscriptionRequestSchema';
 import CreateSubscriptionResponseSchema from './model/CreateSubscriptionResponseSchema';
+import CreditRequestDetailsSchema from './model/CreditRequestDetailsSchema';
 import DeleteResourceMonitoringAddressSchema from './model/DeleteResourceMonitoringAddressSchema';
 import Destination from './model/Destination';
 import DestinationPaymentSchema from './model/DestinationPaymentSchema';
@@ -34,6 +40,7 @@ import ExecuteSearchBalanceResponse from './model/ExecuteSearchBalanceResponse';
 import ExecuteSearchBlockResponse from './model/ExecuteSearchBlockResponse';
 import ExecuteSearchSequenceResponse from './model/ExecuteSearchSequenceResponse';
 import ExecuteSearchTransactionResponse from './model/ExecuteSearchTransactionResponse';
+import ExecuteSearchUTXOResponse from './model/ExecuteSearchUTXOResponse';
 import ExecuteSearchUTXOResponseSchema from './model/ExecuteSearchUTXOResponseSchema';
 import ExecuteSmartContractReadResponseSchema from './model/ExecuteSmartContractReadResponseSchema';
 import ExecuteTransactionRequest from './model/ExecuteTransactionRequest';
@@ -52,9 +59,17 @@ import OriginPaymentSchema from './model/OriginPaymentSchema';
 import OriginTransferSchema from './model/OriginTransferSchema';
 import OverledgerTransactionResponseSchema from './model/OverledgerTransactionResponseSchema';
 import Parameter from './model/Parameter';
+import PayeeCreditSchema from './model/PayeeCreditSchema';
+import PayerCreditSchema from './model/PayerCreditSchema';
 import Payment from './model/Payment';
 import PaymentRequestDetailsSchema from './model/PaymentRequestDetailsSchema';
 import PaymentSchema from './model/PaymentSchema';
+import PrepareAndExecuteBalanceDetails from './model/PrepareAndExecuteBalanceDetails';
+import PrepareAndExecuteOverledgerErrorResponse from './model/PrepareAndExecuteOverledgerErrorResponse';
+import PrepareAndExecuteSearchAddressBalanceResponse from './model/PrepareAndExecuteSearchAddressBalanceResponse';
+import PrepareAndExecuteTransactionResponse from './model/PrepareAndExecuteTransactionResponse';
+import PrepareApproveDebitTransactionRequestSchema from './model/PrepareApproveDebitTransactionRequestSchema';
+import PrepareCreditTransactionRequestSchema from './model/PrepareCreditTransactionRequestSchema';
 import PrepareNativeTransactionRequestSchema from './model/PrepareNativeTransactionRequestSchema';
 import PreparePaymentTransactionRequestSchema from './model/PreparePaymentTransactionRequestSchema';
 import PrepareSearchResponseSchema from './model/PrepareSearchResponseSchema';
@@ -109,6 +124,8 @@ import UpdateSubscriptionRequestSchema from './model/UpdateSubscriptionRequestSc
 import Vout from './model/Vout';
 import AddressSearchApi from './api/AddressSearchApi';
 import BlockSearchApi from './api/BlockSearchApi';
+import CreateAQRC20CreditTransactionApi from './api/CreateAQRC20CreditTransactionApi';
+import CreateAQRC20DebitTransactionApi from './api/CreateAQRC20DebitTransactionApi';
 import CreateSubscriptionApi from './api/CreateSubscriptionApi';
 import CreateTransactionApi from './api/CreateTransactionApi';
 import MDappTransactionQueryApi from './api/MDappTransactionQueryApi';
@@ -183,6 +200,36 @@ export {
     AddressMonitoringResponseSchema,
 
     /**
+     * The ApproveRequestDetailsSchema model constructor.
+     * @property {module:model/ApproveRequestDetailsSchema}
+     */
+    ApproveRequestDetailsSchema,
+
+    /**
+     * The AutoExecSearchAddressSequenceResponseSchema model constructor.
+     * @property {module:model/AutoExecSearchAddressSequenceResponseSchema}
+     */
+    AutoExecSearchAddressSequenceResponseSchema,
+
+    /**
+     * The AutoExecuteSearchAddressBalanceResponseSchema model constructor.
+     * @property {module:model/AutoExecuteSearchAddressBalanceResponseSchema}
+     */
+    AutoExecuteSearchAddressBalanceResponseSchema,
+
+    /**
+     * The AutoExecuteSearchBlockResponseSchema model constructor.
+     * @property {module:model/AutoExecuteSearchBlockResponseSchema}
+     */
+    AutoExecuteSearchBlockResponseSchema,
+
+    /**
+     * The AutoExecuteSearchUTXOResponseSchema model constructor.
+     * @property {module:model/AutoExecuteSearchUTXOResponseSchema}
+     */
+    AutoExecuteSearchUTXOResponseSchema,
+
+    /**
      * The Block model constructor.
      * @property {module:model/Block}
      */
@@ -217,6 +264,12 @@ export {
      * @property {module:model/CreateSubscriptionResponseSchema}
      */
     CreateSubscriptionResponseSchema,
+
+    /**
+     * The CreditRequestDetailsSchema model constructor.
+     * @property {module:model/CreditRequestDetailsSchema}
+     */
+    CreditRequestDetailsSchema,
 
     /**
      * The DeleteResourceMonitoringAddressSchema model constructor.
@@ -283,6 +336,12 @@ export {
      * @property {module:model/ExecuteSearchTransactionResponse}
      */
     ExecuteSearchTransactionResponse,
+
+    /**
+     * The ExecuteSearchUTXOResponse model constructor.
+     * @property {module:model/ExecuteSearchUTXOResponse}
+     */
+    ExecuteSearchUTXOResponse,
 
     /**
      * The ExecuteSearchUTXOResponseSchema model constructor.
@@ -393,6 +452,18 @@ export {
     Parameter,
 
     /**
+     * The PayeeCreditSchema model constructor.
+     * @property {module:model/PayeeCreditSchema}
+     */
+    PayeeCreditSchema,
+
+    /**
+     * The PayerCreditSchema model constructor.
+     * @property {module:model/PayerCreditSchema}
+     */
+    PayerCreditSchema,
+
+    /**
      * The Payment model constructor.
      * @property {module:model/Payment}
      */
@@ -409,6 +480,42 @@ export {
      * @property {module:model/PaymentSchema}
      */
     PaymentSchema,
+
+    /**
+     * The PrepareAndExecuteBalanceDetails model constructor.
+     * @property {module:model/PrepareAndExecuteBalanceDetails}
+     */
+    PrepareAndExecuteBalanceDetails,
+
+    /**
+     * The PrepareAndExecuteOverledgerErrorResponse model constructor.
+     * @property {module:model/PrepareAndExecuteOverledgerErrorResponse}
+     */
+    PrepareAndExecuteOverledgerErrorResponse,
+
+    /**
+     * The PrepareAndExecuteSearchAddressBalanceResponse model constructor.
+     * @property {module:model/PrepareAndExecuteSearchAddressBalanceResponse}
+     */
+    PrepareAndExecuteSearchAddressBalanceResponse,
+
+    /**
+     * The PrepareAndExecuteTransactionResponse model constructor.
+     * @property {module:model/PrepareAndExecuteTransactionResponse}
+     */
+    PrepareAndExecuteTransactionResponse,
+
+    /**
+     * The PrepareApproveDebitTransactionRequestSchema model constructor.
+     * @property {module:model/PrepareApproveDebitTransactionRequestSchema}
+     */
+    PrepareApproveDebitTransactionRequestSchema,
+
+    /**
+     * The PrepareCreditTransactionRequestSchema model constructor.
+     * @property {module:model/PrepareCreditTransactionRequestSchema}
+     */
+    PrepareCreditTransactionRequestSchema,
 
     /**
      * The PrepareNativeTransactionRequestSchema model constructor.
@@ -733,6 +840,18 @@ export {
     * @property {module:api/BlockSearchApi}
     */
     BlockSearchApi,
+
+    /**
+    * The CreateAQRC20CreditTransactionApi service constructor.
+    * @property {module:api/CreateAQRC20CreditTransactionApi}
+    */
+    CreateAQRC20CreditTransactionApi,
+
+    /**
+    * The CreateAQRC20DebitTransactionApi service constructor.
+    * @property {module:api/CreateAQRC20DebitTransactionApi}
+    */
+    CreateAQRC20DebitTransactionApi,
 
     /**
     * The CreateSubscriptionApi service constructor.

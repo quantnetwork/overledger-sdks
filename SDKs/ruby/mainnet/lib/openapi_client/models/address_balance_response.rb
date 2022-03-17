@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -17,16 +17,13 @@ module OpenapiClient
   class AddressBalanceResponse
     attr_accessor :unit
 
-    attr_accessor :value
-
-    attr_accessor :address_id
+    attr_accessor :amount
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'unit' => :'unit',
-        :'value' => :'value',
-        :'address_id' => :'addressId'
+        :'amount' => :'amount'
       }
     end
 
@@ -39,8 +36,7 @@ module OpenapiClient
     def self.openapi_types
       {
         :'unit' => :'String',
-        :'value' => :'Float',
-        :'address_id' => :'String'
+        :'amount' => :'String'
       }
     end
 
@@ -69,12 +65,8 @@ module OpenapiClient
         self.unit = attributes[:'unit']
       end
 
-      if attributes.key?(:'value')
-        self.value = attributes[:'value']
-      end
-
-      if attributes.key?(:'address_id')
-        self.address_id = attributes[:'address_id']
+      if attributes.key?(:'amount')
+        self.amount = attributes[:'amount']
       end
     end
 
@@ -95,19 +87,6 @@ module OpenapiClient
         invalid_properties.push("invalid value for \"unit\", must conform to the pattern #{pattern}.")
       end
 
-      if !@address_id.nil? && @address_id.to_s.length > 100
-        invalid_properties.push('invalid value for "address_id", the character length must be smaller than or equal to 100.')
-      end
-
-      if !@address_id.nil? && @address_id.to_s.length < 0
-        invalid_properties.push('invalid value for "address_id", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
-      if !@address_id.nil? && @address_id !~ pattern
-        invalid_properties.push("invalid value for \"address_id\", must conform to the pattern #{pattern}.")
-      end
-
       invalid_properties
     end
 
@@ -117,9 +96,6 @@ module OpenapiClient
       return false if !@unit.nil? && @unit.to_s.length > 10
       return false if !@unit.nil? && @unit.to_s.length < 0
       return false if !@unit.nil? && @unit !~ Regexp.new(/^[a-zA-Z_ ]{1,10}$/)
-      return false if !@address_id.nil? && @address_id.to_s.length > 100
-      return false if !@address_id.nil? && @address_id.to_s.length < 0
-      return false if !@address_id.nil? && @address_id !~ Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
       true
     end
 
@@ -142,33 +118,13 @@ module OpenapiClient
       @unit = unit
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] address_id Value to be assigned
-    def address_id=(address_id)
-      if !address_id.nil? && address_id.to_s.length > 100
-        fail ArgumentError, 'invalid value for "address_id", the character length must be smaller than or equal to 100.'
-      end
-
-      if !address_id.nil? && address_id.to_s.length < 0
-        fail ArgumentError, 'invalid value for "address_id", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
-      if !address_id.nil? && address_id !~ pattern
-        fail ArgumentError, "invalid value for \"address_id\", must conform to the pattern #{pattern}."
-      end
-
-      @address_id = address_id
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           unit == o.unit &&
-          value == o.value &&
-          address_id == o.address_id
+          amount == o.amount
     end
 
     # @see the `==` method
@@ -180,7 +136,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [unit, value, address_id].hash
+      [unit, amount].hash
     end
 
     # Builds the object from hash

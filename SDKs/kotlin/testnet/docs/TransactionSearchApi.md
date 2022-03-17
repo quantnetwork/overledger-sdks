@@ -4,9 +4,63 @@ All URIs are relative to *https://api.sandbox.overledger.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**autoExecuteSearchTransactionRequest**](TransactionSearchApi.md#autoExecuteSearchTransactionRequest) | **POST** /v2/autoexecution/search/transaction | Prepare and automatically execute a search for a transaction on a DLT.
 [**executePreparedSearchRequestTransaction**](TransactionSearchApi.md#executePreparedSearchRequestTransaction) | **POST** /v2/execution/search/transaction | Execute a search for a transaction on a DLT
 [**prepareSearchRequest**](TransactionSearchApi.md#prepareSearchRequest) | **POST** /v2/preparation/search/transaction | Prepare a search for a transaction on a DLT
 
+
+<a name="autoExecuteSearchTransactionRequest"></a>
+# **autoExecuteSearchTransactionRequest**
+> PrepareAndExecuteTransactionResponse autoExecuteSearchTransactionRequest(authorization, transactionId, prepareSearchSchema)
+
+Prepare and automatically execute a search for a transaction on a DLT.
+
+Generates a request ID and automatically executes the transaction search on the requested DLT.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = TransactionSearchApi()
+val authorization : kotlin.String = authorization_example // kotlin.String | 
+val transactionId : kotlin.String = transactionId_example // kotlin.String | 
+val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}} // PrepareSearchSchema | 
+try {
+    val result : PrepareAndExecuteTransactionResponse = apiInstance.autoExecuteSearchTransactionRequest(authorization, transactionId, prepareSearchSchema)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling TransactionSearchApi#autoExecuteSearchTransactionRequest")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling TransactionSearchApi#autoExecuteSearchTransactionRequest")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **kotlin.String**|  |
+ **transactionId** | **kotlin.String**|  |
+ **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  |
+
+### Return type
+
+[**PrepareAndExecuteTransactionResponse**](PrepareAndExecuteTransactionResponse.md)
+
+### Authorization
+
+
+Configure OAuth2_Security_Scheme:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="executePreparedSearchRequestTransaction"></a>
 # **executePreparedSearchRequestTransaction**
@@ -76,7 +130,7 @@ Searches for and returns data on transactions on a particular DLT. Returns a req
 val apiInstance = TransactionSearchApi()
 val authorization : kotlin.String = authorization_example // kotlin.String | 
 val transactionId : kotlin.String = transactionId_example // kotlin.String | 
-val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Bitcoin","network":"Testnet"}} // PrepareSearchSchema | 
+val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}} // PrepareSearchSchema | 
 try {
     val result : PrepareSearchResponseSchema = apiInstance.prepareSearchRequest(authorization, transactionId, prepareSearchSchema)
     println(result)

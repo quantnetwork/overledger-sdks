@@ -2,7 +2,7 @@
 
 Quant Overledger API
 
-Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -28,6 +28,15 @@ use_ok('WWW::OpenAPIClient::BlockSearchApi');
 
 my $api = WWW::OpenAPIClient::BlockSearchApi->new();
 isa_ok($api, 'WWW::OpenAPIClient::BlockSearchApi');
+
+#
+# auto_execute_search_block_request test
+#
+# uncomment below and update the test
+#my $auto_execute_search_block_request_authorization = undef; # replace NULL with a proper value
+#my $auto_execute_search_block_request_block_id = undef; # replace NULL with a proper value
+#my $auto_execute_search_block_request_prepare_search_schema = undef; # replace NULL with a proper value
+#my $auto_execute_search_block_request_result = $api->auto_execute_search_block_request(authorization => $auto_execute_search_block_request_authorization, block_id => $auto_execute_search_block_request_block_id, prepare_search_schema => $auto_execute_search_block_request_prepare_search_schema);
 
 #
 # execute_prepared_search_request_block test

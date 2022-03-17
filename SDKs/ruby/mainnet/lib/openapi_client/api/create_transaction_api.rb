@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
 
 The version of the OpenAPI document: 2.0
 
@@ -44,15 +44,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling CreateTransactionApi.execute_prepared_request_native_transaction"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_native_transaction, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_native_transaction, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_native_transaction, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling CreateTransactionApi.execute_prepared_request_native_transaction, must conform to the pattern #{pattern}."
       end
@@ -132,15 +132,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling CreateTransactionApi.execute_prepared_request_transaction"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_transaction, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_transaction, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.execute_prepared_request_transaction, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling CreateTransactionApi.execute_prepared_request_transaction, must conform to the pattern #{pattern}."
       end
@@ -220,15 +220,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling CreateTransactionApi.prepare_native_transaction"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_native_transaction, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_native_transaction, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_native_transaction, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling CreateTransactionApi.prepare_native_transaction, must conform to the pattern #{pattern}."
       end
@@ -284,7 +284,7 @@ module OpenapiClient
     end
 
     # Prepare a DLT transaction for signing
-    # Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
+    # Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \"Payment\" (to send payments) and \"Smart Contract Invoke\" (to invoke arbitrary smart contract functions).   Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
     # @param authorization [String] 
     # @param prepare_payment_transaction_request_schema [PreparePaymentTransactionRequestSchema] 
     # @param [Hash] opts the optional parameters
@@ -295,7 +295,7 @@ module OpenapiClient
     end
 
     # Prepare a DLT transaction for signing
-    # Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are “Payment” (to send payments) and “Smart Contract Invoke” (to invoke arbitrary smart contract functions)
+    # Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \&quot;Payment\&quot; (to send payments) and \&quot;Smart Contract Invoke\&quot; (to invoke arbitrary smart contract functions).   Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
     # @param authorization [String] 
     # @param prepare_payment_transaction_request_schema [PreparePaymentTransactionRequestSchema] 
     # @param [Hash] opts the optional parameters
@@ -308,15 +308,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && authorization.nil?
         fail ArgumentError, "Missing the required parameter 'authorization' when calling CreateTransactionApi.prepare_transaction_request"
       end
-      if @api_client.config.client_side_validation && authorization.to_s.length > 4096
-        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_transaction_request, the character length must be smaller than or equal to 4096.'
+      if @api_client.config.client_side_validation && authorization.to_s.length > 5010
+        fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_transaction_request, the character length must be smaller than or equal to 5010.'
       end
 
       if @api_client.config.client_side_validation && authorization.to_s.length < 0
         fail ArgumentError, 'invalid value for "authorization" when calling CreateTransactionApi.prepare_transaction_request, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,4096}$/)
+      pattern = Regexp.new(/^Bearer [A-Za-z0-9\-_. ]{1,5010}$/)
       if @api_client.config.client_side_validation && authorization !~ pattern
         fail ArgumentError, "invalid value for 'authorization' when calling CreateTransactionApi.prepare_transaction_request, must conform to the pattern #{pattern}."
       end

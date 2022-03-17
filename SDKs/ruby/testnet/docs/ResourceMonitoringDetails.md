@@ -7,7 +7,7 @@
 | **resource_monitoring_id** | **String** |  | [optional] |
 | **location** | [**Location**](Location.md) |  | [optional] |
 | **type** | **String** |  | [optional] |
-| **timestamp** | **Time** |  | [optional] |
+| **timestamp** | **String** |  | [optional] |
 | **status** | [**Status**](Status.md) |  | [optional] |
 
 ## Example

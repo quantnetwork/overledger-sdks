@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **linked_blocks** | Option<[**crate::models::LinkedBlocks**](LinkedBlocks.md)> |  | [optional]
 **number_of_transactions** | Option<**i32**> |  | [optional]
 **message** | Option<**String**> |  | [optional]
-**timestamp** | Option<**i32**> |  | [optional]
+**timestamp** | Option<**String**> |  | [optional]
 **native_data** | Option<[**serde_json::Value**](.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
