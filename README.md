@@ -14,7 +14,7 @@ When Overledger's APIs are extended, the SDKs will need to be regenerated to mak
 
 Firstly git clone this repo. Then run `npm install`.
 
-Now the SDKs are automatically generated from the [Overledger OpenAPI3 Document](https://github.com/quantnetwork/overledger-sdks/blob/main/overledger-openAPI3/swagger.json) via:
+Now the SDKs are automatically generated from the Overledger OpenAPI3 Document via:
 
 ```
 npm run generate-{mainnet,testnet}-sdk-{c#,c,go,haskell,java,javascript,kotlin,perl,php,ruby,rust,typescript-axios}
