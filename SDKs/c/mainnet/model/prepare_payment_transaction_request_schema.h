@@ -1,0 +1,61 @@
+/*
+ * prepare_payment_transaction_request_schema.h
+ *
+ * 
+ */
+
+#ifndef _prepare_payment_transaction_request_schema_H_
+#define _prepare_payment_transaction_request_schema_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct prepare_payment_transaction_request_schema_t prepare_payment_transaction_request_schema_t;
+
+#include "location.h"
+#include "payment_request_details_schema.h"
+
+// Enum TYPE for prepare_payment_transaction_request_schema
+
+typedef enum  { quant_overledger_api_prepare_payment_transaction_request_schema_TYPE_NULL = 0, quant_overledger_api_prepare_payment_transaction_request_schema_TYPE_Payment, quant_overledger_api_prepare_payment_transaction_request_schema_TYPE_Transfer, quant_overledger_api_prepare_payment_transaction_request_schema_TYPE_Contract Invoke } quant_overledger_api_prepare_payment_transaction_request_schema_TYPE_e;
+
+char* prepare_payment_transaction_request_schema_type_ToString(quant_overledger_api_prepare_payment_transaction_request_schema_TYPE_e type);
+
+quant_overledger_api_prepare_payment_transaction_request_schema_TYPE_e prepare_payment_transaction_request_schema_type_FromString(char* type);
+
+// Enum URGENCY for prepare_payment_transaction_request_schema
+
+typedef enum  { quant_overledger_api_prepare_payment_transaction_request_schema_URGENCY_NULL = 0, quant_overledger_api_prepare_payment_transaction_request_schema_URGENCY_Normal, quant_overledger_api_prepare_payment_transaction_request_schema_URGENCY_Fast, quant_overledger_api_prepare_payment_transaction_request_schema_URGENCY_Urgent } quant_overledger_api_prepare_payment_transaction_request_schema_URGENCY_e;
+
+char* prepare_payment_transaction_request_schema_urgency_ToString(quant_overledger_api_prepare_payment_transaction_request_schema_URGENCY_e urgency);
+
+quant_overledger_api_prepare_payment_transaction_request_schema_URGENCY_e prepare_payment_transaction_request_schema_urgency_FromString(char* urgency);
+
+
+
+typedef struct prepare_payment_transaction_request_schema_t {
+    struct location_t *location; //model
+    quant_overledger_api_prepare_payment_transaction_request_schema_TYPE_e type; //enum
+    quant_overledger_api_prepare_payment_transaction_request_schema_URGENCY_e urgency; //enum
+    struct payment_request_details_schema_t *request_details; //model
+
+} prepare_payment_transaction_request_schema_t;
+
+prepare_payment_transaction_request_schema_t *prepare_payment_transaction_request_schema_create(
+    location_t *location,
+    quant_overledger_api_prepare_payment_transaction_request_schema_TYPE_e type,
+    quant_overledger_api_prepare_payment_transaction_request_schema_URGENCY_e urgency,
+    payment_request_details_schema_t *request_details
+);
+
+void prepare_payment_transaction_request_schema_free(prepare_payment_transaction_request_schema_t *prepare_payment_transaction_request_schema);
+
+prepare_payment_transaction_request_schema_t *prepare_payment_transaction_request_schema_parseFromJSON(cJSON *prepare_payment_transaction_request_schemaJSON);
+
+cJSON *prepare_payment_transaction_request_schema_convertToJSON(prepare_payment_transaction_request_schema_t *prepare_payment_transaction_request_schema);
+
+#endif /* _prepare_payment_transaction_request_schema_H_ */
+
