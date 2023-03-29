@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -32,9 +32,22 @@ describe 'CreateAQRC20CreditTransactionApi' do
     end
   end
 
+  # unit tests for execute_prepared_request_transaction
+  # Execute a transaction on a DLT
+  # Takes a request ID and submits a signed transaction to the requested DLT.
+  # @param authorization 
+  # @param execute_transaction_request 
+  # @param [Hash] opts the optional parameters
+  # @return [ExecuteTransactionResponse]
+  describe 'execute_prepared_request_transaction test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for prepare_credit_request
   # Prepare a QRC20 token credit transaction for signing
-  # Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is \&quot;Create Credit\&quot; which will allow you to make a payment to another specified account.
+  # Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is “Create Credit” which will allow you to make a payment to another specified account.
   # @param authorization 
   # @param prepare_credit_transaction_request_schema 
   # @param [Hash] opts the optional parameters

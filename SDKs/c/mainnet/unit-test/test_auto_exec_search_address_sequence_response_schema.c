@@ -16,9 +16,9 @@
 #include "../model/auto_exec_search_address_sequence_response_schema.h"
 auto_exec_search_address_sequence_response_schema_t* instantiate_auto_exec_search_address_sequence_response_schema(int include_optional);
 
-#include "test_prepare_search_response_schema.c"
 #include "test_prepare_and_execute_overledger_error_response.c"
 #include "test_execute_search_sequence_response.c"
+#include "test_prepare_search_response_schema.c"
 
 
 auto_exec_search_address_sequence_response_schema_t* instantiate_auto_exec_search_address_sequence_response_schema(int include_optional) {
@@ -26,11 +26,11 @@ auto_exec_search_address_sequence_response_schema_t* instantiate_auto_exec_searc
   if (include_optional) {
     auto_exec_search_address_sequence_response_schema = auto_exec_search_address_sequence_response_schema_create(
        // false, not to have infinite recursion
-      instantiate_prepare_search_response_schema(0),
-       // false, not to have infinite recursion
       instantiate_prepare_and_execute_overledger_error_response(0),
        // false, not to have infinite recursion
-      instantiate_execute_search_sequence_response(0)
+      instantiate_execute_search_sequence_response(0),
+       // false, not to have infinite recursion
+      instantiate_prepare_search_response_schema(0)
     );
   } else {
     auto_exec_search_address_sequence_response_schema = auto_exec_search_address_sequence_response_schema_create(

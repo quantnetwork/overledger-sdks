@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -16,8 +16,6 @@ require 'time'
 module OpenapiClient
   # Computer program storage in a DLT system where the outcome is recorded on the distributed ledger
   class SmartContract
-    attr_accessor :function
-
     attr_accessor :detail
 
     # Information on the object type
@@ -25,15 +23,17 @@ module OpenapiClient
 
     attr_accessor :smart_contract_id
 
+    attr_accessor :function
+
     attr_accessor :extra_fields
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'function' => :'function',
         :'detail' => :'detail',
         :'type' => :'type',
         :'smart_contract_id' => :'smartContractId',
+        :'function' => :'function',
         :'extra_fields' => :'extraFields'
       }
     end
@@ -46,10 +46,10 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'function' => :'Function',
         :'detail' => :'String',
         :'type' => :'String',
         :'smart_contract_id' => :'String',
+        :'function' => :'Function',
         :'extra_fields' => :'Object'
       }
     end
@@ -75,10 +75,6 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'function')
-        self.function = attributes[:'function']
-      end
-
       if attributes.key?(:'detail')
         self.detail = attributes[:'detail']
       end
@@ -89,6 +85,10 @@ module OpenapiClient
 
       if attributes.key?(:'smart_contract_id')
         self.smart_contract_id = attributes[:'smart_contract_id']
+      end
+
+      if attributes.key?(:'function')
+        self.function = attributes[:'function']
       end
 
       if attributes.key?(:'extra_fields')
@@ -208,10 +208,10 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          function == o.function &&
           detail == o.detail &&
           type == o.type &&
           smart_contract_id == o.smart_contract_id &&
+          function == o.function &&
           extra_fields == o.extra_fields
     end
 
@@ -224,7 +224,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [function, detail, type, smart_contract_id, extra_fields].hash
+      [detail, type, smart_contract_id, function, extra_fields].hash
     end
 
     # Builds the object from hash

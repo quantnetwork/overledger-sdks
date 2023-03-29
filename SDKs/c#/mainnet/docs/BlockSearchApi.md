@@ -39,7 +39,7 @@ namespace Example
 
             var apiInstance = new BlockSearchApi(Configuration.Default);
             var authorization = authorization_example;  // string | 
-            var blockId = latest;  // string | 
+            var blockId = 54678;  // string | 
             var prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
 
             try
@@ -209,7 +209,7 @@ namespace Example
 
             var apiInstance = new BlockSearchApi(Configuration.Default);
             var authorization = authorization_example;  // string | 
-            var blockId = latest;  // string | 
+            var blockId = 54678;  // string | 
             var prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
 
             try

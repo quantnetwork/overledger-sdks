@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,27 +33,27 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoExecuteSearchBlockResponseSchema" /> class.
         /// </summary>
-        /// <param name="executionBlockSearchResponse">executionBlockSearchResponse.</param>
         /// <param name="prepareAndExecuteOverledgerErrorResponse">prepareAndExecuteOverledgerErrorResponse.</param>
+        /// <param name="executionBlockSearchResponse">executionBlockSearchResponse.</param>
         /// <param name="preparationBlockSearchResponse">preparationBlockSearchResponse.</param>
-        public AutoExecuteSearchBlockResponseSchema(ExecuteSearchBlockResponse executionBlockSearchResponse = default(ExecuteSearchBlockResponse), PrepareAndExecuteOverledgerErrorResponse prepareAndExecuteOverledgerErrorResponse = default(PrepareAndExecuteOverledgerErrorResponse), PrepareSearchResponseSchema preparationBlockSearchResponse = default(PrepareSearchResponseSchema))
+        public AutoExecuteSearchBlockResponseSchema(PrepareAndExecuteOverledgerErrorResponse prepareAndExecuteOverledgerErrorResponse = default(PrepareAndExecuteOverledgerErrorResponse), ExecuteSearchBlockResponse executionBlockSearchResponse = default(ExecuteSearchBlockResponse), PrepareSearchResponseSchema preparationBlockSearchResponse = default(PrepareSearchResponseSchema))
         {
-            this.ExecutionBlockSearchResponse = executionBlockSearchResponse;
             this.PrepareAndExecuteOverledgerErrorResponse = prepareAndExecuteOverledgerErrorResponse;
+            this.ExecutionBlockSearchResponse = executionBlockSearchResponse;
             this.PreparationBlockSearchResponse = preparationBlockSearchResponse;
         }
-
-        /// <summary>
-        /// Gets or Sets ExecutionBlockSearchResponse
-        /// </summary>
-        [DataMember(Name="executionBlockSearchResponse", EmitDefaultValue=false)]
-        public ExecuteSearchBlockResponse ExecutionBlockSearchResponse { get; set; }
 
         /// <summary>
         /// Gets or Sets PrepareAndExecuteOverledgerErrorResponse
         /// </summary>
         [DataMember(Name="prepareAndExecuteOverledgerErrorResponse", EmitDefaultValue=false)]
         public PrepareAndExecuteOverledgerErrorResponse PrepareAndExecuteOverledgerErrorResponse { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ExecutionBlockSearchResponse
+        /// </summary>
+        [DataMember(Name="executionBlockSearchResponse", EmitDefaultValue=false)]
+        public ExecuteSearchBlockResponse ExecutionBlockSearchResponse { get; set; }
 
         /// <summary>
         /// Gets or Sets PreparationBlockSearchResponse
@@ -69,8 +69,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class AutoExecuteSearchBlockResponseSchema {\n");
-            sb.Append("  ExecutionBlockSearchResponse: ").Append(ExecutionBlockSearchResponse).Append("\n");
             sb.Append("  PrepareAndExecuteOverledgerErrorResponse: ").Append(PrepareAndExecuteOverledgerErrorResponse).Append("\n");
+            sb.Append("  ExecutionBlockSearchResponse: ").Append(ExecutionBlockSearchResponse).Append("\n");
             sb.Append("  PreparationBlockSearchResponse: ").Append(PreparationBlockSearchResponse).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -107,14 +107,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.ExecutionBlockSearchResponse == input.ExecutionBlockSearchResponse ||
-                    (this.ExecutionBlockSearchResponse != null &&
-                    this.ExecutionBlockSearchResponse.Equals(input.ExecutionBlockSearchResponse))
-                ) && 
-                (
                     this.PrepareAndExecuteOverledgerErrorResponse == input.PrepareAndExecuteOverledgerErrorResponse ||
                     (this.PrepareAndExecuteOverledgerErrorResponse != null &&
                     this.PrepareAndExecuteOverledgerErrorResponse.Equals(input.PrepareAndExecuteOverledgerErrorResponse))
+                ) && 
+                (
+                    this.ExecutionBlockSearchResponse == input.ExecutionBlockSearchResponse ||
+                    (this.ExecutionBlockSearchResponse != null &&
+                    this.ExecutionBlockSearchResponse.Equals(input.ExecutionBlockSearchResponse))
                 ) && 
                 (
                     this.PreparationBlockSearchResponse == input.PreparationBlockSearchResponse ||
@@ -132,10 +132,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ExecutionBlockSearchResponse != null)
-                    hashCode = hashCode * 59 + this.ExecutionBlockSearchResponse.GetHashCode();
                 if (this.PrepareAndExecuteOverledgerErrorResponse != null)
                     hashCode = hashCode * 59 + this.PrepareAndExecuteOverledgerErrorResponse.GetHashCode();
+                if (this.ExecutionBlockSearchResponse != null)
+                    hashCode = hashCode * 59 + this.ExecutionBlockSearchResponse.GetHashCode();
                 if (this.PreparationBlockSearchResponse != null)
                     hashCode = hashCode * 59 + this.PreparationBlockSearchResponse.GetHashCode();
                 return hashCode;

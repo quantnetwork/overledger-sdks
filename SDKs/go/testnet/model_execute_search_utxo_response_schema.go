@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -19,7 +19,7 @@ type ExecuteSearchUTXOResponseSchema struct {
 	UtxoId *string `json:"utxoId,omitempty"`
 	Destination *[]UTXODestination `json:"destination,omitempty"`
 	Location *Location `json:"location,omitempty"`
-	Timestamp *UTXOTimestampSchema `json:"timestamp,omitempty"`
+	Timestamp *string `json:"timestamp,omitempty"`
 	Status *Status `json:"status,omitempty"`
 	NativeData *UTXONativeData `json:"nativeData,omitempty"`
 }
@@ -138,9 +138,9 @@ func (o *ExecuteSearchUTXOResponseSchema) SetLocation(v Location) {
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *ExecuteSearchUTXOResponseSchema) GetTimestamp() UTXOTimestampSchema {
+func (o *ExecuteSearchUTXOResponseSchema) GetTimestamp() string {
 	if o == nil || o.Timestamp == nil {
-		var ret UTXOTimestampSchema
+		var ret string
 		return ret
 	}
 	return *o.Timestamp
@@ -148,7 +148,7 @@ func (o *ExecuteSearchUTXOResponseSchema) GetTimestamp() UTXOTimestampSchema {
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExecuteSearchUTXOResponseSchema) GetTimestampOk() (*UTXOTimestampSchema, bool) {
+func (o *ExecuteSearchUTXOResponseSchema) GetTimestampOk() (*string, bool) {
 	if o == nil || o.Timestamp == nil {
 		return nil, false
 	}
@@ -164,8 +164,8 @@ func (o *ExecuteSearchUTXOResponseSchema) HasTimestamp() bool {
 	return false
 }
 
-// SetTimestamp gets a reference to the given UTXOTimestampSchema and assigns it to the Timestamp field.
-func (o *ExecuteSearchUTXOResponseSchema) SetTimestamp(v UTXOTimestampSchema) {
+// SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
+func (o *ExecuteSearchUTXOResponseSchema) SetTimestamp(v string) {
 	o.Timestamp = &v
 }
 

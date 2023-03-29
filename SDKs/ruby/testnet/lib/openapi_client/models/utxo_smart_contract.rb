@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,17 +15,17 @@ require 'time'
 
 module OpenapiClient
   class UTXOSmartContract
-    attr_accessor :detail
-
     attr_accessor :type
+
+    attr_accessor :detail
 
     attr_accessor :extra_fields
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'detail' => :'detail',
         :'type' => :'type',
+        :'detail' => :'detail',
         :'extra_fields' => :'extraFields'
       }
     end
@@ -38,8 +38,8 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'detail' => :'String',
         :'type' => :'String',
+        :'detail' => :'String',
         :'extra_fields' => :'ExtraFields'
       }
     end
@@ -65,12 +65,12 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'detail')
-        self.detail = attributes[:'detail']
-      end
-
       if attributes.key?(:'type')
         self.type = attributes[:'type']
+      end
+
+      if attributes.key?(:'detail')
+        self.detail = attributes[:'detail']
       end
 
       if attributes.key?(:'extra_fields')
@@ -96,8 +96,8 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          detail == o.detail &&
           type == o.type &&
+          detail == o.detail &&
           extra_fields == o.extra_fields
     end
 
@@ -110,7 +110,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [detail, type, extra_fields].hash
+      [type, detail, extra_fields].hash
     end
 
     # Builds the object from hash

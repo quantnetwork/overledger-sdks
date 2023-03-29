@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,21 +33,15 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoExecSearchAddressSequenceResponseSchema" /> class.
         /// </summary>
-        /// <param name="preparationAddressSequenceSearchResponse">preparationAddressSequenceSearchResponse.</param>
         /// <param name="prepareAndExecuteOverledgerErrorResponse">prepareAndExecuteOverledgerErrorResponse.</param>
         /// <param name="executionAddressSequenceSearchResponse">executionAddressSequenceSearchResponse.</param>
-        public AutoExecSearchAddressSequenceResponseSchema(PrepareSearchResponseSchema preparationAddressSequenceSearchResponse = default(PrepareSearchResponseSchema), PrepareAndExecuteOverledgerErrorResponse prepareAndExecuteOverledgerErrorResponse = default(PrepareAndExecuteOverledgerErrorResponse), ExecuteSearchSequenceResponse executionAddressSequenceSearchResponse = default(ExecuteSearchSequenceResponse))
+        /// <param name="preparationAddressSequenceSearchResponse">preparationAddressSequenceSearchResponse.</param>
+        public AutoExecSearchAddressSequenceResponseSchema(PrepareAndExecuteOverledgerErrorResponse prepareAndExecuteOverledgerErrorResponse = default(PrepareAndExecuteOverledgerErrorResponse), ExecuteSearchSequenceResponse executionAddressSequenceSearchResponse = default(ExecuteSearchSequenceResponse), PrepareSearchResponseSchema preparationAddressSequenceSearchResponse = default(PrepareSearchResponseSchema))
         {
-            this.PreparationAddressSequenceSearchResponse = preparationAddressSequenceSearchResponse;
             this.PrepareAndExecuteOverledgerErrorResponse = prepareAndExecuteOverledgerErrorResponse;
             this.ExecutionAddressSequenceSearchResponse = executionAddressSequenceSearchResponse;
+            this.PreparationAddressSequenceSearchResponse = preparationAddressSequenceSearchResponse;
         }
-
-        /// <summary>
-        /// Gets or Sets PreparationAddressSequenceSearchResponse
-        /// </summary>
-        [DataMember(Name="preparationAddressSequenceSearchResponse", EmitDefaultValue=false)]
-        public PrepareSearchResponseSchema PreparationAddressSequenceSearchResponse { get; set; }
 
         /// <summary>
         /// Gets or Sets PrepareAndExecuteOverledgerErrorResponse
@@ -62,6 +56,12 @@ namespace Org.OpenAPITools.Model
         public ExecuteSearchSequenceResponse ExecutionAddressSequenceSearchResponse { get; set; }
 
         /// <summary>
+        /// Gets or Sets PreparationAddressSequenceSearchResponse
+        /// </summary>
+        [DataMember(Name="preparationAddressSequenceSearchResponse", EmitDefaultValue=false)]
+        public PrepareSearchResponseSchema PreparationAddressSequenceSearchResponse { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -69,9 +69,9 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class AutoExecSearchAddressSequenceResponseSchema {\n");
-            sb.Append("  PreparationAddressSequenceSearchResponse: ").Append(PreparationAddressSequenceSearchResponse).Append("\n");
             sb.Append("  PrepareAndExecuteOverledgerErrorResponse: ").Append(PrepareAndExecuteOverledgerErrorResponse).Append("\n");
             sb.Append("  ExecutionAddressSequenceSearchResponse: ").Append(ExecutionAddressSequenceSearchResponse).Append("\n");
+            sb.Append("  PreparationAddressSequenceSearchResponse: ").Append(PreparationAddressSequenceSearchResponse).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -107,11 +107,6 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.PreparationAddressSequenceSearchResponse == input.PreparationAddressSequenceSearchResponse ||
-                    (this.PreparationAddressSequenceSearchResponse != null &&
-                    this.PreparationAddressSequenceSearchResponse.Equals(input.PreparationAddressSequenceSearchResponse))
-                ) && 
-                (
                     this.PrepareAndExecuteOverledgerErrorResponse == input.PrepareAndExecuteOverledgerErrorResponse ||
                     (this.PrepareAndExecuteOverledgerErrorResponse != null &&
                     this.PrepareAndExecuteOverledgerErrorResponse.Equals(input.PrepareAndExecuteOverledgerErrorResponse))
@@ -120,6 +115,11 @@ namespace Org.OpenAPITools.Model
                     this.ExecutionAddressSequenceSearchResponse == input.ExecutionAddressSequenceSearchResponse ||
                     (this.ExecutionAddressSequenceSearchResponse != null &&
                     this.ExecutionAddressSequenceSearchResponse.Equals(input.ExecutionAddressSequenceSearchResponse))
+                ) && 
+                (
+                    this.PreparationAddressSequenceSearchResponse == input.PreparationAddressSequenceSearchResponse ||
+                    (this.PreparationAddressSequenceSearchResponse != null &&
+                    this.PreparationAddressSequenceSearchResponse.Equals(input.PreparationAddressSequenceSearchResponse))
                 );
         }
 
@@ -132,12 +132,12 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.PreparationAddressSequenceSearchResponse != null)
-                    hashCode = hashCode * 59 + this.PreparationAddressSequenceSearchResponse.GetHashCode();
                 if (this.PrepareAndExecuteOverledgerErrorResponse != null)
                     hashCode = hashCode * 59 + this.PrepareAndExecuteOverledgerErrorResponse.GetHashCode();
                 if (this.ExecutionAddressSequenceSearchResponse != null)
                     hashCode = hashCode * 59 + this.ExecutionAddressSequenceSearchResponse.GetHashCode();
+                if (this.PreparationAddressSequenceSearchResponse != null)
+                    hashCode = hashCode * 59 + this.PreparationAddressSequenceSearchResponse.GetHashCode();
                 return hashCode;
             }
         }

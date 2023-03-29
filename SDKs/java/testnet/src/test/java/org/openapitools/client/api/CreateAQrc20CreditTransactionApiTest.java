@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -16,6 +16,8 @@ package org.openapitools.client.api;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.ErrorDetails;
 import org.openapitools.client.model.ErrorList;
+import org.openapitools.client.model.ExecuteTransactionRequest;
+import org.openapitools.client.model.ExecuteTransactionResponse;
 import org.openapitools.client.model.InternalServerErrorSchema;
 import org.openapitools.client.model.PrepareCreditTransactionRequestSchema;
 import org.openapitools.client.model.PrepareTransactionResponse;
@@ -37,9 +39,25 @@ public class CreateAQrc20CreditTransactionApiTest {
 
     
     /**
+     * Execute a transaction on a DLT
+     *
+     * Takes a request ID and submits a signed transaction to the requested DLT.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void executePreparedRequestTransactionTest() throws ApiException {
+        String authorization = null;
+        ExecuteTransactionRequest executeTransactionRequest = null;
+                ExecuteTransactionResponse response = api.executePreparedRequestTransaction(authorization, executeTransactionRequest);
+        // TODO: test validations
+    }
+    
+    /**
      * Prepare a QRC20 token credit transaction for signing
      *
-     * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is \&quot;Create Credit\&quot; which will allow you to make a payment to another specified account.
+     * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is “Create Credit” which will allow you to make a payment to another specified account.
      *
      * @throws ApiException
      *          if the Api call fails

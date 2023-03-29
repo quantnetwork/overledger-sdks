@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | **string** | The amount of a currency | 
-**Unit** | Pointer to **string** | The unit of this currency/token | [optional] 
+**Amount** | **string** | The payload amount. The exact format depends on the unit of the token. | 
+**Unit** | **string** | The currency or token code | 
 
 ## Methods
 
 ### NewPaymentSchema
 
-`func NewPaymentSchema(amount string, ) *PaymentSchema`
+`func NewPaymentSchema(amount string, unit string, ) *PaymentSchema`
 
 NewPaymentSchema instantiates a new PaymentSchema object
 This constructor will assign default values to properties that have it defined,
@@ -65,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetUnit sets Unit field to given value.
 
-### HasUnit
-
-`func (o *PaymentSchema) HasUnit() bool`
-
-HasUnit returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

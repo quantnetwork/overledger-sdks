@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -51,14 +51,14 @@ class SmartContractMonitoringDetailsSchema {
         if (data) {
             obj = obj || new SmartContractMonitoringDetailsSchema();
 
-            if (data.hasOwnProperty('smartContractEventHistory')) {
-                obj['smartContractEventHistory'] = ApiClient.convertToType(data['smartContractEventHistory'], [SmartContractEventHistory]);
-            }
             if (data.hasOwnProperty('smartContractEventDetails')) {
                 obj['smartContractEventDetails'] = ResourceMonitoringSmartContractEventDetails.constructFromObject(data['smartContractEventDetails']);
             }
             if (data.hasOwnProperty('location')) {
                 obj['location'] = Location.constructFromObject(data['location']);
+            }
+            if (data.hasOwnProperty('smartContractEventHistory')) {
+                obj['smartContractEventHistory'] = ApiClient.convertToType(data['smartContractEventHistory'], [SmartContractEventHistory]);
             }
             if (data.hasOwnProperty('type')) {
                 obj['type'] = ApiClient.convertToType(data['type'], 'String');
@@ -67,7 +67,7 @@ class SmartContractMonitoringDetailsSchema {
                 obj['status'] = Status.constructFromObject(data['status']);
             }
             if (data.hasOwnProperty('timestamp')) {
-                obj['timestamp'] = ApiClient.convertToType(data['timestamp'], 'Date');
+                obj['timestamp'] = ApiClient.convertToType(data['timestamp'], 'String');
             }
         }
         return obj;
@@ -75,11 +75,6 @@ class SmartContractMonitoringDetailsSchema {
 
 
 }
-
-/**
- * @member {Array.<module:model/SmartContractEventHistory>} smartContractEventHistory
- */
-SmartContractMonitoringDetailsSchema.prototype['smartContractEventHistory'] = undefined;
 
 /**
  * @member {module:model/ResourceMonitoringSmartContractEventDetails} smartContractEventDetails
@@ -92,6 +87,11 @@ SmartContractMonitoringDetailsSchema.prototype['smartContractEventDetails'] = un
 SmartContractMonitoringDetailsSchema.prototype['location'] = undefined;
 
 /**
+ * @member {Array.<module:model/SmartContractEventHistory>} smartContractEventHistory
+ */
+SmartContractMonitoringDetailsSchema.prototype['smartContractEventHistory'] = undefined;
+
+/**
  * @member {String} type
  */
 SmartContractMonitoringDetailsSchema.prototype['type'] = undefined;
@@ -102,7 +102,7 @@ SmartContractMonitoringDetailsSchema.prototype['type'] = undefined;
 SmartContractMonitoringDetailsSchema.prototype['status'] = undefined;
 
 /**
- * @member {Date} timestamp
+ * @member {String} timestamp
  */
 SmartContractMonitoringDetailsSchema.prototype['timestamp'] = undefined;
 

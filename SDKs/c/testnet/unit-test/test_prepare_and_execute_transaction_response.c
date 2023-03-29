@@ -16,9 +16,9 @@
 #include "../model/prepare_and_execute_transaction_response.h"
 prepare_and_execute_transaction_response_t* instantiate_prepare_and_execute_transaction_response(int include_optional);
 
-#include "test_prepare_and_execute_overledger_error_response.c"
 #include "test_prepare_transaction_response.c"
 #include "test_execute_search_transaction_response.c"
+#include "test_prepare_and_execute_overledger_error_response.c"
 
 
 prepare_and_execute_transaction_response_t* instantiate_prepare_and_execute_transaction_response(int include_optional) {
@@ -26,11 +26,11 @@ prepare_and_execute_transaction_response_t* instantiate_prepare_and_execute_tran
   if (include_optional) {
     prepare_and_execute_transaction_response = prepare_and_execute_transaction_response_create(
        // false, not to have infinite recursion
-      instantiate_prepare_and_execute_overledger_error_response(0),
-       // false, not to have infinite recursion
       instantiate_prepare_transaction_response(0),
        // false, not to have infinite recursion
-      instantiate_execute_search_transaction_response(0)
+      instantiate_execute_search_transaction_response(0),
+       // false, not to have infinite recursion
+      instantiate_prepare_and_execute_overledger_error_response(0)
     );
   } else {
     prepare_and_execute_transaction_response = prepare_and_execute_transaction_response_create(

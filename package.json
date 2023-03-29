@@ -1,6 +1,6 @@
 {
   "name": "overledger-sdks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "SDK Generator for Overledger APIs",
   "license": "Apache-2.0",
   "bugs": {
@@ -46,10 +46,10 @@
     "generate-testnet-sdk-rust": "openapi-generator-cli generate -i ./overledger-openAPI3/overledger-testnet.json -g rust -o ./SDKs/rust/testnet/ --reserved-words-mappings protected=protected"
   },
   "dependencies": {
-    "swagger-jsdoc": "6.1.0",
-    "swagger-ui-express": "4.0.2"
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.2"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "2.4.12"
+    "@openapitools/openapi-generator-cli": "^2.5.2"
   }
 }

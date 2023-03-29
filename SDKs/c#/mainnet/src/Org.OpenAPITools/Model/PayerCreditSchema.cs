@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -119,9 +119,9 @@ namespace Org.OpenAPITools.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // PayerId (string) maxLength
-            if(this.PayerId != null && this.PayerId.Length > 66)
+            if(this.PayerId != null && this.PayerId.Length > 500)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PayerId, length must be less than 66.", new [] { "PayerId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PayerId, length must be less than 500.", new [] { "PayerId" });
             }
 
             // PayerId (string) minLength
@@ -131,7 +131,7 @@ namespace Org.OpenAPITools.Model
             }
 
             // PayerId (string) pattern
-            Regex regexPayerId = new Regex(@"^[A-Za-z0-9:]{1,66}$", RegexOptions.CultureInvariant);
+            Regex regexPayerId = new Regex(@"^[a-zA-Z0-9:,\/.=\\-\\s]{1,500}", RegexOptions.CultureInvariant);
             if (false == regexPayerId.Match(this.PayerId).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PayerId, must match a pattern of " + regexPayerId, new [] { "PayerId" });

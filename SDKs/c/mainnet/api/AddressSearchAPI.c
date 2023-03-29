@@ -248,7 +248,7 @@ end:
 
 // Execute a search for an address sequence on a DLT
 //
-// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT's
+// Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
 //
 execute_search_sequence_response_t*
 AddressSearchAPI_executePreparedSearchRequestAddressSequence(apiClient_t *apiClient, char * Authorization , char * requestId )

@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -47,14 +47,14 @@ class ErrorDetails {
         if (data) {
             obj = obj || new ErrorDetails();
 
-            if (data.hasOwnProperty('code')) {
-                obj['code'] = ApiClient.convertToType(data['code'], 'String');
+            if (data.hasOwnProperty('category')) {
+                obj['category'] = ApiClient.convertToType(data['category'], 'String');
             }
             if (data.hasOwnProperty('description')) {
                 obj['description'] = ApiClient.convertToType(data['description'], 'String');
             }
-            if (data.hasOwnProperty('category')) {
-                obj['category'] = ApiClient.convertToType(data['category'], 'String');
+            if (data.hasOwnProperty('code')) {
+                obj['code'] = ApiClient.convertToType(data['code'], 'String');
             }
         }
         return obj;
@@ -64,9 +64,9 @@ class ErrorDetails {
 }
 
 /**
- * @member {String} code
+ * @member {String} category
  */
-ErrorDetails.prototype['code'] = undefined;
+ErrorDetails.prototype['category'] = undefined;
 
 /**
  * @member {String} description
@@ -74,9 +74,9 @@ ErrorDetails.prototype['code'] = undefined;
 ErrorDetails.prototype['description'] = undefined;
 
 /**
- * @member {String} category
+ * @member {String} code
  */
-ErrorDetails.prototype['category'] = undefined;
+ErrorDetails.prototype['code'] = undefined;
 
 
 

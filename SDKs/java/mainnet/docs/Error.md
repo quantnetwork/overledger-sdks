@@ -8,8 +8,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **Integer** |  |  [optional]
-**service** | **String** |  |  [optional]
 **message** | **String** |  |  [optional]
+**service** | **String** |  |  [optional]
 **timestamp** | **Long** |  |  [optional]
 
 

@@ -21,19 +21,19 @@ typedef struct monitor_smart_contract_request_schema_t monitor_smart_contract_re
 
 
 typedef struct monitor_smart_contract_request_schema_t {
-    char *call_back_url; // string
     list_t *event_params; //nonprimitive container
     char *event_name; // string
     struct location_t *location; //model
+    char *call_back_url; // string
     char *smart_contract_id; // string
 
 } monitor_smart_contract_request_schema_t;
 
 monitor_smart_contract_request_schema_t *monitor_smart_contract_request_schema_create(
-    char *call_back_url,
     list_t *event_params,
     char *event_name,
     location_t *location,
+    char *call_back_url,
     char *smart_contract_id
 );
 

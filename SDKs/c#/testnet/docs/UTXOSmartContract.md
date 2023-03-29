@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Detail** | **string** |  | [optional] 
 **Type** | **string** |  | [optional] 
+**Detail** | **string** |  | [optional] 
 **ExtraFields** | [**ExtraFields**](ExtraFields.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,17 +15,17 @@ require 'time'
 
 module OpenapiClient
   class AddressMonitoringRequestSchema
-    attr_accessor :call_back_url
-
     attr_accessor :location
+
+    attr_accessor :call_back_url
 
     attr_accessor :address_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'call_back_url' => :'callBackURL',
         :'location' => :'location',
+        :'call_back_url' => :'callBackURL',
         :'address_id' => :'addressId'
       }
     end
@@ -38,8 +38,8 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'call_back_url' => :'String',
         :'location' => :'Location',
+        :'call_back_url' => :'String',
         :'address_id' => :'String'
       }
     end
@@ -65,12 +65,12 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'call_back_url')
-        self.call_back_url = attributes[:'call_back_url']
-      end
-
       if attributes.key?(:'location')
         self.location = attributes[:'location']
+      end
+
+      if attributes.key?(:'call_back_url')
+        self.call_back_url = attributes[:'call_back_url']
       end
 
       if attributes.key?(:'address_id')
@@ -103,7 +103,7 @@ module OpenapiClient
         invalid_properties.push('invalid value for "address_id", the character length must be great than or equal to 0.')
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       if !@address_id.nil? && @address_id !~ pattern
         invalid_properties.push("invalid value for \"address_id\", must conform to the pattern #{pattern}.")
       end
@@ -119,7 +119,7 @@ module OpenapiClient
       return false if !@call_back_url.nil? && @call_back_url !~ Regexp.new(/^http[\S\s]{1,300}$/)
       return false if !@address_id.nil? && @address_id.to_s.length > 200
       return false if !@address_id.nil? && @address_id.to_s.length < 0
-      return false if !@address_id.nil? && @address_id !~ Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      return false if !@address_id.nil? && @address_id !~ Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       true
     end
 
@@ -153,7 +153,7 @@ module OpenapiClient
         fail ArgumentError, 'invalid value for "address_id", the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       if !address_id.nil? && address_id !~ pattern
         fail ArgumentError, "invalid value for \"address_id\", must conform to the pattern #{pattern}."
       end
@@ -166,8 +166,8 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          call_back_url == o.call_back_url &&
           location == o.location &&
+          call_back_url == o.call_back_url &&
           address_id == o.address_id
     end
 
@@ -180,7 +180,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [call_back_url, location, address_id].hash
+      [location, call_back_url, address_id].hash
     end
 
     # Builds the object from hash

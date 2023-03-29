@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -50,14 +50,14 @@ class PrepareAndExecuteTransactionResponse {
         if (data) {
             obj = obj || new PrepareAndExecuteTransactionResponse();
 
-            if (data.hasOwnProperty('executionTransactionSearchOverledgerErrorResponse')) {
-                obj['executionTransactionSearchOverledgerErrorResponse'] = PrepareAndExecuteOverledgerErrorResponse.constructFromObject(data['executionTransactionSearchOverledgerErrorResponse']);
-            }
             if (data.hasOwnProperty('preparationTransactionSearchResponse')) {
                 obj['preparationTransactionSearchResponse'] = PrepareTransactionResponse.constructFromObject(data['preparationTransactionSearchResponse']);
             }
             if (data.hasOwnProperty('executionTransactionSearchResponse')) {
                 obj['executionTransactionSearchResponse'] = ExecuteSearchTransactionResponse.constructFromObject(data['executionTransactionSearchResponse']);
+            }
+            if (data.hasOwnProperty('executionTransactionSearchOverledgerErrorResponse')) {
+                obj['executionTransactionSearchOverledgerErrorResponse'] = PrepareAndExecuteOverledgerErrorResponse.constructFromObject(data['executionTransactionSearchOverledgerErrorResponse']);
             }
         }
         return obj;
@@ -65,11 +65,6 @@ class PrepareAndExecuteTransactionResponse {
 
 
 }
-
-/**
- * @member {module:model/PrepareAndExecuteOverledgerErrorResponse} executionTransactionSearchOverledgerErrorResponse
- */
-PrepareAndExecuteTransactionResponse.prototype['executionTransactionSearchOverledgerErrorResponse'] = undefined;
 
 /**
  * @member {module:model/PrepareTransactionResponse} preparationTransactionSearchResponse
@@ -80,6 +75,11 @@ PrepareAndExecuteTransactionResponse.prototype['preparationTransactionSearchResp
  * @member {module:model/ExecuteSearchTransactionResponse} executionTransactionSearchResponse
  */
 PrepareAndExecuteTransactionResponse.prototype['executionTransactionSearchResponse'] = undefined;
+
+/**
+ * @member {module:model/PrepareAndExecuteOverledgerErrorResponse} executionTransactionSearchOverledgerErrorResponse
+ */
+PrepareAndExecuteTransactionResponse.prototype['executionTransactionSearchOverledgerErrorResponse'] = undefined;
 
 
 

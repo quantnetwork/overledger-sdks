@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,8 +16,8 @@ import (
 
 // AddressMonitoringResponseSchema struct for AddressMonitoringResponseSchema
 type AddressMonitoringResponseSchema struct {
-	SubscriptionDetails *ResourceMonitoringSubscriptionDetails `json:"subscriptionDetails,omitempty"`
 	ResourceMonitoring *ResourceMonitoringDetails `json:"resourceMonitoring,omitempty"`
+	SubscriptionDetails *ResourceMonitoringSubscriptionDetails `json:"subscriptionDetails,omitempty"`
 	Subscription *ResourceMonitoringSubscription `json:"subscription,omitempty"`
 }
 
@@ -36,38 +36,6 @@ func NewAddressMonitoringResponseSchema() *AddressMonitoringResponseSchema {
 func NewAddressMonitoringResponseSchemaWithDefaults() *AddressMonitoringResponseSchema {
 	this := AddressMonitoringResponseSchema{}
 	return &this
-}
-
-// GetSubscriptionDetails returns the SubscriptionDetails field value if set, zero value otherwise.
-func (o *AddressMonitoringResponseSchema) GetSubscriptionDetails() ResourceMonitoringSubscriptionDetails {
-	if o == nil || o.SubscriptionDetails == nil {
-		var ret ResourceMonitoringSubscriptionDetails
-		return ret
-	}
-	return *o.SubscriptionDetails
-}
-
-// GetSubscriptionDetailsOk returns a tuple with the SubscriptionDetails field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AddressMonitoringResponseSchema) GetSubscriptionDetailsOk() (*ResourceMonitoringSubscriptionDetails, bool) {
-	if o == nil || o.SubscriptionDetails == nil {
-		return nil, false
-	}
-	return o.SubscriptionDetails, true
-}
-
-// HasSubscriptionDetails returns a boolean if a field has been set.
-func (o *AddressMonitoringResponseSchema) HasSubscriptionDetails() bool {
-	if o != nil && o.SubscriptionDetails != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSubscriptionDetails gets a reference to the given ResourceMonitoringSubscriptionDetails and assigns it to the SubscriptionDetails field.
-func (o *AddressMonitoringResponseSchema) SetSubscriptionDetails(v ResourceMonitoringSubscriptionDetails) {
-	o.SubscriptionDetails = &v
 }
 
 // GetResourceMonitoring returns the ResourceMonitoring field value if set, zero value otherwise.
@@ -100,6 +68,38 @@ func (o *AddressMonitoringResponseSchema) HasResourceMonitoring() bool {
 // SetResourceMonitoring gets a reference to the given ResourceMonitoringDetails and assigns it to the ResourceMonitoring field.
 func (o *AddressMonitoringResponseSchema) SetResourceMonitoring(v ResourceMonitoringDetails) {
 	o.ResourceMonitoring = &v
+}
+
+// GetSubscriptionDetails returns the SubscriptionDetails field value if set, zero value otherwise.
+func (o *AddressMonitoringResponseSchema) GetSubscriptionDetails() ResourceMonitoringSubscriptionDetails {
+	if o == nil || o.SubscriptionDetails == nil {
+		var ret ResourceMonitoringSubscriptionDetails
+		return ret
+	}
+	return *o.SubscriptionDetails
+}
+
+// GetSubscriptionDetailsOk returns a tuple with the SubscriptionDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddressMonitoringResponseSchema) GetSubscriptionDetailsOk() (*ResourceMonitoringSubscriptionDetails, bool) {
+	if o == nil || o.SubscriptionDetails == nil {
+		return nil, false
+	}
+	return o.SubscriptionDetails, true
+}
+
+// HasSubscriptionDetails returns a boolean if a field has been set.
+func (o *AddressMonitoringResponseSchema) HasSubscriptionDetails() bool {
+	if o != nil && o.SubscriptionDetails != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionDetails gets a reference to the given ResourceMonitoringSubscriptionDetails and assigns it to the SubscriptionDetails field.
+func (o *AddressMonitoringResponseSchema) SetSubscriptionDetails(v ResourceMonitoringSubscriptionDetails) {
+	o.SubscriptionDetails = &v
 }
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
@@ -136,11 +136,11 @@ func (o *AddressMonitoringResponseSchema) SetSubscription(v ResourceMonitoringSu
 
 func (o AddressMonitoringResponseSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.SubscriptionDetails != nil {
-		toSerialize["subscriptionDetails"] = o.SubscriptionDetails
-	}
 	if o.ResourceMonitoring != nil {
 		toSerialize["resourceMonitoring"] = o.ResourceMonitoring
+	}
+	if o.SubscriptionDetails != nil {
+		toSerialize["subscriptionDetails"] = o.SubscriptionDetails
 	}
 	if o.Subscription != nil {
 		toSerialize["subscription"] = o.Subscription

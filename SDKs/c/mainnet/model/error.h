@@ -20,16 +20,16 @@ typedef struct error_t error_t;
 
 typedef struct error_t {
     int code; //numeric
-    char *service; // string
     char *message; // string
+    char *service; // string
     long timestamp; //numeric
 
 } error_t;
 
 error_t *error_create(
     int code,
-    char *service,
     char *message,
+    char *service,
     long timestamp
 );
 

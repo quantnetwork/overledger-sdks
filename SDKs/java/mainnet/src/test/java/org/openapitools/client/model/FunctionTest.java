@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -21,9 +21,6 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import org.openapitools.client.model.Parameter;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -44,43 +41,19 @@ public class FunctionTest {
     }
 
     /**
-     * Test the property 'functionId'
+     * Test the property 'type'
      */
     @Test
-    public void functionIdTest() {
-        // TODO: test functionId
+    public void typeTest() {
+        // TODO: test type
     }
 
     /**
-     * Test the property 'code'
+     * Test the property 'api'
      */
     @Test
-    public void codeTest() {
-        // TODO: test code
-    }
-
-    /**
-     * Test the property 'name'
-     */
-    @Test
-    public void nameTest() {
-        // TODO: test name
-    }
-
-    /**
-     * Test the property 'inputParameters'
-     */
-    @Test
-    public void inputParametersTest() {
-        // TODO: test inputParameters
-    }
-
-    /**
-     * Test the property 'outputParameters'
-     */
-    @Test
-    public void outputParametersTest() {
-        // TODO: test outputParameters
+    public void apiTest() {
+        // TODO: test api
     }
 
 }

@@ -1,10 +1,6 @@
 # Rust API client for openapi
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
-
-# Authentication
-
-<!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 
 ## Overview
@@ -38,15 +34,22 @@ Class | Method | HTTP request | Description
 *BlockSearchApi* | [**auto_execute_search_block_request**](docs/BlockSearchApi.md#auto_execute_search_block_request) | **POST** /v2/autoexecution/search/block/{blockId} | Prepare and automatically execute a search for a block on a DLT.
 *BlockSearchApi* | [**execute_prepared_search_request_block**](docs/BlockSearchApi.md#execute_prepared_search_request_block) | **POST** /v2/execution/search/block | Execute a search for a block on a DLT
 *BlockSearchApi* | [**prepare_search_block_by_block_id**](docs/BlockSearchApi.md#prepare_search_block_by_block_id) | **POST** /v2/preparation/search/block/{blockId} | Prepare Search Block by Block Id.
+*CreateAQRC20CreditTransactionApi* | [**execute_prepared_request_transaction**](docs/CreateAQRC20CreditTransactionApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on a DLT
 *CreateAQRC20CreditTransactionApi* | [**prepare_credit_request**](docs/CreateAQRC20CreditTransactionApi.md#prepare_credit_request) | **POST** /v2/preparation/credit | Prepare a QRC20 token credit transaction for signing
+*CreateAQRC20DebitTransactionApi* | [**execute_prepared_request_transaction**](docs/CreateAQRC20DebitTransactionApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on a DLT
 *CreateAQRC20DebitTransactionApi* | [**prepare_debit_request**](docs/CreateAQRC20DebitTransactionApi.md#prepare_debit_request) | **POST** /v2/preparation/debit | Prepare a QRC20 token debit transaction for signing
-*CreateSubscriptionApi* | [**subscription**](docs/CreateSubscriptionApi.md#subscription) | **POST** /v2/webhook/subscription | Create a subscription for a transaction or monitored resource 
-*CreateTransactionApi* | [**execute_prepared_request_native_transaction**](docs/CreateTransactionApi.md#execute_prepared_request_native_transaction) | **POST** /v2/execution/nativetransaction | Execute a native transaction on the DLT
-*CreateTransactionApi* | [**execute_prepared_request_transaction**](docs/CreateTransactionApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on the DLT
-*CreateTransactionApi* | [**prepare_native_transaction**](docs/CreateTransactionApi.md#prepare_native_transaction) | **POST** /v2/preparation/nativetransaction | Prepare a DLT native transaction
-*CreateTransactionApi* | [**prepare_transaction_request**](docs/CreateTransactionApi.md#prepare_transaction_request) | **POST** /v2/preparation/transaction | Prepare a DLT transaction for signing
-*MDappTransactionQueryApi* | [**get_ovl_transaction_by_tx_id**](docs/MDappTransactionQueryApi.md#get_ovl_transaction_by_tx_id) | **GET** /v2/mdapptransaction/{overledgertransactionid} | Retrieve information about a specific transaction created by your application in Overledger
-*MDappTransactionQueryApi* | [**get_ovl_transactions_by_client_id**](docs/MDappTransactionQueryApi.md#get_ovl_transactions_by_client_id) | **GET** /v2/mdapptransactions | Retrieve a list of transactions created by your application in Overledger
+*CreateAQRC721TokenCollectionTransactionApi* | [**prepare_collect_request**](docs/CreateAQRC721TokenCollectionTransactionApi.md#prepare_collect_request) | **POST** /v2/tokenise/preparation/transaction/qrc721/collect | Prepare a QRC721 token collection transaction for signing
+*CreateAQRC721TransferTransactionApi* | [**prepare_transaction_request**](docs/CreateAQRC721TransferTransactionApi.md#prepare_transaction_request) | **POST** /v2/tokenise/preparation/transaction/qrc721/transfer | Prepare a QRC721 token transfer transaction for signing
+*CreateASubscriptionApi* | [**subscription**](docs/CreateASubscriptionApi.md#subscription) | **POST** /v2/webhook/subscription | Create a subscription for a transaction or monitored resource 
+*CreateATransactionApi* | [**execute_prepared_request_native_transaction**](docs/CreateATransactionApi.md#execute_prepared_request_native_transaction) | **POST** /v2/execution/nativetransaction | Execute a native transaction on the DLT
+*CreateATransactionApi* | [**execute_prepared_request_transaction**](docs/CreateATransactionApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on a DLT
+*CreateATransactionApi* | [**prepare_native_transaction**](docs/CreateATransactionApi.md#prepare_native_transaction) | **POST** /v2/preparation/nativetransaction | Prepare a DLT native transaction
+*CreateATransactionApi* | [**prepare_transaction_request1**](docs/CreateATransactionApi.md#prepare_transaction_request1) | **POST** /v2/preparation/transaction | Prepare a DLT transaction for signing
+*CreateAndPayFromAQRC20SharedAccountApi* | [**execute_prepared_request_transaction**](docs/CreateAndPayFromAQRC20SharedAccountApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on a DLT
+*CreateAndPayFromAQRC20SharedAccountApi* | [**prepare_secondary_owner_request**](docs/CreateAndPayFromAQRC20SharedAccountApi.md#prepare_secondary_owner_request) | **POST** /v2/preparation/secondaryaccountowner | Prepare a request for a QRC20 shared account
+*FungibleTokenControllerApi* | [**get_token**](docs/FungibleTokenControllerApi.md#get_token) | **GET** /v2/token/fungible | 
+*MDAppTransactionQueryApi* | [**get_ovl_transaction_by_tx_id**](docs/MDAppTransactionQueryApi.md#get_ovl_transaction_by_tx_id) | **GET** /v2/mdapptransaction/{overledgertransactionid} | Retrieve information about a specific transaction created by your application in Overledger
+*MDAppTransactionQueryApi* | [**get_ovl_transactions_by_client_id**](docs/MDAppTransactionQueryApi.md#get_ovl_transactions_by_client_id) | **GET** /v2/mdapptransactions | Retrieve a list of transactions created by your application in Overledger
 *ManageMonitoredResourcesApi* | [**delete_event_monitoring**](docs/ManageMonitoredResourcesApi.md#delete_event_monitoring) | **DELETE** /v2/resourcemonitoring/smartcontractevent/{resourceMonitoringId} | Stop monitoring a smart contract
 *ManageMonitoredResourcesApi* | [**delete_resource_monitoring_address**](docs/ManageMonitoredResourcesApi.md#delete_resource_monitoring_address) | **DELETE** /v2/resourcemonitoring/address/{resourceMonitoringId} | Stop monitoring an address
 *ManageMonitoredResourcesApi* | [**get_list_of_addresses**](docs/ManageMonitoredResourcesApi.md#get_list_of_addresses) | **GET** /v2/resourcemonitoring/addresses | Retrieve a list of addresses being monitored
@@ -56,14 +59,36 @@ Class | Method | HTTP request | Description
 *ManageMonitoredResourcesApi* | [**get_monitored_smart_contract_event_details**](docs/ManageMonitoredResourcesApi.md#get_monitored_smart_contract_event_details) | **GET** /v2/resourcemonitoring/smartcontractevent/{resourceMonitoringId} | Retrieve recorded updates for a specific monitored smart contract
 *ManageMonitoredResourcesApi* | [**update_event_monitoring**](docs/ManageMonitoredResourcesApi.md#update_event_monitoring) | **PATCH** /v2/resourcemonitoring/smartcontractevent/{resourceMonitoringId} | Update the monitoring status of a smart contract
 *ManageMonitoredResourcesApi* | [**update_resource_monitoring_address**](docs/ManageMonitoredResourcesApi.md#update_resource_monitoring_address) | **PATCH** /v2/resourcemonitoring/address/{resourceMonitoringId} | Update the monitoring status of an address
-*ManageSubscriptionApi* | [**delete_subscription**](docs/ManageSubscriptionApi.md#delete_subscription) | **DELETE** /v2/webhook/subscription/{subscriptionId} | Remove a subscription created by your application
-*ManageSubscriptionApi* | [**list_subscriptions**](docs/ManageSubscriptionApi.md#list_subscriptions) | **GET** /v2/webhook/subscriptions | Retrieve a list of subscriptions created by your application
-*ManageSubscriptionApi* | [**update_subscription**](docs/ManageSubscriptionApi.md#update_subscription) | **PATCH** /v2/webhook/subscription/{subscriptionId} | Update a specific subscription created by your application
+*ManageQRC20TokenSupplyApi* | [**execute_prepared_request_transaction**](docs/ManageQRC20TokenSupplyApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on a DLT
+*ManageQRC20TokenSupplyApi* | [**prepare_supply_request1**](docs/ManageQRC20TokenSupplyApi.md#prepare_supply_request1) | **POST** /v2/preparation/supply | Prepare a request to manage QRC20 token supply
+*ManageQRC721TokenSupplyApi* | [**prepare_supply_request**](docs/ManageQRC721TokenSupplyApi.md#prepare_supply_request) | **POST** /v2/tokenise/preparation/transaction/qrc721/supply | Prepare a transaction to manage QRC721 token supply
+*ManageSubscriptionsApi* | [**delete_subscription**](docs/ManageSubscriptionsApi.md#delete_subscription) | **DELETE** /v2/webhook/subscription/{subscriptionId} | Remove a subscription created by your application
+*ManageSubscriptionsApi* | [**list_subscriptions**](docs/ManageSubscriptionsApi.md#list_subscriptions) | **GET** /v2/webhook/subscriptions | Retrieve a list of subscriptions created by your application
+*ManageSubscriptionsApi* | [**update_subscription**](docs/ManageSubscriptionsApi.md#update_subscription) | **PATCH** /v2/webhook/subscription/{subscriptionId} | Update a specific subscription created by your application
 *MonitorAResourceApi* | [**resource_monitoring_address**](docs/MonitorAResourceApi.md#resource_monitoring_address) | **POST** /v2/resourcemonitoring/address | Monitor an address for incoming and outgoing transactions
 *MonitorAResourceApi* | [**track_and_subscribe_event**](docs/MonitorAResourceApi.md#track_and_subscribe_event) | **POST** /v2/resourcemonitoring/smartcontractevent | Monitor a smart contract for an event
+*RetrieveAccountBalanceForAQRC20TokenApi* | [**read_qrc20_smart_contract_balance**](docs/RetrieveAccountBalanceForAQRC20TokenApi.md#read_qrc20_smart_contract_balance) | **POST** /v2/tokenise/tokens/qrc20/account-balance | Retrieve the balance of QRC20 tokens for an account
+*RetrieveApprovedAccountAllowanceForAQRC20TokenApi* | [**read_approved_debit_amount**](docs/RetrieveApprovedAccountAllowanceForAQRC20TokenApi.md#read_approved_debit_amount) | **POST** /v2/tokenise/tokens/qrc20/approved-debit-amount | Retrieve how many QRC20 tokens an address is allowed to debit
+*RetrieveApprovedAccountInformationForAQRC20TokenApi* | [**read_qrc20_secondary_account_owner**](docs/RetrieveApprovedAccountInformationForAQRC20TokenApi.md#read_qrc20_secondary_account_owner) | **POST** /v2/tokenise/tokens/qrc20/secondary-account-owner | Retrieve whether an account is approved to make payments on behalf of another account for a particular QRC20 token.
+*RetrieveApprovedAccountInformationOfAQRC721TokenApi* | [**read_qrc721_smart_contract_approved_account**](docs/RetrieveApprovedAccountInformationOfAQRC721TokenApi.md#read_qrc721_smart_contract_approved_account) | **POST** /v2/tokenise/tokens/qrc721/approved-account | Retrieve which account is approved to collect a QRC721 token
+*RetrieveContractOwnerInformationOfAQRCTokenApi* | [**read_qrc_smart_contract_owner**](docs/RetrieveContractOwnerInformationOfAQRCTokenApi.md#read_qrc_smart_contract_owner) | **POST** /v2/tokenise/tokens/{flowType}/contract-owner | Retrieve which account has contract owner permissions for a QRC token
+*RetrieveOwnerInformationForAQRC721TokenApi* | [**read_qrc721_smart_contract_token_owner**](docs/RetrieveOwnerInformationForAQRC721TokenApi.md#read_qrc721_smart_contract_token_owner) | **POST** /v2/tokenise/tokens/qrc721/token-owner | Retrieve which account currently owns a specific QRC721 token
+*RetrieveSupplyInformationForAQRCTokenApi* | [**read_qrc721_smart_contract_current_supply**](docs/RetrieveSupplyInformationForAQRCTokenApi.md#read_qrc721_smart_contract_current_supply) | **POST** /v2/tokenise/tokens/{flowType}/current-supply | Retrieve how many QRC tokens are currently in supply
+*RetrieveTheCountOfQRC721TokensApi* | [**get_token_count**](docs/RetrieveTheCountOfQRC721TokensApi.md#get_token_count) | **POST** /v2/tokenise/tokens/qrc721/token-count | Retrieve the count of a QRC721 token for a particular account
+*RetrieveURIInformationForAQRC721TokenApi* | [**read_qrc721_smart_contract_uri**](docs/RetrieveURIInformationForAQRC721TokenApi.md#read_qrc721_smart_contract_uri) | **POST** /v2/tokenise/tokens/qrc721/token-uri | Retrieve the URI for a specific QRC721 token
 *SmartContractSearchApi* | [**auto_execute_search_smart_contract_query_request**](docs/SmartContractSearchApi.md#auto_execute_search_smart_contract_query_request) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 *SmartContractSearchApi* | [**execute_prepared_search_request**](docs/SmartContractSearchApi.md#execute_prepared_search_request) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 *SmartContractSearchApi* | [**prepare_smart_contract_query_request**](docs/SmartContractSearchApi.md#prepare_smart_contract_query_request) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
+*SubscribeToQRC20AccountCreditPaymentsApi* | [**subscribe_credit_event**](docs/SubscribeToQRC20AccountCreditPaymentsApi.md#subscribe_credit_event) | **POST** /v2/tokenise/tokens/subscription/qrc20/credit | Receive updates each time there is a credit payment on your account
+*SubscribeToQRC20AccountDebitPaymentsApi* | [**subscribe_qrc20_debit_event**](docs/SubscribeToQRC20AccountDebitPaymentsApi.md#subscribe_qrc20_debit_event) | **POST** /v2/tokenise/tokens/subscription/qrc20/debit | Receive updates each time there is a debit transaction on QRC20 token or a QRC20 debit is approved
+*SubscribeToQRC20SharedAccountUpdatesApi* | [**subscribe_secondary_owner_event**](docs/SubscribeToQRC20SharedAccountUpdatesApi.md#subscribe_secondary_owner_event) | **POST** /v2/tokenise/tokens/subscription/qrc20/secondaryaccountowner | Receive updates for a shared account
+*SubscribeToQRC20TokenSupplyChangesApi* | [**subscribe_supply_event**](docs/SubscribeToQRC20TokenSupplyChangesApi.md#subscribe_supply_event) | **POST** /v2/tokenise/tokens/subscription/{flowtype}/supply | Receive updates each time a supply changes for a QRC721 or QRC20 token
+*SubscribeToQRC721AssetCollectionUpdatesApi* | [**subscribe_collect_event**](docs/SubscribeToQRC721AssetCollectionUpdatesApi.md#subscribe_collect_event) | **POST** /v2/tokenise/tokens/subscription/qrc721/collect | Receive updates each time a QRC721 token is approved for collection or collected
+*SubscribeToQRC721AssetTransfersApi* | [**subscribe_transfer_event**](docs/SubscribeToQRC721AssetTransfersApi.md#subscribe_transfer_event) | **POST** /v2/tokenise/tokens/subscription/qrc721/transfer | Receive updates each time a QRC721 token is transferred
+*SubscribeToQRC721SupplyChangeUpdatesApi* | [**subscribe_supply_event**](docs/SubscribeToQRC721SupplyChangeUpdatesApi.md#subscribe_supply_event) | **POST** /v2/tokenise/tokens/subscription/{flowtype}/supply | Receive updates each time a supply changes for a QRC721 or QRC20 token
+*SupportedFungibleTokensApi* | [**get_tokens**](docs/SupportedFungibleTokensApi.md#get_tokens) | **GET** /v2/tokens/fungible | Retrieve a list of ERC20 and QRC20 tokens
+*SupportedNonFungibleTokensApi* | [**get_all_non_fungible_tokens**](docs/SupportedNonFungibleTokensApi.md#get_all_non_fungible_tokens) | **GET** /v2/tokenise/tokens/nonfungible | Retrieve a list of ERC721 and QRC721 tokens
+*TokenControllerApi* | [**get_non_fungible_token**](docs/TokenControllerApi.md#get_non_fungible_token) | **GET** /v2/nonfungibletoken | 
 *TransactionSearchApi* | [**auto_execute_search_transaction_request**](docs/TransactionSearchApi.md#auto_execute_search_transaction_request) | **POST** /v2/autoexecution/search/transaction | Prepare and automatically execute a search for a transaction on a DLT.
 *TransactionSearchApi* | [**execute_prepared_search_request_transaction**](docs/TransactionSearchApi.md#execute_prepared_search_request_transaction) | **POST** /v2/execution/search/transaction | Execute a search for a transaction on a DLT
 *TransactionSearchApi* | [**prepare_search_request**](docs/TransactionSearchApi.md#prepare_search_request) | **POST** /v2/preparation/search/transaction | Prepare a search for a transaction on a DLT
@@ -74,29 +99,48 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AccountDetails](docs/AccountDetails.md)
+ - [AddSecondaryAccountRequestDetailsSchema](docs/AddSecondaryAccountRequestDetailsSchema.md)
+ - [AdditionalOwner](docs/AdditionalOwner.md)
+ - [AdditionalOwnerRemoveSecondarySchema](docs/AdditionalOwnerRemoveSecondarySchema.md)
  - [AddressBalanceResponse](docs/AddressBalanceResponse.md)
  - [AddressMonitoringDetailsSchema](docs/AddressMonitoringDetailsSchema.md)
  - [AddressMonitoringRequestSchema](docs/AddressMonitoringRequestSchema.md)
  - [AddressMonitoringResponseSchema](docs/AddressMonitoringResponseSchema.md)
+ - [AliasDetails](docs/AliasDetails.md)
  - [ApproveRequestDetailsSchema](docs/ApproveRequestDetailsSchema.md)
  - [AutoExecSearchAddressSequenceResponseSchema](docs/AutoExecSearchAddressSequenceResponseSchema.md)
  - [AutoExecuteSearchAddressBalanceResponseSchema](docs/AutoExecuteSearchAddressBalanceResponseSchema.md)
  - [AutoExecuteSearchBlockResponseSchema](docs/AutoExecuteSearchBlockResponseSchema.md)
  - [AutoExecuteSearchUtxoResponseSchema](docs/AutoExecuteSearchUtxoResponseSchema.md)
+ - [Beneficiary](docs/Beneficiary.md)
+ - [BeneficiaryMintSchemaQrc20](docs/BeneficiaryMintSchemaQrc20.md)
+ - [BeneficiaryMintSchemaQrc721](docs/BeneficiaryMintSchemaQrc721.md)
  - [Block](docs/Block.md)
  - [BlockHash](docs/BlockHash.md)
  - [BlockSize](docs/BlockSize.md)
+ - [Burn](docs/Burn.md)
+ - [BurnRequestDetailsSchema](docs/BurnRequestDetailsSchema.md)
+ - [BurnRequestDetailsSchemaQrc721](docs/BurnRequestDetailsSchemaQrc721.md)
+ - [BurnSchema](docs/BurnSchema.md)
+ - [Collector](docs/Collector.md)
  - [CreateSmartContractMonitoringSchema](docs/CreateSmartContractMonitoringSchema.md)
- - [CreateSubscriptionRequestSchema](docs/CreateSubscriptionRequestSchema.md)
- - [CreateSubscriptionResponseSchema](docs/CreateSubscriptionResponseSchema.md)
+ - [CreateWebhookSubscriptionRequestSchema](docs/CreateWebhookSubscriptionRequestSchema.md)
+ - [CreateWebhookSubscriptionResponseSchema](docs/CreateWebhookSubscriptionResponseSchema.md)
+ - [Creator](docs/Creator.md)
+ - [CreatorMintSchema](docs/CreatorMintSchema.md)
  - [CreditRequestDetailsSchema](docs/CreditRequestDetailsSchema.md)
  - [DeleteResourceMonitoringAddressSchema](docs/DeleteResourceMonitoringAddressSchema.md)
  - [Destination](docs/Destination.md)
  - [DestinationPaymentSchema](docs/DestinationPaymentSchema.md)
  - [DestinationTransferSchema](docs/DestinationTransferSchema.md)
+ - [Erc20Dto](docs/Erc20Dto.md)
  - [Error](docs/Error.md)
  - [ErrorDetails](docs/ErrorDetails.md)
  - [ErrorList](docs/ErrorList.md)
+ - [ErrorResponseMessage](docs/ErrorResponseMessage.md)
+ - [EventSubscriptionResponse](docs/EventSubscriptionResponse.md)
+ - [EventSubscriptionResponseDetails](docs/EventSubscriptionResponseDetails.md)
  - [ExecuteSearchBalanceResponse](docs/ExecuteSearchBalanceResponse.md)
  - [ExecuteSearchBlockResponse](docs/ExecuteSearchBlockResponse.md)
  - [ExecuteSearchSequenceResponse](docs/ExecuteSearchSequenceResponse.md)
@@ -109,36 +153,74 @@ Class | Method | HTTP request | Description
  - [ExtraFields](docs/ExtraFields.md)
  - [Fee](docs/Fee.md)
  - [Function](docs/Function.md)
+ - [FunctionDto](docs/FunctionDto.md)
+ - [FungibleTokenResponseDto](docs/FungibleTokenResponseDto.md)
  - [InternalServerErrorSchema](docs/InternalServerErrorSchema.md)
  - [LinkedBlocks](docs/LinkedBlocks.md)
- - [ListSubscriptionResponseSchema](docs/ListSubscriptionResponseSchema.md)
+ - [ListWebhookSubscriptionResponseSchema](docs/ListWebhookSubscriptionResponseSchema.md)
  - [Location](docs/Location.md)
+ - [LocationDto](docs/LocationDto.md)
+ - [LockDetails](docs/LockDetails.md)
+ - [Mandate](docs/Mandate.md)
+ - [Mint](docs/Mint.md)
+ - [MintRequestDetailsSchemaQrc20](docs/MintRequestDetailsSchemaQrc20.md)
+ - [MintRequestDetailsSchemaQrc721](docs/MintRequestDetailsSchemaQrc721.md)
+ - [MintSchemaQrc20](docs/MintSchemaQrc20.md)
+ - [MintSchemaQrc721](docs/MintSchemaQrc721.md)
  - [MonitorSmartContractEventParam](docs/MonitorSmartContractEventParam.md)
  - [MonitorSmartContractRequestSchema](docs/MonitorSmartContractRequestSchema.md)
+ - [NonFungibleTokenDto](docs/NonFungibleTokenDto.md)
+ - [NonFungibleTokenResponse](docs/NonFungibleTokenResponse.md)
  - [Origin](docs/Origin.md)
  - [OriginPaymentSchema](docs/OriginPaymentSchema.md)
  - [OriginTransferSchema](docs/OriginTransferSchema.md)
  - [OverledgerTransactionResponseSchema](docs/OverledgerTransactionResponseSchema.md)
+ - [Owner](docs/Owner.md)
+ - [OwnerBurnSchema](docs/OwnerBurnSchema.md)
+ - [OwnerRemoveSecondarySchema](docs/OwnerRemoveSecondarySchema.md)
+ - [Pagination](docs/Pagination.md)
  - [Parameter](docs/Parameter.md)
+ - [Payee](docs/Payee.md)
  - [PayeeCreditSchema](docs/PayeeCreditSchema.md)
+ - [Payer](docs/Payer.md)
  - [PayerCreditSchema](docs/PayerCreditSchema.md)
  - [Payment](docs/Payment.md)
  - [PaymentRequestDetailsSchema](docs/PaymentRequestDetailsSchema.md)
  - [PaymentSchema](docs/PaymentSchema.md)
+ - [PrepareAddSecondaryAccountRequestSchema](docs/PrepareAddSecondaryAccountRequestSchema.md)
  - [PrepareAndExecuteBalanceDetails](docs/PrepareAndExecuteBalanceDetails.md)
  - [PrepareAndExecuteOverledgerErrorResponse](docs/PrepareAndExecuteOverledgerErrorResponse.md)
  - [PrepareAndExecuteSearchAddressBalanceResponse](docs/PrepareAndExecuteSearchAddressBalanceResponse.md)
  - [PrepareAndExecuteTransactionResponse](docs/PrepareAndExecuteTransactionResponse.md)
  - [PrepareApproveDebitTransactionRequestSchema](docs/PrepareApproveDebitTransactionRequestSchema.md)
+ - [PrepareBurnTransactionRequestSchema](docs/PrepareBurnTransactionRequestSchema.md)
+ - [PrepareBurnTransactionRequestSchemaQrc721](docs/PrepareBurnTransactionRequestSchemaQrc721.md)
  - [PrepareCreditTransactionRequestSchema](docs/PrepareCreditTransactionRequestSchema.md)
+ - [PrepareMintTransactionRequestSchemaQrc20](docs/PrepareMintTransactionRequestSchemaQrc20.md)
+ - [PrepareMintTransactionRequestSchemaQrc721](docs/PrepareMintTransactionRequestSchemaQrc721.md)
  - [PrepareNativeTransactionRequestSchema](docs/PrepareNativeTransactionRequestSchema.md)
  - [PreparePaymentTransactionRequestSchema](docs/PreparePaymentTransactionRequestSchema.md)
+ - [PrepareRemoveSecondaryAccountTransactionRequestSchema](docs/PrepareRemoveSecondaryAccountTransactionRequestSchema.md)
+ - [PrepareRequest](docs/PrepareRequest.md)
+ - [PrepareRequestDetails](docs/PrepareRequestDetails.md)
  - [PrepareSearchResponseSchema](docs/PrepareSearchResponseSchema.md)
  - [PrepareSearchSchema](docs/PrepareSearchSchema.md)
  - [PrepareSearchSmartContractRequestSchema](docs/PrepareSearchSmartContractRequestSchema.md)
  - [PrepareTransactionResponse](docs/PrepareTransactionResponse.md)
  - [PrepareTransactionSmartContractInvokeRequestSchema](docs/PrepareTransactionSmartContractInvokeRequestSchema.md)
  - [PrepareTransferTransactionRequestSchema](docs/PrepareTransferTransactionRequestSchema.md)
+ - [ReadAccountBalanceRequestSchema](docs/ReadAccountBalanceRequestSchema.md)
+ - [ReadApprovedAccountAllowanceRequestSchema](docs/ReadApprovedAccountAllowanceRequestSchema.md)
+ - [ReadApprovedAccountRequestDetailsSchema](docs/ReadApprovedAccountRequestDetailsSchema.md)
+ - [ReadApprovedAccountRequestSchema](docs/ReadApprovedAccountRequestSchema.md)
+ - [ReadBalanceRequestDetailsSchema](docs/ReadBalanceRequestDetailsSchema.md)
+ - [ReadBalanceRequestSchema](docs/ReadBalanceRequestSchema.md)
+ - [ReadContractOwnerRequestDetailsSchema](docs/ReadContractOwnerRequestDetailsSchema.md)
+ - [ReadContractOwnerRequestSchema](docs/ReadContractOwnerRequestSchema.md)
+ - [ReadTokenOwnerRequestDetailsSchema](docs/ReadTokenOwnerRequestDetailsSchema.md)
+ - [ReadTokenOwnerRequestSchema](docs/ReadTokenOwnerRequestSchema.md)
+ - [Receiver](docs/Receiver.md)
+ - [RemoveSecondaryAccountDetailsSchema](docs/RemoveSecondaryAccountDetailsSchema.md)
  - [ResourceMonitoredAddressDetails](docs/ResourceMonitoredAddressDetails.md)
  - [ResourceMonitoringAddressDetails](docs/ResourceMonitoringAddressDetails.md)
  - [ResourceMonitoringAddressSchema](docs/ResourceMonitoringAddressSchema.md)
@@ -147,6 +229,10 @@ Class | Method | HTTP request | Description
  - [ResourceMonitoringSubscription](docs/ResourceMonitoringSubscription.md)
  - [ResourceMonitoringSubscriptionDetails](docs/ResourceMonitoringSubscriptionDetails.md)
  - [ScriptPubKey](docs/ScriptPubKey.md)
+ - [SecondaryAccountAdditionalOwnerSchema](docs/SecondaryAccountAdditionalOwnerSchema.md)
+ - [SecondaryAccountOwnerSchema](docs/SecondaryAccountOwnerSchema.md)
+ - [Sender](docs/Sender.md)
+ - [SignerAccount](docs/SignerAccount.md)
  - [SmartContract](docs/SmartContract.md)
  - [SmartContractDestinationSchema](docs/SmartContractDestinationSchema.md)
  - [SmartContractEventHistory](docs/SmartContractEventHistory.md)
@@ -165,24 +251,28 @@ Class | Method | HTTP request | Description
  - [SmartContractSearchFunctionSchema](docs/SmartContractSearchFunctionSchema.md)
  - [SmartContractSearchRequestDetails](docs/SmartContractSearchRequestDetails.md)
  - [SmartContractSearchSchema](docs/SmartContractSearchSchema.md)
+ - [SmartContractTag](docs/SmartContractTag.md)
  - [Status](docs/Status.md)
  - [StatusUpdateMonitoringRequestSchema](docs/StatusUpdateMonitoringRequestSchema.md)
  - [StatusUpdateSchema](docs/StatusUpdateSchema.md)
- - [SubscriptionDeletionResponse](docs/SubscriptionDeletionResponse.md)
- - [SubscriptionDetails](docs/SubscriptionDetails.md)
- - [SubscriptionDetailsSchema](docs/SubscriptionDetailsSchema.md)
- - [SubscriptionUpdateResponse](docs/SubscriptionUpdateResponse.md)
+ - [TierFunctionDto](docs/TierFunctionDto.md)
+ - [TokenReadQrc20Response](docs/TokenReadQrc20Response.md)
+ - [TokenReadQrc721Response](docs/TokenReadQrc721Response.md)
+ - [TokenReadResponseDetails](docs/TokenReadResponseDetails.md)
  - [Transaction](docs/Transaction.md)
  - [Transfer](docs/Transfer.md)
  - [TransferRequestDetailsSchema](docs/TransferRequestDetailsSchema.md)
  - [TransferSchema](docs/TransferSchema.md)
  - [UpdateAddressMonitoringSchema](docs/UpdateAddressMonitoringSchema.md)
- - [UpdateSubscriptionRequestSchema](docs/UpdateSubscriptionRequestSchema.md)
+ - [UpdateWebhookSubscriptionRequestSchema](docs/UpdateWebhookSubscriptionRequestSchema.md)
  - [UtxoDestination](docs/UtxoDestination.md)
  - [UtxoNativeData](docs/UtxoNativeData.md)
  - [UtxoSmartContract](docs/UtxoSmartContract.md)
- - [UtxoTimestampSchema](docs/UtxoTimestampSchema.md)
  - [Vout](docs/Vout.md)
+ - [WebhookStatusUpdateSchema](docs/WebhookStatusUpdateSchema.md)
+ - [WebhookSubscriptionDetails](docs/WebhookSubscriptionDetails.md)
+ - [WebhookSubscriptionDetailsSchema](docs/WebhookSubscriptionDetailsSchema.md)
+ - [WebhookSubscriptionStatusUpdateResponse](docs/WebhookSubscriptionStatusUpdateResponse.md)
 
 
 To get access to the crate's generated documentation, use:

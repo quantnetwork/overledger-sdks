@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**transfer** | [**Transfer**](Transfer.md) |  |  [optional]
-**smartContract** | [**SmartContract**](SmartContract.md) |  |  [optional]
 **payment** | [**Payment**](Payment.md) |  |  [optional]
-**destinationId** | **kotlin.String** | The unique identifiers of the destination |  [optional]
+**transfer** | [**Transfer**](Transfer.md) |  |  [optional]
+**destinationId** | **kotlin.String** | The unique identifier of the destination |  [optional]
+**smartContract** | [**SmartContract**](SmartContract.md) |  |  [optional]
 
 
 

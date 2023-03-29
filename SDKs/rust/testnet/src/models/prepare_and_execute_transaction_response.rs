@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -13,20 +13,20 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct PrepareAndExecuteTransactionResponse {
-    #[serde(rename = "executionTransactionSearchOverledgerErrorResponse", skip_serializing_if = "Option::is_none")]
-    pub execution_transaction_search_overledger_error_response: Option<Box<crate::models::PrepareAndExecuteOverledgerErrorResponse>>,
     #[serde(rename = "preparationTransactionSearchResponse", skip_serializing_if = "Option::is_none")]
     pub preparation_transaction_search_response: Option<Box<crate::models::PrepareTransactionResponse>>,
     #[serde(rename = "executionTransactionSearchResponse", skip_serializing_if = "Option::is_none")]
     pub execution_transaction_search_response: Option<Box<crate::models::ExecuteSearchTransactionResponse>>,
+    #[serde(rename = "executionTransactionSearchOverledgerErrorResponse", skip_serializing_if = "Option::is_none")]
+    pub execution_transaction_search_overledger_error_response: Option<Box<crate::models::PrepareAndExecuteOverledgerErrorResponse>>,
 }
 
 impl PrepareAndExecuteTransactionResponse {
     pub fn new() -> PrepareAndExecuteTransactionResponse {
         PrepareAndExecuteTransactionResponse {
-            execution_transaction_search_overledger_error_response: None,
             preparation_transaction_search_response: None,
             execution_transaction_search_response: None,
+            execution_transaction_search_overledger_error_response: None,
         }
     }
 }

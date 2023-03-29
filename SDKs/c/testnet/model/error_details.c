@@ -6,17 +6,17 @@
 
 
 error_details_t *error_details_create(
-    char *code,
+    char *category,
     char *description,
-    char *category
+    char *code
     ) {
     error_details_t *error_details_local_var = malloc(sizeof(error_details_t));
     if (!error_details_local_var) {
         return NULL;
     }
-    error_details_local_var->code = code;
-    error_details_local_var->description = description;
     error_details_local_var->category = category;
+    error_details_local_var->description = description;
+    error_details_local_var->code = code;
 
     return error_details_local_var;
 }
@@ -27,17 +27,17 @@ void error_details_free(error_details_t *error_details) {
         return ;
     }
     listEntry_t *listEntry;
-    if (error_details->code) {
-        free(error_details->code);
-        error_details->code = NULL;
+    if (error_details->category) {
+        free(error_details->category);
+        error_details->category = NULL;
     }
     if (error_details->description) {
         free(error_details->description);
         error_details->description = NULL;
     }
-    if (error_details->category) {
-        free(error_details->category);
-        error_details->category = NULL;
+    if (error_details->code) {
+        free(error_details->code);
+        error_details->code = NULL;
     }
     free(error_details);
 }
@@ -45,9 +45,9 @@ void error_details_free(error_details_t *error_details) {
 cJSON *error_details_convertToJSON(error_details_t *error_details) {
     cJSON *item = cJSON_CreateObject();
 
-    // error_details->code
-    if(error_details->code) { 
-    if(cJSON_AddStringToObject(item, "code", error_details->code) == NULL) {
+    // error_details->category
+    if(error_details->category) { 
+    if(cJSON_AddStringToObject(item, "category", error_details->category) == NULL) {
     goto fail; //String
     }
      } 
@@ -61,9 +61,9 @@ cJSON *error_details_convertToJSON(error_details_t *error_details) {
      } 
 
 
-    // error_details->category
-    if(error_details->category) { 
-    if(cJSON_AddStringToObject(item, "category", error_details->category) == NULL) {
+    // error_details->code
+    if(error_details->code) { 
+    if(cJSON_AddStringToObject(item, "code", error_details->code) == NULL) {
     goto fail; //String
     }
      } 
@@ -80,10 +80,10 @@ error_details_t *error_details_parseFromJSON(cJSON *error_detailsJSON){
 
     error_details_t *error_details_local_var = NULL;
 
-    // error_details->code
-    cJSON *code = cJSON_GetObjectItemCaseSensitive(error_detailsJSON, "code");
-    if (code) { 
-    if(!cJSON_IsString(code))
+    // error_details->category
+    cJSON *category = cJSON_GetObjectItemCaseSensitive(error_detailsJSON, "category");
+    if (category) { 
+    if(!cJSON_IsString(category))
     {
     goto end; //String
     }
@@ -98,10 +98,10 @@ error_details_t *error_details_parseFromJSON(cJSON *error_detailsJSON){
     }
     }
 
-    // error_details->category
-    cJSON *category = cJSON_GetObjectItemCaseSensitive(error_detailsJSON, "category");
-    if (category) { 
-    if(!cJSON_IsString(category))
+    // error_details->code
+    cJSON *code = cJSON_GetObjectItemCaseSensitive(error_detailsJSON, "code");
+    if (code) { 
+    if(!cJSON_IsString(code))
     {
     goto end; //String
     }
@@ -109,9 +109,9 @@ error_details_t *error_details_parseFromJSON(cJSON *error_detailsJSON){
 
 
     error_details_local_var = error_details_create (
-        code ? strdup(code->valuestring) : NULL,
+        category ? strdup(category->valuestring) : NULL,
         description ? strdup(description->valuestring) : NULL,
-        category ? strdup(category->valuestring) : NULL
+        code ? strdup(code->valuestring) : NULL
         );
 
     return error_details_local_var;

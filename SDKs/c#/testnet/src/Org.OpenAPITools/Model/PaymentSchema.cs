@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -25,7 +25,7 @@ using OpenAPIDateConverter = Org.OpenAPITools.Client.OpenAPIDateConverter;
 namespace Org.OpenAPITools.Model
 {
     /// <summary>
-    /// PaymentSchema
+    /// The payload for each recipient
     /// </summary>
     [DataContract]
     public partial class PaymentSchema :  IEquatable<PaymentSchema>, IValidatableObject
@@ -38,8 +38,8 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentSchema" /> class.
         /// </summary>
-        /// <param name="amount">The amount of a currency (required).</param>
-        /// <param name="unit">The unit of this currency/token.</param>
+        /// <param name="amount">The payload amount. The exact format depends on the unit of the token. (required).</param>
+        /// <param name="unit">The currency or token code (required).</param>
         public PaymentSchema(string amount = default(string), string unit = default(string))
         {
             // to ensure "amount" is required (not null)
@@ -52,21 +52,30 @@ namespace Org.OpenAPITools.Model
                 this.Amount = amount;
             }
 
-            this.Unit = unit;
+            // to ensure "unit" is required (not null)
+            if (unit == null)
+            {
+                throw new InvalidDataException("unit is a required property for PaymentSchema and cannot be null");
+            }
+            else
+            {
+                this.Unit = unit;
+            }
+
         }
 
         /// <summary>
-        /// The amount of a currency
+        /// The payload amount. The exact format depends on the unit of the token.
         /// </summary>
-        /// <value>The amount of a currency</value>
+        /// <value>The payload amount. The exact format depends on the unit of the token.</value>
         [DataMember(Name="amount", EmitDefaultValue=true)]
         public string Amount { get; set; }
 
         /// <summary>
-        /// The unit of this currency/token
+        /// The currency or token code
         /// </summary>
-        /// <value>The unit of this currency/token</value>
-        [DataMember(Name="unit", EmitDefaultValue=false)]
+        /// <value>The currency or token code</value>
+        [DataMember(Name="unit", EmitDefaultValue=true)]
         public string Unit { get; set; }
 
         /// <summary>

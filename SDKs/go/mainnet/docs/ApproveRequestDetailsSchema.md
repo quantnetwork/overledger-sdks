@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Payer** | Pointer to [**[]PayerCreditSchema**](PayerCreditSchema.md) | Who are the payers of this transaction | [optional] 
 **Mandate** | Pointer to [**[]PayeeCreditSchema**](PayeeCreditSchema.md) | Who are the payees of this transaction | [optional] 
 **OverledgerSigningType** | Pointer to **string** |  | [optional] 
-**Payer** | Pointer to [**[]PayerCreditSchema**](PayerCreditSchema.md) | Who are the payers of this transaction | [optional] 
 
 ## Methods
 
@@ -26,6 +26,31 @@ will change when the set of required properties is changed
 NewApproveRequestDetailsSchemaWithDefaults instantiates a new ApproveRequestDetailsSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetPayer
+
+`func (o *ApproveRequestDetailsSchema) GetPayer() []PayerCreditSchema`
+
+GetPayer returns the Payer field if non-nil, zero value otherwise.
+
+### GetPayerOk
+
+`func (o *ApproveRequestDetailsSchema) GetPayerOk() (*[]PayerCreditSchema, bool)`
+
+GetPayerOk returns a tuple with the Payer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPayer
+
+`func (o *ApproveRequestDetailsSchema) SetPayer(v []PayerCreditSchema)`
+
+SetPayer sets Payer field to given value.
+
+### HasPayer
+
+`func (o *ApproveRequestDetailsSchema) HasPayer() bool`
+
+HasPayer returns a boolean if a field has been set.
 
 ### GetMandate
 
@@ -76,31 +101,6 @@ SetOverledgerSigningType sets OverledgerSigningType field to given value.
 `func (o *ApproveRequestDetailsSchema) HasOverledgerSigningType() bool`
 
 HasOverledgerSigningType returns a boolean if a field has been set.
-
-### GetPayer
-
-`func (o *ApproveRequestDetailsSchema) GetPayer() []PayerCreditSchema`
-
-GetPayer returns the Payer field if non-nil, zero value otherwise.
-
-### GetPayerOk
-
-`func (o *ApproveRequestDetailsSchema) GetPayerOk() (*[]PayerCreditSchema, bool)`
-
-GetPayerOk returns a tuple with the Payer field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPayer
-
-`func (o *ApproveRequestDetailsSchema) SetPayer(v []PayerCreditSchema)`
-
-SetPayer sets Payer field to given value.
-
-### HasPayer
-
-`func (o *ApproveRequestDetailsSchema) HasPayer() bool`
-
-HasPayer returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

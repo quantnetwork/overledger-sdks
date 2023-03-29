@@ -4,9 +4,9 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **callback_url** | **String** |  | [optional] |
 | **subscription_id** | **String** |  | [optional] |
 | **type** | **String** |  | [optional] |
+| **callback_url** | **String** |  | [optional] |
 
 ## Example
 
@@ -14,9 +14,9 @@
 require 'openapi_client'
 
 instance = OpenapiClient::ResourceMonitoringSubscription.new(
-  callback_url: null,
   subscription_id: null,
-  type: null
+  type: null,
+  callback_url: null
 )
 ```
 

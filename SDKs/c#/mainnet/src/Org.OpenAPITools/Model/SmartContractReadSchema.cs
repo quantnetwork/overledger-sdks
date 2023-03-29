@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,25 +33,25 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SmartContractReadSchema" /> class.
         /// </summary>
-        /// <param name="function">function.</param>
         /// <param name="smartContractId">smartContractId.</param>
-        public SmartContractReadSchema(SmartContractReadFunctionSchema function = default(SmartContractReadFunctionSchema), string smartContractId = default(string))
+        /// <param name="function">function.</param>
+        public SmartContractReadSchema(string smartContractId = default(string), SmartContractReadFunctionSchema function = default(SmartContractReadFunctionSchema))
         {
-            this.Function = function;
             this.SmartContractId = smartContractId;
+            this.Function = function;
         }
-
-        /// <summary>
-        /// Gets or Sets Function
-        /// </summary>
-        [DataMember(Name="function", EmitDefaultValue=false)]
-        public SmartContractReadFunctionSchema Function { get; set; }
 
         /// <summary>
         /// Gets or Sets SmartContractId
         /// </summary>
         [DataMember(Name="smartContractId", EmitDefaultValue=false)]
         public string SmartContractId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Function
+        /// </summary>
+        [DataMember(Name="function", EmitDefaultValue=false)]
+        public SmartContractReadFunctionSchema Function { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,8 +61,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class SmartContractReadSchema {\n");
-            sb.Append("  Function: ").Append(Function).Append("\n");
             sb.Append("  SmartContractId: ").Append(SmartContractId).Append("\n");
+            sb.Append("  Function: ").Append(Function).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -98,14 +98,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.Function == input.Function ||
-                    (this.Function != null &&
-                    this.Function.Equals(input.Function))
-                ) && 
-                (
                     this.SmartContractId == input.SmartContractId ||
                     (this.SmartContractId != null &&
                     this.SmartContractId.Equals(input.SmartContractId))
+                ) && 
+                (
+                    this.Function == input.Function ||
+                    (this.Function != null &&
+                    this.Function.Equals(input.Function))
                 );
         }
 
@@ -118,10 +118,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Function != null)
-                    hashCode = hashCode * 59 + this.Function.GetHashCode();
                 if (this.SmartContractId != null)
                     hashCode = hashCode * 59 + this.SmartContractId.GetHashCode();
+                if (this.Function != null)
+                    hashCode = hashCode * 59 + this.Function.GetHashCode();
                 return hashCode;
             }
         }

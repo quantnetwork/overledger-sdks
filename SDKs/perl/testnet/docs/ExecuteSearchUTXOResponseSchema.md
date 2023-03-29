@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **utxo_id** | **string** |  | [optional] 
 **destination** | [**ARRAY[UTXODestination]**](UTXODestination.md) |  | [optional] 
 **location** | [**Location**](Location.md) |  | [optional] 
-**timestamp** | [**UTXOTimestampSchema**](UTXOTimestampSchema.md) |  | [optional] 
+**timestamp** | **string** |  | [optional] 
 **status** | [**Status**](Status.md) |  | [optional] 
 **native_data** | [**UTXONativeData**](UTXONativeData.md) |  | [optional] 
 

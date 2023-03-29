@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -25,7 +25,7 @@ using OpenAPIDateConverter = Org.OpenAPITools.Client.OpenAPIDateConverter;
 namespace Org.OpenAPITools.Model
 {
     /// <summary>
-    /// The Destination of this transaction
+    /// List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
     /// </summary>
     [DataContract]
     public partial class DestinationPaymentSchema :  IEquatable<DestinationPaymentSchema>, IValidatableObject
@@ -33,26 +33,49 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DestinationPaymentSchema" /> class.
         /// </summary>
-        /// <param name="payment">payment.</param>
-        /// <param name="destinationId">The unique identifiers of the destination.</param>
-        public DestinationPaymentSchema(PaymentSchema payment = default(PaymentSchema), string destinationId = default(string))
+        [JsonConstructorAttribute]
+        protected DestinationPaymentSchema() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DestinationPaymentSchema" /> class.
+        /// </summary>
+        /// <param name="destinationId">Unique identifier of the destination/recipient (required).</param>
+        /// <param name="payment">payment (required).</param>
+        public DestinationPaymentSchema(string destinationId = default(string), PaymentSchema payment = default(PaymentSchema))
         {
-            this.Payment = payment;
-            this.DestinationId = destinationId;
+            // to ensure "destinationId" is required (not null)
+            if (destinationId == null)
+            {
+                throw new InvalidDataException("destinationId is a required property for DestinationPaymentSchema and cannot be null");
+            }
+            else
+            {
+                this.DestinationId = destinationId;
+            }
+
+            // to ensure "payment" is required (not null)
+            if (payment == null)
+            {
+                throw new InvalidDataException("payment is a required property for DestinationPaymentSchema and cannot be null");
+            }
+            else
+            {
+                this.Payment = payment;
+            }
+
         }
+
+        /// <summary>
+        /// Unique identifier of the destination/recipient
+        /// </summary>
+        /// <value>Unique identifier of the destination/recipient</value>
+        [DataMember(Name="destinationId", EmitDefaultValue=true)]
+        public string DestinationId { get; set; }
 
         /// <summary>
         /// Gets or Sets Payment
         /// </summary>
-        [DataMember(Name="payment", EmitDefaultValue=false)]
+        [DataMember(Name="payment", EmitDefaultValue=true)]
         public PaymentSchema Payment { get; set; }
-
-        /// <summary>
-        /// The unique identifiers of the destination
-        /// </summary>
-        /// <value>The unique identifiers of the destination</value>
-        [DataMember(Name="destinationId", EmitDefaultValue=false)]
-        public string DestinationId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,8 +85,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DestinationPaymentSchema {\n");
-            sb.Append("  Payment: ").Append(Payment).Append("\n");
             sb.Append("  DestinationId: ").Append(DestinationId).Append("\n");
+            sb.Append("  Payment: ").Append(Payment).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -99,14 +122,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.Payment == input.Payment ||
-                    (this.Payment != null &&
-                    this.Payment.Equals(input.Payment))
-                ) && 
-                (
                     this.DestinationId == input.DestinationId ||
                     (this.DestinationId != null &&
                     this.DestinationId.Equals(input.DestinationId))
+                ) && 
+                (
+                    this.Payment == input.Payment ||
+                    (this.Payment != null &&
+                    this.Payment.Equals(input.Payment))
                 );
         }
 
@@ -119,10 +142,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Payment != null)
-                    hashCode = hashCode * 59 + this.Payment.GetHashCode();
                 if (this.DestinationId != null)
                     hashCode = hashCode * 59 + this.DestinationId.GetHashCode();
+                if (this.Payment != null)
+                    hashCode = hashCode * 59 + this.Payment.GetHashCode();
                 return hashCode;
             }
         }

@@ -143,7 +143,7 @@ prepareSearchUTXOState($authorization, $utxo_id, $prepare_search_schema): \OpenA
 
 Prepare Search for a UTXO State.
 
-Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT's
+Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
 
 ### Example
 

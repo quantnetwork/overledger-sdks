@@ -1,7 +1,7 @@
 {-
    Quant Overledger API
 
-   Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+   Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
    OpenAPI Version: 3.0.1
    Quant Overledger API API version: 2.0
@@ -17,13 +17,38 @@ module QuantOverledger.API
   , module QuantOverledger.API.BlockSearch
   , module QuantOverledger.API.CreateAQRC20CreditTransaction
   , module QuantOverledger.API.CreateAQRC20DebitTransaction
-  , module QuantOverledger.API.CreateSubscription
-  , module QuantOverledger.API.CreateTransaction
-  , module QuantOverledger.API.MDappTransactionQuery
+  , module QuantOverledger.API.CreateAQRC721TokenCollectionTransaction
+  , module QuantOverledger.API.CreateAQRC721TransferTransaction
+  , module QuantOverledger.API.CreateASubscription
+  , module QuantOverledger.API.CreateATransaction
+  , module QuantOverledger.API.CreateAndPayFromAQRC20SharedAccount
+  , module QuantOverledger.API.FungibleTokenController
+  , module QuantOverledger.API.MDAppTransactionQuery
   , module QuantOverledger.API.ManageMonitoredResources
-  , module QuantOverledger.API.ManageSubscription
+  , module QuantOverledger.API.ManageQRC20TokenSupply
+  , module QuantOverledger.API.ManageQRC721TokenSupply
+  , module QuantOverledger.API.ManageSubscriptions
   , module QuantOverledger.API.MonitorAResource
+  , module QuantOverledger.API.RetrieveAccountBalanceForAQRC20Token
+  , module QuantOverledger.API.RetrieveApprovedAccountAllowanceForAQRC20Token
+  , module QuantOverledger.API.RetrieveApprovedAccountInformationForAQRC20Token
+  , module QuantOverledger.API.RetrieveApprovedAccountInformationOfAQRC721Token
+  , module QuantOverledger.API.RetrieveContractOwnerInformationOfAQRCToken
+  , module QuantOverledger.API.RetrieveOwnerInformationForAQRC721Token
+  , module QuantOverledger.API.RetrieveSupplyInformationForAQRCToken
+  , module QuantOverledger.API.RetrieveTheCountOfQRC721Tokens
+  , module QuantOverledger.API.RetrieveURIInformationForAQRC721Token
   , module QuantOverledger.API.SmartContractSearch
+  , module QuantOverledger.API.SubscribeToQRC20AccountCreditPayments
+  , module QuantOverledger.API.SubscribeToQRC20AccountDebitPayments
+  , module QuantOverledger.API.SubscribeToQRC20SharedAccountUpdates
+  , module QuantOverledger.API.SubscribeToQRC20TokenSupplyChanges
+  , module QuantOverledger.API.SubscribeToQRC721AssetCollectionUpdates
+  , module QuantOverledger.API.SubscribeToQRC721AssetTransfers
+  , module QuantOverledger.API.SubscribeToQRC721SupplyChangeUpdates
+  , module QuantOverledger.API.SupportedFungibleTokens
+  , module QuantOverledger.API.SupportedNonFungibleTokens
+  , module QuantOverledger.API.TokenController
   , module QuantOverledger.API.TransactionSearch
   , module QuantOverledger.API.UTXOStatusSearch
   ) where
@@ -32,12 +57,37 @@ import QuantOverledger.API.AddressSearch
 import QuantOverledger.API.BlockSearch
 import QuantOverledger.API.CreateAQRC20CreditTransaction
 import QuantOverledger.API.CreateAQRC20DebitTransaction
-import QuantOverledger.API.CreateSubscription
-import QuantOverledger.API.CreateTransaction
-import QuantOverledger.API.MDappTransactionQuery
+import QuantOverledger.API.CreateAQRC721TokenCollectionTransaction
+import QuantOverledger.API.CreateAQRC721TransferTransaction
+import QuantOverledger.API.CreateASubscription
+import QuantOverledger.API.CreateATransaction
+import QuantOverledger.API.CreateAndPayFromAQRC20SharedAccount
+import QuantOverledger.API.FungibleTokenController
+import QuantOverledger.API.MDAppTransactionQuery
 import QuantOverledger.API.ManageMonitoredResources
-import QuantOverledger.API.ManageSubscription
+import QuantOverledger.API.ManageQRC20TokenSupply
+import QuantOverledger.API.ManageQRC721TokenSupply
+import QuantOverledger.API.ManageSubscriptions
 import QuantOverledger.API.MonitorAResource
+import QuantOverledger.API.RetrieveAccountBalanceForAQRC20Token
+import QuantOverledger.API.RetrieveApprovedAccountAllowanceForAQRC20Token
+import QuantOverledger.API.RetrieveApprovedAccountInformationForAQRC20Token
+import QuantOverledger.API.RetrieveApprovedAccountInformationOfAQRC721Token
+import QuantOverledger.API.RetrieveContractOwnerInformationOfAQRCToken
+import QuantOverledger.API.RetrieveOwnerInformationForAQRC721Token
+import QuantOverledger.API.RetrieveSupplyInformationForAQRCToken
+import QuantOverledger.API.RetrieveTheCountOfQRC721Tokens
+import QuantOverledger.API.RetrieveURIInformationForAQRC721Token
 import QuantOverledger.API.SmartContractSearch
+import QuantOverledger.API.SubscribeToQRC20AccountCreditPayments
+import QuantOverledger.API.SubscribeToQRC20AccountDebitPayments
+import QuantOverledger.API.SubscribeToQRC20SharedAccountUpdates
+import QuantOverledger.API.SubscribeToQRC20TokenSupplyChanges
+import QuantOverledger.API.SubscribeToQRC721AssetCollectionUpdates
+import QuantOverledger.API.SubscribeToQRC721AssetTransfers
+import QuantOverledger.API.SubscribeToQRC721SupplyChangeUpdates
+import QuantOverledger.API.SupportedFungibleTokens
+import QuantOverledger.API.SupportedNonFungibleTokens
+import QuantOverledger.API.TokenController
 import QuantOverledger.API.TransactionSearch
 import QuantOverledger.API.UTXOStatusSearch

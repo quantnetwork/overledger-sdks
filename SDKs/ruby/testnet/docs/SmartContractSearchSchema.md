@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **function** | [**SmartContractSearchFunctionSchema**](SmartContractSearchFunctionSchema.md) |  | [optional] |
 | **smart_contract_id** | **String** |  | [optional] |
+| **function** | [**SmartContractSearchFunctionSchema**](SmartContractSearchFunctionSchema.md) |  | [optional] |
 
 ## Example
 
@@ -13,8 +13,8 @@
 require 'openapi_client'
 
 instance = OpenapiClient::SmartContractSearchSchema.new(
-  function: null,
-  smart_contract_id: null
+  smart_contract_id: null,
+  function: null
 )
 ```
 

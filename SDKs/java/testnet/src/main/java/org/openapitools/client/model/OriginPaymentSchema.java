@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Where is this transaction coming from
+ * List of where this transaction is coming from
  */
-@ApiModel(description = "Where is this transaction coming from")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@ApiModel(description = "List of where this transaction is coming from")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class OriginPaymentSchema {
   public static final String SERIALIZED_NAME_ORIGIN_ID = "originId";
   @SerializedName(SERIALIZED_NAME_ORIGIN_ID)
@@ -42,11 +42,11 @@ public class OriginPaymentSchema {
   }
 
    /**
-   * Unique Identifier of the originator
+   * Unique Identifier of the origin/sender
    * @return originId
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Unique Identifier of the originator")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Unique Identifier of the origin/sender")
 
   public String getOriginId() {
     return originId;

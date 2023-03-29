@@ -20,15 +20,15 @@ typedef struct utxo_smart_contract_t utxo_smart_contract_t;
 
 
 typedef struct utxo_smart_contract_t {
-    char *detail; // string
     char *type; // string
+    char *detail; // string
     struct extra_fields_t *extra_fields; //model
 
 } utxo_smart_contract_t;
 
 utxo_smart_contract_t *utxo_smart_contract_create(
-    char *detail,
     char *type,
+    char *detail,
     extra_fields_t *extra_fields
 );
 

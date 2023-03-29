@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -30,12 +30,8 @@ import org.openapitools.client.model.PrepareTransactionResponse;
 /**
  * PrepareAndExecuteTransactionResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:46:50.106642+01:00[Europe/London]")
 public class PrepareAndExecuteTransactionResponse {
-  public static final String SERIALIZED_NAME_EXECUTION_TRANSACTION_SEARCH_OVERLEDGER_ERROR_RESPONSE = "executionTransactionSearchOverledgerErrorResponse";
-  @SerializedName(SERIALIZED_NAME_EXECUTION_TRANSACTION_SEARCH_OVERLEDGER_ERROR_RESPONSE)
-  private PrepareAndExecuteOverledgerErrorResponse executionTransactionSearchOverledgerErrorResponse;
-
   public static final String SERIALIZED_NAME_PREPARATION_TRANSACTION_SEARCH_RESPONSE = "preparationTransactionSearchResponse";
   @SerializedName(SERIALIZED_NAME_PREPARATION_TRANSACTION_SEARCH_RESPONSE)
   private PrepareTransactionResponse preparationTransactionSearchResponse;
@@ -44,28 +40,9 @@ public class PrepareAndExecuteTransactionResponse {
   @SerializedName(SERIALIZED_NAME_EXECUTION_TRANSACTION_SEARCH_RESPONSE)
   private ExecuteSearchTransactionResponse executionTransactionSearchResponse;
 
-
-  public PrepareAndExecuteTransactionResponse executionTransactionSearchOverledgerErrorResponse(PrepareAndExecuteOverledgerErrorResponse executionTransactionSearchOverledgerErrorResponse) {
-    
-    this.executionTransactionSearchOverledgerErrorResponse = executionTransactionSearchOverledgerErrorResponse;
-    return this;
-  }
-
-   /**
-   * Get executionTransactionSearchOverledgerErrorResponse
-   * @return executionTransactionSearchOverledgerErrorResponse
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public PrepareAndExecuteOverledgerErrorResponse getExecutionTransactionSearchOverledgerErrorResponse() {
-    return executionTransactionSearchOverledgerErrorResponse;
-  }
-
-
-  public void setExecutionTransactionSearchOverledgerErrorResponse(PrepareAndExecuteOverledgerErrorResponse executionTransactionSearchOverledgerErrorResponse) {
-    this.executionTransactionSearchOverledgerErrorResponse = executionTransactionSearchOverledgerErrorResponse;
-  }
+  public static final String SERIALIZED_NAME_EXECUTION_TRANSACTION_SEARCH_OVERLEDGER_ERROR_RESPONSE = "executionTransactionSearchOverledgerErrorResponse";
+  @SerializedName(SERIALIZED_NAME_EXECUTION_TRANSACTION_SEARCH_OVERLEDGER_ERROR_RESPONSE)
+  private PrepareAndExecuteOverledgerErrorResponse executionTransactionSearchOverledgerErrorResponse;
 
 
   public PrepareAndExecuteTransactionResponse preparationTransactionSearchResponse(PrepareTransactionResponse preparationTransactionSearchResponse) {
@@ -114,6 +91,29 @@ public class PrepareAndExecuteTransactionResponse {
   }
 
 
+  public PrepareAndExecuteTransactionResponse executionTransactionSearchOverledgerErrorResponse(PrepareAndExecuteOverledgerErrorResponse executionTransactionSearchOverledgerErrorResponse) {
+    
+    this.executionTransactionSearchOverledgerErrorResponse = executionTransactionSearchOverledgerErrorResponse;
+    return this;
+  }
+
+   /**
+   * Get executionTransactionSearchOverledgerErrorResponse
+   * @return executionTransactionSearchOverledgerErrorResponse
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public PrepareAndExecuteOverledgerErrorResponse getExecutionTransactionSearchOverledgerErrorResponse() {
+    return executionTransactionSearchOverledgerErrorResponse;
+  }
+
+
+  public void setExecutionTransactionSearchOverledgerErrorResponse(PrepareAndExecuteOverledgerErrorResponse executionTransactionSearchOverledgerErrorResponse) {
+    this.executionTransactionSearchOverledgerErrorResponse = executionTransactionSearchOverledgerErrorResponse;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -123,23 +123,23 @@ public class PrepareAndExecuteTransactionResponse {
       return false;
     }
     PrepareAndExecuteTransactionResponse prepareAndExecuteTransactionResponse = (PrepareAndExecuteTransactionResponse) o;
-    return Objects.equals(this.executionTransactionSearchOverledgerErrorResponse, prepareAndExecuteTransactionResponse.executionTransactionSearchOverledgerErrorResponse) &&
-        Objects.equals(this.preparationTransactionSearchResponse, prepareAndExecuteTransactionResponse.preparationTransactionSearchResponse) &&
-        Objects.equals(this.executionTransactionSearchResponse, prepareAndExecuteTransactionResponse.executionTransactionSearchResponse);
+    return Objects.equals(this.preparationTransactionSearchResponse, prepareAndExecuteTransactionResponse.preparationTransactionSearchResponse) &&
+        Objects.equals(this.executionTransactionSearchResponse, prepareAndExecuteTransactionResponse.executionTransactionSearchResponse) &&
+        Objects.equals(this.executionTransactionSearchOverledgerErrorResponse, prepareAndExecuteTransactionResponse.executionTransactionSearchOverledgerErrorResponse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(executionTransactionSearchOverledgerErrorResponse, preparationTransactionSearchResponse, executionTransactionSearchResponse);
+    return Objects.hash(preparationTransactionSearchResponse, executionTransactionSearchResponse, executionTransactionSearchOverledgerErrorResponse);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PrepareAndExecuteTransactionResponse {\n");
-    sb.append("    executionTransactionSearchOverledgerErrorResponse: ").append(toIndentedString(executionTransactionSearchOverledgerErrorResponse)).append("\n");
     sb.append("    preparationTransactionSearchResponse: ").append(toIndentedString(preparationTransactionSearchResponse)).append("\n");
     sb.append("    executionTransactionSearchResponse: ").append(toIndentedString(executionTransactionSearchResponse)).append("\n");
+    sb.append("    executionTransactionSearchOverledgerErrorResponse: ").append(toIndentedString(executionTransactionSearchOverledgerErrorResponse)).append("\n");
     sb.append("}");
     return sb.toString();
   }

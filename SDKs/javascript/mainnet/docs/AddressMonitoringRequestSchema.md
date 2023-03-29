@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**callBackURL** | **String** |  | [optional] 
 **location** | [**Location**](Location.md) |  | [optional] 
+**callBackURL** | **String** |  | [optional] 
 **addressId** | **String** |  | [optional] 
 
 

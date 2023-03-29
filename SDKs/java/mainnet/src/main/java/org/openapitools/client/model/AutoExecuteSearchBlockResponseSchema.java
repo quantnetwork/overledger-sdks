@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -30,42 +30,19 @@ import org.openapitools.client.model.PrepareSearchResponseSchema;
 /**
  * AutoExecuteSearchBlockResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:46:50.106642+01:00[Europe/London]")
 public class AutoExecuteSearchBlockResponseSchema {
-  public static final String SERIALIZED_NAME_EXECUTION_BLOCK_SEARCH_RESPONSE = "executionBlockSearchResponse";
-  @SerializedName(SERIALIZED_NAME_EXECUTION_BLOCK_SEARCH_RESPONSE)
-  private ExecuteSearchBlockResponse executionBlockSearchResponse;
-
   public static final String SERIALIZED_NAME_PREPARE_AND_EXECUTE_OVERLEDGER_ERROR_RESPONSE = "prepareAndExecuteOverledgerErrorResponse";
   @SerializedName(SERIALIZED_NAME_PREPARE_AND_EXECUTE_OVERLEDGER_ERROR_RESPONSE)
   private PrepareAndExecuteOverledgerErrorResponse prepareAndExecuteOverledgerErrorResponse;
 
+  public static final String SERIALIZED_NAME_EXECUTION_BLOCK_SEARCH_RESPONSE = "executionBlockSearchResponse";
+  @SerializedName(SERIALIZED_NAME_EXECUTION_BLOCK_SEARCH_RESPONSE)
+  private ExecuteSearchBlockResponse executionBlockSearchResponse;
+
   public static final String SERIALIZED_NAME_PREPARATION_BLOCK_SEARCH_RESPONSE = "preparationBlockSearchResponse";
   @SerializedName(SERIALIZED_NAME_PREPARATION_BLOCK_SEARCH_RESPONSE)
   private PrepareSearchResponseSchema preparationBlockSearchResponse;
-
-
-  public AutoExecuteSearchBlockResponseSchema executionBlockSearchResponse(ExecuteSearchBlockResponse executionBlockSearchResponse) {
-    
-    this.executionBlockSearchResponse = executionBlockSearchResponse;
-    return this;
-  }
-
-   /**
-   * Get executionBlockSearchResponse
-   * @return executionBlockSearchResponse
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ExecuteSearchBlockResponse getExecutionBlockSearchResponse() {
-    return executionBlockSearchResponse;
-  }
-
-
-  public void setExecutionBlockSearchResponse(ExecuteSearchBlockResponse executionBlockSearchResponse) {
-    this.executionBlockSearchResponse = executionBlockSearchResponse;
-  }
 
 
   public AutoExecuteSearchBlockResponseSchema prepareAndExecuteOverledgerErrorResponse(PrepareAndExecuteOverledgerErrorResponse prepareAndExecuteOverledgerErrorResponse) {
@@ -88,6 +65,29 @@ public class AutoExecuteSearchBlockResponseSchema {
 
   public void setPrepareAndExecuteOverledgerErrorResponse(PrepareAndExecuteOverledgerErrorResponse prepareAndExecuteOverledgerErrorResponse) {
     this.prepareAndExecuteOverledgerErrorResponse = prepareAndExecuteOverledgerErrorResponse;
+  }
+
+
+  public AutoExecuteSearchBlockResponseSchema executionBlockSearchResponse(ExecuteSearchBlockResponse executionBlockSearchResponse) {
+    
+    this.executionBlockSearchResponse = executionBlockSearchResponse;
+    return this;
+  }
+
+   /**
+   * Get executionBlockSearchResponse
+   * @return executionBlockSearchResponse
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ExecuteSearchBlockResponse getExecutionBlockSearchResponse() {
+    return executionBlockSearchResponse;
+  }
+
+
+  public void setExecutionBlockSearchResponse(ExecuteSearchBlockResponse executionBlockSearchResponse) {
+    this.executionBlockSearchResponse = executionBlockSearchResponse;
   }
 
 
@@ -123,22 +123,22 @@ public class AutoExecuteSearchBlockResponseSchema {
       return false;
     }
     AutoExecuteSearchBlockResponseSchema autoExecuteSearchBlockResponseSchema = (AutoExecuteSearchBlockResponseSchema) o;
-    return Objects.equals(this.executionBlockSearchResponse, autoExecuteSearchBlockResponseSchema.executionBlockSearchResponse) &&
-        Objects.equals(this.prepareAndExecuteOverledgerErrorResponse, autoExecuteSearchBlockResponseSchema.prepareAndExecuteOverledgerErrorResponse) &&
+    return Objects.equals(this.prepareAndExecuteOverledgerErrorResponse, autoExecuteSearchBlockResponseSchema.prepareAndExecuteOverledgerErrorResponse) &&
+        Objects.equals(this.executionBlockSearchResponse, autoExecuteSearchBlockResponseSchema.executionBlockSearchResponse) &&
         Objects.equals(this.preparationBlockSearchResponse, autoExecuteSearchBlockResponseSchema.preparationBlockSearchResponse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(executionBlockSearchResponse, prepareAndExecuteOverledgerErrorResponse, preparationBlockSearchResponse);
+    return Objects.hash(prepareAndExecuteOverledgerErrorResponse, executionBlockSearchResponse, preparationBlockSearchResponse);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AutoExecuteSearchBlockResponseSchema {\n");
-    sb.append("    executionBlockSearchResponse: ").append(toIndentedString(executionBlockSearchResponse)).append("\n");
     sb.append("    prepareAndExecuteOverledgerErrorResponse: ").append(toIndentedString(prepareAndExecuteOverledgerErrorResponse)).append("\n");
+    sb.append("    executionBlockSearchResponse: ").append(toIndentedString(executionBlockSearchResponse)).append("\n");
     sb.append("    preparationBlockSearchResponse: ").append(toIndentedString(preparationBlockSearchResponse)).append("\n");
     sb.append("}");
     return sb.toString();

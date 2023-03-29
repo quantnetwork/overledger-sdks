@@ -1,0 +1,38 @@
+/*
+ * prepare_remove_secondary_account_transaction_request_schema.h
+ *
+ * 
+ */
+
+#ifndef _prepare_remove_secondary_account_transaction_request_schema_H_
+#define _prepare_remove_secondary_account_transaction_request_schema_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct prepare_remove_secondary_account_transaction_request_schema_t prepare_remove_secondary_account_transaction_request_schema_t;
+
+#include "remove_secondary_account_details_schema.h"
+
+
+
+typedef struct prepare_remove_secondary_account_transaction_request_schema_t {
+    struct remove_secondary_account_details_schema_t *remove_secondary_account_details_schema; //model
+
+} prepare_remove_secondary_account_transaction_request_schema_t;
+
+prepare_remove_secondary_account_transaction_request_schema_t *prepare_remove_secondary_account_transaction_request_schema_create(
+    remove_secondary_account_details_schema_t *remove_secondary_account_details_schema
+);
+
+void prepare_remove_secondary_account_transaction_request_schema_free(prepare_remove_secondary_account_transaction_request_schema_t *prepare_remove_secondary_account_transaction_request_schema);
+
+prepare_remove_secondary_account_transaction_request_schema_t *prepare_remove_secondary_account_transaction_request_schema_parseFromJSON(cJSON *prepare_remove_secondary_account_transaction_request_schemaJSON);
+
+cJSON *prepare_remove_secondary_account_transaction_request_schema_convertToJSON(prepare_remove_secondary_account_transaction_request_schema_t *prepare_remove_secondary_account_transaction_request_schema);
+
+#endif /* _prepare_remove_secondary_account_transaction_request_schema_H_ */
+

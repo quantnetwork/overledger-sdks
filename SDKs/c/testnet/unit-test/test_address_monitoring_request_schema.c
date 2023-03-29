@@ -23,15 +23,15 @@ address_monitoring_request_schema_t* instantiate_address_monitoring_request_sche
   address_monitoring_request_schema_t* address_monitoring_request_schema = NULL;
   if (include_optional) {
     address_monitoring_request_schema = address_monitoring_request_schema_create(
-      "a",
        // false, not to have infinite recursion
       instantiate_location(0),
+      "a",
       "a"
     );
   } else {
     address_monitoring_request_schema = address_monitoring_request_schema_create(
-      "a",
       NULL,
+      "a",
       "a"
     );
   }

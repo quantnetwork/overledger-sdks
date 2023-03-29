@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SubscriptionDetails** | Pointer to [**ResourceMonitoringSubscriptionDetails**](ResourceMonitoringSubscriptionDetails.md) |  | [optional] 
 **ResourceMonitoring** | Pointer to [**ResourceMonitoringDetails**](ResourceMonitoringDetails.md) |  | [optional] 
+**SubscriptionDetails** | Pointer to [**ResourceMonitoringSubscriptionDetails**](ResourceMonitoringSubscriptionDetails.md) |  | [optional] 
 **Subscription** | Pointer to [**ResourceMonitoringSubscription**](ResourceMonitoringSubscription.md) |  | [optional] 
 
 ## Methods
@@ -26,31 +26,6 @@ will change when the set of required properties is changed
 NewAddressMonitoringResponseSchemaWithDefaults instantiates a new AddressMonitoringResponseSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetSubscriptionDetails
-
-`func (o *AddressMonitoringResponseSchema) GetSubscriptionDetails() ResourceMonitoringSubscriptionDetails`
-
-GetSubscriptionDetails returns the SubscriptionDetails field if non-nil, zero value otherwise.
-
-### GetSubscriptionDetailsOk
-
-`func (o *AddressMonitoringResponseSchema) GetSubscriptionDetailsOk() (*ResourceMonitoringSubscriptionDetails, bool)`
-
-GetSubscriptionDetailsOk returns a tuple with the SubscriptionDetails field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubscriptionDetails
-
-`func (o *AddressMonitoringResponseSchema) SetSubscriptionDetails(v ResourceMonitoringSubscriptionDetails)`
-
-SetSubscriptionDetails sets SubscriptionDetails field to given value.
-
-### HasSubscriptionDetails
-
-`func (o *AddressMonitoringResponseSchema) HasSubscriptionDetails() bool`
-
-HasSubscriptionDetails returns a boolean if a field has been set.
 
 ### GetResourceMonitoring
 
@@ -76,6 +51,31 @@ SetResourceMonitoring sets ResourceMonitoring field to given value.
 `func (o *AddressMonitoringResponseSchema) HasResourceMonitoring() bool`
 
 HasResourceMonitoring returns a boolean if a field has been set.
+
+### GetSubscriptionDetails
+
+`func (o *AddressMonitoringResponseSchema) GetSubscriptionDetails() ResourceMonitoringSubscriptionDetails`
+
+GetSubscriptionDetails returns the SubscriptionDetails field if non-nil, zero value otherwise.
+
+### GetSubscriptionDetailsOk
+
+`func (o *AddressMonitoringResponseSchema) GetSubscriptionDetailsOk() (*ResourceMonitoringSubscriptionDetails, bool)`
+
+GetSubscriptionDetailsOk returns a tuple with the SubscriptionDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscriptionDetails
+
+`func (o *AddressMonitoringResponseSchema) SetSubscriptionDetails(v ResourceMonitoringSubscriptionDetails)`
+
+SetSubscriptionDetails sets SubscriptionDetails field to given value.
+
+### HasSubscriptionDetails
+
+`func (o *AddressMonitoringResponseSchema) HasSubscriptionDetails() bool`
+
+HasSubscriptionDetails returns a boolean if a field has been set.
 
 ### GetSubscription
 

@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**smart_contract_event_history** | [**list_t**](smart_contract_event_history.md) \* |  | [optional] 
 **smart_contract_event_details** | [**resource_monitoring_smart_contract_event_details_t**](resource_monitoring_smart_contract_event_details.md) \* |  | [optional] 
 **location** | [**location_t**](location.md) \* |  | [optional] 
+**smart_contract_event_history** | [**list_t**](smart_contract_event_history.md) \* |  | [optional] 
 **type** | **char \*** |  | [optional] 
 **status** | [**status_t**](status.md) \* |  | [optional] 
 **timestamp** | **char \*** |  | [optional] 

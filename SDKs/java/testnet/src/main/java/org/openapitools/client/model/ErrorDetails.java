@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -27,41 +27,41 @@ import java.io.IOException;
 /**
  * ErrorDetails
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class ErrorDetails {
-  public static final String SERIALIZED_NAME_CODE = "code";
-  @SerializedName(SERIALIZED_NAME_CODE)
-  private String code;
+  public static final String SERIALIZED_NAME_CATEGORY = "category";
+  @SerializedName(SERIALIZED_NAME_CATEGORY)
+  private String category;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
 
-  public static final String SERIALIZED_NAME_CATEGORY = "category";
-  @SerializedName(SERIALIZED_NAME_CATEGORY)
-  private String category;
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
+  private String code;
 
 
-  public ErrorDetails code(String code) {
+  public ErrorDetails category(String category) {
     
-    this.code = code;
+    this.category = category;
     return this;
   }
 
    /**
-   * Get code
-   * @return code
+   * Get category
+   * @return category
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getCode() {
-    return code;
+  public String getCategory() {
+    return category;
   }
 
 
-  public void setCode(String code) {
-    this.code = code;
+  public void setCategory(String category) {
+    this.category = category;
   }
 
 
@@ -88,26 +88,26 @@ public class ErrorDetails {
   }
 
 
-  public ErrorDetails category(String category) {
+  public ErrorDetails code(String code) {
     
-    this.category = category;
+    this.code = code;
     return this;
   }
 
    /**
-   * Get category
-   * @return category
+   * Get code
+   * @return code
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getCategory() {
-    return category;
+  public String getCode() {
+    return code;
   }
 
 
-  public void setCategory(String category) {
-    this.category = category;
+  public void setCode(String code) {
+    this.code = code;
   }
 
 
@@ -120,23 +120,23 @@ public class ErrorDetails {
       return false;
     }
     ErrorDetails errorDetails = (ErrorDetails) o;
-    return Objects.equals(this.code, errorDetails.code) &&
+    return Objects.equals(this.category, errorDetails.category) &&
         Objects.equals(this.description, errorDetails.description) &&
-        Objects.equals(this.category, errorDetails.category);
+        Objects.equals(this.code, errorDetails.code);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, description, category);
+    return Objects.hash(category, description, code);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ErrorDetails {\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("}");
     return sb.toString();
   }

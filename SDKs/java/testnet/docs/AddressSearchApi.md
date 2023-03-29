@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 Execute a search for an address sequence on a DLT
 
-Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
+Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
 
 ### Example
 ```java

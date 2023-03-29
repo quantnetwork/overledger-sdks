@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,9 +16,9 @@ import (
 
 // AutoExecSearchAddressSequenceResponseSchema struct for AutoExecSearchAddressSequenceResponseSchema
 type AutoExecSearchAddressSequenceResponseSchema struct {
-	PreparationAddressSequenceSearchResponse *PrepareSearchResponseSchema `json:"preparationAddressSequenceSearchResponse,omitempty"`
 	PrepareAndExecuteOverledgerErrorResponse *PrepareAndExecuteOverledgerErrorResponse `json:"prepareAndExecuteOverledgerErrorResponse,omitempty"`
 	ExecutionAddressSequenceSearchResponse *ExecuteSearchSequenceResponse `json:"executionAddressSequenceSearchResponse,omitempty"`
+	PreparationAddressSequenceSearchResponse *PrepareSearchResponseSchema `json:"preparationAddressSequenceSearchResponse,omitempty"`
 }
 
 // NewAutoExecSearchAddressSequenceResponseSchema instantiates a new AutoExecSearchAddressSequenceResponseSchema object
@@ -36,38 +36,6 @@ func NewAutoExecSearchAddressSequenceResponseSchema() *AutoExecSearchAddressSequ
 func NewAutoExecSearchAddressSequenceResponseSchemaWithDefaults() *AutoExecSearchAddressSequenceResponseSchema {
 	this := AutoExecSearchAddressSequenceResponseSchema{}
 	return &this
-}
-
-// GetPreparationAddressSequenceSearchResponse returns the PreparationAddressSequenceSearchResponse field value if set, zero value otherwise.
-func (o *AutoExecSearchAddressSequenceResponseSchema) GetPreparationAddressSequenceSearchResponse() PrepareSearchResponseSchema {
-	if o == nil || o.PreparationAddressSequenceSearchResponse == nil {
-		var ret PrepareSearchResponseSchema
-		return ret
-	}
-	return *o.PreparationAddressSequenceSearchResponse
-}
-
-// GetPreparationAddressSequenceSearchResponseOk returns a tuple with the PreparationAddressSequenceSearchResponse field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AutoExecSearchAddressSequenceResponseSchema) GetPreparationAddressSequenceSearchResponseOk() (*PrepareSearchResponseSchema, bool) {
-	if o == nil || o.PreparationAddressSequenceSearchResponse == nil {
-		return nil, false
-	}
-	return o.PreparationAddressSequenceSearchResponse, true
-}
-
-// HasPreparationAddressSequenceSearchResponse returns a boolean if a field has been set.
-func (o *AutoExecSearchAddressSequenceResponseSchema) HasPreparationAddressSequenceSearchResponse() bool {
-	if o != nil && o.PreparationAddressSequenceSearchResponse != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPreparationAddressSequenceSearchResponse gets a reference to the given PrepareSearchResponseSchema and assigns it to the PreparationAddressSequenceSearchResponse field.
-func (o *AutoExecSearchAddressSequenceResponseSchema) SetPreparationAddressSequenceSearchResponse(v PrepareSearchResponseSchema) {
-	o.PreparationAddressSequenceSearchResponse = &v
 }
 
 // GetPrepareAndExecuteOverledgerErrorResponse returns the PrepareAndExecuteOverledgerErrorResponse field value if set, zero value otherwise.
@@ -134,16 +102,48 @@ func (o *AutoExecSearchAddressSequenceResponseSchema) SetExecutionAddressSequenc
 	o.ExecutionAddressSequenceSearchResponse = &v
 }
 
+// GetPreparationAddressSequenceSearchResponse returns the PreparationAddressSequenceSearchResponse field value if set, zero value otherwise.
+func (o *AutoExecSearchAddressSequenceResponseSchema) GetPreparationAddressSequenceSearchResponse() PrepareSearchResponseSchema {
+	if o == nil || o.PreparationAddressSequenceSearchResponse == nil {
+		var ret PrepareSearchResponseSchema
+		return ret
+	}
+	return *o.PreparationAddressSequenceSearchResponse
+}
+
+// GetPreparationAddressSequenceSearchResponseOk returns a tuple with the PreparationAddressSequenceSearchResponse field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AutoExecSearchAddressSequenceResponseSchema) GetPreparationAddressSequenceSearchResponseOk() (*PrepareSearchResponseSchema, bool) {
+	if o == nil || o.PreparationAddressSequenceSearchResponse == nil {
+		return nil, false
+	}
+	return o.PreparationAddressSequenceSearchResponse, true
+}
+
+// HasPreparationAddressSequenceSearchResponse returns a boolean if a field has been set.
+func (o *AutoExecSearchAddressSequenceResponseSchema) HasPreparationAddressSequenceSearchResponse() bool {
+	if o != nil && o.PreparationAddressSequenceSearchResponse != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPreparationAddressSequenceSearchResponse gets a reference to the given PrepareSearchResponseSchema and assigns it to the PreparationAddressSequenceSearchResponse field.
+func (o *AutoExecSearchAddressSequenceResponseSchema) SetPreparationAddressSequenceSearchResponse(v PrepareSearchResponseSchema) {
+	o.PreparationAddressSequenceSearchResponse = &v
+}
+
 func (o AutoExecSearchAddressSequenceResponseSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.PreparationAddressSequenceSearchResponse != nil {
-		toSerialize["preparationAddressSequenceSearchResponse"] = o.PreparationAddressSequenceSearchResponse
-	}
 	if o.PrepareAndExecuteOverledgerErrorResponse != nil {
 		toSerialize["prepareAndExecuteOverledgerErrorResponse"] = o.PrepareAndExecuteOverledgerErrorResponse
 	}
 	if o.ExecutionAddressSequenceSearchResponse != nil {
 		toSerialize["executionAddressSequenceSearchResponse"] = o.ExecutionAddressSequenceSearchResponse
+	}
+	if o.PreparationAddressSequenceSearchResponse != nil {
+		toSerialize["preparationAddressSequenceSearchResponse"] = o.PreparationAddressSequenceSearchResponse
 	}
 	return json.Marshal(toSerialize)
 }

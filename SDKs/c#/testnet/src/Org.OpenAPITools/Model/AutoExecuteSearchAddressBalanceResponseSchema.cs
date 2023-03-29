@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,27 +33,27 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AutoExecuteSearchAddressBalanceResponseSchema" /> class.
         /// </summary>
-        /// <param name="executionAddressBalanceSearchResponse">executionAddressBalanceSearchResponse.</param>
         /// <param name="prepareAndExecuteOverledgerErrorResponse">prepareAndExecuteOverledgerErrorResponse.</param>
+        /// <param name="executionAddressBalanceSearchResponse">executionAddressBalanceSearchResponse.</param>
         /// <param name="preparationAddressBalanceSearchResponse">preparationAddressBalanceSearchResponse.</param>
-        public AutoExecuteSearchAddressBalanceResponseSchema(PrepareAndExecuteSearchAddressBalanceResponse executionAddressBalanceSearchResponse = default(PrepareAndExecuteSearchAddressBalanceResponse), PrepareAndExecuteOverledgerErrorResponse prepareAndExecuteOverledgerErrorResponse = default(PrepareAndExecuteOverledgerErrorResponse), PrepareSearchResponseSchema preparationAddressBalanceSearchResponse = default(PrepareSearchResponseSchema))
+        public AutoExecuteSearchAddressBalanceResponseSchema(PrepareAndExecuteOverledgerErrorResponse prepareAndExecuteOverledgerErrorResponse = default(PrepareAndExecuteOverledgerErrorResponse), PrepareAndExecuteSearchAddressBalanceResponse executionAddressBalanceSearchResponse = default(PrepareAndExecuteSearchAddressBalanceResponse), PrepareSearchResponseSchema preparationAddressBalanceSearchResponse = default(PrepareSearchResponseSchema))
         {
-            this.ExecutionAddressBalanceSearchResponse = executionAddressBalanceSearchResponse;
             this.PrepareAndExecuteOverledgerErrorResponse = prepareAndExecuteOverledgerErrorResponse;
+            this.ExecutionAddressBalanceSearchResponse = executionAddressBalanceSearchResponse;
             this.PreparationAddressBalanceSearchResponse = preparationAddressBalanceSearchResponse;
         }
-
-        /// <summary>
-        /// Gets or Sets ExecutionAddressBalanceSearchResponse
-        /// </summary>
-        [DataMember(Name="executionAddressBalanceSearchResponse", EmitDefaultValue=false)]
-        public PrepareAndExecuteSearchAddressBalanceResponse ExecutionAddressBalanceSearchResponse { get; set; }
 
         /// <summary>
         /// Gets or Sets PrepareAndExecuteOverledgerErrorResponse
         /// </summary>
         [DataMember(Name="prepareAndExecuteOverledgerErrorResponse", EmitDefaultValue=false)]
         public PrepareAndExecuteOverledgerErrorResponse PrepareAndExecuteOverledgerErrorResponse { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ExecutionAddressBalanceSearchResponse
+        /// </summary>
+        [DataMember(Name="executionAddressBalanceSearchResponse", EmitDefaultValue=false)]
+        public PrepareAndExecuteSearchAddressBalanceResponse ExecutionAddressBalanceSearchResponse { get; set; }
 
         /// <summary>
         /// Gets or Sets PreparationAddressBalanceSearchResponse
@@ -69,8 +69,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class AutoExecuteSearchAddressBalanceResponseSchema {\n");
-            sb.Append("  ExecutionAddressBalanceSearchResponse: ").Append(ExecutionAddressBalanceSearchResponse).Append("\n");
             sb.Append("  PrepareAndExecuteOverledgerErrorResponse: ").Append(PrepareAndExecuteOverledgerErrorResponse).Append("\n");
+            sb.Append("  ExecutionAddressBalanceSearchResponse: ").Append(ExecutionAddressBalanceSearchResponse).Append("\n");
             sb.Append("  PreparationAddressBalanceSearchResponse: ").Append(PreparationAddressBalanceSearchResponse).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -107,14 +107,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.ExecutionAddressBalanceSearchResponse == input.ExecutionAddressBalanceSearchResponse ||
-                    (this.ExecutionAddressBalanceSearchResponse != null &&
-                    this.ExecutionAddressBalanceSearchResponse.Equals(input.ExecutionAddressBalanceSearchResponse))
-                ) && 
-                (
                     this.PrepareAndExecuteOverledgerErrorResponse == input.PrepareAndExecuteOverledgerErrorResponse ||
                     (this.PrepareAndExecuteOverledgerErrorResponse != null &&
                     this.PrepareAndExecuteOverledgerErrorResponse.Equals(input.PrepareAndExecuteOverledgerErrorResponse))
+                ) && 
+                (
+                    this.ExecutionAddressBalanceSearchResponse == input.ExecutionAddressBalanceSearchResponse ||
+                    (this.ExecutionAddressBalanceSearchResponse != null &&
+                    this.ExecutionAddressBalanceSearchResponse.Equals(input.ExecutionAddressBalanceSearchResponse))
                 ) && 
                 (
                     this.PreparationAddressBalanceSearchResponse == input.PreparationAddressBalanceSearchResponse ||
@@ -132,10 +132,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ExecutionAddressBalanceSearchResponse != null)
-                    hashCode = hashCode * 59 + this.ExecutionAddressBalanceSearchResponse.GetHashCode();
                 if (this.PrepareAndExecuteOverledgerErrorResponse != null)
                     hashCode = hashCode * 59 + this.PrepareAndExecuteOverledgerErrorResponse.GetHashCode();
+                if (this.ExecutionAddressBalanceSearchResponse != null)
+                    hashCode = hashCode * 59 + this.ExecutionAddressBalanceSearchResponse.GetHashCode();
                 if (this.PreparationAddressBalanceSearchResponse != null)
                     hashCode = hashCode * 59 + this.PreparationAddressBalanceSearchResponse.GetHashCode();
                 return hashCode;

@@ -6,19 +6,19 @@
 
 
 destination_t *destination_create(
-    transfer_t *transfer,
-    smart_contract_t *smart_contract,
     payment_t *payment,
-    char *destination_id
+    transfer_t *transfer,
+    char *destination_id,
+    smart_contract_t *smart_contract
     ) {
     destination_t *destination_local_var = malloc(sizeof(destination_t));
     if (!destination_local_var) {
         return NULL;
     }
-    destination_local_var->transfer = transfer;
-    destination_local_var->smart_contract = smart_contract;
     destination_local_var->payment = payment;
+    destination_local_var->transfer = transfer;
     destination_local_var->destination_id = destination_id;
+    destination_local_var->smart_contract = smart_contract;
 
     return destination_local_var;
 }
@@ -29,27 +29,40 @@ void destination_free(destination_t *destination) {
         return ;
     }
     listEntry_t *listEntry;
-    if (destination->transfer) {
-        transfer_free(destination->transfer);
-        destination->transfer = NULL;
-    }
-    if (destination->smart_contract) {
-        smart_contract_free(destination->smart_contract);
-        destination->smart_contract = NULL;
-    }
     if (destination->payment) {
         payment_free(destination->payment);
         destination->payment = NULL;
     }
+    if (destination->transfer) {
+        transfer_free(destination->transfer);
+        destination->transfer = NULL;
+    }
     if (destination->destination_id) {
         free(destination->destination_id);
         destination->destination_id = NULL;
+    }
+    if (destination->smart_contract) {
+        smart_contract_free(destination->smart_contract);
+        destination->smart_contract = NULL;
     }
     free(destination);
 }
 
 cJSON *destination_convertToJSON(destination_t *destination) {
     cJSON *item = cJSON_CreateObject();
+
+    // destination->payment
+    if(destination->payment) { 
+    cJSON *payment_local_JSON = payment_convertToJSON(destination->payment);
+    if(payment_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "payment", payment_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+     } 
+
 
     // destination->transfer
     if(destination->transfer) { 
@@ -60,6 +73,14 @@ cJSON *destination_convertToJSON(destination_t *destination) {
     cJSON_AddItemToObject(item, "transfer", transfer_local_JSON);
     if(item->child == NULL) {
     goto fail;
+    }
+     } 
+
+
+    // destination->destination_id
+    if(destination->destination_id) { 
+    if(cJSON_AddStringToObject(item, "destinationId", destination->destination_id) == NULL) {
+    goto fail; //String
     }
      } 
 
@@ -76,27 +97,6 @@ cJSON *destination_convertToJSON(destination_t *destination) {
     }
      } 
 
-
-    // destination->payment
-    if(destination->payment) { 
-    cJSON *payment_local_JSON = payment_convertToJSON(destination->payment);
-    if(payment_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "payment", payment_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
-    }
-     } 
-
-
-    // destination->destination_id
-    if(destination->destination_id) { 
-    if(cJSON_AddStringToObject(item, "destinationId", destination->destination_id) == NULL) {
-    goto fail; //String
-    }
-     } 
-
     return item;
 fail:
     if (item) {
@@ -109,25 +109,18 @@ destination_t *destination_parseFromJSON(cJSON *destinationJSON){
 
     destination_t *destination_local_var = NULL;
 
-    // destination->transfer
-    cJSON *transfer = cJSON_GetObjectItemCaseSensitive(destinationJSON, "transfer");
-    transfer_t *transfer_local_nonprim = NULL;
-    if (transfer) { 
-    transfer_local_nonprim = transfer_parseFromJSON(transfer); //nonprimitive
-    }
-
-    // destination->smart_contract
-    cJSON *smart_contract = cJSON_GetObjectItemCaseSensitive(destinationJSON, "smartContract");
-    smart_contract_t *smart_contract_local_nonprim = NULL;
-    if (smart_contract) { 
-    smart_contract_local_nonprim = smart_contract_parseFromJSON(smart_contract); //nonprimitive
-    }
-
     // destination->payment
     cJSON *payment = cJSON_GetObjectItemCaseSensitive(destinationJSON, "payment");
     payment_t *payment_local_nonprim = NULL;
     if (payment) { 
     payment_local_nonprim = payment_parseFromJSON(payment); //nonprimitive
+    }
+
+    // destination->transfer
+    cJSON *transfer = cJSON_GetObjectItemCaseSensitive(destinationJSON, "transfer");
+    transfer_t *transfer_local_nonprim = NULL;
+    if (transfer) { 
+    transfer_local_nonprim = transfer_parseFromJSON(transfer); //nonprimitive
     }
 
     // destination->destination_id
@@ -139,16 +132,27 @@ destination_t *destination_parseFromJSON(cJSON *destinationJSON){
     }
     }
 
+    // destination->smart_contract
+    cJSON *smart_contract = cJSON_GetObjectItemCaseSensitive(destinationJSON, "smartContract");
+    smart_contract_t *smart_contract_local_nonprim = NULL;
+    if (smart_contract) { 
+    smart_contract_local_nonprim = smart_contract_parseFromJSON(smart_contract); //nonprimitive
+    }
+
 
     destination_local_var = destination_create (
-        transfer ? transfer_local_nonprim : NULL,
-        smart_contract ? smart_contract_local_nonprim : NULL,
         payment ? payment_local_nonprim : NULL,
-        destination_id ? strdup(destination_id->valuestring) : NULL
+        transfer ? transfer_local_nonprim : NULL,
+        destination_id ? strdup(destination_id->valuestring) : NULL,
+        smart_contract ? smart_contract_local_nonprim : NULL
         );
 
     return destination_local_var;
 end:
+    if (payment_local_nonprim) {
+        payment_free(payment_local_nonprim);
+        payment_local_nonprim = NULL;
+    }
     if (transfer_local_nonprim) {
         transfer_free(transfer_local_nonprim);
         transfer_local_nonprim = NULL;
@@ -156,10 +160,6 @@ end:
     if (smart_contract_local_nonprim) {
         smart_contract_free(smart_contract_local_nonprim);
         smart_contract_local_nonprim = NULL;
-    }
-    if (payment_local_nonprim) {
-        payment_free(payment_local_nonprim);
-        payment_local_nonprim = NULL;
     }
     return NULL;
 

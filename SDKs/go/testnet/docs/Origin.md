@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sequence** | Pointer to **string** |  | [optional] 
-**OriginId** | Pointer to **string** |  | [optional] 
 **SmartContract** | Pointer to [**SmartContract**](SmartContract.md) |  | [optional] 
+**OriginId** | Pointer to **string** | The unique identifier of the origin | [optional] 
 
 ## Methods
 
@@ -52,31 +52,6 @@ SetSequence sets Sequence field to given value.
 
 HasSequence returns a boolean if a field has been set.
 
-### GetOriginId
-
-`func (o *Origin) GetOriginId() string`
-
-GetOriginId returns the OriginId field if non-nil, zero value otherwise.
-
-### GetOriginIdOk
-
-`func (o *Origin) GetOriginIdOk() (*string, bool)`
-
-GetOriginIdOk returns a tuple with the OriginId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOriginId
-
-`func (o *Origin) SetOriginId(v string)`
-
-SetOriginId sets OriginId field to given value.
-
-### HasOriginId
-
-`func (o *Origin) HasOriginId() bool`
-
-HasOriginId returns a boolean if a field has been set.
-
 ### GetSmartContract
 
 `func (o *Origin) GetSmartContract() SmartContract`
@@ -101,6 +76,31 @@ SetSmartContract sets SmartContract field to given value.
 `func (o *Origin) HasSmartContract() bool`
 
 HasSmartContract returns a boolean if a field has been set.
+
+### GetOriginId
+
+`func (o *Origin) GetOriginId() string`
+
+GetOriginId returns the OriginId field if non-nil, zero value otherwise.
+
+### GetOriginIdOk
+
+`func (o *Origin) GetOriginIdOk() (*string, bool)`
+
+GetOriginIdOk returns a tuple with the OriginId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOriginId
+
+`func (o *Origin) SetOriginId(v string)`
+
+SetOriginId sets OriginId field to given value.
+
+### HasOriginId
+
+`func (o *Origin) HasOriginId() bool`
+
+HasOriginId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

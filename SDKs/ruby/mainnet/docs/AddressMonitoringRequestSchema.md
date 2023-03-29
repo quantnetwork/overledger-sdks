@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **call_back_url** | **String** |  | [optional] |
 | **location** | [**Location**](Location.md) |  | [optional] |
+| **call_back_url** | **String** |  | [optional] |
 | **address_id** | **String** |  | [optional] |
 
 ## Example
@@ -14,8 +14,8 @@
 require 'openapi_client'
 
 instance = OpenapiClient::AddressMonitoringRequestSchema.new(
-  call_back_url: null,
   location: null,
+  call_back_url: null,
   address_id: null
 )
 ```

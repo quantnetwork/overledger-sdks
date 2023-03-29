@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FunctionId** | **string** |  | [optional] 
 **Name** | **string** |  | [optional] 
+**FunctionId** | **string** |  | [optional] 
 **InputParameters** | [**List&lt;SmartContractInputParameterSchema&gt;**](SmartContractInputParameterSchema.md) |  | [optional] 
 **OutputParameters** | [**List&lt;SmartContractInputParameterSchema&gt;**](SmartContractInputParameterSchema.md) |  | [optional] 
 

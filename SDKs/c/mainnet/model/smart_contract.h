@@ -21,19 +21,19 @@ typedef struct smart_contract_t smart_contract_t;
 
 
 typedef struct smart_contract_t {
-    struct function_t *function; //model
     char *detail; // string
     char *type; // string
     char *smart_contract_id; // string
+    struct function_t *function; //model
     object_t *extra_fields; //object
 
 } smart_contract_t;
 
 smart_contract_t *smart_contract_create(
-    function_t *function,
     char *detail,
     char *type,
     char *smart_contract_id,
+    function_t *function,
     object_t *extra_fields
 );
 

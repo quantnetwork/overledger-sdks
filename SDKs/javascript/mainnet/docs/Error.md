@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **Number** |  | [optional] 
-**service** | **String** |  | [optional] 
 **message** | **String** |  | [optional] 
+**service** | **String** |  | [optional] 
 **timestamp** | **Number** |  | [optional] 
 
 

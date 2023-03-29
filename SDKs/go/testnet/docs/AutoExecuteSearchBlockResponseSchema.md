@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExecutionBlockSearchResponse** | Pointer to [**ExecuteSearchBlockResponse**](ExecuteSearchBlockResponse.md) |  | [optional] 
 **PrepareAndExecuteOverledgerErrorResponse** | Pointer to [**PrepareAndExecuteOverledgerErrorResponse**](PrepareAndExecuteOverledgerErrorResponse.md) |  | [optional] 
+**ExecutionBlockSearchResponse** | Pointer to [**ExecuteSearchBlockResponse**](ExecuteSearchBlockResponse.md) |  | [optional] 
 **PreparationBlockSearchResponse** | Pointer to [**PrepareSearchResponseSchema**](PrepareSearchResponseSchema.md) |  | [optional] 
 
 ## Methods
@@ -26,31 +26,6 @@ will change when the set of required properties is changed
 NewAutoExecuteSearchBlockResponseSchemaWithDefaults instantiates a new AutoExecuteSearchBlockResponseSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetExecutionBlockSearchResponse
-
-`func (o *AutoExecuteSearchBlockResponseSchema) GetExecutionBlockSearchResponse() ExecuteSearchBlockResponse`
-
-GetExecutionBlockSearchResponse returns the ExecutionBlockSearchResponse field if non-nil, zero value otherwise.
-
-### GetExecutionBlockSearchResponseOk
-
-`func (o *AutoExecuteSearchBlockResponseSchema) GetExecutionBlockSearchResponseOk() (*ExecuteSearchBlockResponse, bool)`
-
-GetExecutionBlockSearchResponseOk returns a tuple with the ExecutionBlockSearchResponse field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExecutionBlockSearchResponse
-
-`func (o *AutoExecuteSearchBlockResponseSchema) SetExecutionBlockSearchResponse(v ExecuteSearchBlockResponse)`
-
-SetExecutionBlockSearchResponse sets ExecutionBlockSearchResponse field to given value.
-
-### HasExecutionBlockSearchResponse
-
-`func (o *AutoExecuteSearchBlockResponseSchema) HasExecutionBlockSearchResponse() bool`
-
-HasExecutionBlockSearchResponse returns a boolean if a field has been set.
 
 ### GetPrepareAndExecuteOverledgerErrorResponse
 
@@ -76,6 +51,31 @@ SetPrepareAndExecuteOverledgerErrorResponse sets PrepareAndExecuteOverledgerErro
 `func (o *AutoExecuteSearchBlockResponseSchema) HasPrepareAndExecuteOverledgerErrorResponse() bool`
 
 HasPrepareAndExecuteOverledgerErrorResponse returns a boolean if a field has been set.
+
+### GetExecutionBlockSearchResponse
+
+`func (o *AutoExecuteSearchBlockResponseSchema) GetExecutionBlockSearchResponse() ExecuteSearchBlockResponse`
+
+GetExecutionBlockSearchResponse returns the ExecutionBlockSearchResponse field if non-nil, zero value otherwise.
+
+### GetExecutionBlockSearchResponseOk
+
+`func (o *AutoExecuteSearchBlockResponseSchema) GetExecutionBlockSearchResponseOk() (*ExecuteSearchBlockResponse, bool)`
+
+GetExecutionBlockSearchResponseOk returns a tuple with the ExecutionBlockSearchResponse field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExecutionBlockSearchResponse
+
+`func (o *AutoExecuteSearchBlockResponseSchema) SetExecutionBlockSearchResponse(v ExecuteSearchBlockResponse)`
+
+SetExecutionBlockSearchResponse sets ExecutionBlockSearchResponse field to given value.
+
+### HasExecutionBlockSearchResponse
+
+`func (o *AutoExecuteSearchBlockResponseSchema) HasExecutionBlockSearchResponse() bool`
+
+HasExecutionBlockSearchResponse returns a boolean if a field has been set.
 
 ### GetPreparationBlockSearchResponse
 

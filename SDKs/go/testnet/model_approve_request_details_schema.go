@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,11 +16,11 @@ import (
 
 // ApproveRequestDetailsSchema struct for ApproveRequestDetailsSchema
 type ApproveRequestDetailsSchema struct {
+	// Who are the payers of this transaction
+	Payer *[]PayerCreditSchema `json:"payer,omitempty"`
 	// Who are the payees of this transaction
 	Mandate *[]PayeeCreditSchema `json:"mandate,omitempty"`
 	OverledgerSigningType *string `json:"overledgerSigningType,omitempty"`
-	// Who are the payers of this transaction
-	Payer *[]PayerCreditSchema `json:"payer,omitempty"`
 }
 
 // NewApproveRequestDetailsSchema instantiates a new ApproveRequestDetailsSchema object
@@ -38,6 +38,38 @@ func NewApproveRequestDetailsSchema() *ApproveRequestDetailsSchema {
 func NewApproveRequestDetailsSchemaWithDefaults() *ApproveRequestDetailsSchema {
 	this := ApproveRequestDetailsSchema{}
 	return &this
+}
+
+// GetPayer returns the Payer field value if set, zero value otherwise.
+func (o *ApproveRequestDetailsSchema) GetPayer() []PayerCreditSchema {
+	if o == nil || o.Payer == nil {
+		var ret []PayerCreditSchema
+		return ret
+	}
+	return *o.Payer
+}
+
+// GetPayerOk returns a tuple with the Payer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApproveRequestDetailsSchema) GetPayerOk() (*[]PayerCreditSchema, bool) {
+	if o == nil || o.Payer == nil {
+		return nil, false
+	}
+	return o.Payer, true
+}
+
+// HasPayer returns a boolean if a field has been set.
+func (o *ApproveRequestDetailsSchema) HasPayer() bool {
+	if o != nil && o.Payer != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPayer gets a reference to the given []PayerCreditSchema and assigns it to the Payer field.
+func (o *ApproveRequestDetailsSchema) SetPayer(v []PayerCreditSchema) {
+	o.Payer = &v
 }
 
 // GetMandate returns the Mandate field value if set, zero value otherwise.
@@ -104,48 +136,16 @@ func (o *ApproveRequestDetailsSchema) SetOverledgerSigningType(v string) {
 	o.OverledgerSigningType = &v
 }
 
-// GetPayer returns the Payer field value if set, zero value otherwise.
-func (o *ApproveRequestDetailsSchema) GetPayer() []PayerCreditSchema {
-	if o == nil || o.Payer == nil {
-		var ret []PayerCreditSchema
-		return ret
-	}
-	return *o.Payer
-}
-
-// GetPayerOk returns a tuple with the Payer field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApproveRequestDetailsSchema) GetPayerOk() (*[]PayerCreditSchema, bool) {
-	if o == nil || o.Payer == nil {
-		return nil, false
-	}
-	return o.Payer, true
-}
-
-// HasPayer returns a boolean if a field has been set.
-func (o *ApproveRequestDetailsSchema) HasPayer() bool {
-	if o != nil && o.Payer != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPayer gets a reference to the given []PayerCreditSchema and assigns it to the Payer field.
-func (o *ApproveRequestDetailsSchema) SetPayer(v []PayerCreditSchema) {
-	o.Payer = &v
-}
-
 func (o ApproveRequestDetailsSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Payer != nil {
+		toSerialize["payer"] = o.Payer
+	}
 	if o.Mandate != nil {
 		toSerialize["mandate"] = o.Mandate
 	}
 	if o.OverledgerSigningType != nil {
 		toSerialize["overledgerSigningType"] = o.OverledgerSigningType
-	}
-	if o.Payer != nil {
-		toSerialize["payer"] = o.Payer
 	}
 	return json.Marshal(toSerialize)
 }

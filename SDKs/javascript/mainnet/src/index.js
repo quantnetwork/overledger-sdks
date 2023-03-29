@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -13,29 +13,48 @@
 
 
 import ApiClient from './ApiClient';
+import AccountDetails from './model/AccountDetails';
+import AddSecondaryAccountRequestDetailsSchema from './model/AddSecondaryAccountRequestDetailsSchema';
+import AdditionalOwner from './model/AdditionalOwner';
+import AdditionalOwnerRemoveSecondarySchema from './model/AdditionalOwnerRemoveSecondarySchema';
 import AddressBalanceResponse from './model/AddressBalanceResponse';
 import AddressMonitoringDetailsSchema from './model/AddressMonitoringDetailsSchema';
 import AddressMonitoringRequestSchema from './model/AddressMonitoringRequestSchema';
 import AddressMonitoringResponseSchema from './model/AddressMonitoringResponseSchema';
+import AliasDetails from './model/AliasDetails';
 import ApproveRequestDetailsSchema from './model/ApproveRequestDetailsSchema';
 import AutoExecSearchAddressSequenceResponseSchema from './model/AutoExecSearchAddressSequenceResponseSchema';
 import AutoExecuteSearchAddressBalanceResponseSchema from './model/AutoExecuteSearchAddressBalanceResponseSchema';
 import AutoExecuteSearchBlockResponseSchema from './model/AutoExecuteSearchBlockResponseSchema';
 import AutoExecuteSearchUTXOResponseSchema from './model/AutoExecuteSearchUTXOResponseSchema';
+import Beneficiary from './model/Beneficiary';
+import BeneficiaryMintSchemaQrc20 from './model/BeneficiaryMintSchemaQrc20';
+import BeneficiaryMintSchemaQrc721 from './model/BeneficiaryMintSchemaQrc721';
 import Block from './model/Block';
 import BlockHash from './model/BlockHash';
 import BlockSize from './model/BlockSize';
+import Burn from './model/Burn';
+import BurnRequestDetailsSchema from './model/BurnRequestDetailsSchema';
+import BurnRequestDetailsSchemaQrc721 from './model/BurnRequestDetailsSchemaQrc721';
+import BurnSchema from './model/BurnSchema';
+import Collector from './model/Collector';
 import CreateSmartContractMonitoringSchema from './model/CreateSmartContractMonitoringSchema';
-import CreateSubscriptionRequestSchema from './model/CreateSubscriptionRequestSchema';
-import CreateSubscriptionResponseSchema from './model/CreateSubscriptionResponseSchema';
+import CreateWebhookSubscriptionRequestSchema from './model/CreateWebhookSubscriptionRequestSchema';
+import CreateWebhookSubscriptionResponseSchema from './model/CreateWebhookSubscriptionResponseSchema';
+import Creator from './model/Creator';
+import CreatorMintSchema from './model/CreatorMintSchema';
 import CreditRequestDetailsSchema from './model/CreditRequestDetailsSchema';
 import DeleteResourceMonitoringAddressSchema from './model/DeleteResourceMonitoringAddressSchema';
 import Destination from './model/Destination';
 import DestinationPaymentSchema from './model/DestinationPaymentSchema';
 import DestinationTransferSchema from './model/DestinationTransferSchema';
+import Erc20DTO from './model/Erc20DTO';
 import Error from './model/Error';
 import ErrorDetails from './model/ErrorDetails';
 import ErrorList from './model/ErrorList';
+import ErrorResponseMessage from './model/ErrorResponseMessage';
+import EventSubscriptionResponse from './model/EventSubscriptionResponse';
+import EventSubscriptionResponseDetails from './model/EventSubscriptionResponseDetails';
 import ExecuteSearchBalanceResponse from './model/ExecuteSearchBalanceResponse';
 import ExecuteSearchBlockResponse from './model/ExecuteSearchBlockResponse';
 import ExecuteSearchSequenceResponse from './model/ExecuteSearchSequenceResponse';
@@ -48,36 +67,74 @@ import ExecuteTransactionResponse from './model/ExecuteTransactionResponse';
 import ExtraFields from './model/ExtraFields';
 import Fee from './model/Fee';
 import Function from './model/Function';
+import FunctionDTO from './model/FunctionDTO';
+import FungibleTokenResponseDTO from './model/FungibleTokenResponseDTO';
 import InternalServerErrorSchema from './model/InternalServerErrorSchema';
 import LinkedBlocks from './model/LinkedBlocks';
-import ListSubscriptionResponseSchema from './model/ListSubscriptionResponseSchema';
+import ListWebhookSubscriptionResponseSchema from './model/ListWebhookSubscriptionResponseSchema';
 import Location from './model/Location';
+import LocationDTO from './model/LocationDTO';
+import LockDetails from './model/LockDetails';
+import Mandate from './model/Mandate';
+import Mint from './model/Mint';
+import MintRequestDetailsSchemaQrc20 from './model/MintRequestDetailsSchemaQrc20';
+import MintRequestDetailsSchemaQrc721 from './model/MintRequestDetailsSchemaQrc721';
+import MintSchemaQrc20 from './model/MintSchemaQrc20';
+import MintSchemaQrc721 from './model/MintSchemaQrc721';
 import MonitorSmartContractEventParam from './model/MonitorSmartContractEventParam';
 import MonitorSmartContractRequestSchema from './model/MonitorSmartContractRequestSchema';
+import NonFungibleTokenDTO from './model/NonFungibleTokenDTO';
+import NonFungibleTokenResponse from './model/NonFungibleTokenResponse';
 import Origin from './model/Origin';
 import OriginPaymentSchema from './model/OriginPaymentSchema';
 import OriginTransferSchema from './model/OriginTransferSchema';
 import OverledgerTransactionResponseSchema from './model/OverledgerTransactionResponseSchema';
+import Owner from './model/Owner';
+import OwnerBurnSchema from './model/OwnerBurnSchema';
+import OwnerRemoveSecondarySchema from './model/OwnerRemoveSecondarySchema';
+import Pagination from './model/Pagination';
 import Parameter from './model/Parameter';
+import Payee from './model/Payee';
 import PayeeCreditSchema from './model/PayeeCreditSchema';
+import Payer from './model/Payer';
 import PayerCreditSchema from './model/PayerCreditSchema';
 import Payment from './model/Payment';
 import PaymentRequestDetailsSchema from './model/PaymentRequestDetailsSchema';
 import PaymentSchema from './model/PaymentSchema';
+import PrepareAddSecondaryAccountRequestSchema from './model/PrepareAddSecondaryAccountRequestSchema';
 import PrepareAndExecuteBalanceDetails from './model/PrepareAndExecuteBalanceDetails';
 import PrepareAndExecuteOverledgerErrorResponse from './model/PrepareAndExecuteOverledgerErrorResponse';
 import PrepareAndExecuteSearchAddressBalanceResponse from './model/PrepareAndExecuteSearchAddressBalanceResponse';
 import PrepareAndExecuteTransactionResponse from './model/PrepareAndExecuteTransactionResponse';
 import PrepareApproveDebitTransactionRequestSchema from './model/PrepareApproveDebitTransactionRequestSchema';
+import PrepareBurnTransactionRequestSchema from './model/PrepareBurnTransactionRequestSchema';
+import PrepareBurnTransactionRequestSchemaQrc721 from './model/PrepareBurnTransactionRequestSchemaQrc721';
 import PrepareCreditTransactionRequestSchema from './model/PrepareCreditTransactionRequestSchema';
+import PrepareMintTransactionRequestSchemaQrc20 from './model/PrepareMintTransactionRequestSchemaQrc20';
+import PrepareMintTransactionRequestSchemaQrc721 from './model/PrepareMintTransactionRequestSchemaQrc721';
 import PrepareNativeTransactionRequestSchema from './model/PrepareNativeTransactionRequestSchema';
 import PreparePaymentTransactionRequestSchema from './model/PreparePaymentTransactionRequestSchema';
+import PrepareRemoveSecondaryAccountTransactionRequestSchema from './model/PrepareRemoveSecondaryAccountTransactionRequestSchema';
+import PrepareRequest from './model/PrepareRequest';
+import PrepareRequestDetails from './model/PrepareRequestDetails';
 import PrepareSearchResponseSchema from './model/PrepareSearchResponseSchema';
 import PrepareSearchSchema from './model/PrepareSearchSchema';
 import PrepareSearchSmartContractRequestSchema from './model/PrepareSearchSmartContractRequestSchema';
 import PrepareTransactionResponse from './model/PrepareTransactionResponse';
 import PrepareTransactionSmartContractInvokeRequestSchema from './model/PrepareTransactionSmartContractInvokeRequestSchema';
 import PrepareTransferTransactionRequestSchema from './model/PrepareTransferTransactionRequestSchema';
+import ReadAccountBalanceRequestSchema from './model/ReadAccountBalanceRequestSchema';
+import ReadApprovedAccountAllowanceRequestSchema from './model/ReadApprovedAccountAllowanceRequestSchema';
+import ReadApprovedAccountRequestDetailsSchema from './model/ReadApprovedAccountRequestDetailsSchema';
+import ReadApprovedAccountRequestSchema from './model/ReadApprovedAccountRequestSchema';
+import ReadBalanceRequestDetailsSchema from './model/ReadBalanceRequestDetailsSchema';
+import ReadBalanceRequestSchema from './model/ReadBalanceRequestSchema';
+import ReadContractOwnerRequestDetailsSchema from './model/ReadContractOwnerRequestDetailsSchema';
+import ReadContractOwnerRequestSchema from './model/ReadContractOwnerRequestSchema';
+import ReadTokenOwnerRequestDetailsSchema from './model/ReadTokenOwnerRequestDetailsSchema';
+import ReadTokenOwnerRequestSchema from './model/ReadTokenOwnerRequestSchema';
+import Receiver from './model/Receiver';
+import RemoveSecondaryAccountDetailsSchema from './model/RemoveSecondaryAccountDetailsSchema';
 import ResourceMonitoredAddressDetails from './model/ResourceMonitoredAddressDetails';
 import ResourceMonitoringAddressDetails from './model/ResourceMonitoringAddressDetails';
 import ResourceMonitoringAddressSchema from './model/ResourceMonitoringAddressSchema';
@@ -86,6 +143,10 @@ import ResourceMonitoringSmartContractEventDetails from './model/ResourceMonitor
 import ResourceMonitoringSubscription from './model/ResourceMonitoringSubscription';
 import ResourceMonitoringSubscriptionDetails from './model/ResourceMonitoringSubscriptionDetails';
 import ScriptPubKey from './model/ScriptPubKey';
+import SecondaryAccountAdditionalOwnerSchema from './model/SecondaryAccountAdditionalOwnerSchema';
+import SecondaryAccountOwnerSchema from './model/SecondaryAccountOwnerSchema';
+import Sender from './model/Sender';
+import SignerAccount from './model/SignerAccount';
 import SmartContract from './model/SmartContract';
 import SmartContractDestinationSchema from './model/SmartContractDestinationSchema';
 import SmartContractEventHistory from './model/SmartContractEventHistory';
@@ -104,13 +165,14 @@ import SmartContractSearchDestinationSchema from './model/SmartContractSearchDes
 import SmartContractSearchFunctionSchema from './model/SmartContractSearchFunctionSchema';
 import SmartContractSearchRequestDetails from './model/SmartContractSearchRequestDetails';
 import SmartContractSearchSchema from './model/SmartContractSearchSchema';
+import SmartContractTag from './model/SmartContractTag';
 import Status from './model/Status';
 import StatusUpdateMonitoringRequestSchema from './model/StatusUpdateMonitoringRequestSchema';
 import StatusUpdateSchema from './model/StatusUpdateSchema';
-import SubscriptionDeletionResponse from './model/SubscriptionDeletionResponse';
-import SubscriptionDetails from './model/SubscriptionDetails';
-import SubscriptionDetailsSchema from './model/SubscriptionDetailsSchema';
-import SubscriptionUpdateResponse from './model/SubscriptionUpdateResponse';
+import TierFunctionDTO from './model/TierFunctionDTO';
+import TokenReadQRC20Response from './model/TokenReadQRC20Response';
+import TokenReadQRC721Response from './model/TokenReadQRC721Response';
+import TokenReadResponseDetails from './model/TokenReadResponseDetails';
 import Transaction from './model/Transaction';
 import Transfer from './model/Transfer';
 import TransferRequestDetailsSchema from './model/TransferRequestDetailsSchema';
@@ -118,27 +180,55 @@ import TransferSchema from './model/TransferSchema';
 import UTXODestination from './model/UTXODestination';
 import UTXONativeData from './model/UTXONativeData';
 import UTXOSmartContract from './model/UTXOSmartContract';
-import UTXOTimestampSchema from './model/UTXOTimestampSchema';
 import UpdateAddressMonitoringSchema from './model/UpdateAddressMonitoringSchema';
-import UpdateSubscriptionRequestSchema from './model/UpdateSubscriptionRequestSchema';
+import UpdateWebhookSubscriptionRequestSchema from './model/UpdateWebhookSubscriptionRequestSchema';
 import Vout from './model/Vout';
+import WebhookStatusUpdateSchema from './model/WebhookStatusUpdateSchema';
+import WebhookSubscriptionDetails from './model/WebhookSubscriptionDetails';
+import WebhookSubscriptionDetailsSchema from './model/WebhookSubscriptionDetailsSchema';
+import WebhookSubscriptionStatusUpdateResponse from './model/WebhookSubscriptionStatusUpdateResponse';
 import AddressSearchApi from './api/AddressSearchApi';
 import BlockSearchApi from './api/BlockSearchApi';
 import CreateAQRC20CreditTransactionApi from './api/CreateAQRC20CreditTransactionApi';
 import CreateAQRC20DebitTransactionApi from './api/CreateAQRC20DebitTransactionApi';
-import CreateSubscriptionApi from './api/CreateSubscriptionApi';
-import CreateTransactionApi from './api/CreateTransactionApi';
-import MDappTransactionQueryApi from './api/MDappTransactionQueryApi';
+import CreateAQRC721TokenCollectionTransactionApi from './api/CreateAQRC721TokenCollectionTransactionApi';
+import CreateAQRC721TransferTransactionApi from './api/CreateAQRC721TransferTransactionApi';
+import CreateASubscriptionApi from './api/CreateASubscriptionApi';
+import CreateATransactionApi from './api/CreateATransactionApi';
+import CreateAndPayFromAQRC20SharedAccountApi from './api/CreateAndPayFromAQRC20SharedAccountApi';
+import FungibleTokenControllerApi from './api/FungibleTokenControllerApi';
+import MDAppTransactionQueryApi from './api/MDAppTransactionQueryApi';
 import ManageMonitoredResourcesApi from './api/ManageMonitoredResourcesApi';
-import ManageSubscriptionApi from './api/ManageSubscriptionApi';
+import ManageQRC20TokenSupplyApi from './api/ManageQRC20TokenSupplyApi';
+import ManageQRC721TokenSupplyApi from './api/ManageQRC721TokenSupplyApi';
+import ManageSubscriptionsApi from './api/ManageSubscriptionsApi';
 import MonitorAResourceApi from './api/MonitorAResourceApi';
+import RetrieveAccountBalanceForAQRC20TokenApi from './api/RetrieveAccountBalanceForAQRC20TokenApi';
+import RetrieveApprovedAccountAllowanceForAQRC20TokenApi from './api/RetrieveApprovedAccountAllowanceForAQRC20TokenApi';
+import RetrieveApprovedAccountInformationForAQRC20TokenApi from './api/RetrieveApprovedAccountInformationForAQRC20TokenApi';
+import RetrieveApprovedAccountInformationOfAQRC721TokenApi from './api/RetrieveApprovedAccountInformationOfAQRC721TokenApi';
+import RetrieveContractOwnerInformationOfAQRCTokenApi from './api/RetrieveContractOwnerInformationOfAQRCTokenApi';
+import RetrieveOwnerInformationForAQRC721TokenApi from './api/RetrieveOwnerInformationForAQRC721TokenApi';
+import RetrieveSupplyInformationForAQRCTokenApi from './api/RetrieveSupplyInformationForAQRCTokenApi';
+import RetrieveTheCountOfQRC721TokensApi from './api/RetrieveTheCountOfQRC721TokensApi';
+import RetrieveURIInformationForAQRC721TokenApi from './api/RetrieveURIInformationForAQRC721TokenApi';
 import SmartContractSearchApi from './api/SmartContractSearchApi';
+import SubscribeToQRC20AccountCreditPaymentsApi from './api/SubscribeToQRC20AccountCreditPaymentsApi';
+import SubscribeToQRC20AccountDebitPaymentsApi from './api/SubscribeToQRC20AccountDebitPaymentsApi';
+import SubscribeToQRC20SharedAccountUpdatesApi from './api/SubscribeToQRC20SharedAccountUpdatesApi';
+import SubscribeToQRC20TokenSupplyChangesApi from './api/SubscribeToQRC20TokenSupplyChangesApi';
+import SubscribeToQRC721AssetCollectionUpdatesApi from './api/SubscribeToQRC721AssetCollectionUpdatesApi';
+import SubscribeToQRC721AssetTransfersApi from './api/SubscribeToQRC721AssetTransfersApi';
+import SubscribeToQRC721SupplyChangeUpdatesApi from './api/SubscribeToQRC721SupplyChangeUpdatesApi';
+import SupportedFungibleTokensApi from './api/SupportedFungibleTokensApi';
+import SupportedNonFungibleTokensApi from './api/SupportedNonFungibleTokensApi';
+import TokenControllerApi from './api/TokenControllerApi';
 import TransactionSearchApi from './api/TransactionSearchApi';
 import UTXOStatusSearchApi from './api/UTXOStatusSearchApi';
 
 
 /**
-* Quants_Overledger_API_allows_developers_to_create_applications_for_multiple_DLTs_using_a_single_standard_set_of_operations_and_data_structures_In_order_to_maintain_the_security_of_private_keys_most_operations_have_two_steps__prepare_and_execute__The_prepare_step_is_the_point_at_which_all_arguments_are_specified_and_standardised_payloads_are_sent__Overledger_converts_this_standard_payload_into_a_DLT_specific_transaction_object__In_the_execute_step_the_SDK_signs_the_transaction_object_that_Overledger_created_and_submits_it_to_Overledger_to_perform_the_operation_Authentication___ReDoc_Inject_security_definitions___.<br>
+* Quants_Overledger_API_allows_developers_to_create_applications_for_multiple_DLTs_using_a_single_standard_set_of_operations_and_data_structures_In_order_to_maintain_the_security_of_private_keys_most_operations_have_two_steps__prepare_and_execute__The_prepare_step_is_the_point_at_which_all_arguments_are_specified_and_standardised_payloads_are_sent__Overledger_converts_this_standard_payload_into_a_DLT_specific_transaction_object__In_the_execute_step_the_SDK_signs_the_transaction_object_that_Overledger_created_and_submits_it_to_Overledger_to_perform_the_operation.<br>
 * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
 * <p>
 * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
@@ -176,6 +266,30 @@ export {
     ApiClient,
 
     /**
+     * The AccountDetails model constructor.
+     * @property {module:model/AccountDetails}
+     */
+    AccountDetails,
+
+    /**
+     * The AddSecondaryAccountRequestDetailsSchema model constructor.
+     * @property {module:model/AddSecondaryAccountRequestDetailsSchema}
+     */
+    AddSecondaryAccountRequestDetailsSchema,
+
+    /**
+     * The AdditionalOwner model constructor.
+     * @property {module:model/AdditionalOwner}
+     */
+    AdditionalOwner,
+
+    /**
+     * The AdditionalOwnerRemoveSecondarySchema model constructor.
+     * @property {module:model/AdditionalOwnerRemoveSecondarySchema}
+     */
+    AdditionalOwnerRemoveSecondarySchema,
+
+    /**
      * The AddressBalanceResponse model constructor.
      * @property {module:model/AddressBalanceResponse}
      */
@@ -198,6 +312,12 @@ export {
      * @property {module:model/AddressMonitoringResponseSchema}
      */
     AddressMonitoringResponseSchema,
+
+    /**
+     * The AliasDetails model constructor.
+     * @property {module:model/AliasDetails}
+     */
+    AliasDetails,
 
     /**
      * The ApproveRequestDetailsSchema model constructor.
@@ -230,6 +350,24 @@ export {
     AutoExecuteSearchUTXOResponseSchema,
 
     /**
+     * The Beneficiary model constructor.
+     * @property {module:model/Beneficiary}
+     */
+    Beneficiary,
+
+    /**
+     * The BeneficiaryMintSchemaQrc20 model constructor.
+     * @property {module:model/BeneficiaryMintSchemaQrc20}
+     */
+    BeneficiaryMintSchemaQrc20,
+
+    /**
+     * The BeneficiaryMintSchemaQrc721 model constructor.
+     * @property {module:model/BeneficiaryMintSchemaQrc721}
+     */
+    BeneficiaryMintSchemaQrc721,
+
+    /**
      * The Block model constructor.
      * @property {module:model/Block}
      */
@@ -248,22 +386,64 @@ export {
     BlockSize,
 
     /**
+     * The Burn model constructor.
+     * @property {module:model/Burn}
+     */
+    Burn,
+
+    /**
+     * The BurnRequestDetailsSchema model constructor.
+     * @property {module:model/BurnRequestDetailsSchema}
+     */
+    BurnRequestDetailsSchema,
+
+    /**
+     * The BurnRequestDetailsSchemaQrc721 model constructor.
+     * @property {module:model/BurnRequestDetailsSchemaQrc721}
+     */
+    BurnRequestDetailsSchemaQrc721,
+
+    /**
+     * The BurnSchema model constructor.
+     * @property {module:model/BurnSchema}
+     */
+    BurnSchema,
+
+    /**
+     * The Collector model constructor.
+     * @property {module:model/Collector}
+     */
+    Collector,
+
+    /**
      * The CreateSmartContractMonitoringSchema model constructor.
      * @property {module:model/CreateSmartContractMonitoringSchema}
      */
     CreateSmartContractMonitoringSchema,
 
     /**
-     * The CreateSubscriptionRequestSchema model constructor.
-     * @property {module:model/CreateSubscriptionRequestSchema}
+     * The CreateWebhookSubscriptionRequestSchema model constructor.
+     * @property {module:model/CreateWebhookSubscriptionRequestSchema}
      */
-    CreateSubscriptionRequestSchema,
+    CreateWebhookSubscriptionRequestSchema,
 
     /**
-     * The CreateSubscriptionResponseSchema model constructor.
-     * @property {module:model/CreateSubscriptionResponseSchema}
+     * The CreateWebhookSubscriptionResponseSchema model constructor.
+     * @property {module:model/CreateWebhookSubscriptionResponseSchema}
      */
-    CreateSubscriptionResponseSchema,
+    CreateWebhookSubscriptionResponseSchema,
+
+    /**
+     * The Creator model constructor.
+     * @property {module:model/Creator}
+     */
+    Creator,
+
+    /**
+     * The CreatorMintSchema model constructor.
+     * @property {module:model/CreatorMintSchema}
+     */
+    CreatorMintSchema,
 
     /**
      * The CreditRequestDetailsSchema model constructor.
@@ -296,6 +476,12 @@ export {
     DestinationTransferSchema,
 
     /**
+     * The Erc20DTO model constructor.
+     * @property {module:model/Erc20DTO}
+     */
+    Erc20DTO,
+
+    /**
      * The Error model constructor.
      * @property {module:model/Error}
      */
@@ -312,6 +498,24 @@ export {
      * @property {module:model/ErrorList}
      */
     ErrorList,
+
+    /**
+     * The ErrorResponseMessage model constructor.
+     * @property {module:model/ErrorResponseMessage}
+     */
+    ErrorResponseMessage,
+
+    /**
+     * The EventSubscriptionResponse model constructor.
+     * @property {module:model/EventSubscriptionResponse}
+     */
+    EventSubscriptionResponse,
+
+    /**
+     * The EventSubscriptionResponseDetails model constructor.
+     * @property {module:model/EventSubscriptionResponseDetails}
+     */
+    EventSubscriptionResponseDetails,
 
     /**
      * The ExecuteSearchBalanceResponse model constructor.
@@ -386,6 +590,18 @@ export {
     Function,
 
     /**
+     * The FunctionDTO model constructor.
+     * @property {module:model/FunctionDTO}
+     */
+    FunctionDTO,
+
+    /**
+     * The FungibleTokenResponseDTO model constructor.
+     * @property {module:model/FungibleTokenResponseDTO}
+     */
+    FungibleTokenResponseDTO,
+
+    /**
      * The InternalServerErrorSchema model constructor.
      * @property {module:model/InternalServerErrorSchema}
      */
@@ -398,16 +614,64 @@ export {
     LinkedBlocks,
 
     /**
-     * The ListSubscriptionResponseSchema model constructor.
-     * @property {module:model/ListSubscriptionResponseSchema}
+     * The ListWebhookSubscriptionResponseSchema model constructor.
+     * @property {module:model/ListWebhookSubscriptionResponseSchema}
      */
-    ListSubscriptionResponseSchema,
+    ListWebhookSubscriptionResponseSchema,
 
     /**
      * The Location model constructor.
      * @property {module:model/Location}
      */
     Location,
+
+    /**
+     * The LocationDTO model constructor.
+     * @property {module:model/LocationDTO}
+     */
+    LocationDTO,
+
+    /**
+     * The LockDetails model constructor.
+     * @property {module:model/LockDetails}
+     */
+    LockDetails,
+
+    /**
+     * The Mandate model constructor.
+     * @property {module:model/Mandate}
+     */
+    Mandate,
+
+    /**
+     * The Mint model constructor.
+     * @property {module:model/Mint}
+     */
+    Mint,
+
+    /**
+     * The MintRequestDetailsSchemaQrc20 model constructor.
+     * @property {module:model/MintRequestDetailsSchemaQrc20}
+     */
+    MintRequestDetailsSchemaQrc20,
+
+    /**
+     * The MintRequestDetailsSchemaQrc721 model constructor.
+     * @property {module:model/MintRequestDetailsSchemaQrc721}
+     */
+    MintRequestDetailsSchemaQrc721,
+
+    /**
+     * The MintSchemaQrc20 model constructor.
+     * @property {module:model/MintSchemaQrc20}
+     */
+    MintSchemaQrc20,
+
+    /**
+     * The MintSchemaQrc721 model constructor.
+     * @property {module:model/MintSchemaQrc721}
+     */
+    MintSchemaQrc721,
 
     /**
      * The MonitorSmartContractEventParam model constructor.
@@ -420,6 +684,18 @@ export {
      * @property {module:model/MonitorSmartContractRequestSchema}
      */
     MonitorSmartContractRequestSchema,
+
+    /**
+     * The NonFungibleTokenDTO model constructor.
+     * @property {module:model/NonFungibleTokenDTO}
+     */
+    NonFungibleTokenDTO,
+
+    /**
+     * The NonFungibleTokenResponse model constructor.
+     * @property {module:model/NonFungibleTokenResponse}
+     */
+    NonFungibleTokenResponse,
 
     /**
      * The Origin model constructor.
@@ -446,16 +722,52 @@ export {
     OverledgerTransactionResponseSchema,
 
     /**
+     * The Owner model constructor.
+     * @property {module:model/Owner}
+     */
+    Owner,
+
+    /**
+     * The OwnerBurnSchema model constructor.
+     * @property {module:model/OwnerBurnSchema}
+     */
+    OwnerBurnSchema,
+
+    /**
+     * The OwnerRemoveSecondarySchema model constructor.
+     * @property {module:model/OwnerRemoveSecondarySchema}
+     */
+    OwnerRemoveSecondarySchema,
+
+    /**
+     * The Pagination model constructor.
+     * @property {module:model/Pagination}
+     */
+    Pagination,
+
+    /**
      * The Parameter model constructor.
      * @property {module:model/Parameter}
      */
     Parameter,
 
     /**
+     * The Payee model constructor.
+     * @property {module:model/Payee}
+     */
+    Payee,
+
+    /**
      * The PayeeCreditSchema model constructor.
      * @property {module:model/PayeeCreditSchema}
      */
     PayeeCreditSchema,
+
+    /**
+     * The Payer model constructor.
+     * @property {module:model/Payer}
+     */
+    Payer,
 
     /**
      * The PayerCreditSchema model constructor.
@@ -480,6 +792,12 @@ export {
      * @property {module:model/PaymentSchema}
      */
     PaymentSchema,
+
+    /**
+     * The PrepareAddSecondaryAccountRequestSchema model constructor.
+     * @property {module:model/PrepareAddSecondaryAccountRequestSchema}
+     */
+    PrepareAddSecondaryAccountRequestSchema,
 
     /**
      * The PrepareAndExecuteBalanceDetails model constructor.
@@ -512,10 +830,34 @@ export {
     PrepareApproveDebitTransactionRequestSchema,
 
     /**
+     * The PrepareBurnTransactionRequestSchema model constructor.
+     * @property {module:model/PrepareBurnTransactionRequestSchema}
+     */
+    PrepareBurnTransactionRequestSchema,
+
+    /**
+     * The PrepareBurnTransactionRequestSchemaQrc721 model constructor.
+     * @property {module:model/PrepareBurnTransactionRequestSchemaQrc721}
+     */
+    PrepareBurnTransactionRequestSchemaQrc721,
+
+    /**
      * The PrepareCreditTransactionRequestSchema model constructor.
      * @property {module:model/PrepareCreditTransactionRequestSchema}
      */
     PrepareCreditTransactionRequestSchema,
+
+    /**
+     * The PrepareMintTransactionRequestSchemaQrc20 model constructor.
+     * @property {module:model/PrepareMintTransactionRequestSchemaQrc20}
+     */
+    PrepareMintTransactionRequestSchemaQrc20,
+
+    /**
+     * The PrepareMintTransactionRequestSchemaQrc721 model constructor.
+     * @property {module:model/PrepareMintTransactionRequestSchemaQrc721}
+     */
+    PrepareMintTransactionRequestSchemaQrc721,
 
     /**
      * The PrepareNativeTransactionRequestSchema model constructor.
@@ -528,6 +870,24 @@ export {
      * @property {module:model/PreparePaymentTransactionRequestSchema}
      */
     PreparePaymentTransactionRequestSchema,
+
+    /**
+     * The PrepareRemoveSecondaryAccountTransactionRequestSchema model constructor.
+     * @property {module:model/PrepareRemoveSecondaryAccountTransactionRequestSchema}
+     */
+    PrepareRemoveSecondaryAccountTransactionRequestSchema,
+
+    /**
+     * The PrepareRequest model constructor.
+     * @property {module:model/PrepareRequest}
+     */
+    PrepareRequest,
+
+    /**
+     * The PrepareRequestDetails model constructor.
+     * @property {module:model/PrepareRequestDetails}
+     */
+    PrepareRequestDetails,
 
     /**
      * The PrepareSearchResponseSchema model constructor.
@@ -564,6 +924,78 @@ export {
      * @property {module:model/PrepareTransferTransactionRequestSchema}
      */
     PrepareTransferTransactionRequestSchema,
+
+    /**
+     * The ReadAccountBalanceRequestSchema model constructor.
+     * @property {module:model/ReadAccountBalanceRequestSchema}
+     */
+    ReadAccountBalanceRequestSchema,
+
+    /**
+     * The ReadApprovedAccountAllowanceRequestSchema model constructor.
+     * @property {module:model/ReadApprovedAccountAllowanceRequestSchema}
+     */
+    ReadApprovedAccountAllowanceRequestSchema,
+
+    /**
+     * The ReadApprovedAccountRequestDetailsSchema model constructor.
+     * @property {module:model/ReadApprovedAccountRequestDetailsSchema}
+     */
+    ReadApprovedAccountRequestDetailsSchema,
+
+    /**
+     * The ReadApprovedAccountRequestSchema model constructor.
+     * @property {module:model/ReadApprovedAccountRequestSchema}
+     */
+    ReadApprovedAccountRequestSchema,
+
+    /**
+     * The ReadBalanceRequestDetailsSchema model constructor.
+     * @property {module:model/ReadBalanceRequestDetailsSchema}
+     */
+    ReadBalanceRequestDetailsSchema,
+
+    /**
+     * The ReadBalanceRequestSchema model constructor.
+     * @property {module:model/ReadBalanceRequestSchema}
+     */
+    ReadBalanceRequestSchema,
+
+    /**
+     * The ReadContractOwnerRequestDetailsSchema model constructor.
+     * @property {module:model/ReadContractOwnerRequestDetailsSchema}
+     */
+    ReadContractOwnerRequestDetailsSchema,
+
+    /**
+     * The ReadContractOwnerRequestSchema model constructor.
+     * @property {module:model/ReadContractOwnerRequestSchema}
+     */
+    ReadContractOwnerRequestSchema,
+
+    /**
+     * The ReadTokenOwnerRequestDetailsSchema model constructor.
+     * @property {module:model/ReadTokenOwnerRequestDetailsSchema}
+     */
+    ReadTokenOwnerRequestDetailsSchema,
+
+    /**
+     * The ReadTokenOwnerRequestSchema model constructor.
+     * @property {module:model/ReadTokenOwnerRequestSchema}
+     */
+    ReadTokenOwnerRequestSchema,
+
+    /**
+     * The Receiver model constructor.
+     * @property {module:model/Receiver}
+     */
+    Receiver,
+
+    /**
+     * The RemoveSecondaryAccountDetailsSchema model constructor.
+     * @property {module:model/RemoveSecondaryAccountDetailsSchema}
+     */
+    RemoveSecondaryAccountDetailsSchema,
 
     /**
      * The ResourceMonitoredAddressDetails model constructor.
@@ -612,6 +1044,30 @@ export {
      * @property {module:model/ScriptPubKey}
      */
     ScriptPubKey,
+
+    /**
+     * The SecondaryAccountAdditionalOwnerSchema model constructor.
+     * @property {module:model/SecondaryAccountAdditionalOwnerSchema}
+     */
+    SecondaryAccountAdditionalOwnerSchema,
+
+    /**
+     * The SecondaryAccountOwnerSchema model constructor.
+     * @property {module:model/SecondaryAccountOwnerSchema}
+     */
+    SecondaryAccountOwnerSchema,
+
+    /**
+     * The Sender model constructor.
+     * @property {module:model/Sender}
+     */
+    Sender,
+
+    /**
+     * The SignerAccount model constructor.
+     * @property {module:model/SignerAccount}
+     */
+    SignerAccount,
 
     /**
      * The SmartContract model constructor.
@@ -722,6 +1178,12 @@ export {
     SmartContractSearchSchema,
 
     /**
+     * The SmartContractTag model constructor.
+     * @property {module:model/SmartContractTag}
+     */
+    SmartContractTag,
+
+    /**
      * The Status model constructor.
      * @property {module:model/Status}
      */
@@ -740,28 +1202,28 @@ export {
     StatusUpdateSchema,
 
     /**
-     * The SubscriptionDeletionResponse model constructor.
-     * @property {module:model/SubscriptionDeletionResponse}
+     * The TierFunctionDTO model constructor.
+     * @property {module:model/TierFunctionDTO}
      */
-    SubscriptionDeletionResponse,
+    TierFunctionDTO,
 
     /**
-     * The SubscriptionDetails model constructor.
-     * @property {module:model/SubscriptionDetails}
+     * The TokenReadQRC20Response model constructor.
+     * @property {module:model/TokenReadQRC20Response}
      */
-    SubscriptionDetails,
+    TokenReadQRC20Response,
 
     /**
-     * The SubscriptionDetailsSchema model constructor.
-     * @property {module:model/SubscriptionDetailsSchema}
+     * The TokenReadQRC721Response model constructor.
+     * @property {module:model/TokenReadQRC721Response}
      */
-    SubscriptionDetailsSchema,
+    TokenReadQRC721Response,
 
     /**
-     * The SubscriptionUpdateResponse model constructor.
-     * @property {module:model/SubscriptionUpdateResponse}
+     * The TokenReadResponseDetails model constructor.
+     * @property {module:model/TokenReadResponseDetails}
      */
-    SubscriptionUpdateResponse,
+    TokenReadResponseDetails,
 
     /**
      * The Transaction model constructor.
@@ -806,28 +1268,46 @@ export {
     UTXOSmartContract,
 
     /**
-     * The UTXOTimestampSchema model constructor.
-     * @property {module:model/UTXOTimestampSchema}
-     */
-    UTXOTimestampSchema,
-
-    /**
      * The UpdateAddressMonitoringSchema model constructor.
      * @property {module:model/UpdateAddressMonitoringSchema}
      */
     UpdateAddressMonitoringSchema,
 
     /**
-     * The UpdateSubscriptionRequestSchema model constructor.
-     * @property {module:model/UpdateSubscriptionRequestSchema}
+     * The UpdateWebhookSubscriptionRequestSchema model constructor.
+     * @property {module:model/UpdateWebhookSubscriptionRequestSchema}
      */
-    UpdateSubscriptionRequestSchema,
+    UpdateWebhookSubscriptionRequestSchema,
 
     /**
      * The Vout model constructor.
      * @property {module:model/Vout}
      */
     Vout,
+
+    /**
+     * The WebhookStatusUpdateSchema model constructor.
+     * @property {module:model/WebhookStatusUpdateSchema}
+     */
+    WebhookStatusUpdateSchema,
+
+    /**
+     * The WebhookSubscriptionDetails model constructor.
+     * @property {module:model/WebhookSubscriptionDetails}
+     */
+    WebhookSubscriptionDetails,
+
+    /**
+     * The WebhookSubscriptionDetailsSchema model constructor.
+     * @property {module:model/WebhookSubscriptionDetailsSchema}
+     */
+    WebhookSubscriptionDetailsSchema,
+
+    /**
+     * The WebhookSubscriptionStatusUpdateResponse model constructor.
+     * @property {module:model/WebhookSubscriptionStatusUpdateResponse}
+     */
+    WebhookSubscriptionStatusUpdateResponse,
 
     /**
     * The AddressSearchApi service constructor.
@@ -854,22 +1334,46 @@ export {
     CreateAQRC20DebitTransactionApi,
 
     /**
-    * The CreateSubscriptionApi service constructor.
-    * @property {module:api/CreateSubscriptionApi}
+    * The CreateAQRC721TokenCollectionTransactionApi service constructor.
+    * @property {module:api/CreateAQRC721TokenCollectionTransactionApi}
     */
-    CreateSubscriptionApi,
+    CreateAQRC721TokenCollectionTransactionApi,
 
     /**
-    * The CreateTransactionApi service constructor.
-    * @property {module:api/CreateTransactionApi}
+    * The CreateAQRC721TransferTransactionApi service constructor.
+    * @property {module:api/CreateAQRC721TransferTransactionApi}
     */
-    CreateTransactionApi,
+    CreateAQRC721TransferTransactionApi,
 
     /**
-    * The MDappTransactionQueryApi service constructor.
-    * @property {module:api/MDappTransactionQueryApi}
+    * The CreateASubscriptionApi service constructor.
+    * @property {module:api/CreateASubscriptionApi}
     */
-    MDappTransactionQueryApi,
+    CreateASubscriptionApi,
+
+    /**
+    * The CreateATransactionApi service constructor.
+    * @property {module:api/CreateATransactionApi}
+    */
+    CreateATransactionApi,
+
+    /**
+    * The CreateAndPayFromAQRC20SharedAccountApi service constructor.
+    * @property {module:api/CreateAndPayFromAQRC20SharedAccountApi}
+    */
+    CreateAndPayFromAQRC20SharedAccountApi,
+
+    /**
+    * The FungibleTokenControllerApi service constructor.
+    * @property {module:api/FungibleTokenControllerApi}
+    */
+    FungibleTokenControllerApi,
+
+    /**
+    * The MDAppTransactionQueryApi service constructor.
+    * @property {module:api/MDAppTransactionQueryApi}
+    */
+    MDAppTransactionQueryApi,
 
     /**
     * The ManageMonitoredResourcesApi service constructor.
@@ -878,10 +1382,22 @@ export {
     ManageMonitoredResourcesApi,
 
     /**
-    * The ManageSubscriptionApi service constructor.
-    * @property {module:api/ManageSubscriptionApi}
+    * The ManageQRC20TokenSupplyApi service constructor.
+    * @property {module:api/ManageQRC20TokenSupplyApi}
     */
-    ManageSubscriptionApi,
+    ManageQRC20TokenSupplyApi,
+
+    /**
+    * The ManageQRC721TokenSupplyApi service constructor.
+    * @property {module:api/ManageQRC721TokenSupplyApi}
+    */
+    ManageQRC721TokenSupplyApi,
+
+    /**
+    * The ManageSubscriptionsApi service constructor.
+    * @property {module:api/ManageSubscriptionsApi}
+    */
+    ManageSubscriptionsApi,
 
     /**
     * The MonitorAResourceApi service constructor.
@@ -890,10 +1406,124 @@ export {
     MonitorAResourceApi,
 
     /**
+    * The RetrieveAccountBalanceForAQRC20TokenApi service constructor.
+    * @property {module:api/RetrieveAccountBalanceForAQRC20TokenApi}
+    */
+    RetrieveAccountBalanceForAQRC20TokenApi,
+
+    /**
+    * The RetrieveApprovedAccountAllowanceForAQRC20TokenApi service constructor.
+    * @property {module:api/RetrieveApprovedAccountAllowanceForAQRC20TokenApi}
+    */
+    RetrieveApprovedAccountAllowanceForAQRC20TokenApi,
+
+    /**
+    * The RetrieveApprovedAccountInformationForAQRC20TokenApi service constructor.
+    * @property {module:api/RetrieveApprovedAccountInformationForAQRC20TokenApi}
+    */
+    RetrieveApprovedAccountInformationForAQRC20TokenApi,
+
+    /**
+    * The RetrieveApprovedAccountInformationOfAQRC721TokenApi service constructor.
+    * @property {module:api/RetrieveApprovedAccountInformationOfAQRC721TokenApi}
+    */
+    RetrieveApprovedAccountInformationOfAQRC721TokenApi,
+
+    /**
+    * The RetrieveContractOwnerInformationOfAQRCTokenApi service constructor.
+    * @property {module:api/RetrieveContractOwnerInformationOfAQRCTokenApi}
+    */
+    RetrieveContractOwnerInformationOfAQRCTokenApi,
+
+    /**
+    * The RetrieveOwnerInformationForAQRC721TokenApi service constructor.
+    * @property {module:api/RetrieveOwnerInformationForAQRC721TokenApi}
+    */
+    RetrieveOwnerInformationForAQRC721TokenApi,
+
+    /**
+    * The RetrieveSupplyInformationForAQRCTokenApi service constructor.
+    * @property {module:api/RetrieveSupplyInformationForAQRCTokenApi}
+    */
+    RetrieveSupplyInformationForAQRCTokenApi,
+
+    /**
+    * The RetrieveTheCountOfQRC721TokensApi service constructor.
+    * @property {module:api/RetrieveTheCountOfQRC721TokensApi}
+    */
+    RetrieveTheCountOfQRC721TokensApi,
+
+    /**
+    * The RetrieveURIInformationForAQRC721TokenApi service constructor.
+    * @property {module:api/RetrieveURIInformationForAQRC721TokenApi}
+    */
+    RetrieveURIInformationForAQRC721TokenApi,
+
+    /**
     * The SmartContractSearchApi service constructor.
     * @property {module:api/SmartContractSearchApi}
     */
     SmartContractSearchApi,
+
+    /**
+    * The SubscribeToQRC20AccountCreditPaymentsApi service constructor.
+    * @property {module:api/SubscribeToQRC20AccountCreditPaymentsApi}
+    */
+    SubscribeToQRC20AccountCreditPaymentsApi,
+
+    /**
+    * The SubscribeToQRC20AccountDebitPaymentsApi service constructor.
+    * @property {module:api/SubscribeToQRC20AccountDebitPaymentsApi}
+    */
+    SubscribeToQRC20AccountDebitPaymentsApi,
+
+    /**
+    * The SubscribeToQRC20SharedAccountUpdatesApi service constructor.
+    * @property {module:api/SubscribeToQRC20SharedAccountUpdatesApi}
+    */
+    SubscribeToQRC20SharedAccountUpdatesApi,
+
+    /**
+    * The SubscribeToQRC20TokenSupplyChangesApi service constructor.
+    * @property {module:api/SubscribeToQRC20TokenSupplyChangesApi}
+    */
+    SubscribeToQRC20TokenSupplyChangesApi,
+
+    /**
+    * The SubscribeToQRC721AssetCollectionUpdatesApi service constructor.
+    * @property {module:api/SubscribeToQRC721AssetCollectionUpdatesApi}
+    */
+    SubscribeToQRC721AssetCollectionUpdatesApi,
+
+    /**
+    * The SubscribeToQRC721AssetTransfersApi service constructor.
+    * @property {module:api/SubscribeToQRC721AssetTransfersApi}
+    */
+    SubscribeToQRC721AssetTransfersApi,
+
+    /**
+    * The SubscribeToQRC721SupplyChangeUpdatesApi service constructor.
+    * @property {module:api/SubscribeToQRC721SupplyChangeUpdatesApi}
+    */
+    SubscribeToQRC721SupplyChangeUpdatesApi,
+
+    /**
+    * The SupportedFungibleTokensApi service constructor.
+    * @property {module:api/SupportedFungibleTokensApi}
+    */
+    SupportedFungibleTokensApi,
+
+    /**
+    * The SupportedNonFungibleTokensApi service constructor.
+    * @property {module:api/SupportedNonFungibleTokensApi}
+    */
+    SupportedNonFungibleTokensApi,
+
+    /**
+    * The TokenControllerApi service constructor.
+    * @property {module:api/TokenControllerApi}
+    */
+    TokenControllerApi,
 
     /**
     * The TransactionSearchApi service constructor.

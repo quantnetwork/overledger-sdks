@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,11 +15,11 @@ require 'time'
 
 module OpenapiClient
   class Status
-    # The code of an object
-    attr_accessor :code
-
     # The description of an object
     attr_accessor :description
+
+    # The code of an object
+    attr_accessor :code
 
     # The message of an object
     attr_accessor :message
@@ -32,8 +32,8 @@ module OpenapiClient
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'code' => :'code',
         :'description' => :'description',
+        :'code' => :'code',
         :'message' => :'message',
         :'value' => :'value',
         :'timestamp' => :'timestamp'
@@ -48,8 +48,8 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'code' => :'String',
         :'description' => :'String',
+        :'code' => :'String',
         :'message' => :'String',
         :'value' => :'String',
         :'timestamp' => :'String'
@@ -77,12 +77,12 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'code')
-        self.code = attributes[:'code']
-      end
-
       if attributes.key?(:'description')
         self.description = attributes[:'description']
+      end
+
+      if attributes.key?(:'code')
+        self.code = attributes[:'code']
       end
 
       if attributes.key?(:'message')
@@ -102,19 +102,6 @@ module OpenapiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@code.nil? && @code.to_s.length > 30
-        invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 30.')
-      end
-
-      if !@code.nil? && @code.to_s.length < 0
-        invalid_properties.push('invalid value for "code", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^[a-zA-Z_0-9 ]{1,30}"/)
-      if !@code.nil? && @code !~ pattern
-        invalid_properties.push("invalid value for \"code\", must conform to the pattern #{pattern}.")
-      end
-
       if !@description.nil? && @description.to_s.length > 400
         invalid_properties.push('invalid value for "description", the character length must be smaller than or equal to 400.')
       end
@@ -126,6 +113,19 @@ module OpenapiClient
       pattern = Regexp.new(/^[a-zA-Z_0-9.,\-() ]{1,400}/)
       if !@description.nil? && @description !~ pattern
         invalid_properties.push("invalid value for \"description\", must conform to the pattern #{pattern}.")
+      end
+
+      if !@code.nil? && @code.to_s.length > 30
+        invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 30.')
+      end
+
+      if !@code.nil? && @code.to_s.length < 0
+        invalid_properties.push('invalid value for "code", the character length must be great than or equal to 0.')
+      end
+
+      pattern = Regexp.new(/^[a-zA-Z_0-9 ]{1,30}"/)
+      if !@code.nil? && @code !~ pattern
+        invalid_properties.push("invalid value for \"code\", must conform to the pattern #{pattern}.")
       end
 
       if !@message.nil? && @message.to_s.length > 400
@@ -154,60 +154,25 @@ module OpenapiClient
         invalid_properties.push("invalid value for \"value\", must conform to the pattern #{pattern}.")
       end
 
-      if !@timestamp.nil? && @timestamp.to_s.length > 50
-        invalid_properties.push('invalid value for "timestamp", the character length must be smaller than or equal to 50.')
-      end
-
-      if !@timestamp.nil? && @timestamp.to_s.length < 0
-        invalid_properties.push('invalid value for "timestamp", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^[a-zA-Z_0-9.,:\- ]{1,50}/)
-      if !@timestamp.nil? && @timestamp !~ pattern
-        invalid_properties.push("invalid value for \"timestamp\", must conform to the pattern #{pattern}.")
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@code.nil? && @code.to_s.length > 30
-      return false if !@code.nil? && @code.to_s.length < 0
-      return false if !@code.nil? && @code !~ Regexp.new(/^[a-zA-Z_0-9 ]{1,30}"/)
       return false if !@description.nil? && @description.to_s.length > 400
       return false if !@description.nil? && @description.to_s.length < 0
       return false if !@description.nil? && @description !~ Regexp.new(/^[a-zA-Z_0-9.,\-() ]{1,400}/)
+      return false if !@code.nil? && @code.to_s.length > 30
+      return false if !@code.nil? && @code.to_s.length < 0
+      return false if !@code.nil? && @code !~ Regexp.new(/^[a-zA-Z_0-9 ]{1,30}"/)
       return false if !@message.nil? && @message.to_s.length > 400
       return false if !@message.nil? && @message.to_s.length < 0
       return false if !@message.nil? && @message !~ Regexp.new(/^[a-zA-Z_0-9.,\-() ]{1,400}/)
       return false if !@value.nil? && @value.to_s.length > 50
       return false if !@value.nil? && @value.to_s.length < 0
       return false if !@value.nil? && @value !~ Regexp.new(/^[a-zA-Z0-9-_ ]{1,50}$/)
-      return false if !@timestamp.nil? && @timestamp.to_s.length > 50
-      return false if !@timestamp.nil? && @timestamp.to_s.length < 0
-      return false if !@timestamp.nil? && @timestamp !~ Regexp.new(/^[a-zA-Z_0-9.,:\- ]{1,50}/)
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] code Value to be assigned
-    def code=(code)
-      if !code.nil? && code.to_s.length > 30
-        fail ArgumentError, 'invalid value for "code", the character length must be smaller than or equal to 30.'
-      end
-
-      if !code.nil? && code.to_s.length < 0
-        fail ArgumentError, 'invalid value for "code", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[a-zA-Z_0-9 ]{1,30}"/)
-      if !code.nil? && code !~ pattern
-        fail ArgumentError, "invalid value for \"code\", must conform to the pattern #{pattern}."
-      end
-
-      @code = code
     end
 
     # Custom attribute writer method with validation
@@ -227,6 +192,25 @@ module OpenapiClient
       end
 
       @description = description
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] code Value to be assigned
+    def code=(code)
+      if !code.nil? && code.to_s.length > 30
+        fail ArgumentError, 'invalid value for "code", the character length must be smaller than or equal to 30.'
+      end
+
+      if !code.nil? && code.to_s.length < 0
+        fail ArgumentError, 'invalid value for "code", the character length must be great than or equal to 0.'
+      end
+
+      pattern = Regexp.new(/^[a-zA-Z_0-9 ]{1,30}"/)
+      if !code.nil? && code !~ pattern
+        fail ArgumentError, "invalid value for \"code\", must conform to the pattern #{pattern}."
+      end
+
+      @code = code
     end
 
     # Custom attribute writer method with validation
@@ -267,32 +251,13 @@ module OpenapiClient
       @value = value
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] timestamp Value to be assigned
-    def timestamp=(timestamp)
-      if !timestamp.nil? && timestamp.to_s.length > 50
-        fail ArgumentError, 'invalid value for "timestamp", the character length must be smaller than or equal to 50.'
-      end
-
-      if !timestamp.nil? && timestamp.to_s.length < 0
-        fail ArgumentError, 'invalid value for "timestamp", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[a-zA-Z_0-9.,:\- ]{1,50}/)
-      if !timestamp.nil? && timestamp !~ pattern
-        fail ArgumentError, "invalid value for \"timestamp\", must conform to the pattern #{pattern}."
-      end
-
-      @timestamp = timestamp
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          code == o.code &&
           description == o.description &&
+          code == o.code &&
           message == o.message &&
           value == o.value &&
           timestamp == o.timestamp
@@ -307,7 +272,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [code, description, message, value, timestamp].hash
+      [description, code, message, value, timestamp].hash
     end
 
     # Builds the object from hash

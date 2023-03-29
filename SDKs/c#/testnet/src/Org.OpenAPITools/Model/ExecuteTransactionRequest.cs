@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -38,9 +38,9 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ExecuteTransactionRequest" /> class.
         /// </summary>
+        /// <param name="signed">The raw data after transaction signing.</param>
         /// <param name="requestId">The ID assigned to a preparation request in Overledger (required).</param>
-        /// <param name="signed">The raw data after transaction signing (required).</param>
-        public ExecuteTransactionRequest(string requestId = default(string), string signed = default(string))
+        public ExecuteTransactionRequest(string signed = default(string), string requestId = default(string))
         {
             // to ensure "requestId" is required (not null)
             if (requestId == null)
@@ -52,17 +52,15 @@ namespace Org.OpenAPITools.Model
                 this.RequestId = requestId;
             }
 
-            // to ensure "signed" is required (not null)
-            if (signed == null)
-            {
-                throw new InvalidDataException("signed is a required property for ExecuteTransactionRequest and cannot be null");
-            }
-            else
-            {
-                this.Signed = signed;
-            }
-
+            this.Signed = signed;
         }
+
+        /// <summary>
+        /// The raw data after transaction signing
+        /// </summary>
+        /// <value>The raw data after transaction signing</value>
+        [DataMember(Name="signed", EmitDefaultValue=false)]
+        public string Signed { get; set; }
 
         /// <summary>
         /// The ID assigned to a preparation request in Overledger
@@ -72,13 +70,6 @@ namespace Org.OpenAPITools.Model
         public string RequestId { get; set; }
 
         /// <summary>
-        /// The raw data after transaction signing
-        /// </summary>
-        /// <value>The raw data after transaction signing</value>
-        [DataMember(Name="signed", EmitDefaultValue=true)]
-        public string Signed { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -86,8 +77,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ExecuteTransactionRequest {\n");
-            sb.Append("  RequestId: ").Append(RequestId).Append("\n");
             sb.Append("  Signed: ").Append(Signed).Append("\n");
+            sb.Append("  RequestId: ").Append(RequestId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -123,14 +114,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.RequestId == input.RequestId ||
-                    (this.RequestId != null &&
-                    this.RequestId.Equals(input.RequestId))
-                ) && 
-                (
                     this.Signed == input.Signed ||
                     (this.Signed != null &&
                     this.Signed.Equals(input.Signed))
+                ) && 
+                (
+                    this.RequestId == input.RequestId ||
+                    (this.RequestId != null &&
+                    this.RequestId.Equals(input.RequestId))
                 );
         }
 
@@ -143,10 +134,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.RequestId != null)
-                    hashCode = hashCode * 59 + this.RequestId.GetHashCode();
                 if (this.Signed != null)
                     hashCode = hashCode * 59 + this.Signed.GetHashCode();
+                if (this.RequestId != null)
+                    hashCode = hashCode * 59 + this.RequestId.GetHashCode();
                 return hashCode;
             }
         }
@@ -158,25 +149,6 @@ namespace Org.OpenAPITools.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // RequestId (string) maxLength
-            if(this.RequestId != null && this.RequestId.Length > 36)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestId, length must be less than 36.", new [] { "RequestId" });
-            }
-
-            // RequestId (string) minLength
-            if(this.RequestId != null && this.RequestId.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestId, length must be greater than 0.", new [] { "RequestId" });
-            }
-
-            // RequestId (string) pattern
-            Regex regexRequestId = new Regex(@"^[A-Za-z0-9-]{1,36}$", RegexOptions.CultureInvariant);
-            if (false == regexRequestId.Match(this.RequestId).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestId, must match a pattern of " + regexRequestId, new [] { "RequestId" });
-            }
-
             // Signed (string) maxLength
             if(this.Signed != null && this.Signed.Length > 400)
             {
@@ -194,6 +166,25 @@ namespace Org.OpenAPITools.Model
             if (false == regexSigned.Match(this.Signed).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Signed, must match a pattern of " + regexSigned, new [] { "Signed" });
+            }
+
+            // RequestId (string) maxLength
+            if(this.RequestId != null && this.RequestId.Length > 36)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestId, length must be less than 36.", new [] { "RequestId" });
+            }
+
+            // RequestId (string) minLength
+            if(this.RequestId != null && this.RequestId.Length < 0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestId, length must be greater than 0.", new [] { "RequestId" });
+            }
+
+            // RequestId (string) pattern
+            Regex regexRequestId = new Regex(@"^[A-Za-z0-9-]{1,36}$", RegexOptions.CultureInvariant);
+            if (false == regexRequestId.Match(this.RequestId).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestId, must match a pattern of " + regexRequestId, new [] { "RequestId" });
             }
 
             yield break;

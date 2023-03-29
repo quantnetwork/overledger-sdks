@@ -19,7 +19,6 @@ typedef struct execute_search_utxo_response_schema_t execute_search_utxo_respons
 #include "status.h"
 #include "utxo_destination.h"
 #include "utxo_native_data.h"
-#include "utxo_timestamp_schema.h"
 
 
 
@@ -27,7 +26,7 @@ typedef struct execute_search_utxo_response_schema_t {
     char *utxo_id; // string
     list_t *destination; //nonprimitive container
     struct location_t *location; //model
-    struct utxo_timestamp_schema_t *timestamp; //model
+    char *timestamp; // string
     struct status_t *status; //model
     struct utxo_native_data_t *native_data; //model
 
@@ -37,7 +36,7 @@ execute_search_utxo_response_schema_t *execute_search_utxo_response_schema_creat
     char *utxo_id,
     list_t *destination,
     location_t *location,
-    utxo_timestamp_schema_t *timestamp,
+    char *timestamp,
     status_t *status,
     utxo_native_data_t *native_data
 );

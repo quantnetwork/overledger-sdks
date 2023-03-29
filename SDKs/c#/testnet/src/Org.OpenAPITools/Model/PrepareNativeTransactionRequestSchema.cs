@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,19 +33,13 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PrepareNativeTransactionRequestSchema" /> class.
         /// </summary>
-        /// <param name="location">location.</param>
         /// <param name="type">The type of the object.</param>
-        public PrepareNativeTransactionRequestSchema(Location location = default(Location), string type = default(string))
+        /// <param name="location">location.</param>
+        public PrepareNativeTransactionRequestSchema(string type = default(string), Location location = default(Location))
         {
-            this.Location = location;
             this.Type = type;
+            this.Location = location;
         }
-
-        /// <summary>
-        /// Gets or Sets Location
-        /// </summary>
-        [DataMember(Name="location", EmitDefaultValue=false)]
-        public Location Location { get; set; }
 
         /// <summary>
         /// The type of the object
@@ -55,6 +49,12 @@ namespace Org.OpenAPITools.Model
         public string Type { get; set; }
 
         /// <summary>
+        /// Gets or Sets Location
+        /// </summary>
+        [DataMember(Name="location", EmitDefaultValue=false)]
+        public Location Location { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -62,8 +62,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class PrepareNativeTransactionRequestSchema {\n");
-            sb.Append("  Location: ").Append(Location).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Location: ").Append(Location).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -99,14 +99,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.Location == input.Location ||
-                    (this.Location != null &&
-                    this.Location.Equals(input.Location))
-                ) && 
-                (
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
+                ) && 
+                (
+                    this.Location == input.Location ||
+                    (this.Location != null &&
+                    this.Location.Equals(input.Location))
                 );
         }
 
@@ -119,10 +119,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Location != null)
-                    hashCode = hashCode * 59 + this.Location.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
+                if (this.Location != null)
+                    hashCode = hashCode * 59 + this.Location.GetHashCode();
                 return hashCode;
             }
         }

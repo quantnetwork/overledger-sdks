@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,8 +16,8 @@ import (
 
 // SmartContractSearchSchema struct for SmartContractSearchSchema
 type SmartContractSearchSchema struct {
-	Function *SmartContractSearchFunctionSchema `json:"function,omitempty"`
 	SmartContractId *string `json:"smartContractId,omitempty"`
+	Function *SmartContractSearchFunctionSchema `json:"function,omitempty"`
 }
 
 // NewSmartContractSearchSchema instantiates a new SmartContractSearchSchema object
@@ -35,38 +35,6 @@ func NewSmartContractSearchSchema() *SmartContractSearchSchema {
 func NewSmartContractSearchSchemaWithDefaults() *SmartContractSearchSchema {
 	this := SmartContractSearchSchema{}
 	return &this
-}
-
-// GetFunction returns the Function field value if set, zero value otherwise.
-func (o *SmartContractSearchSchema) GetFunction() SmartContractSearchFunctionSchema {
-	if o == nil || o.Function == nil {
-		var ret SmartContractSearchFunctionSchema
-		return ret
-	}
-	return *o.Function
-}
-
-// GetFunctionOk returns a tuple with the Function field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SmartContractSearchSchema) GetFunctionOk() (*SmartContractSearchFunctionSchema, bool) {
-	if o == nil || o.Function == nil {
-		return nil, false
-	}
-	return o.Function, true
-}
-
-// HasFunction returns a boolean if a field has been set.
-func (o *SmartContractSearchSchema) HasFunction() bool {
-	if o != nil && o.Function != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFunction gets a reference to the given SmartContractSearchFunctionSchema and assigns it to the Function field.
-func (o *SmartContractSearchSchema) SetFunction(v SmartContractSearchFunctionSchema) {
-	o.Function = &v
 }
 
 // GetSmartContractId returns the SmartContractId field value if set, zero value otherwise.
@@ -101,13 +69,45 @@ func (o *SmartContractSearchSchema) SetSmartContractId(v string) {
 	o.SmartContractId = &v
 }
 
+// GetFunction returns the Function field value if set, zero value otherwise.
+func (o *SmartContractSearchSchema) GetFunction() SmartContractSearchFunctionSchema {
+	if o == nil || o.Function == nil {
+		var ret SmartContractSearchFunctionSchema
+		return ret
+	}
+	return *o.Function
+}
+
+// GetFunctionOk returns a tuple with the Function field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SmartContractSearchSchema) GetFunctionOk() (*SmartContractSearchFunctionSchema, bool) {
+	if o == nil || o.Function == nil {
+		return nil, false
+	}
+	return o.Function, true
+}
+
+// HasFunction returns a boolean if a field has been set.
+func (o *SmartContractSearchSchema) HasFunction() bool {
+	if o != nil && o.Function != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFunction gets a reference to the given SmartContractSearchFunctionSchema and assigns it to the Function field.
+func (o *SmartContractSearchSchema) SetFunction(v SmartContractSearchFunctionSchema) {
+	o.Function = &v
+}
+
 func (o SmartContractSearchSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Function != nil {
-		toSerialize["function"] = o.Function
-	}
 	if o.SmartContractId != nil {
 		toSerialize["smartContractId"] = o.SmartContractId
+	}
+	if o.Function != nil {
+		toSerialize["function"] = o.Function
 	}
 	return json.Marshal(toSerialize)
 }

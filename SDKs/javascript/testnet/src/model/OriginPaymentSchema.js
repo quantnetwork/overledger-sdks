@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -21,12 +21,13 @@ import ApiClient from '../ApiClient';
 class OriginPaymentSchema {
     /**
      * Constructs a new <code>OriginPaymentSchema</code>.
-     * Where is this transaction coming from
+     * List of where this transaction is coming from
      * @alias module:model/OriginPaymentSchema
+     * @param originId {String} Unique Identifier of the origin/sender
      */
-    constructor() { 
+    constructor(originId) { 
         
-        OriginPaymentSchema.initialize(this);
+        OriginPaymentSchema.initialize(this, originId);
     }
 
     /**
@@ -34,7 +35,8 @@ class OriginPaymentSchema {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, originId) { 
+        obj['originId'] = originId;
     }
 
     /**
@@ -59,7 +61,7 @@ class OriginPaymentSchema {
 }
 
 /**
- * Unique Identifier of the originator
+ * Unique Identifier of the origin/sender
  * @member {String} originId
  */
 OriginPaymentSchema.prototype['originId'] = undefined;

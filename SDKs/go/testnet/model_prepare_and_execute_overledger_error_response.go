@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,9 +16,9 @@ import (
 
 // PrepareAndExecuteOverledgerErrorResponse struct for PrepareAndExecuteOverledgerErrorResponse
 type PrepareAndExecuteOverledgerErrorResponse struct {
-	Code *string `json:"code,omitempty"`
-	Description *string `json:"description,omitempty"`
 	Category *string `json:"category,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Code *string `json:"code,omitempty"`
 }
 
 // NewPrepareAndExecuteOverledgerErrorResponse instantiates a new PrepareAndExecuteOverledgerErrorResponse object
@@ -36,70 +36,6 @@ func NewPrepareAndExecuteOverledgerErrorResponse() *PrepareAndExecuteOverledgerE
 func NewPrepareAndExecuteOverledgerErrorResponseWithDefaults() *PrepareAndExecuteOverledgerErrorResponse {
 	this := PrepareAndExecuteOverledgerErrorResponse{}
 	return &this
-}
-
-// GetCode returns the Code field value if set, zero value otherwise.
-func (o *PrepareAndExecuteOverledgerErrorResponse) GetCode() string {
-	if o == nil || o.Code == nil {
-		var ret string
-		return ret
-	}
-	return *o.Code
-}
-
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PrepareAndExecuteOverledgerErrorResponse) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
-		return nil, false
-	}
-	return o.Code, true
-}
-
-// HasCode returns a boolean if a field has been set.
-func (o *PrepareAndExecuteOverledgerErrorResponse) HasCode() bool {
-	if o != nil && o.Code != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given string and assigns it to the Code field.
-func (o *PrepareAndExecuteOverledgerErrorResponse) SetCode(v string) {
-	o.Code = &v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *PrepareAndExecuteOverledgerErrorResponse) GetDescription() string {
-	if o == nil || o.Description == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PrepareAndExecuteOverledgerErrorResponse) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *PrepareAndExecuteOverledgerErrorResponse) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *PrepareAndExecuteOverledgerErrorResponse) SetDescription(v string) {
-	o.Description = &v
 }
 
 // GetCategory returns the Category field value if set, zero value otherwise.
@@ -134,16 +70,80 @@ func (o *PrepareAndExecuteOverledgerErrorResponse) SetCategory(v string) {
 	o.Category = &v
 }
 
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *PrepareAndExecuteOverledgerErrorResponse) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PrepareAndExecuteOverledgerErrorResponse) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *PrepareAndExecuteOverledgerErrorResponse) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *PrepareAndExecuteOverledgerErrorResponse) SetDescription(v string) {
+	o.Description = &v
+}
+
+// GetCode returns the Code field value if set, zero value otherwise.
+func (o *PrepareAndExecuteOverledgerErrorResponse) GetCode() string {
+	if o == nil || o.Code == nil {
+		var ret string
+		return ret
+	}
+	return *o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PrepareAndExecuteOverledgerErrorResponse) GetCodeOk() (*string, bool) {
+	if o == nil || o.Code == nil {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// HasCode returns a boolean if a field has been set.
+func (o *PrepareAndExecuteOverledgerErrorResponse) HasCode() bool {
+	if o != nil && o.Code != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given string and assigns it to the Code field.
+func (o *PrepareAndExecuteOverledgerErrorResponse) SetCode(v string) {
+	o.Code = &v
+}
+
 func (o PrepareAndExecuteOverledgerErrorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
-		toSerialize["code"] = o.Code
+	if o.Category != nil {
+		toSerialize["category"] = o.Category
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.Category != nil {
-		toSerialize["category"] = o.Category
+	if o.Code != nil {
+		toSerialize["code"] = o.Code
 	}
 	return json.Marshal(toSerialize)
 }

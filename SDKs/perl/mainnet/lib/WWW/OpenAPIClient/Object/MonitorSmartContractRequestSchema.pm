@@ -2,7 +2,7 @@
 
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -46,7 +46,7 @@ use base ("Class::Accessor", "Class::Data::Inheritable");
 
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -162,13 +162,6 @@ __PACKAGE__->class_documentation({description => '',
 }                                 );
 
 __PACKAGE__->method_documentation({
-    'call_back_url' => {
-        datatype => 'string',
-        base_name => 'callBackURL',
-        description => '',
-        format => '',
-        read_only => '',
-            },
     'event_params' => {
         datatype => 'ARRAY[MonitorSmartContractEventParam]',
         base_name => 'eventParams',
@@ -190,6 +183,13 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
+    'call_back_url' => {
+        datatype => 'string',
+        base_name => 'callBackURL',
+        description => '',
+        format => '',
+        read_only => '',
+            },
     'smart_contract_id' => {
         datatype => 'string',
         base_name => 'smartContractId',
@@ -200,18 +200,18 @@ __PACKAGE__->method_documentation({
 });
 
 __PACKAGE__->openapi_types( {
-    'call_back_url' => 'string',
     'event_params' => 'ARRAY[MonitorSmartContractEventParam]',
     'event_name' => 'string',
     'location' => 'Location',
+    'call_back_url' => 'string',
     'smart_contract_id' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
-    'call_back_url' => 'callBackURL',
     'event_params' => 'eventParams',
     'event_name' => 'eventName',
     'location' => 'location',
+    'call_back_url' => 'callBackURL',
     'smart_contract_id' => 'smartContractId'
 } );
 

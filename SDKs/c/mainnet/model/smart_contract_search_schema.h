@@ -20,14 +20,14 @@ typedef struct smart_contract_search_schema_t smart_contract_search_schema_t;
 
 
 typedef struct smart_contract_search_schema_t {
-    struct smart_contract_search_function_schema_t *function; //model
     char *smart_contract_id; // string
+    struct smart_contract_search_function_schema_t *function; //model
 
 } smart_contract_search_schema_t;
 
 smart_contract_search_schema_t *smart_contract_search_schema_create(
-    smart_contract_search_function_schema_t *function,
-    char *smart_contract_id
+    char *smart_contract_id,
+    smart_contract_search_function_schema_t *function
 );
 
 void smart_contract_search_schema_free(smart_contract_search_schema_t *smart_contract_search_schema);

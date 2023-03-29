@@ -32,7 +32,7 @@ my $api_instance = WWW::OpenAPIClient::BlockSearchApi->new(
 );
 
 my $authorization = "authorization_example"; # string | 
-my $block_id = latest; # string | 
+my $block_id = 54678; # string | 
 my $prepare_search_schema = WWW::OpenAPIClient::Object::PrepareSearchSchema->new(); # PrepareSearchSchema | 
 
 eval {
@@ -136,7 +136,7 @@ my $api_instance = WWW::OpenAPIClient::BlockSearchApi->new(
 );
 
 my $authorization = "authorization_example"; # string | 
-my $block_id = latest; # string | 
+my $block_id = 54678; # string | 
 my $prepare_search_schema = WWW::OpenAPIClient::Object::PrepareSearchSchema->new(); # PrepareSearchSchema | 
 
 eval {

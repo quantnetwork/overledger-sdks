@@ -161,7 +161,7 @@ $apiInstance = new OpenAPI\Client\Api\SmartContractSearchApi(
     $config
 );
 $authorization = 'authorization_example'; // string
-$prepare_search_smart_contract_request_schema = {"requestDetails":{"destination":[{"smartContract":{"function":{"name":"balanceOf","inputParameters":[{"type":"address","value":"0x8917cf2A57DF39D311a96c53FCCA76dAFB25392B"}],"outputParameters":[{"type":"uint256"}]},"smartContractId":"0xF9cd6C86992Fce1481dBc4bDB7E1b101c1e8cEE2"}}]},"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // \OpenAPI\Client\Model\PrepareSearchSmartContractRequestSchema
+$prepare_search_smart_contract_request_schema = {"requestDetails":{"destination":[{"smartContract":{"smartContractId":"0xF9cd6C86992Fce1481dBc4bDB7E1b101c1e8cEE2","function":{"name":"balanceOf","inputParameters":[{"type":"address","value":"0x8917cf2A57DF39D311a96c53FCCA76dAFB25392B"}],"outputParameters":[{"type":"uint256"}]}}}]},"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // \OpenAPI\Client\Model\PrepareSearchSmartContractRequestSchema
 
 try {
     $result = $apiInstance->prepareSmartContractQueryRequest($authorization, $prepare_search_smart_contract_request_schema);

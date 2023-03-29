@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,26 +33,19 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Status" /> class.
         /// </summary>
-        /// <param name="code">The code of an object.</param>
         /// <param name="description">The description of an object.</param>
+        /// <param name="code">The code of an object.</param>
         /// <param name="message">The message of an object.</param>
         /// <param name="value">The value of an object.</param>
         /// <param name="timestamp">timestamp.</param>
-        public Status(string code = default(string), string description = default(string), string message = default(string), string value = default(string), string timestamp = default(string))
+        public Status(string description = default(string), string code = default(string), string message = default(string), string value = default(string), string timestamp = default(string))
         {
-            this.Code = code;
             this.Description = description;
+            this.Code = code;
             this.Message = message;
             this.Value = value;
             this.Timestamp = timestamp;
         }
-
-        /// <summary>
-        /// The code of an object
-        /// </summary>
-        /// <value>The code of an object</value>
-        [DataMember(Name="code", EmitDefaultValue=false)]
-        public string Code { get; set; }
 
         /// <summary>
         /// The description of an object
@@ -60,6 +53,13 @@ namespace Org.OpenAPITools.Model
         /// <value>The description of an object</value>
         [DataMember(Name="description", EmitDefaultValue=false)]
         public string Description { get; set; }
+
+        /// <summary>
+        /// The code of an object
+        /// </summary>
+        /// <value>The code of an object</value>
+        [DataMember(Name="code", EmitDefaultValue=false)]
+        public string Code { get; set; }
 
         /// <summary>
         /// The message of an object
@@ -89,8 +89,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Status {\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
@@ -129,14 +129,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.Code == input.Code ||
-                    (this.Code != null &&
-                    this.Code.Equals(input.Code))
-                ) && 
-                (
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
+                ) && 
+                (
+                    this.Code == input.Code ||
+                    (this.Code != null &&
+                    this.Code.Equals(input.Code))
                 ) && 
                 (
                     this.Message == input.Message ||
@@ -164,10 +164,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Code != null)
-                    hashCode = hashCode * 59 + this.Code.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.Code != null)
+                    hashCode = hashCode * 59 + this.Code.GetHashCode();
                 if (this.Message != null)
                     hashCode = hashCode * 59 + this.Message.GetHashCode();
                 if (this.Value != null)
@@ -185,25 +185,6 @@ namespace Org.OpenAPITools.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Code (string) maxLength
-            if(this.Code != null && this.Code.Length > 30)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be less than 30.", new [] { "Code" });
-            }
-
-            // Code (string) minLength
-            if(this.Code != null && this.Code.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be greater than 0.", new [] { "Code" });
-            }
-
-            // Code (string) pattern
-            Regex regexCode = new Regex(@"^[a-zA-Z_0-9 ]{1,30}\"", RegexOptions.CultureInvariant);
-            if (false == regexCode.Match(this.Code).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, must match a pattern of " + regexCode, new [] { "Code" });
-            }
-
             // Description (string) maxLength
             if(this.Description != null && this.Description.Length > 400)
             {
@@ -221,6 +202,25 @@ namespace Org.OpenAPITools.Model
             if (false == regexDescription.Match(this.Description).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, must match a pattern of " + regexDescription, new [] { "Description" });
+            }
+
+            // Code (string) maxLength
+            if(this.Code != null && this.Code.Length > 30)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be less than 30.", new [] { "Code" });
+            }
+
+            // Code (string) minLength
+            if(this.Code != null && this.Code.Length < 0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be greater than 0.", new [] { "Code" });
+            }
+
+            // Code (string) pattern
+            Regex regexCode = new Regex(@"^[a-zA-Z_0-9 ]{1,30}\"", RegexOptions.CultureInvariant);
+            if (false == regexCode.Match(this.Code).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, must match a pattern of " + regexCode, new [] { "Code" });
             }
 
             // Message (string) maxLength
@@ -259,25 +259,6 @@ namespace Org.OpenAPITools.Model
             if (false == regexValue.Match(this.Value).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Value, must match a pattern of " + regexValue, new [] { "Value" });
-            }
-
-            // Timestamp (string) maxLength
-            if(this.Timestamp != null && this.Timestamp.Length > 50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Timestamp, length must be less than 50.", new [] { "Timestamp" });
-            }
-
-            // Timestamp (string) minLength
-            if(this.Timestamp != null && this.Timestamp.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Timestamp, length must be greater than 0.", new [] { "Timestamp" });
-            }
-
-            // Timestamp (string) pattern
-            Regex regexTimestamp = new Regex(@"^[a-zA-Z_0-9.,:\\- ]{1,50}", RegexOptions.CultureInvariant);
-            if (false == regexTimestamp.Match(this.Timestamp).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Timestamp, must match a pattern of " + regexTimestamp, new [] { "Timestamp" });
             }
 
             yield break;

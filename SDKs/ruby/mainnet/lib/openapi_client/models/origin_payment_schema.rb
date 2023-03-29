@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -14,9 +14,9 @@ require 'date'
 require 'time'
 
 module OpenapiClient
-  # Where is this transaction coming from
+  # List of where this transaction is coming from
   class OriginPaymentSchema
-    # Unique Identifier of the originator
+    # Unique Identifier of the origin/sender
     attr_accessor :origin_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -68,16 +68,12 @@ module OpenapiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@origin_id.nil? && @origin_id.to_s.length > 66
-        invalid_properties.push('invalid value for "origin_id", the character length must be smaller than or equal to 66.')
+      if @origin_id.nil?
+        invalid_properties.push('invalid value for "origin_id", origin_id cannot be nil.')
       end
 
-      if !@origin_id.nil? && @origin_id.to_s.length < 0
-        invalid_properties.push('invalid value for "origin_id", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^[A-Za-z0-9:]{1,66}$/)
-      if !@origin_id.nil? && @origin_id !~ pattern
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
+      if @origin_id !~ pattern
         invalid_properties.push("invalid value for \"origin_id\", must conform to the pattern #{pattern}.")
       end
 
@@ -87,25 +83,20 @@ module OpenapiClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@origin_id.nil? && @origin_id.to_s.length > 66
-      return false if !@origin_id.nil? && @origin_id.to_s.length < 0
-      return false if !@origin_id.nil? && @origin_id !~ Regexp.new(/^[A-Za-z0-9:]{1,66}$/)
+      return false if @origin_id.nil?
+      return false if @origin_id !~ Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] origin_id Value to be assigned
     def origin_id=(origin_id)
-      if !origin_id.nil? && origin_id.to_s.length > 66
-        fail ArgumentError, 'invalid value for "origin_id", the character length must be smaller than or equal to 66.'
+      if origin_id.nil?
+        fail ArgumentError, 'origin_id cannot be nil'
       end
 
-      if !origin_id.nil? && origin_id.to_s.length < 0
-        fail ArgumentError, 'invalid value for "origin_id", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[A-Za-z0-9:]{1,66}$/)
-      if !origin_id.nil? && origin_id !~ pattern
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
+      if origin_id !~ pattern
         fail ArgumentError, "invalid value for \"origin_id\", must conform to the pattern #{pattern}."
       end
 

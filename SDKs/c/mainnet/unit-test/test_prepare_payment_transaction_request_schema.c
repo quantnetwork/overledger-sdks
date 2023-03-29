@@ -16,27 +16,27 @@
 #include "../model/prepare_payment_transaction_request_schema.h"
 prepare_payment_transaction_request_schema_t* instantiate_prepare_payment_transaction_request_schema(int include_optional);
 
-#include "test_payment_request_details_schema.c"
 #include "test_location.c"
+#include "test_payment_request_details_schema.c"
 
 
 prepare_payment_transaction_request_schema_t* instantiate_prepare_payment_transaction_request_schema(int include_optional) {
   prepare_payment_transaction_request_schema_t* prepare_payment_transaction_request_schema = NULL;
   if (include_optional) {
     prepare_payment_transaction_request_schema = prepare_payment_transaction_request_schema_create(
-      "a",
-       // false, not to have infinite recursion
-      instantiate_payment_request_details_schema(0),
        // false, not to have infinite recursion
       instantiate_location(0),
-      "a"
+      quant_overledger_api_prepare_payment_transaction_request_schema_TYPE_Payment,
+      quant_overledger_api_prepare_payment_transaction_request_schema_URGENCY_Normal,
+       // false, not to have infinite recursion
+      instantiate_payment_request_details_schema(0)
     );
   } else {
     prepare_payment_transaction_request_schema = prepare_payment_transaction_request_schema_create(
-      "a",
       NULL,
-      NULL,
-      "a"
+      quant_overledger_api_prepare_payment_transaction_request_schema_TYPE_Payment,
+      quant_overledger_api_prepare_payment_transaction_request_schema_URGENCY_Normal,
+      NULL
     );
   }
 

@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,49 +33,25 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Function" /> class.
         /// </summary>
-        /// <param name="functionId">functionId.</param>
-        /// <param name="code">code.</param>
-        /// <param name="name">name.</param>
-        /// <param name="inputParameters">inputParameters.</param>
-        /// <param name="outputParameters">outputParameters.</param>
-        public Function(string functionId = default(string), string code = default(string), string name = default(string), List<Parameter> inputParameters = default(List<Parameter>), List<Parameter> outputParameters = default(List<Parameter>))
+        /// <param name="type">type.</param>
+        /// <param name="api">api.</param>
+        public Function(string type = default(string), string api = default(string))
         {
-            this.FunctionId = functionId;
-            this.Code = code;
-            this.Name = name;
-            this.InputParameters = inputParameters;
-            this.OutputParameters = outputParameters;
+            this.Type = type;
+            this.Api = api;
         }
 
         /// <summary>
-        /// Gets or Sets FunctionId
+        /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name="functionId", EmitDefaultValue=false)]
-        public string FunctionId { get; set; }
+        [DataMember(Name="type", EmitDefaultValue=false)]
+        public string Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets Code
+        /// Gets or Sets Api
         /// </summary>
-        [DataMember(Name="code", EmitDefaultValue=false)]
-        public string Code { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Name
-        /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or Sets InputParameters
-        /// </summary>
-        [DataMember(Name="inputParameters", EmitDefaultValue=false)]
-        public List<Parameter> InputParameters { get; set; }
-
-        /// <summary>
-        /// Gets or Sets OutputParameters
-        /// </summary>
-        [DataMember(Name="outputParameters", EmitDefaultValue=false)]
-        public List<Parameter> OutputParameters { get; set; }
+        [DataMember(Name="api", EmitDefaultValue=false)]
+        public string Api { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,11 +61,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Function {\n");
-            sb.Append("  FunctionId: ").Append(FunctionId).Append("\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  InputParameters: ").Append(InputParameters).Append("\n");
-            sb.Append("  OutputParameters: ").Append(OutputParameters).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Api: ").Append(Api).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -125,31 +98,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.FunctionId == input.FunctionId ||
-                    (this.FunctionId != null &&
-                    this.FunctionId.Equals(input.FunctionId))
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
-                    this.Code == input.Code ||
-                    (this.Code != null &&
-                    this.Code.Equals(input.Code))
-                ) && 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.InputParameters == input.InputParameters ||
-                    this.InputParameters != null &&
-                    input.InputParameters != null &&
-                    this.InputParameters.SequenceEqual(input.InputParameters)
-                ) && 
-                (
-                    this.OutputParameters == input.OutputParameters ||
-                    this.OutputParameters != null &&
-                    input.OutputParameters != null &&
-                    this.OutputParameters.SequenceEqual(input.OutputParameters)
+                    this.Api == input.Api ||
+                    (this.Api != null &&
+                    this.Api.Equals(input.Api))
                 );
         }
 
@@ -162,16 +118,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.FunctionId != null)
-                    hashCode = hashCode * 59 + this.FunctionId.GetHashCode();
-                if (this.Code != null)
-                    hashCode = hashCode * 59 + this.Code.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.InputParameters != null)
-                    hashCode = hashCode * 59 + this.InputParameters.GetHashCode();
-                if (this.OutputParameters != null)
-                    hashCode = hashCode * 59 + this.OutputParameters.GetHashCode();
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
+                if (this.Api != null)
+                    hashCode = hashCode * 59 + this.Api.GetHashCode();
                 return hashCode;
             }
         }
@@ -183,60 +133,6 @@ namespace Org.OpenAPITools.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // FunctionId (string) maxLength
-            if(this.FunctionId != null && this.FunctionId.Length > 30)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FunctionId, length must be less than 30.", new [] { "FunctionId" });
-            }
-
-            // FunctionId (string) minLength
-            if(this.FunctionId != null && this.FunctionId.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FunctionId, length must be greater than 0.", new [] { "FunctionId" });
-            }
-
-            // FunctionId (string) pattern
-            Regex regexFunctionId = new Regex(@"^[\\S\\s]{1,30}$", RegexOptions.CultureInvariant);
-            if (false == regexFunctionId.Match(this.FunctionId).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FunctionId, must match a pattern of " + regexFunctionId, new [] { "FunctionId" });
-            }
-
-            // Code (string) maxLength
-            if(this.Code != null && this.Code.Length > 30)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be less than 30.", new [] { "Code" });
-            }
-
-            // Code (string) minLength
-            if(this.Code != null && this.Code.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be greater than 0.", new [] { "Code" });
-            }
-
-            // Code (string) pattern
-            Regex regexCode = new Regex(@"^[\\S\\s]{1,30}$", RegexOptions.CultureInvariant);
-            if (false == regexCode.Match(this.Code).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, must match a pattern of " + regexCode, new [] { "Code" });
-            }
-
-            // Name (string) maxLength
-            if(this.Name != null && this.Name.Length > 50)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 50.", new [] { "Name" });
-            }
-
-            // Name (string) minLength
-            if(this.Name != null && this.Name.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be greater than 0.", new [] { "Name" });
-            }
-
-
-
-
-
             yield break;
         }
     }

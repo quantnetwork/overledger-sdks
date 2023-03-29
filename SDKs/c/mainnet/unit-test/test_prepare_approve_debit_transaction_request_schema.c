@@ -16,27 +16,27 @@
 #include "../model/prepare_approve_debit_transaction_request_schema.h"
 prepare_approve_debit_transaction_request_schema_t* instantiate_prepare_approve_debit_transaction_request_schema(int include_optional);
 
-#include "test_approve_request_details_schema.c"
 #include "test_location.c"
+#include "test_approve_request_details_schema.c"
 
 
 prepare_approve_debit_transaction_request_schema_t* instantiate_prepare_approve_debit_transaction_request_schema(int include_optional) {
   prepare_approve_debit_transaction_request_schema_t* prepare_approve_debit_transaction_request_schema = NULL;
   if (include_optional) {
     prepare_approve_debit_transaction_request_schema = prepare_approve_debit_transaction_request_schema_create(
-      "a",
-       // false, not to have infinite recursion
-      instantiate_approve_request_details_schema(0),
        // false, not to have infinite recursion
       instantiate_location(0),
-      "a"
+      quant_overledger_api_prepare_approve_debit_transaction_request_schema_TYPE_Payment,
+      quant_overledger_api_prepare_approve_debit_transaction_request_schema_URGENCY_Normal,
+       // false, not to have infinite recursion
+      instantiate_approve_request_details_schema(0)
     );
   } else {
     prepare_approve_debit_transaction_request_schema = prepare_approve_debit_transaction_request_schema_create(
-      "a",
       NULL,
-      NULL,
-      "a"
+      quant_overledger_api_prepare_approve_debit_transaction_request_schema_TYPE_Payment,
+      quant_overledger_api_prepare_approve_debit_transaction_request_schema_URGENCY_Normal,
+      NULL
     );
   }
 

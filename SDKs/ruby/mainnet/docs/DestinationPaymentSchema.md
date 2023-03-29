@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **payment** | [**PaymentSchema**](PaymentSchema.md) |  | [optional] |
-| **destination_id** | **String** | The unique identifiers of the destination | [optional] |
+| **destination_id** | **String** | Unique identifier of the destination/recipient |  |
+| **payment** | [**PaymentSchema**](PaymentSchema.md) |  |  |
 
 ## Example
 
@@ -13,8 +13,8 @@
 require 'openapi_client'
 
 instance = OpenapiClient::DestinationPaymentSchema.new(
-  payment: null,
-  destination_id: null
+  destination_id: null,
+  payment: null
 )
 ```
 

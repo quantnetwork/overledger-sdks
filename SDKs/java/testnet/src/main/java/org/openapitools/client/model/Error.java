@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -27,19 +27,19 @@ import java.io.IOException;
 /**
  * Error
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class Error {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
   private Integer code;
 
-  public static final String SERIALIZED_NAME_SERVICE = "service";
-  @SerializedName(SERIALIZED_NAME_SERVICE)
-  private String service;
-
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   private String message;
+
+  public static final String SERIALIZED_NAME_SERVICE = "service";
+  @SerializedName(SERIALIZED_NAME_SERVICE)
+  private String service;
 
   public static final String SERIALIZED_NAME_TIMESTAMP = "timestamp";
   @SerializedName(SERIALIZED_NAME_TIMESTAMP)
@@ -71,29 +71,6 @@ public class Error {
   }
 
 
-  public Error service(String service) {
-    
-    this.service = service;
-    return this;
-  }
-
-   /**
-   * Get service
-   * @return service
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getService() {
-    return service;
-  }
-
-
-  public void setService(String service) {
-    this.service = service;
-  }
-
-
   public Error message(String message) {
     
     this.message = message;
@@ -114,6 +91,29 @@ public class Error {
 
   public void setMessage(String message) {
     this.message = message;
+  }
+
+
+  public Error service(String service) {
+    
+    this.service = service;
+    return this;
+  }
+
+   /**
+   * Get service
+   * @return service
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getService() {
+    return service;
+  }
+
+
+  public void setService(String service) {
+    this.service = service;
   }
 
 
@@ -150,14 +150,14 @@ public class Error {
     }
     Error error = (Error) o;
     return Objects.equals(this.code, error.code) &&
-        Objects.equals(this.service, error.service) &&
         Objects.equals(this.message, error.message) &&
+        Objects.equals(this.service, error.service) &&
         Objects.equals(this.timestamp, error.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, service, message, timestamp);
+    return Objects.hash(code, message, service, timestamp);
   }
 
   @Override
@@ -165,8 +165,8 @@ public class Error {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    service: ").append(toIndentedString(service)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    service: ").append(toIndentedString(service)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("}");
     return sb.toString();

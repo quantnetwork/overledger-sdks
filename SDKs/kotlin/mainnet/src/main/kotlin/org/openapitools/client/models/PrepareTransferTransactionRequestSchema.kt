@@ -1,7 +1,7 @@
 /**
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -28,25 +28,49 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param urgency 
- * @param requestDetails 
  * @param location 
- * @param type 
+ * @param type The type of the transaction
+ * @param urgency This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+ * @param requestDetails 
  */
 
 data class PrepareTransferTransactionRequestSchema (
 
+    @Json(name = "location")
+    val location: Location,
+
+    /* The type of the transaction */
+    @Json(name = "type")
+    val type: PrepareTransferTransactionRequestSchema.Type,
+
+    /* This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal */
     @Json(name = "urgency")
-    val urgency: kotlin.String? = null,
+    val urgency: PrepareTransferTransactionRequestSchema.Urgency,
 
     @Json(name = "requestDetails")
-    val requestDetails: TransferRequestDetailsSchema? = null,
+    val requestDetails: TransferRequestDetailsSchema? = null
 
-    @Json(name = "location")
-    val location: Location? = null,
+) {
 
-    @Json(name = "type")
-    val type: kotlin.String? = null
-
-)
+    /**
+     * The type of the transaction
+     *
+     * Values: payment,transfer,contractInvoke
+     */
+    enum class Type(val value: kotlin.String) {
+        @Json(name = "Payment") payment("Payment"),
+        @Json(name = "Transfer") transfer("Transfer"),
+        @Json(name = "Contract Invoke") contractInvoke("Contract Invoke");
+    }
+    /**
+     * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     *
+     * Values: normal,fast,urgent
+     */
+    enum class Urgency(val value: kotlin.String) {
+        @Json(name = "Normal") normal("Normal"),
+        @Json(name = "Fast") fast("Fast"),
+        @Json(name = "Urgent") urgent("Urgent");
+    }
+}
 

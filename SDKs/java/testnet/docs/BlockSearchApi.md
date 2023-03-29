@@ -38,7 +38,7 @@ public class Example {
 
     BlockSearchApi apiInstance = new BlockSearchApi(defaultClient);
     String authorization = "authorization_example"; // String | 
-    String blockId = "latest"; // String | 
+    String blockId = "54678"; // String | 
     PrepareSearchSchema prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
     try {
       AutoExecuteSearchBlockResponseSchema result = apiInstance.autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema);
@@ -184,7 +184,7 @@ public class Example {
 
     BlockSearchApi apiInstance = new BlockSearchApi(defaultClient);
     String authorization = "authorization_example"; // String | 
-    String blockId = "latest"; // String | 
+    String blockId = "54678"; // String | 
     PrepareSearchSchema prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
     try {
       PrepareSearchResponseSchema result = apiInstance.prepareSearchBlockByBlockId(authorization, blockId, prepareSearchSchema);

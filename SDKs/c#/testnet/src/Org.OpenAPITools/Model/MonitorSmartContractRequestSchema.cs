@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,25 +33,19 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MonitorSmartContractRequestSchema" /> class.
         /// </summary>
-        /// <param name="callBackURL">callBackURL.</param>
         /// <param name="eventParams">eventParams.</param>
         /// <param name="eventName">eventName.</param>
         /// <param name="location">location.</param>
+        /// <param name="callBackURL">callBackURL.</param>
         /// <param name="smartContractId">smartContractId.</param>
-        public MonitorSmartContractRequestSchema(string callBackURL = default(string), List<MonitorSmartContractEventParam> eventParams = default(List<MonitorSmartContractEventParam>), string eventName = default(string), Location location = default(Location), string smartContractId = default(string))
+        public MonitorSmartContractRequestSchema(List<MonitorSmartContractEventParam> eventParams = default(List<MonitorSmartContractEventParam>), string eventName = default(string), Location location = default(Location), string callBackURL = default(string), string smartContractId = default(string))
         {
-            this.CallBackURL = callBackURL;
             this.EventParams = eventParams;
             this.EventName = eventName;
             this.Location = location;
+            this.CallBackURL = callBackURL;
             this.SmartContractId = smartContractId;
         }
-
-        /// <summary>
-        /// Gets or Sets CallBackURL
-        /// </summary>
-        [DataMember(Name="callBackURL", EmitDefaultValue=false)]
-        public string CallBackURL { get; set; }
 
         /// <summary>
         /// Gets or Sets EventParams
@@ -72,6 +66,12 @@ namespace Org.OpenAPITools.Model
         public Location Location { get; set; }
 
         /// <summary>
+        /// Gets or Sets CallBackURL
+        /// </summary>
+        [DataMember(Name="callBackURL", EmitDefaultValue=false)]
+        public string CallBackURL { get; set; }
+
+        /// <summary>
         /// Gets or Sets SmartContractId
         /// </summary>
         [DataMember(Name="smartContractId", EmitDefaultValue=false)]
@@ -85,10 +85,10 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class MonitorSmartContractRequestSchema {\n");
-            sb.Append("  CallBackURL: ").Append(CallBackURL).Append("\n");
             sb.Append("  EventParams: ").Append(EventParams).Append("\n");
             sb.Append("  EventName: ").Append(EventName).Append("\n");
             sb.Append("  Location: ").Append(Location).Append("\n");
+            sb.Append("  CallBackURL: ").Append(CallBackURL).Append("\n");
             sb.Append("  SmartContractId: ").Append(SmartContractId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -125,11 +125,6 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.CallBackURL == input.CallBackURL ||
-                    (this.CallBackURL != null &&
-                    this.CallBackURL.Equals(input.CallBackURL))
-                ) && 
-                (
                     this.EventParams == input.EventParams ||
                     this.EventParams != null &&
                     input.EventParams != null &&
@@ -144,6 +139,11 @@ namespace Org.OpenAPITools.Model
                     this.Location == input.Location ||
                     (this.Location != null &&
                     this.Location.Equals(input.Location))
+                ) && 
+                (
+                    this.CallBackURL == input.CallBackURL ||
+                    (this.CallBackURL != null &&
+                    this.CallBackURL.Equals(input.CallBackURL))
                 ) && 
                 (
                     this.SmartContractId == input.SmartContractId ||
@@ -161,14 +161,14 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CallBackURL != null)
-                    hashCode = hashCode * 59 + this.CallBackURL.GetHashCode();
                 if (this.EventParams != null)
                     hashCode = hashCode * 59 + this.EventParams.GetHashCode();
                 if (this.EventName != null)
                     hashCode = hashCode * 59 + this.EventName.GetHashCode();
                 if (this.Location != null)
                     hashCode = hashCode * 59 + this.Location.GetHashCode();
+                if (this.CallBackURL != null)
+                    hashCode = hashCode * 59 + this.CallBackURL.GetHashCode();
                 if (this.SmartContractId != null)
                     hashCode = hashCode * 59 + this.SmartContractId.GetHashCode();
                 return hashCode;
@@ -182,25 +182,6 @@ namespace Org.OpenAPITools.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // CallBackURL (string) maxLength
-            if(this.CallBackURL != null && this.CallBackURL.Length > 300)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallBackURL, length must be less than 300.", new [] { "CallBackURL" });
-            }
-
-            // CallBackURL (string) minLength
-            if(this.CallBackURL != null && this.CallBackURL.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallBackURL, length must be greater than 0.", new [] { "CallBackURL" });
-            }
-
-            // CallBackURL (string) pattern
-            Regex regexCallBackURL = new Regex(@"^http[\\S\\s]{1,300}$", RegexOptions.CultureInvariant);
-            if (false == regexCallBackURL.Match(this.CallBackURL).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallBackURL, must match a pattern of " + regexCallBackURL, new [] { "CallBackURL" });
-            }
-
             // EventName (string) maxLength
             if(this.EventName != null && this.EventName.Length > 100)
             {
@@ -220,6 +201,25 @@ namespace Org.OpenAPITools.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EventName, must match a pattern of " + regexEventName, new [] { "EventName" });
             }
 
+            // CallBackURL (string) maxLength
+            if(this.CallBackURL != null && this.CallBackURL.Length > 300)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallBackURL, length must be less than 300.", new [] { "CallBackURL" });
+            }
+
+            // CallBackURL (string) minLength
+            if(this.CallBackURL != null && this.CallBackURL.Length < 0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallBackURL, length must be greater than 0.", new [] { "CallBackURL" });
+            }
+
+            // CallBackURL (string) pattern
+            Regex regexCallBackURL = new Regex(@"^http[\\S\\s]{1,300}$", RegexOptions.CultureInvariant);
+            if (false == regexCallBackURL.Match(this.CallBackURL).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallBackURL, must match a pattern of " + regexCallBackURL, new [] { "CallBackURL" });
+            }
+
             // SmartContractId (string) maxLength
             if(this.SmartContractId != null && this.SmartContractId.Length > 100)
             {
@@ -233,7 +233,7 @@ namespace Org.OpenAPITools.Model
             }
 
             // SmartContractId (string) pattern
-            Regex regexSmartContractId = new Regex(@"^[a-zA-Z0-9]{1,100}$", RegexOptions.CultureInvariant);
+            Regex regexSmartContractId = new Regex(@"^[a-zA-Z0-9-]{1,100}$", RegexOptions.CultureInvariant);
             if (false == regexSmartContractId.Match(this.SmartContractId).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SmartContractId, must match a pattern of " + regexSmartContractId, new [] { "SmartContractId" });

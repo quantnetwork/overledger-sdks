@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,20 +16,19 @@ import (
 
 // ExecuteTransactionRequest struct for ExecuteTransactionRequest
 type ExecuteTransactionRequest struct {
+	// The raw data after transaction signing
+	Signed *string `json:"signed,omitempty"`
 	// The ID assigned to a preparation request in Overledger
 	RequestId string `json:"requestId"`
-	// The raw data after transaction signing
-	Signed string `json:"signed"`
 }
 
 // NewExecuteTransactionRequest instantiates a new ExecuteTransactionRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExecuteTransactionRequest(requestId string, signed string) *ExecuteTransactionRequest {
+func NewExecuteTransactionRequest(requestId string) *ExecuteTransactionRequest {
 	this := ExecuteTransactionRequest{}
 	this.RequestId = requestId
-	this.Signed = signed
 	return &this
 }
 
@@ -39,6 +38,38 @@ func NewExecuteTransactionRequest(requestId string, signed string) *ExecuteTrans
 func NewExecuteTransactionRequestWithDefaults() *ExecuteTransactionRequest {
 	this := ExecuteTransactionRequest{}
 	return &this
+}
+
+// GetSigned returns the Signed field value if set, zero value otherwise.
+func (o *ExecuteTransactionRequest) GetSigned() string {
+	if o == nil || o.Signed == nil {
+		var ret string
+		return ret
+	}
+	return *o.Signed
+}
+
+// GetSignedOk returns a tuple with the Signed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExecuteTransactionRequest) GetSignedOk() (*string, bool) {
+	if o == nil || o.Signed == nil {
+		return nil, false
+	}
+	return o.Signed, true
+}
+
+// HasSigned returns a boolean if a field has been set.
+func (o *ExecuteTransactionRequest) HasSigned() bool {
+	if o != nil && o.Signed != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSigned gets a reference to the given string and assigns it to the Signed field.
+func (o *ExecuteTransactionRequest) SetSigned(v string) {
+	o.Signed = &v
 }
 
 // GetRequestId returns the RequestId field value
@@ -65,37 +96,13 @@ func (o *ExecuteTransactionRequest) SetRequestId(v string) {
 	o.RequestId = v
 }
 
-// GetSigned returns the Signed field value
-func (o *ExecuteTransactionRequest) GetSigned() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Signed
-}
-
-// GetSignedOk returns a tuple with the Signed field value
-// and a boolean to check if the value has been set.
-func (o *ExecuteTransactionRequest) GetSignedOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Signed, true
-}
-
-// SetSigned sets field value
-func (o *ExecuteTransactionRequest) SetSigned(v string) {
-	o.Signed = v
-}
-
 func (o ExecuteTransactionRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["requestId"] = o.RequestId
+	if o.Signed != nil {
+		toSerialize["signed"] = o.Signed
 	}
 	if true {
-		toSerialize["signed"] = o.Signed
+		toSerialize["requestId"] = o.RequestId
 	}
 	return json.Marshal(toSerialize)
 }

@@ -146,7 +146,7 @@ executePreparedSearchRequestAddressSequence($authorization, $request_id): \OpenA
 
 Execute a search for an address sequence on a DLT
 
-Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT's
+Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
 
 ### Example
 

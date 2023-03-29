@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,24 +15,15 @@ require 'time'
 
 module OpenapiClient
   class Function
-    attr_accessor :function_id
+    attr_accessor :type
 
-    attr_accessor :code
-
-    attr_accessor :name
-
-    attr_accessor :input_parameters
-
-    attr_accessor :output_parameters
+    attr_accessor :api
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'function_id' => :'functionId',
-        :'code' => :'code',
-        :'name' => :'name',
-        :'input_parameters' => :'inputParameters',
-        :'output_parameters' => :'outputParameters'
+        :'type' => :'type',
+        :'api' => :'api'
       }
     end
 
@@ -44,11 +35,8 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'function_id' => :'String',
-        :'code' => :'String',
-        :'name' => :'String',
-        :'input_parameters' => :'Array<Parameter>',
-        :'output_parameters' => :'Array<Parameter>'
+        :'type' => :'String',
+        :'api' => :'String'
       }
     end
 
@@ -73,28 +61,12 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'function_id')
-        self.function_id = attributes[:'function_id']
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
       end
 
-      if attributes.key?(:'code')
-        self.code = attributes[:'code']
-      end
-
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
-      end
-
-      if attributes.key?(:'input_parameters')
-        if (value = attributes[:'input_parameters']).is_a?(Array)
-          self.input_parameters = value
-        end
-      end
-
-      if attributes.key?(:'output_parameters')
-        if (value = attributes[:'output_parameters']).is_a?(Array)
-          self.output_parameters = value
-        end
+      if attributes.key?(:'api')
+        self.api = attributes[:'api']
       end
     end
 
@@ -102,155 +74,13 @@ module OpenapiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@function_id.nil? && @function_id.to_s.length > 30
-        invalid_properties.push('invalid value for "function_id", the character length must be smaller than or equal to 30.')
-      end
-
-      if !@function_id.nil? && @function_id.to_s.length < 0
-        invalid_properties.push('invalid value for "function_id", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^[\S\s]{1,30}$/)
-      if !@function_id.nil? && @function_id !~ pattern
-        invalid_properties.push("invalid value for \"function_id\", must conform to the pattern #{pattern}.")
-      end
-
-      if !@code.nil? && @code.to_s.length > 30
-        invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 30.')
-      end
-
-      if !@code.nil? && @code.to_s.length < 0
-        invalid_properties.push('invalid value for "code", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^[\S\s]{1,30}$/)
-      if !@code.nil? && @code !~ pattern
-        invalid_properties.push("invalid value for \"code\", must conform to the pattern #{pattern}.")
-      end
-
-      if !@name.nil? && @name.to_s.length > 50
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 50.')
-      end
-
-      if !@name.nil? && @name.to_s.length < 0
-        invalid_properties.push('invalid value for "name", the character length must be great than or equal to 0.')
-      end
-
-      if !@input_parameters.nil? && @input_parameters.length > 20
-        invalid_properties.push('invalid value for "input_parameters", number of items must be less than or equal to 20.')
-      end
-
-      if !@input_parameters.nil? && @input_parameters.length < 0
-        invalid_properties.push('invalid value for "input_parameters", number of items must be greater than or equal to 0.')
-      end
-
-      if !@output_parameters.nil? && @output_parameters.length > 10
-        invalid_properties.push('invalid value for "output_parameters", number of items must be less than or equal to 10.')
-      end
-
-      if !@output_parameters.nil? && @output_parameters.length < 0
-        invalid_properties.push('invalid value for "output_parameters", number of items must be greater than or equal to 0.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@function_id.nil? && @function_id.to_s.length > 30
-      return false if !@function_id.nil? && @function_id.to_s.length < 0
-      return false if !@function_id.nil? && @function_id !~ Regexp.new(/^[\S\s]{1,30}$/)
-      return false if !@code.nil? && @code.to_s.length > 30
-      return false if !@code.nil? && @code.to_s.length < 0
-      return false if !@code.nil? && @code !~ Regexp.new(/^[\S\s]{1,30}$/)
-      return false if !@name.nil? && @name.to_s.length > 50
-      return false if !@name.nil? && @name.to_s.length < 0
-      return false if !@input_parameters.nil? && @input_parameters.length > 20
-      return false if !@input_parameters.nil? && @input_parameters.length < 0
-      return false if !@output_parameters.nil? && @output_parameters.length > 10
-      return false if !@output_parameters.nil? && @output_parameters.length < 0
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] function_id Value to be assigned
-    def function_id=(function_id)
-      if !function_id.nil? && function_id.to_s.length > 30
-        fail ArgumentError, 'invalid value for "function_id", the character length must be smaller than or equal to 30.'
-      end
-
-      if !function_id.nil? && function_id.to_s.length < 0
-        fail ArgumentError, 'invalid value for "function_id", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[\S\s]{1,30}$/)
-      if !function_id.nil? && function_id !~ pattern
-        fail ArgumentError, "invalid value for \"function_id\", must conform to the pattern #{pattern}."
-      end
-
-      @function_id = function_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] code Value to be assigned
-    def code=(code)
-      if !code.nil? && code.to_s.length > 30
-        fail ArgumentError, 'invalid value for "code", the character length must be smaller than or equal to 30.'
-      end
-
-      if !code.nil? && code.to_s.length < 0
-        fail ArgumentError, 'invalid value for "code", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[\S\s]{1,30}$/)
-      if !code.nil? && code !~ pattern
-        fail ArgumentError, "invalid value for \"code\", must conform to the pattern #{pattern}."
-      end
-
-      @code = code
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] name Value to be assigned
-    def name=(name)
-      if !name.nil? && name.to_s.length > 50
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 50.'
-      end
-
-      if !name.nil? && name.to_s.length < 0
-        fail ArgumentError, 'invalid value for "name", the character length must be great than or equal to 0.'
-      end
-
-      @name = name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] input_parameters Value to be assigned
-    def input_parameters=(input_parameters)
-      if !input_parameters.nil? && input_parameters.length > 20
-        fail ArgumentError, 'invalid value for "input_parameters", number of items must be less than or equal to 20.'
-      end
-
-      if !input_parameters.nil? && input_parameters.length < 0
-        fail ArgumentError, 'invalid value for "input_parameters", number of items must be greater than or equal to 0.'
-      end
-
-      @input_parameters = input_parameters
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] output_parameters Value to be assigned
-    def output_parameters=(output_parameters)
-      if !output_parameters.nil? && output_parameters.length > 10
-        fail ArgumentError, 'invalid value for "output_parameters", number of items must be less than or equal to 10.'
-      end
-
-      if !output_parameters.nil? && output_parameters.length < 0
-        fail ArgumentError, 'invalid value for "output_parameters", number of items must be greater than or equal to 0.'
-      end
-
-      @output_parameters = output_parameters
     end
 
     # Checks equality by comparing each attribute.
@@ -258,11 +88,8 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          function_id == o.function_id &&
-          code == o.code &&
-          name == o.name &&
-          input_parameters == o.input_parameters &&
-          output_parameters == o.output_parameters
+          type == o.type &&
+          api == o.api
     end
 
     # @see the `==` method
@@ -274,7 +101,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [function_id, code, name, input_parameters, output_parameters].hash
+      [type, api].hash
     end
 
     # Builds the object from hash

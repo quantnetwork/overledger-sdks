@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,21 +33,21 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorDetails" /> class.
         /// </summary>
-        /// <param name="code">code.</param>
-        /// <param name="description">description.</param>
         /// <param name="category">category.</param>
-        public ErrorDetails(string code = default(string), string description = default(string), string category = default(string))
+        /// <param name="description">description.</param>
+        /// <param name="code">code.</param>
+        public ErrorDetails(string category = default(string), string description = default(string), string code = default(string))
         {
-            this.Code = code;
-            this.Description = description;
             this.Category = category;
+            this.Description = description;
+            this.Code = code;
         }
 
         /// <summary>
-        /// Gets or Sets Code
+        /// Gets or Sets Category
         /// </summary>
-        [DataMember(Name="code", EmitDefaultValue=false)]
-        public string Code { get; set; }
+        [DataMember(Name="category", EmitDefaultValue=false)]
+        public string Category { get; set; }
 
         /// <summary>
         /// Gets or Sets Description
@@ -56,10 +56,10 @@ namespace Org.OpenAPITools.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or Sets Category
+        /// Gets or Sets Code
         /// </summary>
-        [DataMember(Name="category", EmitDefaultValue=false)]
-        public string Category { get; set; }
+        [DataMember(Name="code", EmitDefaultValue=false)]
+        public string Code { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,9 +69,9 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ErrorDetails {\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -107,9 +107,9 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.Code == input.Code ||
-                    (this.Code != null &&
-                    this.Code.Equals(input.Code))
+                    this.Category == input.Category ||
+                    (this.Category != null &&
+                    this.Category.Equals(input.Category))
                 ) && 
                 (
                     this.Description == input.Description ||
@@ -117,9 +117,9 @@ namespace Org.OpenAPITools.Model
                     this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.Category == input.Category ||
-                    (this.Category != null &&
-                    this.Category.Equals(input.Category))
+                    this.Code == input.Code ||
+                    (this.Code != null &&
+                    this.Code.Equals(input.Code))
                 );
         }
 
@@ -132,12 +132,12 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Code != null)
-                    hashCode = hashCode * 59 + this.Code.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.Category != null)
                     hashCode = hashCode * 59 + this.Category.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.Code != null)
+                    hashCode = hashCode * 59 + this.Code.GetHashCode();
                 return hashCode;
             }
         }
@@ -149,23 +149,23 @@ namespace Org.OpenAPITools.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Code (string) maxLength
-            if(this.Code != null && this.Code.Length > 30)
+            // Category (string) maxLength
+            if(this.Category != null && this.Category.Length > 50)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be less than 30.", new [] { "Code" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Category, length must be less than 50.", new [] { "Category" });
             }
 
-            // Code (string) minLength
-            if(this.Code != null && this.Code.Length < 0)
+            // Category (string) minLength
+            if(this.Category != null && this.Category.Length < 0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be greater than 0.", new [] { "Code" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Category, length must be greater than 0.", new [] { "Category" });
             }
 
-            // Code (string) pattern
-            Regex regexCode = new Regex(@"^[a-zA-Z0-9_ ]{1,30}$", RegexOptions.CultureInvariant);
-            if (false == regexCode.Match(this.Code).Success)
+            // Category (string) pattern
+            Regex regexCategory = new Regex(@"^[\\S\\s]{1,50}$", RegexOptions.CultureInvariant);
+            if (false == regexCategory.Match(this.Category).Success)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, must match a pattern of " + regexCode, new [] { "Code" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Category, must match a pattern of " + regexCategory, new [] { "Category" });
             }
 
             // Description (string) maxLength
@@ -187,23 +187,23 @@ namespace Org.OpenAPITools.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, must match a pattern of " + regexDescription, new [] { "Description" });
             }
 
-            // Category (string) maxLength
-            if(this.Category != null && this.Category.Length > 50)
+            // Code (string) maxLength
+            if(this.Code != null && this.Code.Length > 30)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Category, length must be less than 50.", new [] { "Category" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be less than 30.", new [] { "Code" });
             }
 
-            // Category (string) minLength
-            if(this.Category != null && this.Category.Length < 0)
+            // Code (string) minLength
+            if(this.Code != null && this.Code.Length < 0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Category, length must be greater than 0.", new [] { "Category" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be greater than 0.", new [] { "Code" });
             }
 
-            // Category (string) pattern
-            Regex regexCategory = new Regex(@"^[\\S\\s]{1,50}$", RegexOptions.CultureInvariant);
-            if (false == regexCategory.Match(this.Category).Success)
+            // Code (string) pattern
+            Regex regexCode = new Regex(@"^[a-zA-Z0-9_ ]{1,30}$", RegexOptions.CultureInvariant);
+            if (false == regexCode.Match(this.Code).Success)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Category, must match a pattern of " + regexCategory, new [] { "Category" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, must match a pattern of " + regexCode, new [] { "Code" });
             }
 
             yield break;

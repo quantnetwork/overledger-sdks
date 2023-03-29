@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -17,8 +17,9 @@ import (
 // Origin Where is this transaction coming from
 type Origin struct {
 	Sequence *string `json:"sequence,omitempty"`
-	OriginId *string `json:"originId,omitempty"`
 	SmartContract *SmartContract `json:"smartContract,omitempty"`
+	// The unique identifier of the origin
+	OriginId *string `json:"originId,omitempty"`
 }
 
 // NewOrigin instantiates a new Origin object
@@ -70,38 +71,6 @@ func (o *Origin) SetSequence(v string) {
 	o.Sequence = &v
 }
 
-// GetOriginId returns the OriginId field value if set, zero value otherwise.
-func (o *Origin) GetOriginId() string {
-	if o == nil || o.OriginId == nil {
-		var ret string
-		return ret
-	}
-	return *o.OriginId
-}
-
-// GetOriginIdOk returns a tuple with the OriginId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Origin) GetOriginIdOk() (*string, bool) {
-	if o == nil || o.OriginId == nil {
-		return nil, false
-	}
-	return o.OriginId, true
-}
-
-// HasOriginId returns a boolean if a field has been set.
-func (o *Origin) HasOriginId() bool {
-	if o != nil && o.OriginId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOriginId gets a reference to the given string and assigns it to the OriginId field.
-func (o *Origin) SetOriginId(v string) {
-	o.OriginId = &v
-}
-
 // GetSmartContract returns the SmartContract field value if set, zero value otherwise.
 func (o *Origin) GetSmartContract() SmartContract {
 	if o == nil || o.SmartContract == nil {
@@ -134,16 +103,48 @@ func (o *Origin) SetSmartContract(v SmartContract) {
 	o.SmartContract = &v
 }
 
+// GetOriginId returns the OriginId field value if set, zero value otherwise.
+func (o *Origin) GetOriginId() string {
+	if o == nil || o.OriginId == nil {
+		var ret string
+		return ret
+	}
+	return *o.OriginId
+}
+
+// GetOriginIdOk returns a tuple with the OriginId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Origin) GetOriginIdOk() (*string, bool) {
+	if o == nil || o.OriginId == nil {
+		return nil, false
+	}
+	return o.OriginId, true
+}
+
+// HasOriginId returns a boolean if a field has been set.
+func (o *Origin) HasOriginId() bool {
+	if o != nil && o.OriginId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOriginId gets a reference to the given string and assigns it to the OriginId field.
+func (o *Origin) SetOriginId(v string) {
+	o.OriginId = &v
+}
+
 func (o Origin) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Sequence != nil {
 		toSerialize["sequence"] = o.Sequence
 	}
-	if o.OriginId != nil {
-		toSerialize["originId"] = o.OriginId
-	}
 	if o.SmartContract != nil {
 		toSerialize["smartContract"] = o.SmartContract
+	}
+	if o.OriginId != nil {
+		toSerialize["originId"] = o.OriginId
 	}
 	return json.Marshal(toSerialize)
 }

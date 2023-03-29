@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -28,42 +28,19 @@ import org.openapitools.client.model.Location;
 /**
  * AddressMonitoringRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class AddressMonitoringRequestSchema {
-  public static final String SERIALIZED_NAME_CALL_BACK_U_R_L = "callBackURL";
-  @SerializedName(SERIALIZED_NAME_CALL_BACK_U_R_L)
-  private String callBackURL;
-
   public static final String SERIALIZED_NAME_LOCATION = "location";
   @SerializedName(SERIALIZED_NAME_LOCATION)
   private Location location;
 
+  public static final String SERIALIZED_NAME_CALL_BACK_U_R_L = "callBackURL";
+  @SerializedName(SERIALIZED_NAME_CALL_BACK_U_R_L)
+  private String callBackURL;
+
   public static final String SERIALIZED_NAME_ADDRESS_ID = "addressId";
   @SerializedName(SERIALIZED_NAME_ADDRESS_ID)
   private String addressId;
-
-
-  public AddressMonitoringRequestSchema callBackURL(String callBackURL) {
-    
-    this.callBackURL = callBackURL;
-    return this;
-  }
-
-   /**
-   * Get callBackURL
-   * @return callBackURL
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getCallBackURL() {
-    return callBackURL;
-  }
-
-
-  public void setCallBackURL(String callBackURL) {
-    this.callBackURL = callBackURL;
-  }
 
 
   public AddressMonitoringRequestSchema location(Location location) {
@@ -86,6 +63,29 @@ public class AddressMonitoringRequestSchema {
 
   public void setLocation(Location location) {
     this.location = location;
+  }
+
+
+  public AddressMonitoringRequestSchema callBackURL(String callBackURL) {
+    
+    this.callBackURL = callBackURL;
+    return this;
+  }
+
+   /**
+   * Get callBackURL
+   * @return callBackURL
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getCallBackURL() {
+    return callBackURL;
+  }
+
+
+  public void setCallBackURL(String callBackURL) {
+    this.callBackURL = callBackURL;
   }
 
 
@@ -121,22 +121,22 @@ public class AddressMonitoringRequestSchema {
       return false;
     }
     AddressMonitoringRequestSchema addressMonitoringRequestSchema = (AddressMonitoringRequestSchema) o;
-    return Objects.equals(this.callBackURL, addressMonitoringRequestSchema.callBackURL) &&
-        Objects.equals(this.location, addressMonitoringRequestSchema.location) &&
+    return Objects.equals(this.location, addressMonitoringRequestSchema.location) &&
+        Objects.equals(this.callBackURL, addressMonitoringRequestSchema.callBackURL) &&
         Objects.equals(this.addressId, addressMonitoringRequestSchema.addressId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(callBackURL, location, addressId);
+    return Objects.hash(location, callBackURL, addressId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddressMonitoringRequestSchema {\n");
-    sb.append("    callBackURL: ").append(toIndentedString(callBackURL)).append("\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("    callBackURL: ").append(toIndentedString(callBackURL)).append("\n");
     sb.append("    addressId: ").append(toIndentedString(addressId)).append("\n");
     sb.append("}");
     return sb.toString();

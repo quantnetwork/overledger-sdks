@@ -1,7 +1,7 @@
 /*
  * payment_schema.h
  *
- * 
+ * The payload for each recipient
  */
 
 #ifndef _payment_schema_H_

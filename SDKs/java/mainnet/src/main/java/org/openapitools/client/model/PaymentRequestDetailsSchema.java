@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -29,79 +29,71 @@ import org.openapitools.client.model.DestinationPaymentSchema;
 import org.openapitools.client.model.OriginPaymentSchema;
 
 /**
- * PaymentRequestDetailsSchema
+ * The payload request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
+@ApiModel(description = "The payload request")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:46:50.106642+01:00[Europe/London]")
 public class PaymentRequestDetailsSchema {
-  public static final String SERIALIZED_NAME_OVERLEDGER_SIGNING_TYPE = "overledgerSigningType";
-  @SerializedName(SERIALIZED_NAME_OVERLEDGER_SIGNING_TYPE)
-  private String overledgerSigningType;
-
-  public static final String SERIALIZED_NAME_ORIGIN = "origin";
-  @SerializedName(SERIALIZED_NAME_ORIGIN)
-  private List<OriginPaymentSchema> origin = null;
-
   public static final String SERIALIZED_NAME_DESTINATION = "destination";
   @SerializedName(SERIALIZED_NAME_DESTINATION)
-  private List<DestinationPaymentSchema> destination = null;
+  private List<DestinationPaymentSchema> destination = new ArrayList<DestinationPaymentSchema>();
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
   private String message;
 
+  /**
+   * The method of signing used to submit the transaction
+   */
+  @JsonAdapter(OverledgerSigningTypeEnum.Adapter.class)
+  public enum OverledgerSigningTypeEnum {
+    OVERLEDGER_JAVASCRIPT_LIBRARY("overledger-javascript-library");
 
-  public PaymentRequestDetailsSchema overledgerSigningType(String overledgerSigningType) {
-    
-    this.overledgerSigningType = overledgerSigningType;
-    return this;
-  }
+    private String value;
 
-   /**
-   * Get overledgerSigningType
-   * @return overledgerSigningType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getOverledgerSigningType() {
-    return overledgerSigningType;
-  }
-
-
-  public void setOverledgerSigningType(String overledgerSigningType) {
-    this.overledgerSigningType = overledgerSigningType;
-  }
-
-
-  public PaymentRequestDetailsSchema origin(List<OriginPaymentSchema> origin) {
-    
-    this.origin = origin;
-    return this;
-  }
-
-  public PaymentRequestDetailsSchema addOriginItem(OriginPaymentSchema originItem) {
-    if (this.origin == null) {
-      this.origin = new ArrayList<OriginPaymentSchema>();
+    OverledgerSigningTypeEnum(String value) {
+      this.value = value;
     }
-    this.origin.add(originItem);
-    return this;
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static OverledgerSigningTypeEnum fromValue(String value) {
+      for (OverledgerSigningTypeEnum b : OverledgerSigningTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<OverledgerSigningTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final OverledgerSigningTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public OverledgerSigningTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return OverledgerSigningTypeEnum.fromValue(value);
+      }
+    }
   }
 
-   /**
-   * Where is this transaction coming from
-   * @return origin
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Where is this transaction coming from")
+  public static final String SERIALIZED_NAME_OVERLEDGER_SIGNING_TYPE = "overledgerSigningType";
+  @SerializedName(SERIALIZED_NAME_OVERLEDGER_SIGNING_TYPE)
+  private OverledgerSigningTypeEnum overledgerSigningType;
 
-  public List<OriginPaymentSchema> getOrigin() {
-    return origin;
-  }
-
-
-  public void setOrigin(List<OriginPaymentSchema> origin) {
-    this.origin = origin;
-  }
+  public static final String SERIALIZED_NAME_ORIGIN = "origin";
+  @SerializedName(SERIALIZED_NAME_ORIGIN)
+  private List<OriginPaymentSchema> origin = new ArrayList<OriginPaymentSchema>();
 
 
   public PaymentRequestDetailsSchema destination(List<DestinationPaymentSchema> destination) {
@@ -111,19 +103,16 @@ public class PaymentRequestDetailsSchema {
   }
 
   public PaymentRequestDetailsSchema addDestinationItem(DestinationPaymentSchema destinationItem) {
-    if (this.destination == null) {
-      this.destination = new ArrayList<DestinationPaymentSchema>();
-    }
     this.destination.add(destinationItem);
     return this;
   }
 
    /**
-   * The Destination of this transaction
+   * List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
    * @return destination
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The Destination of this transaction")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail")
 
   public List<DestinationPaymentSchema> getDestination() {
     return destination;
@@ -158,6 +147,57 @@ public class PaymentRequestDetailsSchema {
   }
 
 
+  public PaymentRequestDetailsSchema overledgerSigningType(OverledgerSigningTypeEnum overledgerSigningType) {
+    
+    this.overledgerSigningType = overledgerSigningType;
+    return this;
+  }
+
+   /**
+   * The method of signing used to submit the transaction
+   * @return overledgerSigningType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The method of signing used to submit the transaction")
+
+  public OverledgerSigningTypeEnum getOverledgerSigningType() {
+    return overledgerSigningType;
+  }
+
+
+  public void setOverledgerSigningType(OverledgerSigningTypeEnum overledgerSigningType) {
+    this.overledgerSigningType = overledgerSigningType;
+  }
+
+
+  public PaymentRequestDetailsSchema origin(List<OriginPaymentSchema> origin) {
+    
+    this.origin = origin;
+    return this;
+  }
+
+  public PaymentRequestDetailsSchema addOriginItem(OriginPaymentSchema originItem) {
+    this.origin.add(originItem);
+    return this;
+  }
+
+   /**
+   * List of where this transaction is coming from
+   * @return origin
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "List of where this transaction is coming from")
+
+  public List<OriginPaymentSchema> getOrigin() {
+    return origin;
+  }
+
+
+  public void setOrigin(List<OriginPaymentSchema> origin) {
+    this.origin = origin;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -167,25 +207,25 @@ public class PaymentRequestDetailsSchema {
       return false;
     }
     PaymentRequestDetailsSchema paymentRequestDetailsSchema = (PaymentRequestDetailsSchema) o;
-    return Objects.equals(this.overledgerSigningType, paymentRequestDetailsSchema.overledgerSigningType) &&
-        Objects.equals(this.origin, paymentRequestDetailsSchema.origin) &&
-        Objects.equals(this.destination, paymentRequestDetailsSchema.destination) &&
-        Objects.equals(this.message, paymentRequestDetailsSchema.message);
+    return Objects.equals(this.destination, paymentRequestDetailsSchema.destination) &&
+        Objects.equals(this.message, paymentRequestDetailsSchema.message) &&
+        Objects.equals(this.overledgerSigningType, paymentRequestDetailsSchema.overledgerSigningType) &&
+        Objects.equals(this.origin, paymentRequestDetailsSchema.origin);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(overledgerSigningType, origin, destination, message);
+    return Objects.hash(destination, message, overledgerSigningType, origin);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentRequestDetailsSchema {\n");
-    sb.append("    overledgerSigningType: ").append(toIndentedString(overledgerSigningType)).append("\n");
-    sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
     sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    overledgerSigningType: ").append(toIndentedString(overledgerSigningType)).append("\n");
+    sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
     sb.append("}");
     return sb.toString();
   }

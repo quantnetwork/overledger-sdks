@@ -23,13 +23,13 @@ payment_t* instantiate_payment(int include_optional) {
   if (include_optional) {
     payment = payment_create(
       "a",
-      "a",
+      "0",
       "a"
     );
   } else {
     payment = payment_create(
       "a",
-      "a",
+      "0",
       "a"
     );
   }

@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -23,11 +23,10 @@ class ExecuteTransactionRequest {
      * Constructs a new <code>ExecuteTransactionRequest</code>.
      * @alias module:model/ExecuteTransactionRequest
      * @param requestId {String} The ID assigned to a preparation request in Overledger
-     * @param signed {String} The raw data after transaction signing
      */
-    constructor(requestId, signed) { 
+    constructor(requestId) { 
         
-        ExecuteTransactionRequest.initialize(this, requestId, signed);
+        ExecuteTransactionRequest.initialize(this, requestId);
     }
 
     /**
@@ -35,9 +34,8 @@ class ExecuteTransactionRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, requestId, signed) { 
+    static initialize(obj, requestId) { 
         obj['requestId'] = requestId;
-        obj['signed'] = signed;
     }
 
     /**
@@ -51,11 +49,11 @@ class ExecuteTransactionRequest {
         if (data) {
             obj = obj || new ExecuteTransactionRequest();
 
-            if (data.hasOwnProperty('requestId')) {
-                obj['requestId'] = ApiClient.convertToType(data['requestId'], 'String');
-            }
             if (data.hasOwnProperty('signed')) {
                 obj['signed'] = ApiClient.convertToType(data['signed'], 'String');
+            }
+            if (data.hasOwnProperty('requestId')) {
+                obj['requestId'] = ApiClient.convertToType(data['requestId'], 'String');
             }
         }
         return obj;
@@ -65,16 +63,16 @@ class ExecuteTransactionRequest {
 }
 
 /**
- * The ID assigned to a preparation request in Overledger
- * @member {String} requestId
- */
-ExecuteTransactionRequest.prototype['requestId'] = undefined;
-
-/**
  * The raw data after transaction signing
  * @member {String} signed
  */
 ExecuteTransactionRequest.prototype['signed'] = undefined;
+
+/**
+ * The ID assigned to a preparation request in Overledger
+ * @member {String} requestId
+ */
+ExecuteTransactionRequest.prototype['requestId'] = undefined;
 
 
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**function_id** | **string** |  | [optional]
 **name** | **string** |  | [optional]
+**function_id** | **string** |  | [optional]
 **input_parameters** | [**\OpenAPI\Client\Model\SmartContractInputParameterSchema[]**](SmartContractInputParameterSchema.md) |  | [optional]
 **output_parameters** | [**\OpenAPI\Client\Model\SmartContractInputParameterSchema[]**](SmartContractInputParameterSchema.md) |  | [optional]
 

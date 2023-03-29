@@ -28,7 +28,7 @@ OAuth2_Security_Scheme.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new QuantOverledgerApi.MonitorAResourceApi();
 let authorization = "authorization_example"; // String | 
-let addressMonitoringRequestSchema = {"callBackURL":"https://callbackurl/endpoint","location":{"technology":"Ethereum","network":"Ropsten"},"addressId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"}; // AddressMonitoringRequestSchema | 
+let addressMonitoringRequestSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"},"callBackURL":"https://callbackurl/endpoint","addressId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"}; // AddressMonitoringRequestSchema | 
 apiInstance.resourceMonitoringAddress(authorization, addressMonitoringRequestSchema, (error, data, response) => {
   if (error) {
     console.error(error);
@@ -79,7 +79,7 @@ OAuth2_Security_Scheme.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new QuantOverledgerApi.MonitorAResourceApi();
 let authorization = "authorization_example"; // String | 
-let monitorSmartContractRequestSchema = {"callBackURL":"https://test-post.free.beeceptor.com/comments","eventParams":[{"selectedIntegerLength":"B256","type":"UINT","value":"3"},{"selectedIntegerLength":"B256","type":"UINT","value":"2"}],"eventName":"mul","location":{"technology":"Ethereum","network":"Ethereum Ropsten Testnet"},"smartContractId":"0x8781d54e454377451D9C6928538Db544Caa65CDf"}; // MonitorSmartContractRequestSchema | 
+let monitorSmartContractRequestSchema = {"eventParams":[{"selectedIntegerLength":"B256","type":"UINT","value":"3"},{"selectedIntegerLength":"B256","type":"UINT","value":"2"}],"eventName":"mul","location":{"technology":"Ethereum","network":"Ropsten Testnet"},"callBackURL":"https://test-post.free.beeceptor.com/comments","smartContractId":"0x8781d54e454377451D9C6928538Db544Caa65CDf"}; // MonitorSmartContractRequestSchema | 
 apiInstance.trackAndSubscribeEvent(authorization, monitorSmartContractRequestSchema, (error, data, response) => {
   if (error) {
     console.error(error);

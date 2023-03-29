@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
 **Category** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Code** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -27,30 +27,30 @@ NewPrepareAndExecuteOverledgerErrorResponseWithDefaults instantiates a new Prepa
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCode
+### GetCategory
 
-`func (o *PrepareAndExecuteOverledgerErrorResponse) GetCode() string`
+`func (o *PrepareAndExecuteOverledgerErrorResponse) GetCategory() string`
 
-GetCode returns the Code field if non-nil, zero value otherwise.
+GetCategory returns the Category field if non-nil, zero value otherwise.
 
-### GetCodeOk
+### GetCategoryOk
 
-`func (o *PrepareAndExecuteOverledgerErrorResponse) GetCodeOk() (*string, bool)`
+`func (o *PrepareAndExecuteOverledgerErrorResponse) GetCategoryOk() (*string, bool)`
 
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+GetCategoryOk returns a tuple with the Category field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCode
+### SetCategory
 
-`func (o *PrepareAndExecuteOverledgerErrorResponse) SetCode(v string)`
+`func (o *PrepareAndExecuteOverledgerErrorResponse) SetCategory(v string)`
 
-SetCode sets Code field to given value.
+SetCategory sets Category field to given value.
 
-### HasCode
+### HasCategory
 
-`func (o *PrepareAndExecuteOverledgerErrorResponse) HasCode() bool`
+`func (o *PrepareAndExecuteOverledgerErrorResponse) HasCategory() bool`
 
-HasCode returns a boolean if a field has been set.
+HasCategory returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -77,30 +77,30 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetCategory
+### GetCode
 
-`func (o *PrepareAndExecuteOverledgerErrorResponse) GetCategory() string`
+`func (o *PrepareAndExecuteOverledgerErrorResponse) GetCode() string`
 
-GetCategory returns the Category field if non-nil, zero value otherwise.
+GetCode returns the Code field if non-nil, zero value otherwise.
 
-### GetCategoryOk
+### GetCodeOk
 
-`func (o *PrepareAndExecuteOverledgerErrorResponse) GetCategoryOk() (*string, bool)`
+`func (o *PrepareAndExecuteOverledgerErrorResponse) GetCodeOk() (*string, bool)`
 
-GetCategoryOk returns a tuple with the Category field if it's non-nil, zero value otherwise
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCategory
+### SetCode
 
-`func (o *PrepareAndExecuteOverledgerErrorResponse) SetCategory(v string)`
+`func (o *PrepareAndExecuteOverledgerErrorResponse) SetCode(v string)`
 
-SetCategory sets Category field to given value.
+SetCode sets Code field to given value.
 
-### HasCategory
+### HasCode
 
-`func (o *PrepareAndExecuteOverledgerErrorResponse) HasCategory() bool`
+`func (o *PrepareAndExecuteOverledgerErrorResponse) HasCode() bool`
 
-HasCategory returns a boolean if a field has been set.
+HasCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

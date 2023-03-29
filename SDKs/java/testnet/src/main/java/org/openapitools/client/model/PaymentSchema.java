@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -25,9 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * PaymentSchema
+ * The payload for each recipient
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@ApiModel(description = "The payload for each recipient")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class PaymentSchema {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -45,11 +46,11 @@ public class PaymentSchema {
   }
 
    /**
-   * The amount of a currency
+   * The payload amount. The exact format depends on the unit of the token.
    * @return amount
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The amount of a currency")
+  @ApiModelProperty(required = true, value = "The payload amount. The exact format depends on the unit of the token.")
 
   public String getAmount() {
     return amount;
@@ -68,11 +69,11 @@ public class PaymentSchema {
   }
 
    /**
-   * The unit of this currency/token
+   * The currency or token code
    * @return unit
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The unit of this currency/token")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The currency or token code")
 
   public String getUnit() {
     return unit;

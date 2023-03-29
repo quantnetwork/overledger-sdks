@@ -24,15 +24,15 @@ credit_request_details_schema_t* instantiate_credit_request_details_schema(int i
     credit_request_details_schema = credit_request_details_schema_create(
       list_create(),
       "a",
-      "a",
-      list_create()
+      list_create(),
+      "a"
     );
   } else {
     credit_request_details_schema = credit_request_details_schema_create(
       list_create(),
       "a",
-      "a",
-      list_create()
+      list_create(),
+      "a"
     );
   }
 

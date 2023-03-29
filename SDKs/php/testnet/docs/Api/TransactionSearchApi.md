@@ -37,7 +37,7 @@ $apiInstance = new OpenAPI\Client\Api\TransactionSearchApi(
     $config
 );
 $authorization = 'authorization_example'; // string
-$transaction_id = 'transaction_id_example'; // string
+$transaction_id = 0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab; // string | The transactionId to search for
 $prepare_search_schema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // \OpenAPI\Client\Model\PrepareSearchSchema
 
 try {
@@ -53,7 +53,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **transaction_id** | **string**|  |
+ **transaction_id** | **string**| The transactionId to search for |
  **prepare_search_schema** | [**\OpenAPI\Client\Model\PrepareSearchSchema**](../Model/PrepareSearchSchema.md)|  |
 
 ### Return type
@@ -163,7 +163,7 @@ $apiInstance = new OpenAPI\Client\Api\TransactionSearchApi(
     $config
 );
 $authorization = 'authorization_example'; // string
-$transaction_id = 'transaction_id_example'; // string
+$transaction_id = 0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab; // string | The transactionId to search for
 $prepare_search_schema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // \OpenAPI\Client\Model\PrepareSearchSchema
 
 try {
@@ -179,7 +179,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **transaction_id** | **string**|  |
+ **transaction_id** | **string**| The transactionId to search for |
  **prepare_search_schema** | [**\OpenAPI\Client\Model\PrepareSearchSchema**](../Model/PrepareSearchSchema.md)|  |
 
 ### Return type

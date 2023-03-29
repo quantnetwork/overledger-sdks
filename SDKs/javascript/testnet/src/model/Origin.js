@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -52,11 +52,11 @@ class Origin {
             if (data.hasOwnProperty('sequence')) {
                 obj['sequence'] = ApiClient.convertToType(data['sequence'], 'String');
             }
-            if (data.hasOwnProperty('originId')) {
-                obj['originId'] = ApiClient.convertToType(data['originId'], 'String');
-            }
             if (data.hasOwnProperty('smartContract')) {
                 obj['smartContract'] = SmartContract.constructFromObject(data['smartContract']);
+            }
+            if (data.hasOwnProperty('originId')) {
+                obj['originId'] = ApiClient.convertToType(data['originId'], 'String');
             }
         }
         return obj;
@@ -71,14 +71,15 @@ class Origin {
 Origin.prototype['sequence'] = undefined;
 
 /**
- * @member {String} originId
- */
-Origin.prototype['originId'] = undefined;
-
-/**
  * @member {module:model/SmartContract} smartContract
  */
 Origin.prototype['smartContract'] = undefined;
+
+/**
+ * The unique identifier of the origin
+ * @member {String} originId
+ */
+Origin.prototype['originId'] = undefined;
 
 
 

@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,21 +15,45 @@ require 'time'
 
 module OpenapiClient
   class PrepareApproveDebitTransactionRequestSchema
+    attr_accessor :location
+
+    # The type of the transaction
+    attr_accessor :type
+
+    # This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
     attr_accessor :urgency
 
     attr_accessor :request_details
 
-    attr_accessor :location
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
 
-    attr_accessor :type
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'urgency' => :'urgency',
-        :'request_details' => :'requestDetails',
         :'location' => :'location',
-        :'type' => :'type'
+        :'type' => :'type',
+        :'urgency' => :'urgency',
+        :'request_details' => :'requestDetails'
       }
     end
 
@@ -41,10 +65,10 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'urgency' => :'String',
-        :'request_details' => :'ApproveRequestDetailsSchema',
         :'location' => :'Location',
-        :'type' => :'String'
+        :'type' => :'String',
+        :'urgency' => :'String',
+        :'request_details' => :'ApproveRequestDetailsSchema'
       }
     end
 
@@ -69,14 +93,6 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'urgency')
-        self.urgency = attributes[:'urgency']
-      end
-
-      if attributes.key?(:'request_details')
-        self.request_details = attributes[:'request_details']
-      end
-
       if attributes.key?(:'location')
         self.location = attributes[:'location']
       end
@@ -84,36 +100,56 @@ module OpenapiClient
       if attributes.key?(:'type')
         self.type = attributes[:'type']
       end
+
+      if attributes.key?(:'urgency')
+        self.urgency = attributes[:'urgency']
+      end
+
+      if attributes.key?(:'request_details')
+        self.request_details = attributes[:'request_details']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@urgency.nil? && @urgency.to_s.length > 30
-        invalid_properties.push('invalid value for "urgency", the character length must be smaller than or equal to 30.')
+      if @location.nil?
+        invalid_properties.push('invalid value for "location", location cannot be nil.')
       end
 
-      if !@urgency.nil? && @urgency.to_s.length < 0
-        invalid_properties.push('invalid value for "urgency", the character length must be great than or equal to 0.')
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
-      pattern = Regexp.new(/^[A-Za-z ]{1,30}/)
-      if !@urgency.nil? && @urgency !~ pattern
-        invalid_properties.push("invalid value for \"urgency\", must conform to the pattern #{pattern}.")
-      end
-
-      if !@type.nil? && @type.to_s.length > 30
+      if @type.to_s.length > 30
         invalid_properties.push('invalid value for "type", the character length must be smaller than or equal to 30.')
       end
 
-      if !@type.nil? && @type.to_s.length < 0
+      if @type.to_s.length < 0
         invalid_properties.push('invalid value for "type", the character length must be great than or equal to 0.')
       end
 
       pattern = Regexp.new(/^[A-Za-z ]{1,30}/)
-      if !@type.nil? && @type !~ pattern
+      if @type !~ pattern
         invalid_properties.push("invalid value for \"type\", must conform to the pattern #{pattern}.")
+      end
+
+      if @urgency.nil?
+        invalid_properties.push('invalid value for "urgency", urgency cannot be nil.')
+      end
+
+      if @urgency.to_s.length > 30
+        invalid_properties.push('invalid value for "urgency", the character length must be smaller than or equal to 30.')
+      end
+
+      if @urgency.to_s.length < 0
+        invalid_properties.push('invalid value for "urgency", the character length must be great than or equal to 0.')
+      end
+
+      pattern = Regexp.new(/^[A-Za-z ]{1,30}/)
+      if @urgency !~ pattern
+        invalid_properties.push("invalid value for \"urgency\", must conform to the pattern #{pattern}.")
       end
 
       invalid_properties
@@ -122,51 +158,40 @@ module OpenapiClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@urgency.nil? && @urgency.to_s.length > 30
-      return false if !@urgency.nil? && @urgency.to_s.length < 0
-      return false if !@urgency.nil? && @urgency !~ Regexp.new(/^[A-Za-z ]{1,30}/)
-      return false if !@type.nil? && @type.to_s.length > 30
-      return false if !@type.nil? && @type.to_s.length < 0
-      return false if !@type.nil? && @type !~ Regexp.new(/^[A-Za-z ]{1,30}/)
+      return false if @location.nil?
+      return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["Payment", "Transfer", "Contract Invoke"])
+      return false unless type_validator.valid?(@type)
+      return false if @type.to_s.length > 30
+      return false if @type.to_s.length < 0
+      return false if @type !~ Regexp.new(/^[A-Za-z ]{1,30}/)
+      return false if @urgency.nil?
+      urgency_validator = EnumAttributeValidator.new('String', ["Normal", "Fast", "Urgent"])
+      return false unless urgency_validator.valid?(@urgency)
+      return false if @urgency.to_s.length > 30
+      return false if @urgency.to_s.length < 0
+      return false if @urgency !~ Regexp.new(/^[A-Za-z ]{1,30}/)
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] urgency Value to be assigned
-    def urgency=(urgency)
-      if !urgency.nil? && urgency.to_s.length > 30
-        fail ArgumentError, 'invalid value for "urgency", the character length must be smaller than or equal to 30.'
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["Payment", "Transfer", "Contract Invoke"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end
-
-      if !urgency.nil? && urgency.to_s.length < 0
-        fail ArgumentError, 'invalid value for "urgency", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[A-Za-z ]{1,30}/)
-      if !urgency.nil? && urgency !~ pattern
-        fail ArgumentError, "invalid value for \"urgency\", must conform to the pattern #{pattern}."
-      end
-
-      @urgency = urgency
+      @type = type
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] type Value to be assigned
-    def type=(type)
-      if !type.nil? && type.to_s.length > 30
-        fail ArgumentError, 'invalid value for "type", the character length must be smaller than or equal to 30.'
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] urgency Object to be assigned
+    def urgency=(urgency)
+      validator = EnumAttributeValidator.new('String', ["Normal", "Fast", "Urgent"])
+      unless validator.valid?(urgency)
+        fail ArgumentError, "invalid value for \"urgency\", must be one of #{validator.allowable_values}."
       end
-
-      if !type.nil? && type.to_s.length < 0
-        fail ArgumentError, 'invalid value for "type", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[A-Za-z ]{1,30}/)
-      if !type.nil? && type !~ pattern
-        fail ArgumentError, "invalid value for \"type\", must conform to the pattern #{pattern}."
-      end
-
-      @type = type
+      @urgency = urgency
     end
 
     # Checks equality by comparing each attribute.
@@ -174,10 +199,10 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          urgency == o.urgency &&
-          request_details == o.request_details &&
           location == o.location &&
-          type == o.type
+          type == o.type &&
+          urgency == o.urgency &&
+          request_details == o.request_details
     end
 
     # @see the `==` method
@@ -189,7 +214,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [urgency, request_details, location, type].hash
+      [location, type, urgency, request_details].hash
     end
 
     # Builds the object from hash

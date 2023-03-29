@@ -22,16 +22,16 @@ typedef struct auto_exec_search_address_sequence_response_schema_t auto_exec_sea
 
 
 typedef struct auto_exec_search_address_sequence_response_schema_t {
-    struct prepare_search_response_schema_t *preparation_address_sequence_search_response; //model
     struct prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_error_response; //model
     struct execute_search_sequence_response_t *execution_address_sequence_search_response; //model
+    struct prepare_search_response_schema_t *preparation_address_sequence_search_response; //model
 
 } auto_exec_search_address_sequence_response_schema_t;
 
 auto_exec_search_address_sequence_response_schema_t *auto_exec_search_address_sequence_response_schema_create(
-    prepare_search_response_schema_t *preparation_address_sequence_search_response,
     prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_error_response,
-    execute_search_sequence_response_t *execution_address_sequence_search_response
+    execute_search_sequence_response_t *execution_address_sequence_search_response,
+    prepare_search_response_schema_t *preparation_address_sequence_search_response
 );
 
 void auto_exec_search_address_sequence_response_schema_free(auto_exec_search_address_sequence_response_schema_t *auto_exec_search_address_sequence_response_schema);

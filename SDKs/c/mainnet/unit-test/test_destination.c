@@ -16,9 +16,9 @@
 #include "../model/destination.h"
 destination_t* instantiate_destination(int include_optional);
 
+#include "test_payment.c"
 #include "test_transfer.c"
 #include "test_smart_contract.c"
-#include "test_payment.c"
 
 
 destination_t* instantiate_destination(int include_optional) {
@@ -26,19 +26,19 @@ destination_t* instantiate_destination(int include_optional) {
   if (include_optional) {
     destination = destination_create(
        // false, not to have infinite recursion
-      instantiate_transfer(0),
-       // false, not to have infinite recursion
-      instantiate_smart_contract(0),
-       // false, not to have infinite recursion
       instantiate_payment(0),
-      "a"
+       // false, not to have infinite recursion
+      instantiate_transfer(0),
+      "a",
+       // false, not to have infinite recursion
+      instantiate_smart_contract(0)
     );
   } else {
     destination = destination_create(
       NULL,
       NULL,
-      NULL,
-      "a"
+      "a",
+      NULL
     );
   }
 

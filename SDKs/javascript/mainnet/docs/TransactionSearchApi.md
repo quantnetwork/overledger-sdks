@@ -29,7 +29,7 @@ OAuth2_Security_Scheme.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new QuantOverledgerApi.TransactionSearchApi();
 let authorization = "authorization_example"; // String | 
-let transactionId = "transactionId_example"; // String | 
+let transactionId = 0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab; // String | The transactionId to search for
 let prepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // PrepareSearchSchema | 
 apiInstance.autoExecuteSearchTransactionRequest(authorization, transactionId, prepareSearchSchema, (error, data, response) => {
   if (error) {
@@ -46,7 +46,7 @@ apiInstance.autoExecuteSearchTransactionRequest(authorization, transactionId, pr
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**|  | 
- **transactionId** | **String**|  | 
+ **transactionId** | **String**| The transactionId to search for | 
  **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  | 
 
 ### Return type
@@ -133,7 +133,7 @@ OAuth2_Security_Scheme.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new QuantOverledgerApi.TransactionSearchApi();
 let authorization = "authorization_example"; // String | 
-let transactionId = "transactionId_example"; // String | 
+let transactionId = 0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab; // String | The transactionId to search for
 let prepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // PrepareSearchSchema | 
 apiInstance.prepareSearchRequest(authorization, transactionId, prepareSearchSchema, (error, data, response) => {
   if (error) {
@@ -150,7 +150,7 @@ apiInstance.prepareSearchRequest(authorization, transactionId, prepareSearchSche
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**|  | 
- **transactionId** | **String**|  | 
+ **transactionId** | **String**| The transactionId to search for | 
  **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  | 
 
 ### Return type

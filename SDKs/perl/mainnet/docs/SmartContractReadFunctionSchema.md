@@ -8,8 +8,8 @@ use WWW::OpenAPIClient::Object::SmartContractReadFunctionSchema;
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**function_id** | **string** |  | [optional] 
 **name** | **string** |  | [optional] 
+**function_id** | **string** |  | [optional] 
 **input_parameters** | [**ARRAY[SmartContractInputParameterSchema]**](SmartContractInputParameterSchema.md) |  | [optional] 
 **output_parameters** | [**ARRAY[SmartContractInputParameterSchema]**](SmartContractInputParameterSchema.md) |  | [optional] 
 

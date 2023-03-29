@@ -25,7 +25,7 @@ Generates a request ID and automatically executes the block search on the reques
 
 val apiInstance = BlockSearchApi()
 val authorization : kotlin.String = authorization_example // kotlin.String | 
-val blockId : kotlin.String = latest // kotlin.String | 
+val blockId : kotlin.String = 54678 // kotlin.String | 
 val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}} // PrepareSearchSchema | 
 try {
     val result : AutoExecuteSearchBlockResponseSchema = apiInstance.autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema)
@@ -129,7 +129,7 @@ Returns a request ID for executing a block search on the requested DLT. Block se
 
 val apiInstance = BlockSearchApi()
 val authorization : kotlin.String = authorization_example // kotlin.String | 
-val blockId : kotlin.String = latest // kotlin.String | 
+val blockId : kotlin.String = 54678 // kotlin.String | 
 val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}} // PrepareSearchSchema | 
 try {
     val result : PrepareSearchResponseSchema = apiInstance.prepareSearchBlockByBlockId(authorization, blockId, prepareSearchSchema)

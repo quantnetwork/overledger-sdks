@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,9 +16,9 @@ import (
 
 // PrepareAndExecuteTransactionResponse struct for PrepareAndExecuteTransactionResponse
 type PrepareAndExecuteTransactionResponse struct {
-	ExecutionTransactionSearchOverledgerErrorResponse *PrepareAndExecuteOverledgerErrorResponse `json:"executionTransactionSearchOverledgerErrorResponse,omitempty"`
 	PreparationTransactionSearchResponse *PrepareTransactionResponse `json:"preparationTransactionSearchResponse,omitempty"`
 	ExecutionTransactionSearchResponse *ExecuteSearchTransactionResponse `json:"executionTransactionSearchResponse,omitempty"`
+	ExecutionTransactionSearchOverledgerErrorResponse *PrepareAndExecuteOverledgerErrorResponse `json:"executionTransactionSearchOverledgerErrorResponse,omitempty"`
 }
 
 // NewPrepareAndExecuteTransactionResponse instantiates a new PrepareAndExecuteTransactionResponse object
@@ -36,38 +36,6 @@ func NewPrepareAndExecuteTransactionResponse() *PrepareAndExecuteTransactionResp
 func NewPrepareAndExecuteTransactionResponseWithDefaults() *PrepareAndExecuteTransactionResponse {
 	this := PrepareAndExecuteTransactionResponse{}
 	return &this
-}
-
-// GetExecutionTransactionSearchOverledgerErrorResponse returns the ExecutionTransactionSearchOverledgerErrorResponse field value if set, zero value otherwise.
-func (o *PrepareAndExecuteTransactionResponse) GetExecutionTransactionSearchOverledgerErrorResponse() PrepareAndExecuteOverledgerErrorResponse {
-	if o == nil || o.ExecutionTransactionSearchOverledgerErrorResponse == nil {
-		var ret PrepareAndExecuteOverledgerErrorResponse
-		return ret
-	}
-	return *o.ExecutionTransactionSearchOverledgerErrorResponse
-}
-
-// GetExecutionTransactionSearchOverledgerErrorResponseOk returns a tuple with the ExecutionTransactionSearchOverledgerErrorResponse field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PrepareAndExecuteTransactionResponse) GetExecutionTransactionSearchOverledgerErrorResponseOk() (*PrepareAndExecuteOverledgerErrorResponse, bool) {
-	if o == nil || o.ExecutionTransactionSearchOverledgerErrorResponse == nil {
-		return nil, false
-	}
-	return o.ExecutionTransactionSearchOverledgerErrorResponse, true
-}
-
-// HasExecutionTransactionSearchOverledgerErrorResponse returns a boolean if a field has been set.
-func (o *PrepareAndExecuteTransactionResponse) HasExecutionTransactionSearchOverledgerErrorResponse() bool {
-	if o != nil && o.ExecutionTransactionSearchOverledgerErrorResponse != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetExecutionTransactionSearchOverledgerErrorResponse gets a reference to the given PrepareAndExecuteOverledgerErrorResponse and assigns it to the ExecutionTransactionSearchOverledgerErrorResponse field.
-func (o *PrepareAndExecuteTransactionResponse) SetExecutionTransactionSearchOverledgerErrorResponse(v PrepareAndExecuteOverledgerErrorResponse) {
-	o.ExecutionTransactionSearchOverledgerErrorResponse = &v
 }
 
 // GetPreparationTransactionSearchResponse returns the PreparationTransactionSearchResponse field value if set, zero value otherwise.
@@ -134,16 +102,48 @@ func (o *PrepareAndExecuteTransactionResponse) SetExecutionTransactionSearchResp
 	o.ExecutionTransactionSearchResponse = &v
 }
 
+// GetExecutionTransactionSearchOverledgerErrorResponse returns the ExecutionTransactionSearchOverledgerErrorResponse field value if set, zero value otherwise.
+func (o *PrepareAndExecuteTransactionResponse) GetExecutionTransactionSearchOverledgerErrorResponse() PrepareAndExecuteOverledgerErrorResponse {
+	if o == nil || o.ExecutionTransactionSearchOverledgerErrorResponse == nil {
+		var ret PrepareAndExecuteOverledgerErrorResponse
+		return ret
+	}
+	return *o.ExecutionTransactionSearchOverledgerErrorResponse
+}
+
+// GetExecutionTransactionSearchOverledgerErrorResponseOk returns a tuple with the ExecutionTransactionSearchOverledgerErrorResponse field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PrepareAndExecuteTransactionResponse) GetExecutionTransactionSearchOverledgerErrorResponseOk() (*PrepareAndExecuteOverledgerErrorResponse, bool) {
+	if o == nil || o.ExecutionTransactionSearchOverledgerErrorResponse == nil {
+		return nil, false
+	}
+	return o.ExecutionTransactionSearchOverledgerErrorResponse, true
+}
+
+// HasExecutionTransactionSearchOverledgerErrorResponse returns a boolean if a field has been set.
+func (o *PrepareAndExecuteTransactionResponse) HasExecutionTransactionSearchOverledgerErrorResponse() bool {
+	if o != nil && o.ExecutionTransactionSearchOverledgerErrorResponse != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExecutionTransactionSearchOverledgerErrorResponse gets a reference to the given PrepareAndExecuteOverledgerErrorResponse and assigns it to the ExecutionTransactionSearchOverledgerErrorResponse field.
+func (o *PrepareAndExecuteTransactionResponse) SetExecutionTransactionSearchOverledgerErrorResponse(v PrepareAndExecuteOverledgerErrorResponse) {
+	o.ExecutionTransactionSearchOverledgerErrorResponse = &v
+}
+
 func (o PrepareAndExecuteTransactionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ExecutionTransactionSearchOverledgerErrorResponse != nil {
-		toSerialize["executionTransactionSearchOverledgerErrorResponse"] = o.ExecutionTransactionSearchOverledgerErrorResponse
-	}
 	if o.PreparationTransactionSearchResponse != nil {
 		toSerialize["preparationTransactionSearchResponse"] = o.PreparationTransactionSearchResponse
 	}
 	if o.ExecutionTransactionSearchResponse != nil {
 		toSerialize["executionTransactionSearchResponse"] = o.ExecutionTransactionSearchResponse
+	}
+	if o.ExecutionTransactionSearchOverledgerErrorResponse != nil {
+		toSerialize["executionTransactionSearchOverledgerErrorResponse"] = o.ExecutionTransactionSearchOverledgerErrorResponse
 	}
 	return json.Marshal(toSerialize)
 }

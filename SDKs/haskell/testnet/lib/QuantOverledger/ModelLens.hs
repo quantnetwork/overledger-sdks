@@ -1,7 +1,7 @@
 {-
    Quant Overledger API
 
-   Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+   Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
    OpenAPI Version: 3.0.1
    Quant Overledger API API version: 2.0
@@ -34,6 +34,67 @@ import qualified Prelude as P
 
 import QuantOverledger.Model
 import QuantOverledger.Core
+
+
+-- * AccountDetails
+
+-- | 'accountDetailsParentAccountId' Lens
+accountDetailsParentAccountIdL :: Lens_' AccountDetails (Maybe Text)
+accountDetailsParentAccountIdL f AccountDetails{..} = (\accountDetailsParentAccountId -> AccountDetails { accountDetailsParentAccountId, ..} ) <$> f accountDetailsParentAccountId
+{-# INLINE accountDetailsParentAccountIdL #-}
+
+-- | 'accountDetailsAccountId' Lens
+accountDetailsAccountIdL :: Lens_' AccountDetails (Maybe Text)
+accountDetailsAccountIdL f AccountDetails{..} = (\accountDetailsAccountId -> AccountDetails { accountDetailsAccountId, ..} ) <$> f accountDetailsAccountId
+{-# INLINE accountDetailsAccountIdL #-}
+
+-- | 'accountDetailsUnit' Lens
+accountDetailsUnitL :: Lens_' AccountDetails (Maybe Text)
+accountDetailsUnitL f AccountDetails{..} = (\accountDetailsUnit -> AccountDetails { accountDetailsUnit, ..} ) <$> f accountDetailsUnit
+{-# INLINE accountDetailsUnitL #-}
+
+-- | 'accountDetailsOwningInstitutionId' Lens
+accountDetailsOwningInstitutionIdL :: Lens_' AccountDetails (Maybe Text)
+accountDetailsOwningInstitutionIdL f AccountDetails{..} = (\accountDetailsOwningInstitutionId -> AccountDetails { accountDetailsOwningInstitutionId, ..} ) <$> f accountDetailsOwningInstitutionId
+{-# INLINE accountDetailsOwningInstitutionIdL #-}
+
+-- | 'accountDetailsAccountType' Lens
+accountDetailsAccountTypeL :: Lens_' AccountDetails (Maybe Text)
+accountDetailsAccountTypeL f AccountDetails{..} = (\accountDetailsAccountType -> AccountDetails { accountDetailsAccountType, ..} ) <$> f accountDetailsAccountType
+{-# INLINE accountDetailsAccountTypeL #-}
+
+
+
+-- * AddSecondaryAccountRequestDetailsSchema
+
+-- | 'addSecondaryAccountRequestDetailsSchemaOwner' Lens
+addSecondaryAccountRequestDetailsSchemaOwnerL :: Lens_' AddSecondaryAccountRequestDetailsSchema (Maybe SecondaryAccountOwnerSchema)
+addSecondaryAccountRequestDetailsSchemaOwnerL f AddSecondaryAccountRequestDetailsSchema{..} = (\addSecondaryAccountRequestDetailsSchemaOwner -> AddSecondaryAccountRequestDetailsSchema { addSecondaryAccountRequestDetailsSchemaOwner, ..} ) <$> f addSecondaryAccountRequestDetailsSchemaOwner
+{-# INLINE addSecondaryAccountRequestDetailsSchemaOwnerL #-}
+
+-- | 'addSecondaryAccountRequestDetailsSchemaAdditionalOwner' Lens
+addSecondaryAccountRequestDetailsSchemaAdditionalOwnerL :: Lens_' AddSecondaryAccountRequestDetailsSchema (Maybe SecondaryAccountAdditionalOwnerSchema)
+addSecondaryAccountRequestDetailsSchemaAdditionalOwnerL f AddSecondaryAccountRequestDetailsSchema{..} = (\addSecondaryAccountRequestDetailsSchemaAdditionalOwner -> AddSecondaryAccountRequestDetailsSchema { addSecondaryAccountRequestDetailsSchemaAdditionalOwner, ..} ) <$> f addSecondaryAccountRequestDetailsSchemaAdditionalOwner
+{-# INLINE addSecondaryAccountRequestDetailsSchemaAdditionalOwnerL #-}
+
+
+
+-- * AdditionalOwner
+
+-- | 'additionalOwnerAccountId' Lens
+additionalOwnerAccountIdL :: Lens_' AdditionalOwner (Maybe Text)
+additionalOwnerAccountIdL f AdditionalOwner{..} = (\additionalOwnerAccountId -> AdditionalOwner { additionalOwnerAccountId, ..} ) <$> f additionalOwnerAccountId
+{-# INLINE additionalOwnerAccountIdL #-}
+
+
+
+-- * AdditionalOwnerRemoveSecondarySchema
+
+-- | 'additionalOwnerRemoveSecondarySchemaAccountId' Lens
+additionalOwnerRemoveSecondarySchemaAccountIdL :: Lens_' AdditionalOwnerRemoveSecondarySchema (Maybe Text)
+additionalOwnerRemoveSecondarySchemaAccountIdL f AdditionalOwnerRemoveSecondarySchema{..} = (\additionalOwnerRemoveSecondarySchemaAccountId -> AdditionalOwnerRemoveSecondarySchema { additionalOwnerRemoveSecondarySchemaAccountId, ..} ) <$> f additionalOwnerRemoveSecondarySchemaAccountId
+{-# INLINE additionalOwnerRemoveSecondarySchemaAccountIdL #-}
+
 
 
 -- * AddressBalanceResponse
@@ -76,15 +137,15 @@ addressMonitoringDetailsSchemaTimestampL f AddressMonitoringDetailsSchema{..} = 
 
 -- * AddressMonitoringRequestSchema
 
--- | 'addressMonitoringRequestSchemaCallBackUrl' Lens
-addressMonitoringRequestSchemaCallBackUrlL :: Lens_' AddressMonitoringRequestSchema (Maybe Text)
-addressMonitoringRequestSchemaCallBackUrlL f AddressMonitoringRequestSchema{..} = (\addressMonitoringRequestSchemaCallBackUrl -> AddressMonitoringRequestSchema { addressMonitoringRequestSchemaCallBackUrl, ..} ) <$> f addressMonitoringRequestSchemaCallBackUrl
-{-# INLINE addressMonitoringRequestSchemaCallBackUrlL #-}
-
 -- | 'addressMonitoringRequestSchemaLocation' Lens
 addressMonitoringRequestSchemaLocationL :: Lens_' AddressMonitoringRequestSchema (Maybe Location)
 addressMonitoringRequestSchemaLocationL f AddressMonitoringRequestSchema{..} = (\addressMonitoringRequestSchemaLocation -> AddressMonitoringRequestSchema { addressMonitoringRequestSchemaLocation, ..} ) <$> f addressMonitoringRequestSchemaLocation
 {-# INLINE addressMonitoringRequestSchemaLocationL #-}
+
+-- | 'addressMonitoringRequestSchemaCallBackUrl' Lens
+addressMonitoringRequestSchemaCallBackUrlL :: Lens_' AddressMonitoringRequestSchema (Maybe Text)
+addressMonitoringRequestSchemaCallBackUrlL f AddressMonitoringRequestSchema{..} = (\addressMonitoringRequestSchemaCallBackUrl -> AddressMonitoringRequestSchema { addressMonitoringRequestSchemaCallBackUrl, ..} ) <$> f addressMonitoringRequestSchemaCallBackUrl
+{-# INLINE addressMonitoringRequestSchemaCallBackUrlL #-}
 
 -- | 'addressMonitoringRequestSchemaAddressId' Lens
 addressMonitoringRequestSchemaAddressIdL :: Lens_' AddressMonitoringRequestSchema (Maybe Text)
@@ -95,15 +156,15 @@ addressMonitoringRequestSchemaAddressIdL f AddressMonitoringRequestSchema{..} = 
 
 -- * AddressMonitoringResponseSchema
 
--- | 'addressMonitoringResponseSchemaSubscriptionDetails' Lens
-addressMonitoringResponseSchemaSubscriptionDetailsL :: Lens_' AddressMonitoringResponseSchema (Maybe ResourceMonitoringSubscriptionDetails)
-addressMonitoringResponseSchemaSubscriptionDetailsL f AddressMonitoringResponseSchema{..} = (\addressMonitoringResponseSchemaSubscriptionDetails -> AddressMonitoringResponseSchema { addressMonitoringResponseSchemaSubscriptionDetails, ..} ) <$> f addressMonitoringResponseSchemaSubscriptionDetails
-{-# INLINE addressMonitoringResponseSchemaSubscriptionDetailsL #-}
-
 -- | 'addressMonitoringResponseSchemaResourceMonitoring' Lens
 addressMonitoringResponseSchemaResourceMonitoringL :: Lens_' AddressMonitoringResponseSchema (Maybe ResourceMonitoringDetails)
 addressMonitoringResponseSchemaResourceMonitoringL f AddressMonitoringResponseSchema{..} = (\addressMonitoringResponseSchemaResourceMonitoring -> AddressMonitoringResponseSchema { addressMonitoringResponseSchemaResourceMonitoring, ..} ) <$> f addressMonitoringResponseSchemaResourceMonitoring
 {-# INLINE addressMonitoringResponseSchemaResourceMonitoringL #-}
+
+-- | 'addressMonitoringResponseSchemaSubscriptionDetails' Lens
+addressMonitoringResponseSchemaSubscriptionDetailsL :: Lens_' AddressMonitoringResponseSchema (Maybe ResourceMonitoringSubscriptionDetails)
+addressMonitoringResponseSchemaSubscriptionDetailsL f AddressMonitoringResponseSchema{..} = (\addressMonitoringResponseSchemaSubscriptionDetails -> AddressMonitoringResponseSchema { addressMonitoringResponseSchemaSubscriptionDetails, ..} ) <$> f addressMonitoringResponseSchemaSubscriptionDetails
+{-# INLINE addressMonitoringResponseSchemaSubscriptionDetailsL #-}
 
 -- | 'addressMonitoringResponseSchemaSubscription' Lens
 addressMonitoringResponseSchemaSubscriptionL :: Lens_' AddressMonitoringResponseSchema (Maybe ResourceMonitoringSubscription)
@@ -112,7 +173,46 @@ addressMonitoringResponseSchemaSubscriptionL f AddressMonitoringResponseSchema{.
 
 
 
+-- * AliasDetails
+
+-- | 'aliasDetailsAccountId' Lens
+aliasDetailsAccountIdL :: Lens_' AliasDetails (Maybe Text)
+aliasDetailsAccountIdL f AliasDetails{..} = (\aliasDetailsAccountId -> AliasDetails { aliasDetailsAccountId, ..} ) <$> f aliasDetailsAccountId
+{-# INLINE aliasDetailsAccountIdL #-}
+
+-- | 'aliasDetailsUnit' Lens
+aliasDetailsUnitL :: Lens_' AliasDetails (Maybe Text)
+aliasDetailsUnitL f AliasDetails{..} = (\aliasDetailsUnit -> AliasDetails { aliasDetailsUnit, ..} ) <$> f aliasDetailsUnit
+{-# INLINE aliasDetailsUnitL #-}
+
+-- | 'aliasDetailsDisposableAlias' Lens
+aliasDetailsDisposableAliasL :: Lens_' AliasDetails (Maybe Bool)
+aliasDetailsDisposableAliasL f AliasDetails{..} = (\aliasDetailsDisposableAlias -> AliasDetails { aliasDetailsDisposableAlias, ..} ) <$> f aliasDetailsDisposableAlias
+{-# INLINE aliasDetailsDisposableAliasL #-}
+
+-- | 'aliasDetailsAliasHash' Lens
+aliasDetailsAliasHashL :: Lens_' AliasDetails (Maybe Text)
+aliasDetailsAliasHashL f AliasDetails{..} = (\aliasDetailsAliasHash -> AliasDetails { aliasDetailsAliasHash, ..} ) <$> f aliasDetailsAliasHash
+{-# INLINE aliasDetailsAliasHashL #-}
+
+-- | 'aliasDetailsAliasType' Lens
+aliasDetailsAliasTypeL :: Lens_' AliasDetails (Maybe Text)
+aliasDetailsAliasTypeL f AliasDetails{..} = (\aliasDetailsAliasType -> AliasDetails { aliasDetailsAliasType, ..} ) <$> f aliasDetailsAliasType
+{-# INLINE aliasDetailsAliasTypeL #-}
+
+-- | 'aliasDetailsEsipId' Lens
+aliasDetailsEsipIdL :: Lens_' AliasDetails (Maybe Text)
+aliasDetailsEsipIdL f AliasDetails{..} = (\aliasDetailsEsipId -> AliasDetails { aliasDetailsEsipId, ..} ) <$> f aliasDetailsEsipId
+{-# INLINE aliasDetailsEsipIdL #-}
+
+
+
 -- * ApproveRequestDetailsSchema
+
+-- | 'approveRequestDetailsSchemaPayer' Lens
+approveRequestDetailsSchemaPayerL :: Lens_' ApproveRequestDetailsSchema (Maybe [PayerCreditSchema])
+approveRequestDetailsSchemaPayerL f ApproveRequestDetailsSchema{..} = (\approveRequestDetailsSchemaPayer -> ApproveRequestDetailsSchema { approveRequestDetailsSchemaPayer, ..} ) <$> f approveRequestDetailsSchemaPayer
+{-# INLINE approveRequestDetailsSchemaPayerL #-}
 
 -- | 'approveRequestDetailsSchemaMandate' Lens
 approveRequestDetailsSchemaMandateL :: Lens_' ApproveRequestDetailsSchema (Maybe [PayeeCreditSchema])
@@ -124,19 +224,9 @@ approveRequestDetailsSchemaOverledgerSigningTypeL :: Lens_' ApproveRequestDetail
 approveRequestDetailsSchemaOverledgerSigningTypeL f ApproveRequestDetailsSchema{..} = (\approveRequestDetailsSchemaOverledgerSigningType -> ApproveRequestDetailsSchema { approveRequestDetailsSchemaOverledgerSigningType, ..} ) <$> f approveRequestDetailsSchemaOverledgerSigningType
 {-# INLINE approveRequestDetailsSchemaOverledgerSigningTypeL #-}
 
--- | 'approveRequestDetailsSchemaPayer' Lens
-approveRequestDetailsSchemaPayerL :: Lens_' ApproveRequestDetailsSchema (Maybe [PayerCreditSchema])
-approveRequestDetailsSchemaPayerL f ApproveRequestDetailsSchema{..} = (\approveRequestDetailsSchemaPayer -> ApproveRequestDetailsSchema { approveRequestDetailsSchemaPayer, ..} ) <$> f approveRequestDetailsSchemaPayer
-{-# INLINE approveRequestDetailsSchemaPayerL #-}
-
 
 
 -- * AutoExecSearchAddressSequenceResponseSchema
-
--- | 'autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse' Lens
-autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponseL :: Lens_' AutoExecSearchAddressSequenceResponseSchema (Maybe PrepareSearchResponseSchema)
-autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponseL f AutoExecSearchAddressSequenceResponseSchema{..} = (\autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse -> AutoExecSearchAddressSequenceResponseSchema { autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse, ..} ) <$> f autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse
-{-# INLINE autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponseL #-}
 
 -- | 'autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse' Lens
 autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponseL :: Lens_' AutoExecSearchAddressSequenceResponseSchema (Maybe PrepareAndExecuteOverledgerErrorResponse)
@@ -148,19 +238,24 @@ autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchRespons
 autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponseL f AutoExecSearchAddressSequenceResponseSchema{..} = (\autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponse -> AutoExecSearchAddressSequenceResponseSchema { autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponse, ..} ) <$> f autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponse
 {-# INLINE autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponseL #-}
 
+-- | 'autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse' Lens
+autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponseL :: Lens_' AutoExecSearchAddressSequenceResponseSchema (Maybe PrepareSearchResponseSchema)
+autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponseL f AutoExecSearchAddressSequenceResponseSchema{..} = (\autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse -> AutoExecSearchAddressSequenceResponseSchema { autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse, ..} ) <$> f autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse
+{-# INLINE autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponseL #-}
+
 
 
 -- * AutoExecuteSearchAddressBalanceResponseSchema
-
--- | 'autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse' Lens
-autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponseL :: Lens_' AutoExecuteSearchAddressBalanceResponseSchema (Maybe PrepareAndExecuteSearchAddressBalanceResponse)
-autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponseL f AutoExecuteSearchAddressBalanceResponseSchema{..} = (\autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse -> AutoExecuteSearchAddressBalanceResponseSchema { autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse, ..} ) <$> f autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse
-{-# INLINE autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponseL #-}
 
 -- | 'autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse' Lens
 autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponseL :: Lens_' AutoExecuteSearchAddressBalanceResponseSchema (Maybe PrepareAndExecuteOverledgerErrorResponse)
 autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponseL f AutoExecuteSearchAddressBalanceResponseSchema{..} = (\autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse -> AutoExecuteSearchAddressBalanceResponseSchema { autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse, ..} ) <$> f autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse
 {-# INLINE autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponseL #-}
+
+-- | 'autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse' Lens
+autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponseL :: Lens_' AutoExecuteSearchAddressBalanceResponseSchema (Maybe PrepareAndExecuteSearchAddressBalanceResponse)
+autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponseL f AutoExecuteSearchAddressBalanceResponseSchema{..} = (\autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse -> AutoExecuteSearchAddressBalanceResponseSchema { autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse, ..} ) <$> f autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse
+{-# INLINE autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponseL #-}
 
 -- | 'autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponse' Lens
 autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponseL :: Lens_' AutoExecuteSearchAddressBalanceResponseSchema (Maybe PrepareSearchResponseSchema)
@@ -171,15 +266,15 @@ autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResp
 
 -- * AutoExecuteSearchBlockResponseSchema
 
--- | 'autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse' Lens
-autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponseL :: Lens_' AutoExecuteSearchBlockResponseSchema (Maybe ExecuteSearchBlockResponse)
-autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponseL f AutoExecuteSearchBlockResponseSchema{..} = (\autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse -> AutoExecuteSearchBlockResponseSchema { autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse, ..} ) <$> f autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse
-{-# INLINE autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponseL #-}
-
 -- | 'autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse' Lens
 autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponseL :: Lens_' AutoExecuteSearchBlockResponseSchema (Maybe PrepareAndExecuteOverledgerErrorResponse)
 autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponseL f AutoExecuteSearchBlockResponseSchema{..} = (\autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse -> AutoExecuteSearchBlockResponseSchema { autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse, ..} ) <$> f autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse
 {-# INLINE autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponseL #-}
+
+-- | 'autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse' Lens
+autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponseL :: Lens_' AutoExecuteSearchBlockResponseSchema (Maybe ExecuteSearchBlockResponse)
+autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponseL f AutoExecuteSearchBlockResponseSchema{..} = (\autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse -> AutoExecuteSearchBlockResponseSchema { autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse, ..} ) <$> f autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse
+{-# INLINE autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponseL #-}
 
 -- | 'autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponse' Lens
 autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponseL :: Lens_' AutoExecuteSearchBlockResponseSchema (Maybe PrepareSearchResponseSchema)
@@ -204,6 +299,48 @@ autoExecuteSearchUTXOResponseSchemaPrepareAndExecuteOverledgerErrorResponseL f A
 autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponseL :: Lens_' AutoExecuteSearchUTXOResponseSchema (Maybe PrepareTransactionResponse)
 autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponseL f AutoExecuteSearchUTXOResponseSchema{..} = (\autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponse -> AutoExecuteSearchUTXOResponseSchema { autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponse, ..} ) <$> f autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponse
 {-# INLINE autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponseL #-}
+
+
+
+-- * Beneficiary
+
+-- | 'beneficiaryAccountId' Lens
+beneficiaryAccountIdL :: Lens_' Beneficiary (Maybe Text)
+beneficiaryAccountIdL f Beneficiary{..} = (\beneficiaryAccountId -> Beneficiary { beneficiaryAccountId, ..} ) <$> f beneficiaryAccountId
+{-# INLINE beneficiaryAccountIdL #-}
+
+-- | 'beneficiaryMint' Lens
+beneficiaryMintL :: Lens_' Beneficiary (Maybe Mint)
+beneficiaryMintL f Beneficiary{..} = (\beneficiaryMint -> Beneficiary { beneficiaryMint, ..} ) <$> f beneficiaryMint
+{-# INLINE beneficiaryMintL #-}
+
+
+
+-- * BeneficiaryMintSchemaQrc20
+
+-- | 'beneficiaryMintSchemaQrc20AccountId' Lens
+beneficiaryMintSchemaQrc20AccountIdL :: Lens_' BeneficiaryMintSchemaQrc20 (Maybe Text)
+beneficiaryMintSchemaQrc20AccountIdL f BeneficiaryMintSchemaQrc20{..} = (\beneficiaryMintSchemaQrc20AccountId -> BeneficiaryMintSchemaQrc20 { beneficiaryMintSchemaQrc20AccountId, ..} ) <$> f beneficiaryMintSchemaQrc20AccountId
+{-# INLINE beneficiaryMintSchemaQrc20AccountIdL #-}
+
+-- | 'beneficiaryMintSchemaQrc20Mint' Lens
+beneficiaryMintSchemaQrc20MintL :: Lens_' BeneficiaryMintSchemaQrc20 (Maybe MintSchemaQrc20)
+beneficiaryMintSchemaQrc20MintL f BeneficiaryMintSchemaQrc20{..} = (\beneficiaryMintSchemaQrc20Mint -> BeneficiaryMintSchemaQrc20 { beneficiaryMintSchemaQrc20Mint, ..} ) <$> f beneficiaryMintSchemaQrc20Mint
+{-# INLINE beneficiaryMintSchemaQrc20MintL #-}
+
+
+
+-- * BeneficiaryMintSchemaQrc721
+
+-- | 'beneficiaryMintSchemaQrc721AccountId' Lens
+beneficiaryMintSchemaQrc721AccountIdL :: Lens_' BeneficiaryMintSchemaQrc721 (Maybe Text)
+beneficiaryMintSchemaQrc721AccountIdL f BeneficiaryMintSchemaQrc721{..} = (\beneficiaryMintSchemaQrc721AccountId -> BeneficiaryMintSchemaQrc721 { beneficiaryMintSchemaQrc721AccountId, ..} ) <$> f beneficiaryMintSchemaQrc721AccountId
+{-# INLINE beneficiaryMintSchemaQrc721AccountIdL #-}
+
+-- | 'beneficiaryMintSchemaQrc721Mint' Lens
+beneficiaryMintSchemaQrc721MintL :: Lens_' BeneficiaryMintSchemaQrc721 (Maybe MintSchemaQrc721)
+beneficiaryMintSchemaQrc721MintL f BeneficiaryMintSchemaQrc721{..} = (\beneficiaryMintSchemaQrc721Mint -> BeneficiaryMintSchemaQrc721 { beneficiaryMintSchemaQrc721Mint, ..} ) <$> f beneficiaryMintSchemaQrc721Mint
+{-# INLINE beneficiaryMintSchemaQrc721MintL #-}
 
 
 
@@ -294,17 +431,107 @@ blockSizeKeyL f BlockSize{..} = (\blockSizeKey -> BlockSize { blockSizeKey, ..} 
 
 
 
--- * CreateSmartContractMonitoringSchema
+-- * Burn
 
--- | 'createSmartContractMonitoringSchemaSubscriptionDetails' Lens
-createSmartContractMonitoringSchemaSubscriptionDetailsL :: Lens_' CreateSmartContractMonitoringSchema (Maybe ResourceMonitoringSubscriptionDetails)
-createSmartContractMonitoringSchemaSubscriptionDetailsL f CreateSmartContractMonitoringSchema{..} = (\createSmartContractMonitoringSchemaSubscriptionDetails -> CreateSmartContractMonitoringSchema { createSmartContractMonitoringSchemaSubscriptionDetails, ..} ) <$> f createSmartContractMonitoringSchemaSubscriptionDetails
-{-# INLINE createSmartContractMonitoringSchemaSubscriptionDetailsL #-}
+-- | 'burnTokenName' Lens
+burnTokenNameL :: Lens_' Burn (Maybe Text)
+burnTokenNameL f Burn{..} = (\burnTokenName -> Burn { burnTokenName, ..} ) <$> f burnTokenName
+{-# INLINE burnTokenNameL #-}
+
+-- | 'burnAmount' Lens
+burnAmountL :: Lens_' Burn (Maybe Text)
+burnAmountL f Burn{..} = (\burnAmount -> Burn { burnAmount, ..} ) <$> f burnAmount
+{-# INLINE burnAmountL #-}
+
+-- | 'burnUnit' Lens
+burnUnitL :: Lens_' Burn (Maybe Text)
+burnUnitL f Burn{..} = (\burnUnit -> Burn { burnUnit, ..} ) <$> f burnUnit
+{-# INLINE burnUnitL #-}
+
+-- | 'burnMetadata' Lens
+burnMetadataL :: Lens_' Burn (Maybe Text)
+burnMetadataL f Burn{..} = (\burnMetadata -> Burn { burnMetadata, ..} ) <$> f burnMetadata
+{-# INLINE burnMetadataL #-}
+
+-- | 'burnTokenId' Lens
+burnTokenIdL :: Lens_' Burn (Maybe Text)
+burnTokenIdL f Burn{..} = (\burnTokenId -> Burn { burnTokenId, ..} ) <$> f burnTokenId
+{-# INLINE burnTokenIdL #-}
+
+
+
+-- * BurnRequestDetailsSchema
+
+-- | 'burnRequestDetailsSchemaOwner' Lens
+burnRequestDetailsSchemaOwnerL :: Lens_' BurnRequestDetailsSchema (Maybe [OwnerBurnSchema])
+burnRequestDetailsSchemaOwnerL f BurnRequestDetailsSchema{..} = (\burnRequestDetailsSchemaOwner -> BurnRequestDetailsSchema { burnRequestDetailsSchemaOwner, ..} ) <$> f burnRequestDetailsSchemaOwner
+{-# INLINE burnRequestDetailsSchemaOwnerL #-}
+
+-- | 'burnRequestDetailsSchemaMessage' Lens
+burnRequestDetailsSchemaMessageL :: Lens_' BurnRequestDetailsSchema (Maybe Text)
+burnRequestDetailsSchemaMessageL f BurnRequestDetailsSchema{..} = (\burnRequestDetailsSchemaMessage -> BurnRequestDetailsSchema { burnRequestDetailsSchemaMessage, ..} ) <$> f burnRequestDetailsSchemaMessage
+{-# INLINE burnRequestDetailsSchemaMessageL #-}
+
+-- | 'burnRequestDetailsSchemaOverledgerSigningType' Lens
+burnRequestDetailsSchemaOverledgerSigningTypeL :: Lens_' BurnRequestDetailsSchema (Maybe Text)
+burnRequestDetailsSchemaOverledgerSigningTypeL f BurnRequestDetailsSchema{..} = (\burnRequestDetailsSchemaOverledgerSigningType -> BurnRequestDetailsSchema { burnRequestDetailsSchemaOverledgerSigningType, ..} ) <$> f burnRequestDetailsSchemaOverledgerSigningType
+{-# INLINE burnRequestDetailsSchemaOverledgerSigningTypeL #-}
+
+
+
+-- * BurnRequestDetailsSchemaQrc721
+
+-- | 'burnRequestDetailsSchemaQrc721Owner' Lens
+burnRequestDetailsSchemaQrc721OwnerL :: Lens_' BurnRequestDetailsSchemaQrc721 (Maybe OwnerBurnSchema)
+burnRequestDetailsSchemaQrc721OwnerL f BurnRequestDetailsSchemaQrc721{..} = (\burnRequestDetailsSchemaQrc721Owner -> BurnRequestDetailsSchemaQrc721 { burnRequestDetailsSchemaQrc721Owner, ..} ) <$> f burnRequestDetailsSchemaQrc721Owner
+{-# INLINE burnRequestDetailsSchemaQrc721OwnerL #-}
+
+-- | 'burnRequestDetailsSchemaQrc721OverledgerSigningType' Lens
+burnRequestDetailsSchemaQrc721OverledgerSigningTypeL :: Lens_' BurnRequestDetailsSchemaQrc721 (Maybe Text)
+burnRequestDetailsSchemaQrc721OverledgerSigningTypeL f BurnRequestDetailsSchemaQrc721{..} = (\burnRequestDetailsSchemaQrc721OverledgerSigningType -> BurnRequestDetailsSchemaQrc721 { burnRequestDetailsSchemaQrc721OverledgerSigningType, ..} ) <$> f burnRequestDetailsSchemaQrc721OverledgerSigningType
+{-# INLINE burnRequestDetailsSchemaQrc721OverledgerSigningTypeL #-}
+
+
+
+-- * BurnSchema
+
+-- | 'burnSchemaAmount' Lens
+burnSchemaAmountL :: Lens_' BurnSchema (Text)
+burnSchemaAmountL f BurnSchema{..} = (\burnSchemaAmount -> BurnSchema { burnSchemaAmount, ..} ) <$> f burnSchemaAmount
+{-# INLINE burnSchemaAmountL #-}
+
+-- | 'burnSchemaUnit' Lens
+burnSchemaUnitL :: Lens_' BurnSchema (Maybe Text)
+burnSchemaUnitL f BurnSchema{..} = (\burnSchemaUnit -> BurnSchema { burnSchemaUnit, ..} ) <$> f burnSchemaUnit
+{-# INLINE burnSchemaUnitL #-}
+
+
+
+-- * Collector
+
+-- | 'collectorAccountId' Lens
+collectorAccountIdL :: Lens_' Collector (Maybe Text)
+collectorAccountIdL f Collector{..} = (\collectorAccountId -> Collector { collectorAccountId, ..} ) <$> f collectorAccountId
+{-# INLINE collectorAccountIdL #-}
+
+-- | 'collectorTransfer' Lens
+collectorTransferL :: Lens_' Collector (Maybe Transfer)
+collectorTransferL f Collector{..} = (\collectorTransfer -> Collector { collectorTransfer, ..} ) <$> f collectorTransfer
+{-# INLINE collectorTransferL #-}
+
+
+
+-- * CreateSmartContractMonitoringSchema
 
 -- | 'createSmartContractMonitoringSchemaResourceMonitoring' Lens
 createSmartContractMonitoringSchemaResourceMonitoringL :: Lens_' CreateSmartContractMonitoringSchema (Maybe ResourceMonitoringDetails)
 createSmartContractMonitoringSchemaResourceMonitoringL f CreateSmartContractMonitoringSchema{..} = (\createSmartContractMonitoringSchemaResourceMonitoring -> CreateSmartContractMonitoringSchema { createSmartContractMonitoringSchemaResourceMonitoring, ..} ) <$> f createSmartContractMonitoringSchemaResourceMonitoring
 {-# INLINE createSmartContractMonitoringSchemaResourceMonitoringL #-}
+
+-- | 'createSmartContractMonitoringSchemaSubscriptionDetails' Lens
+createSmartContractMonitoringSchemaSubscriptionDetailsL :: Lens_' CreateSmartContractMonitoringSchema (Maybe ResourceMonitoringSubscriptionDetails)
+createSmartContractMonitoringSchemaSubscriptionDetailsL f CreateSmartContractMonitoringSchema{..} = (\createSmartContractMonitoringSchemaSubscriptionDetails -> CreateSmartContractMonitoringSchema { createSmartContractMonitoringSchemaSubscriptionDetails, ..} ) <$> f createSmartContractMonitoringSchemaSubscriptionDetails
+{-# INLINE createSmartContractMonitoringSchemaSubscriptionDetailsL #-}
 
 -- | 'createSmartContractMonitoringSchemaSubscription' Lens
 createSmartContractMonitoringSchemaSubscriptionL :: Lens_' CreateSmartContractMonitoringSchema (Maybe ResourceMonitoringSubscription)
@@ -313,36 +540,54 @@ createSmartContractMonitoringSchemaSubscriptionL f CreateSmartContractMonitoring
 
 
 
--- * CreateSubscriptionRequestSchema
+-- * CreateWebhookSubscriptionRequestSchema
 
--- | 'createSubscriptionRequestSchemaIds' Lens
-createSubscriptionRequestSchemaIdsL :: Lens_' CreateSubscriptionRequestSchema (Maybe [Text])
-createSubscriptionRequestSchemaIdsL f CreateSubscriptionRequestSchema{..} = (\createSubscriptionRequestSchemaIds -> CreateSubscriptionRequestSchema { createSubscriptionRequestSchemaIds, ..} ) <$> f createSubscriptionRequestSchemaIds
-{-# INLINE createSubscriptionRequestSchemaIdsL #-}
+-- | 'createWebhookSubscriptionRequestSchemaType' Lens
+createWebhookSubscriptionRequestSchemaTypeL :: Lens_' CreateWebhookSubscriptionRequestSchema (Maybe Text)
+createWebhookSubscriptionRequestSchemaTypeL f CreateWebhookSubscriptionRequestSchema{..} = (\createWebhookSubscriptionRequestSchemaType -> CreateWebhookSubscriptionRequestSchema { createWebhookSubscriptionRequestSchemaType, ..} ) <$> f createWebhookSubscriptionRequestSchemaType
+{-# INLINE createWebhookSubscriptionRequestSchemaTypeL #-}
 
--- | 'createSubscriptionRequestSchemaCallbackUrl' Lens
-createSubscriptionRequestSchemaCallbackUrlL :: Lens_' CreateSubscriptionRequestSchema (Maybe Text)
-createSubscriptionRequestSchemaCallbackUrlL f CreateSubscriptionRequestSchema{..} = (\createSubscriptionRequestSchemaCallbackUrl -> CreateSubscriptionRequestSchema { createSubscriptionRequestSchemaCallbackUrl, ..} ) <$> f createSubscriptionRequestSchemaCallbackUrl
-{-# INLINE createSubscriptionRequestSchemaCallbackUrlL #-}
+-- | 'createWebhookSubscriptionRequestSchemaIds' Lens
+createWebhookSubscriptionRequestSchemaIdsL :: Lens_' CreateWebhookSubscriptionRequestSchema (Maybe [Text])
+createWebhookSubscriptionRequestSchemaIdsL f CreateWebhookSubscriptionRequestSchema{..} = (\createWebhookSubscriptionRequestSchemaIds -> CreateWebhookSubscriptionRequestSchema { createWebhookSubscriptionRequestSchemaIds, ..} ) <$> f createWebhookSubscriptionRequestSchemaIds
+{-# INLINE createWebhookSubscriptionRequestSchemaIdsL #-}
 
--- | 'createSubscriptionRequestSchemaType' Lens
-createSubscriptionRequestSchemaTypeL :: Lens_' CreateSubscriptionRequestSchema (Maybe Text)
-createSubscriptionRequestSchemaTypeL f CreateSubscriptionRequestSchema{..} = (\createSubscriptionRequestSchemaType -> CreateSubscriptionRequestSchema { createSubscriptionRequestSchemaType, ..} ) <$> f createSubscriptionRequestSchemaType
-{-# INLINE createSubscriptionRequestSchemaTypeL #-}
+-- | 'createWebhookSubscriptionRequestSchemaCallbackUrl' Lens
+createWebhookSubscriptionRequestSchemaCallbackUrlL :: Lens_' CreateWebhookSubscriptionRequestSchema (Maybe Text)
+createWebhookSubscriptionRequestSchemaCallbackUrlL f CreateWebhookSubscriptionRequestSchema{..} = (\createWebhookSubscriptionRequestSchemaCallbackUrl -> CreateWebhookSubscriptionRequestSchema { createWebhookSubscriptionRequestSchemaCallbackUrl, ..} ) <$> f createWebhookSubscriptionRequestSchemaCallbackUrl
+{-# INLINE createWebhookSubscriptionRequestSchemaCallbackUrlL #-}
 
 
 
--- * CreateSubscriptionResponseSchema
+-- * CreateWebhookSubscriptionResponseSchema
 
--- | 'createSubscriptionResponseSchemaScubscriptionDetails' Lens
-createSubscriptionResponseSchemaScubscriptionDetailsL :: Lens_' CreateSubscriptionResponseSchema (Maybe SubscriptionDetailsSchema)
-createSubscriptionResponseSchemaScubscriptionDetailsL f CreateSubscriptionResponseSchema{..} = (\createSubscriptionResponseSchemaScubscriptionDetails -> CreateSubscriptionResponseSchema { createSubscriptionResponseSchemaScubscriptionDetails, ..} ) <$> f createSubscriptionResponseSchemaScubscriptionDetails
-{-# INLINE createSubscriptionResponseSchemaScubscriptionDetailsL #-}
+-- | 'createWebhookSubscriptionResponseSchemaSubscriptionId' Lens
+createWebhookSubscriptionResponseSchemaSubscriptionIdL :: Lens_' CreateWebhookSubscriptionResponseSchema (Maybe Text)
+createWebhookSubscriptionResponseSchemaSubscriptionIdL f CreateWebhookSubscriptionResponseSchema{..} = (\createWebhookSubscriptionResponseSchemaSubscriptionId -> CreateWebhookSubscriptionResponseSchema { createWebhookSubscriptionResponseSchemaSubscriptionId, ..} ) <$> f createWebhookSubscriptionResponseSchemaSubscriptionId
+{-# INLINE createWebhookSubscriptionResponseSchemaSubscriptionIdL #-}
 
--- | 'createSubscriptionResponseSchemaSubscriptionId' Lens
-createSubscriptionResponseSchemaSubscriptionIdL :: Lens_' CreateSubscriptionResponseSchema (Maybe Text)
-createSubscriptionResponseSchemaSubscriptionIdL f CreateSubscriptionResponseSchema{..} = (\createSubscriptionResponseSchemaSubscriptionId -> CreateSubscriptionResponseSchema { createSubscriptionResponseSchemaSubscriptionId, ..} ) <$> f createSubscriptionResponseSchemaSubscriptionId
-{-# INLINE createSubscriptionResponseSchemaSubscriptionIdL #-}
+-- | 'createWebhookSubscriptionResponseSchemaScubscriptionDetails' Lens
+createWebhookSubscriptionResponseSchemaScubscriptionDetailsL :: Lens_' CreateWebhookSubscriptionResponseSchema (Maybe WebhookSubscriptionDetailsSchema)
+createWebhookSubscriptionResponseSchemaScubscriptionDetailsL f CreateWebhookSubscriptionResponseSchema{..} = (\createWebhookSubscriptionResponseSchemaScubscriptionDetails -> CreateWebhookSubscriptionResponseSchema { createWebhookSubscriptionResponseSchemaScubscriptionDetails, ..} ) <$> f createWebhookSubscriptionResponseSchemaScubscriptionDetails
+{-# INLINE createWebhookSubscriptionResponseSchemaScubscriptionDetailsL #-}
+
+
+
+-- * Creator
+
+-- | 'creatorAccountId' Lens
+creatorAccountIdL :: Lens_' Creator (Maybe Text)
+creatorAccountIdL f Creator{..} = (\creatorAccountId -> Creator { creatorAccountId, ..} ) <$> f creatorAccountId
+{-# INLINE creatorAccountIdL #-}
+
+
+
+-- * CreatorMintSchema
+
+-- | 'creatorMintSchemaAccountId' Lens
+creatorMintSchemaAccountIdL :: Lens_' CreatorMintSchema (Maybe Text)
+creatorMintSchemaAccountIdL f CreatorMintSchema{..} = (\creatorMintSchemaAccountId -> CreatorMintSchema { creatorMintSchemaAccountId, ..} ) <$> f creatorMintSchemaAccountId
+{-# INLINE creatorMintSchemaAccountIdL #-}
 
 
 
@@ -353,11 +598,6 @@ creditRequestDetailsSchemaPayeeL :: Lens_' CreditRequestDetailsSchema (Maybe [Pa
 creditRequestDetailsSchemaPayeeL f CreditRequestDetailsSchema{..} = (\creditRequestDetailsSchemaPayee -> CreditRequestDetailsSchema { creditRequestDetailsSchemaPayee, ..} ) <$> f creditRequestDetailsSchemaPayee
 {-# INLINE creditRequestDetailsSchemaPayeeL #-}
 
--- | 'creditRequestDetailsSchemaOverledgerSigningType' Lens
-creditRequestDetailsSchemaOverledgerSigningTypeL :: Lens_' CreditRequestDetailsSchema (Maybe Text)
-creditRequestDetailsSchemaOverledgerSigningTypeL f CreditRequestDetailsSchema{..} = (\creditRequestDetailsSchemaOverledgerSigningType -> CreditRequestDetailsSchema { creditRequestDetailsSchemaOverledgerSigningType, ..} ) <$> f creditRequestDetailsSchemaOverledgerSigningType
-{-# INLINE creditRequestDetailsSchemaOverledgerSigningTypeL #-}
-
 -- | 'creditRequestDetailsSchemaMessage' Lens
 creditRequestDetailsSchemaMessageL :: Lens_' CreditRequestDetailsSchema (Maybe Text)
 creditRequestDetailsSchemaMessageL f CreditRequestDetailsSchema{..} = (\creditRequestDetailsSchemaMessage -> CreditRequestDetailsSchema { creditRequestDetailsSchemaMessage, ..} ) <$> f creditRequestDetailsSchemaMessage
@@ -367,6 +607,11 @@ creditRequestDetailsSchemaMessageL f CreditRequestDetailsSchema{..} = (\creditRe
 creditRequestDetailsSchemaPayerL :: Lens_' CreditRequestDetailsSchema (Maybe [PayerCreditSchema])
 creditRequestDetailsSchemaPayerL f CreditRequestDetailsSchema{..} = (\creditRequestDetailsSchemaPayer -> CreditRequestDetailsSchema { creditRequestDetailsSchemaPayer, ..} ) <$> f creditRequestDetailsSchemaPayer
 {-# INLINE creditRequestDetailsSchemaPayerL #-}
+
+-- | 'creditRequestDetailsSchemaOverledgerSigningType' Lens
+creditRequestDetailsSchemaOverledgerSigningTypeL :: Lens_' CreditRequestDetailsSchema (Maybe Text)
+creditRequestDetailsSchemaOverledgerSigningTypeL f CreditRequestDetailsSchema{..} = (\creditRequestDetailsSchemaOverledgerSigningType -> CreditRequestDetailsSchema { creditRequestDetailsSchemaOverledgerSigningType, ..} ) <$> f creditRequestDetailsSchemaOverledgerSigningType
+{-# INLINE creditRequestDetailsSchemaOverledgerSigningTypeL #-}
 
 
 
@@ -386,53 +631,107 @@ deleteResourceMonitoringAddressSchemaResourceMonitoringL f DeleteResourceMonitor
 
 -- * Destination
 
--- | 'destinationTransfer' Lens
-destinationTransferL :: Lens_' Destination (Maybe Transfer)
-destinationTransferL f Destination{..} = (\destinationTransfer -> Destination { destinationTransfer, ..} ) <$> f destinationTransfer
-{-# INLINE destinationTransferL #-}
-
--- | 'destinationSmartContract' Lens
-destinationSmartContractL :: Lens_' Destination (Maybe SmartContract)
-destinationSmartContractL f Destination{..} = (\destinationSmartContract -> Destination { destinationSmartContract, ..} ) <$> f destinationSmartContract
-{-# INLINE destinationSmartContractL #-}
-
 -- | 'destinationPayment' Lens
 destinationPaymentL :: Lens_' Destination (Maybe Payment)
 destinationPaymentL f Destination{..} = (\destinationPayment -> Destination { destinationPayment, ..} ) <$> f destinationPayment
 {-# INLINE destinationPaymentL #-}
+
+-- | 'destinationTransfer' Lens
+destinationTransferL :: Lens_' Destination (Maybe Transfer)
+destinationTransferL f Destination{..} = (\destinationTransfer -> Destination { destinationTransfer, ..} ) <$> f destinationTransfer
+{-# INLINE destinationTransferL #-}
 
 -- | 'destinationDestinationId' Lens
 destinationDestinationIdL :: Lens_' Destination (Maybe Text)
 destinationDestinationIdL f Destination{..} = (\destinationDestinationId -> Destination { destinationDestinationId, ..} ) <$> f destinationDestinationId
 {-# INLINE destinationDestinationIdL #-}
 
+-- | 'destinationSmartContract' Lens
+destinationSmartContractL :: Lens_' Destination (Maybe SmartContract)
+destinationSmartContractL f Destination{..} = (\destinationSmartContract -> Destination { destinationSmartContract, ..} ) <$> f destinationSmartContract
+{-# INLINE destinationSmartContractL #-}
+
 
 
 -- * DestinationPaymentSchema
 
--- | 'destinationPaymentSchemaPayment' Lens
-destinationPaymentSchemaPaymentL :: Lens_' DestinationPaymentSchema (Maybe PaymentSchema)
-destinationPaymentSchemaPaymentL f DestinationPaymentSchema{..} = (\destinationPaymentSchemaPayment -> DestinationPaymentSchema { destinationPaymentSchemaPayment, ..} ) <$> f destinationPaymentSchemaPayment
-{-# INLINE destinationPaymentSchemaPaymentL #-}
-
 -- | 'destinationPaymentSchemaDestinationId' Lens
-destinationPaymentSchemaDestinationIdL :: Lens_' DestinationPaymentSchema (Maybe Text)
+destinationPaymentSchemaDestinationIdL :: Lens_' DestinationPaymentSchema (Text)
 destinationPaymentSchemaDestinationIdL f DestinationPaymentSchema{..} = (\destinationPaymentSchemaDestinationId -> DestinationPaymentSchema { destinationPaymentSchemaDestinationId, ..} ) <$> f destinationPaymentSchemaDestinationId
 {-# INLINE destinationPaymentSchemaDestinationIdL #-}
+
+-- | 'destinationPaymentSchemaPayment' Lens
+destinationPaymentSchemaPaymentL :: Lens_' DestinationPaymentSchema (PaymentSchema)
+destinationPaymentSchemaPaymentL f DestinationPaymentSchema{..} = (\destinationPaymentSchemaPayment -> DestinationPaymentSchema { destinationPaymentSchemaPayment, ..} ) <$> f destinationPaymentSchemaPayment
+{-# INLINE destinationPaymentSchemaPaymentL #-}
 
 
 
 -- * DestinationTransferSchema
+
+-- | 'destinationTransferSchemaDestinationId' Lens
+destinationTransferSchemaDestinationIdL :: Lens_' DestinationTransferSchema (Maybe Text)
+destinationTransferSchemaDestinationIdL f DestinationTransferSchema{..} = (\destinationTransferSchemaDestinationId -> DestinationTransferSchema { destinationTransferSchemaDestinationId, ..} ) <$> f destinationTransferSchemaDestinationId
+{-# INLINE destinationTransferSchemaDestinationIdL #-}
 
 -- | 'destinationTransferSchemaTransfer' Lens
 destinationTransferSchemaTransferL :: Lens_' DestinationTransferSchema (Maybe TransferSchema)
 destinationTransferSchemaTransferL f DestinationTransferSchema{..} = (\destinationTransferSchemaTransfer -> DestinationTransferSchema { destinationTransferSchemaTransfer, ..} ) <$> f destinationTransferSchemaTransfer
 {-# INLINE destinationTransferSchemaTransferL #-}
 
--- | 'destinationTransferSchemaDestinationId' Lens
-destinationTransferSchemaDestinationIdL :: Lens_' DestinationTransferSchema (Maybe Text)
-destinationTransferSchemaDestinationIdL f DestinationTransferSchema{..} = (\destinationTransferSchemaDestinationId -> DestinationTransferSchema { destinationTransferSchemaDestinationId, ..} ) <$> f destinationTransferSchemaDestinationId
-{-# INLINE destinationTransferSchemaDestinationIdL #-}
+
+
+-- * Erc20DTO
+
+-- | 'erc20DTOIsQrc20' Lens
+erc20DTOIsQrc20L :: Lens_' Erc20DTO (Maybe Bool)
+erc20DTOIsQrc20L f Erc20DTO{..} = (\erc20DTOIsQrc20 -> Erc20DTO { erc20DTOIsQrc20, ..} ) <$> f erc20DTOIsQrc20
+{-# INLINE erc20DTOIsQrc20L #-}
+
+-- | 'erc20DTOTokenUnit' Lens
+erc20DTOTokenUnitL :: Lens_' Erc20DTO (Maybe Text)
+erc20DTOTokenUnitL f Erc20DTO{..} = (\erc20DTOTokenUnit -> Erc20DTO { erc20DTOTokenUnit, ..} ) <$> f erc20DTOTokenUnit
+{-# INLINE erc20DTOTokenUnitL #-}
+
+-- | 'erc20DTODecimalPlaces' Lens
+erc20DTODecimalPlacesL :: Lens_' Erc20DTO (Maybe Int)
+erc20DTODecimalPlacesL f Erc20DTO{..} = (\erc20DTODecimalPlaces -> Erc20DTO { erc20DTODecimalPlaces, ..} ) <$> f erc20DTODecimalPlaces
+{-# INLINE erc20DTODecimalPlacesL #-}
+
+-- | 'erc20DTOFunctions' Lens
+erc20DTOFunctionsL :: Lens_' Erc20DTO (Maybe [TierFunctionDTO])
+erc20DTOFunctionsL f Erc20DTO{..} = (\erc20DTOFunctions -> Erc20DTO { erc20DTOFunctions, ..} ) <$> f erc20DTOFunctions
+{-# INLINE erc20DTOFunctionsL #-}
+
+-- | 'erc20DTOTokenName' Lens
+erc20DTOTokenNameL :: Lens_' Erc20DTO (Maybe Text)
+erc20DTOTokenNameL f Erc20DTO{..} = (\erc20DTOTokenName -> Erc20DTO { erc20DTOTokenName, ..} ) <$> f erc20DTOTokenName
+{-# INLINE erc20DTOTokenNameL #-}
+
+-- | 'erc20DTOSmartContractAddress' Lens
+erc20DTOSmartContractAddressL :: Lens_' Erc20DTO (Maybe Text)
+erc20DTOSmartContractAddressL f Erc20DTO{..} = (\erc20DTOSmartContractAddress -> Erc20DTO { erc20DTOSmartContractAddress, ..} ) <$> f erc20DTOSmartContractAddress
+{-# INLINE erc20DTOSmartContractAddressL #-}
+
+-- | 'erc20DTOLocation' Lens
+erc20DTOLocationL :: Lens_' Erc20DTO (Maybe LocationDTO)
+erc20DTOLocationL f Erc20DTO{..} = (\erc20DTOLocation -> Erc20DTO { erc20DTOLocation, ..} ) <$> f erc20DTOLocation
+{-# INLINE erc20DTOLocationL #-}
+
+-- | 'erc20DTOVersion' Lens
+erc20DTOVersionL :: Lens_' Erc20DTO (Maybe Text)
+erc20DTOVersionL f Erc20DTO{..} = (\erc20DTOVersion -> Erc20DTO { erc20DTOVersion, ..} ) <$> f erc20DTOVersion
+{-# INLINE erc20DTOVersionL #-}
+
+-- | 'erc20DTOUrl' Lens
+erc20DTOUrlL :: Lens_' Erc20DTO (Maybe Text)
+erc20DTOUrlL f Erc20DTO{..} = (\erc20DTOUrl -> Erc20DTO { erc20DTOUrl, ..} ) <$> f erc20DTOUrl
+{-# INLINE erc20DTOUrlL #-}
+
+-- | 'erc20DTOAuditDate' Lens
+erc20DTOAuditDateL :: Lens_' Erc20DTO (Maybe Date)
+erc20DTOAuditDateL f Erc20DTO{..} = (\erc20DTOAuditDate -> Erc20DTO { erc20DTOAuditDate, ..} ) <$> f erc20DTOAuditDate
+{-# INLINE erc20DTOAuditDateL #-}
 
 
 
@@ -443,15 +742,15 @@ errorCodeL :: Lens_' Error (Maybe Int)
 errorCodeL f Error{..} = (\errorCode -> Error { errorCode, ..} ) <$> f errorCode
 {-# INLINE errorCodeL #-}
 
--- | 'errorService' Lens
-errorServiceL :: Lens_' Error (Maybe Text)
-errorServiceL f Error{..} = (\errorService -> Error { errorService, ..} ) <$> f errorService
-{-# INLINE errorServiceL #-}
-
 -- | 'errorMessage' Lens
 errorMessageL :: Lens_' Error (Maybe Text)
 errorMessageL f Error{..} = (\errorMessage -> Error { errorMessage, ..} ) <$> f errorMessage
 {-# INLINE errorMessageL #-}
+
+-- | 'errorService' Lens
+errorServiceL :: Lens_' Error (Maybe Text)
+errorServiceL f Error{..} = (\errorService -> Error { errorService, ..} ) <$> f errorService
+{-# INLINE errorServiceL #-}
 
 -- | 'errorTimestamp' Lens
 errorTimestampL :: Lens_' Error (Maybe Integer)
@@ -462,20 +761,20 @@ errorTimestampL f Error{..} = (\errorTimestamp -> Error { errorTimestamp, ..} ) 
 
 -- * ErrorDetails
 
--- | 'errorDetailsCode' Lens
-errorDetailsCodeL :: Lens_' ErrorDetails (Maybe Text)
-errorDetailsCodeL f ErrorDetails{..} = (\errorDetailsCode -> ErrorDetails { errorDetailsCode, ..} ) <$> f errorDetailsCode
-{-# INLINE errorDetailsCodeL #-}
+-- | 'errorDetailsCategory' Lens
+errorDetailsCategoryL :: Lens_' ErrorDetails (Maybe Text)
+errorDetailsCategoryL f ErrorDetails{..} = (\errorDetailsCategory -> ErrorDetails { errorDetailsCategory, ..} ) <$> f errorDetailsCategory
+{-# INLINE errorDetailsCategoryL #-}
 
 -- | 'errorDetailsDescription' Lens
 errorDetailsDescriptionL :: Lens_' ErrorDetails (Maybe Text)
 errorDetailsDescriptionL f ErrorDetails{..} = (\errorDetailsDescription -> ErrorDetails { errorDetailsDescription, ..} ) <$> f errorDetailsDescription
 {-# INLINE errorDetailsDescriptionL #-}
 
--- | 'errorDetailsCategory' Lens
-errorDetailsCategoryL :: Lens_' ErrorDetails (Maybe Text)
-errorDetailsCategoryL f ErrorDetails{..} = (\errorDetailsCategory -> ErrorDetails { errorDetailsCategory, ..} ) <$> f errorDetailsCategory
-{-# INLINE errorDetailsCategoryL #-}
+-- | 'errorDetailsCode' Lens
+errorDetailsCodeL :: Lens_' ErrorDetails (Maybe Text)
+errorDetailsCodeL f ErrorDetails{..} = (\errorDetailsCode -> ErrorDetails { errorDetailsCode, ..} ) <$> f errorDetailsCode
+{-# INLINE errorDetailsCodeL #-}
 
 
 
@@ -490,6 +789,88 @@ errorListErrorsL f ErrorList{..} = (\errorListErrors -> ErrorList { errorListErr
 errorListErrorCountL :: Lens_' ErrorList (Maybe Int)
 errorListErrorCountL f ErrorList{..} = (\errorListErrorCount -> ErrorList { errorListErrorCount, ..} ) <$> f errorListErrorCount
 {-# INLINE errorListErrorCountL #-}
+
+
+
+-- * ErrorResponseMessage
+
+-- | 'errorResponseMessageCode' Lens
+errorResponseMessageCodeL :: Lens_' ErrorResponseMessage (Maybe Int)
+errorResponseMessageCodeL f ErrorResponseMessage{..} = (\errorResponseMessageCode -> ErrorResponseMessage { errorResponseMessageCode, ..} ) <$> f errorResponseMessageCode
+{-# INLINE errorResponseMessageCodeL #-}
+
+-- | 'errorResponseMessageErrorMessageExtraDetails' Lens
+errorResponseMessageErrorMessageExtraDetailsL :: Lens_' ErrorResponseMessage (Maybe A.Value)
+errorResponseMessageErrorMessageExtraDetailsL f ErrorResponseMessage{..} = (\errorResponseMessageErrorMessageExtraDetails -> ErrorResponseMessage { errorResponseMessageErrorMessageExtraDetails, ..} ) <$> f errorResponseMessageErrorMessageExtraDetails
+{-# INLINE errorResponseMessageErrorMessageExtraDetailsL #-}
+
+-- | 'errorResponseMessageSubCode' Lens
+errorResponseMessageSubCodeL :: Lens_' ErrorResponseMessage (Maybe Int)
+errorResponseMessageSubCodeL f ErrorResponseMessage{..} = (\errorResponseMessageSubCode -> ErrorResponseMessage { errorResponseMessageSubCode, ..} ) <$> f errorResponseMessageSubCode
+{-# INLINE errorResponseMessageSubCodeL #-}
+
+-- | 'errorResponseMessageLogTraceId' Lens
+errorResponseMessageLogTraceIdL :: Lens_' ErrorResponseMessage (Maybe Text)
+errorResponseMessageLogTraceIdL f ErrorResponseMessage{..} = (\errorResponseMessageLogTraceId -> ErrorResponseMessage { errorResponseMessageLogTraceId, ..} ) <$> f errorResponseMessageLogTraceId
+{-# INLINE errorResponseMessageLogTraceIdL #-}
+
+-- | 'errorResponseMessageType' Lens
+errorResponseMessageTypeL :: Lens_' ErrorResponseMessage (Maybe Text)
+errorResponseMessageTypeL f ErrorResponseMessage{..} = (\errorResponseMessageType -> ErrorResponseMessage { errorResponseMessageType, ..} ) <$> f errorResponseMessageType
+{-# INLINE errorResponseMessageTypeL #-}
+
+-- | 'errorResponseMessageTitle' Lens
+errorResponseMessageTitleL :: Lens_' ErrorResponseMessage (Maybe Text)
+errorResponseMessageTitleL f ErrorResponseMessage{..} = (\errorResponseMessageTitle -> ErrorResponseMessage { errorResponseMessageTitle, ..} ) <$> f errorResponseMessageTitle
+{-# INLINE errorResponseMessageTitleL #-}
+
+-- | 'errorResponseMessageMessage' Lens
+errorResponseMessageMessageL :: Lens_' ErrorResponseMessage (Maybe Text)
+errorResponseMessageMessageL f ErrorResponseMessage{..} = (\errorResponseMessageMessage -> ErrorResponseMessage { errorResponseMessageMessage, ..} ) <$> f errorResponseMessageMessage
+{-# INLINE errorResponseMessageMessageL #-}
+
+
+
+-- * EventSubscriptionResponse
+
+-- | 'eventSubscriptionResponseTokenName' Lens
+eventSubscriptionResponseTokenNameL :: Lens_' EventSubscriptionResponse (Maybe Text)
+eventSubscriptionResponseTokenNameL f EventSubscriptionResponse{..} = (\eventSubscriptionResponseTokenName -> EventSubscriptionResponse { eventSubscriptionResponseTokenName, ..} ) <$> f eventSubscriptionResponseTokenName
+{-# INLINE eventSubscriptionResponseTokenNameL #-}
+
+-- | 'eventSubscriptionResponseSubscriptionDetails' Lens
+eventSubscriptionResponseSubscriptionDetailsL :: Lens_' EventSubscriptionResponse (Maybe EventSubscriptionResponseDetails)
+eventSubscriptionResponseSubscriptionDetailsL f EventSubscriptionResponse{..} = (\eventSubscriptionResponseSubscriptionDetails -> EventSubscriptionResponse { eventSubscriptionResponseSubscriptionDetails, ..} ) <$> f eventSubscriptionResponseSubscriptionDetails
+{-# INLINE eventSubscriptionResponseSubscriptionDetailsL #-}
+
+-- | 'eventSubscriptionResponseLocation' Lens
+eventSubscriptionResponseLocationL :: Lens_' EventSubscriptionResponse (Maybe Location)
+eventSubscriptionResponseLocationL f EventSubscriptionResponse{..} = (\eventSubscriptionResponseLocation -> EventSubscriptionResponse { eventSubscriptionResponseLocation, ..} ) <$> f eventSubscriptionResponseLocation
+{-# INLINE eventSubscriptionResponseLocationL #-}
+
+-- | 'eventSubscriptionResponseType' Lens
+eventSubscriptionResponseTypeL :: Lens_' EventSubscriptionResponse (Maybe Text)
+eventSubscriptionResponseTypeL f EventSubscriptionResponse{..} = (\eventSubscriptionResponseType -> EventSubscriptionResponse { eventSubscriptionResponseType, ..} ) <$> f eventSubscriptionResponseType
+{-# INLINE eventSubscriptionResponseTypeL #-}
+
+
+
+-- * EventSubscriptionResponseDetails
+
+-- | 'eventSubscriptionResponseDetailsSubscriptionId' Lens
+eventSubscriptionResponseDetailsSubscriptionIdL :: Lens_' EventSubscriptionResponseDetails (Maybe Text)
+eventSubscriptionResponseDetailsSubscriptionIdL f EventSubscriptionResponseDetails{..} = (\eventSubscriptionResponseDetailsSubscriptionId -> EventSubscriptionResponseDetails { eventSubscriptionResponseDetailsSubscriptionId, ..} ) <$> f eventSubscriptionResponseDetailsSubscriptionId
+{-# INLINE eventSubscriptionResponseDetailsSubscriptionIdL #-}
+
+-- | 'eventSubscriptionResponseDetailsCallbackUrl' Lens
+eventSubscriptionResponseDetailsCallbackUrlL :: Lens_' EventSubscriptionResponseDetails (Maybe Text)
+eventSubscriptionResponseDetailsCallbackUrlL f EventSubscriptionResponseDetails{..} = (\eventSubscriptionResponseDetailsCallbackUrl -> EventSubscriptionResponseDetails { eventSubscriptionResponseDetailsCallbackUrl, ..} ) <$> f eventSubscriptionResponseDetailsCallbackUrl
+{-# INLINE eventSubscriptionResponseDetailsCallbackUrlL #-}
+
+-- | 'eventSubscriptionResponseDetailsCreatedDate' Lens
+eventSubscriptionResponseDetailsCreatedDateL :: Lens_' EventSubscriptionResponseDetails (Maybe Text)
+eventSubscriptionResponseDetailsCreatedDateL f EventSubscriptionResponseDetails{..} = (\eventSubscriptionResponseDetailsCreatedDate -> EventSubscriptionResponseDetails { eventSubscriptionResponseDetailsCreatedDate, ..} ) <$> f eventSubscriptionResponseDetailsCreatedDate
+{-# INLINE eventSubscriptionResponseDetailsCreatedDateL #-}
 
 
 
@@ -646,7 +1027,7 @@ executeSearchUTXOResponseSchemaLocationL f ExecuteSearchUTXOResponseSchema{..} =
 {-# INLINE executeSearchUTXOResponseSchemaLocationL #-}
 
 -- | 'executeSearchUTXOResponseSchemaTimestamp' Lens
-executeSearchUTXOResponseSchemaTimestampL :: Lens_' ExecuteSearchUTXOResponseSchema (Maybe UTXOTimestampSchema)
+executeSearchUTXOResponseSchemaTimestampL :: Lens_' ExecuteSearchUTXOResponseSchema (Maybe Text)
 executeSearchUTXOResponseSchemaTimestampL f ExecuteSearchUTXOResponseSchema{..} = (\executeSearchUTXOResponseSchemaTimestamp -> ExecuteSearchUTXOResponseSchema { executeSearchUTXOResponseSchemaTimestamp, ..} ) <$> f executeSearchUTXOResponseSchemaTimestamp
 {-# INLINE executeSearchUTXOResponseSchemaTimestampL #-}
 
@@ -678,15 +1059,15 @@ executeSmartContractReadResponseSchemaLocationL f ExecuteSmartContractReadRespon
 
 -- * ExecuteTransactionRequest
 
+-- | 'executeTransactionRequestSigned' Lens
+executeTransactionRequestSignedL :: Lens_' ExecuteTransactionRequest (Maybe Text)
+executeTransactionRequestSignedL f ExecuteTransactionRequest{..} = (\executeTransactionRequestSigned -> ExecuteTransactionRequest { executeTransactionRequestSigned, ..} ) <$> f executeTransactionRequestSigned
+{-# INLINE executeTransactionRequestSignedL #-}
+
 -- | 'executeTransactionRequestRequestId' Lens
 executeTransactionRequestRequestIdL :: Lens_' ExecuteTransactionRequest (Text)
 executeTransactionRequestRequestIdL f ExecuteTransactionRequest{..} = (\executeTransactionRequestRequestId -> ExecuteTransactionRequest { executeTransactionRequestRequestId, ..} ) <$> f executeTransactionRequestRequestId
 {-# INLINE executeTransactionRequestRequestIdL #-}
-
--- | 'executeTransactionRequestSigned' Lens
-executeTransactionRequestSignedL :: Lens_' ExecuteTransactionRequest (Text)
-executeTransactionRequestSignedL f ExecuteTransactionRequest{..} = (\executeTransactionRequestSigned -> ExecuteTransactionRequest { executeTransactionRequestSigned, ..} ) <$> f executeTransactionRequestSigned
-{-# INLINE executeTransactionRequestSignedL #-}
 
 
 
@@ -754,30 +1135,68 @@ feeUnitL f Fee{..} = (\feeUnit -> Fee { feeUnit, ..} ) <$> f feeUnit
 
 -- * Function
 
--- | 'functionFunctionId' Lens
-functionFunctionIdL :: Lens_' Function (Maybe Text)
-functionFunctionIdL f Function{..} = (\functionFunctionId -> Function { functionFunctionId, ..} ) <$> f functionFunctionId
-{-# INLINE functionFunctionIdL #-}
+-- | 'functionType' Lens
+functionTypeL :: Lens_' Function (Maybe Text)
+functionTypeL f Function{..} = (\functionType -> Function { functionType, ..} ) <$> f functionType
+{-# INLINE functionTypeL #-}
 
--- | 'functionCode' Lens
-functionCodeL :: Lens_' Function (Maybe Text)
-functionCodeL f Function{..} = (\functionCode -> Function { functionCode, ..} ) <$> f functionCode
-{-# INLINE functionCodeL #-}
+-- | 'functionApi' Lens
+functionApiL :: Lens_' Function (Maybe Text)
+functionApiL f Function{..} = (\functionApi -> Function { functionApi, ..} ) <$> f functionApi
+{-# INLINE functionApiL #-}
 
--- | 'functionName' Lens
-functionNameL :: Lens_' Function (Maybe Text)
-functionNameL f Function{..} = (\functionName -> Function { functionName, ..} ) <$> f functionName
-{-# INLINE functionNameL #-}
 
--- | 'functionInputParameters' Lens
-functionInputParametersL :: Lens_' Function (Maybe [Parameter])
-functionInputParametersL f Function{..} = (\functionInputParameters -> Function { functionInputParameters, ..} ) <$> f functionInputParameters
-{-# INLINE functionInputParametersL #-}
 
--- | 'functionOutputParameters' Lens
-functionOutputParametersL :: Lens_' Function (Maybe [Parameter])
-functionOutputParametersL f Function{..} = (\functionOutputParameters -> Function { functionOutputParameters, ..} ) <$> f functionOutputParameters
-{-# INLINE functionOutputParametersL #-}
+-- * FunctionDTO
+
+-- | 'functionDTOType' Lens
+functionDTOTypeL :: Lens_' FunctionDTO (Maybe Text)
+functionDTOTypeL f FunctionDTO{..} = (\functionDTOType -> FunctionDTO { functionDTOType, ..} ) <$> f functionDTOType
+{-# INLINE functionDTOTypeL #-}
+
+-- | 'functionDTOApi' Lens
+functionDTOApiL :: Lens_' FunctionDTO (Maybe Text)
+functionDTOApiL f FunctionDTO{..} = (\functionDTOApi -> FunctionDTO { functionDTOApi, ..} ) <$> f functionDTOApi
+{-# INLINE functionDTOApiL #-}
+
+
+
+-- * FungibleTokenResponseDTO
+
+-- | 'fungibleTokenResponseDTODocumentationUrl' Lens
+fungibleTokenResponseDTODocumentationUrlL :: Lens_' FungibleTokenResponseDTO (Maybe Text)
+fungibleTokenResponseDTODocumentationUrlL f FungibleTokenResponseDTO{..} = (\fungibleTokenResponseDTODocumentationUrl -> FungibleTokenResponseDTO { fungibleTokenResponseDTODocumentationUrl, ..} ) <$> f fungibleTokenResponseDTODocumentationUrl
+{-# INLINE fungibleTokenResponseDTODocumentationUrlL #-}
+
+-- | 'fungibleTokenResponseDTOUnit' Lens
+fungibleTokenResponseDTOUnitL :: Lens_' FungibleTokenResponseDTO (Maybe Text)
+fungibleTokenResponseDTOUnitL f FungibleTokenResponseDTO{..} = (\fungibleTokenResponseDTOUnit -> FungibleTokenResponseDTO { fungibleTokenResponseDTOUnit, ..} ) <$> f fungibleTokenResponseDTOUnit
+{-# INLINE fungibleTokenResponseDTOUnitL #-}
+
+-- | 'fungibleTokenResponseDTODecimalPlaces' Lens
+fungibleTokenResponseDTODecimalPlacesL :: Lens_' FungibleTokenResponseDTO (Maybe Int)
+fungibleTokenResponseDTODecimalPlacesL f FungibleTokenResponseDTO{..} = (\fungibleTokenResponseDTODecimalPlaces -> FungibleTokenResponseDTO { fungibleTokenResponseDTODecimalPlaces, ..} ) <$> f fungibleTokenResponseDTODecimalPlaces
+{-# INLINE fungibleTokenResponseDTODecimalPlacesL #-}
+
+-- | 'fungibleTokenResponseDTOFunctions' Lens
+fungibleTokenResponseDTOFunctionsL :: Lens_' FungibleTokenResponseDTO (Maybe [FunctionDTO])
+fungibleTokenResponseDTOFunctionsL f FungibleTokenResponseDTO{..} = (\fungibleTokenResponseDTOFunctions -> FungibleTokenResponseDTO { fungibleTokenResponseDTOFunctions, ..} ) <$> f fungibleTokenResponseDTOFunctions
+{-# INLINE fungibleTokenResponseDTOFunctionsL #-}
+
+-- | 'fungibleTokenResponseDTOContractType' Lens
+fungibleTokenResponseDTOContractTypeL :: Lens_' FungibleTokenResponseDTO (Maybe E'ContractType)
+fungibleTokenResponseDTOContractTypeL f FungibleTokenResponseDTO{..} = (\fungibleTokenResponseDTOContractType -> FungibleTokenResponseDTO { fungibleTokenResponseDTOContractType, ..} ) <$> f fungibleTokenResponseDTOContractType
+{-# INLINE fungibleTokenResponseDTOContractTypeL #-}
+
+-- | 'fungibleTokenResponseDTOLocation' Lens
+fungibleTokenResponseDTOLocationL :: Lens_' FungibleTokenResponseDTO (Maybe LocationDTO)
+fungibleTokenResponseDTOLocationL f FungibleTokenResponseDTO{..} = (\fungibleTokenResponseDTOLocation -> FungibleTokenResponseDTO { fungibleTokenResponseDTOLocation, ..} ) <$> f fungibleTokenResponseDTOLocation
+{-# INLINE fungibleTokenResponseDTOLocationL #-}
+
+-- | 'fungibleTokenResponseDTOSmartContractId' Lens
+fungibleTokenResponseDTOSmartContractIdL :: Lens_' FungibleTokenResponseDTO (Maybe Text)
+fungibleTokenResponseDTOSmartContractIdL f FungibleTokenResponseDTO{..} = (\fungibleTokenResponseDTOSmartContractId -> FungibleTokenResponseDTO { fungibleTokenResponseDTOSmartContractId, ..} ) <$> f fungibleTokenResponseDTOSmartContractId
+{-# INLINE fungibleTokenResponseDTOSmartContractIdL #-}
 
 
 
@@ -824,37 +1243,37 @@ linkedBlocksChildL f LinkedBlocks{..} = (\linkedBlocksChild -> LinkedBlocks { li
 
 
 
--- * ListSubscriptionResponseSchema
+-- * ListWebhookSubscriptionResponseSchema
 
--- | 'listSubscriptionResponseSchemaSubscriptionDetails' Lens
-listSubscriptionResponseSchemaSubscriptionDetailsL :: Lens_' ListSubscriptionResponseSchema (Maybe SubscriptionDetailsSchema)
-listSubscriptionResponseSchemaSubscriptionDetailsL f ListSubscriptionResponseSchema{..} = (\listSubscriptionResponseSchemaSubscriptionDetails -> ListSubscriptionResponseSchema { listSubscriptionResponseSchemaSubscriptionDetails, ..} ) <$> f listSubscriptionResponseSchemaSubscriptionDetails
-{-# INLINE listSubscriptionResponseSchemaSubscriptionDetailsL #-}
+-- | 'listWebhookSubscriptionResponseSchemaSubscriptionDetails' Lens
+listWebhookSubscriptionResponseSchemaSubscriptionDetailsL :: Lens_' ListWebhookSubscriptionResponseSchema (Maybe WebhookSubscriptionDetailsSchema)
+listWebhookSubscriptionResponseSchemaSubscriptionDetailsL f ListWebhookSubscriptionResponseSchema{..} = (\listWebhookSubscriptionResponseSchemaSubscriptionDetails -> ListWebhookSubscriptionResponseSchema { listWebhookSubscriptionResponseSchemaSubscriptionDetails, ..} ) <$> f listWebhookSubscriptionResponseSchemaSubscriptionDetails
+{-# INLINE listWebhookSubscriptionResponseSchemaSubscriptionDetailsL #-}
 
--- | 'listSubscriptionResponseSchemaSubscribedTime' Lens
-listSubscriptionResponseSchemaSubscribedTimeL :: Lens_' ListSubscriptionResponseSchema (Maybe DateTime)
-listSubscriptionResponseSchemaSubscribedTimeL f ListSubscriptionResponseSchema{..} = (\listSubscriptionResponseSchemaSubscribedTime -> ListSubscriptionResponseSchema { listSubscriptionResponseSchemaSubscribedTime, ..} ) <$> f listSubscriptionResponseSchemaSubscribedTime
-{-# INLINE listSubscriptionResponseSchemaSubscribedTimeL #-}
+-- | 'listWebhookSubscriptionResponseSchemaLastUpdatedTime' Lens
+listWebhookSubscriptionResponseSchemaLastUpdatedTimeL :: Lens_' ListWebhookSubscriptionResponseSchema (Maybe DateTime)
+listWebhookSubscriptionResponseSchemaLastUpdatedTimeL f ListWebhookSubscriptionResponseSchema{..} = (\listWebhookSubscriptionResponseSchemaLastUpdatedTime -> ListWebhookSubscriptionResponseSchema { listWebhookSubscriptionResponseSchemaLastUpdatedTime, ..} ) <$> f listWebhookSubscriptionResponseSchemaLastUpdatedTime
+{-# INLINE listWebhookSubscriptionResponseSchemaLastUpdatedTimeL #-}
 
--- | 'listSubscriptionResponseSchemaLastUpdatedTime' Lens
-listSubscriptionResponseSchemaLastUpdatedTimeL :: Lens_' ListSubscriptionResponseSchema (Maybe DateTime)
-listSubscriptionResponseSchemaLastUpdatedTimeL f ListSubscriptionResponseSchema{..} = (\listSubscriptionResponseSchemaLastUpdatedTime -> ListSubscriptionResponseSchema { listSubscriptionResponseSchemaLastUpdatedTime, ..} ) <$> f listSubscriptionResponseSchemaLastUpdatedTime
-{-# INLINE listSubscriptionResponseSchemaLastUpdatedTimeL #-}
+-- | 'listWebhookSubscriptionResponseSchemaCallbackUrl' Lens
+listWebhookSubscriptionResponseSchemaCallbackUrlL :: Lens_' ListWebhookSubscriptionResponseSchema (Maybe Text)
+listWebhookSubscriptionResponseSchemaCallbackUrlL f ListWebhookSubscriptionResponseSchema{..} = (\listWebhookSubscriptionResponseSchemaCallbackUrl -> ListWebhookSubscriptionResponseSchema { listWebhookSubscriptionResponseSchemaCallbackUrl, ..} ) <$> f listWebhookSubscriptionResponseSchemaCallbackUrl
+{-# INLINE listWebhookSubscriptionResponseSchemaCallbackUrlL #-}
 
--- | 'listSubscriptionResponseSchemaCallbackUrl' Lens
-listSubscriptionResponseSchemaCallbackUrlL :: Lens_' ListSubscriptionResponseSchema (Maybe Text)
-listSubscriptionResponseSchemaCallbackUrlL f ListSubscriptionResponseSchema{..} = (\listSubscriptionResponseSchemaCallbackUrl -> ListSubscriptionResponseSchema { listSubscriptionResponseSchemaCallbackUrl, ..} ) <$> f listSubscriptionResponseSchemaCallbackUrl
-{-# INLINE listSubscriptionResponseSchemaCallbackUrlL #-}
+-- | 'listWebhookSubscriptionResponseSchemaSubscriptionId' Lens
+listWebhookSubscriptionResponseSchemaSubscriptionIdL :: Lens_' ListWebhookSubscriptionResponseSchema (Maybe Text)
+listWebhookSubscriptionResponseSchemaSubscriptionIdL f ListWebhookSubscriptionResponseSchema{..} = (\listWebhookSubscriptionResponseSchemaSubscriptionId -> ListWebhookSubscriptionResponseSchema { listWebhookSubscriptionResponseSchemaSubscriptionId, ..} ) <$> f listWebhookSubscriptionResponseSchemaSubscriptionId
+{-# INLINE listWebhookSubscriptionResponseSchemaSubscriptionIdL #-}
 
--- | 'listSubscriptionResponseSchemaSubscriptionId' Lens
-listSubscriptionResponseSchemaSubscriptionIdL :: Lens_' ListSubscriptionResponseSchema (Maybe Text)
-listSubscriptionResponseSchemaSubscriptionIdL f ListSubscriptionResponseSchema{..} = (\listSubscriptionResponseSchemaSubscriptionId -> ListSubscriptionResponseSchema { listSubscriptionResponseSchemaSubscriptionId, ..} ) <$> f listSubscriptionResponseSchemaSubscriptionId
-{-# INLINE listSubscriptionResponseSchemaSubscriptionIdL #-}
+-- | 'listWebhookSubscriptionResponseSchemaType' Lens
+listWebhookSubscriptionResponseSchemaTypeL :: Lens_' ListWebhookSubscriptionResponseSchema (Maybe Text)
+listWebhookSubscriptionResponseSchemaTypeL f ListWebhookSubscriptionResponseSchema{..} = (\listWebhookSubscriptionResponseSchemaType -> ListWebhookSubscriptionResponseSchema { listWebhookSubscriptionResponseSchemaType, ..} ) <$> f listWebhookSubscriptionResponseSchemaType
+{-# INLINE listWebhookSubscriptionResponseSchemaTypeL #-}
 
--- | 'listSubscriptionResponseSchemaType' Lens
-listSubscriptionResponseSchemaTypeL :: Lens_' ListSubscriptionResponseSchema (Maybe Text)
-listSubscriptionResponseSchemaTypeL f ListSubscriptionResponseSchema{..} = (\listSubscriptionResponseSchemaType -> ListSubscriptionResponseSchema { listSubscriptionResponseSchemaType, ..} ) <$> f listSubscriptionResponseSchemaType
-{-# INLINE listSubscriptionResponseSchemaTypeL #-}
+-- | 'listWebhookSubscriptionResponseSchemaSubscribedTime' Lens
+listWebhookSubscriptionResponseSchemaSubscribedTimeL :: Lens_' ListWebhookSubscriptionResponseSchema (Maybe DateTime)
+listWebhookSubscriptionResponseSchemaSubscribedTimeL f ListWebhookSubscriptionResponseSchema{..} = (\listWebhookSubscriptionResponseSchemaSubscribedTime -> ListWebhookSubscriptionResponseSchema { listWebhookSubscriptionResponseSchemaSubscribedTime, ..} ) <$> f listWebhookSubscriptionResponseSchemaSubscribedTime
+{-# INLINE listWebhookSubscriptionResponseSchemaSubscribedTimeL #-}
 
 
 
@@ -869,6 +1288,203 @@ locationTechnologyL f Location{..} = (\locationTechnology -> Location { location
 locationNetworkL :: Lens_' Location (Text)
 locationNetworkL f Location{..} = (\locationNetwork -> Location { locationNetwork, ..} ) <$> f locationNetwork
 {-# INLINE locationNetworkL #-}
+
+
+
+-- * LocationDTO
+
+-- | 'locationDTOTechnology' Lens
+locationDTOTechnologyL :: Lens_' LocationDTO (Maybe Text)
+locationDTOTechnologyL f LocationDTO{..} = (\locationDTOTechnology -> LocationDTO { locationDTOTechnology, ..} ) <$> f locationDTOTechnology
+{-# INLINE locationDTOTechnologyL #-}
+
+-- | 'locationDTONetwork' Lens
+locationDTONetworkL :: Lens_' LocationDTO (Maybe Text)
+locationDTONetworkL f LocationDTO{..} = (\locationDTONetwork -> LocationDTO { locationDTONetwork, ..} ) <$> f locationDTONetwork
+{-# INLINE locationDTONetworkL #-}
+
+
+
+-- * LockDetails
+
+-- | 'lockDetailsExpiryDate' Lens
+lockDetailsExpiryDateL :: Lens_' LockDetails (Maybe Text)
+lockDetailsExpiryDateL f LockDetails{..} = (\lockDetailsExpiryDate -> LockDetails { lockDetailsExpiryDate, ..} ) <$> f lockDetailsExpiryDate
+{-# INLINE lockDetailsExpiryDateL #-}
+
+-- | 'lockDetailsLockId' Lens
+lockDetailsLockIdL :: Lens_' LockDetails (Maybe Text)
+lockDetailsLockIdL f LockDetails{..} = (\lockDetailsLockId -> LockDetails { lockDetailsLockId, ..} ) <$> f lockDetailsLockId
+{-# INLINE lockDetailsLockIdL #-}
+
+-- | 'lockDetailsAccountId' Lens
+lockDetailsAccountIdL :: Lens_' LockDetails (Maybe Text)
+lockDetailsAccountIdL f LockDetails{..} = (\lockDetailsAccountId -> LockDetails { lockDetailsAccountId, ..} ) <$> f lockDetailsAccountId
+{-# INLINE lockDetailsAccountIdL #-}
+
+-- | 'lockDetailsAmount' Lens
+lockDetailsAmountL :: Lens_' LockDetails (Maybe Text)
+lockDetailsAmountL f LockDetails{..} = (\lockDetailsAmount -> LockDetails { lockDetailsAmount, ..} ) <$> f lockDetailsAmount
+{-# INLINE lockDetailsAmountL #-}
+
+-- | 'lockDetailsUnit' Lens
+lockDetailsUnitL :: Lens_' LockDetails (Maybe Text)
+lockDetailsUnitL f LockDetails{..} = (\lockDetailsUnit -> LockDetails { lockDetailsUnit, ..} ) <$> f lockDetailsUnit
+{-# INLINE lockDetailsUnitL #-}
+
+-- | 'lockDetailsAccountOwningInstitutionId' Lens
+lockDetailsAccountOwningInstitutionIdL :: Lens_' LockDetails (Maybe Text)
+lockDetailsAccountOwningInstitutionIdL f LockDetails{..} = (\lockDetailsAccountOwningInstitutionId -> LockDetails { lockDetailsAccountOwningInstitutionId, ..} ) <$> f lockDetailsAccountOwningInstitutionId
+{-# INLINE lockDetailsAccountOwningInstitutionIdL #-}
+
+-- | 'lockDetailsLockDescription' Lens
+lockDetailsLockDescriptionL :: Lens_' LockDetails (Maybe Text)
+lockDetailsLockDescriptionL f LockDetails{..} = (\lockDetailsLockDescription -> LockDetails { lockDetailsLockDescription, ..} ) <$> f lockDetailsLockDescription
+{-# INLINE lockDetailsLockDescriptionL #-}
+
+-- | 'lockDetailsPayeeId' Lens
+lockDetailsPayeeIdL :: Lens_' LockDetails (Maybe Text)
+lockDetailsPayeeIdL f LockDetails{..} = (\lockDetailsPayeeId -> LockDetails { lockDetailsPayeeId, ..} ) <$> f lockDetailsPayeeId
+{-# INLINE lockDetailsPayeeIdL #-}
+
+-- | 'lockDetailsSecret' Lens
+lockDetailsSecretL :: Lens_' LockDetails (Maybe Text)
+lockDetailsSecretL f LockDetails{..} = (\lockDetailsSecret -> LockDetails { lockDetailsSecret, ..} ) <$> f lockDetailsSecret
+{-# INLINE lockDetailsSecretL #-}
+
+-- | 'lockDetailsHash' Lens
+lockDetailsHashL :: Lens_' LockDetails (Maybe Text)
+lockDetailsHashL f LockDetails{..} = (\lockDetailsHash -> LockDetails { lockDetailsHash, ..} ) <$> f lockDetailsHash
+{-# INLINE lockDetailsHashL #-}
+
+-- | 'lockDetailsPayeeOwningInstitutionId' Lens
+lockDetailsPayeeOwningInstitutionIdL :: Lens_' LockDetails (Maybe Text)
+lockDetailsPayeeOwningInstitutionIdL f LockDetails{..} = (\lockDetailsPayeeOwningInstitutionId -> LockDetails { lockDetailsPayeeOwningInstitutionId, ..} ) <$> f lockDetailsPayeeOwningInstitutionId
+{-# INLINE lockDetailsPayeeOwningInstitutionIdL #-}
+
+-- | 'lockDetailsLockOwningInstitutionId' Lens
+lockDetailsLockOwningInstitutionIdL :: Lens_' LockDetails (Maybe Text)
+lockDetailsLockOwningInstitutionIdL f LockDetails{..} = (\lockDetailsLockOwningInstitutionId -> LockDetails { lockDetailsLockOwningInstitutionId, ..} ) <$> f lockDetailsLockOwningInstitutionId
+{-# INLINE lockDetailsLockOwningInstitutionIdL #-}
+
+
+
+-- * Mandate
+
+-- | 'mandatePayment' Lens
+mandatePaymentL :: Lens_' Mandate (Maybe Payment)
+mandatePaymentL f Mandate{..} = (\mandatePayment -> Mandate { mandatePayment, ..} ) <$> f mandatePayment
+{-# INLINE mandatePaymentL #-}
+
+-- | 'mandatePayeeId' Lens
+mandatePayeeIdL :: Lens_' Mandate (Maybe Text)
+mandatePayeeIdL f Mandate{..} = (\mandatePayeeId -> Mandate { mandatePayeeId, ..} ) <$> f mandatePayeeId
+{-# INLINE mandatePayeeIdL #-}
+
+
+
+-- * Mint
+
+-- | 'mintTokenName' Lens
+mintTokenNameL :: Lens_' Mint (Maybe Text)
+mintTokenNameL f Mint{..} = (\mintTokenName -> Mint { mintTokenName, ..} ) <$> f mintTokenName
+{-# INLINE mintTokenNameL #-}
+
+-- | 'mintAmount' Lens
+mintAmountL :: Lens_' Mint (Maybe Text)
+mintAmountL f Mint{..} = (\mintAmount -> Mint { mintAmount, ..} ) <$> f mintAmount
+{-# INLINE mintAmountL #-}
+
+-- | 'mintUnit' Lens
+mintUnitL :: Lens_' Mint (Maybe Text)
+mintUnitL f Mint{..} = (\mintUnit -> Mint { mintUnit, ..} ) <$> f mintUnit
+{-# INLINE mintUnitL #-}
+
+-- | 'mintMetadata' Lens
+mintMetadataL :: Lens_' Mint (Maybe Text)
+mintMetadataL f Mint{..} = (\mintMetadata -> Mint { mintMetadata, ..} ) <$> f mintMetadata
+{-# INLINE mintMetadataL #-}
+
+-- | 'mintTokenId' Lens
+mintTokenIdL :: Lens_' Mint (Maybe Text)
+mintTokenIdL f Mint{..} = (\mintTokenId -> Mint { mintTokenId, ..} ) <$> f mintTokenId
+{-# INLINE mintTokenIdL #-}
+
+
+
+-- * MintRequestDetailsSchemaQrc20
+
+-- | 'mintRequestDetailsSchemaQrc20Creator' Lens
+mintRequestDetailsSchemaQrc20CreatorL :: Lens_' MintRequestDetailsSchemaQrc20 (Maybe CreatorMintSchema)
+mintRequestDetailsSchemaQrc20CreatorL f MintRequestDetailsSchemaQrc20{..} = (\mintRequestDetailsSchemaQrc20Creator -> MintRequestDetailsSchemaQrc20 { mintRequestDetailsSchemaQrc20Creator, ..} ) <$> f mintRequestDetailsSchemaQrc20Creator
+{-# INLINE mintRequestDetailsSchemaQrc20CreatorL #-}
+
+-- | 'mintRequestDetailsSchemaQrc20Beneficiary' Lens
+mintRequestDetailsSchemaQrc20BeneficiaryL :: Lens_' MintRequestDetailsSchemaQrc20 (Maybe BeneficiaryMintSchemaQrc20)
+mintRequestDetailsSchemaQrc20BeneficiaryL f MintRequestDetailsSchemaQrc20{..} = (\mintRequestDetailsSchemaQrc20Beneficiary -> MintRequestDetailsSchemaQrc20 { mintRequestDetailsSchemaQrc20Beneficiary, ..} ) <$> f mintRequestDetailsSchemaQrc20Beneficiary
+{-# INLINE mintRequestDetailsSchemaQrc20BeneficiaryL #-}
+
+-- | 'mintRequestDetailsSchemaQrc20Message' Lens
+mintRequestDetailsSchemaQrc20MessageL :: Lens_' MintRequestDetailsSchemaQrc20 (Maybe Text)
+mintRequestDetailsSchemaQrc20MessageL f MintRequestDetailsSchemaQrc20{..} = (\mintRequestDetailsSchemaQrc20Message -> MintRequestDetailsSchemaQrc20 { mintRequestDetailsSchemaQrc20Message, ..} ) <$> f mintRequestDetailsSchemaQrc20Message
+{-# INLINE mintRequestDetailsSchemaQrc20MessageL #-}
+
+-- | 'mintRequestDetailsSchemaQrc20OverledgerSigningType' Lens
+mintRequestDetailsSchemaQrc20OverledgerSigningTypeL :: Lens_' MintRequestDetailsSchemaQrc20 (Maybe Text)
+mintRequestDetailsSchemaQrc20OverledgerSigningTypeL f MintRequestDetailsSchemaQrc20{..} = (\mintRequestDetailsSchemaQrc20OverledgerSigningType -> MintRequestDetailsSchemaQrc20 { mintRequestDetailsSchemaQrc20OverledgerSigningType, ..} ) <$> f mintRequestDetailsSchemaQrc20OverledgerSigningType
+{-# INLINE mintRequestDetailsSchemaQrc20OverledgerSigningTypeL #-}
+
+
+
+-- * MintRequestDetailsSchemaQrc721
+
+-- | 'mintRequestDetailsSchemaQrc721Beneficiary' Lens
+mintRequestDetailsSchemaQrc721BeneficiaryL :: Lens_' MintRequestDetailsSchemaQrc721 (Maybe BeneficiaryMintSchemaQrc721)
+mintRequestDetailsSchemaQrc721BeneficiaryL f MintRequestDetailsSchemaQrc721{..} = (\mintRequestDetailsSchemaQrc721Beneficiary -> MintRequestDetailsSchemaQrc721 { mintRequestDetailsSchemaQrc721Beneficiary, ..} ) <$> f mintRequestDetailsSchemaQrc721Beneficiary
+{-# INLINE mintRequestDetailsSchemaQrc721BeneficiaryL #-}
+
+-- | 'mintRequestDetailsSchemaQrc721Creator' Lens
+mintRequestDetailsSchemaQrc721CreatorL :: Lens_' MintRequestDetailsSchemaQrc721 (Maybe CreatorMintSchema)
+mintRequestDetailsSchemaQrc721CreatorL f MintRequestDetailsSchemaQrc721{..} = (\mintRequestDetailsSchemaQrc721Creator -> MintRequestDetailsSchemaQrc721 { mintRequestDetailsSchemaQrc721Creator, ..} ) <$> f mintRequestDetailsSchemaQrc721Creator
+{-# INLINE mintRequestDetailsSchemaQrc721CreatorL #-}
+
+-- | 'mintRequestDetailsSchemaQrc721OverledgerSigningType' Lens
+mintRequestDetailsSchemaQrc721OverledgerSigningTypeL :: Lens_' MintRequestDetailsSchemaQrc721 (Maybe Text)
+mintRequestDetailsSchemaQrc721OverledgerSigningTypeL f MintRequestDetailsSchemaQrc721{..} = (\mintRequestDetailsSchemaQrc721OverledgerSigningType -> MintRequestDetailsSchemaQrc721 { mintRequestDetailsSchemaQrc721OverledgerSigningType, ..} ) <$> f mintRequestDetailsSchemaQrc721OverledgerSigningType
+{-# INLINE mintRequestDetailsSchemaQrc721OverledgerSigningTypeL #-}
+
+
+
+-- * MintSchemaQrc20
+
+-- | 'mintSchemaQrc20Amount' Lens
+mintSchemaQrc20AmountL :: Lens_' MintSchemaQrc20 (Text)
+mintSchemaQrc20AmountL f MintSchemaQrc20{..} = (\mintSchemaQrc20Amount -> MintSchemaQrc20 { mintSchemaQrc20Amount, ..} ) <$> f mintSchemaQrc20Amount
+{-# INLINE mintSchemaQrc20AmountL #-}
+
+-- | 'mintSchemaQrc20Unit' Lens
+mintSchemaQrc20UnitL :: Lens_' MintSchemaQrc20 (Maybe Text)
+mintSchemaQrc20UnitL f MintSchemaQrc20{..} = (\mintSchemaQrc20Unit -> MintSchemaQrc20 { mintSchemaQrc20Unit, ..} ) <$> f mintSchemaQrc20Unit
+{-# INLINE mintSchemaQrc20UnitL #-}
+
+
+
+-- * MintSchemaQrc721
+
+-- | 'mintSchemaQrc721TokenId' Lens
+mintSchemaQrc721TokenIdL :: Lens_' MintSchemaQrc721 (Maybe Text)
+mintSchemaQrc721TokenIdL f MintSchemaQrc721{..} = (\mintSchemaQrc721TokenId -> MintSchemaQrc721 { mintSchemaQrc721TokenId, ..} ) <$> f mintSchemaQrc721TokenId
+{-# INLINE mintSchemaQrc721TokenIdL #-}
+
+-- | 'mintSchemaQrc721TokenName' Lens
+mintSchemaQrc721TokenNameL :: Lens_' MintSchemaQrc721 (Maybe Text)
+mintSchemaQrc721TokenNameL f MintSchemaQrc721{..} = (\mintSchemaQrc721TokenName -> MintSchemaQrc721 { mintSchemaQrc721TokenName, ..} ) <$> f mintSchemaQrc721TokenName
+{-# INLINE mintSchemaQrc721TokenNameL #-}
+
+-- | 'mintSchemaQrc721Metadata' Lens
+mintSchemaQrc721MetadataL :: Lens_' MintSchemaQrc721 (Maybe Text)
+mintSchemaQrc721MetadataL f MintSchemaQrc721{..} = (\mintSchemaQrc721Metadata -> MintSchemaQrc721 { mintSchemaQrc721Metadata, ..} ) <$> f mintSchemaQrc721Metadata
+{-# INLINE mintSchemaQrc721MetadataL #-}
 
 
 
@@ -893,11 +1509,6 @@ monitorSmartContractEventParamValueL f MonitorSmartContractEventParam{..} = (\mo
 
 -- * MonitorSmartContractRequestSchema
 
--- | 'monitorSmartContractRequestSchemaCallBackUrl' Lens
-monitorSmartContractRequestSchemaCallBackUrlL :: Lens_' MonitorSmartContractRequestSchema (Maybe Text)
-monitorSmartContractRequestSchemaCallBackUrlL f MonitorSmartContractRequestSchema{..} = (\monitorSmartContractRequestSchemaCallBackUrl -> MonitorSmartContractRequestSchema { monitorSmartContractRequestSchemaCallBackUrl, ..} ) <$> f monitorSmartContractRequestSchemaCallBackUrl
-{-# INLINE monitorSmartContractRequestSchemaCallBackUrlL #-}
-
 -- | 'monitorSmartContractRequestSchemaEventParams' Lens
 monitorSmartContractRequestSchemaEventParamsL :: Lens_' MonitorSmartContractRequestSchema (Maybe [MonitorSmartContractEventParam])
 monitorSmartContractRequestSchemaEventParamsL f MonitorSmartContractRequestSchema{..} = (\monitorSmartContractRequestSchemaEventParams -> MonitorSmartContractRequestSchema { monitorSmartContractRequestSchemaEventParams, ..} ) <$> f monitorSmartContractRequestSchemaEventParams
@@ -913,10 +1524,88 @@ monitorSmartContractRequestSchemaLocationL :: Lens_' MonitorSmartContractRequest
 monitorSmartContractRequestSchemaLocationL f MonitorSmartContractRequestSchema{..} = (\monitorSmartContractRequestSchemaLocation -> MonitorSmartContractRequestSchema { monitorSmartContractRequestSchemaLocation, ..} ) <$> f monitorSmartContractRequestSchemaLocation
 {-# INLINE monitorSmartContractRequestSchemaLocationL #-}
 
+-- | 'monitorSmartContractRequestSchemaCallBackUrl' Lens
+monitorSmartContractRequestSchemaCallBackUrlL :: Lens_' MonitorSmartContractRequestSchema (Maybe Text)
+monitorSmartContractRequestSchemaCallBackUrlL f MonitorSmartContractRequestSchema{..} = (\monitorSmartContractRequestSchemaCallBackUrl -> MonitorSmartContractRequestSchema { monitorSmartContractRequestSchemaCallBackUrl, ..} ) <$> f monitorSmartContractRequestSchemaCallBackUrl
+{-# INLINE monitorSmartContractRequestSchemaCallBackUrlL #-}
+
 -- | 'monitorSmartContractRequestSchemaSmartContractId' Lens
 monitorSmartContractRequestSchemaSmartContractIdL :: Lens_' MonitorSmartContractRequestSchema (Maybe Text)
 monitorSmartContractRequestSchemaSmartContractIdL f MonitorSmartContractRequestSchema{..} = (\monitorSmartContractRequestSchemaSmartContractId -> MonitorSmartContractRequestSchema { monitorSmartContractRequestSchemaSmartContractId, ..} ) <$> f monitorSmartContractRequestSchemaSmartContractId
 {-# INLINE monitorSmartContractRequestSchemaSmartContractIdL #-}
+
+
+
+-- * NonFungibleTokenDTO
+
+-- | 'nonFungibleTokenDTOFunctions' Lens
+nonFungibleTokenDTOFunctionsL :: Lens_' NonFungibleTokenDTO (Maybe [TierFunctionDTO])
+nonFungibleTokenDTOFunctionsL f NonFungibleTokenDTO{..} = (\nonFungibleTokenDTOFunctions -> NonFungibleTokenDTO { nonFungibleTokenDTOFunctions, ..} ) <$> f nonFungibleTokenDTOFunctions
+{-# INLINE nonFungibleTokenDTOFunctionsL #-}
+
+-- | 'nonFungibleTokenDTOTokenName' Lens
+nonFungibleTokenDTOTokenNameL :: Lens_' NonFungibleTokenDTO (Maybe Text)
+nonFungibleTokenDTOTokenNameL f NonFungibleTokenDTO{..} = (\nonFungibleTokenDTOTokenName -> NonFungibleTokenDTO { nonFungibleTokenDTOTokenName, ..} ) <$> f nonFungibleTokenDTOTokenName
+{-# INLINE nonFungibleTokenDTOTokenNameL #-}
+
+-- | 'nonFungibleTokenDTOSmartContractAddress' Lens
+nonFungibleTokenDTOSmartContractAddressL :: Lens_' NonFungibleTokenDTO (Maybe Text)
+nonFungibleTokenDTOSmartContractAddressL f NonFungibleTokenDTO{..} = (\nonFungibleTokenDTOSmartContractAddress -> NonFungibleTokenDTO { nonFungibleTokenDTOSmartContractAddress, ..} ) <$> f nonFungibleTokenDTOSmartContractAddress
+{-# INLINE nonFungibleTokenDTOSmartContractAddressL #-}
+
+-- | 'nonFungibleTokenDTOLocation' Lens
+nonFungibleTokenDTOLocationL :: Lens_' NonFungibleTokenDTO (Maybe LocationDTO)
+nonFungibleTokenDTOLocationL f NonFungibleTokenDTO{..} = (\nonFungibleTokenDTOLocation -> NonFungibleTokenDTO { nonFungibleTokenDTOLocation, ..} ) <$> f nonFungibleTokenDTOLocation
+{-# INLINE nonFungibleTokenDTOLocationL #-}
+
+-- | 'nonFungibleTokenDTOId' Lens
+nonFungibleTokenDTOIdL :: Lens_' NonFungibleTokenDTO (Maybe Text)
+nonFungibleTokenDTOIdL f NonFungibleTokenDTO{..} = (\nonFungibleTokenDTOId -> NonFungibleTokenDTO { nonFungibleTokenDTOId, ..} ) <$> f nonFungibleTokenDTOId
+{-# INLINE nonFungibleTokenDTOIdL #-}
+
+-- | 'nonFungibleTokenDTOTokenType' Lens
+nonFungibleTokenDTOTokenTypeL :: Lens_' NonFungibleTokenDTO (Maybe Text)
+nonFungibleTokenDTOTokenTypeL f NonFungibleTokenDTO{..} = (\nonFungibleTokenDTOTokenType -> NonFungibleTokenDTO { nonFungibleTokenDTOTokenType, ..} ) <$> f nonFungibleTokenDTOTokenType
+{-# INLINE nonFungibleTokenDTOTokenTypeL #-}
+
+-- | 'nonFungibleTokenDTOUrl' Lens
+nonFungibleTokenDTOUrlL :: Lens_' NonFungibleTokenDTO (Maybe Text)
+nonFungibleTokenDTOUrlL f NonFungibleTokenDTO{..} = (\nonFungibleTokenDTOUrl -> NonFungibleTokenDTO { nonFungibleTokenDTOUrl, ..} ) <$> f nonFungibleTokenDTOUrl
+{-# INLINE nonFungibleTokenDTOUrlL #-}
+
+
+
+-- * NonFungibleTokenResponse
+
+-- | 'nonFungibleTokenResponseTokenName' Lens
+nonFungibleTokenResponseTokenNameL :: Lens_' NonFungibleTokenResponse (Maybe Text)
+nonFungibleTokenResponseTokenNameL f NonFungibleTokenResponse{..} = (\nonFungibleTokenResponseTokenName -> NonFungibleTokenResponse { nonFungibleTokenResponseTokenName, ..} ) <$> f nonFungibleTokenResponseTokenName
+{-# INLINE nonFungibleTokenResponseTokenNameL #-}
+
+-- | 'nonFungibleTokenResponseDocumentationUrl' Lens
+nonFungibleTokenResponseDocumentationUrlL :: Lens_' NonFungibleTokenResponse (Maybe Text)
+nonFungibleTokenResponseDocumentationUrlL f NonFungibleTokenResponse{..} = (\nonFungibleTokenResponseDocumentationUrl -> NonFungibleTokenResponse { nonFungibleTokenResponseDocumentationUrl, ..} ) <$> f nonFungibleTokenResponseDocumentationUrl
+{-# INLINE nonFungibleTokenResponseDocumentationUrlL #-}
+
+-- | 'nonFungibleTokenResponseLocation' Lens
+nonFungibleTokenResponseLocationL :: Lens_' NonFungibleTokenResponse (Maybe Location)
+nonFungibleTokenResponseLocationL f NonFungibleTokenResponse{..} = (\nonFungibleTokenResponseLocation -> NonFungibleTokenResponse { nonFungibleTokenResponseLocation, ..} ) <$> f nonFungibleTokenResponseLocation
+{-# INLINE nonFungibleTokenResponseLocationL #-}
+
+-- | 'nonFungibleTokenResponseFunctions' Lens
+nonFungibleTokenResponseFunctionsL :: Lens_' NonFungibleTokenResponse (Maybe [Function])
+nonFungibleTokenResponseFunctionsL f NonFungibleTokenResponse{..} = (\nonFungibleTokenResponseFunctions -> NonFungibleTokenResponse { nonFungibleTokenResponseFunctions, ..} ) <$> f nonFungibleTokenResponseFunctions
+{-# INLINE nonFungibleTokenResponseFunctionsL #-}
+
+-- | 'nonFungibleTokenResponseContractType' Lens
+nonFungibleTokenResponseContractTypeL :: Lens_' NonFungibleTokenResponse (Maybe Text)
+nonFungibleTokenResponseContractTypeL f NonFungibleTokenResponse{..} = (\nonFungibleTokenResponseContractType -> NonFungibleTokenResponse { nonFungibleTokenResponseContractType, ..} ) <$> f nonFungibleTokenResponseContractType
+{-# INLINE nonFungibleTokenResponseContractTypeL #-}
+
+-- | 'nonFungibleTokenResponseSmartContractId' Lens
+nonFungibleTokenResponseSmartContractIdL :: Lens_' NonFungibleTokenResponse (Maybe Text)
+nonFungibleTokenResponseSmartContractIdL f NonFungibleTokenResponse{..} = (\nonFungibleTokenResponseSmartContractId -> NonFungibleTokenResponse { nonFungibleTokenResponseSmartContractId, ..} ) <$> f nonFungibleTokenResponseSmartContractId
+{-# INLINE nonFungibleTokenResponseSmartContractIdL #-}
 
 
 
@@ -927,22 +1616,22 @@ originSequenceL :: Lens_' Origin (Maybe Text)
 originSequenceL f Origin{..} = (\originSequence -> Origin { originSequence, ..} ) <$> f originSequence
 {-# INLINE originSequenceL #-}
 
--- | 'originOriginId' Lens
-originOriginIdL :: Lens_' Origin (Maybe Text)
-originOriginIdL f Origin{..} = (\originOriginId -> Origin { originOriginId, ..} ) <$> f originOriginId
-{-# INLINE originOriginIdL #-}
-
 -- | 'originSmartContract' Lens
 originSmartContractL :: Lens_' Origin (Maybe SmartContract)
 originSmartContractL f Origin{..} = (\originSmartContract -> Origin { originSmartContract, ..} ) <$> f originSmartContract
 {-# INLINE originSmartContractL #-}
+
+-- | 'originOriginId' Lens
+originOriginIdL :: Lens_' Origin (Maybe Text)
+originOriginIdL f Origin{..} = (\originOriginId -> Origin { originOriginId, ..} ) <$> f originOriginId
+{-# INLINE originOriginIdL #-}
 
 
 
 -- * OriginPaymentSchema
 
 -- | 'originPaymentSchemaOriginId' Lens
-originPaymentSchemaOriginIdL :: Lens_' OriginPaymentSchema (Maybe Text)
+originPaymentSchemaOriginIdL :: Lens_' OriginPaymentSchema (Text)
 originPaymentSchemaOriginIdL f OriginPaymentSchema{..} = (\originPaymentSchemaOriginId -> OriginPaymentSchema { originPaymentSchemaOriginId, ..} ) <$> f originPaymentSchemaOriginId
 {-# INLINE originPaymentSchemaOriginIdL #-}
 
@@ -1001,6 +1690,72 @@ overledgerTransactionResponseSchemaStatusL f OverledgerTransactionResponseSchema
 
 
 
+-- * Owner
+
+-- | 'ownerAccountId' Lens
+ownerAccountIdL :: Lens_' Owner (Maybe Text)
+ownerAccountIdL f Owner{..} = (\ownerAccountId -> Owner { ownerAccountId, ..} ) <$> f ownerAccountId
+{-# INLINE ownerAccountIdL #-}
+
+-- | 'ownerBurn' Lens
+ownerBurnL :: Lens_' Owner (Maybe Burn)
+ownerBurnL f Owner{..} = (\ownerBurn -> Owner { ownerBurn, ..} ) <$> f ownerBurn
+{-# INLINE ownerBurnL #-}
+
+-- | 'ownerUnit' Lens
+ownerUnitL :: Lens_' Owner (Maybe Text)
+ownerUnitL f Owner{..} = (\ownerUnit -> Owner { ownerUnit, ..} ) <$> f ownerUnit
+{-# INLINE ownerUnitL #-}
+
+
+
+-- * OwnerBurnSchema
+
+-- | 'ownerBurnSchemaAccountId' Lens
+ownerBurnSchemaAccountIdL :: Lens_' OwnerBurnSchema (Maybe Text)
+ownerBurnSchemaAccountIdL f OwnerBurnSchema{..} = (\ownerBurnSchemaAccountId -> OwnerBurnSchema { ownerBurnSchemaAccountId, ..} ) <$> f ownerBurnSchemaAccountId
+{-# INLINE ownerBurnSchemaAccountIdL #-}
+
+-- | 'ownerBurnSchemaBurn' Lens
+ownerBurnSchemaBurnL :: Lens_' OwnerBurnSchema (Maybe BurnSchema)
+ownerBurnSchemaBurnL f OwnerBurnSchema{..} = (\ownerBurnSchemaBurn -> OwnerBurnSchema { ownerBurnSchemaBurn, ..} ) <$> f ownerBurnSchemaBurn
+{-# INLINE ownerBurnSchemaBurnL #-}
+
+
+
+-- * OwnerRemoveSecondarySchema
+
+-- | 'ownerRemoveSecondarySchemaAccountId' Lens
+ownerRemoveSecondarySchemaAccountIdL :: Lens_' OwnerRemoveSecondarySchema (Maybe Text)
+ownerRemoveSecondarySchemaAccountIdL f OwnerRemoveSecondarySchema{..} = (\ownerRemoveSecondarySchemaAccountId -> OwnerRemoveSecondarySchema { ownerRemoveSecondarySchemaAccountId, ..} ) <$> f ownerRemoveSecondarySchemaAccountId
+{-# INLINE ownerRemoveSecondarySchemaAccountIdL #-}
+
+-- | 'ownerRemoveSecondarySchemaUnit' Lens
+ownerRemoveSecondarySchemaUnitL :: Lens_' OwnerRemoveSecondarySchema (Maybe Text)
+ownerRemoveSecondarySchemaUnitL f OwnerRemoveSecondarySchema{..} = (\ownerRemoveSecondarySchemaUnit -> OwnerRemoveSecondarySchema { ownerRemoveSecondarySchemaUnit, ..} ) <$> f ownerRemoveSecondarySchemaUnit
+{-# INLINE ownerRemoveSecondarySchemaUnitL #-}
+
+
+
+-- * Pagination
+
+-- | 'paginationSize' Lens
+paginationSizeL :: Lens_' Pagination (Maybe Int)
+paginationSizeL f Pagination{..} = (\paginationSize -> Pagination { paginationSize, ..} ) <$> f paginationSize
+{-# INLINE paginationSizeL #-}
+
+-- | 'paginationTotal' Lens
+paginationTotalL :: Lens_' Pagination (Maybe Int)
+paginationTotalL f Pagination{..} = (\paginationTotal -> Pagination { paginationTotal, ..} ) <$> f paginationTotal
+{-# INLINE paginationTotalL #-}
+
+-- | 'paginationPage' Lens
+paginationPageL :: Lens_' Pagination (Maybe Int)
+paginationPageL f Pagination{..} = (\paginationPage -> Pagination { paginationPage, ..} ) <$> f paginationPage
+{-# INLINE paginationPageL #-}
+
+
+
 -- * Parameter
 
 -- | 'parameterType' Lens
@@ -1020,6 +1775,20 @@ parameterKeyL f Parameter{..} = (\parameterKey -> Parameter { parameterKey, ..} 
 
 
 
+-- * Payee
+
+-- | 'payeePayment' Lens
+payeePaymentL :: Lens_' Payee (Maybe Payment)
+payeePaymentL f Payee{..} = (\payeePayment -> Payee { payeePayment, ..} ) <$> f payeePayment
+{-# INLINE payeePaymentL #-}
+
+-- | 'payeePayeeId' Lens
+payeePayeeIdL :: Lens_' Payee (Maybe Text)
+payeePayeeIdL f Payee{..} = (\payeePayeeId -> Payee { payeePayeeId, ..} ) <$> f payeePayeeId
+{-# INLINE payeePayeeIdL #-}
+
+
+
 -- * PayeeCreditSchema
 
 -- | 'payeeCreditSchemaPayment' Lens
@@ -1031,6 +1800,15 @@ payeeCreditSchemaPaymentL f PayeeCreditSchema{..} = (\payeeCreditSchemaPayment -
 payeeCreditSchemaPayeeIdL :: Lens_' PayeeCreditSchema (Maybe Text)
 payeeCreditSchemaPayeeIdL f PayeeCreditSchema{..} = (\payeeCreditSchemaPayeeId -> PayeeCreditSchema { payeeCreditSchemaPayeeId, ..} ) <$> f payeeCreditSchemaPayeeId
 {-# INLINE payeeCreditSchemaPayeeIdL #-}
+
+
+
+-- * Payer
+
+-- | 'payerPayerId' Lens
+payerPayerIdL :: Lens_' Payer (Maybe Text)
+payerPayerIdL f Payer{..} = (\payerPayerId -> Payer { payerPayerId, ..} ) <$> f payerPayerId
+{-# INLINE payerPayerIdL #-}
 
 
 
@@ -1064,18 +1842,8 @@ paymentIssuerL f Payment{..} = (\paymentIssuer -> Payment { paymentIssuer, ..} )
 
 -- * PaymentRequestDetailsSchema
 
--- | 'paymentRequestDetailsSchemaOverledgerSigningType' Lens
-paymentRequestDetailsSchemaOverledgerSigningTypeL :: Lens_' PaymentRequestDetailsSchema (Maybe Text)
-paymentRequestDetailsSchemaOverledgerSigningTypeL f PaymentRequestDetailsSchema{..} = (\paymentRequestDetailsSchemaOverledgerSigningType -> PaymentRequestDetailsSchema { paymentRequestDetailsSchemaOverledgerSigningType, ..} ) <$> f paymentRequestDetailsSchemaOverledgerSigningType
-{-# INLINE paymentRequestDetailsSchemaOverledgerSigningTypeL #-}
-
--- | 'paymentRequestDetailsSchemaOrigin' Lens
-paymentRequestDetailsSchemaOriginL :: Lens_' PaymentRequestDetailsSchema (Maybe [OriginPaymentSchema])
-paymentRequestDetailsSchemaOriginL f PaymentRequestDetailsSchema{..} = (\paymentRequestDetailsSchemaOrigin -> PaymentRequestDetailsSchema { paymentRequestDetailsSchemaOrigin, ..} ) <$> f paymentRequestDetailsSchemaOrigin
-{-# INLINE paymentRequestDetailsSchemaOriginL #-}
-
 -- | 'paymentRequestDetailsSchemaDestination' Lens
-paymentRequestDetailsSchemaDestinationL :: Lens_' PaymentRequestDetailsSchema (Maybe [DestinationPaymentSchema])
+paymentRequestDetailsSchemaDestinationL :: Lens_' PaymentRequestDetailsSchema ([DestinationPaymentSchema])
 paymentRequestDetailsSchemaDestinationL f PaymentRequestDetailsSchema{..} = (\paymentRequestDetailsSchemaDestination -> PaymentRequestDetailsSchema { paymentRequestDetailsSchemaDestination, ..} ) <$> f paymentRequestDetailsSchemaDestination
 {-# INLINE paymentRequestDetailsSchemaDestinationL #-}
 
@@ -1083,6 +1851,16 @@ paymentRequestDetailsSchemaDestinationL f PaymentRequestDetailsSchema{..} = (\pa
 paymentRequestDetailsSchemaMessageL :: Lens_' PaymentRequestDetailsSchema (Maybe Text)
 paymentRequestDetailsSchemaMessageL f PaymentRequestDetailsSchema{..} = (\paymentRequestDetailsSchemaMessage -> PaymentRequestDetailsSchema { paymentRequestDetailsSchemaMessage, ..} ) <$> f paymentRequestDetailsSchemaMessage
 {-# INLINE paymentRequestDetailsSchemaMessageL #-}
+
+-- | 'paymentRequestDetailsSchemaOverledgerSigningType' Lens
+paymentRequestDetailsSchemaOverledgerSigningTypeL :: Lens_' PaymentRequestDetailsSchema (Maybe E'OverledgerSigningType)
+paymentRequestDetailsSchemaOverledgerSigningTypeL f PaymentRequestDetailsSchema{..} = (\paymentRequestDetailsSchemaOverledgerSigningType -> PaymentRequestDetailsSchema { paymentRequestDetailsSchemaOverledgerSigningType, ..} ) <$> f paymentRequestDetailsSchemaOverledgerSigningType
+{-# INLINE paymentRequestDetailsSchemaOverledgerSigningTypeL #-}
+
+-- | 'paymentRequestDetailsSchemaOrigin' Lens
+paymentRequestDetailsSchemaOriginL :: Lens_' PaymentRequestDetailsSchema ([OriginPaymentSchema])
+paymentRequestDetailsSchemaOriginL f PaymentRequestDetailsSchema{..} = (\paymentRequestDetailsSchemaOrigin -> PaymentRequestDetailsSchema { paymentRequestDetailsSchemaOrigin, ..} ) <$> f paymentRequestDetailsSchemaOrigin
+{-# INLINE paymentRequestDetailsSchemaOriginL #-}
 
 
 
@@ -1094,9 +1872,33 @@ paymentSchemaAmountL f PaymentSchema{..} = (\paymentSchemaAmount -> PaymentSchem
 {-# INLINE paymentSchemaAmountL #-}
 
 -- | 'paymentSchemaUnit' Lens
-paymentSchemaUnitL :: Lens_' PaymentSchema (Maybe Text)
+paymentSchemaUnitL :: Lens_' PaymentSchema (Text)
 paymentSchemaUnitL f PaymentSchema{..} = (\paymentSchemaUnit -> PaymentSchema { paymentSchemaUnit, ..} ) <$> f paymentSchemaUnit
 {-# INLINE paymentSchemaUnitL #-}
+
+
+
+-- * PrepareAddSecondaryAccountRequestSchema
+
+-- | 'prepareAddSecondaryAccountRequestSchemaLocation' Lens
+prepareAddSecondaryAccountRequestSchemaLocationL :: Lens_' PrepareAddSecondaryAccountRequestSchema (Location)
+prepareAddSecondaryAccountRequestSchemaLocationL f PrepareAddSecondaryAccountRequestSchema{..} = (\prepareAddSecondaryAccountRequestSchemaLocation -> PrepareAddSecondaryAccountRequestSchema { prepareAddSecondaryAccountRequestSchemaLocation, ..} ) <$> f prepareAddSecondaryAccountRequestSchemaLocation
+{-# INLINE prepareAddSecondaryAccountRequestSchemaLocationL #-}
+
+-- | 'prepareAddSecondaryAccountRequestSchemaType' Lens
+prepareAddSecondaryAccountRequestSchemaTypeL :: Lens_' PrepareAddSecondaryAccountRequestSchema (E'Type)
+prepareAddSecondaryAccountRequestSchemaTypeL f PrepareAddSecondaryAccountRequestSchema{..} = (\prepareAddSecondaryAccountRequestSchemaType -> PrepareAddSecondaryAccountRequestSchema { prepareAddSecondaryAccountRequestSchemaType, ..} ) <$> f prepareAddSecondaryAccountRequestSchemaType
+{-# INLINE prepareAddSecondaryAccountRequestSchemaTypeL #-}
+
+-- | 'prepareAddSecondaryAccountRequestSchemaUrgency' Lens
+prepareAddSecondaryAccountRequestSchemaUrgencyL :: Lens_' PrepareAddSecondaryAccountRequestSchema (E'Urgency)
+prepareAddSecondaryAccountRequestSchemaUrgencyL f PrepareAddSecondaryAccountRequestSchema{..} = (\prepareAddSecondaryAccountRequestSchemaUrgency -> PrepareAddSecondaryAccountRequestSchema { prepareAddSecondaryAccountRequestSchemaUrgency, ..} ) <$> f prepareAddSecondaryAccountRequestSchemaUrgency
+{-# INLINE prepareAddSecondaryAccountRequestSchemaUrgencyL #-}
+
+-- | 'prepareAddSecondaryAccountRequestSchemaRequestDetails' Lens
+prepareAddSecondaryAccountRequestSchemaRequestDetailsL :: Lens_' PrepareAddSecondaryAccountRequestSchema (Maybe AddSecondaryAccountRequestDetailsSchema)
+prepareAddSecondaryAccountRequestSchemaRequestDetailsL f PrepareAddSecondaryAccountRequestSchema{..} = (\prepareAddSecondaryAccountRequestSchemaRequestDetails -> PrepareAddSecondaryAccountRequestSchema { prepareAddSecondaryAccountRequestSchemaRequestDetails, ..} ) <$> f prepareAddSecondaryAccountRequestSchemaRequestDetails
+{-# INLINE prepareAddSecondaryAccountRequestSchemaRequestDetailsL #-}
 
 
 
@@ -1116,20 +1918,20 @@ prepareAndExecuteBalanceDetailsAmountL f PrepareAndExecuteBalanceDetails{..} = (
 
 -- * PrepareAndExecuteOverledgerErrorResponse
 
--- | 'prepareAndExecuteOverledgerErrorResponseCode' Lens
-prepareAndExecuteOverledgerErrorResponseCodeL :: Lens_' PrepareAndExecuteOverledgerErrorResponse (Maybe Text)
-prepareAndExecuteOverledgerErrorResponseCodeL f PrepareAndExecuteOverledgerErrorResponse{..} = (\prepareAndExecuteOverledgerErrorResponseCode -> PrepareAndExecuteOverledgerErrorResponse { prepareAndExecuteOverledgerErrorResponseCode, ..} ) <$> f prepareAndExecuteOverledgerErrorResponseCode
-{-# INLINE prepareAndExecuteOverledgerErrorResponseCodeL #-}
+-- | 'prepareAndExecuteOverledgerErrorResponseCategory' Lens
+prepareAndExecuteOverledgerErrorResponseCategoryL :: Lens_' PrepareAndExecuteOverledgerErrorResponse (Maybe Text)
+prepareAndExecuteOverledgerErrorResponseCategoryL f PrepareAndExecuteOverledgerErrorResponse{..} = (\prepareAndExecuteOverledgerErrorResponseCategory -> PrepareAndExecuteOverledgerErrorResponse { prepareAndExecuteOverledgerErrorResponseCategory, ..} ) <$> f prepareAndExecuteOverledgerErrorResponseCategory
+{-# INLINE prepareAndExecuteOverledgerErrorResponseCategoryL #-}
 
 -- | 'prepareAndExecuteOverledgerErrorResponseDescription' Lens
 prepareAndExecuteOverledgerErrorResponseDescriptionL :: Lens_' PrepareAndExecuteOverledgerErrorResponse (Maybe Text)
 prepareAndExecuteOverledgerErrorResponseDescriptionL f PrepareAndExecuteOverledgerErrorResponse{..} = (\prepareAndExecuteOverledgerErrorResponseDescription -> PrepareAndExecuteOverledgerErrorResponse { prepareAndExecuteOverledgerErrorResponseDescription, ..} ) <$> f prepareAndExecuteOverledgerErrorResponseDescription
 {-# INLINE prepareAndExecuteOverledgerErrorResponseDescriptionL #-}
 
--- | 'prepareAndExecuteOverledgerErrorResponseCategory' Lens
-prepareAndExecuteOverledgerErrorResponseCategoryL :: Lens_' PrepareAndExecuteOverledgerErrorResponse (Maybe Text)
-prepareAndExecuteOverledgerErrorResponseCategoryL f PrepareAndExecuteOverledgerErrorResponse{..} = (\prepareAndExecuteOverledgerErrorResponseCategory -> PrepareAndExecuteOverledgerErrorResponse { prepareAndExecuteOverledgerErrorResponseCategory, ..} ) <$> f prepareAndExecuteOverledgerErrorResponseCategory
-{-# INLINE prepareAndExecuteOverledgerErrorResponseCategoryL #-}
+-- | 'prepareAndExecuteOverledgerErrorResponseCode' Lens
+prepareAndExecuteOverledgerErrorResponseCodeL :: Lens_' PrepareAndExecuteOverledgerErrorResponse (Maybe Text)
+prepareAndExecuteOverledgerErrorResponseCodeL f PrepareAndExecuteOverledgerErrorResponse{..} = (\prepareAndExecuteOverledgerErrorResponseCode -> PrepareAndExecuteOverledgerErrorResponse { prepareAndExecuteOverledgerErrorResponseCode, ..} ) <$> f prepareAndExecuteOverledgerErrorResponseCode
+{-# INLINE prepareAndExecuteOverledgerErrorResponseCodeL #-}
 
 
 
@@ -1159,11 +1961,6 @@ prepareAndExecuteSearchAddressBalanceResponseAddressIdL f PrepareAndExecuteSearc
 
 -- * PrepareAndExecuteTransactionResponse
 
--- | 'prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse' Lens
-prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponseL :: Lens_' PrepareAndExecuteTransactionResponse (Maybe PrepareAndExecuteOverledgerErrorResponse)
-prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponseL f PrepareAndExecuteTransactionResponse{..} = (\prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse -> PrepareAndExecuteTransactionResponse { prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse, ..} ) <$> f prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse
-{-# INLINE prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponseL #-}
-
 -- | 'prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse' Lens
 prepareAndExecuteTransactionResponsePreparationTransactionSearchResponseL :: Lens_' PrepareAndExecuteTransactionResponse (Maybe PrepareTransactionResponse)
 prepareAndExecuteTransactionResponsePreparationTransactionSearchResponseL f PrepareAndExecuteTransactionResponse{..} = (\prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse -> PrepareAndExecuteTransactionResponse { prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse, ..} ) <$> f prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse
@@ -1174,12 +1971,27 @@ prepareAndExecuteTransactionResponseExecutionTransactionSearchResponseL :: Lens_
 prepareAndExecuteTransactionResponseExecutionTransactionSearchResponseL f PrepareAndExecuteTransactionResponse{..} = (\prepareAndExecuteTransactionResponseExecutionTransactionSearchResponse -> PrepareAndExecuteTransactionResponse { prepareAndExecuteTransactionResponseExecutionTransactionSearchResponse, ..} ) <$> f prepareAndExecuteTransactionResponseExecutionTransactionSearchResponse
 {-# INLINE prepareAndExecuteTransactionResponseExecutionTransactionSearchResponseL #-}
 
+-- | 'prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse' Lens
+prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponseL :: Lens_' PrepareAndExecuteTransactionResponse (Maybe PrepareAndExecuteOverledgerErrorResponse)
+prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponseL f PrepareAndExecuteTransactionResponse{..} = (\prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse -> PrepareAndExecuteTransactionResponse { prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse, ..} ) <$> f prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse
+{-# INLINE prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponseL #-}
+
 
 
 -- * PrepareApproveDebitTransactionRequestSchema
 
+-- | 'prepareApproveDebitTransactionRequestSchemaLocation' Lens
+prepareApproveDebitTransactionRequestSchemaLocationL :: Lens_' PrepareApproveDebitTransactionRequestSchema (Location)
+prepareApproveDebitTransactionRequestSchemaLocationL f PrepareApproveDebitTransactionRequestSchema{..} = (\prepareApproveDebitTransactionRequestSchemaLocation -> PrepareApproveDebitTransactionRequestSchema { prepareApproveDebitTransactionRequestSchemaLocation, ..} ) <$> f prepareApproveDebitTransactionRequestSchemaLocation
+{-# INLINE prepareApproveDebitTransactionRequestSchemaLocationL #-}
+
+-- | 'prepareApproveDebitTransactionRequestSchemaType' Lens
+prepareApproveDebitTransactionRequestSchemaTypeL :: Lens_' PrepareApproveDebitTransactionRequestSchema (E'Type)
+prepareApproveDebitTransactionRequestSchemaTypeL f PrepareApproveDebitTransactionRequestSchema{..} = (\prepareApproveDebitTransactionRequestSchemaType -> PrepareApproveDebitTransactionRequestSchema { prepareApproveDebitTransactionRequestSchemaType, ..} ) <$> f prepareApproveDebitTransactionRequestSchemaType
+{-# INLINE prepareApproveDebitTransactionRequestSchemaTypeL #-}
+
 -- | 'prepareApproveDebitTransactionRequestSchemaUrgency' Lens
-prepareApproveDebitTransactionRequestSchemaUrgencyL :: Lens_' PrepareApproveDebitTransactionRequestSchema (Maybe Text)
+prepareApproveDebitTransactionRequestSchemaUrgencyL :: Lens_' PrepareApproveDebitTransactionRequestSchema (E'Urgency)
 prepareApproveDebitTransactionRequestSchemaUrgencyL f PrepareApproveDebitTransactionRequestSchema{..} = (\prepareApproveDebitTransactionRequestSchemaUrgency -> PrepareApproveDebitTransactionRequestSchema { prepareApproveDebitTransactionRequestSchemaUrgency, ..} ) <$> f prepareApproveDebitTransactionRequestSchemaUrgency
 {-# INLINE prepareApproveDebitTransactionRequestSchemaUrgencyL #-}
 
@@ -1188,22 +2000,70 @@ prepareApproveDebitTransactionRequestSchemaRequestDetailsL :: Lens_' PrepareAppr
 prepareApproveDebitTransactionRequestSchemaRequestDetailsL f PrepareApproveDebitTransactionRequestSchema{..} = (\prepareApproveDebitTransactionRequestSchemaRequestDetails -> PrepareApproveDebitTransactionRequestSchema { prepareApproveDebitTransactionRequestSchemaRequestDetails, ..} ) <$> f prepareApproveDebitTransactionRequestSchemaRequestDetails
 {-# INLINE prepareApproveDebitTransactionRequestSchemaRequestDetailsL #-}
 
--- | 'prepareApproveDebitTransactionRequestSchemaLocation' Lens
-prepareApproveDebitTransactionRequestSchemaLocationL :: Lens_' PrepareApproveDebitTransactionRequestSchema (Maybe Location)
-prepareApproveDebitTransactionRequestSchemaLocationL f PrepareApproveDebitTransactionRequestSchema{..} = (\prepareApproveDebitTransactionRequestSchemaLocation -> PrepareApproveDebitTransactionRequestSchema { prepareApproveDebitTransactionRequestSchemaLocation, ..} ) <$> f prepareApproveDebitTransactionRequestSchemaLocation
-{-# INLINE prepareApproveDebitTransactionRequestSchemaLocationL #-}
 
--- | 'prepareApproveDebitTransactionRequestSchemaType' Lens
-prepareApproveDebitTransactionRequestSchemaTypeL :: Lens_' PrepareApproveDebitTransactionRequestSchema (Maybe Text)
-prepareApproveDebitTransactionRequestSchemaTypeL f PrepareApproveDebitTransactionRequestSchema{..} = (\prepareApproveDebitTransactionRequestSchemaType -> PrepareApproveDebitTransactionRequestSchema { prepareApproveDebitTransactionRequestSchemaType, ..} ) <$> f prepareApproveDebitTransactionRequestSchemaType
-{-# INLINE prepareApproveDebitTransactionRequestSchemaTypeL #-}
+
+-- * PrepareBurnTransactionRequestSchema
+
+-- | 'prepareBurnTransactionRequestSchemaLocation' Lens
+prepareBurnTransactionRequestSchemaLocationL :: Lens_' PrepareBurnTransactionRequestSchema (Location)
+prepareBurnTransactionRequestSchemaLocationL f PrepareBurnTransactionRequestSchema{..} = (\prepareBurnTransactionRequestSchemaLocation -> PrepareBurnTransactionRequestSchema { prepareBurnTransactionRequestSchemaLocation, ..} ) <$> f prepareBurnTransactionRequestSchemaLocation
+{-# INLINE prepareBurnTransactionRequestSchemaLocationL #-}
+
+-- | 'prepareBurnTransactionRequestSchemaType' Lens
+prepareBurnTransactionRequestSchemaTypeL :: Lens_' PrepareBurnTransactionRequestSchema (E'Type)
+prepareBurnTransactionRequestSchemaTypeL f PrepareBurnTransactionRequestSchema{..} = (\prepareBurnTransactionRequestSchemaType -> PrepareBurnTransactionRequestSchema { prepareBurnTransactionRequestSchemaType, ..} ) <$> f prepareBurnTransactionRequestSchemaType
+{-# INLINE prepareBurnTransactionRequestSchemaTypeL #-}
+
+-- | 'prepareBurnTransactionRequestSchemaUrgency' Lens
+prepareBurnTransactionRequestSchemaUrgencyL :: Lens_' PrepareBurnTransactionRequestSchema (E'Urgency)
+prepareBurnTransactionRequestSchemaUrgencyL f PrepareBurnTransactionRequestSchema{..} = (\prepareBurnTransactionRequestSchemaUrgency -> PrepareBurnTransactionRequestSchema { prepareBurnTransactionRequestSchemaUrgency, ..} ) <$> f prepareBurnTransactionRequestSchemaUrgency
+{-# INLINE prepareBurnTransactionRequestSchemaUrgencyL #-}
+
+-- | 'prepareBurnTransactionRequestSchemaRequestDetails' Lens
+prepareBurnTransactionRequestSchemaRequestDetailsL :: Lens_' PrepareBurnTransactionRequestSchema (Maybe BurnRequestDetailsSchema)
+prepareBurnTransactionRequestSchemaRequestDetailsL f PrepareBurnTransactionRequestSchema{..} = (\prepareBurnTransactionRequestSchemaRequestDetails -> PrepareBurnTransactionRequestSchema { prepareBurnTransactionRequestSchemaRequestDetails, ..} ) <$> f prepareBurnTransactionRequestSchemaRequestDetails
+{-# INLINE prepareBurnTransactionRequestSchemaRequestDetailsL #-}
+
+
+
+-- * PrepareBurnTransactionRequestSchemaQrc721
+
+-- | 'prepareBurnTransactionRequestSchemaQrc721Location' Lens
+prepareBurnTransactionRequestSchemaQrc721LocationL :: Lens_' PrepareBurnTransactionRequestSchemaQrc721 (Location)
+prepareBurnTransactionRequestSchemaQrc721LocationL f PrepareBurnTransactionRequestSchemaQrc721{..} = (\prepareBurnTransactionRequestSchemaQrc721Location -> PrepareBurnTransactionRequestSchemaQrc721 { prepareBurnTransactionRequestSchemaQrc721Location, ..} ) <$> f prepareBurnTransactionRequestSchemaQrc721Location
+{-# INLINE prepareBurnTransactionRequestSchemaQrc721LocationL #-}
+
+-- | 'prepareBurnTransactionRequestSchemaQrc721Type' Lens
+prepareBurnTransactionRequestSchemaQrc721TypeL :: Lens_' PrepareBurnTransactionRequestSchemaQrc721 (E'Type)
+prepareBurnTransactionRequestSchemaQrc721TypeL f PrepareBurnTransactionRequestSchemaQrc721{..} = (\prepareBurnTransactionRequestSchemaQrc721Type -> PrepareBurnTransactionRequestSchemaQrc721 { prepareBurnTransactionRequestSchemaQrc721Type, ..} ) <$> f prepareBurnTransactionRequestSchemaQrc721Type
+{-# INLINE prepareBurnTransactionRequestSchemaQrc721TypeL #-}
+
+-- | 'prepareBurnTransactionRequestSchemaQrc721Urgency' Lens
+prepareBurnTransactionRequestSchemaQrc721UrgencyL :: Lens_' PrepareBurnTransactionRequestSchemaQrc721 (E'Urgency)
+prepareBurnTransactionRequestSchemaQrc721UrgencyL f PrepareBurnTransactionRequestSchemaQrc721{..} = (\prepareBurnTransactionRequestSchemaQrc721Urgency -> PrepareBurnTransactionRequestSchemaQrc721 { prepareBurnTransactionRequestSchemaQrc721Urgency, ..} ) <$> f prepareBurnTransactionRequestSchemaQrc721Urgency
+{-# INLINE prepareBurnTransactionRequestSchemaQrc721UrgencyL #-}
+
+-- | 'prepareBurnTransactionRequestSchemaQrc721RequestDetails' Lens
+prepareBurnTransactionRequestSchemaQrc721RequestDetailsL :: Lens_' PrepareBurnTransactionRequestSchemaQrc721 (Maybe BurnRequestDetailsSchemaQrc721)
+prepareBurnTransactionRequestSchemaQrc721RequestDetailsL f PrepareBurnTransactionRequestSchemaQrc721{..} = (\prepareBurnTransactionRequestSchemaQrc721RequestDetails -> PrepareBurnTransactionRequestSchemaQrc721 { prepareBurnTransactionRequestSchemaQrc721RequestDetails, ..} ) <$> f prepareBurnTransactionRequestSchemaQrc721RequestDetails
+{-# INLINE prepareBurnTransactionRequestSchemaQrc721RequestDetailsL #-}
 
 
 
 -- * PrepareCreditTransactionRequestSchema
 
+-- | 'prepareCreditTransactionRequestSchemaLocation' Lens
+prepareCreditTransactionRequestSchemaLocationL :: Lens_' PrepareCreditTransactionRequestSchema (Location)
+prepareCreditTransactionRequestSchemaLocationL f PrepareCreditTransactionRequestSchema{..} = (\prepareCreditTransactionRequestSchemaLocation -> PrepareCreditTransactionRequestSchema { prepareCreditTransactionRequestSchemaLocation, ..} ) <$> f prepareCreditTransactionRequestSchemaLocation
+{-# INLINE prepareCreditTransactionRequestSchemaLocationL #-}
+
+-- | 'prepareCreditTransactionRequestSchemaType' Lens
+prepareCreditTransactionRequestSchemaTypeL :: Lens_' PrepareCreditTransactionRequestSchema (E'Type)
+prepareCreditTransactionRequestSchemaTypeL f PrepareCreditTransactionRequestSchema{..} = (\prepareCreditTransactionRequestSchemaType -> PrepareCreditTransactionRequestSchema { prepareCreditTransactionRequestSchemaType, ..} ) <$> f prepareCreditTransactionRequestSchemaType
+{-# INLINE prepareCreditTransactionRequestSchemaTypeL #-}
+
 -- | 'prepareCreditTransactionRequestSchemaUrgency' Lens
-prepareCreditTransactionRequestSchemaUrgencyL :: Lens_' PrepareCreditTransactionRequestSchema (Maybe Text)
+prepareCreditTransactionRequestSchemaUrgencyL :: Lens_' PrepareCreditTransactionRequestSchema (E'Urgency)
 prepareCreditTransactionRequestSchemaUrgencyL f PrepareCreditTransactionRequestSchema{..} = (\prepareCreditTransactionRequestSchemaUrgency -> PrepareCreditTransactionRequestSchema { prepareCreditTransactionRequestSchemaUrgency, ..} ) <$> f prepareCreditTransactionRequestSchemaUrgency
 {-# INLINE prepareCreditTransactionRequestSchemaUrgencyL #-}
 
@@ -1212,53 +2072,273 @@ prepareCreditTransactionRequestSchemaRequestDetailsL :: Lens_' PrepareCreditTran
 prepareCreditTransactionRequestSchemaRequestDetailsL f PrepareCreditTransactionRequestSchema{..} = (\prepareCreditTransactionRequestSchemaRequestDetails -> PrepareCreditTransactionRequestSchema { prepareCreditTransactionRequestSchemaRequestDetails, ..} ) <$> f prepareCreditTransactionRequestSchemaRequestDetails
 {-# INLINE prepareCreditTransactionRequestSchemaRequestDetailsL #-}
 
--- | 'prepareCreditTransactionRequestSchemaLocation' Lens
-prepareCreditTransactionRequestSchemaLocationL :: Lens_' PrepareCreditTransactionRequestSchema (Maybe Location)
-prepareCreditTransactionRequestSchemaLocationL f PrepareCreditTransactionRequestSchema{..} = (\prepareCreditTransactionRequestSchemaLocation -> PrepareCreditTransactionRequestSchema { prepareCreditTransactionRequestSchemaLocation, ..} ) <$> f prepareCreditTransactionRequestSchemaLocation
-{-# INLINE prepareCreditTransactionRequestSchemaLocationL #-}
 
--- | 'prepareCreditTransactionRequestSchemaType' Lens
-prepareCreditTransactionRequestSchemaTypeL :: Lens_' PrepareCreditTransactionRequestSchema (Maybe Text)
-prepareCreditTransactionRequestSchemaTypeL f PrepareCreditTransactionRequestSchema{..} = (\prepareCreditTransactionRequestSchemaType -> PrepareCreditTransactionRequestSchema { prepareCreditTransactionRequestSchemaType, ..} ) <$> f prepareCreditTransactionRequestSchemaType
-{-# INLINE prepareCreditTransactionRequestSchemaTypeL #-}
+
+-- * PrepareMintTransactionRequestSchemaQrc20
+
+-- | 'prepareMintTransactionRequestSchemaQrc20Location' Lens
+prepareMintTransactionRequestSchemaQrc20LocationL :: Lens_' PrepareMintTransactionRequestSchemaQrc20 (Location)
+prepareMintTransactionRequestSchemaQrc20LocationL f PrepareMintTransactionRequestSchemaQrc20{..} = (\prepareMintTransactionRequestSchemaQrc20Location -> PrepareMintTransactionRequestSchemaQrc20 { prepareMintTransactionRequestSchemaQrc20Location, ..} ) <$> f prepareMintTransactionRequestSchemaQrc20Location
+{-# INLINE prepareMintTransactionRequestSchemaQrc20LocationL #-}
+
+-- | 'prepareMintTransactionRequestSchemaQrc20Type' Lens
+prepareMintTransactionRequestSchemaQrc20TypeL :: Lens_' PrepareMintTransactionRequestSchemaQrc20 (E'Type)
+prepareMintTransactionRequestSchemaQrc20TypeL f PrepareMintTransactionRequestSchemaQrc20{..} = (\prepareMintTransactionRequestSchemaQrc20Type -> PrepareMintTransactionRequestSchemaQrc20 { prepareMintTransactionRequestSchemaQrc20Type, ..} ) <$> f prepareMintTransactionRequestSchemaQrc20Type
+{-# INLINE prepareMintTransactionRequestSchemaQrc20TypeL #-}
+
+-- | 'prepareMintTransactionRequestSchemaQrc20Urgency' Lens
+prepareMintTransactionRequestSchemaQrc20UrgencyL :: Lens_' PrepareMintTransactionRequestSchemaQrc20 (E'Urgency)
+prepareMintTransactionRequestSchemaQrc20UrgencyL f PrepareMintTransactionRequestSchemaQrc20{..} = (\prepareMintTransactionRequestSchemaQrc20Urgency -> PrepareMintTransactionRequestSchemaQrc20 { prepareMintTransactionRequestSchemaQrc20Urgency, ..} ) <$> f prepareMintTransactionRequestSchemaQrc20Urgency
+{-# INLINE prepareMintTransactionRequestSchemaQrc20UrgencyL #-}
+
+-- | 'prepareMintTransactionRequestSchemaQrc20RequestDetails' Lens
+prepareMintTransactionRequestSchemaQrc20RequestDetailsL :: Lens_' PrepareMintTransactionRequestSchemaQrc20 (Maybe MintRequestDetailsSchemaQrc20)
+prepareMintTransactionRequestSchemaQrc20RequestDetailsL f PrepareMintTransactionRequestSchemaQrc20{..} = (\prepareMintTransactionRequestSchemaQrc20RequestDetails -> PrepareMintTransactionRequestSchemaQrc20 { prepareMintTransactionRequestSchemaQrc20RequestDetails, ..} ) <$> f prepareMintTransactionRequestSchemaQrc20RequestDetails
+{-# INLINE prepareMintTransactionRequestSchemaQrc20RequestDetailsL #-}
+
+
+
+-- * PrepareMintTransactionRequestSchemaQrc721
+
+-- | 'prepareMintTransactionRequestSchemaQrc721Location' Lens
+prepareMintTransactionRequestSchemaQrc721LocationL :: Lens_' PrepareMintTransactionRequestSchemaQrc721 (Location)
+prepareMintTransactionRequestSchemaQrc721LocationL f PrepareMintTransactionRequestSchemaQrc721{..} = (\prepareMintTransactionRequestSchemaQrc721Location -> PrepareMintTransactionRequestSchemaQrc721 { prepareMintTransactionRequestSchemaQrc721Location, ..} ) <$> f prepareMintTransactionRequestSchemaQrc721Location
+{-# INLINE prepareMintTransactionRequestSchemaQrc721LocationL #-}
+
+-- | 'prepareMintTransactionRequestSchemaQrc721Type' Lens
+prepareMintTransactionRequestSchemaQrc721TypeL :: Lens_' PrepareMintTransactionRequestSchemaQrc721 (E'Type)
+prepareMintTransactionRequestSchemaQrc721TypeL f PrepareMintTransactionRequestSchemaQrc721{..} = (\prepareMintTransactionRequestSchemaQrc721Type -> PrepareMintTransactionRequestSchemaQrc721 { prepareMintTransactionRequestSchemaQrc721Type, ..} ) <$> f prepareMintTransactionRequestSchemaQrc721Type
+{-# INLINE prepareMintTransactionRequestSchemaQrc721TypeL #-}
+
+-- | 'prepareMintTransactionRequestSchemaQrc721Urgency' Lens
+prepareMintTransactionRequestSchemaQrc721UrgencyL :: Lens_' PrepareMintTransactionRequestSchemaQrc721 (E'Urgency)
+prepareMintTransactionRequestSchemaQrc721UrgencyL f PrepareMintTransactionRequestSchemaQrc721{..} = (\prepareMintTransactionRequestSchemaQrc721Urgency -> PrepareMintTransactionRequestSchemaQrc721 { prepareMintTransactionRequestSchemaQrc721Urgency, ..} ) <$> f prepareMintTransactionRequestSchemaQrc721Urgency
+{-# INLINE prepareMintTransactionRequestSchemaQrc721UrgencyL #-}
+
+-- | 'prepareMintTransactionRequestSchemaQrc721RequestDetails' Lens
+prepareMintTransactionRequestSchemaQrc721RequestDetailsL :: Lens_' PrepareMintTransactionRequestSchemaQrc721 (Maybe MintRequestDetailsSchemaQrc721)
+prepareMintTransactionRequestSchemaQrc721RequestDetailsL f PrepareMintTransactionRequestSchemaQrc721{..} = (\prepareMintTransactionRequestSchemaQrc721RequestDetails -> PrepareMintTransactionRequestSchemaQrc721 { prepareMintTransactionRequestSchemaQrc721RequestDetails, ..} ) <$> f prepareMintTransactionRequestSchemaQrc721RequestDetails
+{-# INLINE prepareMintTransactionRequestSchemaQrc721RequestDetailsL #-}
 
 
 
 -- * PrepareNativeTransactionRequestSchema
-
--- | 'prepareNativeTransactionRequestSchemaLocation' Lens
-prepareNativeTransactionRequestSchemaLocationL :: Lens_' PrepareNativeTransactionRequestSchema (Maybe Location)
-prepareNativeTransactionRequestSchemaLocationL f PrepareNativeTransactionRequestSchema{..} = (\prepareNativeTransactionRequestSchemaLocation -> PrepareNativeTransactionRequestSchema { prepareNativeTransactionRequestSchemaLocation, ..} ) <$> f prepareNativeTransactionRequestSchemaLocation
-{-# INLINE prepareNativeTransactionRequestSchemaLocationL #-}
 
 -- | 'prepareNativeTransactionRequestSchemaType' Lens
 prepareNativeTransactionRequestSchemaTypeL :: Lens_' PrepareNativeTransactionRequestSchema (Maybe Text)
 prepareNativeTransactionRequestSchemaTypeL f PrepareNativeTransactionRequestSchema{..} = (\prepareNativeTransactionRequestSchemaType -> PrepareNativeTransactionRequestSchema { prepareNativeTransactionRequestSchemaType, ..} ) <$> f prepareNativeTransactionRequestSchemaType
 {-# INLINE prepareNativeTransactionRequestSchemaTypeL #-}
 
+-- | 'prepareNativeTransactionRequestSchemaLocation' Lens
+prepareNativeTransactionRequestSchemaLocationL :: Lens_' PrepareNativeTransactionRequestSchema (Maybe Location)
+prepareNativeTransactionRequestSchemaLocationL f PrepareNativeTransactionRequestSchema{..} = (\prepareNativeTransactionRequestSchemaLocation -> PrepareNativeTransactionRequestSchema { prepareNativeTransactionRequestSchemaLocation, ..} ) <$> f prepareNativeTransactionRequestSchemaLocation
+{-# INLINE prepareNativeTransactionRequestSchemaLocationL #-}
+
 
 
 -- * PreparePaymentTransactionRequestSchema
 
--- | 'preparePaymentTransactionRequestSchemaUrgency' Lens
-preparePaymentTransactionRequestSchemaUrgencyL :: Lens_' PreparePaymentTransactionRequestSchema (Maybe Text)
-preparePaymentTransactionRequestSchemaUrgencyL f PreparePaymentTransactionRequestSchema{..} = (\preparePaymentTransactionRequestSchemaUrgency -> PreparePaymentTransactionRequestSchema { preparePaymentTransactionRequestSchemaUrgency, ..} ) <$> f preparePaymentTransactionRequestSchemaUrgency
-{-# INLINE preparePaymentTransactionRequestSchemaUrgencyL #-}
-
--- | 'preparePaymentTransactionRequestSchemaRequestDetails' Lens
-preparePaymentTransactionRequestSchemaRequestDetailsL :: Lens_' PreparePaymentTransactionRequestSchema (Maybe PaymentRequestDetailsSchema)
-preparePaymentTransactionRequestSchemaRequestDetailsL f PreparePaymentTransactionRequestSchema{..} = (\preparePaymentTransactionRequestSchemaRequestDetails -> PreparePaymentTransactionRequestSchema { preparePaymentTransactionRequestSchemaRequestDetails, ..} ) <$> f preparePaymentTransactionRequestSchemaRequestDetails
-{-# INLINE preparePaymentTransactionRequestSchemaRequestDetailsL #-}
-
 -- | 'preparePaymentTransactionRequestSchemaLocation' Lens
-preparePaymentTransactionRequestSchemaLocationL :: Lens_' PreparePaymentTransactionRequestSchema (Maybe Location)
+preparePaymentTransactionRequestSchemaLocationL :: Lens_' PreparePaymentTransactionRequestSchema (Location)
 preparePaymentTransactionRequestSchemaLocationL f PreparePaymentTransactionRequestSchema{..} = (\preparePaymentTransactionRequestSchemaLocation -> PreparePaymentTransactionRequestSchema { preparePaymentTransactionRequestSchemaLocation, ..} ) <$> f preparePaymentTransactionRequestSchemaLocation
 {-# INLINE preparePaymentTransactionRequestSchemaLocationL #-}
 
 -- | 'preparePaymentTransactionRequestSchemaType' Lens
-preparePaymentTransactionRequestSchemaTypeL :: Lens_' PreparePaymentTransactionRequestSchema (Maybe Text)
+preparePaymentTransactionRequestSchemaTypeL :: Lens_' PreparePaymentTransactionRequestSchema (E'Type)
 preparePaymentTransactionRequestSchemaTypeL f PreparePaymentTransactionRequestSchema{..} = (\preparePaymentTransactionRequestSchemaType -> PreparePaymentTransactionRequestSchema { preparePaymentTransactionRequestSchemaType, ..} ) <$> f preparePaymentTransactionRequestSchemaType
 {-# INLINE preparePaymentTransactionRequestSchemaTypeL #-}
+
+-- | 'preparePaymentTransactionRequestSchemaUrgency' Lens
+preparePaymentTransactionRequestSchemaUrgencyL :: Lens_' PreparePaymentTransactionRequestSchema (E'Urgency)
+preparePaymentTransactionRequestSchemaUrgencyL f PreparePaymentTransactionRequestSchema{..} = (\preparePaymentTransactionRequestSchemaUrgency -> PreparePaymentTransactionRequestSchema { preparePaymentTransactionRequestSchemaUrgency, ..} ) <$> f preparePaymentTransactionRequestSchemaUrgency
+{-# INLINE preparePaymentTransactionRequestSchemaUrgencyL #-}
+
+-- | 'preparePaymentTransactionRequestSchemaRequestDetails' Lens
+preparePaymentTransactionRequestSchemaRequestDetailsL :: Lens_' PreparePaymentTransactionRequestSchema (PaymentRequestDetailsSchema)
+preparePaymentTransactionRequestSchemaRequestDetailsL f PreparePaymentTransactionRequestSchema{..} = (\preparePaymentTransactionRequestSchemaRequestDetails -> PreparePaymentTransactionRequestSchema { preparePaymentTransactionRequestSchemaRequestDetails, ..} ) <$> f preparePaymentTransactionRequestSchemaRequestDetails
+{-# INLINE preparePaymentTransactionRequestSchemaRequestDetailsL #-}
+
+
+
+-- * PrepareRemoveSecondaryAccountTransactionRequestSchema
+
+-- | 'prepareRemoveSecondaryAccountTransactionRequestSchemaRemoveSecondaryAccountDetailsSchema' Lens
+prepareRemoveSecondaryAccountTransactionRequestSchemaRemoveSecondaryAccountDetailsSchemaL :: Lens_' PrepareRemoveSecondaryAccountTransactionRequestSchema (Maybe RemoveSecondaryAccountDetailsSchema)
+prepareRemoveSecondaryAccountTransactionRequestSchemaRemoveSecondaryAccountDetailsSchemaL f PrepareRemoveSecondaryAccountTransactionRequestSchema{..} = (\prepareRemoveSecondaryAccountTransactionRequestSchemaRemoveSecondaryAccountDetailsSchema -> PrepareRemoveSecondaryAccountTransactionRequestSchema { prepareRemoveSecondaryAccountTransactionRequestSchemaRemoveSecondaryAccountDetailsSchema, ..} ) <$> f prepareRemoveSecondaryAccountTransactionRequestSchemaRemoveSecondaryAccountDetailsSchema
+{-# INLINE prepareRemoveSecondaryAccountTransactionRequestSchemaRemoveSecondaryAccountDetailsSchemaL #-}
+
+
+
+-- * PrepareRequest
+
+-- | 'prepareRequestApiLookupPath' Lens
+prepareRequestApiLookupPathL :: Lens_' PrepareRequest (Maybe Text)
+prepareRequestApiLookupPathL f PrepareRequest{..} = (\prepareRequestApiLookupPath -> PrepareRequest { prepareRequestApiLookupPath, ..} ) <$> f prepareRequestApiLookupPath
+{-# INLINE prepareRequestApiLookupPathL #-}
+
+-- | 'prepareRequestSmartContractTag' Lens
+prepareRequestSmartContractTagL :: Lens_' PrepareRequest (Maybe [SmartContractTag])
+prepareRequestSmartContractTagL f PrepareRequest{..} = (\prepareRequestSmartContractTag -> PrepareRequest { prepareRequestSmartContractTag, ..} ) <$> f prepareRequestSmartContractTag
+{-# INLINE prepareRequestSmartContractTagL #-}
+
+-- | 'prepareRequestUrgency' Lens
+prepareRequestUrgencyL :: Lens_' PrepareRequest (Maybe Text)
+prepareRequestUrgencyL f PrepareRequest{..} = (\prepareRequestUrgency -> PrepareRequest { prepareRequestUrgency, ..} ) <$> f prepareRequestUrgency
+{-# INLINE prepareRequestUrgencyL #-}
+
+-- | 'prepareRequestRequestDetails' Lens
+prepareRequestRequestDetailsL :: Lens_' PrepareRequest (Maybe PrepareRequestDetails)
+prepareRequestRequestDetailsL f PrepareRequest{..} = (\prepareRequestRequestDetails -> PrepareRequest { prepareRequestRequestDetails, ..} ) <$> f prepareRequestRequestDetails
+{-# INLINE prepareRequestRequestDetailsL #-}
+
+-- | 'prepareRequestSmartContractAddress' Lens
+prepareRequestSmartContractAddressL :: Lens_' PrepareRequest (Maybe Text)
+prepareRequestSmartContractAddressL f PrepareRequest{..} = (\prepareRequestSmartContractAddress -> PrepareRequest { prepareRequestSmartContractAddress, ..} ) <$> f prepareRequestSmartContractAddress
+{-# INLINE prepareRequestSmartContractAddressL #-}
+
+-- | 'prepareRequestLocation' Lens
+prepareRequestLocationL :: Lens_' PrepareRequest (Maybe Location)
+prepareRequestLocationL f PrepareRequest{..} = (\prepareRequestLocation -> PrepareRequest { prepareRequestLocation, ..} ) <$> f prepareRequestLocation
+{-# INLINE prepareRequestLocationL #-}
+
+-- | 'prepareRequestType' Lens
+prepareRequestTypeL :: Lens_' PrepareRequest (Maybe Text)
+prepareRequestTypeL f PrepareRequest{..} = (\prepareRequestType -> PrepareRequest { prepareRequestType, ..} ) <$> f prepareRequestType
+{-# INLINE prepareRequestTypeL #-}
+
+
+
+-- * PrepareRequestDetails
+
+-- | 'prepareRequestDetailsMandate' Lens
+prepareRequestDetailsMandateL :: Lens_' PrepareRequestDetails (Maybe [Mandate])
+prepareRequestDetailsMandateL f PrepareRequestDetails{..} = (\prepareRequestDetailsMandate -> PrepareRequestDetails { prepareRequestDetailsMandate, ..} ) <$> f prepareRequestDetailsMandate
+{-# INLINE prepareRequestDetailsMandateL #-}
+
+-- | 'prepareRequestDetailsAliasDetails' Lens
+prepareRequestDetailsAliasDetailsL :: Lens_' PrepareRequestDetails (Maybe AliasDetails)
+prepareRequestDetailsAliasDetailsL f PrepareRequestDetails{..} = (\prepareRequestDetailsAliasDetails -> PrepareRequestDetails { prepareRequestDetailsAliasDetails, ..} ) <$> f prepareRequestDetailsAliasDetails
+{-# INLINE prepareRequestDetailsAliasDetailsL #-}
+
+-- | 'prepareRequestDetailsPagination' Lens
+prepareRequestDetailsPaginationL :: Lens_' PrepareRequestDetails (Maybe Pagination)
+prepareRequestDetailsPaginationL f PrepareRequestDetails{..} = (\prepareRequestDetailsPagination -> PrepareRequestDetails { prepareRequestDetailsPagination, ..} ) <$> f prepareRequestDetailsPagination
+{-# INLINE prepareRequestDetailsPaginationL #-}
+
+-- | 'prepareRequestDetailsOrigin' Lens
+prepareRequestDetailsOriginL :: Lens_' PrepareRequestDetails (Maybe [Origin])
+prepareRequestDetailsOriginL f PrepareRequestDetails{..} = (\prepareRequestDetailsOrigin -> PrepareRequestDetails { prepareRequestDetailsOrigin, ..} ) <$> f prepareRequestDetailsOrigin
+{-# INLINE prepareRequestDetailsOriginL #-}
+
+-- | 'prepareRequestDetailsDestination' Lens
+prepareRequestDetailsDestinationL :: Lens_' PrepareRequestDetails (Maybe [Destination])
+prepareRequestDetailsDestinationL f PrepareRequestDetails{..} = (\prepareRequestDetailsDestination -> PrepareRequestDetails { prepareRequestDetailsDestination, ..} ) <$> f prepareRequestDetailsDestination
+{-# INLINE prepareRequestDetailsDestinationL #-}
+
+-- | 'prepareRequestDetailsTokenName' Lens
+prepareRequestDetailsTokenNameL :: Lens_' PrepareRequestDetails (Maybe Text)
+prepareRequestDetailsTokenNameL f PrepareRequestDetails{..} = (\prepareRequestDetailsTokenName -> PrepareRequestDetails { prepareRequestDetailsTokenName, ..} ) <$> f prepareRequestDetailsTokenName
+{-# INLINE prepareRequestDetailsTokenNameL #-}
+
+-- | 'prepareRequestDetailsBlockSearchType' Lens
+prepareRequestDetailsBlockSearchTypeL :: Lens_' PrepareRequestDetails (Maybe Text)
+prepareRequestDetailsBlockSearchTypeL f PrepareRequestDetails{..} = (\prepareRequestDetailsBlockSearchType -> PrepareRequestDetails { prepareRequestDetailsBlockSearchType, ..} ) <$> f prepareRequestDetailsBlockSearchType
+{-# INLINE prepareRequestDetailsBlockSearchTypeL #-}
+
+-- | 'prepareRequestDetailsPayer' Lens
+prepareRequestDetailsPayerL :: Lens_' PrepareRequestDetails (Maybe [Payer])
+prepareRequestDetailsPayerL f PrepareRequestDetails{..} = (\prepareRequestDetailsPayer -> PrepareRequestDetails { prepareRequestDetailsPayer, ..} ) <$> f prepareRequestDetailsPayer
+{-# INLINE prepareRequestDetailsPayerL #-}
+
+-- | 'prepareRequestDetailsCollector' Lens
+prepareRequestDetailsCollectorL :: Lens_' PrepareRequestDetails (Maybe Collector)
+prepareRequestDetailsCollectorL f PrepareRequestDetails{..} = (\prepareRequestDetailsCollector -> PrepareRequestDetails { prepareRequestDetailsCollector, ..} ) <$> f prepareRequestDetailsCollector
+{-# INLINE prepareRequestDetailsCollectorL #-}
+
+-- | 'prepareRequestDetailsPayee' Lens
+prepareRequestDetailsPayeeL :: Lens_' PrepareRequestDetails (Maybe [Payee])
+prepareRequestDetailsPayeeL f PrepareRequestDetails{..} = (\prepareRequestDetailsPayee -> PrepareRequestDetails { prepareRequestDetailsPayee, ..} ) <$> f prepareRequestDetailsPayee
+{-# INLINE prepareRequestDetailsPayeeL #-}
+
+-- | 'prepareRequestDetailsAdditionalOwner' Lens
+prepareRequestDetailsAdditionalOwnerL :: Lens_' PrepareRequestDetails (Maybe AdditionalOwner)
+prepareRequestDetailsAdditionalOwnerL f PrepareRequestDetails{..} = (\prepareRequestDetailsAdditionalOwner -> PrepareRequestDetails { prepareRequestDetailsAdditionalOwner, ..} ) <$> f prepareRequestDetailsAdditionalOwner
+{-# INLINE prepareRequestDetailsAdditionalOwnerL #-}
+
+-- | 'prepareRequestDetailsOwner' Lens
+prepareRequestDetailsOwnerL :: Lens_' PrepareRequestDetails (Maybe Owner)
+prepareRequestDetailsOwnerL f PrepareRequestDetails{..} = (\prepareRequestDetailsOwner -> PrepareRequestDetails { prepareRequestDetailsOwner, ..} ) <$> f prepareRequestDetailsOwner
+{-# INLINE prepareRequestDetailsOwnerL #-}
+
+-- | 'prepareRequestDetailsCreator' Lens
+prepareRequestDetailsCreatorL :: Lens_' PrepareRequestDetails (Maybe Creator)
+prepareRequestDetailsCreatorL f PrepareRequestDetails{..} = (\prepareRequestDetailsCreator -> PrepareRequestDetails { prepareRequestDetailsCreator, ..} ) <$> f prepareRequestDetailsCreator
+{-# INLINE prepareRequestDetailsCreatorL #-}
+
+-- | 'prepareRequestDetailsReceiver' Lens
+prepareRequestDetailsReceiverL :: Lens_' PrepareRequestDetails (Maybe [Receiver])
+prepareRequestDetailsReceiverL f PrepareRequestDetails{..} = (\prepareRequestDetailsReceiver -> PrepareRequestDetails { prepareRequestDetailsReceiver, ..} ) <$> f prepareRequestDetailsReceiver
+{-# INLINE prepareRequestDetailsReceiverL #-}
+
+-- | 'prepareRequestDetailsTokenId' Lens
+prepareRequestDetailsTokenIdL :: Lens_' PrepareRequestDetails (Maybe Text)
+prepareRequestDetailsTokenIdL f PrepareRequestDetails{..} = (\prepareRequestDetailsTokenId -> PrepareRequestDetails { prepareRequestDetailsTokenId, ..} ) <$> f prepareRequestDetailsTokenId
+{-# INLINE prepareRequestDetailsTokenIdL #-}
+
+-- | 'prepareRequestDetailsMessage' Lens
+prepareRequestDetailsMessageL :: Lens_' PrepareRequestDetails (Maybe Text)
+prepareRequestDetailsMessageL f PrepareRequestDetails{..} = (\prepareRequestDetailsMessage -> PrepareRequestDetails { prepareRequestDetailsMessage, ..} ) <$> f prepareRequestDetailsMessage
+{-# INLINE prepareRequestDetailsMessageL #-}
+
+-- | 'prepareRequestDetailsLockDetails' Lens
+prepareRequestDetailsLockDetailsL :: Lens_' PrepareRequestDetails (Maybe LockDetails)
+prepareRequestDetailsLockDetailsL f PrepareRequestDetails{..} = (\prepareRequestDetailsLockDetails -> PrepareRequestDetails { prepareRequestDetailsLockDetails, ..} ) <$> f prepareRequestDetailsLockDetails
+{-# INLINE prepareRequestDetailsLockDetailsL #-}
+
+-- | 'prepareRequestDetailsBlockId' Lens
+prepareRequestDetailsBlockIdL :: Lens_' PrepareRequestDetails (Maybe Text)
+prepareRequestDetailsBlockIdL f PrepareRequestDetails{..} = (\prepareRequestDetailsBlockId -> PrepareRequestDetails { prepareRequestDetailsBlockId, ..} ) <$> f prepareRequestDetailsBlockId
+{-# INLINE prepareRequestDetailsBlockIdL #-}
+
+-- | 'prepareRequestDetailsAccountId' Lens
+prepareRequestDetailsAccountIdL :: Lens_' PrepareRequestDetails (Maybe Text)
+prepareRequestDetailsAccountIdL f PrepareRequestDetails{..} = (\prepareRequestDetailsAccountId -> PrepareRequestDetails { prepareRequestDetailsAccountId, ..} ) <$> f prepareRequestDetailsAccountId
+{-# INLINE prepareRequestDetailsAccountIdL #-}
+
+-- | 'prepareRequestDetailsTokenUnit' Lens
+prepareRequestDetailsTokenUnitL :: Lens_' PrepareRequestDetails (Maybe Text)
+prepareRequestDetailsTokenUnitL f PrepareRequestDetails{..} = (\prepareRequestDetailsTokenUnit -> PrepareRequestDetails { prepareRequestDetailsTokenUnit, ..} ) <$> f prepareRequestDetailsTokenUnit
+{-# INLINE prepareRequestDetailsTokenUnitL #-}
+
+-- | 'prepareRequestDetailsBeneficiary' Lens
+prepareRequestDetailsBeneficiaryL :: Lens_' PrepareRequestDetails (Maybe Beneficiary)
+prepareRequestDetailsBeneficiaryL f PrepareRequestDetails{..} = (\prepareRequestDetailsBeneficiary -> PrepareRequestDetails { prepareRequestDetailsBeneficiary, ..} ) <$> f prepareRequestDetailsBeneficiary
+{-# INLINE prepareRequestDetailsBeneficiaryL #-}
+
+-- | 'prepareRequestDetailsSender' Lens
+prepareRequestDetailsSenderL :: Lens_' PrepareRequestDetails (Maybe [Sender])
+prepareRequestDetailsSenderL f PrepareRequestDetails{..} = (\prepareRequestDetailsSender -> PrepareRequestDetails { prepareRequestDetailsSender, ..} ) <$> f prepareRequestDetailsSender
+{-# INLINE prepareRequestDetailsSenderL #-}
+
+-- | 'prepareRequestDetailsAccountDetails' Lens
+prepareRequestDetailsAccountDetailsL :: Lens_' PrepareRequestDetails (Maybe AccountDetails)
+prepareRequestDetailsAccountDetailsL f PrepareRequestDetails{..} = (\prepareRequestDetailsAccountDetails -> PrepareRequestDetails { prepareRequestDetailsAccountDetails, ..} ) <$> f prepareRequestDetailsAccountDetails
+{-# INLINE prepareRequestDetailsAccountDetailsL #-}
+
+-- | 'prepareRequestDetailsOverledgerSigningType' Lens
+prepareRequestDetailsOverledgerSigningTypeL :: Lens_' PrepareRequestDetails (Maybe Text)
+prepareRequestDetailsOverledgerSigningTypeL f PrepareRequestDetails{..} = (\prepareRequestDetailsOverledgerSigningType -> PrepareRequestDetails { prepareRequestDetailsOverledgerSigningType, ..} ) <$> f prepareRequestDetailsOverledgerSigningType
+{-# INLINE prepareRequestDetailsOverledgerSigningTypeL #-}
+
+-- | 'prepareRequestDetailsTotalPaymentAmount' Lens
+prepareRequestDetailsTotalPaymentAmountL :: Lens_' PrepareRequestDetails (Maybe Payment)
+prepareRequestDetailsTotalPaymentAmountL f PrepareRequestDetails{..} = (\prepareRequestDetailsTotalPaymentAmount -> PrepareRequestDetails { prepareRequestDetailsTotalPaymentAmount, ..} ) <$> f prepareRequestDetailsTotalPaymentAmount
+{-# INLINE prepareRequestDetailsTotalPaymentAmountL #-}
+
+-- | 'prepareRequestDetailsSignerAccount' Lens
+prepareRequestDetailsSignerAccountL :: Lens_' PrepareRequestDetails (Maybe SignerAccount)
+prepareRequestDetailsSignerAccountL f PrepareRequestDetails{..} = (\prepareRequestDetailsSignerAccount -> PrepareRequestDetails { prepareRequestDetailsSignerAccount, ..} ) <$> f prepareRequestDetailsSignerAccount
+{-# INLINE prepareRequestDetailsSignerAccountL #-}
 
 
 
@@ -1325,8 +2405,18 @@ prepareTransactionResponseNativeDataL f PrepareTransactionResponse{..} = (\prepa
 
 -- * PrepareTransactionSmartContractInvokeRequestSchema
 
+-- | 'prepareTransactionSmartContractInvokeRequestSchemaLocation' Lens
+prepareTransactionSmartContractInvokeRequestSchemaLocationL :: Lens_' PrepareTransactionSmartContractInvokeRequestSchema (Location)
+prepareTransactionSmartContractInvokeRequestSchemaLocationL f PrepareTransactionSmartContractInvokeRequestSchema{..} = (\prepareTransactionSmartContractInvokeRequestSchemaLocation -> PrepareTransactionSmartContractInvokeRequestSchema { prepareTransactionSmartContractInvokeRequestSchemaLocation, ..} ) <$> f prepareTransactionSmartContractInvokeRequestSchemaLocation
+{-# INLINE prepareTransactionSmartContractInvokeRequestSchemaLocationL #-}
+
+-- | 'prepareTransactionSmartContractInvokeRequestSchemaType' Lens
+prepareTransactionSmartContractInvokeRequestSchemaTypeL :: Lens_' PrepareTransactionSmartContractInvokeRequestSchema (E'Type)
+prepareTransactionSmartContractInvokeRequestSchemaTypeL f PrepareTransactionSmartContractInvokeRequestSchema{..} = (\prepareTransactionSmartContractInvokeRequestSchemaType -> PrepareTransactionSmartContractInvokeRequestSchema { prepareTransactionSmartContractInvokeRequestSchemaType, ..} ) <$> f prepareTransactionSmartContractInvokeRequestSchemaType
+{-# INLINE prepareTransactionSmartContractInvokeRequestSchemaTypeL #-}
+
 -- | 'prepareTransactionSmartContractInvokeRequestSchemaUrgency' Lens
-prepareTransactionSmartContractInvokeRequestSchemaUrgencyL :: Lens_' PrepareTransactionSmartContractInvokeRequestSchema (Maybe Text)
+prepareTransactionSmartContractInvokeRequestSchemaUrgencyL :: Lens_' PrepareTransactionSmartContractInvokeRequestSchema (E'Urgency)
 prepareTransactionSmartContractInvokeRequestSchemaUrgencyL f PrepareTransactionSmartContractInvokeRequestSchema{..} = (\prepareTransactionSmartContractInvokeRequestSchemaUrgency -> PrepareTransactionSmartContractInvokeRequestSchema { prepareTransactionSmartContractInvokeRequestSchemaUrgency, ..} ) <$> f prepareTransactionSmartContractInvokeRequestSchemaUrgency
 {-# INLINE prepareTransactionSmartContractInvokeRequestSchemaUrgencyL #-}
 
@@ -1335,22 +2425,22 @@ prepareTransactionSmartContractInvokeRequestSchemaRequestDetailsL :: Lens_' Prep
 prepareTransactionSmartContractInvokeRequestSchemaRequestDetailsL f PrepareTransactionSmartContractInvokeRequestSchema{..} = (\prepareTransactionSmartContractInvokeRequestSchemaRequestDetails -> PrepareTransactionSmartContractInvokeRequestSchema { prepareTransactionSmartContractInvokeRequestSchemaRequestDetails, ..} ) <$> f prepareTransactionSmartContractInvokeRequestSchemaRequestDetails
 {-# INLINE prepareTransactionSmartContractInvokeRequestSchemaRequestDetailsL #-}
 
--- | 'prepareTransactionSmartContractInvokeRequestSchemaLocation' Lens
-prepareTransactionSmartContractInvokeRequestSchemaLocationL :: Lens_' PrepareTransactionSmartContractInvokeRequestSchema (Maybe Location)
-prepareTransactionSmartContractInvokeRequestSchemaLocationL f PrepareTransactionSmartContractInvokeRequestSchema{..} = (\prepareTransactionSmartContractInvokeRequestSchemaLocation -> PrepareTransactionSmartContractInvokeRequestSchema { prepareTransactionSmartContractInvokeRequestSchemaLocation, ..} ) <$> f prepareTransactionSmartContractInvokeRequestSchemaLocation
-{-# INLINE prepareTransactionSmartContractInvokeRequestSchemaLocationL #-}
-
--- | 'prepareTransactionSmartContractInvokeRequestSchemaType' Lens
-prepareTransactionSmartContractInvokeRequestSchemaTypeL :: Lens_' PrepareTransactionSmartContractInvokeRequestSchema (Maybe Text)
-prepareTransactionSmartContractInvokeRequestSchemaTypeL f PrepareTransactionSmartContractInvokeRequestSchema{..} = (\prepareTransactionSmartContractInvokeRequestSchemaType -> PrepareTransactionSmartContractInvokeRequestSchema { prepareTransactionSmartContractInvokeRequestSchemaType, ..} ) <$> f prepareTransactionSmartContractInvokeRequestSchemaType
-{-# INLINE prepareTransactionSmartContractInvokeRequestSchemaTypeL #-}
-
 
 
 -- * PrepareTransferTransactionRequestSchema
 
+-- | 'prepareTransferTransactionRequestSchemaLocation' Lens
+prepareTransferTransactionRequestSchemaLocationL :: Lens_' PrepareTransferTransactionRequestSchema (Location)
+prepareTransferTransactionRequestSchemaLocationL f PrepareTransferTransactionRequestSchema{..} = (\prepareTransferTransactionRequestSchemaLocation -> PrepareTransferTransactionRequestSchema { prepareTransferTransactionRequestSchemaLocation, ..} ) <$> f prepareTransferTransactionRequestSchemaLocation
+{-# INLINE prepareTransferTransactionRequestSchemaLocationL #-}
+
+-- | 'prepareTransferTransactionRequestSchemaType' Lens
+prepareTransferTransactionRequestSchemaTypeL :: Lens_' PrepareTransferTransactionRequestSchema (E'Type)
+prepareTransferTransactionRequestSchemaTypeL f PrepareTransferTransactionRequestSchema{..} = (\prepareTransferTransactionRequestSchemaType -> PrepareTransferTransactionRequestSchema { prepareTransferTransactionRequestSchemaType, ..} ) <$> f prepareTransferTransactionRequestSchemaType
+{-# INLINE prepareTransferTransactionRequestSchemaTypeL #-}
+
 -- | 'prepareTransferTransactionRequestSchemaUrgency' Lens
-prepareTransferTransactionRequestSchemaUrgencyL :: Lens_' PrepareTransferTransactionRequestSchema (Maybe Text)
+prepareTransferTransactionRequestSchemaUrgencyL :: Lens_' PrepareTransferTransactionRequestSchema (E'Urgency)
 prepareTransferTransactionRequestSchemaUrgencyL f PrepareTransferTransactionRequestSchema{..} = (\prepareTransferTransactionRequestSchemaUrgency -> PrepareTransferTransactionRequestSchema { prepareTransferTransactionRequestSchemaUrgency, ..} ) <$> f prepareTransferTransactionRequestSchemaUrgency
 {-# INLINE prepareTransferTransactionRequestSchemaUrgencyL #-}
 
@@ -1359,15 +2449,178 @@ prepareTransferTransactionRequestSchemaRequestDetailsL :: Lens_' PrepareTransfer
 prepareTransferTransactionRequestSchemaRequestDetailsL f PrepareTransferTransactionRequestSchema{..} = (\prepareTransferTransactionRequestSchemaRequestDetails -> PrepareTransferTransactionRequestSchema { prepareTransferTransactionRequestSchemaRequestDetails, ..} ) <$> f prepareTransferTransactionRequestSchemaRequestDetails
 {-# INLINE prepareTransferTransactionRequestSchemaRequestDetailsL #-}
 
--- | 'prepareTransferTransactionRequestSchemaLocation' Lens
-prepareTransferTransactionRequestSchemaLocationL :: Lens_' PrepareTransferTransactionRequestSchema (Maybe Location)
-prepareTransferTransactionRequestSchemaLocationL f PrepareTransferTransactionRequestSchema{..} = (\prepareTransferTransactionRequestSchemaLocation -> PrepareTransferTransactionRequestSchema { prepareTransferTransactionRequestSchemaLocation, ..} ) <$> f prepareTransferTransactionRequestSchemaLocation
-{-# INLINE prepareTransferTransactionRequestSchemaLocationL #-}
 
--- | 'prepareTransferTransactionRequestSchemaType' Lens
-prepareTransferTransactionRequestSchemaTypeL :: Lens_' PrepareTransferTransactionRequestSchema (Maybe Text)
-prepareTransferTransactionRequestSchemaTypeL f PrepareTransferTransactionRequestSchema{..} = (\prepareTransferTransactionRequestSchemaType -> PrepareTransferTransactionRequestSchema { prepareTransferTransactionRequestSchemaType, ..} ) <$> f prepareTransferTransactionRequestSchemaType
-{-# INLINE prepareTransferTransactionRequestSchemaTypeL #-}
+
+-- * ReadAccountBalanceRequestSchema
+
+-- | 'readAccountBalanceRequestSchemaRequestDetails' Lens
+readAccountBalanceRequestSchemaRequestDetailsL :: Lens_' ReadAccountBalanceRequestSchema (Maybe A.Value)
+readAccountBalanceRequestSchemaRequestDetailsL f ReadAccountBalanceRequestSchema{..} = (\readAccountBalanceRequestSchemaRequestDetails -> ReadAccountBalanceRequestSchema { readAccountBalanceRequestSchemaRequestDetails, ..} ) <$> f readAccountBalanceRequestSchemaRequestDetails
+{-# INLINE readAccountBalanceRequestSchemaRequestDetailsL #-}
+
+-- | 'readAccountBalanceRequestSchemaLocation' Lens
+readAccountBalanceRequestSchemaLocationL :: Lens_' ReadAccountBalanceRequestSchema (Maybe Location)
+readAccountBalanceRequestSchemaLocationL f ReadAccountBalanceRequestSchema{..} = (\readAccountBalanceRequestSchemaLocation -> ReadAccountBalanceRequestSchema { readAccountBalanceRequestSchemaLocation, ..} ) <$> f readAccountBalanceRequestSchemaLocation
+{-# INLINE readAccountBalanceRequestSchemaLocationL #-}
+
+
+
+-- * ReadApprovedAccountAllowanceRequestSchema
+
+-- | 'readApprovedAccountAllowanceRequestSchemaRequestDetails' Lens
+readApprovedAccountAllowanceRequestSchemaRequestDetailsL :: Lens_' ReadApprovedAccountAllowanceRequestSchema (Maybe A.Value)
+readApprovedAccountAllowanceRequestSchemaRequestDetailsL f ReadApprovedAccountAllowanceRequestSchema{..} = (\readApprovedAccountAllowanceRequestSchemaRequestDetails -> ReadApprovedAccountAllowanceRequestSchema { readApprovedAccountAllowanceRequestSchemaRequestDetails, ..} ) <$> f readApprovedAccountAllowanceRequestSchemaRequestDetails
+{-# INLINE readApprovedAccountAllowanceRequestSchemaRequestDetailsL #-}
+
+-- | 'readApprovedAccountAllowanceRequestSchemaLocation' Lens
+readApprovedAccountAllowanceRequestSchemaLocationL :: Lens_' ReadApprovedAccountAllowanceRequestSchema (Maybe Location)
+readApprovedAccountAllowanceRequestSchemaLocationL f ReadApprovedAccountAllowanceRequestSchema{..} = (\readApprovedAccountAllowanceRequestSchemaLocation -> ReadApprovedAccountAllowanceRequestSchema { readApprovedAccountAllowanceRequestSchemaLocation, ..} ) <$> f readApprovedAccountAllowanceRequestSchemaLocation
+{-# INLINE readApprovedAccountAllowanceRequestSchemaLocationL #-}
+
+
+
+-- * ReadApprovedAccountRequestDetailsSchema
+
+-- | 'readApprovedAccountRequestDetailsSchemaTokenId' Lens
+readApprovedAccountRequestDetailsSchemaTokenIdL :: Lens_' ReadApprovedAccountRequestDetailsSchema (Maybe Text)
+readApprovedAccountRequestDetailsSchemaTokenIdL f ReadApprovedAccountRequestDetailsSchema{..} = (\readApprovedAccountRequestDetailsSchemaTokenId -> ReadApprovedAccountRequestDetailsSchema { readApprovedAccountRequestDetailsSchemaTokenId, ..} ) <$> f readApprovedAccountRequestDetailsSchemaTokenId
+{-# INLINE readApprovedAccountRequestDetailsSchemaTokenIdL #-}
+
+-- | 'readApprovedAccountRequestDetailsSchemaTokenName' Lens
+readApprovedAccountRequestDetailsSchemaTokenNameL :: Lens_' ReadApprovedAccountRequestDetailsSchema (Maybe Text)
+readApprovedAccountRequestDetailsSchemaTokenNameL f ReadApprovedAccountRequestDetailsSchema{..} = (\readApprovedAccountRequestDetailsSchemaTokenName -> ReadApprovedAccountRequestDetailsSchema { readApprovedAccountRequestDetailsSchemaTokenName, ..} ) <$> f readApprovedAccountRequestDetailsSchemaTokenName
+{-# INLINE readApprovedAccountRequestDetailsSchemaTokenNameL #-}
+
+
+
+-- * ReadApprovedAccountRequestSchema
+
+-- | 'readApprovedAccountRequestSchemaRequestDetails' Lens
+readApprovedAccountRequestSchemaRequestDetailsL :: Lens_' ReadApprovedAccountRequestSchema (Maybe ReadApprovedAccountRequestDetailsSchema)
+readApprovedAccountRequestSchemaRequestDetailsL f ReadApprovedAccountRequestSchema{..} = (\readApprovedAccountRequestSchemaRequestDetails -> ReadApprovedAccountRequestSchema { readApprovedAccountRequestSchemaRequestDetails, ..} ) <$> f readApprovedAccountRequestSchemaRequestDetails
+{-# INLINE readApprovedAccountRequestSchemaRequestDetailsL #-}
+
+-- | 'readApprovedAccountRequestSchemaLocation' Lens
+readApprovedAccountRequestSchemaLocationL :: Lens_' ReadApprovedAccountRequestSchema (Maybe Location)
+readApprovedAccountRequestSchemaLocationL f ReadApprovedAccountRequestSchema{..} = (\readApprovedAccountRequestSchemaLocation -> ReadApprovedAccountRequestSchema { readApprovedAccountRequestSchemaLocation, ..} ) <$> f readApprovedAccountRequestSchemaLocation
+{-# INLINE readApprovedAccountRequestSchemaLocationL #-}
+
+
+
+-- * ReadBalanceRequestDetailsSchema
+
+-- | 'readBalanceRequestDetailsSchemaTokenName' Lens
+readBalanceRequestDetailsSchemaTokenNameL :: Lens_' ReadBalanceRequestDetailsSchema (Maybe Text)
+readBalanceRequestDetailsSchemaTokenNameL f ReadBalanceRequestDetailsSchema{..} = (\readBalanceRequestDetailsSchemaTokenName -> ReadBalanceRequestDetailsSchema { readBalanceRequestDetailsSchemaTokenName, ..} ) <$> f readBalanceRequestDetailsSchemaTokenName
+{-# INLINE readBalanceRequestDetailsSchemaTokenNameL #-}
+
+-- | 'readBalanceRequestDetailsSchemaAccountId' Lens
+readBalanceRequestDetailsSchemaAccountIdL :: Lens_' ReadBalanceRequestDetailsSchema (Maybe Text)
+readBalanceRequestDetailsSchemaAccountIdL f ReadBalanceRequestDetailsSchema{..} = (\readBalanceRequestDetailsSchemaAccountId -> ReadBalanceRequestDetailsSchema { readBalanceRequestDetailsSchemaAccountId, ..} ) <$> f readBalanceRequestDetailsSchemaAccountId
+{-# INLINE readBalanceRequestDetailsSchemaAccountIdL #-}
+
+
+
+-- * ReadBalanceRequestSchema
+
+-- | 'readBalanceRequestSchemaRequestDetails' Lens
+readBalanceRequestSchemaRequestDetailsL :: Lens_' ReadBalanceRequestSchema (Maybe ReadBalanceRequestDetailsSchema)
+readBalanceRequestSchemaRequestDetailsL f ReadBalanceRequestSchema{..} = (\readBalanceRequestSchemaRequestDetails -> ReadBalanceRequestSchema { readBalanceRequestSchemaRequestDetails, ..} ) <$> f readBalanceRequestSchemaRequestDetails
+{-# INLINE readBalanceRequestSchemaRequestDetailsL #-}
+
+-- | 'readBalanceRequestSchemaLocation' Lens
+readBalanceRequestSchemaLocationL :: Lens_' ReadBalanceRequestSchema (Maybe Location)
+readBalanceRequestSchemaLocationL f ReadBalanceRequestSchema{..} = (\readBalanceRequestSchemaLocation -> ReadBalanceRequestSchema { readBalanceRequestSchemaLocation, ..} ) <$> f readBalanceRequestSchemaLocation
+{-# INLINE readBalanceRequestSchemaLocationL #-}
+
+
+
+-- * ReadContractOwnerRequestDetailsSchema
+
+-- | 'readContractOwnerRequestDetailsSchemaTokenName' Lens
+readContractOwnerRequestDetailsSchemaTokenNameL :: Lens_' ReadContractOwnerRequestDetailsSchema (Maybe Text)
+readContractOwnerRequestDetailsSchemaTokenNameL f ReadContractOwnerRequestDetailsSchema{..} = (\readContractOwnerRequestDetailsSchemaTokenName -> ReadContractOwnerRequestDetailsSchema { readContractOwnerRequestDetailsSchemaTokenName, ..} ) <$> f readContractOwnerRequestDetailsSchemaTokenName
+{-# INLINE readContractOwnerRequestDetailsSchemaTokenNameL #-}
+
+
+
+-- * ReadContractOwnerRequestSchema
+
+-- | 'readContractOwnerRequestSchemaRequestDetails' Lens
+readContractOwnerRequestSchemaRequestDetailsL :: Lens_' ReadContractOwnerRequestSchema (Maybe ReadContractOwnerRequestDetailsSchema)
+readContractOwnerRequestSchemaRequestDetailsL f ReadContractOwnerRequestSchema{..} = (\readContractOwnerRequestSchemaRequestDetails -> ReadContractOwnerRequestSchema { readContractOwnerRequestSchemaRequestDetails, ..} ) <$> f readContractOwnerRequestSchemaRequestDetails
+{-# INLINE readContractOwnerRequestSchemaRequestDetailsL #-}
+
+-- | 'readContractOwnerRequestSchemaLocation' Lens
+readContractOwnerRequestSchemaLocationL :: Lens_' ReadContractOwnerRequestSchema (Maybe Location)
+readContractOwnerRequestSchemaLocationL f ReadContractOwnerRequestSchema{..} = (\readContractOwnerRequestSchemaLocation -> ReadContractOwnerRequestSchema { readContractOwnerRequestSchemaLocation, ..} ) <$> f readContractOwnerRequestSchemaLocation
+{-# INLINE readContractOwnerRequestSchemaLocationL #-}
+
+
+
+-- * ReadTokenOwnerRequestDetailsSchema
+
+-- | 'readTokenOwnerRequestDetailsSchemaTokenId' Lens
+readTokenOwnerRequestDetailsSchemaTokenIdL :: Lens_' ReadTokenOwnerRequestDetailsSchema (Maybe Text)
+readTokenOwnerRequestDetailsSchemaTokenIdL f ReadTokenOwnerRequestDetailsSchema{..} = (\readTokenOwnerRequestDetailsSchemaTokenId -> ReadTokenOwnerRequestDetailsSchema { readTokenOwnerRequestDetailsSchemaTokenId, ..} ) <$> f readTokenOwnerRequestDetailsSchemaTokenId
+{-# INLINE readTokenOwnerRequestDetailsSchemaTokenIdL #-}
+
+-- | 'readTokenOwnerRequestDetailsSchemaTokenName' Lens
+readTokenOwnerRequestDetailsSchemaTokenNameL :: Lens_' ReadTokenOwnerRequestDetailsSchema (Maybe Text)
+readTokenOwnerRequestDetailsSchemaTokenNameL f ReadTokenOwnerRequestDetailsSchema{..} = (\readTokenOwnerRequestDetailsSchemaTokenName -> ReadTokenOwnerRequestDetailsSchema { readTokenOwnerRequestDetailsSchemaTokenName, ..} ) <$> f readTokenOwnerRequestDetailsSchemaTokenName
+{-# INLINE readTokenOwnerRequestDetailsSchemaTokenNameL #-}
+
+
+
+-- * ReadTokenOwnerRequestSchema
+
+-- | 'readTokenOwnerRequestSchemaRequestDetails' Lens
+readTokenOwnerRequestSchemaRequestDetailsL :: Lens_' ReadTokenOwnerRequestSchema (Maybe ReadTokenOwnerRequestDetailsSchema)
+readTokenOwnerRequestSchemaRequestDetailsL f ReadTokenOwnerRequestSchema{..} = (\readTokenOwnerRequestSchemaRequestDetails -> ReadTokenOwnerRequestSchema { readTokenOwnerRequestSchemaRequestDetails, ..} ) <$> f readTokenOwnerRequestSchemaRequestDetails
+{-# INLINE readTokenOwnerRequestSchemaRequestDetailsL #-}
+
+-- | 'readTokenOwnerRequestSchemaLocation' Lens
+readTokenOwnerRequestSchemaLocationL :: Lens_' ReadTokenOwnerRequestSchema (Maybe Location)
+readTokenOwnerRequestSchemaLocationL f ReadTokenOwnerRequestSchema{..} = (\readTokenOwnerRequestSchemaLocation -> ReadTokenOwnerRequestSchema { readTokenOwnerRequestSchemaLocation, ..} ) <$> f readTokenOwnerRequestSchemaLocation
+{-# INLINE readTokenOwnerRequestSchemaLocationL #-}
+
+
+
+-- * Receiver
+
+-- | 'receiverAccountId' Lens
+receiverAccountIdL :: Lens_' Receiver (Maybe Text)
+receiverAccountIdL f Receiver{..} = (\receiverAccountId -> Receiver { receiverAccountId, ..} ) <$> f receiverAccountId
+{-# INLINE receiverAccountIdL #-}
+
+-- | 'receiverTransfer' Lens
+receiverTransferL :: Lens_' Receiver (Maybe Transfer)
+receiverTransferL f Receiver{..} = (\receiverTransfer -> Receiver { receiverTransfer, ..} ) <$> f receiverTransfer
+{-# INLINE receiverTransferL #-}
+
+
+
+-- * RemoveSecondaryAccountDetailsSchema
+
+-- | 'removeSecondaryAccountDetailsSchemaOwner' Lens
+removeSecondaryAccountDetailsSchemaOwnerL :: Lens_' RemoveSecondaryAccountDetailsSchema (Maybe OwnerRemoveSecondarySchema)
+removeSecondaryAccountDetailsSchemaOwnerL f RemoveSecondaryAccountDetailsSchema{..} = (\removeSecondaryAccountDetailsSchemaOwner -> RemoveSecondaryAccountDetailsSchema { removeSecondaryAccountDetailsSchemaOwner, ..} ) <$> f removeSecondaryAccountDetailsSchemaOwner
+{-# INLINE removeSecondaryAccountDetailsSchemaOwnerL #-}
+
+-- | 'removeSecondaryAccountDetailsSchemaAdditionalOwner' Lens
+removeSecondaryAccountDetailsSchemaAdditionalOwnerL :: Lens_' RemoveSecondaryAccountDetailsSchema (Maybe AdditionalOwnerRemoveSecondarySchema)
+removeSecondaryAccountDetailsSchemaAdditionalOwnerL f RemoveSecondaryAccountDetailsSchema{..} = (\removeSecondaryAccountDetailsSchemaAdditionalOwner -> RemoveSecondaryAccountDetailsSchema { removeSecondaryAccountDetailsSchemaAdditionalOwner, ..} ) <$> f removeSecondaryAccountDetailsSchemaAdditionalOwner
+{-# INLINE removeSecondaryAccountDetailsSchemaAdditionalOwnerL #-}
+
+-- | 'removeSecondaryAccountDetailsSchemaMessage' Lens
+removeSecondaryAccountDetailsSchemaMessageL :: Lens_' RemoveSecondaryAccountDetailsSchema (Maybe Text)
+removeSecondaryAccountDetailsSchemaMessageL f RemoveSecondaryAccountDetailsSchema{..} = (\removeSecondaryAccountDetailsSchemaMessage -> RemoveSecondaryAccountDetailsSchema { removeSecondaryAccountDetailsSchemaMessage, ..} ) <$> f removeSecondaryAccountDetailsSchemaMessage
+{-# INLINE removeSecondaryAccountDetailsSchemaMessageL #-}
+
+-- | 'removeSecondaryAccountDetailsSchemaOverledgerSigningType' Lens
+removeSecondaryAccountDetailsSchemaOverledgerSigningTypeL :: Lens_' RemoveSecondaryAccountDetailsSchema (Maybe Text)
+removeSecondaryAccountDetailsSchemaOverledgerSigningTypeL f RemoveSecondaryAccountDetailsSchema{..} = (\removeSecondaryAccountDetailsSchemaOverledgerSigningType -> RemoveSecondaryAccountDetailsSchema { removeSecondaryAccountDetailsSchemaOverledgerSigningType, ..} ) <$> f removeSecondaryAccountDetailsSchemaOverledgerSigningType
+{-# INLINE removeSecondaryAccountDetailsSchemaOverledgerSigningTypeL #-}
 
 
 
@@ -1453,11 +2706,6 @@ resourceMonitoringSmartContractEventDetailsSmartContractIdL f ResourceMonitoring
 
 -- * ResourceMonitoringSubscription
 
--- | 'resourceMonitoringSubscriptionCallbackUrl' Lens
-resourceMonitoringSubscriptionCallbackUrlL :: Lens_' ResourceMonitoringSubscription (Maybe Text)
-resourceMonitoringSubscriptionCallbackUrlL f ResourceMonitoringSubscription{..} = (\resourceMonitoringSubscriptionCallbackUrl -> ResourceMonitoringSubscription { resourceMonitoringSubscriptionCallbackUrl, ..} ) <$> f resourceMonitoringSubscriptionCallbackUrl
-{-# INLINE resourceMonitoringSubscriptionCallbackUrlL #-}
-
 -- | 'resourceMonitoringSubscriptionSubscriptionId' Lens
 resourceMonitoringSubscriptionSubscriptionIdL :: Lens_' ResourceMonitoringSubscription (Maybe Text)
 resourceMonitoringSubscriptionSubscriptionIdL f ResourceMonitoringSubscription{..} = (\resourceMonitoringSubscriptionSubscriptionId -> ResourceMonitoringSubscription { resourceMonitoringSubscriptionSubscriptionId, ..} ) <$> f resourceMonitoringSubscriptionSubscriptionId
@@ -1467,6 +2715,11 @@ resourceMonitoringSubscriptionSubscriptionIdL f ResourceMonitoringSubscription{.
 resourceMonitoringSubscriptionTypeL :: Lens_' ResourceMonitoringSubscription (Maybe Text)
 resourceMonitoringSubscriptionTypeL f ResourceMonitoringSubscription{..} = (\resourceMonitoringSubscriptionType -> ResourceMonitoringSubscription { resourceMonitoringSubscriptionType, ..} ) <$> f resourceMonitoringSubscriptionType
 {-# INLINE resourceMonitoringSubscriptionTypeL #-}
+
+-- | 'resourceMonitoringSubscriptionCallbackUrl' Lens
+resourceMonitoringSubscriptionCallbackUrlL :: Lens_' ResourceMonitoringSubscription (Maybe Text)
+resourceMonitoringSubscriptionCallbackUrlL f ResourceMonitoringSubscription{..} = (\resourceMonitoringSubscriptionCallbackUrl -> ResourceMonitoringSubscription { resourceMonitoringSubscriptionCallbackUrl, ..} ) <$> f resourceMonitoringSubscriptionCallbackUrl
+{-# INLINE resourceMonitoringSubscriptionCallbackUrlL #-}
 
 
 
@@ -1513,12 +2766,48 @@ scriptPubKeyReqSigsL f ScriptPubKey{..} = (\scriptPubKeyReqSigs -> ScriptPubKey 
 
 
 
--- * SmartContract
+-- * SecondaryAccountAdditionalOwnerSchema
 
--- | 'smartContractFunction' Lens
-smartContractFunctionL :: Lens_' SmartContract (Maybe Function)
-smartContractFunctionL f SmartContract{..} = (\smartContractFunction -> SmartContract { smartContractFunction, ..} ) <$> f smartContractFunction
-{-# INLINE smartContractFunctionL #-}
+-- | 'secondaryAccountAdditionalOwnerSchemaAccountId' Lens
+secondaryAccountAdditionalOwnerSchemaAccountIdL :: Lens_' SecondaryAccountAdditionalOwnerSchema (Maybe Text)
+secondaryAccountAdditionalOwnerSchemaAccountIdL f SecondaryAccountAdditionalOwnerSchema{..} = (\secondaryAccountAdditionalOwnerSchemaAccountId -> SecondaryAccountAdditionalOwnerSchema { secondaryAccountAdditionalOwnerSchemaAccountId, ..} ) <$> f secondaryAccountAdditionalOwnerSchemaAccountId
+{-# INLINE secondaryAccountAdditionalOwnerSchemaAccountIdL #-}
+
+
+
+-- * SecondaryAccountOwnerSchema
+
+-- | 'secondaryAccountOwnerSchemaAccountId' Lens
+secondaryAccountOwnerSchemaAccountIdL :: Lens_' SecondaryAccountOwnerSchema (Maybe Text)
+secondaryAccountOwnerSchemaAccountIdL f SecondaryAccountOwnerSchema{..} = (\secondaryAccountOwnerSchemaAccountId -> SecondaryAccountOwnerSchema { secondaryAccountOwnerSchemaAccountId, ..} ) <$> f secondaryAccountOwnerSchemaAccountId
+{-# INLINE secondaryAccountOwnerSchemaAccountIdL #-}
+
+-- | 'secondaryAccountOwnerSchemaUnit' Lens
+secondaryAccountOwnerSchemaUnitL :: Lens_' SecondaryAccountOwnerSchema (Maybe Text)
+secondaryAccountOwnerSchemaUnitL f SecondaryAccountOwnerSchema{..} = (\secondaryAccountOwnerSchemaUnit -> SecondaryAccountOwnerSchema { secondaryAccountOwnerSchemaUnit, ..} ) <$> f secondaryAccountOwnerSchemaUnit
+{-# INLINE secondaryAccountOwnerSchemaUnitL #-}
+
+
+
+-- * Sender
+
+-- | 'senderAccountId' Lens
+senderAccountIdL :: Lens_' Sender (Maybe Text)
+senderAccountIdL f Sender{..} = (\senderAccountId -> Sender { senderAccountId, ..} ) <$> f senderAccountId
+{-# INLINE senderAccountIdL #-}
+
+
+
+-- * SignerAccount
+
+-- | 'signerAccountAccountId' Lens
+signerAccountAccountIdL :: Lens_' SignerAccount (Maybe Text)
+signerAccountAccountIdL f SignerAccount{..} = (\signerAccountAccountId -> SignerAccount { signerAccountAccountId, ..} ) <$> f signerAccountAccountId
+{-# INLINE signerAccountAccountIdL #-}
+
+
+
+-- * SmartContract
 
 -- | 'smartContractDetail' Lens
 smartContractDetailL :: Lens_' SmartContract (Maybe Text)
@@ -1535,6 +2824,11 @@ smartContractSmartContractIdL :: Lens_' SmartContract (Maybe Text)
 smartContractSmartContractIdL f SmartContract{..} = (\smartContractSmartContractId -> SmartContract { smartContractSmartContractId, ..} ) <$> f smartContractSmartContractId
 {-# INLINE smartContractSmartContractIdL #-}
 
+-- | 'smartContractFunction' Lens
+smartContractFunctionL :: Lens_' SmartContract (Maybe Function)
+smartContractFunctionL f SmartContract{..} = (\smartContractFunction -> SmartContract { smartContractFunction, ..} ) <$> f smartContractFunction
+{-# INLINE smartContractFunctionL #-}
+
 -- | 'smartContractExtraFields' Lens
 smartContractExtraFieldsL :: Lens_' SmartContract (Maybe A.Value)
 smartContractExtraFieldsL f SmartContract{..} = (\smartContractExtraFields -> SmartContract { smartContractExtraFields, ..} ) <$> f smartContractExtraFields
@@ -1543,6 +2837,11 @@ smartContractExtraFieldsL f SmartContract{..} = (\smartContractExtraFields -> Sm
 
 
 -- * SmartContractDestinationSchema
+
+-- | 'smartContractDestinationSchemaDestinationId' Lens
+smartContractDestinationSchemaDestinationIdL :: Lens_' SmartContractDestinationSchema (Maybe Text)
+smartContractDestinationSchemaDestinationIdL f SmartContractDestinationSchema{..} = (\smartContractDestinationSchemaDestinationId -> SmartContractDestinationSchema { smartContractDestinationSchemaDestinationId, ..} ) <$> f smartContractDestinationSchemaDestinationId
+{-# INLINE smartContractDestinationSchemaDestinationIdL #-}
 
 -- | 'smartContractDestinationSchemaSmartContract' Lens
 smartContractDestinationSchemaSmartContractL :: Lens_' SmartContractDestinationSchema (Maybe SmartContractSchema)
@@ -1553,11 +2852,6 @@ smartContractDestinationSchemaSmartContractL f SmartContractDestinationSchema{..
 smartContractDestinationSchemaPaymentL :: Lens_' SmartContractDestinationSchema (Maybe SmartContractPaymentSchema)
 smartContractDestinationSchemaPaymentL f SmartContractDestinationSchema{..} = (\smartContractDestinationSchemaPayment -> SmartContractDestinationSchema { smartContractDestinationSchemaPayment, ..} ) <$> f smartContractDestinationSchemaPayment
 {-# INLINE smartContractDestinationSchemaPaymentL #-}
-
--- | 'smartContractDestinationSchemaDestinationId' Lens
-smartContractDestinationSchemaDestinationIdL :: Lens_' SmartContractDestinationSchema (Maybe Text)
-smartContractDestinationSchemaDestinationIdL f SmartContractDestinationSchema{..} = (\smartContractDestinationSchemaDestinationId -> SmartContractDestinationSchema { smartContractDestinationSchemaDestinationId, ..} ) <$> f smartContractDestinationSchemaDestinationId
-{-# INLINE smartContractDestinationSchemaDestinationIdL #-}
 
 
 
@@ -1620,24 +2914,19 @@ smartContractInputParameterSchemaValueL f SmartContractInputParameterSchema{..} 
 
 -- * SmartContractInvokeRequestDetailsSchema
 
--- | 'smartContractInvokeRequestDetailsSchemaOrigin' Lens
-smartContractInvokeRequestDetailsSchemaOriginL :: Lens_' SmartContractInvokeRequestDetailsSchema (Maybe [SmartContractRequestDetailsOrigin])
-smartContractInvokeRequestDetailsSchemaOriginL f SmartContractInvokeRequestDetailsSchema{..} = (\smartContractInvokeRequestDetailsSchemaOrigin -> SmartContractInvokeRequestDetailsSchema { smartContractInvokeRequestDetailsSchemaOrigin, ..} ) <$> f smartContractInvokeRequestDetailsSchemaOrigin
-{-# INLINE smartContractInvokeRequestDetailsSchemaOriginL #-}
-
 -- | 'smartContractInvokeRequestDetailsSchemaDestination' Lens
 smartContractInvokeRequestDetailsSchemaDestinationL :: Lens_' SmartContractInvokeRequestDetailsSchema (Maybe [SmartContractDestinationSchema])
 smartContractInvokeRequestDetailsSchemaDestinationL f SmartContractInvokeRequestDetailsSchema{..} = (\smartContractInvokeRequestDetailsSchemaDestination -> SmartContractInvokeRequestDetailsSchema { smartContractInvokeRequestDetailsSchemaDestination, ..} ) <$> f smartContractInvokeRequestDetailsSchemaDestination
 {-# INLINE smartContractInvokeRequestDetailsSchemaDestinationL #-}
 
+-- | 'smartContractInvokeRequestDetailsSchemaOrigin' Lens
+smartContractInvokeRequestDetailsSchemaOriginL :: Lens_' SmartContractInvokeRequestDetailsSchema (Maybe [SmartContractRequestDetailsOrigin])
+smartContractInvokeRequestDetailsSchemaOriginL f SmartContractInvokeRequestDetailsSchema{..} = (\smartContractInvokeRequestDetailsSchemaOrigin -> SmartContractInvokeRequestDetailsSchema { smartContractInvokeRequestDetailsSchemaOrigin, ..} ) <$> f smartContractInvokeRequestDetailsSchemaOrigin
+{-# INLINE smartContractInvokeRequestDetailsSchemaOriginL #-}
+
 
 
 -- * SmartContractMonitoringDetailsSchema
-
--- | 'smartContractMonitoringDetailsSchemaSmartContractEventHistory' Lens
-smartContractMonitoringDetailsSchemaSmartContractEventHistoryL :: Lens_' SmartContractMonitoringDetailsSchema (Maybe [SmartContractEventHistory])
-smartContractMonitoringDetailsSchemaSmartContractEventHistoryL f SmartContractMonitoringDetailsSchema{..} = (\smartContractMonitoringDetailsSchemaSmartContractEventHistory -> SmartContractMonitoringDetailsSchema { smartContractMonitoringDetailsSchemaSmartContractEventHistory, ..} ) <$> f smartContractMonitoringDetailsSchemaSmartContractEventHistory
-{-# INLINE smartContractMonitoringDetailsSchemaSmartContractEventHistoryL #-}
 
 -- | 'smartContractMonitoringDetailsSchemaSmartContractEventDetails' Lens
 smartContractMonitoringDetailsSchemaSmartContractEventDetailsL :: Lens_' SmartContractMonitoringDetailsSchema (Maybe ResourceMonitoringSmartContractEventDetails)
@@ -1648,6 +2937,11 @@ smartContractMonitoringDetailsSchemaSmartContractEventDetailsL f SmartContractMo
 smartContractMonitoringDetailsSchemaLocationL :: Lens_' SmartContractMonitoringDetailsSchema (Maybe Location)
 smartContractMonitoringDetailsSchemaLocationL f SmartContractMonitoringDetailsSchema{..} = (\smartContractMonitoringDetailsSchemaLocation -> SmartContractMonitoringDetailsSchema { smartContractMonitoringDetailsSchemaLocation, ..} ) <$> f smartContractMonitoringDetailsSchemaLocation
 {-# INLINE smartContractMonitoringDetailsSchemaLocationL #-}
+
+-- | 'smartContractMonitoringDetailsSchemaSmartContractEventHistory' Lens
+smartContractMonitoringDetailsSchemaSmartContractEventHistoryL :: Lens_' SmartContractMonitoringDetailsSchema (Maybe [SmartContractEventHistory])
+smartContractMonitoringDetailsSchemaSmartContractEventHistoryL f SmartContractMonitoringDetailsSchema{..} = (\smartContractMonitoringDetailsSchemaSmartContractEventHistory -> SmartContractMonitoringDetailsSchema { smartContractMonitoringDetailsSchemaSmartContractEventHistory, ..} ) <$> f smartContractMonitoringDetailsSchemaSmartContractEventHistory
+{-# INLINE smartContractMonitoringDetailsSchemaSmartContractEventHistoryL #-}
 
 -- | 'smartContractMonitoringDetailsSchemaType' Lens
 smartContractMonitoringDetailsSchemaTypeL :: Lens_' SmartContractMonitoringDetailsSchema (Maybe Text)
@@ -1660,7 +2954,7 @@ smartContractMonitoringDetailsSchemaStatusL f SmartContractMonitoringDetailsSche
 {-# INLINE smartContractMonitoringDetailsSchemaStatusL #-}
 
 -- | 'smartContractMonitoringDetailsSchemaTimestamp' Lens
-smartContractMonitoringDetailsSchemaTimestampL :: Lens_' SmartContractMonitoringDetailsSchema (Maybe DateTime)
+smartContractMonitoringDetailsSchemaTimestampL :: Lens_' SmartContractMonitoringDetailsSchema (Maybe Text)
 smartContractMonitoringDetailsSchemaTimestampL f SmartContractMonitoringDetailsSchema{..} = (\smartContractMonitoringDetailsSchemaTimestamp -> SmartContractMonitoringDetailsSchema { smartContractMonitoringDetailsSchemaTimestamp, ..} ) <$> f smartContractMonitoringDetailsSchemaTimestamp
 {-# INLINE smartContractMonitoringDetailsSchemaTimestampL #-}
 
@@ -1705,15 +2999,15 @@ smartContractPaymentSchemaUnitL f SmartContractPaymentSchema{..} = (\smartContra
 
 -- * SmartContractReadFunctionSchema
 
--- | 'smartContractReadFunctionSchemaFunctionId' Lens
-smartContractReadFunctionSchemaFunctionIdL :: Lens_' SmartContractReadFunctionSchema (Maybe Text)
-smartContractReadFunctionSchemaFunctionIdL f SmartContractReadFunctionSchema{..} = (\smartContractReadFunctionSchemaFunctionId -> SmartContractReadFunctionSchema { smartContractReadFunctionSchemaFunctionId, ..} ) <$> f smartContractReadFunctionSchemaFunctionId
-{-# INLINE smartContractReadFunctionSchemaFunctionIdL #-}
-
 -- | 'smartContractReadFunctionSchemaName' Lens
 smartContractReadFunctionSchemaNameL :: Lens_' SmartContractReadFunctionSchema (Maybe Text)
 smartContractReadFunctionSchemaNameL f SmartContractReadFunctionSchema{..} = (\smartContractReadFunctionSchemaName -> SmartContractReadFunctionSchema { smartContractReadFunctionSchemaName, ..} ) <$> f smartContractReadFunctionSchemaName
 {-# INLINE smartContractReadFunctionSchemaNameL #-}
+
+-- | 'smartContractReadFunctionSchemaFunctionId' Lens
+smartContractReadFunctionSchemaFunctionIdL :: Lens_' SmartContractReadFunctionSchema (Maybe Text)
+smartContractReadFunctionSchemaFunctionIdL f SmartContractReadFunctionSchema{..} = (\smartContractReadFunctionSchemaFunctionId -> SmartContractReadFunctionSchema { smartContractReadFunctionSchemaFunctionId, ..} ) <$> f smartContractReadFunctionSchemaFunctionId
+{-# INLINE smartContractReadFunctionSchemaFunctionIdL #-}
 
 -- | 'smartContractReadFunctionSchemaInputParameters' Lens
 smartContractReadFunctionSchemaInputParametersL :: Lens_' SmartContractReadFunctionSchema (Maybe [SmartContractInputParameterSchema])
@@ -1729,15 +3023,15 @@ smartContractReadFunctionSchemaOutputParametersL f SmartContractReadFunctionSche
 
 -- * SmartContractReadSchema
 
--- | 'smartContractReadSchemaFunction' Lens
-smartContractReadSchemaFunctionL :: Lens_' SmartContractReadSchema (Maybe SmartContractReadFunctionSchema)
-smartContractReadSchemaFunctionL f SmartContractReadSchema{..} = (\smartContractReadSchemaFunction -> SmartContractReadSchema { smartContractReadSchemaFunction, ..} ) <$> f smartContractReadSchemaFunction
-{-# INLINE smartContractReadSchemaFunctionL #-}
-
 -- | 'smartContractReadSchemaSmartContractId' Lens
 smartContractReadSchemaSmartContractIdL :: Lens_' SmartContractReadSchema (Maybe Text)
 smartContractReadSchemaSmartContractIdL f SmartContractReadSchema{..} = (\smartContractReadSchemaSmartContractId -> SmartContractReadSchema { smartContractReadSchemaSmartContractId, ..} ) <$> f smartContractReadSchemaSmartContractId
 {-# INLINE smartContractReadSchemaSmartContractIdL #-}
+
+-- | 'smartContractReadSchemaFunction' Lens
+smartContractReadSchemaFunctionL :: Lens_' SmartContractReadSchema (Maybe SmartContractReadFunctionSchema)
+smartContractReadSchemaFunctionL f SmartContractReadSchema{..} = (\smartContractReadSchemaFunction -> SmartContractReadSchema { smartContractReadSchemaFunction, ..} ) <$> f smartContractReadSchemaFunction
+{-# INLINE smartContractReadSchemaFunctionL #-}
 
 
 
@@ -1798,29 +3092,48 @@ smartContractSearchRequestDetailsDestinationL f SmartContractSearchRequestDetail
 
 -- * SmartContractSearchSchema
 
--- | 'smartContractSearchSchemaFunction' Lens
-smartContractSearchSchemaFunctionL :: Lens_' SmartContractSearchSchema (Maybe SmartContractSearchFunctionSchema)
-smartContractSearchSchemaFunctionL f SmartContractSearchSchema{..} = (\smartContractSearchSchemaFunction -> SmartContractSearchSchema { smartContractSearchSchemaFunction, ..} ) <$> f smartContractSearchSchemaFunction
-{-# INLINE smartContractSearchSchemaFunctionL #-}
-
 -- | 'smartContractSearchSchemaSmartContractId' Lens
 smartContractSearchSchemaSmartContractIdL :: Lens_' SmartContractSearchSchema (Maybe Text)
 smartContractSearchSchemaSmartContractIdL f SmartContractSearchSchema{..} = (\smartContractSearchSchemaSmartContractId -> SmartContractSearchSchema { smartContractSearchSchemaSmartContractId, ..} ) <$> f smartContractSearchSchemaSmartContractId
 {-# INLINE smartContractSearchSchemaSmartContractIdL #-}
 
+-- | 'smartContractSearchSchemaFunction' Lens
+smartContractSearchSchemaFunctionL :: Lens_' SmartContractSearchSchema (Maybe SmartContractSearchFunctionSchema)
+smartContractSearchSchemaFunctionL f SmartContractSearchSchema{..} = (\smartContractSearchSchemaFunction -> SmartContractSearchSchema { smartContractSearchSchemaFunction, ..} ) <$> f smartContractSearchSchemaFunction
+{-# INLINE smartContractSearchSchemaFunctionL #-}
+
+
+
+-- * SmartContractTag
+
+-- | 'smartContractTagName' Lens
+smartContractTagNameL :: Lens_' SmartContractTag (Maybe Text)
+smartContractTagNameL f SmartContractTag{..} = (\smartContractTagName -> SmartContractTag { smartContractTagName, ..} ) <$> f smartContractTagName
+{-# INLINE smartContractTagNameL #-}
+
+-- | 'smartContractTagFunctionName' Lens
+smartContractTagFunctionNameL :: Lens_' SmartContractTag (Maybe Text)
+smartContractTagFunctionNameL f SmartContractTag{..} = (\smartContractTagFunctionName -> SmartContractTag { smartContractTagFunctionName, ..} ) <$> f smartContractTagFunctionName
+{-# INLINE smartContractTagFunctionNameL #-}
+
+-- | 'smartContractTagEventName' Lens
+smartContractTagEventNameL :: Lens_' SmartContractTag (Maybe Text)
+smartContractTagEventNameL f SmartContractTag{..} = (\smartContractTagEventName -> SmartContractTag { smartContractTagEventName, ..} ) <$> f smartContractTagEventName
+{-# INLINE smartContractTagEventNameL #-}
+
 
 
 -- * Status
-
--- | 'statusCode' Lens
-statusCodeL :: Lens_' Status (Maybe Text)
-statusCodeL f Status{..} = (\statusCode -> Status { statusCode, ..} ) <$> f statusCode
-{-# INLINE statusCodeL #-}
 
 -- | 'statusDescription' Lens
 statusDescriptionL :: Lens_' Status (Maybe Text)
 statusDescriptionL f Status{..} = (\statusDescription -> Status { statusDescription, ..} ) <$> f statusDescription
 {-# INLINE statusDescriptionL #-}
+
+-- | 'statusCode' Lens
+statusCodeL :: Lens_' Status (Maybe Text)
+statusCodeL f Status{..} = (\statusCode -> Status { statusCode, ..} ) <$> f statusCode
+{-# INLINE statusCodeL #-}
 
 -- | 'statusMessage' Lens
 statusMessageL :: Lens_' Status (Maybe Text)
@@ -1857,79 +3170,79 @@ statusUpdateSchemaValueL f StatusUpdateSchema{..} = (\statusUpdateSchemaValue ->
 
 
 
--- * SubscriptionDeletionResponse
+-- * TierFunctionDTO
 
--- | 'subscriptionDeletionResponseSubscriptionDetails' Lens
-subscriptionDeletionResponseSubscriptionDetailsL :: Lens_' SubscriptionDeletionResponse (Maybe SubscriptionDetails)
-subscriptionDeletionResponseSubscriptionDetailsL f SubscriptionDeletionResponse{..} = (\subscriptionDeletionResponseSubscriptionDetails -> SubscriptionDeletionResponse { subscriptionDeletionResponseSubscriptionDetails, ..} ) <$> f subscriptionDeletionResponseSubscriptionDetails
-{-# INLINE subscriptionDeletionResponseSubscriptionDetailsL #-}
+-- | 'tierFunctionDTOFunctionName' Lens
+tierFunctionDTOFunctionNameL :: Lens_' TierFunctionDTO (Maybe Text)
+tierFunctionDTOFunctionNameL f TierFunctionDTO{..} = (\tierFunctionDTOFunctionName -> TierFunctionDTO { tierFunctionDTOFunctionName, ..} ) <$> f tierFunctionDTOFunctionName
+{-# INLINE tierFunctionDTOFunctionNameL #-}
 
--- | 'subscriptionDeletionResponseCallbackUrl' Lens
-subscriptionDeletionResponseCallbackUrlL :: Lens_' SubscriptionDeletionResponse (Maybe Text)
-subscriptionDeletionResponseCallbackUrlL f SubscriptionDeletionResponse{..} = (\subscriptionDeletionResponseCallbackUrl -> SubscriptionDeletionResponse { subscriptionDeletionResponseCallbackUrl, ..} ) <$> f subscriptionDeletionResponseCallbackUrl
-{-# INLINE subscriptionDeletionResponseCallbackUrlL #-}
-
--- | 'subscriptionDeletionResponseSubscriptionId' Lens
-subscriptionDeletionResponseSubscriptionIdL :: Lens_' SubscriptionDeletionResponse (Maybe Text)
-subscriptionDeletionResponseSubscriptionIdL f SubscriptionDeletionResponse{..} = (\subscriptionDeletionResponseSubscriptionId -> SubscriptionDeletionResponse { subscriptionDeletionResponseSubscriptionId, ..} ) <$> f subscriptionDeletionResponseSubscriptionId
-{-# INLINE subscriptionDeletionResponseSubscriptionIdL #-}
-
--- | 'subscriptionDeletionResponseType' Lens
-subscriptionDeletionResponseTypeL :: Lens_' SubscriptionDeletionResponse (Maybe Text)
-subscriptionDeletionResponseTypeL f SubscriptionDeletionResponse{..} = (\subscriptionDeletionResponseType -> SubscriptionDeletionResponse { subscriptionDeletionResponseType, ..} ) <$> f subscriptionDeletionResponseType
-{-# INLINE subscriptionDeletionResponseTypeL #-}
+-- | 'tierFunctionDTOApi' Lens
+tierFunctionDTOApiL :: Lens_' TierFunctionDTO (Maybe Text)
+tierFunctionDTOApiL f TierFunctionDTO{..} = (\tierFunctionDTOApi -> TierFunctionDTO { tierFunctionDTOApi, ..} ) <$> f tierFunctionDTOApi
+{-# INLINE tierFunctionDTOApiL #-}
 
 
 
--- * SubscriptionDetails
+-- * TokenReadQRC20Response
 
--- | 'subscriptionDetailsIds' Lens
-subscriptionDetailsIdsL :: Lens_' SubscriptionDetails (Maybe [Text])
-subscriptionDetailsIdsL f SubscriptionDetails{..} = (\subscriptionDetailsIds -> SubscriptionDetails { subscriptionDetailsIds, ..} ) <$> f subscriptionDetailsIds
-{-# INLINE subscriptionDetailsIdsL #-}
+-- | 'tokenReadQRC20ResponseResponseDetails' Lens
+tokenReadQRC20ResponseResponseDetailsL :: Lens_' TokenReadQRC20Response (Maybe [TokenReadResponseDetails])
+tokenReadQRC20ResponseResponseDetailsL f TokenReadQRC20Response{..} = (\tokenReadQRC20ResponseResponseDetails -> TokenReadQRC20Response { tokenReadQRC20ResponseResponseDetails, ..} ) <$> f tokenReadQRC20ResponseResponseDetails
+{-# INLINE tokenReadQRC20ResponseResponseDetailsL #-}
 
--- | 'subscriptionDetailsStatus' Lens
-subscriptionDetailsStatusL :: Lens_' SubscriptionDetails (Maybe Status)
-subscriptionDetailsStatusL f SubscriptionDetails{..} = (\subscriptionDetailsStatus -> SubscriptionDetails { subscriptionDetailsStatus, ..} ) <$> f subscriptionDetailsStatus
-{-# INLINE subscriptionDetailsStatusL #-}
+-- | 'tokenReadQRC20ResponseRequestId' Lens
+tokenReadQRC20ResponseRequestIdL :: Lens_' TokenReadQRC20Response (Maybe Text)
+tokenReadQRC20ResponseRequestIdL f TokenReadQRC20Response{..} = (\tokenReadQRC20ResponseRequestId -> TokenReadQRC20Response { tokenReadQRC20ResponseRequestId, ..} ) <$> f tokenReadQRC20ResponseRequestId
+{-# INLINE tokenReadQRC20ResponseRequestIdL #-}
 
-
-
--- * SubscriptionDetailsSchema
-
--- | 'subscriptionDetailsSchemaIds' Lens
-subscriptionDetailsSchemaIdsL :: Lens_' SubscriptionDetailsSchema (Maybe [Text])
-subscriptionDetailsSchemaIdsL f SubscriptionDetailsSchema{..} = (\subscriptionDetailsSchemaIds -> SubscriptionDetailsSchema { subscriptionDetailsSchemaIds, ..} ) <$> f subscriptionDetailsSchemaIds
-{-# INLINE subscriptionDetailsSchemaIdsL #-}
-
--- | 'subscriptionDetailsSchemaStatus' Lens
-subscriptionDetailsSchemaStatusL :: Lens_' SubscriptionDetailsSchema (Maybe Status)
-subscriptionDetailsSchemaStatusL f SubscriptionDetailsSchema{..} = (\subscriptionDetailsSchemaStatus -> SubscriptionDetailsSchema { subscriptionDetailsSchemaStatus, ..} ) <$> f subscriptionDetailsSchemaStatus
-{-# INLINE subscriptionDetailsSchemaStatusL #-}
+-- | 'tokenReadQRC20ResponseLocation' Lens
+tokenReadQRC20ResponseLocationL :: Lens_' TokenReadQRC20Response (Maybe Location)
+tokenReadQRC20ResponseLocationL f TokenReadQRC20Response{..} = (\tokenReadQRC20ResponseLocation -> TokenReadQRC20Response { tokenReadQRC20ResponseLocation, ..} ) <$> f tokenReadQRC20ResponseLocation
+{-# INLINE tokenReadQRC20ResponseLocationL #-}
 
 
 
--- * SubscriptionUpdateResponse
+-- * TokenReadQRC721Response
 
--- | 'subscriptionUpdateResponseSubscriptionDetails' Lens
-subscriptionUpdateResponseSubscriptionDetailsL :: Lens_' SubscriptionUpdateResponse (Maybe SubscriptionDetails)
-subscriptionUpdateResponseSubscriptionDetailsL f SubscriptionUpdateResponse{..} = (\subscriptionUpdateResponseSubscriptionDetails -> SubscriptionUpdateResponse { subscriptionUpdateResponseSubscriptionDetails, ..} ) <$> f subscriptionUpdateResponseSubscriptionDetails
-{-# INLINE subscriptionUpdateResponseSubscriptionDetailsL #-}
+-- | 'tokenReadQRC721ResponseTokenName' Lens
+tokenReadQRC721ResponseTokenNameL :: Lens_' TokenReadQRC721Response (Maybe Text)
+tokenReadQRC721ResponseTokenNameL f TokenReadQRC721Response{..} = (\tokenReadQRC721ResponseTokenName -> TokenReadQRC721Response { tokenReadQRC721ResponseTokenName, ..} ) <$> f tokenReadQRC721ResponseTokenName
+{-# INLINE tokenReadQRC721ResponseTokenNameL #-}
 
--- | 'subscriptionUpdateResponseCallbackUrl' Lens
-subscriptionUpdateResponseCallbackUrlL :: Lens_' SubscriptionUpdateResponse (Maybe Text)
-subscriptionUpdateResponseCallbackUrlL f SubscriptionUpdateResponse{..} = (\subscriptionUpdateResponseCallbackUrl -> SubscriptionUpdateResponse { subscriptionUpdateResponseCallbackUrl, ..} ) <$> f subscriptionUpdateResponseCallbackUrl
-{-# INLINE subscriptionUpdateResponseCallbackUrlL #-}
+-- | 'tokenReadQRC721ResponseResponseDetails' Lens
+tokenReadQRC721ResponseResponseDetailsL :: Lens_' TokenReadQRC721Response (Maybe TokenReadResponseDetails)
+tokenReadQRC721ResponseResponseDetailsL f TokenReadQRC721Response{..} = (\tokenReadQRC721ResponseResponseDetails -> TokenReadQRC721Response { tokenReadQRC721ResponseResponseDetails, ..} ) <$> f tokenReadQRC721ResponseResponseDetails
+{-# INLINE tokenReadQRC721ResponseResponseDetailsL #-}
 
--- | 'subscriptionUpdateResponseSubscriptionId' Lens
-subscriptionUpdateResponseSubscriptionIdL :: Lens_' SubscriptionUpdateResponse (Maybe Text)
-subscriptionUpdateResponseSubscriptionIdL f SubscriptionUpdateResponse{..} = (\subscriptionUpdateResponseSubscriptionId -> SubscriptionUpdateResponse { subscriptionUpdateResponseSubscriptionId, ..} ) <$> f subscriptionUpdateResponseSubscriptionId
-{-# INLINE subscriptionUpdateResponseSubscriptionIdL #-}
+-- | 'tokenReadQRC721ResponseLocation' Lens
+tokenReadQRC721ResponseLocationL :: Lens_' TokenReadQRC721Response (Maybe Location)
+tokenReadQRC721ResponseLocationL f TokenReadQRC721Response{..} = (\tokenReadQRC721ResponseLocation -> TokenReadQRC721Response { tokenReadQRC721ResponseLocation, ..} ) <$> f tokenReadQRC721ResponseLocation
+{-# INLINE tokenReadQRC721ResponseLocationL #-}
 
--- | 'subscriptionUpdateResponseType' Lens
-subscriptionUpdateResponseTypeL :: Lens_' SubscriptionUpdateResponse (Maybe Text)
-subscriptionUpdateResponseTypeL f SubscriptionUpdateResponse{..} = (\subscriptionUpdateResponseType -> SubscriptionUpdateResponse { subscriptionUpdateResponseType, ..} ) <$> f subscriptionUpdateResponseType
-{-# INLINE subscriptionUpdateResponseTypeL #-}
+-- | 'tokenReadQRC721ResponseRequestId' Lens
+tokenReadQRC721ResponseRequestIdL :: Lens_' TokenReadQRC721Response (Maybe Text)
+tokenReadQRC721ResponseRequestIdL f TokenReadQRC721Response{..} = (\tokenReadQRC721ResponseRequestId -> TokenReadQRC721Response { tokenReadQRC721ResponseRequestId, ..} ) <$> f tokenReadQRC721ResponseRequestId
+{-# INLINE tokenReadQRC721ResponseRequestIdL #-}
+
+
+
+-- * TokenReadResponseDetails
+
+-- | 'tokenReadResponseDetailsName' Lens
+tokenReadResponseDetailsNameL :: Lens_' TokenReadResponseDetails (Maybe Text)
+tokenReadResponseDetailsNameL f TokenReadResponseDetails{..} = (\tokenReadResponseDetailsName -> TokenReadResponseDetails { tokenReadResponseDetailsName, ..} ) <$> f tokenReadResponseDetailsName
+{-# INLINE tokenReadResponseDetailsNameL #-}
+
+-- | 'tokenReadResponseDetailsType' Lens
+tokenReadResponseDetailsTypeL :: Lens_' TokenReadResponseDetails (Maybe Text)
+tokenReadResponseDetailsTypeL f TokenReadResponseDetails{..} = (\tokenReadResponseDetailsType -> TokenReadResponseDetails { tokenReadResponseDetailsType, ..} ) <$> f tokenReadResponseDetailsType
+{-# INLINE tokenReadResponseDetailsTypeL #-}
+
+-- | 'tokenReadResponseDetailsValue' Lens
+tokenReadResponseDetailsValueL :: Lens_' TokenReadResponseDetails (Maybe A.Value)
+tokenReadResponseDetailsValueL f TokenReadResponseDetails{..} = (\tokenReadResponseDetailsValue -> TokenReadResponseDetails { tokenReadResponseDetailsValue, ..} ) <$> f tokenReadResponseDetailsValue
+{-# INLINE tokenReadResponseDetailsValueL #-}
 
 
 
@@ -2008,16 +3321,6 @@ transferTokenNameL f Transfer{..} = (\transferTokenName -> Transfer { transferTo
 
 -- * TransferRequestDetailsSchema
 
--- | 'transferRequestDetailsSchemaOverledgerSigningType' Lens
-transferRequestDetailsSchemaOverledgerSigningTypeL :: Lens_' TransferRequestDetailsSchema (Maybe Text)
-transferRequestDetailsSchemaOverledgerSigningTypeL f TransferRequestDetailsSchema{..} = (\transferRequestDetailsSchemaOverledgerSigningType -> TransferRequestDetailsSchema { transferRequestDetailsSchemaOverledgerSigningType, ..} ) <$> f transferRequestDetailsSchemaOverledgerSigningType
-{-# INLINE transferRequestDetailsSchemaOverledgerSigningTypeL #-}
-
--- | 'transferRequestDetailsSchemaOrigin' Lens
-transferRequestDetailsSchemaOriginL :: Lens_' TransferRequestDetailsSchema (Maybe [OriginTransferSchema])
-transferRequestDetailsSchemaOriginL f TransferRequestDetailsSchema{..} = (\transferRequestDetailsSchemaOrigin -> TransferRequestDetailsSchema { transferRequestDetailsSchemaOrigin, ..} ) <$> f transferRequestDetailsSchemaOrigin
-{-# INLINE transferRequestDetailsSchemaOriginL #-}
-
 -- | 'transferRequestDetailsSchemaDestination' Lens
 transferRequestDetailsSchemaDestinationL :: Lens_' TransferRequestDetailsSchema (Maybe [DestinationTransferSchema])
 transferRequestDetailsSchemaDestinationL f TransferRequestDetailsSchema{..} = (\transferRequestDetailsSchemaDestination -> TransferRequestDetailsSchema { transferRequestDetailsSchemaDestination, ..} ) <$> f transferRequestDetailsSchemaDestination
@@ -2027,6 +3330,16 @@ transferRequestDetailsSchemaDestinationL f TransferRequestDetailsSchema{..} = (\
 transferRequestDetailsSchemaMessageL :: Lens_' TransferRequestDetailsSchema (Maybe Text)
 transferRequestDetailsSchemaMessageL f TransferRequestDetailsSchema{..} = (\transferRequestDetailsSchemaMessage -> TransferRequestDetailsSchema { transferRequestDetailsSchemaMessage, ..} ) <$> f transferRequestDetailsSchemaMessage
 {-# INLINE transferRequestDetailsSchemaMessageL #-}
+
+-- | 'transferRequestDetailsSchemaOverledgerSigningType' Lens
+transferRequestDetailsSchemaOverledgerSigningTypeL :: Lens_' TransferRequestDetailsSchema (Maybe Text)
+transferRequestDetailsSchemaOverledgerSigningTypeL f TransferRequestDetailsSchema{..} = (\transferRequestDetailsSchemaOverledgerSigningType -> TransferRequestDetailsSchema { transferRequestDetailsSchemaOverledgerSigningType, ..} ) <$> f transferRequestDetailsSchemaOverledgerSigningType
+{-# INLINE transferRequestDetailsSchemaOverledgerSigningTypeL #-}
+
+-- | 'transferRequestDetailsSchemaOrigin' Lens
+transferRequestDetailsSchemaOriginL :: Lens_' TransferRequestDetailsSchema (Maybe [OriginTransferSchema])
+transferRequestDetailsSchemaOriginL f TransferRequestDetailsSchema{..} = (\transferRequestDetailsSchemaOrigin -> TransferRequestDetailsSchema { transferRequestDetailsSchemaOrigin, ..} ) <$> f transferRequestDetailsSchemaOrigin
+{-# INLINE transferRequestDetailsSchemaOriginL #-}
 
 
 
@@ -2046,6 +3359,11 @@ transferSchemaTokenNameL f TransferSchema{..} = (\transferSchemaTokenName -> Tra
 
 -- * UTXODestination
 
+-- | 'uTXODestinationDestinationId' Lens
+uTXODestinationDestinationIdL :: Lens_' UTXODestination (Maybe Text)
+uTXODestinationDestinationIdL f UTXODestination{..} = (\uTXODestinationDestinationId -> UTXODestination { uTXODestinationDestinationId, ..} ) <$> f uTXODestinationDestinationId
+{-# INLINE uTXODestinationDestinationIdL #-}
+
 -- | 'uTXODestinationSmartContract' Lens
 uTXODestinationSmartContractL :: Lens_' UTXODestination (Maybe UTXOSmartContract)
 uTXODestinationSmartContractL f UTXODestination{..} = (\uTXODestinationSmartContract -> UTXODestination { uTXODestinationSmartContract, ..} ) <$> f uTXODestinationSmartContract
@@ -2055,11 +3373,6 @@ uTXODestinationSmartContractL f UTXODestination{..} = (\uTXODestinationSmartCont
 uTXODestinationPaymentL :: Lens_' UTXODestination (Maybe Payment)
 uTXODestinationPaymentL f UTXODestination{..} = (\uTXODestinationPayment -> UTXODestination { uTXODestinationPayment, ..} ) <$> f uTXODestinationPayment
 {-# INLINE uTXODestinationPaymentL #-}
-
--- | 'uTXODestinationDestinationId' Lens
-uTXODestinationDestinationIdL :: Lens_' UTXODestination (Maybe Text)
-uTXODestinationDestinationIdL f UTXODestination{..} = (\uTXODestinationDestinationId -> UTXODestination { uTXODestinationDestinationId, ..} ) <$> f uTXODestinationDestinationId
-{-# INLINE uTXODestinationDestinationIdL #-}
 
 
 
@@ -2074,34 +3387,20 @@ uTXONativeDataVoutL f UTXONativeData{..} = (\uTXONativeDataVout -> UTXONativeDat
 
 -- * UTXOSmartContract
 
--- | 'uTXOSmartContractDetail' Lens
-uTXOSmartContractDetailL :: Lens_' UTXOSmartContract (Maybe Text)
-uTXOSmartContractDetailL f UTXOSmartContract{..} = (\uTXOSmartContractDetail -> UTXOSmartContract { uTXOSmartContractDetail, ..} ) <$> f uTXOSmartContractDetail
-{-# INLINE uTXOSmartContractDetailL #-}
-
 -- | 'uTXOSmartContractType' Lens
 uTXOSmartContractTypeL :: Lens_' UTXOSmartContract (Maybe Text)
 uTXOSmartContractTypeL f UTXOSmartContract{..} = (\uTXOSmartContractType -> UTXOSmartContract { uTXOSmartContractType, ..} ) <$> f uTXOSmartContractType
 {-# INLINE uTXOSmartContractTypeL #-}
 
+-- | 'uTXOSmartContractDetail' Lens
+uTXOSmartContractDetailL :: Lens_' UTXOSmartContract (Maybe Text)
+uTXOSmartContractDetailL f UTXOSmartContract{..} = (\uTXOSmartContractDetail -> UTXOSmartContract { uTXOSmartContractDetail, ..} ) <$> f uTXOSmartContractDetail
+{-# INLINE uTXOSmartContractDetailL #-}
+
 -- | 'uTXOSmartContractExtraFields' Lens
 uTXOSmartContractExtraFieldsL :: Lens_' UTXOSmartContract (Maybe ExtraFields)
 uTXOSmartContractExtraFieldsL f UTXOSmartContract{..} = (\uTXOSmartContractExtraFields -> UTXOSmartContract { uTXOSmartContractExtraFields, ..} ) <$> f uTXOSmartContractExtraFields
 {-# INLINE uTXOSmartContractExtraFieldsL #-}
-
-
-
--- * UTXOTimestampSchema
-
--- | 'uTXOTimestampSchemaNano' Lens
-uTXOTimestampSchemaNanoL :: Lens_' UTXOTimestampSchema (Maybe Text)
-uTXOTimestampSchemaNanoL f UTXOTimestampSchema{..} = (\uTXOTimestampSchemaNano -> UTXOTimestampSchema { uTXOTimestampSchemaNano, ..} ) <$> f uTXOTimestampSchemaNano
-{-# INLINE uTXOTimestampSchemaNanoL #-}
-
--- | 'uTXOTimestampSchemaEpochSecond' Lens
-uTXOTimestampSchemaEpochSecondL :: Lens_' UTXOTimestampSchema (Maybe Text)
-uTXOTimestampSchemaEpochSecondL f UTXOTimestampSchema{..} = (\uTXOTimestampSchemaEpochSecond -> UTXOTimestampSchema { uTXOTimestampSchemaEpochSecond, ..} ) <$> f uTXOTimestampSchemaEpochSecond
-{-# INLINE uTXOTimestampSchemaEpochSecondL #-}
 
 
 
@@ -2119,17 +3418,17 @@ updateAddressMonitoringSchemaResourceMonitoringL f UpdateAddressMonitoringSchema
 
 
 
--- * UpdateSubscriptionRequestSchema
+-- * UpdateWebhookSubscriptionRequestSchema
 
--- | 'updateSubscriptionRequestSchemaStatusUpdate' Lens
-updateSubscriptionRequestSchemaStatusUpdateL :: Lens_' UpdateSubscriptionRequestSchema (Maybe StatusUpdateSchema)
-updateSubscriptionRequestSchemaStatusUpdateL f UpdateSubscriptionRequestSchema{..} = (\updateSubscriptionRequestSchemaStatusUpdate -> UpdateSubscriptionRequestSchema { updateSubscriptionRequestSchemaStatusUpdate, ..} ) <$> f updateSubscriptionRequestSchemaStatusUpdate
-{-# INLINE updateSubscriptionRequestSchemaStatusUpdateL #-}
+-- | 'updateWebhookSubscriptionRequestSchemaStatusUpdate' Lens
+updateWebhookSubscriptionRequestSchemaStatusUpdateL :: Lens_' UpdateWebhookSubscriptionRequestSchema (Maybe WebhookStatusUpdateSchema)
+updateWebhookSubscriptionRequestSchemaStatusUpdateL f UpdateWebhookSubscriptionRequestSchema{..} = (\updateWebhookSubscriptionRequestSchemaStatusUpdate -> UpdateWebhookSubscriptionRequestSchema { updateWebhookSubscriptionRequestSchemaStatusUpdate, ..} ) <$> f updateWebhookSubscriptionRequestSchemaStatusUpdate
+{-# INLINE updateWebhookSubscriptionRequestSchemaStatusUpdateL #-}
 
--- | 'updateSubscriptionRequestSchemaCallbackUrl' Lens
-updateSubscriptionRequestSchemaCallbackUrlL :: Lens_' UpdateSubscriptionRequestSchema (Maybe Text)
-updateSubscriptionRequestSchemaCallbackUrlL f UpdateSubscriptionRequestSchema{..} = (\updateSubscriptionRequestSchemaCallbackUrl -> UpdateSubscriptionRequestSchema { updateSubscriptionRequestSchemaCallbackUrl, ..} ) <$> f updateSubscriptionRequestSchemaCallbackUrl
-{-# INLINE updateSubscriptionRequestSchemaCallbackUrlL #-}
+-- | 'updateWebhookSubscriptionRequestSchemaCallbackUrl' Lens
+updateWebhookSubscriptionRequestSchemaCallbackUrlL :: Lens_' UpdateWebhookSubscriptionRequestSchema (Maybe Text)
+updateWebhookSubscriptionRequestSchemaCallbackUrlL f UpdateWebhookSubscriptionRequestSchema{..} = (\updateWebhookSubscriptionRequestSchemaCallbackUrl -> UpdateWebhookSubscriptionRequestSchema { updateWebhookSubscriptionRequestSchemaCallbackUrl, ..} ) <$> f updateWebhookSubscriptionRequestSchemaCallbackUrl
+{-# INLINE updateWebhookSubscriptionRequestSchemaCallbackUrlL #-}
 
 
 
@@ -2149,5 +3448,66 @@ voutValueL f Vout{..} = (\voutValue -> Vout { voutValue, ..} ) <$> f voutValue
 voutNL :: Lens_' Vout (Maybe Double)
 voutNL f Vout{..} = (\voutN -> Vout { voutN, ..} ) <$> f voutN
 {-# INLINE voutNL #-}
+
+
+
+-- * WebhookStatusUpdateSchema
+
+-- | 'webhookStatusUpdateSchemaValue' Lens
+webhookStatusUpdateSchemaValueL :: Lens_' WebhookStatusUpdateSchema (Maybe Text)
+webhookStatusUpdateSchemaValueL f WebhookStatusUpdateSchema{..} = (\webhookStatusUpdateSchemaValue -> WebhookStatusUpdateSchema { webhookStatusUpdateSchemaValue, ..} ) <$> f webhookStatusUpdateSchemaValue
+{-# INLINE webhookStatusUpdateSchemaValueL #-}
+
+
+
+-- * WebhookSubscriptionDetails
+
+-- | 'webhookSubscriptionDetailsIds' Lens
+webhookSubscriptionDetailsIdsL :: Lens_' WebhookSubscriptionDetails (Maybe [Text])
+webhookSubscriptionDetailsIdsL f WebhookSubscriptionDetails{..} = (\webhookSubscriptionDetailsIds -> WebhookSubscriptionDetails { webhookSubscriptionDetailsIds, ..} ) <$> f webhookSubscriptionDetailsIds
+{-# INLINE webhookSubscriptionDetailsIdsL #-}
+
+-- | 'webhookSubscriptionDetailsStatus' Lens
+webhookSubscriptionDetailsStatusL :: Lens_' WebhookSubscriptionDetails (Maybe Status)
+webhookSubscriptionDetailsStatusL f WebhookSubscriptionDetails{..} = (\webhookSubscriptionDetailsStatus -> WebhookSubscriptionDetails { webhookSubscriptionDetailsStatus, ..} ) <$> f webhookSubscriptionDetailsStatus
+{-# INLINE webhookSubscriptionDetailsStatusL #-}
+
+
+
+-- * WebhookSubscriptionDetailsSchema
+
+-- | 'webhookSubscriptionDetailsSchemaIds' Lens
+webhookSubscriptionDetailsSchemaIdsL :: Lens_' WebhookSubscriptionDetailsSchema (Maybe [Text])
+webhookSubscriptionDetailsSchemaIdsL f WebhookSubscriptionDetailsSchema{..} = (\webhookSubscriptionDetailsSchemaIds -> WebhookSubscriptionDetailsSchema { webhookSubscriptionDetailsSchemaIds, ..} ) <$> f webhookSubscriptionDetailsSchemaIds
+{-# INLINE webhookSubscriptionDetailsSchemaIdsL #-}
+
+-- | 'webhookSubscriptionDetailsSchemaStatus' Lens
+webhookSubscriptionDetailsSchemaStatusL :: Lens_' WebhookSubscriptionDetailsSchema (Maybe Status)
+webhookSubscriptionDetailsSchemaStatusL f WebhookSubscriptionDetailsSchema{..} = (\webhookSubscriptionDetailsSchemaStatus -> WebhookSubscriptionDetailsSchema { webhookSubscriptionDetailsSchemaStatus, ..} ) <$> f webhookSubscriptionDetailsSchemaStatus
+{-# INLINE webhookSubscriptionDetailsSchemaStatusL #-}
+
+
+
+-- * WebhookSubscriptionStatusUpdateResponse
+
+-- | 'webhookSubscriptionStatusUpdateResponseSubscriptionDetails' Lens
+webhookSubscriptionStatusUpdateResponseSubscriptionDetailsL :: Lens_' WebhookSubscriptionStatusUpdateResponse (Maybe WebhookSubscriptionDetails)
+webhookSubscriptionStatusUpdateResponseSubscriptionDetailsL f WebhookSubscriptionStatusUpdateResponse{..} = (\webhookSubscriptionStatusUpdateResponseSubscriptionDetails -> WebhookSubscriptionStatusUpdateResponse { webhookSubscriptionStatusUpdateResponseSubscriptionDetails, ..} ) <$> f webhookSubscriptionStatusUpdateResponseSubscriptionDetails
+{-# INLINE webhookSubscriptionStatusUpdateResponseSubscriptionDetailsL #-}
+
+-- | 'webhookSubscriptionStatusUpdateResponseCallbackUrl' Lens
+webhookSubscriptionStatusUpdateResponseCallbackUrlL :: Lens_' WebhookSubscriptionStatusUpdateResponse (Maybe Text)
+webhookSubscriptionStatusUpdateResponseCallbackUrlL f WebhookSubscriptionStatusUpdateResponse{..} = (\webhookSubscriptionStatusUpdateResponseCallbackUrl -> WebhookSubscriptionStatusUpdateResponse { webhookSubscriptionStatusUpdateResponseCallbackUrl, ..} ) <$> f webhookSubscriptionStatusUpdateResponseCallbackUrl
+{-# INLINE webhookSubscriptionStatusUpdateResponseCallbackUrlL #-}
+
+-- | 'webhookSubscriptionStatusUpdateResponseSubscriptionId' Lens
+webhookSubscriptionStatusUpdateResponseSubscriptionIdL :: Lens_' WebhookSubscriptionStatusUpdateResponse (Maybe Text)
+webhookSubscriptionStatusUpdateResponseSubscriptionIdL f WebhookSubscriptionStatusUpdateResponse{..} = (\webhookSubscriptionStatusUpdateResponseSubscriptionId -> WebhookSubscriptionStatusUpdateResponse { webhookSubscriptionStatusUpdateResponseSubscriptionId, ..} ) <$> f webhookSubscriptionStatusUpdateResponseSubscriptionId
+{-# INLINE webhookSubscriptionStatusUpdateResponseSubscriptionIdL #-}
+
+-- | 'webhookSubscriptionStatusUpdateResponseType' Lens
+webhookSubscriptionStatusUpdateResponseTypeL :: Lens_' WebhookSubscriptionStatusUpdateResponse (Maybe Text)
+webhookSubscriptionStatusUpdateResponseTypeL f WebhookSubscriptionStatusUpdateResponse{..} = (\webhookSubscriptionStatusUpdateResponseType -> WebhookSubscriptionStatusUpdateResponse { webhookSubscriptionStatusUpdateResponseType, ..} ) <$> f webhookSubscriptionStatusUpdateResponseType
+{-# INLINE webhookSubscriptionStatusUpdateResponseTypeL #-}
 
 

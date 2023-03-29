@@ -19,16 +19,16 @@ typedef struct prepare_and_execute_overledger_error_response_t prepare_and_execu
 
 
 typedef struct prepare_and_execute_overledger_error_response_t {
-    char *code; // string
-    char *description; // string
     char *category; // string
+    char *description; // string
+    char *code; // string
 
 } prepare_and_execute_overledger_error_response_t;
 
 prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_error_response_create(
-    char *code,
+    char *category,
     char *description,
-    char *category
+    char *code
 );
 
 void prepare_and_execute_overledger_error_response_free(prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_error_response);

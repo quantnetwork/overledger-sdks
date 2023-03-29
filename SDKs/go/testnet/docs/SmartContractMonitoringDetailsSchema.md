@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SmartContractEventHistory** | Pointer to [**[]SmartContractEventHistory**](SmartContractEventHistory.md) |  | [optional] 
 **SmartContractEventDetails** | Pointer to [**ResourceMonitoringSmartContractEventDetails**](ResourceMonitoringSmartContractEventDetails.md) |  | [optional] 
 **Location** | Pointer to [**Location**](Location.md) |  | [optional] 
+**SmartContractEventHistory** | Pointer to [**[]SmartContractEventHistory**](SmartContractEventHistory.md) |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**Status**](Status.md) |  | [optional] 
-**Timestamp** | Pointer to **time.Time** |  | [optional] 
+**Timestamp** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -29,31 +29,6 @@ will change when the set of required properties is changed
 NewSmartContractMonitoringDetailsSchemaWithDefaults instantiates a new SmartContractMonitoringDetailsSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetSmartContractEventHistory
-
-`func (o *SmartContractMonitoringDetailsSchema) GetSmartContractEventHistory() []SmartContractEventHistory`
-
-GetSmartContractEventHistory returns the SmartContractEventHistory field if non-nil, zero value otherwise.
-
-### GetSmartContractEventHistoryOk
-
-`func (o *SmartContractMonitoringDetailsSchema) GetSmartContractEventHistoryOk() (*[]SmartContractEventHistory, bool)`
-
-GetSmartContractEventHistoryOk returns a tuple with the SmartContractEventHistory field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSmartContractEventHistory
-
-`func (o *SmartContractMonitoringDetailsSchema) SetSmartContractEventHistory(v []SmartContractEventHistory)`
-
-SetSmartContractEventHistory sets SmartContractEventHistory field to given value.
-
-### HasSmartContractEventHistory
-
-`func (o *SmartContractMonitoringDetailsSchema) HasSmartContractEventHistory() bool`
-
-HasSmartContractEventHistory returns a boolean if a field has been set.
 
 ### GetSmartContractEventDetails
 
@@ -104,6 +79,31 @@ SetLocation sets Location field to given value.
 `func (o *SmartContractMonitoringDetailsSchema) HasLocation() bool`
 
 HasLocation returns a boolean if a field has been set.
+
+### GetSmartContractEventHistory
+
+`func (o *SmartContractMonitoringDetailsSchema) GetSmartContractEventHistory() []SmartContractEventHistory`
+
+GetSmartContractEventHistory returns the SmartContractEventHistory field if non-nil, zero value otherwise.
+
+### GetSmartContractEventHistoryOk
+
+`func (o *SmartContractMonitoringDetailsSchema) GetSmartContractEventHistoryOk() (*[]SmartContractEventHistory, bool)`
+
+GetSmartContractEventHistoryOk returns a tuple with the SmartContractEventHistory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSmartContractEventHistory
+
+`func (o *SmartContractMonitoringDetailsSchema) SetSmartContractEventHistory(v []SmartContractEventHistory)`
+
+SetSmartContractEventHistory sets SmartContractEventHistory field to given value.
+
+### HasSmartContractEventHistory
+
+`func (o *SmartContractMonitoringDetailsSchema) HasSmartContractEventHistory() bool`
+
+HasSmartContractEventHistory returns a boolean if a field has been set.
 
 ### GetType
 
@@ -157,20 +157,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetTimestamp
 
-`func (o *SmartContractMonitoringDetailsSchema) GetTimestamp() time.Time`
+`func (o *SmartContractMonitoringDetailsSchema) GetTimestamp() string`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *SmartContractMonitoringDetailsSchema) GetTimestampOk() (*time.Time, bool)`
+`func (o *SmartContractMonitoringDetailsSchema) GetTimestampOk() (*string, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *SmartContractMonitoringDetailsSchema) SetTimestamp(v time.Time)`
+`func (o *SmartContractMonitoringDetailsSchema) SetTimestamp(v string)`
 
 SetTimestamp sets Timestamp field to given value.
 

@@ -23,14 +23,14 @@ destination_transfer_schema_t* instantiate_destination_transfer_schema(int inclu
   destination_transfer_schema_t* destination_transfer_schema = NULL;
   if (include_optional) {
     destination_transfer_schema = destination_transfer_schema_create(
+      "a",
        // false, not to have infinite recursion
-      instantiate_transfer_schema(0),
-      "a"
+      instantiate_transfer_schema(0)
     );
   } else {
     destination_transfer_schema = destination_transfer_schema_create(
-      NULL,
-      "a"
+      "a",
+      NULL
     );
   }
 

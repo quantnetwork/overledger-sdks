@@ -26,7 +26,7 @@ status_t* instantiate_status(int include_optional) {
       "a",
       "a",
       "a",
-      "a"
+      "0"
     );
   } else {
     status = status_create(
@@ -34,7 +34,7 @@ status_t* instantiate_status(int include_optional) {
       "a",
       "a",
       "a",
-      "a"
+      "0"
     );
   }
 

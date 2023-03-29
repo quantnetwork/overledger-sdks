@@ -1,7 +1,7 @@
 {-
    Quant Overledger API
 
-   Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+   Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
    OpenAPI Version: 3.0.1
    Quant Overledger API API version: 2.0
@@ -75,8 +75,26 @@ newtype Authorization = Authorization { unAuthorization :: Text } deriving (P.Eq
 -- ** BlockId
 newtype BlockId = BlockId { unBlockId :: Text } deriving (P.Eq, P.Show)
 
+-- ** Body
+newtype Body = Body { unBody :: A.Value } deriving (P.Eq, P.Show, A.ToJSON)
+
+-- ** ContractType
+newtype ContractType = ContractType { unContractType :: Text } deriving (P.Eq, P.Show)
+
+-- ** FlowType
+newtype FlowType = FlowType { unFlowType :: Text } deriving (P.Eq, P.Show)
+
+-- ** Flowtype
+newtype Flowtype = Flowtype { unFlowtype :: Text } deriving (P.Eq, P.Show)
+
 -- ** Length
 newtype Length = Length { unLength :: Int } deriving (P.Eq, P.Show)
+
+-- ** Location2
+newtype Location2 = Location2 { unLocation2 :: Location } deriving (P.Eq, P.Show)
+
+-- ** Network
+newtype Network = Network { unNetwork :: Text } deriving (P.Eq, P.Show)
 
 -- ** Offset
 newtype Offset = Offset { unOffset :: Int } deriving (P.Eq, P.Show)
@@ -93,14 +111,158 @@ newtype ResourceMonitoringId = ResourceMonitoringId { unResourceMonitoringId :: 
 -- ** SubscriptionId
 newtype SubscriptionId = SubscriptionId { unSubscriptionId :: Text } deriving (P.Eq, P.Show)
 
+-- ** Technology
+newtype Technology = Technology { unTechnology :: Text } deriving (P.Eq, P.Show)
+
+-- ** TokenName
+newtype TokenName = TokenName { unTokenName :: Text } deriving (P.Eq, P.Show)
+
 -- ** TransactionId
 newtype TransactionId = TransactionId { unTransactionId :: Text } deriving (P.Eq, P.Show)
+
+-- ** Unit
+newtype Unit = Unit { unUnit :: Text } deriving (P.Eq, P.Show)
 
 -- ** UtxoId
 newtype UtxoId = UtxoId { unUtxoId :: Text } deriving (P.Eq, P.Show)
 
 -- * Models
 
+
+-- ** AccountDetails
+-- | AccountDetails
+-- Account Details of the tokens
+data AccountDetails = AccountDetails
+  { accountDetailsParentAccountId :: !(Maybe Text) -- ^ "parentAccountId"
+  , accountDetailsAccountId :: !(Maybe Text) -- ^ "accountId"
+  , accountDetailsUnit :: !(Maybe Text) -- ^ "unit"
+  , accountDetailsOwningInstitutionId :: !(Maybe Text) -- ^ "owningInstitutionId"
+  , accountDetailsAccountType :: !(Maybe Text) -- ^ "accountType"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON AccountDetails
+instance A.FromJSON AccountDetails where
+  parseJSON = A.withObject "AccountDetails" $ \o ->
+    AccountDetails
+      <$> (o .:? "parentAccountId")
+      <*> (o .:? "accountId")
+      <*> (o .:? "unit")
+      <*> (o .:? "owningInstitutionId")
+      <*> (o .:? "accountType")
+
+-- | ToJSON AccountDetails
+instance A.ToJSON AccountDetails where
+  toJSON AccountDetails {..} =
+   _omitNulls
+      [ "parentAccountId" .= accountDetailsParentAccountId
+      , "accountId" .= accountDetailsAccountId
+      , "unit" .= accountDetailsUnit
+      , "owningInstitutionId" .= accountDetailsOwningInstitutionId
+      , "accountType" .= accountDetailsAccountType
+      ]
+
+
+-- | Construct a value of type 'AccountDetails' (by applying it's required fields, if any)
+mkAccountDetails
+  :: AccountDetails
+mkAccountDetails =
+  AccountDetails
+  { accountDetailsParentAccountId = Nothing
+  , accountDetailsAccountId = Nothing
+  , accountDetailsUnit = Nothing
+  , accountDetailsOwningInstitutionId = Nothing
+  , accountDetailsAccountType = Nothing
+  }
+
+-- ** AddSecondaryAccountRequestDetailsSchema
+-- | AddSecondaryAccountRequestDetailsSchema
+data AddSecondaryAccountRequestDetailsSchema = AddSecondaryAccountRequestDetailsSchema
+  { addSecondaryAccountRequestDetailsSchemaOwner :: !(Maybe SecondaryAccountOwnerSchema) -- ^ "owner"
+  , addSecondaryAccountRequestDetailsSchemaAdditionalOwner :: !(Maybe SecondaryAccountAdditionalOwnerSchema) -- ^ "additionalOwner"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON AddSecondaryAccountRequestDetailsSchema
+instance A.FromJSON AddSecondaryAccountRequestDetailsSchema where
+  parseJSON = A.withObject "AddSecondaryAccountRequestDetailsSchema" $ \o ->
+    AddSecondaryAccountRequestDetailsSchema
+      <$> (o .:? "owner")
+      <*> (o .:? "additionalOwner")
+
+-- | ToJSON AddSecondaryAccountRequestDetailsSchema
+instance A.ToJSON AddSecondaryAccountRequestDetailsSchema where
+  toJSON AddSecondaryAccountRequestDetailsSchema {..} =
+   _omitNulls
+      [ "owner" .= addSecondaryAccountRequestDetailsSchemaOwner
+      , "additionalOwner" .= addSecondaryAccountRequestDetailsSchemaAdditionalOwner
+      ]
+
+
+-- | Construct a value of type 'AddSecondaryAccountRequestDetailsSchema' (by applying it's required fields, if any)
+mkAddSecondaryAccountRequestDetailsSchema
+  :: AddSecondaryAccountRequestDetailsSchema
+mkAddSecondaryAccountRequestDetailsSchema =
+  AddSecondaryAccountRequestDetailsSchema
+  { addSecondaryAccountRequestDetailsSchemaOwner = Nothing
+  , addSecondaryAccountRequestDetailsSchemaAdditionalOwner = Nothing
+  }
+
+-- ** AdditionalOwner
+-- | AdditionalOwner
+-- Who is authorized as an operator on behalf of the Owner.
+data AdditionalOwner = AdditionalOwner
+  { additionalOwnerAccountId :: !(Maybe Text) -- ^ "accountId"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON AdditionalOwner
+instance A.FromJSON AdditionalOwner where
+  parseJSON = A.withObject "AdditionalOwner" $ \o ->
+    AdditionalOwner
+      <$> (o .:? "accountId")
+
+-- | ToJSON AdditionalOwner
+instance A.ToJSON AdditionalOwner where
+  toJSON AdditionalOwner {..} =
+   _omitNulls
+      [ "accountId" .= additionalOwnerAccountId
+      ]
+
+
+-- | Construct a value of type 'AdditionalOwner' (by applying it's required fields, if any)
+mkAdditionalOwner
+  :: AdditionalOwner
+mkAdditionalOwner =
+  AdditionalOwner
+  { additionalOwnerAccountId = Nothing
+  }
+
+-- ** AdditionalOwnerRemoveSecondarySchema
+-- | AdditionalOwnerRemoveSecondarySchema
+-- Who are the additional owner of this transaction
+data AdditionalOwnerRemoveSecondarySchema = AdditionalOwnerRemoveSecondarySchema
+  { additionalOwnerRemoveSecondarySchemaAccountId :: !(Maybe Text) -- ^ "accountId" - Unique Identifier of the owner
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON AdditionalOwnerRemoveSecondarySchema
+instance A.FromJSON AdditionalOwnerRemoveSecondarySchema where
+  parseJSON = A.withObject "AdditionalOwnerRemoveSecondarySchema" $ \o ->
+    AdditionalOwnerRemoveSecondarySchema
+      <$> (o .:? "accountId")
+
+-- | ToJSON AdditionalOwnerRemoveSecondarySchema
+instance A.ToJSON AdditionalOwnerRemoveSecondarySchema where
+  toJSON AdditionalOwnerRemoveSecondarySchema {..} =
+   _omitNulls
+      [ "accountId" .= additionalOwnerRemoveSecondarySchemaAccountId
+      ]
+
+
+-- | Construct a value of type 'AdditionalOwnerRemoveSecondarySchema' (by applying it's required fields, if any)
+mkAdditionalOwnerRemoveSecondarySchema
+  :: AdditionalOwnerRemoveSecondarySchema
+mkAdditionalOwnerRemoveSecondarySchema =
+  AdditionalOwnerRemoveSecondarySchema
+  { additionalOwnerRemoveSecondarySchemaAccountId = Nothing
+  }
 
 -- ** AddressBalanceResponse
 -- | AddressBalanceResponse
@@ -177,8 +339,8 @@ mkAddressMonitoringDetailsSchema =
 -- ** AddressMonitoringRequestSchema
 -- | AddressMonitoringRequestSchema
 data AddressMonitoringRequestSchema = AddressMonitoringRequestSchema
-  { addressMonitoringRequestSchemaCallBackUrl :: !(Maybe Text) -- ^ "callBackURL"
-  , addressMonitoringRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
+  { addressMonitoringRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
+  , addressMonitoringRequestSchemaCallBackUrl :: !(Maybe Text) -- ^ "callBackURL"
   , addressMonitoringRequestSchemaAddressId :: !(Maybe Text) -- ^ "addressId"
   } deriving (P.Show, P.Eq, P.Typeable)
 
@@ -186,16 +348,16 @@ data AddressMonitoringRequestSchema = AddressMonitoringRequestSchema
 instance A.FromJSON AddressMonitoringRequestSchema where
   parseJSON = A.withObject "AddressMonitoringRequestSchema" $ \o ->
     AddressMonitoringRequestSchema
-      <$> (o .:? "callBackURL")
-      <*> (o .:? "location")
+      <$> (o .:? "location")
+      <*> (o .:? "callBackURL")
       <*> (o .:? "addressId")
 
 -- | ToJSON AddressMonitoringRequestSchema
 instance A.ToJSON AddressMonitoringRequestSchema where
   toJSON AddressMonitoringRequestSchema {..} =
    _omitNulls
-      [ "callBackURL" .= addressMonitoringRequestSchemaCallBackUrl
-      , "location" .= addressMonitoringRequestSchemaLocation
+      [ "location" .= addressMonitoringRequestSchemaLocation
+      , "callBackURL" .= addressMonitoringRequestSchemaCallBackUrl
       , "addressId" .= addressMonitoringRequestSchemaAddressId
       ]
 
@@ -205,16 +367,16 @@ mkAddressMonitoringRequestSchema
   :: AddressMonitoringRequestSchema
 mkAddressMonitoringRequestSchema =
   AddressMonitoringRequestSchema
-  { addressMonitoringRequestSchemaCallBackUrl = Nothing
-  , addressMonitoringRequestSchemaLocation = Nothing
+  { addressMonitoringRequestSchemaLocation = Nothing
+  , addressMonitoringRequestSchemaCallBackUrl = Nothing
   , addressMonitoringRequestSchemaAddressId = Nothing
   }
 
 -- ** AddressMonitoringResponseSchema
 -- | AddressMonitoringResponseSchema
 data AddressMonitoringResponseSchema = AddressMonitoringResponseSchema
-  { addressMonitoringResponseSchemaSubscriptionDetails :: !(Maybe ResourceMonitoringSubscriptionDetails) -- ^ "subscriptionDetails"
-  , addressMonitoringResponseSchemaResourceMonitoring :: !(Maybe ResourceMonitoringDetails) -- ^ "resourceMonitoring"
+  { addressMonitoringResponseSchemaResourceMonitoring :: !(Maybe ResourceMonitoringDetails) -- ^ "resourceMonitoring"
+  , addressMonitoringResponseSchemaSubscriptionDetails :: !(Maybe ResourceMonitoringSubscriptionDetails) -- ^ "subscriptionDetails"
   , addressMonitoringResponseSchemaSubscription :: !(Maybe ResourceMonitoringSubscription) -- ^ "subscription"
   } deriving (P.Show, P.Eq, P.Typeable)
 
@@ -222,16 +384,16 @@ data AddressMonitoringResponseSchema = AddressMonitoringResponseSchema
 instance A.FromJSON AddressMonitoringResponseSchema where
   parseJSON = A.withObject "AddressMonitoringResponseSchema" $ \o ->
     AddressMonitoringResponseSchema
-      <$> (o .:? "subscriptionDetails")
-      <*> (o .:? "resourceMonitoring")
+      <$> (o .:? "resourceMonitoring")
+      <*> (o .:? "subscriptionDetails")
       <*> (o .:? "subscription")
 
 -- | ToJSON AddressMonitoringResponseSchema
 instance A.ToJSON AddressMonitoringResponseSchema where
   toJSON AddressMonitoringResponseSchema {..} =
    _omitNulls
-      [ "subscriptionDetails" .= addressMonitoringResponseSchemaSubscriptionDetails
-      , "resourceMonitoring" .= addressMonitoringResponseSchemaResourceMonitoring
+      [ "resourceMonitoring" .= addressMonitoringResponseSchemaResourceMonitoring
+      , "subscriptionDetails" .= addressMonitoringResponseSchemaSubscriptionDetails
       , "subscription" .= addressMonitoringResponseSchemaSubscription
       ]
 
@@ -241,34 +403,83 @@ mkAddressMonitoringResponseSchema
   :: AddressMonitoringResponseSchema
 mkAddressMonitoringResponseSchema =
   AddressMonitoringResponseSchema
-  { addressMonitoringResponseSchemaSubscriptionDetails = Nothing
-  , addressMonitoringResponseSchemaResourceMonitoring = Nothing
+  { addressMonitoringResponseSchemaResourceMonitoring = Nothing
+  , addressMonitoringResponseSchemaSubscriptionDetails = Nothing
   , addressMonitoringResponseSchemaSubscription = Nothing
+  }
+
+-- ** AliasDetails
+-- | AliasDetails
+-- Alias Details of an account
+data AliasDetails = AliasDetails
+  { aliasDetailsAccountId :: !(Maybe Text) -- ^ "accountId"
+  , aliasDetailsUnit :: !(Maybe Text) -- ^ "unit"
+  , aliasDetailsDisposableAlias :: !(Maybe Bool) -- ^ "disposableAlias"
+  , aliasDetailsAliasHash :: !(Maybe Text) -- ^ "aliasHash"
+  , aliasDetailsAliasType :: !(Maybe Text) -- ^ "aliasType"
+  , aliasDetailsEsipId :: !(Maybe Text) -- ^ "esipId"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON AliasDetails
+instance A.FromJSON AliasDetails where
+  parseJSON = A.withObject "AliasDetails" $ \o ->
+    AliasDetails
+      <$> (o .:? "accountId")
+      <*> (o .:? "unit")
+      <*> (o .:? "disposableAlias")
+      <*> (o .:? "aliasHash")
+      <*> (o .:? "aliasType")
+      <*> (o .:? "esipId")
+
+-- | ToJSON AliasDetails
+instance A.ToJSON AliasDetails where
+  toJSON AliasDetails {..} =
+   _omitNulls
+      [ "accountId" .= aliasDetailsAccountId
+      , "unit" .= aliasDetailsUnit
+      , "disposableAlias" .= aliasDetailsDisposableAlias
+      , "aliasHash" .= aliasDetailsAliasHash
+      , "aliasType" .= aliasDetailsAliasType
+      , "esipId" .= aliasDetailsEsipId
+      ]
+
+
+-- | Construct a value of type 'AliasDetails' (by applying it's required fields, if any)
+mkAliasDetails
+  :: AliasDetails
+mkAliasDetails =
+  AliasDetails
+  { aliasDetailsAccountId = Nothing
+  , aliasDetailsUnit = Nothing
+  , aliasDetailsDisposableAlias = Nothing
+  , aliasDetailsAliasHash = Nothing
+  , aliasDetailsAliasType = Nothing
+  , aliasDetailsEsipId = Nothing
   }
 
 -- ** ApproveRequestDetailsSchema
 -- | ApproveRequestDetailsSchema
 data ApproveRequestDetailsSchema = ApproveRequestDetailsSchema
-  { approveRequestDetailsSchemaMandate :: !(Maybe [PayeeCreditSchema]) -- ^ "mandate" - Who are the payees of this transaction
+  { approveRequestDetailsSchemaPayer :: !(Maybe [PayerCreditSchema]) -- ^ "payer" - Who are the payers of this transaction
+  , approveRequestDetailsSchemaMandate :: !(Maybe [PayeeCreditSchema]) -- ^ "mandate" - Who are the payees of this transaction
   , approveRequestDetailsSchemaOverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
-  , approveRequestDetailsSchemaPayer :: !(Maybe [PayerCreditSchema]) -- ^ "payer" - Who are the payers of this transaction
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON ApproveRequestDetailsSchema
 instance A.FromJSON ApproveRequestDetailsSchema where
   parseJSON = A.withObject "ApproveRequestDetailsSchema" $ \o ->
     ApproveRequestDetailsSchema
-      <$> (o .:? "mandate")
+      <$> (o .:? "payer")
+      <*> (o .:? "mandate")
       <*> (o .:? "overledgerSigningType")
-      <*> (o .:? "payer")
 
 -- | ToJSON ApproveRequestDetailsSchema
 instance A.ToJSON ApproveRequestDetailsSchema where
   toJSON ApproveRequestDetailsSchema {..} =
    _omitNulls
-      [ "mandate" .= approveRequestDetailsSchemaMandate
+      [ "payer" .= approveRequestDetailsSchemaPayer
+      , "mandate" .= approveRequestDetailsSchemaMandate
       , "overledgerSigningType" .= approveRequestDetailsSchemaOverledgerSigningType
-      , "payer" .= approveRequestDetailsSchemaPayer
       ]
 
 
@@ -277,34 +488,34 @@ mkApproveRequestDetailsSchema
   :: ApproveRequestDetailsSchema
 mkApproveRequestDetailsSchema =
   ApproveRequestDetailsSchema
-  { approveRequestDetailsSchemaMandate = Nothing
+  { approveRequestDetailsSchemaPayer = Nothing
+  , approveRequestDetailsSchemaMandate = Nothing
   , approveRequestDetailsSchemaOverledgerSigningType = Nothing
-  , approveRequestDetailsSchemaPayer = Nothing
   }
 
 -- ** AutoExecSearchAddressSequenceResponseSchema
 -- | AutoExecSearchAddressSequenceResponseSchema
 data AutoExecSearchAddressSequenceResponseSchema = AutoExecSearchAddressSequenceResponseSchema
-  { autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse :: !(Maybe PrepareSearchResponseSchema) -- ^ "preparationAddressSequenceSearchResponse"
-  , autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse :: !(Maybe PrepareAndExecuteOverledgerErrorResponse) -- ^ "prepareAndExecuteOverledgerErrorResponse"
+  { autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse :: !(Maybe PrepareAndExecuteOverledgerErrorResponse) -- ^ "prepareAndExecuteOverledgerErrorResponse"
   , autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponse :: !(Maybe ExecuteSearchSequenceResponse) -- ^ "executionAddressSequenceSearchResponse"
+  , autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse :: !(Maybe PrepareSearchResponseSchema) -- ^ "preparationAddressSequenceSearchResponse"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON AutoExecSearchAddressSequenceResponseSchema
 instance A.FromJSON AutoExecSearchAddressSequenceResponseSchema where
   parseJSON = A.withObject "AutoExecSearchAddressSequenceResponseSchema" $ \o ->
     AutoExecSearchAddressSequenceResponseSchema
-      <$> (o .:? "preparationAddressSequenceSearchResponse")
-      <*> (o .:? "prepareAndExecuteOverledgerErrorResponse")
+      <$> (o .:? "prepareAndExecuteOverledgerErrorResponse")
       <*> (o .:? "executionAddressSequenceSearchResponse")
+      <*> (o .:? "preparationAddressSequenceSearchResponse")
 
 -- | ToJSON AutoExecSearchAddressSequenceResponseSchema
 instance A.ToJSON AutoExecSearchAddressSequenceResponseSchema where
   toJSON AutoExecSearchAddressSequenceResponseSchema {..} =
    _omitNulls
-      [ "preparationAddressSequenceSearchResponse" .= autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse
-      , "prepareAndExecuteOverledgerErrorResponse" .= autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse
+      [ "prepareAndExecuteOverledgerErrorResponse" .= autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse
       , "executionAddressSequenceSearchResponse" .= autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponse
+      , "preparationAddressSequenceSearchResponse" .= autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse
       ]
 
 
@@ -313,16 +524,16 @@ mkAutoExecSearchAddressSequenceResponseSchema
   :: AutoExecSearchAddressSequenceResponseSchema
 mkAutoExecSearchAddressSequenceResponseSchema =
   AutoExecSearchAddressSequenceResponseSchema
-  { autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse = Nothing
-  , autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse = Nothing
+  { autoExecSearchAddressSequenceResponseSchemaPrepareAndExecuteOverledgerErrorResponse = Nothing
   , autoExecSearchAddressSequenceResponseSchemaExecutionAddressSequenceSearchResponse = Nothing
+  , autoExecSearchAddressSequenceResponseSchemaPreparationAddressSequenceSearchResponse = Nothing
   }
 
 -- ** AutoExecuteSearchAddressBalanceResponseSchema
 -- | AutoExecuteSearchAddressBalanceResponseSchema
 data AutoExecuteSearchAddressBalanceResponseSchema = AutoExecuteSearchAddressBalanceResponseSchema
-  { autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse :: !(Maybe PrepareAndExecuteSearchAddressBalanceResponse) -- ^ "executionAddressBalanceSearchResponse"
-  , autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse :: !(Maybe PrepareAndExecuteOverledgerErrorResponse) -- ^ "prepareAndExecuteOverledgerErrorResponse"
+  { autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse :: !(Maybe PrepareAndExecuteOverledgerErrorResponse) -- ^ "prepareAndExecuteOverledgerErrorResponse"
+  , autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse :: !(Maybe PrepareAndExecuteSearchAddressBalanceResponse) -- ^ "executionAddressBalanceSearchResponse"
   , autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponse :: !(Maybe PrepareSearchResponseSchema) -- ^ "preparationAddressBalanceSearchResponse"
   } deriving (P.Show, P.Eq, P.Typeable)
 
@@ -330,16 +541,16 @@ data AutoExecuteSearchAddressBalanceResponseSchema = AutoExecuteSearchAddressBal
 instance A.FromJSON AutoExecuteSearchAddressBalanceResponseSchema where
   parseJSON = A.withObject "AutoExecuteSearchAddressBalanceResponseSchema" $ \o ->
     AutoExecuteSearchAddressBalanceResponseSchema
-      <$> (o .:? "executionAddressBalanceSearchResponse")
-      <*> (o .:? "prepareAndExecuteOverledgerErrorResponse")
+      <$> (o .:? "prepareAndExecuteOverledgerErrorResponse")
+      <*> (o .:? "executionAddressBalanceSearchResponse")
       <*> (o .:? "preparationAddressBalanceSearchResponse")
 
 -- | ToJSON AutoExecuteSearchAddressBalanceResponseSchema
 instance A.ToJSON AutoExecuteSearchAddressBalanceResponseSchema where
   toJSON AutoExecuteSearchAddressBalanceResponseSchema {..} =
    _omitNulls
-      [ "executionAddressBalanceSearchResponse" .= autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse
-      , "prepareAndExecuteOverledgerErrorResponse" .= autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse
+      [ "prepareAndExecuteOverledgerErrorResponse" .= autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse
+      , "executionAddressBalanceSearchResponse" .= autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse
       , "preparationAddressBalanceSearchResponse" .= autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponse
       ]
 
@@ -349,16 +560,16 @@ mkAutoExecuteSearchAddressBalanceResponseSchema
   :: AutoExecuteSearchAddressBalanceResponseSchema
 mkAutoExecuteSearchAddressBalanceResponseSchema =
   AutoExecuteSearchAddressBalanceResponseSchema
-  { autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse = Nothing
-  , autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse = Nothing
+  { autoExecuteSearchAddressBalanceResponseSchemaPrepareAndExecuteOverledgerErrorResponse = Nothing
+  , autoExecuteSearchAddressBalanceResponseSchemaExecutionAddressBalanceSearchResponse = Nothing
   , autoExecuteSearchAddressBalanceResponseSchemaPreparationAddressBalanceSearchResponse = Nothing
   }
 
 -- ** AutoExecuteSearchBlockResponseSchema
 -- | AutoExecuteSearchBlockResponseSchema
 data AutoExecuteSearchBlockResponseSchema = AutoExecuteSearchBlockResponseSchema
-  { autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse :: !(Maybe ExecuteSearchBlockResponse) -- ^ "executionBlockSearchResponse"
-  , autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse :: !(Maybe PrepareAndExecuteOverledgerErrorResponse) -- ^ "prepareAndExecuteOverledgerErrorResponse"
+  { autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse :: !(Maybe PrepareAndExecuteOverledgerErrorResponse) -- ^ "prepareAndExecuteOverledgerErrorResponse"
+  , autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse :: !(Maybe ExecuteSearchBlockResponse) -- ^ "executionBlockSearchResponse"
   , autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponse :: !(Maybe PrepareSearchResponseSchema) -- ^ "preparationBlockSearchResponse"
   } deriving (P.Show, P.Eq, P.Typeable)
 
@@ -366,16 +577,16 @@ data AutoExecuteSearchBlockResponseSchema = AutoExecuteSearchBlockResponseSchema
 instance A.FromJSON AutoExecuteSearchBlockResponseSchema where
   parseJSON = A.withObject "AutoExecuteSearchBlockResponseSchema" $ \o ->
     AutoExecuteSearchBlockResponseSchema
-      <$> (o .:? "executionBlockSearchResponse")
-      <*> (o .:? "prepareAndExecuteOverledgerErrorResponse")
+      <$> (o .:? "prepareAndExecuteOverledgerErrorResponse")
+      <*> (o .:? "executionBlockSearchResponse")
       <*> (o .:? "preparationBlockSearchResponse")
 
 -- | ToJSON AutoExecuteSearchBlockResponseSchema
 instance A.ToJSON AutoExecuteSearchBlockResponseSchema where
   toJSON AutoExecuteSearchBlockResponseSchema {..} =
    _omitNulls
-      [ "executionBlockSearchResponse" .= autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse
-      , "prepareAndExecuteOverledgerErrorResponse" .= autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse
+      [ "prepareAndExecuteOverledgerErrorResponse" .= autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse
+      , "executionBlockSearchResponse" .= autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse
       , "preparationBlockSearchResponse" .= autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponse
       ]
 
@@ -385,8 +596,8 @@ mkAutoExecuteSearchBlockResponseSchema
   :: AutoExecuteSearchBlockResponseSchema
 mkAutoExecuteSearchBlockResponseSchema =
   AutoExecuteSearchBlockResponseSchema
-  { autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse = Nothing
-  , autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse = Nothing
+  { autoExecuteSearchBlockResponseSchemaPrepareAndExecuteOverledgerErrorResponse = Nothing
+  , autoExecuteSearchBlockResponseSchemaExecutionBlockSearchResponse = Nothing
   , autoExecuteSearchBlockResponseSchemaPreparationBlockSearchResponse = Nothing
   }
 
@@ -424,6 +635,105 @@ mkAutoExecuteSearchUTXOResponseSchema =
   { autoExecuteSearchUTXOResponseSchemaExecutionUtxoSearchResponse = Nothing
   , autoExecuteSearchUTXOResponseSchemaPrepareAndExecuteOverledgerErrorResponse = Nothing
   , autoExecuteSearchUTXOResponseSchemaPreparationUtxoSearchResponse = Nothing
+  }
+
+-- ** Beneficiary
+-- | Beneficiary
+-- The Destination of this transaction
+data Beneficiary = Beneficiary
+  { beneficiaryAccountId :: !(Maybe Text) -- ^ "accountId" - The unique identifiers of the account
+  , beneficiaryMint :: !(Maybe Mint) -- ^ "mint"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Beneficiary
+instance A.FromJSON Beneficiary where
+  parseJSON = A.withObject "Beneficiary" $ \o ->
+    Beneficiary
+      <$> (o .:? "accountId")
+      <*> (o .:? "mint")
+
+-- | ToJSON Beneficiary
+instance A.ToJSON Beneficiary where
+  toJSON Beneficiary {..} =
+   _omitNulls
+      [ "accountId" .= beneficiaryAccountId
+      , "mint" .= beneficiaryMint
+      ]
+
+
+-- | Construct a value of type 'Beneficiary' (by applying it's required fields, if any)
+mkBeneficiary
+  :: Beneficiary
+mkBeneficiary =
+  Beneficiary
+  { beneficiaryAccountId = Nothing
+  , beneficiaryMint = Nothing
+  }
+
+-- ** BeneficiaryMintSchemaQrc20
+-- | BeneficiaryMintSchemaQrc20
+-- Who is the beneficiary of this transaction
+data BeneficiaryMintSchemaQrc20 = BeneficiaryMintSchemaQrc20
+  { beneficiaryMintSchemaQrc20AccountId :: !(Maybe Text) -- ^ "accountId" - The unique identifiers of the beneficiaries
+  , beneficiaryMintSchemaQrc20Mint :: !(Maybe MintSchemaQrc20) -- ^ "mint"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON BeneficiaryMintSchemaQrc20
+instance A.FromJSON BeneficiaryMintSchemaQrc20 where
+  parseJSON = A.withObject "BeneficiaryMintSchemaQrc20" $ \o ->
+    BeneficiaryMintSchemaQrc20
+      <$> (o .:? "accountId")
+      <*> (o .:? "mint")
+
+-- | ToJSON BeneficiaryMintSchemaQrc20
+instance A.ToJSON BeneficiaryMintSchemaQrc20 where
+  toJSON BeneficiaryMintSchemaQrc20 {..} =
+   _omitNulls
+      [ "accountId" .= beneficiaryMintSchemaQrc20AccountId
+      , "mint" .= beneficiaryMintSchemaQrc20Mint
+      ]
+
+
+-- | Construct a value of type 'BeneficiaryMintSchemaQrc20' (by applying it's required fields, if any)
+mkBeneficiaryMintSchemaQrc20
+  :: BeneficiaryMintSchemaQrc20
+mkBeneficiaryMintSchemaQrc20 =
+  BeneficiaryMintSchemaQrc20
+  { beneficiaryMintSchemaQrc20AccountId = Nothing
+  , beneficiaryMintSchemaQrc20Mint = Nothing
+  }
+
+-- ** BeneficiaryMintSchemaQrc721
+-- | BeneficiaryMintSchemaQrc721
+-- Who is the beneficiary of this transaction
+data BeneficiaryMintSchemaQrc721 = BeneficiaryMintSchemaQrc721
+  { beneficiaryMintSchemaQrc721AccountId :: !(Maybe Text) -- ^ "accountId" - The unique identifiers of the beneficiaries
+  , beneficiaryMintSchemaQrc721Mint :: !(Maybe MintSchemaQrc721) -- ^ "mint"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON BeneficiaryMintSchemaQrc721
+instance A.FromJSON BeneficiaryMintSchemaQrc721 where
+  parseJSON = A.withObject "BeneficiaryMintSchemaQrc721" $ \o ->
+    BeneficiaryMintSchemaQrc721
+      <$> (o .:? "accountId")
+      <*> (o .:? "mint")
+
+-- | ToJSON BeneficiaryMintSchemaQrc721
+instance A.ToJSON BeneficiaryMintSchemaQrc721 where
+  toJSON BeneficiaryMintSchemaQrc721 {..} =
+   _omitNulls
+      [ "accountId" .= beneficiaryMintSchemaQrc721AccountId
+      , "mint" .= beneficiaryMintSchemaQrc721Mint
+      ]
+
+
+-- | Construct a value of type 'BeneficiaryMintSchemaQrc721' (by applying it's required fields, if any)
+mkBeneficiaryMintSchemaQrc721
+  :: BeneficiaryMintSchemaQrc721
+mkBeneficiaryMintSchemaQrc721 =
+  BeneficiaryMintSchemaQrc721
+  { beneficiaryMintSchemaQrc721AccountId = Nothing
+  , beneficiaryMintSchemaQrc721Mint = Nothing
   }
 
 -- ** Block
@@ -558,11 +868,189 @@ mkBlockSize =
   , blockSizeKey = Nothing
   }
 
+-- ** Burn
+-- | Burn
+data Burn = Burn
+  { burnTokenName :: !(Maybe Text) -- ^ "tokenName" - Name of the token
+  , burnAmount :: !(Maybe Text) -- ^ "amount" - The amount of a currency
+  , burnUnit :: !(Maybe Text) -- ^ "unit" - The unit of this currency/token
+  , burnMetadata :: !(Maybe Text) -- ^ "metadata" - (Optional) String of metadata
+  , burnTokenId :: !(Maybe Text) -- ^ "tokenId" - Unique identifier for the specific token
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Burn
+instance A.FromJSON Burn where
+  parseJSON = A.withObject "Burn" $ \o ->
+    Burn
+      <$> (o .:? "tokenName")
+      <*> (o .:? "amount")
+      <*> (o .:? "unit")
+      <*> (o .:? "metadata")
+      <*> (o .:? "tokenId")
+
+-- | ToJSON Burn
+instance A.ToJSON Burn where
+  toJSON Burn {..} =
+   _omitNulls
+      [ "tokenName" .= burnTokenName
+      , "amount" .= burnAmount
+      , "unit" .= burnUnit
+      , "metadata" .= burnMetadata
+      , "tokenId" .= burnTokenId
+      ]
+
+
+-- | Construct a value of type 'Burn' (by applying it's required fields, if any)
+mkBurn
+  :: Burn
+mkBurn =
+  Burn
+  { burnTokenName = Nothing
+  , burnAmount = Nothing
+  , burnUnit = Nothing
+  , burnMetadata = Nothing
+  , burnTokenId = Nothing
+  }
+
+-- ** BurnRequestDetailsSchema
+-- | BurnRequestDetailsSchema
+data BurnRequestDetailsSchema = BurnRequestDetailsSchema
+  { burnRequestDetailsSchemaOwner :: !(Maybe [OwnerBurnSchema]) -- ^ "owner" - Who is the owner of the tokens
+  , burnRequestDetailsSchemaMessage :: !(Maybe Text) -- ^ "message" - Any text-based element of the data payload
+  , burnRequestDetailsSchemaOverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON BurnRequestDetailsSchema
+instance A.FromJSON BurnRequestDetailsSchema where
+  parseJSON = A.withObject "BurnRequestDetailsSchema" $ \o ->
+    BurnRequestDetailsSchema
+      <$> (o .:? "owner")
+      <*> (o .:? "message")
+      <*> (o .:? "overledgerSigningType")
+
+-- | ToJSON BurnRequestDetailsSchema
+instance A.ToJSON BurnRequestDetailsSchema where
+  toJSON BurnRequestDetailsSchema {..} =
+   _omitNulls
+      [ "owner" .= burnRequestDetailsSchemaOwner
+      , "message" .= burnRequestDetailsSchemaMessage
+      , "overledgerSigningType" .= burnRequestDetailsSchemaOverledgerSigningType
+      ]
+
+
+-- | Construct a value of type 'BurnRequestDetailsSchema' (by applying it's required fields, if any)
+mkBurnRequestDetailsSchema
+  :: BurnRequestDetailsSchema
+mkBurnRequestDetailsSchema =
+  BurnRequestDetailsSchema
+  { burnRequestDetailsSchemaOwner = Nothing
+  , burnRequestDetailsSchemaMessage = Nothing
+  , burnRequestDetailsSchemaOverledgerSigningType = Nothing
+  }
+
+-- ** BurnRequestDetailsSchemaQrc721
+-- | BurnRequestDetailsSchemaQrc721
+data BurnRequestDetailsSchemaQrc721 = BurnRequestDetailsSchemaQrc721
+  { burnRequestDetailsSchemaQrc721Owner :: !(Maybe OwnerBurnSchema) -- ^ "owner"
+  , burnRequestDetailsSchemaQrc721OverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON BurnRequestDetailsSchemaQrc721
+instance A.FromJSON BurnRequestDetailsSchemaQrc721 where
+  parseJSON = A.withObject "BurnRequestDetailsSchemaQrc721" $ \o ->
+    BurnRequestDetailsSchemaQrc721
+      <$> (o .:? "owner")
+      <*> (o .:? "overledgerSigningType")
+
+-- | ToJSON BurnRequestDetailsSchemaQrc721
+instance A.ToJSON BurnRequestDetailsSchemaQrc721 where
+  toJSON BurnRequestDetailsSchemaQrc721 {..} =
+   _omitNulls
+      [ "owner" .= burnRequestDetailsSchemaQrc721Owner
+      , "overledgerSigningType" .= burnRequestDetailsSchemaQrc721OverledgerSigningType
+      ]
+
+
+-- | Construct a value of type 'BurnRequestDetailsSchemaQrc721' (by applying it's required fields, if any)
+mkBurnRequestDetailsSchemaQrc721
+  :: BurnRequestDetailsSchemaQrc721
+mkBurnRequestDetailsSchemaQrc721 =
+  BurnRequestDetailsSchemaQrc721
+  { burnRequestDetailsSchemaQrc721Owner = Nothing
+  , burnRequestDetailsSchemaQrc721OverledgerSigningType = Nothing
+  }
+
+-- ** BurnSchema
+-- | BurnSchema
+data BurnSchema = BurnSchema
+  { burnSchemaAmount :: !(Text) -- ^ /Required/ "amount" - The amount of a currency
+  , burnSchemaUnit :: !(Maybe Text) -- ^ "unit" - The unit of this currency/token
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON BurnSchema
+instance A.FromJSON BurnSchema where
+  parseJSON = A.withObject "BurnSchema" $ \o ->
+    BurnSchema
+      <$> (o .:  "amount")
+      <*> (o .:? "unit")
+
+-- | ToJSON BurnSchema
+instance A.ToJSON BurnSchema where
+  toJSON BurnSchema {..} =
+   _omitNulls
+      [ "amount" .= burnSchemaAmount
+      , "unit" .= burnSchemaUnit
+      ]
+
+
+-- | Construct a value of type 'BurnSchema' (by applying it's required fields, if any)
+mkBurnSchema
+  :: Text -- ^ 'burnSchemaAmount': The amount of a currency
+  -> BurnSchema
+mkBurnSchema burnSchemaAmount =
+  BurnSchema
+  { burnSchemaAmount
+  , burnSchemaUnit = Nothing
+  }
+
+-- ** Collector
+-- | Collector
+-- Who is the collector of the tokens.
+data Collector = Collector
+  { collectorAccountId :: !(Maybe Text) -- ^ "accountId"
+  , collectorTransfer :: !(Maybe Transfer) -- ^ "transfer"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Collector
+instance A.FromJSON Collector where
+  parseJSON = A.withObject "Collector" $ \o ->
+    Collector
+      <$> (o .:? "accountId")
+      <*> (o .:? "transfer")
+
+-- | ToJSON Collector
+instance A.ToJSON Collector where
+  toJSON Collector {..} =
+   _omitNulls
+      [ "accountId" .= collectorAccountId
+      , "transfer" .= collectorTransfer
+      ]
+
+
+-- | Construct a value of type 'Collector' (by applying it's required fields, if any)
+mkCollector
+  :: Collector
+mkCollector =
+  Collector
+  { collectorAccountId = Nothing
+  , collectorTransfer = Nothing
+  }
+
 -- ** CreateSmartContractMonitoringSchema
 -- | CreateSmartContractMonitoringSchema
 data CreateSmartContractMonitoringSchema = CreateSmartContractMonitoringSchema
-  { createSmartContractMonitoringSchemaSubscriptionDetails :: !(Maybe ResourceMonitoringSubscriptionDetails) -- ^ "subscriptionDetails"
-  , createSmartContractMonitoringSchemaResourceMonitoring :: !(Maybe ResourceMonitoringDetails) -- ^ "resourceMonitoring"
+  { createSmartContractMonitoringSchemaResourceMonitoring :: !(Maybe ResourceMonitoringDetails) -- ^ "resourceMonitoring"
+  , createSmartContractMonitoringSchemaSubscriptionDetails :: !(Maybe ResourceMonitoringSubscriptionDetails) -- ^ "subscriptionDetails"
   , createSmartContractMonitoringSchemaSubscription :: !(Maybe ResourceMonitoringSubscription) -- ^ "subscription"
   } deriving (P.Show, P.Eq, P.Typeable)
 
@@ -570,16 +1058,16 @@ data CreateSmartContractMonitoringSchema = CreateSmartContractMonitoringSchema
 instance A.FromJSON CreateSmartContractMonitoringSchema where
   parseJSON = A.withObject "CreateSmartContractMonitoringSchema" $ \o ->
     CreateSmartContractMonitoringSchema
-      <$> (o .:? "subscriptionDetails")
-      <*> (o .:? "resourceMonitoring")
+      <$> (o .:? "resourceMonitoring")
+      <*> (o .:? "subscriptionDetails")
       <*> (o .:? "subscription")
 
 -- | ToJSON CreateSmartContractMonitoringSchema
 instance A.ToJSON CreateSmartContractMonitoringSchema where
   toJSON CreateSmartContractMonitoringSchema {..} =
    _omitNulls
-      [ "subscriptionDetails" .= createSmartContractMonitoringSchemaSubscriptionDetails
-      , "resourceMonitoring" .= createSmartContractMonitoringSchemaResourceMonitoring
+      [ "resourceMonitoring" .= createSmartContractMonitoringSchemaResourceMonitoring
+      , "subscriptionDetails" .= createSmartContractMonitoringSchemaSubscriptionDetails
       , "subscription" .= createSmartContractMonitoringSchemaSubscription
       ]
 
@@ -589,86 +1077,144 @@ mkCreateSmartContractMonitoringSchema
   :: CreateSmartContractMonitoringSchema
 mkCreateSmartContractMonitoringSchema =
   CreateSmartContractMonitoringSchema
-  { createSmartContractMonitoringSchemaSubscriptionDetails = Nothing
-  , createSmartContractMonitoringSchemaResourceMonitoring = Nothing
+  { createSmartContractMonitoringSchemaResourceMonitoring = Nothing
+  , createSmartContractMonitoringSchemaSubscriptionDetails = Nothing
   , createSmartContractMonitoringSchemaSubscription = Nothing
   }
 
--- ** CreateSubscriptionRequestSchema
--- | CreateSubscriptionRequestSchema
-data CreateSubscriptionRequestSchema = CreateSubscriptionRequestSchema
-  { createSubscriptionRequestSchemaIds :: !(Maybe [Text]) -- ^ "ids"
-  , createSubscriptionRequestSchemaCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
-  , createSubscriptionRequestSchemaType :: !(Maybe Text) -- ^ "type"
+-- ** CreateWebhookSubscriptionRequestSchema
+-- | CreateWebhookSubscriptionRequestSchema
+data CreateWebhookSubscriptionRequestSchema = CreateWebhookSubscriptionRequestSchema
+  { createWebhookSubscriptionRequestSchemaType :: !(Maybe Text) -- ^ "type"
+  , createWebhookSubscriptionRequestSchemaIds :: !(Maybe [Text]) -- ^ "ids"
+  , createWebhookSubscriptionRequestSchemaCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
   } deriving (P.Show, P.Eq, P.Typeable)
 
--- | FromJSON CreateSubscriptionRequestSchema
-instance A.FromJSON CreateSubscriptionRequestSchema where
-  parseJSON = A.withObject "CreateSubscriptionRequestSchema" $ \o ->
-    CreateSubscriptionRequestSchema
-      <$> (o .:? "ids")
+-- | FromJSON CreateWebhookSubscriptionRequestSchema
+instance A.FromJSON CreateWebhookSubscriptionRequestSchema where
+  parseJSON = A.withObject "CreateWebhookSubscriptionRequestSchema" $ \o ->
+    CreateWebhookSubscriptionRequestSchema
+      <$> (o .:? "type")
+      <*> (o .:? "ids")
       <*> (o .:? "callbackUrl")
-      <*> (o .:? "type")
 
--- | ToJSON CreateSubscriptionRequestSchema
-instance A.ToJSON CreateSubscriptionRequestSchema where
-  toJSON CreateSubscriptionRequestSchema {..} =
+-- | ToJSON CreateWebhookSubscriptionRequestSchema
+instance A.ToJSON CreateWebhookSubscriptionRequestSchema where
+  toJSON CreateWebhookSubscriptionRequestSchema {..} =
    _omitNulls
-      [ "ids" .= createSubscriptionRequestSchemaIds
-      , "callbackUrl" .= createSubscriptionRequestSchemaCallbackUrl
-      , "type" .= createSubscriptionRequestSchemaType
+      [ "type" .= createWebhookSubscriptionRequestSchemaType
+      , "ids" .= createWebhookSubscriptionRequestSchemaIds
+      , "callbackUrl" .= createWebhookSubscriptionRequestSchemaCallbackUrl
       ]
 
 
--- | Construct a value of type 'CreateSubscriptionRequestSchema' (by applying it's required fields, if any)
-mkCreateSubscriptionRequestSchema
-  :: CreateSubscriptionRequestSchema
-mkCreateSubscriptionRequestSchema =
-  CreateSubscriptionRequestSchema
-  { createSubscriptionRequestSchemaIds = Nothing
-  , createSubscriptionRequestSchemaCallbackUrl = Nothing
-  , createSubscriptionRequestSchemaType = Nothing
+-- | Construct a value of type 'CreateWebhookSubscriptionRequestSchema' (by applying it's required fields, if any)
+mkCreateWebhookSubscriptionRequestSchema
+  :: CreateWebhookSubscriptionRequestSchema
+mkCreateWebhookSubscriptionRequestSchema =
+  CreateWebhookSubscriptionRequestSchema
+  { createWebhookSubscriptionRequestSchemaType = Nothing
+  , createWebhookSubscriptionRequestSchemaIds = Nothing
+  , createWebhookSubscriptionRequestSchemaCallbackUrl = Nothing
   }
 
--- ** CreateSubscriptionResponseSchema
--- | CreateSubscriptionResponseSchema
-data CreateSubscriptionResponseSchema = CreateSubscriptionResponseSchema
-  { createSubscriptionResponseSchemaScubscriptionDetails :: !(Maybe SubscriptionDetailsSchema) -- ^ "scubscriptionDetails"
-  , createSubscriptionResponseSchemaSubscriptionId :: !(Maybe Text) -- ^ "subscriptionId"
+-- ** CreateWebhookSubscriptionResponseSchema
+-- | CreateWebhookSubscriptionResponseSchema
+data CreateWebhookSubscriptionResponseSchema = CreateWebhookSubscriptionResponseSchema
+  { createWebhookSubscriptionResponseSchemaSubscriptionId :: !(Maybe Text) -- ^ "subscriptionId"
+  , createWebhookSubscriptionResponseSchemaScubscriptionDetails :: !(Maybe WebhookSubscriptionDetailsSchema) -- ^ "scubscriptionDetails"
   } deriving (P.Show, P.Eq, P.Typeable)
 
--- | FromJSON CreateSubscriptionResponseSchema
-instance A.FromJSON CreateSubscriptionResponseSchema where
-  parseJSON = A.withObject "CreateSubscriptionResponseSchema" $ \o ->
-    CreateSubscriptionResponseSchema
-      <$> (o .:? "scubscriptionDetails")
-      <*> (o .:? "subscriptionId")
+-- | FromJSON CreateWebhookSubscriptionResponseSchema
+instance A.FromJSON CreateWebhookSubscriptionResponseSchema where
+  parseJSON = A.withObject "CreateWebhookSubscriptionResponseSchema" $ \o ->
+    CreateWebhookSubscriptionResponseSchema
+      <$> (o .:? "subscriptionId")
+      <*> (o .:? "scubscriptionDetails")
 
--- | ToJSON CreateSubscriptionResponseSchema
-instance A.ToJSON CreateSubscriptionResponseSchema where
-  toJSON CreateSubscriptionResponseSchema {..} =
+-- | ToJSON CreateWebhookSubscriptionResponseSchema
+instance A.ToJSON CreateWebhookSubscriptionResponseSchema where
+  toJSON CreateWebhookSubscriptionResponseSchema {..} =
    _omitNulls
-      [ "scubscriptionDetails" .= createSubscriptionResponseSchemaScubscriptionDetails
-      , "subscriptionId" .= createSubscriptionResponseSchemaSubscriptionId
+      [ "subscriptionId" .= createWebhookSubscriptionResponseSchemaSubscriptionId
+      , "scubscriptionDetails" .= createWebhookSubscriptionResponseSchemaScubscriptionDetails
       ]
 
 
--- | Construct a value of type 'CreateSubscriptionResponseSchema' (by applying it's required fields, if any)
-mkCreateSubscriptionResponseSchema
-  :: CreateSubscriptionResponseSchema
-mkCreateSubscriptionResponseSchema =
-  CreateSubscriptionResponseSchema
-  { createSubscriptionResponseSchemaScubscriptionDetails = Nothing
-  , createSubscriptionResponseSchemaSubscriptionId = Nothing
+-- | Construct a value of type 'CreateWebhookSubscriptionResponseSchema' (by applying it's required fields, if any)
+mkCreateWebhookSubscriptionResponseSchema
+  :: CreateWebhookSubscriptionResponseSchema
+mkCreateWebhookSubscriptionResponseSchema =
+  CreateWebhookSubscriptionResponseSchema
+  { createWebhookSubscriptionResponseSchemaSubscriptionId = Nothing
+  , createWebhookSubscriptionResponseSchemaScubscriptionDetails = Nothing
+  }
+
+-- ** Creator
+-- | Creator
+-- Where is this transaction coming from
+data Creator = Creator
+  { creatorAccountId :: !(Maybe Text) -- ^ "accountId"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Creator
+instance A.FromJSON Creator where
+  parseJSON = A.withObject "Creator" $ \o ->
+    Creator
+      <$> (o .:? "accountId")
+
+-- | ToJSON Creator
+instance A.ToJSON Creator where
+  toJSON Creator {..} =
+   _omitNulls
+      [ "accountId" .= creatorAccountId
+      ]
+
+
+-- | Construct a value of type 'Creator' (by applying it's required fields, if any)
+mkCreator
+  :: Creator
+mkCreator =
+  Creator
+  { creatorAccountId = Nothing
+  }
+
+-- ** CreatorMintSchema
+-- | CreatorMintSchema
+-- Who is the creator of this transaction
+data CreatorMintSchema = CreatorMintSchema
+  { creatorMintSchemaAccountId :: !(Maybe Text) -- ^ "accountId" - Unique Identifier of the creator
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON CreatorMintSchema
+instance A.FromJSON CreatorMintSchema where
+  parseJSON = A.withObject "CreatorMintSchema" $ \o ->
+    CreatorMintSchema
+      <$> (o .:? "accountId")
+
+-- | ToJSON CreatorMintSchema
+instance A.ToJSON CreatorMintSchema where
+  toJSON CreatorMintSchema {..} =
+   _omitNulls
+      [ "accountId" .= creatorMintSchemaAccountId
+      ]
+
+
+-- | Construct a value of type 'CreatorMintSchema' (by applying it's required fields, if any)
+mkCreatorMintSchema
+  :: CreatorMintSchema
+mkCreatorMintSchema =
+  CreatorMintSchema
+  { creatorMintSchemaAccountId = Nothing
   }
 
 -- ** CreditRequestDetailsSchema
 -- | CreditRequestDetailsSchema
 data CreditRequestDetailsSchema = CreditRequestDetailsSchema
   { creditRequestDetailsSchemaPayee :: !(Maybe [PayeeCreditSchema]) -- ^ "payee" - Who are the payees of this transaction
-  , creditRequestDetailsSchemaOverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
   , creditRequestDetailsSchemaMessage :: !(Maybe Text) -- ^ "message" - Any text-based element of the data payload
   , creditRequestDetailsSchemaPayer :: !(Maybe [PayerCreditSchema]) -- ^ "payer" - Who are the payers of this transaction
+  , creditRequestDetailsSchemaOverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON CreditRequestDetailsSchema
@@ -676,18 +1222,18 @@ instance A.FromJSON CreditRequestDetailsSchema where
   parseJSON = A.withObject "CreditRequestDetailsSchema" $ \o ->
     CreditRequestDetailsSchema
       <$> (o .:? "payee")
-      <*> (o .:? "overledgerSigningType")
       <*> (o .:? "message")
       <*> (o .:? "payer")
+      <*> (o .:? "overledgerSigningType")
 
 -- | ToJSON CreditRequestDetailsSchema
 instance A.ToJSON CreditRequestDetailsSchema where
   toJSON CreditRequestDetailsSchema {..} =
    _omitNulls
       [ "payee" .= creditRequestDetailsSchemaPayee
-      , "overledgerSigningType" .= creditRequestDetailsSchemaOverledgerSigningType
       , "message" .= creditRequestDetailsSchemaMessage
       , "payer" .= creditRequestDetailsSchemaPayer
+      , "overledgerSigningType" .= creditRequestDetailsSchemaOverledgerSigningType
       ]
 
 
@@ -697,9 +1243,9 @@ mkCreditRequestDetailsSchema
 mkCreditRequestDetailsSchema =
   CreditRequestDetailsSchema
   { creditRequestDetailsSchemaPayee = Nothing
-  , creditRequestDetailsSchemaOverledgerSigningType = Nothing
   , creditRequestDetailsSchemaMessage = Nothing
   , creditRequestDetailsSchemaPayer = Nothing
+  , creditRequestDetailsSchemaOverledgerSigningType = Nothing
   }
 
 -- ** DeleteResourceMonitoringAddressSchema
@@ -738,29 +1284,29 @@ mkDeleteResourceMonitoringAddressSchema =
 -- | Destination
 -- The Destination of this transaction
 data Destination = Destination
-  { destinationTransfer :: !(Maybe Transfer) -- ^ "transfer"
+  { destinationPayment :: !(Maybe Payment) -- ^ "payment"
+  , destinationTransfer :: !(Maybe Transfer) -- ^ "transfer"
+  , destinationDestinationId :: !(Maybe Text) -- ^ "destinationId" - The unique identifier of the destination
   , destinationSmartContract :: !(Maybe SmartContract) -- ^ "smartContract"
-  , destinationPayment :: !(Maybe Payment) -- ^ "payment"
-  , destinationDestinationId :: !(Maybe Text) -- ^ "destinationId" - The unique identifiers of the destination
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON Destination
 instance A.FromJSON Destination where
   parseJSON = A.withObject "Destination" $ \o ->
     Destination
-      <$> (o .:? "transfer")
-      <*> (o .:? "smartContract")
-      <*> (o .:? "payment")
+      <$> (o .:? "payment")
+      <*> (o .:? "transfer")
       <*> (o .:? "destinationId")
+      <*> (o .:? "smartContract")
 
 -- | ToJSON Destination
 instance A.ToJSON Destination where
   toJSON Destination {..} =
    _omitNulls
-      [ "transfer" .= destinationTransfer
-      , "smartContract" .= destinationSmartContract
-      , "payment" .= destinationPayment
+      [ "payment" .= destinationPayment
+      , "transfer" .= destinationTransfer
       , "destinationId" .= destinationDestinationId
+      , "smartContract" .= destinationSmartContract
       ]
 
 
@@ -769,65 +1315,67 @@ mkDestination
   :: Destination
 mkDestination =
   Destination
-  { destinationTransfer = Nothing
-  , destinationSmartContract = Nothing
-  , destinationPayment = Nothing
+  { destinationPayment = Nothing
+  , destinationTransfer = Nothing
   , destinationDestinationId = Nothing
+  , destinationSmartContract = Nothing
   }
 
 -- ** DestinationPaymentSchema
 -- | DestinationPaymentSchema
--- The Destination of this transaction
+-- List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
 data DestinationPaymentSchema = DestinationPaymentSchema
-  { destinationPaymentSchemaPayment :: !(Maybe PaymentSchema) -- ^ "payment"
-  , destinationPaymentSchemaDestinationId :: !(Maybe Text) -- ^ "destinationId" - The unique identifiers of the destination
+  { destinationPaymentSchemaDestinationId :: !(Text) -- ^ /Required/ "destinationId" - Unique identifier of the destination/recipient
+  , destinationPaymentSchemaPayment :: !(PaymentSchema) -- ^ /Required/ "payment"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON DestinationPaymentSchema
 instance A.FromJSON DestinationPaymentSchema where
   parseJSON = A.withObject "DestinationPaymentSchema" $ \o ->
     DestinationPaymentSchema
-      <$> (o .:? "payment")
-      <*> (o .:? "destinationId")
+      <$> (o .:  "destinationId")
+      <*> (o .:  "payment")
 
 -- | ToJSON DestinationPaymentSchema
 instance A.ToJSON DestinationPaymentSchema where
   toJSON DestinationPaymentSchema {..} =
    _omitNulls
-      [ "payment" .= destinationPaymentSchemaPayment
-      , "destinationId" .= destinationPaymentSchemaDestinationId
+      [ "destinationId" .= destinationPaymentSchemaDestinationId
+      , "payment" .= destinationPaymentSchemaPayment
       ]
 
 
 -- | Construct a value of type 'DestinationPaymentSchema' (by applying it's required fields, if any)
 mkDestinationPaymentSchema
-  :: DestinationPaymentSchema
-mkDestinationPaymentSchema =
+  :: Text -- ^ 'destinationPaymentSchemaDestinationId': Unique identifier of the destination/recipient
+  -> PaymentSchema -- ^ 'destinationPaymentSchemaPayment' 
+  -> DestinationPaymentSchema
+mkDestinationPaymentSchema destinationPaymentSchemaDestinationId destinationPaymentSchemaPayment =
   DestinationPaymentSchema
-  { destinationPaymentSchemaPayment = Nothing
-  , destinationPaymentSchemaDestinationId = Nothing
+  { destinationPaymentSchemaDestinationId
+  , destinationPaymentSchemaPayment
   }
 
 -- ** DestinationTransferSchema
 -- | DestinationTransferSchema
 data DestinationTransferSchema = DestinationTransferSchema
-  { destinationTransferSchemaTransfer :: !(Maybe TransferSchema) -- ^ "transfer"
-  , destinationTransferSchemaDestinationId :: !(Maybe Text) -- ^ "destinationId"
+  { destinationTransferSchemaDestinationId :: !(Maybe Text) -- ^ "destinationId"
+  , destinationTransferSchemaTransfer :: !(Maybe TransferSchema) -- ^ "transfer"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON DestinationTransferSchema
 instance A.FromJSON DestinationTransferSchema where
   parseJSON = A.withObject "DestinationTransferSchema" $ \o ->
     DestinationTransferSchema
-      <$> (o .:? "transfer")
-      <*> (o .:? "destinationId")
+      <$> (o .:? "destinationId")
+      <*> (o .:? "transfer")
 
 -- | ToJSON DestinationTransferSchema
 instance A.ToJSON DestinationTransferSchema where
   toJSON DestinationTransferSchema {..} =
    _omitNulls
-      [ "transfer" .= destinationTransferSchemaTransfer
-      , "destinationId" .= destinationTransferSchemaDestinationId
+      [ "destinationId" .= destinationTransferSchemaDestinationId
+      , "transfer" .= destinationTransferSchemaTransfer
       ]
 
 
@@ -836,16 +1384,80 @@ mkDestinationTransferSchema
   :: DestinationTransferSchema
 mkDestinationTransferSchema =
   DestinationTransferSchema
-  { destinationTransferSchemaTransfer = Nothing
-  , destinationTransferSchemaDestinationId = Nothing
+  { destinationTransferSchemaDestinationId = Nothing
+  , destinationTransferSchemaTransfer = Nothing
+  }
+
+-- ** Erc20DTO
+-- | Erc20DTO
+data Erc20DTO = Erc20DTO
+  { erc20DTOIsQrc20 :: !(Maybe Bool) -- ^ "isQrc20"
+  , erc20DTOTokenUnit :: !(Maybe Text) -- ^ "tokenUnit"
+  , erc20DTODecimalPlaces :: !(Maybe Int) -- ^ "decimalPlaces"
+  , erc20DTOFunctions :: !(Maybe [TierFunctionDTO]) -- ^ "functions"
+  , erc20DTOTokenName :: !(Maybe Text) -- ^ "tokenName"
+  , erc20DTOSmartContractAddress :: !(Maybe Text) -- ^ "smartContractAddress"
+  , erc20DTOLocation :: !(Maybe LocationDTO) -- ^ "location"
+  , erc20DTOVersion :: !(Maybe Text) -- ^ "version"
+  , erc20DTOUrl :: !(Maybe Text) -- ^ "url"
+  , erc20DTOAuditDate :: !(Maybe Date) -- ^ "auditDate"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Erc20DTO
+instance A.FromJSON Erc20DTO where
+  parseJSON = A.withObject "Erc20DTO" $ \o ->
+    Erc20DTO
+      <$> (o .:? "isQrc20")
+      <*> (o .:? "tokenUnit")
+      <*> (o .:? "decimalPlaces")
+      <*> (o .:? "functions")
+      <*> (o .:? "tokenName")
+      <*> (o .:? "smartContractAddress")
+      <*> (o .:? "location")
+      <*> (o .:? "version")
+      <*> (o .:? "url")
+      <*> (o .:? "auditDate")
+
+-- | ToJSON Erc20DTO
+instance A.ToJSON Erc20DTO where
+  toJSON Erc20DTO {..} =
+   _omitNulls
+      [ "isQrc20" .= erc20DTOIsQrc20
+      , "tokenUnit" .= erc20DTOTokenUnit
+      , "decimalPlaces" .= erc20DTODecimalPlaces
+      , "functions" .= erc20DTOFunctions
+      , "tokenName" .= erc20DTOTokenName
+      , "smartContractAddress" .= erc20DTOSmartContractAddress
+      , "location" .= erc20DTOLocation
+      , "version" .= erc20DTOVersion
+      , "url" .= erc20DTOUrl
+      , "auditDate" .= erc20DTOAuditDate
+      ]
+
+
+-- | Construct a value of type 'Erc20DTO' (by applying it's required fields, if any)
+mkErc20DTO
+  :: Erc20DTO
+mkErc20DTO =
+  Erc20DTO
+  { erc20DTOIsQrc20 = Nothing
+  , erc20DTOTokenUnit = Nothing
+  , erc20DTODecimalPlaces = Nothing
+  , erc20DTOFunctions = Nothing
+  , erc20DTOTokenName = Nothing
+  , erc20DTOSmartContractAddress = Nothing
+  , erc20DTOLocation = Nothing
+  , erc20DTOVersion = Nothing
+  , erc20DTOUrl = Nothing
+  , erc20DTOAuditDate = Nothing
   }
 
 -- ** Error
 -- | Error
 data Error = Error
   { errorCode :: !(Maybe Int) -- ^ "code"
-  , errorService :: !(Maybe Text) -- ^ "service"
   , errorMessage :: !(Maybe Text) -- ^ "message"
+  , errorService :: !(Maybe Text) -- ^ "service"
   , errorTimestamp :: !(Maybe Integer) -- ^ "timestamp"
   } deriving (P.Show, P.Eq, P.Typeable)
 
@@ -854,8 +1466,8 @@ instance A.FromJSON Error where
   parseJSON = A.withObject "Error" $ \o ->
     Error
       <$> (o .:? "code")
-      <*> (o .:? "service")
       <*> (o .:? "message")
+      <*> (o .:? "service")
       <*> (o .:? "timestamp")
 
 -- | ToJSON Error
@@ -863,8 +1475,8 @@ instance A.ToJSON Error where
   toJSON Error {..} =
    _omitNulls
       [ "code" .= errorCode
-      , "service" .= errorService
       , "message" .= errorMessage
+      , "service" .= errorService
       , "timestamp" .= errorTimestamp
       ]
 
@@ -875,34 +1487,34 @@ mkError
 mkError =
   Error
   { errorCode = Nothing
-  , errorService = Nothing
   , errorMessage = Nothing
+  , errorService = Nothing
   , errorTimestamp = Nothing
   }
 
 -- ** ErrorDetails
 -- | ErrorDetails
 data ErrorDetails = ErrorDetails
-  { errorDetailsCode :: !(Maybe Text) -- ^ "code"
+  { errorDetailsCategory :: !(Maybe Text) -- ^ "category"
   , errorDetailsDescription :: !(Maybe Text) -- ^ "description"
-  , errorDetailsCategory :: !(Maybe Text) -- ^ "category"
+  , errorDetailsCode :: !(Maybe Text) -- ^ "code"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON ErrorDetails
 instance A.FromJSON ErrorDetails where
   parseJSON = A.withObject "ErrorDetails" $ \o ->
     ErrorDetails
-      <$> (o .:? "code")
+      <$> (o .:? "category")
       <*> (o .:? "description")
-      <*> (o .:? "category")
+      <*> (o .:? "code")
 
 -- | ToJSON ErrorDetails
 instance A.ToJSON ErrorDetails where
   toJSON ErrorDetails {..} =
    _omitNulls
-      [ "code" .= errorDetailsCode
+      [ "category" .= errorDetailsCategory
       , "description" .= errorDetailsDescription
-      , "category" .= errorDetailsCategory
+      , "code" .= errorDetailsCode
       ]
 
 
@@ -911,9 +1523,9 @@ mkErrorDetails
   :: ErrorDetails
 mkErrorDetails =
   ErrorDetails
-  { errorDetailsCode = Nothing
+  { errorDetailsCategory = Nothing
   , errorDetailsDescription = Nothing
-  , errorDetailsCategory = Nothing
+  , errorDetailsCode = Nothing
   }
 
 -- ** ErrorList
@@ -946,6 +1558,134 @@ mkErrorList =
   ErrorList
   { errorListErrors = Nothing
   , errorListErrorCount = Nothing
+  }
+
+-- ** ErrorResponseMessage
+-- | ErrorResponseMessage
+data ErrorResponseMessage = ErrorResponseMessage
+  { errorResponseMessageCode :: !(Maybe Int) -- ^ "code"
+  , errorResponseMessageErrorMessageExtraDetails :: !(Maybe A.Value) -- ^ "errorMessageExtraDetails"
+  , errorResponseMessageSubCode :: !(Maybe Int) -- ^ "subCode"
+  , errorResponseMessageLogTraceId :: !(Maybe Text) -- ^ "logTraceId"
+  , errorResponseMessageType :: !(Maybe Text) -- ^ "type"
+  , errorResponseMessageTitle :: !(Maybe Text) -- ^ "title"
+  , errorResponseMessageMessage :: !(Maybe Text) -- ^ "message"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON ErrorResponseMessage
+instance A.FromJSON ErrorResponseMessage where
+  parseJSON = A.withObject "ErrorResponseMessage" $ \o ->
+    ErrorResponseMessage
+      <$> (o .:? "code")
+      <*> (o .:? "errorMessageExtraDetails")
+      <*> (o .:? "subCode")
+      <*> (o .:? "logTraceId")
+      <*> (o .:? "type")
+      <*> (o .:? "title")
+      <*> (o .:? "message")
+
+-- | ToJSON ErrorResponseMessage
+instance A.ToJSON ErrorResponseMessage where
+  toJSON ErrorResponseMessage {..} =
+   _omitNulls
+      [ "code" .= errorResponseMessageCode
+      , "errorMessageExtraDetails" .= errorResponseMessageErrorMessageExtraDetails
+      , "subCode" .= errorResponseMessageSubCode
+      , "logTraceId" .= errorResponseMessageLogTraceId
+      , "type" .= errorResponseMessageType
+      , "title" .= errorResponseMessageTitle
+      , "message" .= errorResponseMessageMessage
+      ]
+
+
+-- | Construct a value of type 'ErrorResponseMessage' (by applying it's required fields, if any)
+mkErrorResponseMessage
+  :: ErrorResponseMessage
+mkErrorResponseMessage =
+  ErrorResponseMessage
+  { errorResponseMessageCode = Nothing
+  , errorResponseMessageErrorMessageExtraDetails = Nothing
+  , errorResponseMessageSubCode = Nothing
+  , errorResponseMessageLogTraceId = Nothing
+  , errorResponseMessageType = Nothing
+  , errorResponseMessageTitle = Nothing
+  , errorResponseMessageMessage = Nothing
+  }
+
+-- ** EventSubscriptionResponse
+-- | EventSubscriptionResponse
+data EventSubscriptionResponse = EventSubscriptionResponse
+  { eventSubscriptionResponseTokenName :: !(Maybe Text) -- ^ "tokenName" - Name of the token
+  , eventSubscriptionResponseSubscriptionDetails :: !(Maybe EventSubscriptionResponseDetails) -- ^ "subscriptionDetails"
+  , eventSubscriptionResponseLocation :: !(Maybe Location) -- ^ "location"
+  , eventSubscriptionResponseType :: !(Maybe Text) -- ^ "type" - Type of event
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON EventSubscriptionResponse
+instance A.FromJSON EventSubscriptionResponse where
+  parseJSON = A.withObject "EventSubscriptionResponse" $ \o ->
+    EventSubscriptionResponse
+      <$> (o .:? "tokenName")
+      <*> (o .:? "subscriptionDetails")
+      <*> (o .:? "location")
+      <*> (o .:? "type")
+
+-- | ToJSON EventSubscriptionResponse
+instance A.ToJSON EventSubscriptionResponse where
+  toJSON EventSubscriptionResponse {..} =
+   _omitNulls
+      [ "tokenName" .= eventSubscriptionResponseTokenName
+      , "subscriptionDetails" .= eventSubscriptionResponseSubscriptionDetails
+      , "location" .= eventSubscriptionResponseLocation
+      , "type" .= eventSubscriptionResponseType
+      ]
+
+
+-- | Construct a value of type 'EventSubscriptionResponse' (by applying it's required fields, if any)
+mkEventSubscriptionResponse
+  :: EventSubscriptionResponse
+mkEventSubscriptionResponse =
+  EventSubscriptionResponse
+  { eventSubscriptionResponseTokenName = Nothing
+  , eventSubscriptionResponseSubscriptionDetails = Nothing
+  , eventSubscriptionResponseLocation = Nothing
+  , eventSubscriptionResponseType = Nothing
+  }
+
+-- ** EventSubscriptionResponseDetails
+-- | EventSubscriptionResponseDetails
+data EventSubscriptionResponseDetails = EventSubscriptionResponseDetails
+  { eventSubscriptionResponseDetailsSubscriptionId :: !(Maybe Text) -- ^ "subscriptionId"
+  , eventSubscriptionResponseDetailsCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
+  , eventSubscriptionResponseDetailsCreatedDate :: !(Maybe Text) -- ^ "createdDate"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON EventSubscriptionResponseDetails
+instance A.FromJSON EventSubscriptionResponseDetails where
+  parseJSON = A.withObject "EventSubscriptionResponseDetails" $ \o ->
+    EventSubscriptionResponseDetails
+      <$> (o .:? "subscriptionId")
+      <*> (o .:? "callbackUrl")
+      <*> (o .:? "createdDate")
+
+-- | ToJSON EventSubscriptionResponseDetails
+instance A.ToJSON EventSubscriptionResponseDetails where
+  toJSON EventSubscriptionResponseDetails {..} =
+   _omitNulls
+      [ "subscriptionId" .= eventSubscriptionResponseDetailsSubscriptionId
+      , "callbackUrl" .= eventSubscriptionResponseDetailsCallbackUrl
+      , "createdDate" .= eventSubscriptionResponseDetailsCreatedDate
+      ]
+
+
+-- | Construct a value of type 'EventSubscriptionResponseDetails' (by applying it's required fields, if any)
+mkEventSubscriptionResponseDetails
+  :: EventSubscriptionResponseDetails
+mkEventSubscriptionResponseDetails =
+  EventSubscriptionResponseDetails
+  { eventSubscriptionResponseDetailsSubscriptionId = Nothing
+  , eventSubscriptionResponseDetailsCallbackUrl = Nothing
+  , eventSubscriptionResponseDetailsCreatedDate = Nothing
   }
 
 -- ** ExecuteSearchBalanceResponse
@@ -1166,7 +1906,7 @@ data ExecuteSearchUTXOResponseSchema = ExecuteSearchUTXOResponseSchema
   { executeSearchUTXOResponseSchemaUtxoId :: !(Maybe Text) -- ^ "utxoId"
   , executeSearchUTXOResponseSchemaDestination :: !(Maybe [UTXODestination]) -- ^ "destination"
   , executeSearchUTXOResponseSchemaLocation :: !(Maybe Location) -- ^ "location"
-  , executeSearchUTXOResponseSchemaTimestamp :: !(Maybe UTXOTimestampSchema) -- ^ "timestamp"
+  , executeSearchUTXOResponseSchemaTimestamp :: !(Maybe Text) -- ^ "timestamp"
   , executeSearchUTXOResponseSchemaStatus :: !(Maybe Status) -- ^ "status"
   , executeSearchUTXOResponseSchemaNativeData :: !(Maybe UTXONativeData) -- ^ "nativeData"
   } deriving (P.Show, P.Eq, P.Typeable)
@@ -1243,35 +1983,34 @@ mkExecuteSmartContractReadResponseSchema =
 -- ** ExecuteTransactionRequest
 -- | ExecuteTransactionRequest
 data ExecuteTransactionRequest = ExecuteTransactionRequest
-  { executeTransactionRequestRequestId :: !(Text) -- ^ /Required/ "requestId" - The ID assigned to a preparation request in Overledger
-  , executeTransactionRequestSigned :: !(Text) -- ^ /Required/ "signed" - The raw data after transaction signing
+  { executeTransactionRequestSigned :: !(Maybe Text) -- ^ "signed" - The raw data after transaction signing
+  , executeTransactionRequestRequestId :: !(Text) -- ^ /Required/ "requestId" - The ID assigned to a preparation request in Overledger
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON ExecuteTransactionRequest
 instance A.FromJSON ExecuteTransactionRequest where
   parseJSON = A.withObject "ExecuteTransactionRequest" $ \o ->
     ExecuteTransactionRequest
-      <$> (o .:  "requestId")
-      <*> (o .:  "signed")
+      <$> (o .:? "signed")
+      <*> (o .:  "requestId")
 
 -- | ToJSON ExecuteTransactionRequest
 instance A.ToJSON ExecuteTransactionRequest where
   toJSON ExecuteTransactionRequest {..} =
    _omitNulls
-      [ "requestId" .= executeTransactionRequestRequestId
-      , "signed" .= executeTransactionRequestSigned
+      [ "signed" .= executeTransactionRequestSigned
+      , "requestId" .= executeTransactionRequestRequestId
       ]
 
 
 -- | Construct a value of type 'ExecuteTransactionRequest' (by applying it's required fields, if any)
 mkExecuteTransactionRequest
   :: Text -- ^ 'executeTransactionRequestRequestId': The ID assigned to a preparation request in Overledger
-  -> Text -- ^ 'executeTransactionRequestSigned': The raw data after transaction signing
   -> ExecuteTransactionRequest
-mkExecuteTransactionRequest executeTransactionRequestRequestId executeTransactionRequestSigned =
+mkExecuteTransactionRequest executeTransactionRequestRequestId =
   ExecuteTransactionRequest
-  { executeTransactionRequestRequestId
-  , executeTransactionRequestSigned
+  { executeTransactionRequestSigned = Nothing
+  , executeTransactionRequestRequestId
   }
 
 -- ** ExecuteTransactionResponse
@@ -1390,32 +2129,23 @@ mkFee feeAmount =
 -- ** Function
 -- | Function
 data Function = Function
-  { functionFunctionId :: !(Maybe Text) -- ^ "functionId"
-  , functionCode :: !(Maybe Text) -- ^ "code"
-  , functionName :: !(Maybe Text) -- ^ "name"
-  , functionInputParameters :: !(Maybe [Parameter]) -- ^ "inputParameters"
-  , functionOutputParameters :: !(Maybe [Parameter]) -- ^ "outputParameters"
+  { functionType :: !(Maybe Text) -- ^ "type"
+  , functionApi :: !(Maybe Text) -- ^ "api"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON Function
 instance A.FromJSON Function where
   parseJSON = A.withObject "Function" $ \o ->
     Function
-      <$> (o .:? "functionId")
-      <*> (o .:? "code")
-      <*> (o .:? "name")
-      <*> (o .:? "inputParameters")
-      <*> (o .:? "outputParameters")
+      <$> (o .:? "type")
+      <*> (o .:? "api")
 
 -- | ToJSON Function
 instance A.ToJSON Function where
   toJSON Function {..} =
    _omitNulls
-      [ "functionId" .= functionFunctionId
-      , "code" .= functionCode
-      , "name" .= functionName
-      , "inputParameters" .= functionInputParameters
-      , "outputParameters" .= functionOutputParameters
+      [ "type" .= functionType
+      , "api" .= functionApi
       ]
 
 
@@ -1424,11 +2154,92 @@ mkFunction
   :: Function
 mkFunction =
   Function
-  { functionFunctionId = Nothing
-  , functionCode = Nothing
-  , functionName = Nothing
-  , functionInputParameters = Nothing
-  , functionOutputParameters = Nothing
+  { functionType = Nothing
+  , functionApi = Nothing
+  }
+
+-- ** FunctionDTO
+-- | FunctionDTO
+data FunctionDTO = FunctionDTO
+  { functionDTOType :: !(Maybe Text) -- ^ "type"
+  , functionDTOApi :: !(Maybe Text) -- ^ "api"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON FunctionDTO
+instance A.FromJSON FunctionDTO where
+  parseJSON = A.withObject "FunctionDTO" $ \o ->
+    FunctionDTO
+      <$> (o .:? "type")
+      <*> (o .:? "api")
+
+-- | ToJSON FunctionDTO
+instance A.ToJSON FunctionDTO where
+  toJSON FunctionDTO {..} =
+   _omitNulls
+      [ "type" .= functionDTOType
+      , "api" .= functionDTOApi
+      ]
+
+
+-- | Construct a value of type 'FunctionDTO' (by applying it's required fields, if any)
+mkFunctionDTO
+  :: FunctionDTO
+mkFunctionDTO =
+  FunctionDTO
+  { functionDTOType = Nothing
+  , functionDTOApi = Nothing
+  }
+
+-- ** FungibleTokenResponseDTO
+-- | FungibleTokenResponseDTO
+data FungibleTokenResponseDTO = FungibleTokenResponseDTO
+  { fungibleTokenResponseDTODocumentationUrl :: !(Maybe Text) -- ^ "documentationUrl"
+  , fungibleTokenResponseDTOUnit :: !(Maybe Text) -- ^ "unit"
+  , fungibleTokenResponseDTODecimalPlaces :: !(Maybe Int) -- ^ "decimalPlaces"
+  , fungibleTokenResponseDTOFunctions :: !(Maybe [FunctionDTO]) -- ^ "functions"
+  , fungibleTokenResponseDTOContractType :: !(Maybe E'ContractType) -- ^ "contractType"
+  , fungibleTokenResponseDTOLocation :: !(Maybe LocationDTO) -- ^ "location"
+  , fungibleTokenResponseDTOSmartContractId :: !(Maybe Text) -- ^ "smartContractId"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON FungibleTokenResponseDTO
+instance A.FromJSON FungibleTokenResponseDTO where
+  parseJSON = A.withObject "FungibleTokenResponseDTO" $ \o ->
+    FungibleTokenResponseDTO
+      <$> (o .:? "documentationUrl")
+      <*> (o .:? "unit")
+      <*> (o .:? "decimalPlaces")
+      <*> (o .:? "functions")
+      <*> (o .:? "contractType")
+      <*> (o .:? "location")
+      <*> (o .:? "smartContractId")
+
+-- | ToJSON FungibleTokenResponseDTO
+instance A.ToJSON FungibleTokenResponseDTO where
+  toJSON FungibleTokenResponseDTO {..} =
+   _omitNulls
+      [ "documentationUrl" .= fungibleTokenResponseDTODocumentationUrl
+      , "unit" .= fungibleTokenResponseDTOUnit
+      , "decimalPlaces" .= fungibleTokenResponseDTODecimalPlaces
+      , "functions" .= fungibleTokenResponseDTOFunctions
+      , "contractType" .= fungibleTokenResponseDTOContractType
+      , "location" .= fungibleTokenResponseDTOLocation
+      , "smartContractId" .= fungibleTokenResponseDTOSmartContractId
+      ]
+
+
+-- | Construct a value of type 'FungibleTokenResponseDTO' (by applying it's required fields, if any)
+mkFungibleTokenResponseDTO
+  :: FungibleTokenResponseDTO
+mkFungibleTokenResponseDTO =
+  FungibleTokenResponseDTO
+  { fungibleTokenResponseDTODocumentationUrl = Nothing
+  , fungibleTokenResponseDTOUnit = Nothing
+  , fungibleTokenResponseDTODecimalPlaces = Nothing
+  , fungibleTokenResponseDTOFunctions = Nothing
+  , fungibleTokenResponseDTOContractType = Nothing
+  , fungibleTokenResponseDTOLocation = Nothing
+  , fungibleTokenResponseDTOSmartContractId = Nothing
   }
 
 -- ** InternalServerErrorSchema
@@ -1507,52 +2318,52 @@ mkLinkedBlocks =
   , linkedBlocksChild = Nothing
   }
 
--- ** ListSubscriptionResponseSchema
--- | ListSubscriptionResponseSchema
-data ListSubscriptionResponseSchema = ListSubscriptionResponseSchema
-  { listSubscriptionResponseSchemaSubscriptionDetails :: !(Maybe SubscriptionDetailsSchema) -- ^ "subscriptionDetails"
-  , listSubscriptionResponseSchemaSubscribedTime :: !(Maybe DateTime) -- ^ "subscribedTime"
-  , listSubscriptionResponseSchemaLastUpdatedTime :: !(Maybe DateTime) -- ^ "lastUpdatedTime"
-  , listSubscriptionResponseSchemaCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
-  , listSubscriptionResponseSchemaSubscriptionId :: !(Maybe Text) -- ^ "subscriptionId"
-  , listSubscriptionResponseSchemaType :: !(Maybe Text) -- ^ "type"
+-- ** ListWebhookSubscriptionResponseSchema
+-- | ListWebhookSubscriptionResponseSchema
+data ListWebhookSubscriptionResponseSchema = ListWebhookSubscriptionResponseSchema
+  { listWebhookSubscriptionResponseSchemaSubscriptionDetails :: !(Maybe WebhookSubscriptionDetailsSchema) -- ^ "subscriptionDetails"
+  , listWebhookSubscriptionResponseSchemaLastUpdatedTime :: !(Maybe DateTime) -- ^ "lastUpdatedTime"
+  , listWebhookSubscriptionResponseSchemaCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
+  , listWebhookSubscriptionResponseSchemaSubscriptionId :: !(Maybe Text) -- ^ "subscriptionId"
+  , listWebhookSubscriptionResponseSchemaType :: !(Maybe Text) -- ^ "type"
+  , listWebhookSubscriptionResponseSchemaSubscribedTime :: !(Maybe DateTime) -- ^ "subscribedTime"
   } deriving (P.Show, P.Eq, P.Typeable)
 
--- | FromJSON ListSubscriptionResponseSchema
-instance A.FromJSON ListSubscriptionResponseSchema where
-  parseJSON = A.withObject "ListSubscriptionResponseSchema" $ \o ->
-    ListSubscriptionResponseSchema
+-- | FromJSON ListWebhookSubscriptionResponseSchema
+instance A.FromJSON ListWebhookSubscriptionResponseSchema where
+  parseJSON = A.withObject "ListWebhookSubscriptionResponseSchema" $ \o ->
+    ListWebhookSubscriptionResponseSchema
       <$> (o .:? "subscriptionDetails")
-      <*> (o .:? "subscribedTime")
       <*> (o .:? "lastUpdatedTime")
       <*> (o .:? "callbackUrl")
       <*> (o .:? "subscriptionId")
       <*> (o .:? "type")
+      <*> (o .:? "subscribedTime")
 
--- | ToJSON ListSubscriptionResponseSchema
-instance A.ToJSON ListSubscriptionResponseSchema where
-  toJSON ListSubscriptionResponseSchema {..} =
+-- | ToJSON ListWebhookSubscriptionResponseSchema
+instance A.ToJSON ListWebhookSubscriptionResponseSchema where
+  toJSON ListWebhookSubscriptionResponseSchema {..} =
    _omitNulls
-      [ "subscriptionDetails" .= listSubscriptionResponseSchemaSubscriptionDetails
-      , "subscribedTime" .= listSubscriptionResponseSchemaSubscribedTime
-      , "lastUpdatedTime" .= listSubscriptionResponseSchemaLastUpdatedTime
-      , "callbackUrl" .= listSubscriptionResponseSchemaCallbackUrl
-      , "subscriptionId" .= listSubscriptionResponseSchemaSubscriptionId
-      , "type" .= listSubscriptionResponseSchemaType
+      [ "subscriptionDetails" .= listWebhookSubscriptionResponseSchemaSubscriptionDetails
+      , "lastUpdatedTime" .= listWebhookSubscriptionResponseSchemaLastUpdatedTime
+      , "callbackUrl" .= listWebhookSubscriptionResponseSchemaCallbackUrl
+      , "subscriptionId" .= listWebhookSubscriptionResponseSchemaSubscriptionId
+      , "type" .= listWebhookSubscriptionResponseSchemaType
+      , "subscribedTime" .= listWebhookSubscriptionResponseSchemaSubscribedTime
       ]
 
 
--- | Construct a value of type 'ListSubscriptionResponseSchema' (by applying it's required fields, if any)
-mkListSubscriptionResponseSchema
-  :: ListSubscriptionResponseSchema
-mkListSubscriptionResponseSchema =
-  ListSubscriptionResponseSchema
-  { listSubscriptionResponseSchemaSubscriptionDetails = Nothing
-  , listSubscriptionResponseSchemaSubscribedTime = Nothing
-  , listSubscriptionResponseSchemaLastUpdatedTime = Nothing
-  , listSubscriptionResponseSchemaCallbackUrl = Nothing
-  , listSubscriptionResponseSchemaSubscriptionId = Nothing
-  , listSubscriptionResponseSchemaType = Nothing
+-- | Construct a value of type 'ListWebhookSubscriptionResponseSchema' (by applying it's required fields, if any)
+mkListWebhookSubscriptionResponseSchema
+  :: ListWebhookSubscriptionResponseSchema
+mkListWebhookSubscriptionResponseSchema =
+  ListWebhookSubscriptionResponseSchema
+  { listWebhookSubscriptionResponseSchemaSubscriptionDetails = Nothing
+  , listWebhookSubscriptionResponseSchemaLastUpdatedTime = Nothing
+  , listWebhookSubscriptionResponseSchemaCallbackUrl = Nothing
+  , listWebhookSubscriptionResponseSchemaSubscriptionId = Nothing
+  , listWebhookSubscriptionResponseSchemaType = Nothing
+  , listWebhookSubscriptionResponseSchemaSubscribedTime = Nothing
   }
 
 -- ** Location
@@ -1588,6 +2399,333 @@ mkLocation locationTechnology locationNetwork =
   Location
   { locationTechnology
   , locationNetwork
+  }
+
+-- ** LocationDTO
+-- | LocationDTO
+data LocationDTO = LocationDTO
+  { locationDTOTechnology :: !(Maybe Text) -- ^ "technology"
+  , locationDTONetwork :: !(Maybe Text) -- ^ "network"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON LocationDTO
+instance A.FromJSON LocationDTO where
+  parseJSON = A.withObject "LocationDTO" $ \o ->
+    LocationDTO
+      <$> (o .:? "technology")
+      <*> (o .:? "network")
+
+-- | ToJSON LocationDTO
+instance A.ToJSON LocationDTO where
+  toJSON LocationDTO {..} =
+   _omitNulls
+      [ "technology" .= locationDTOTechnology
+      , "network" .= locationDTONetwork
+      ]
+
+
+-- | Construct a value of type 'LocationDTO' (by applying it's required fields, if any)
+mkLocationDTO
+  :: LocationDTO
+mkLocationDTO =
+  LocationDTO
+  { locationDTOTechnology = Nothing
+  , locationDTONetwork = Nothing
+  }
+
+-- ** LockDetails
+-- | LockDetails
+-- Lock Details of the tokens
+data LockDetails = LockDetails
+  { lockDetailsExpiryDate :: !(Maybe Text) -- ^ "expiryDate"
+  , lockDetailsLockId :: !(Maybe Text) -- ^ "lockId"
+  , lockDetailsAccountId :: !(Maybe Text) -- ^ "accountId"
+  , lockDetailsAmount :: !(Maybe Text) -- ^ "amount"
+  , lockDetailsUnit :: !(Maybe Text) -- ^ "unit"
+  , lockDetailsAccountOwningInstitutionId :: !(Maybe Text) -- ^ "accountOwningInstitutionId"
+  , lockDetailsLockDescription :: !(Maybe Text) -- ^ "lockDescription"
+  , lockDetailsPayeeId :: !(Maybe Text) -- ^ "payeeId"
+  , lockDetailsSecret :: !(Maybe Text) -- ^ "secret"
+  , lockDetailsHash :: !(Maybe Text) -- ^ "hash"
+  , lockDetailsPayeeOwningInstitutionId :: !(Maybe Text) -- ^ "payeeOwningInstitutionId"
+  , lockDetailsLockOwningInstitutionId :: !(Maybe Text) -- ^ "lockOwningInstitutionId"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON LockDetails
+instance A.FromJSON LockDetails where
+  parseJSON = A.withObject "LockDetails" $ \o ->
+    LockDetails
+      <$> (o .:? "expiryDate")
+      <*> (o .:? "lockId")
+      <*> (o .:? "accountId")
+      <*> (o .:? "amount")
+      <*> (o .:? "unit")
+      <*> (o .:? "accountOwningInstitutionId")
+      <*> (o .:? "lockDescription")
+      <*> (o .:? "payeeId")
+      <*> (o .:? "secret")
+      <*> (o .:? "hash")
+      <*> (o .:? "payeeOwningInstitutionId")
+      <*> (o .:? "lockOwningInstitutionId")
+
+-- | ToJSON LockDetails
+instance A.ToJSON LockDetails where
+  toJSON LockDetails {..} =
+   _omitNulls
+      [ "expiryDate" .= lockDetailsExpiryDate
+      , "lockId" .= lockDetailsLockId
+      , "accountId" .= lockDetailsAccountId
+      , "amount" .= lockDetailsAmount
+      , "unit" .= lockDetailsUnit
+      , "accountOwningInstitutionId" .= lockDetailsAccountOwningInstitutionId
+      , "lockDescription" .= lockDetailsLockDescription
+      , "payeeId" .= lockDetailsPayeeId
+      , "secret" .= lockDetailsSecret
+      , "hash" .= lockDetailsHash
+      , "payeeOwningInstitutionId" .= lockDetailsPayeeOwningInstitutionId
+      , "lockOwningInstitutionId" .= lockDetailsLockOwningInstitutionId
+      ]
+
+
+-- | Construct a value of type 'LockDetails' (by applying it's required fields, if any)
+mkLockDetails
+  :: LockDetails
+mkLockDetails =
+  LockDetails
+  { lockDetailsExpiryDate = Nothing
+  , lockDetailsLockId = Nothing
+  , lockDetailsAccountId = Nothing
+  , lockDetailsAmount = Nothing
+  , lockDetailsUnit = Nothing
+  , lockDetailsAccountOwningInstitutionId = Nothing
+  , lockDetailsLockDescription = Nothing
+  , lockDetailsPayeeId = Nothing
+  , lockDetailsSecret = Nothing
+  , lockDetailsHash = Nothing
+  , lockDetailsPayeeOwningInstitutionId = Nothing
+  , lockDetailsLockOwningInstitutionId = Nothing
+  }
+
+-- ** Mandate
+-- | Mandate
+-- The Destination of this transaction
+data Mandate = Mandate
+  { mandatePayment :: !(Maybe Payment) -- ^ "payment"
+  , mandatePayeeId :: !(Maybe Text) -- ^ "payeeId" - The unique identifiers of the payee
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Mandate
+instance A.FromJSON Mandate where
+  parseJSON = A.withObject "Mandate" $ \o ->
+    Mandate
+      <$> (o .:? "payment")
+      <*> (o .:? "payeeId")
+
+-- | ToJSON Mandate
+instance A.ToJSON Mandate where
+  toJSON Mandate {..} =
+   _omitNulls
+      [ "payment" .= mandatePayment
+      , "payeeId" .= mandatePayeeId
+      ]
+
+
+-- | Construct a value of type 'Mandate' (by applying it's required fields, if any)
+mkMandate
+  :: Mandate
+mkMandate =
+  Mandate
+  { mandatePayment = Nothing
+  , mandatePayeeId = Nothing
+  }
+
+-- ** Mint
+-- | Mint
+data Mint = Mint
+  { mintTokenName :: !(Maybe Text) -- ^ "tokenName" - Name of the token
+  , mintAmount :: !(Maybe Text) -- ^ "amount" - The amount of a currency
+  , mintUnit :: !(Maybe Text) -- ^ "unit" - The unit of this currency/token
+  , mintMetadata :: !(Maybe Text) -- ^ "metadata" - (Optional) String of metadata
+  , mintTokenId :: !(Maybe Text) -- ^ "tokenId" - Unique identifier for the specific token
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Mint
+instance A.FromJSON Mint where
+  parseJSON = A.withObject "Mint" $ \o ->
+    Mint
+      <$> (o .:? "tokenName")
+      <*> (o .:? "amount")
+      <*> (o .:? "unit")
+      <*> (o .:? "metadata")
+      <*> (o .:? "tokenId")
+
+-- | ToJSON Mint
+instance A.ToJSON Mint where
+  toJSON Mint {..} =
+   _omitNulls
+      [ "tokenName" .= mintTokenName
+      , "amount" .= mintAmount
+      , "unit" .= mintUnit
+      , "metadata" .= mintMetadata
+      , "tokenId" .= mintTokenId
+      ]
+
+
+-- | Construct a value of type 'Mint' (by applying it's required fields, if any)
+mkMint
+  :: Mint
+mkMint =
+  Mint
+  { mintTokenName = Nothing
+  , mintAmount = Nothing
+  , mintUnit = Nothing
+  , mintMetadata = Nothing
+  , mintTokenId = Nothing
+  }
+
+-- ** MintRequestDetailsSchemaQrc20
+-- | MintRequestDetailsSchemaQrc20
+data MintRequestDetailsSchemaQrc20 = MintRequestDetailsSchemaQrc20
+  { mintRequestDetailsSchemaQrc20Creator :: !(Maybe CreatorMintSchema) -- ^ "creator"
+  , mintRequestDetailsSchemaQrc20Beneficiary :: !(Maybe BeneficiaryMintSchemaQrc20) -- ^ "beneficiary"
+  , mintRequestDetailsSchemaQrc20Message :: !(Maybe Text) -- ^ "message" - Any text-based element of the data payload
+  , mintRequestDetailsSchemaQrc20OverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON MintRequestDetailsSchemaQrc20
+instance A.FromJSON MintRequestDetailsSchemaQrc20 where
+  parseJSON = A.withObject "MintRequestDetailsSchemaQrc20" $ \o ->
+    MintRequestDetailsSchemaQrc20
+      <$> (o .:? "creator")
+      <*> (o .:? "beneficiary")
+      <*> (o .:? "message")
+      <*> (o .:? "overledgerSigningType")
+
+-- | ToJSON MintRequestDetailsSchemaQrc20
+instance A.ToJSON MintRequestDetailsSchemaQrc20 where
+  toJSON MintRequestDetailsSchemaQrc20 {..} =
+   _omitNulls
+      [ "creator" .= mintRequestDetailsSchemaQrc20Creator
+      , "beneficiary" .= mintRequestDetailsSchemaQrc20Beneficiary
+      , "message" .= mintRequestDetailsSchemaQrc20Message
+      , "overledgerSigningType" .= mintRequestDetailsSchemaQrc20OverledgerSigningType
+      ]
+
+
+-- | Construct a value of type 'MintRequestDetailsSchemaQrc20' (by applying it's required fields, if any)
+mkMintRequestDetailsSchemaQrc20
+  :: MintRequestDetailsSchemaQrc20
+mkMintRequestDetailsSchemaQrc20 =
+  MintRequestDetailsSchemaQrc20
+  { mintRequestDetailsSchemaQrc20Creator = Nothing
+  , mintRequestDetailsSchemaQrc20Beneficiary = Nothing
+  , mintRequestDetailsSchemaQrc20Message = Nothing
+  , mintRequestDetailsSchemaQrc20OverledgerSigningType = Nothing
+  }
+
+-- ** MintRequestDetailsSchemaQrc721
+-- | MintRequestDetailsSchemaQrc721
+data MintRequestDetailsSchemaQrc721 = MintRequestDetailsSchemaQrc721
+  { mintRequestDetailsSchemaQrc721Beneficiary :: !(Maybe BeneficiaryMintSchemaQrc721) -- ^ "beneficiary"
+  , mintRequestDetailsSchemaQrc721Creator :: !(Maybe CreatorMintSchema) -- ^ "creator"
+  , mintRequestDetailsSchemaQrc721OverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON MintRequestDetailsSchemaQrc721
+instance A.FromJSON MintRequestDetailsSchemaQrc721 where
+  parseJSON = A.withObject "MintRequestDetailsSchemaQrc721" $ \o ->
+    MintRequestDetailsSchemaQrc721
+      <$> (o .:? "beneficiary")
+      <*> (o .:? "creator")
+      <*> (o .:? "overledgerSigningType")
+
+-- | ToJSON MintRequestDetailsSchemaQrc721
+instance A.ToJSON MintRequestDetailsSchemaQrc721 where
+  toJSON MintRequestDetailsSchemaQrc721 {..} =
+   _omitNulls
+      [ "beneficiary" .= mintRequestDetailsSchemaQrc721Beneficiary
+      , "creator" .= mintRequestDetailsSchemaQrc721Creator
+      , "overledgerSigningType" .= mintRequestDetailsSchemaQrc721OverledgerSigningType
+      ]
+
+
+-- | Construct a value of type 'MintRequestDetailsSchemaQrc721' (by applying it's required fields, if any)
+mkMintRequestDetailsSchemaQrc721
+  :: MintRequestDetailsSchemaQrc721
+mkMintRequestDetailsSchemaQrc721 =
+  MintRequestDetailsSchemaQrc721
+  { mintRequestDetailsSchemaQrc721Beneficiary = Nothing
+  , mintRequestDetailsSchemaQrc721Creator = Nothing
+  , mintRequestDetailsSchemaQrc721OverledgerSigningType = Nothing
+  }
+
+-- ** MintSchemaQrc20
+-- | MintSchemaQrc20
+data MintSchemaQrc20 = MintSchemaQrc20
+  { mintSchemaQrc20Amount :: !(Text) -- ^ /Required/ "amount" - The amount of a currency
+  , mintSchemaQrc20Unit :: !(Maybe Text) -- ^ "unit" - The unit of this currency/token
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON MintSchemaQrc20
+instance A.FromJSON MintSchemaQrc20 where
+  parseJSON = A.withObject "MintSchemaQrc20" $ \o ->
+    MintSchemaQrc20
+      <$> (o .:  "amount")
+      <*> (o .:? "unit")
+
+-- | ToJSON MintSchemaQrc20
+instance A.ToJSON MintSchemaQrc20 where
+  toJSON MintSchemaQrc20 {..} =
+   _omitNulls
+      [ "amount" .= mintSchemaQrc20Amount
+      , "unit" .= mintSchemaQrc20Unit
+      ]
+
+
+-- | Construct a value of type 'MintSchemaQrc20' (by applying it's required fields, if any)
+mkMintSchemaQrc20
+  :: Text -- ^ 'mintSchemaQrc20Amount': The amount of a currency
+  -> MintSchemaQrc20
+mkMintSchemaQrc20 mintSchemaQrc20Amount =
+  MintSchemaQrc20
+  { mintSchemaQrc20Amount
+  , mintSchemaQrc20Unit = Nothing
+  }
+
+-- ** MintSchemaQrc721
+-- | MintSchemaQrc721
+data MintSchemaQrc721 = MintSchemaQrc721
+  { mintSchemaQrc721TokenId :: !(Maybe Text) -- ^ "tokenId" - Unique identifier for the specific token
+  , mintSchemaQrc721TokenName :: !(Maybe Text) -- ^ "tokenName" - Name of the token
+  , mintSchemaQrc721Metadata :: !(Maybe Text) -- ^ "metadata" - (Optional) String of metadata
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON MintSchemaQrc721
+instance A.FromJSON MintSchemaQrc721 where
+  parseJSON = A.withObject "MintSchemaQrc721" $ \o ->
+    MintSchemaQrc721
+      <$> (o .:? "tokenId")
+      <*> (o .:? "tokenName")
+      <*> (o .:? "metadata")
+
+-- | ToJSON MintSchemaQrc721
+instance A.ToJSON MintSchemaQrc721 where
+  toJSON MintSchemaQrc721 {..} =
+   _omitNulls
+      [ "tokenId" .= mintSchemaQrc721TokenId
+      , "tokenName" .= mintSchemaQrc721TokenName
+      , "metadata" .= mintSchemaQrc721Metadata
+      ]
+
+
+-- | Construct a value of type 'MintSchemaQrc721' (by applying it's required fields, if any)
+mkMintSchemaQrc721
+  :: MintSchemaQrc721
+mkMintSchemaQrc721 =
+  MintSchemaQrc721
+  { mintSchemaQrc721TokenId = Nothing
+  , mintSchemaQrc721TokenName = Nothing
+  , mintSchemaQrc721Metadata = Nothing
   }
 
 -- ** MonitorSmartContractEventParam
@@ -1629,10 +2767,10 @@ mkMonitorSmartContractEventParam =
 -- ** MonitorSmartContractRequestSchema
 -- | MonitorSmartContractRequestSchema
 data MonitorSmartContractRequestSchema = MonitorSmartContractRequestSchema
-  { monitorSmartContractRequestSchemaCallBackUrl :: !(Maybe Text) -- ^ "callBackURL"
-  , monitorSmartContractRequestSchemaEventParams :: !(Maybe [MonitorSmartContractEventParam]) -- ^ "eventParams"
+  { monitorSmartContractRequestSchemaEventParams :: !(Maybe [MonitorSmartContractEventParam]) -- ^ "eventParams"
   , monitorSmartContractRequestSchemaEventName :: !(Maybe Text) -- ^ "eventName"
   , monitorSmartContractRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
+  , monitorSmartContractRequestSchemaCallBackUrl :: !(Maybe Text) -- ^ "callBackURL"
   , monitorSmartContractRequestSchemaSmartContractId :: !(Maybe Text) -- ^ "smartContractId"
   } deriving (P.Show, P.Eq, P.Typeable)
 
@@ -1640,20 +2778,20 @@ data MonitorSmartContractRequestSchema = MonitorSmartContractRequestSchema
 instance A.FromJSON MonitorSmartContractRequestSchema where
   parseJSON = A.withObject "MonitorSmartContractRequestSchema" $ \o ->
     MonitorSmartContractRequestSchema
-      <$> (o .:? "callBackURL")
-      <*> (o .:? "eventParams")
+      <$> (o .:? "eventParams")
       <*> (o .:? "eventName")
       <*> (o .:? "location")
+      <*> (o .:? "callBackURL")
       <*> (o .:? "smartContractId")
 
 -- | ToJSON MonitorSmartContractRequestSchema
 instance A.ToJSON MonitorSmartContractRequestSchema where
   toJSON MonitorSmartContractRequestSchema {..} =
    _omitNulls
-      [ "callBackURL" .= monitorSmartContractRequestSchemaCallBackUrl
-      , "eventParams" .= monitorSmartContractRequestSchemaEventParams
+      [ "eventParams" .= monitorSmartContractRequestSchemaEventParams
       , "eventName" .= monitorSmartContractRequestSchemaEventName
       , "location" .= monitorSmartContractRequestSchemaLocation
+      , "callBackURL" .= monitorSmartContractRequestSchemaCallBackUrl
       , "smartContractId" .= monitorSmartContractRequestSchemaSmartContractId
       ]
 
@@ -1663,11 +2801,111 @@ mkMonitorSmartContractRequestSchema
   :: MonitorSmartContractRequestSchema
 mkMonitorSmartContractRequestSchema =
   MonitorSmartContractRequestSchema
-  { monitorSmartContractRequestSchemaCallBackUrl = Nothing
-  , monitorSmartContractRequestSchemaEventParams = Nothing
+  { monitorSmartContractRequestSchemaEventParams = Nothing
   , monitorSmartContractRequestSchemaEventName = Nothing
   , monitorSmartContractRequestSchemaLocation = Nothing
+  , monitorSmartContractRequestSchemaCallBackUrl = Nothing
   , monitorSmartContractRequestSchemaSmartContractId = Nothing
+  }
+
+-- ** NonFungibleTokenDTO
+-- | NonFungibleTokenDTO
+data NonFungibleTokenDTO = NonFungibleTokenDTO
+  { nonFungibleTokenDTOFunctions :: !(Maybe [TierFunctionDTO]) -- ^ "functions"
+  , nonFungibleTokenDTOTokenName :: !(Maybe Text) -- ^ "tokenName"
+  , nonFungibleTokenDTOSmartContractAddress :: !(Maybe Text) -- ^ "smartContractAddress"
+  , nonFungibleTokenDTOLocation :: !(Maybe LocationDTO) -- ^ "location"
+  , nonFungibleTokenDTOId :: !(Maybe Text) -- ^ "id"
+  , nonFungibleTokenDTOTokenType :: !(Maybe Text) -- ^ "tokenType"
+  , nonFungibleTokenDTOUrl :: !(Maybe Text) -- ^ "url"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON NonFungibleTokenDTO
+instance A.FromJSON NonFungibleTokenDTO where
+  parseJSON = A.withObject "NonFungibleTokenDTO" $ \o ->
+    NonFungibleTokenDTO
+      <$> (o .:? "functions")
+      <*> (o .:? "tokenName")
+      <*> (o .:? "smartContractAddress")
+      <*> (o .:? "location")
+      <*> (o .:? "id")
+      <*> (o .:? "tokenType")
+      <*> (o .:? "url")
+
+-- | ToJSON NonFungibleTokenDTO
+instance A.ToJSON NonFungibleTokenDTO where
+  toJSON NonFungibleTokenDTO {..} =
+   _omitNulls
+      [ "functions" .= nonFungibleTokenDTOFunctions
+      , "tokenName" .= nonFungibleTokenDTOTokenName
+      , "smartContractAddress" .= nonFungibleTokenDTOSmartContractAddress
+      , "location" .= nonFungibleTokenDTOLocation
+      , "id" .= nonFungibleTokenDTOId
+      , "tokenType" .= nonFungibleTokenDTOTokenType
+      , "url" .= nonFungibleTokenDTOUrl
+      ]
+
+
+-- | Construct a value of type 'NonFungibleTokenDTO' (by applying it's required fields, if any)
+mkNonFungibleTokenDTO
+  :: NonFungibleTokenDTO
+mkNonFungibleTokenDTO =
+  NonFungibleTokenDTO
+  { nonFungibleTokenDTOFunctions = Nothing
+  , nonFungibleTokenDTOTokenName = Nothing
+  , nonFungibleTokenDTOSmartContractAddress = Nothing
+  , nonFungibleTokenDTOLocation = Nothing
+  , nonFungibleTokenDTOId = Nothing
+  , nonFungibleTokenDTOTokenType = Nothing
+  , nonFungibleTokenDTOUrl = Nothing
+  }
+
+-- ** NonFungibleTokenResponse
+-- | NonFungibleTokenResponse
+data NonFungibleTokenResponse = NonFungibleTokenResponse
+  { nonFungibleTokenResponseTokenName :: !(Maybe Text) -- ^ "tokenName"
+  , nonFungibleTokenResponseDocumentationUrl :: !(Maybe Text) -- ^ "documentationUrl"
+  , nonFungibleTokenResponseLocation :: !(Maybe Location) -- ^ "location"
+  , nonFungibleTokenResponseFunctions :: !(Maybe [Function]) -- ^ "functions"
+  , nonFungibleTokenResponseContractType :: !(Maybe Text) -- ^ "contractType"
+  , nonFungibleTokenResponseSmartContractId :: !(Maybe Text) -- ^ "smartContractId"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON NonFungibleTokenResponse
+instance A.FromJSON NonFungibleTokenResponse where
+  parseJSON = A.withObject "NonFungibleTokenResponse" $ \o ->
+    NonFungibleTokenResponse
+      <$> (o .:? "tokenName")
+      <*> (o .:? "documentationUrl")
+      <*> (o .:? "location")
+      <*> (o .:? "functions")
+      <*> (o .:? "contractType")
+      <*> (o .:? "smartContractId")
+
+-- | ToJSON NonFungibleTokenResponse
+instance A.ToJSON NonFungibleTokenResponse where
+  toJSON NonFungibleTokenResponse {..} =
+   _omitNulls
+      [ "tokenName" .= nonFungibleTokenResponseTokenName
+      , "documentationUrl" .= nonFungibleTokenResponseDocumentationUrl
+      , "location" .= nonFungibleTokenResponseLocation
+      , "functions" .= nonFungibleTokenResponseFunctions
+      , "contractType" .= nonFungibleTokenResponseContractType
+      , "smartContractId" .= nonFungibleTokenResponseSmartContractId
+      ]
+
+
+-- | Construct a value of type 'NonFungibleTokenResponse' (by applying it's required fields, if any)
+mkNonFungibleTokenResponse
+  :: NonFungibleTokenResponse
+mkNonFungibleTokenResponse =
+  NonFungibleTokenResponse
+  { nonFungibleTokenResponseTokenName = Nothing
+  , nonFungibleTokenResponseDocumentationUrl = Nothing
+  , nonFungibleTokenResponseLocation = Nothing
+  , nonFungibleTokenResponseFunctions = Nothing
+  , nonFungibleTokenResponseContractType = Nothing
+  , nonFungibleTokenResponseSmartContractId = Nothing
   }
 
 -- ** Origin
@@ -1675,8 +2913,8 @@ mkMonitorSmartContractRequestSchema =
 -- Where is this transaction coming from
 data Origin = Origin
   { originSequence :: !(Maybe Text) -- ^ "sequence"
-  , originOriginId :: !(Maybe Text) -- ^ "originId"
   , originSmartContract :: !(Maybe SmartContract) -- ^ "smartContract"
+  , originOriginId :: !(Maybe Text) -- ^ "originId" - The unique identifier of the origin
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON Origin
@@ -1684,16 +2922,16 @@ instance A.FromJSON Origin where
   parseJSON = A.withObject "Origin" $ \o ->
     Origin
       <$> (o .:? "sequence")
-      <*> (o .:? "originId")
       <*> (o .:? "smartContract")
+      <*> (o .:? "originId")
 
 -- | ToJSON Origin
 instance A.ToJSON Origin where
   toJSON Origin {..} =
    _omitNulls
       [ "sequence" .= originSequence
-      , "originId" .= originOriginId
       , "smartContract" .= originSmartContract
+      , "originId" .= originOriginId
       ]
 
 
@@ -1703,22 +2941,22 @@ mkOrigin
 mkOrigin =
   Origin
   { originSequence = Nothing
-  , originOriginId = Nothing
   , originSmartContract = Nothing
+  , originOriginId = Nothing
   }
 
 -- ** OriginPaymentSchema
 -- | OriginPaymentSchema
--- Where is this transaction coming from
+-- List of where this transaction is coming from
 data OriginPaymentSchema = OriginPaymentSchema
-  { originPaymentSchemaOriginId :: !(Maybe Text) -- ^ "originId" - Unique Identifier of the originator
+  { originPaymentSchemaOriginId :: !(Text) -- ^ /Required/ "originId" - Unique Identifier of the origin/sender
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON OriginPaymentSchema
 instance A.FromJSON OriginPaymentSchema where
   parseJSON = A.withObject "OriginPaymentSchema" $ \o ->
     OriginPaymentSchema
-      <$> (o .:? "originId")
+      <$> (o .:  "originId")
 
 -- | ToJSON OriginPaymentSchema
 instance A.ToJSON OriginPaymentSchema where
@@ -1730,10 +2968,11 @@ instance A.ToJSON OriginPaymentSchema where
 
 -- | Construct a value of type 'OriginPaymentSchema' (by applying it's required fields, if any)
 mkOriginPaymentSchema
-  :: OriginPaymentSchema
-mkOriginPaymentSchema =
+  :: Text -- ^ 'originPaymentSchemaOriginId': Unique Identifier of the origin/sender
+  -> OriginPaymentSchema
+mkOriginPaymentSchema originPaymentSchemaOriginId =
   OriginPaymentSchema
-  { originPaymentSchemaOriginId = Nothing
+  { originPaymentSchemaOriginId
   }
 
 -- ** OriginTransferSchema
@@ -1820,6 +3059,145 @@ mkOverledgerTransactionResponseSchema =
   , overledgerTransactionResponseSchemaStatus = Nothing
   }
 
+-- ** Owner
+-- | Owner
+-- Who is the owner of the tokens.
+data Owner = Owner
+  { ownerAccountId :: !(Maybe Text) -- ^ "accountId"
+  , ownerBurn :: !(Maybe Burn) -- ^ "burn"
+  , ownerUnit :: !(Maybe Text) -- ^ "unit"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Owner
+instance A.FromJSON Owner where
+  parseJSON = A.withObject "Owner" $ \o ->
+    Owner
+      <$> (o .:? "accountId")
+      <*> (o .:? "burn")
+      <*> (o .:? "unit")
+
+-- | ToJSON Owner
+instance A.ToJSON Owner where
+  toJSON Owner {..} =
+   _omitNulls
+      [ "accountId" .= ownerAccountId
+      , "burn" .= ownerBurn
+      , "unit" .= ownerUnit
+      ]
+
+
+-- | Construct a value of type 'Owner' (by applying it's required fields, if any)
+mkOwner
+  :: Owner
+mkOwner =
+  Owner
+  { ownerAccountId = Nothing
+  , ownerBurn = Nothing
+  , ownerUnit = Nothing
+  }
+
+-- ** OwnerBurnSchema
+-- | OwnerBurnSchema
+-- Who is the owner of the tokens
+data OwnerBurnSchema = OwnerBurnSchema
+  { ownerBurnSchemaAccountId :: !(Maybe Text) -- ^ "accountId" - Unique Identifier of the owner
+  , ownerBurnSchemaBurn :: !(Maybe BurnSchema) -- ^ "burn"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON OwnerBurnSchema
+instance A.FromJSON OwnerBurnSchema where
+  parseJSON = A.withObject "OwnerBurnSchema" $ \o ->
+    OwnerBurnSchema
+      <$> (o .:? "accountId")
+      <*> (o .:? "burn")
+
+-- | ToJSON OwnerBurnSchema
+instance A.ToJSON OwnerBurnSchema where
+  toJSON OwnerBurnSchema {..} =
+   _omitNulls
+      [ "accountId" .= ownerBurnSchemaAccountId
+      , "burn" .= ownerBurnSchemaBurn
+      ]
+
+
+-- | Construct a value of type 'OwnerBurnSchema' (by applying it's required fields, if any)
+mkOwnerBurnSchema
+  :: OwnerBurnSchema
+mkOwnerBurnSchema =
+  OwnerBurnSchema
+  { ownerBurnSchemaAccountId = Nothing
+  , ownerBurnSchemaBurn = Nothing
+  }
+
+-- ** OwnerRemoveSecondarySchema
+-- | OwnerRemoveSecondarySchema
+-- Who are the owner of this transaction
+data OwnerRemoveSecondarySchema = OwnerRemoveSecondarySchema
+  { ownerRemoveSecondarySchemaAccountId :: !(Maybe Text) -- ^ "accountId" - Unique Identifier of the owner
+  , ownerRemoveSecondarySchemaUnit :: !(Maybe Text) -- ^ "unit" - The unit of this currency/token
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON OwnerRemoveSecondarySchema
+instance A.FromJSON OwnerRemoveSecondarySchema where
+  parseJSON = A.withObject "OwnerRemoveSecondarySchema" $ \o ->
+    OwnerRemoveSecondarySchema
+      <$> (o .:? "accountId")
+      <*> (o .:? "unit")
+
+-- | ToJSON OwnerRemoveSecondarySchema
+instance A.ToJSON OwnerRemoveSecondarySchema where
+  toJSON OwnerRemoveSecondarySchema {..} =
+   _omitNulls
+      [ "accountId" .= ownerRemoveSecondarySchemaAccountId
+      , "unit" .= ownerRemoveSecondarySchemaUnit
+      ]
+
+
+-- | Construct a value of type 'OwnerRemoveSecondarySchema' (by applying it's required fields, if any)
+mkOwnerRemoveSecondarySchema
+  :: OwnerRemoveSecondarySchema
+mkOwnerRemoveSecondarySchema =
+  OwnerRemoveSecondarySchema
+  { ownerRemoveSecondarySchemaAccountId = Nothing
+  , ownerRemoveSecondarySchemaUnit = Nothing
+  }
+
+-- ** Pagination
+-- | Pagination
+data Pagination = Pagination
+  { paginationSize :: !(Maybe Int) -- ^ "size"
+  , paginationTotal :: !(Maybe Int) -- ^ "total"
+  , paginationPage :: !(Maybe Int) -- ^ "page"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Pagination
+instance A.FromJSON Pagination where
+  parseJSON = A.withObject "Pagination" $ \o ->
+    Pagination
+      <$> (o .:? "size")
+      <*> (o .:? "total")
+      <*> (o .:? "page")
+
+-- | ToJSON Pagination
+instance A.ToJSON Pagination where
+  toJSON Pagination {..} =
+   _omitNulls
+      [ "size" .= paginationSize
+      , "total" .= paginationTotal
+      , "page" .= paginationPage
+      ]
+
+
+-- | Construct a value of type 'Pagination' (by applying it's required fields, if any)
+mkPagination
+  :: Pagination
+mkPagination =
+  Pagination
+  { paginationSize = Nothing
+  , paginationTotal = Nothing
+  , paginationPage = Nothing
+  }
+
 -- ** Parameter
 -- | Parameter
 data Parameter = Parameter
@@ -1856,6 +3234,39 @@ mkParameter =
   , parameterKey = Nothing
   }
 
+-- ** Payee
+-- | Payee
+-- The Destination of this transaction
+data Payee = Payee
+  { payeePayment :: !(Maybe Payment) -- ^ "payment"
+  , payeePayeeId :: !(Maybe Text) -- ^ "payeeId" - The unique identifiers of the payee
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Payee
+instance A.FromJSON Payee where
+  parseJSON = A.withObject "Payee" $ \o ->
+    Payee
+      <$> (o .:? "payment")
+      <*> (o .:? "payeeId")
+
+-- | ToJSON Payee
+instance A.ToJSON Payee where
+  toJSON Payee {..} =
+   _omitNulls
+      [ "payment" .= payeePayment
+      , "payeeId" .= payeePayeeId
+      ]
+
+
+-- | Construct a value of type 'Payee' (by applying it's required fields, if any)
+mkPayee
+  :: Payee
+mkPayee =
+  Payee
+  { payeePayment = Nothing
+  , payeePayeeId = Nothing
+  }
+
 -- ** PayeeCreditSchema
 -- | PayeeCreditSchema
 -- Who are the payees of this transaction
@@ -1887,6 +3298,35 @@ mkPayeeCreditSchema =
   PayeeCreditSchema
   { payeeCreditSchemaPayment = Nothing
   , payeeCreditSchemaPayeeId = Nothing
+  }
+
+-- ** Payer
+-- | Payer
+-- Where is this transaction coming from
+data Payer = Payer
+  { payerPayerId :: !(Maybe Text) -- ^ "payerId"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Payer
+instance A.FromJSON Payer where
+  parseJSON = A.withObject "Payer" $ \o ->
+    Payer
+      <$> (o .:? "payerId")
+
+-- | ToJSON Payer
+instance A.ToJSON Payer where
+  toJSON Payer {..} =
+   _omitNulls
+      [ "payerId" .= payerPayerId
+      ]
+
+
+-- | Construct a value of type 'Payer' (by applying it's required fields, if any)
+mkPayer
+  :: Payer
+mkPayer =
+  Payer
+  { payerPayerId = Nothing
   }
 
 -- ** PayerCreditSchema
@@ -1956,49 +3396,53 @@ mkPayment =
 
 -- ** PaymentRequestDetailsSchema
 -- | PaymentRequestDetailsSchema
+-- The payload request
 data PaymentRequestDetailsSchema = PaymentRequestDetailsSchema
-  { paymentRequestDetailsSchemaOverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
-  , paymentRequestDetailsSchemaOrigin :: !(Maybe [OriginPaymentSchema]) -- ^ "origin" - Where is this transaction coming from
-  , paymentRequestDetailsSchemaDestination :: !(Maybe [DestinationPaymentSchema]) -- ^ "destination" - The Destination of this transaction
+  { paymentRequestDetailsSchemaDestination :: !([DestinationPaymentSchema]) -- ^ /Required/ "destination" - List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
   , paymentRequestDetailsSchemaMessage :: !(Maybe Text) -- ^ "message" - Any text-based element of the data payload
+  , paymentRequestDetailsSchemaOverledgerSigningType :: !(Maybe E'OverledgerSigningType) -- ^ "overledgerSigningType" - The method of signing used to submit the transaction
+  , paymentRequestDetailsSchemaOrigin :: !([OriginPaymentSchema]) -- ^ /Required/ "origin" - List of where this transaction is coming from
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON PaymentRequestDetailsSchema
 instance A.FromJSON PaymentRequestDetailsSchema where
   parseJSON = A.withObject "PaymentRequestDetailsSchema" $ \o ->
     PaymentRequestDetailsSchema
-      <$> (o .:? "overledgerSigningType")
-      <*> (o .:? "origin")
-      <*> (o .:? "destination")
+      <$> (o .:  "destination")
       <*> (o .:? "message")
+      <*> (o .:? "overledgerSigningType")
+      <*> (o .:  "origin")
 
 -- | ToJSON PaymentRequestDetailsSchema
 instance A.ToJSON PaymentRequestDetailsSchema where
   toJSON PaymentRequestDetailsSchema {..} =
    _omitNulls
-      [ "overledgerSigningType" .= paymentRequestDetailsSchemaOverledgerSigningType
-      , "origin" .= paymentRequestDetailsSchemaOrigin
-      , "destination" .= paymentRequestDetailsSchemaDestination
+      [ "destination" .= paymentRequestDetailsSchemaDestination
       , "message" .= paymentRequestDetailsSchemaMessage
+      , "overledgerSigningType" .= paymentRequestDetailsSchemaOverledgerSigningType
+      , "origin" .= paymentRequestDetailsSchemaOrigin
       ]
 
 
 -- | Construct a value of type 'PaymentRequestDetailsSchema' (by applying it's required fields, if any)
 mkPaymentRequestDetailsSchema
-  :: PaymentRequestDetailsSchema
-mkPaymentRequestDetailsSchema =
+  :: [DestinationPaymentSchema] -- ^ 'paymentRequestDetailsSchemaDestination': List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
+  -> [OriginPaymentSchema] -- ^ 'paymentRequestDetailsSchemaOrigin': List of where this transaction is coming from
+  -> PaymentRequestDetailsSchema
+mkPaymentRequestDetailsSchema paymentRequestDetailsSchemaDestination paymentRequestDetailsSchemaOrigin =
   PaymentRequestDetailsSchema
-  { paymentRequestDetailsSchemaOverledgerSigningType = Nothing
-  , paymentRequestDetailsSchemaOrigin = Nothing
-  , paymentRequestDetailsSchemaDestination = Nothing
+  { paymentRequestDetailsSchemaDestination
   , paymentRequestDetailsSchemaMessage = Nothing
+  , paymentRequestDetailsSchemaOverledgerSigningType = Nothing
+  , paymentRequestDetailsSchemaOrigin
   }
 
 -- ** PaymentSchema
 -- | PaymentSchema
+-- The payload for each recipient
 data PaymentSchema = PaymentSchema
-  { paymentSchemaAmount :: !(Text) -- ^ /Required/ "amount" - The amount of a currency
-  , paymentSchemaUnit :: !(Maybe Text) -- ^ "unit" - The unit of this currency/token
+  { paymentSchemaAmount :: !(Text) -- ^ /Required/ "amount" - The payload amount. The exact format depends on the unit of the token.
+  , paymentSchemaUnit :: !(Text) -- ^ /Required/ "unit" - The currency or token code
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON PaymentSchema
@@ -2006,7 +3450,7 @@ instance A.FromJSON PaymentSchema where
   parseJSON = A.withObject "PaymentSchema" $ \o ->
     PaymentSchema
       <$> (o .:  "amount")
-      <*> (o .:? "unit")
+      <*> (o .:  "unit")
 
 -- | ToJSON PaymentSchema
 instance A.ToJSON PaymentSchema where
@@ -2019,12 +3463,56 @@ instance A.ToJSON PaymentSchema where
 
 -- | Construct a value of type 'PaymentSchema' (by applying it's required fields, if any)
 mkPaymentSchema
-  :: Text -- ^ 'paymentSchemaAmount': The amount of a currency
+  :: Text -- ^ 'paymentSchemaAmount': The payload amount. The exact format depends on the unit of the token.
+  -> Text -- ^ 'paymentSchemaUnit': The currency or token code
   -> PaymentSchema
-mkPaymentSchema paymentSchemaAmount =
+mkPaymentSchema paymentSchemaAmount paymentSchemaUnit =
   PaymentSchema
   { paymentSchemaAmount
-  , paymentSchemaUnit = Nothing
+  , paymentSchemaUnit
+  }
+
+-- ** PrepareAddSecondaryAccountRequestSchema
+-- | PrepareAddSecondaryAccountRequestSchema
+data PrepareAddSecondaryAccountRequestSchema = PrepareAddSecondaryAccountRequestSchema
+  { prepareAddSecondaryAccountRequestSchemaLocation :: !(Location) -- ^ /Required/ "location"
+  , prepareAddSecondaryAccountRequestSchemaType :: !(E'Type) -- ^ /Required/ "type" - The type of the transaction
+  , prepareAddSecondaryAccountRequestSchemaUrgency :: !(E'Urgency) -- ^ /Required/ "urgency" - This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  , prepareAddSecondaryAccountRequestSchemaRequestDetails :: !(Maybe AddSecondaryAccountRequestDetailsSchema) -- ^ "requestDetails"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON PrepareAddSecondaryAccountRequestSchema
+instance A.FromJSON PrepareAddSecondaryAccountRequestSchema where
+  parseJSON = A.withObject "PrepareAddSecondaryAccountRequestSchema" $ \o ->
+    PrepareAddSecondaryAccountRequestSchema
+      <$> (o .:  "location")
+      <*> (o .:  "type")
+      <*> (o .:  "urgency")
+      <*> (o .:? "requestDetails")
+
+-- | ToJSON PrepareAddSecondaryAccountRequestSchema
+instance A.ToJSON PrepareAddSecondaryAccountRequestSchema where
+  toJSON PrepareAddSecondaryAccountRequestSchema {..} =
+   _omitNulls
+      [ "location" .= prepareAddSecondaryAccountRequestSchemaLocation
+      , "type" .= prepareAddSecondaryAccountRequestSchemaType
+      , "urgency" .= prepareAddSecondaryAccountRequestSchemaUrgency
+      , "requestDetails" .= prepareAddSecondaryAccountRequestSchemaRequestDetails
+      ]
+
+
+-- | Construct a value of type 'PrepareAddSecondaryAccountRequestSchema' (by applying it's required fields, if any)
+mkPrepareAddSecondaryAccountRequestSchema
+  :: Location -- ^ 'prepareAddSecondaryAccountRequestSchemaLocation' 
+  -> E'Type -- ^ 'prepareAddSecondaryAccountRequestSchemaType': The type of the transaction
+  -> E'Urgency -- ^ 'prepareAddSecondaryAccountRequestSchemaUrgency': This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  -> PrepareAddSecondaryAccountRequestSchema
+mkPrepareAddSecondaryAccountRequestSchema prepareAddSecondaryAccountRequestSchemaLocation prepareAddSecondaryAccountRequestSchemaType prepareAddSecondaryAccountRequestSchemaUrgency =
+  PrepareAddSecondaryAccountRequestSchema
+  { prepareAddSecondaryAccountRequestSchemaLocation
+  , prepareAddSecondaryAccountRequestSchemaType
+  , prepareAddSecondaryAccountRequestSchemaUrgency
+  , prepareAddSecondaryAccountRequestSchemaRequestDetails = Nothing
   }
 
 -- ** PrepareAndExecuteBalanceDetails
@@ -2062,26 +3550,26 @@ mkPrepareAndExecuteBalanceDetails =
 -- ** PrepareAndExecuteOverledgerErrorResponse
 -- | PrepareAndExecuteOverledgerErrorResponse
 data PrepareAndExecuteOverledgerErrorResponse = PrepareAndExecuteOverledgerErrorResponse
-  { prepareAndExecuteOverledgerErrorResponseCode :: !(Maybe Text) -- ^ "code"
+  { prepareAndExecuteOverledgerErrorResponseCategory :: !(Maybe Text) -- ^ "category"
   , prepareAndExecuteOverledgerErrorResponseDescription :: !(Maybe Text) -- ^ "description"
-  , prepareAndExecuteOverledgerErrorResponseCategory :: !(Maybe Text) -- ^ "category"
+  , prepareAndExecuteOverledgerErrorResponseCode :: !(Maybe Text) -- ^ "code"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON PrepareAndExecuteOverledgerErrorResponse
 instance A.FromJSON PrepareAndExecuteOverledgerErrorResponse where
   parseJSON = A.withObject "PrepareAndExecuteOverledgerErrorResponse" $ \o ->
     PrepareAndExecuteOverledgerErrorResponse
-      <$> (o .:? "code")
+      <$> (o .:? "category")
       <*> (o .:? "description")
-      <*> (o .:? "category")
+      <*> (o .:? "code")
 
 -- | ToJSON PrepareAndExecuteOverledgerErrorResponse
 instance A.ToJSON PrepareAndExecuteOverledgerErrorResponse where
   toJSON PrepareAndExecuteOverledgerErrorResponse {..} =
    _omitNulls
-      [ "code" .= prepareAndExecuteOverledgerErrorResponseCode
+      [ "category" .= prepareAndExecuteOverledgerErrorResponseCategory
       , "description" .= prepareAndExecuteOverledgerErrorResponseDescription
-      , "category" .= prepareAndExecuteOverledgerErrorResponseCategory
+      , "code" .= prepareAndExecuteOverledgerErrorResponseCode
       ]
 
 
@@ -2090,9 +3578,9 @@ mkPrepareAndExecuteOverledgerErrorResponse
   :: PrepareAndExecuteOverledgerErrorResponse
 mkPrepareAndExecuteOverledgerErrorResponse =
   PrepareAndExecuteOverledgerErrorResponse
-  { prepareAndExecuteOverledgerErrorResponseCode = Nothing
+  { prepareAndExecuteOverledgerErrorResponseCategory = Nothing
   , prepareAndExecuteOverledgerErrorResponseDescription = Nothing
-  , prepareAndExecuteOverledgerErrorResponseCategory = Nothing
+  , prepareAndExecuteOverledgerErrorResponseCode = Nothing
   }
 
 -- ** PrepareAndExecuteSearchAddressBalanceResponse
@@ -2138,26 +3626,26 @@ mkPrepareAndExecuteSearchAddressBalanceResponse =
 -- ** PrepareAndExecuteTransactionResponse
 -- | PrepareAndExecuteTransactionResponse
 data PrepareAndExecuteTransactionResponse = PrepareAndExecuteTransactionResponse
-  { prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse :: !(Maybe PrepareAndExecuteOverledgerErrorResponse) -- ^ "executionTransactionSearchOverledgerErrorResponse"
-  , prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse :: !(Maybe PrepareTransactionResponse) -- ^ "preparationTransactionSearchResponse"
+  { prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse :: !(Maybe PrepareTransactionResponse) -- ^ "preparationTransactionSearchResponse"
   , prepareAndExecuteTransactionResponseExecutionTransactionSearchResponse :: !(Maybe ExecuteSearchTransactionResponse) -- ^ "executionTransactionSearchResponse"
+  , prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse :: !(Maybe PrepareAndExecuteOverledgerErrorResponse) -- ^ "executionTransactionSearchOverledgerErrorResponse"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON PrepareAndExecuteTransactionResponse
 instance A.FromJSON PrepareAndExecuteTransactionResponse where
   parseJSON = A.withObject "PrepareAndExecuteTransactionResponse" $ \o ->
     PrepareAndExecuteTransactionResponse
-      <$> (o .:? "executionTransactionSearchOverledgerErrorResponse")
-      <*> (o .:? "preparationTransactionSearchResponse")
+      <$> (o .:? "preparationTransactionSearchResponse")
       <*> (o .:? "executionTransactionSearchResponse")
+      <*> (o .:? "executionTransactionSearchOverledgerErrorResponse")
 
 -- | ToJSON PrepareAndExecuteTransactionResponse
 instance A.ToJSON PrepareAndExecuteTransactionResponse where
   toJSON PrepareAndExecuteTransactionResponse {..} =
    _omitNulls
-      [ "executionTransactionSearchOverledgerErrorResponse" .= prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse
-      , "preparationTransactionSearchResponse" .= prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse
+      [ "preparationTransactionSearchResponse" .= prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse
       , "executionTransactionSearchResponse" .= prepareAndExecuteTransactionResponseExecutionTransactionSearchResponse
+      , "executionTransactionSearchOverledgerErrorResponse" .= prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse
       ]
 
 
@@ -2166,111 +3654,289 @@ mkPrepareAndExecuteTransactionResponse
   :: PrepareAndExecuteTransactionResponse
 mkPrepareAndExecuteTransactionResponse =
   PrepareAndExecuteTransactionResponse
-  { prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse = Nothing
-  , prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse = Nothing
+  { prepareAndExecuteTransactionResponsePreparationTransactionSearchResponse = Nothing
   , prepareAndExecuteTransactionResponseExecutionTransactionSearchResponse = Nothing
+  , prepareAndExecuteTransactionResponseExecutionTransactionSearchOverledgerErrorResponse = Nothing
   }
 
 -- ** PrepareApproveDebitTransactionRequestSchema
 -- | PrepareApproveDebitTransactionRequestSchema
 data PrepareApproveDebitTransactionRequestSchema = PrepareApproveDebitTransactionRequestSchema
-  { prepareApproveDebitTransactionRequestSchemaUrgency :: !(Maybe Text) -- ^ "urgency"
+  { prepareApproveDebitTransactionRequestSchemaLocation :: !(Location) -- ^ /Required/ "location"
+  , prepareApproveDebitTransactionRequestSchemaType :: !(E'Type) -- ^ /Required/ "type" - The type of the transaction
+  , prepareApproveDebitTransactionRequestSchemaUrgency :: !(E'Urgency) -- ^ /Required/ "urgency" - This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
   , prepareApproveDebitTransactionRequestSchemaRequestDetails :: !(Maybe ApproveRequestDetailsSchema) -- ^ "requestDetails"
-  , prepareApproveDebitTransactionRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
-  , prepareApproveDebitTransactionRequestSchemaType :: !(Maybe Text) -- ^ "type"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON PrepareApproveDebitTransactionRequestSchema
 instance A.FromJSON PrepareApproveDebitTransactionRequestSchema where
   parseJSON = A.withObject "PrepareApproveDebitTransactionRequestSchema" $ \o ->
     PrepareApproveDebitTransactionRequestSchema
-      <$> (o .:? "urgency")
+      <$> (o .:  "location")
+      <*> (o .:  "type")
+      <*> (o .:  "urgency")
       <*> (o .:? "requestDetails")
-      <*> (o .:? "location")
-      <*> (o .:? "type")
 
 -- | ToJSON PrepareApproveDebitTransactionRequestSchema
 instance A.ToJSON PrepareApproveDebitTransactionRequestSchema where
   toJSON PrepareApproveDebitTransactionRequestSchema {..} =
    _omitNulls
-      [ "urgency" .= prepareApproveDebitTransactionRequestSchemaUrgency
-      , "requestDetails" .= prepareApproveDebitTransactionRequestSchemaRequestDetails
-      , "location" .= prepareApproveDebitTransactionRequestSchemaLocation
+      [ "location" .= prepareApproveDebitTransactionRequestSchemaLocation
       , "type" .= prepareApproveDebitTransactionRequestSchemaType
+      , "urgency" .= prepareApproveDebitTransactionRequestSchemaUrgency
+      , "requestDetails" .= prepareApproveDebitTransactionRequestSchemaRequestDetails
       ]
 
 
 -- | Construct a value of type 'PrepareApproveDebitTransactionRequestSchema' (by applying it's required fields, if any)
 mkPrepareApproveDebitTransactionRequestSchema
-  :: PrepareApproveDebitTransactionRequestSchema
-mkPrepareApproveDebitTransactionRequestSchema =
+  :: Location -- ^ 'prepareApproveDebitTransactionRequestSchemaLocation' 
+  -> E'Type -- ^ 'prepareApproveDebitTransactionRequestSchemaType': The type of the transaction
+  -> E'Urgency -- ^ 'prepareApproveDebitTransactionRequestSchemaUrgency': This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  -> PrepareApproveDebitTransactionRequestSchema
+mkPrepareApproveDebitTransactionRequestSchema prepareApproveDebitTransactionRequestSchemaLocation prepareApproveDebitTransactionRequestSchemaType prepareApproveDebitTransactionRequestSchemaUrgency =
   PrepareApproveDebitTransactionRequestSchema
-  { prepareApproveDebitTransactionRequestSchemaUrgency = Nothing
+  { prepareApproveDebitTransactionRequestSchemaLocation
+  , prepareApproveDebitTransactionRequestSchemaType
+  , prepareApproveDebitTransactionRequestSchemaUrgency
   , prepareApproveDebitTransactionRequestSchemaRequestDetails = Nothing
-  , prepareApproveDebitTransactionRequestSchemaLocation = Nothing
-  , prepareApproveDebitTransactionRequestSchemaType = Nothing
+  }
+
+-- ** PrepareBurnTransactionRequestSchema
+-- | PrepareBurnTransactionRequestSchema
+data PrepareBurnTransactionRequestSchema = PrepareBurnTransactionRequestSchema
+  { prepareBurnTransactionRequestSchemaLocation :: !(Location) -- ^ /Required/ "location"
+  , prepareBurnTransactionRequestSchemaType :: !(E'Type) -- ^ /Required/ "type" - The type of the transaction
+  , prepareBurnTransactionRequestSchemaUrgency :: !(E'Urgency) -- ^ /Required/ "urgency" - This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  , prepareBurnTransactionRequestSchemaRequestDetails :: !(Maybe BurnRequestDetailsSchema) -- ^ "requestDetails"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON PrepareBurnTransactionRequestSchema
+instance A.FromJSON PrepareBurnTransactionRequestSchema where
+  parseJSON = A.withObject "PrepareBurnTransactionRequestSchema" $ \o ->
+    PrepareBurnTransactionRequestSchema
+      <$> (o .:  "location")
+      <*> (o .:  "type")
+      <*> (o .:  "urgency")
+      <*> (o .:? "requestDetails")
+
+-- | ToJSON PrepareBurnTransactionRequestSchema
+instance A.ToJSON PrepareBurnTransactionRequestSchema where
+  toJSON PrepareBurnTransactionRequestSchema {..} =
+   _omitNulls
+      [ "location" .= prepareBurnTransactionRequestSchemaLocation
+      , "type" .= prepareBurnTransactionRequestSchemaType
+      , "urgency" .= prepareBurnTransactionRequestSchemaUrgency
+      , "requestDetails" .= prepareBurnTransactionRequestSchemaRequestDetails
+      ]
+
+
+-- | Construct a value of type 'PrepareBurnTransactionRequestSchema' (by applying it's required fields, if any)
+mkPrepareBurnTransactionRequestSchema
+  :: Location -- ^ 'prepareBurnTransactionRequestSchemaLocation' 
+  -> E'Type -- ^ 'prepareBurnTransactionRequestSchemaType': The type of the transaction
+  -> E'Urgency -- ^ 'prepareBurnTransactionRequestSchemaUrgency': This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  -> PrepareBurnTransactionRequestSchema
+mkPrepareBurnTransactionRequestSchema prepareBurnTransactionRequestSchemaLocation prepareBurnTransactionRequestSchemaType prepareBurnTransactionRequestSchemaUrgency =
+  PrepareBurnTransactionRequestSchema
+  { prepareBurnTransactionRequestSchemaLocation
+  , prepareBurnTransactionRequestSchemaType
+  , prepareBurnTransactionRequestSchemaUrgency
+  , prepareBurnTransactionRequestSchemaRequestDetails = Nothing
+  }
+
+-- ** PrepareBurnTransactionRequestSchemaQrc721
+-- | PrepareBurnTransactionRequestSchemaQrc721
+data PrepareBurnTransactionRequestSchemaQrc721 = PrepareBurnTransactionRequestSchemaQrc721
+  { prepareBurnTransactionRequestSchemaQrc721Location :: !(Location) -- ^ /Required/ "location"
+  , prepareBurnTransactionRequestSchemaQrc721Type :: !(E'Type) -- ^ /Required/ "type" - The type of the transaction
+  , prepareBurnTransactionRequestSchemaQrc721Urgency :: !(E'Urgency) -- ^ /Required/ "urgency" - This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  , prepareBurnTransactionRequestSchemaQrc721RequestDetails :: !(Maybe BurnRequestDetailsSchemaQrc721) -- ^ "requestDetails"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON PrepareBurnTransactionRequestSchemaQrc721
+instance A.FromJSON PrepareBurnTransactionRequestSchemaQrc721 where
+  parseJSON = A.withObject "PrepareBurnTransactionRequestSchemaQrc721" $ \o ->
+    PrepareBurnTransactionRequestSchemaQrc721
+      <$> (o .:  "location")
+      <*> (o .:  "type")
+      <*> (o .:  "urgency")
+      <*> (o .:? "requestDetails")
+
+-- | ToJSON PrepareBurnTransactionRequestSchemaQrc721
+instance A.ToJSON PrepareBurnTransactionRequestSchemaQrc721 where
+  toJSON PrepareBurnTransactionRequestSchemaQrc721 {..} =
+   _omitNulls
+      [ "location" .= prepareBurnTransactionRequestSchemaQrc721Location
+      , "type" .= prepareBurnTransactionRequestSchemaQrc721Type
+      , "urgency" .= prepareBurnTransactionRequestSchemaQrc721Urgency
+      , "requestDetails" .= prepareBurnTransactionRequestSchemaQrc721RequestDetails
+      ]
+
+
+-- | Construct a value of type 'PrepareBurnTransactionRequestSchemaQrc721' (by applying it's required fields, if any)
+mkPrepareBurnTransactionRequestSchemaQrc721
+  :: Location -- ^ 'prepareBurnTransactionRequestSchemaQrc721Location' 
+  -> E'Type -- ^ 'prepareBurnTransactionRequestSchemaQrc721Type': The type of the transaction
+  -> E'Urgency -- ^ 'prepareBurnTransactionRequestSchemaQrc721Urgency': This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  -> PrepareBurnTransactionRequestSchemaQrc721
+mkPrepareBurnTransactionRequestSchemaQrc721 prepareBurnTransactionRequestSchemaQrc721Location prepareBurnTransactionRequestSchemaQrc721Type prepareBurnTransactionRequestSchemaQrc721Urgency =
+  PrepareBurnTransactionRequestSchemaQrc721
+  { prepareBurnTransactionRequestSchemaQrc721Location
+  , prepareBurnTransactionRequestSchemaQrc721Type
+  , prepareBurnTransactionRequestSchemaQrc721Urgency
+  , prepareBurnTransactionRequestSchemaQrc721RequestDetails = Nothing
   }
 
 -- ** PrepareCreditTransactionRequestSchema
 -- | PrepareCreditTransactionRequestSchema
 data PrepareCreditTransactionRequestSchema = PrepareCreditTransactionRequestSchema
-  { prepareCreditTransactionRequestSchemaUrgency :: !(Maybe Text) -- ^ "urgency"
+  { prepareCreditTransactionRequestSchemaLocation :: !(Location) -- ^ /Required/ "location"
+  , prepareCreditTransactionRequestSchemaType :: !(E'Type) -- ^ /Required/ "type" - The type of the transaction
+  , prepareCreditTransactionRequestSchemaUrgency :: !(E'Urgency) -- ^ /Required/ "urgency" - This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
   , prepareCreditTransactionRequestSchemaRequestDetails :: !(Maybe CreditRequestDetailsSchema) -- ^ "requestDetails"
-  , prepareCreditTransactionRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
-  , prepareCreditTransactionRequestSchemaType :: !(Maybe Text) -- ^ "type"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON PrepareCreditTransactionRequestSchema
 instance A.FromJSON PrepareCreditTransactionRequestSchema where
   parseJSON = A.withObject "PrepareCreditTransactionRequestSchema" $ \o ->
     PrepareCreditTransactionRequestSchema
-      <$> (o .:? "urgency")
+      <$> (o .:  "location")
+      <*> (o .:  "type")
+      <*> (o .:  "urgency")
       <*> (o .:? "requestDetails")
-      <*> (o .:? "location")
-      <*> (o .:? "type")
 
 -- | ToJSON PrepareCreditTransactionRequestSchema
 instance A.ToJSON PrepareCreditTransactionRequestSchema where
   toJSON PrepareCreditTransactionRequestSchema {..} =
    _omitNulls
-      [ "urgency" .= prepareCreditTransactionRequestSchemaUrgency
-      , "requestDetails" .= prepareCreditTransactionRequestSchemaRequestDetails
-      , "location" .= prepareCreditTransactionRequestSchemaLocation
+      [ "location" .= prepareCreditTransactionRequestSchemaLocation
       , "type" .= prepareCreditTransactionRequestSchemaType
+      , "urgency" .= prepareCreditTransactionRequestSchemaUrgency
+      , "requestDetails" .= prepareCreditTransactionRequestSchemaRequestDetails
       ]
 
 
 -- | Construct a value of type 'PrepareCreditTransactionRequestSchema' (by applying it's required fields, if any)
 mkPrepareCreditTransactionRequestSchema
-  :: PrepareCreditTransactionRequestSchema
-mkPrepareCreditTransactionRequestSchema =
+  :: Location -- ^ 'prepareCreditTransactionRequestSchemaLocation' 
+  -> E'Type -- ^ 'prepareCreditTransactionRequestSchemaType': The type of the transaction
+  -> E'Urgency -- ^ 'prepareCreditTransactionRequestSchemaUrgency': This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  -> PrepareCreditTransactionRequestSchema
+mkPrepareCreditTransactionRequestSchema prepareCreditTransactionRequestSchemaLocation prepareCreditTransactionRequestSchemaType prepareCreditTransactionRequestSchemaUrgency =
   PrepareCreditTransactionRequestSchema
-  { prepareCreditTransactionRequestSchemaUrgency = Nothing
+  { prepareCreditTransactionRequestSchemaLocation
+  , prepareCreditTransactionRequestSchemaType
+  , prepareCreditTransactionRequestSchemaUrgency
   , prepareCreditTransactionRequestSchemaRequestDetails = Nothing
-  , prepareCreditTransactionRequestSchemaLocation = Nothing
-  , prepareCreditTransactionRequestSchemaType = Nothing
+  }
+
+-- ** PrepareMintTransactionRequestSchemaQrc20
+-- | PrepareMintTransactionRequestSchemaQrc20
+data PrepareMintTransactionRequestSchemaQrc20 = PrepareMintTransactionRequestSchemaQrc20
+  { prepareMintTransactionRequestSchemaQrc20Location :: !(Location) -- ^ /Required/ "location"
+  , prepareMintTransactionRequestSchemaQrc20Type :: !(E'Type) -- ^ /Required/ "type" - The type of the transaction
+  , prepareMintTransactionRequestSchemaQrc20Urgency :: !(E'Urgency) -- ^ /Required/ "urgency" - This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  , prepareMintTransactionRequestSchemaQrc20RequestDetails :: !(Maybe MintRequestDetailsSchemaQrc20) -- ^ "requestDetails"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON PrepareMintTransactionRequestSchemaQrc20
+instance A.FromJSON PrepareMintTransactionRequestSchemaQrc20 where
+  parseJSON = A.withObject "PrepareMintTransactionRequestSchemaQrc20" $ \o ->
+    PrepareMintTransactionRequestSchemaQrc20
+      <$> (o .:  "location")
+      <*> (o .:  "type")
+      <*> (o .:  "urgency")
+      <*> (o .:? "requestDetails")
+
+-- | ToJSON PrepareMintTransactionRequestSchemaQrc20
+instance A.ToJSON PrepareMintTransactionRequestSchemaQrc20 where
+  toJSON PrepareMintTransactionRequestSchemaQrc20 {..} =
+   _omitNulls
+      [ "location" .= prepareMintTransactionRequestSchemaQrc20Location
+      , "type" .= prepareMintTransactionRequestSchemaQrc20Type
+      , "urgency" .= prepareMintTransactionRequestSchemaQrc20Urgency
+      , "requestDetails" .= prepareMintTransactionRequestSchemaQrc20RequestDetails
+      ]
+
+
+-- | Construct a value of type 'PrepareMintTransactionRequestSchemaQrc20' (by applying it's required fields, if any)
+mkPrepareMintTransactionRequestSchemaQrc20
+  :: Location -- ^ 'prepareMintTransactionRequestSchemaQrc20Location' 
+  -> E'Type -- ^ 'prepareMintTransactionRequestSchemaQrc20Type': The type of the transaction
+  -> E'Urgency -- ^ 'prepareMintTransactionRequestSchemaQrc20Urgency': This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  -> PrepareMintTransactionRequestSchemaQrc20
+mkPrepareMintTransactionRequestSchemaQrc20 prepareMintTransactionRequestSchemaQrc20Location prepareMintTransactionRequestSchemaQrc20Type prepareMintTransactionRequestSchemaQrc20Urgency =
+  PrepareMintTransactionRequestSchemaQrc20
+  { prepareMintTransactionRequestSchemaQrc20Location
+  , prepareMintTransactionRequestSchemaQrc20Type
+  , prepareMintTransactionRequestSchemaQrc20Urgency
+  , prepareMintTransactionRequestSchemaQrc20RequestDetails = Nothing
+  }
+
+-- ** PrepareMintTransactionRequestSchemaQrc721
+-- | PrepareMintTransactionRequestSchemaQrc721
+data PrepareMintTransactionRequestSchemaQrc721 = PrepareMintTransactionRequestSchemaQrc721
+  { prepareMintTransactionRequestSchemaQrc721Location :: !(Location) -- ^ /Required/ "location"
+  , prepareMintTransactionRequestSchemaQrc721Type :: !(E'Type) -- ^ /Required/ "type" - The type of the transaction
+  , prepareMintTransactionRequestSchemaQrc721Urgency :: !(E'Urgency) -- ^ /Required/ "urgency" - This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  , prepareMintTransactionRequestSchemaQrc721RequestDetails :: !(Maybe MintRequestDetailsSchemaQrc721) -- ^ "requestDetails"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON PrepareMintTransactionRequestSchemaQrc721
+instance A.FromJSON PrepareMintTransactionRequestSchemaQrc721 where
+  parseJSON = A.withObject "PrepareMintTransactionRequestSchemaQrc721" $ \o ->
+    PrepareMintTransactionRequestSchemaQrc721
+      <$> (o .:  "location")
+      <*> (o .:  "type")
+      <*> (o .:  "urgency")
+      <*> (o .:? "requestDetails")
+
+-- | ToJSON PrepareMintTransactionRequestSchemaQrc721
+instance A.ToJSON PrepareMintTransactionRequestSchemaQrc721 where
+  toJSON PrepareMintTransactionRequestSchemaQrc721 {..} =
+   _omitNulls
+      [ "location" .= prepareMintTransactionRequestSchemaQrc721Location
+      , "type" .= prepareMintTransactionRequestSchemaQrc721Type
+      , "urgency" .= prepareMintTransactionRequestSchemaQrc721Urgency
+      , "requestDetails" .= prepareMintTransactionRequestSchemaQrc721RequestDetails
+      ]
+
+
+-- | Construct a value of type 'PrepareMintTransactionRequestSchemaQrc721' (by applying it's required fields, if any)
+mkPrepareMintTransactionRequestSchemaQrc721
+  :: Location -- ^ 'prepareMintTransactionRequestSchemaQrc721Location' 
+  -> E'Type -- ^ 'prepareMintTransactionRequestSchemaQrc721Type': The type of the transaction
+  -> E'Urgency -- ^ 'prepareMintTransactionRequestSchemaQrc721Urgency': This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  -> PrepareMintTransactionRequestSchemaQrc721
+mkPrepareMintTransactionRequestSchemaQrc721 prepareMintTransactionRequestSchemaQrc721Location prepareMintTransactionRequestSchemaQrc721Type prepareMintTransactionRequestSchemaQrc721Urgency =
+  PrepareMintTransactionRequestSchemaQrc721
+  { prepareMintTransactionRequestSchemaQrc721Location
+  , prepareMintTransactionRequestSchemaQrc721Type
+  , prepareMintTransactionRequestSchemaQrc721Urgency
+  , prepareMintTransactionRequestSchemaQrc721RequestDetails = Nothing
   }
 
 -- ** PrepareNativeTransactionRequestSchema
 -- | PrepareNativeTransactionRequestSchema
 data PrepareNativeTransactionRequestSchema = PrepareNativeTransactionRequestSchema
-  { prepareNativeTransactionRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
-  , prepareNativeTransactionRequestSchemaType :: !(Maybe Text) -- ^ "type" - The type of the object
+  { prepareNativeTransactionRequestSchemaType :: !(Maybe Text) -- ^ "type" - The type of the object
+  , prepareNativeTransactionRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON PrepareNativeTransactionRequestSchema
 instance A.FromJSON PrepareNativeTransactionRequestSchema where
   parseJSON = A.withObject "PrepareNativeTransactionRequestSchema" $ \o ->
     PrepareNativeTransactionRequestSchema
-      <$> (o .:? "location")
-      <*> (o .:? "type")
+      <$> (o .:? "type")
+      <*> (o .:? "location")
 
 -- | ToJSON PrepareNativeTransactionRequestSchema
 instance A.ToJSON PrepareNativeTransactionRequestSchema where
   toJSON PrepareNativeTransactionRequestSchema {..} =
    _omitNulls
-      [ "location" .= prepareNativeTransactionRequestSchemaLocation
-      , "type" .= prepareNativeTransactionRequestSchemaType
+      [ "type" .= prepareNativeTransactionRequestSchemaType
+      , "location" .= prepareNativeTransactionRequestSchemaLocation
       ]
 
 
@@ -2279,48 +3945,260 @@ mkPrepareNativeTransactionRequestSchema
   :: PrepareNativeTransactionRequestSchema
 mkPrepareNativeTransactionRequestSchema =
   PrepareNativeTransactionRequestSchema
-  { prepareNativeTransactionRequestSchemaLocation = Nothing
-  , prepareNativeTransactionRequestSchemaType = Nothing
+  { prepareNativeTransactionRequestSchemaType = Nothing
+  , prepareNativeTransactionRequestSchemaLocation = Nothing
   }
 
 -- ** PreparePaymentTransactionRequestSchema
 -- | PreparePaymentTransactionRequestSchema
 data PreparePaymentTransactionRequestSchema = PreparePaymentTransactionRequestSchema
-  { preparePaymentTransactionRequestSchemaUrgency :: !(Maybe Text) -- ^ "urgency"
-  , preparePaymentTransactionRequestSchemaRequestDetails :: !(Maybe PaymentRequestDetailsSchema) -- ^ "requestDetails"
-  , preparePaymentTransactionRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
-  , preparePaymentTransactionRequestSchemaType :: !(Maybe Text) -- ^ "type"
+  { preparePaymentTransactionRequestSchemaLocation :: !(Location) -- ^ /Required/ "location"
+  , preparePaymentTransactionRequestSchemaType :: !(E'Type) -- ^ /Required/ "type" - The type of the transaction
+  , preparePaymentTransactionRequestSchemaUrgency :: !(E'Urgency) -- ^ /Required/ "urgency" - This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  , preparePaymentTransactionRequestSchemaRequestDetails :: !(PaymentRequestDetailsSchema) -- ^ /Required/ "requestDetails"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON PreparePaymentTransactionRequestSchema
 instance A.FromJSON PreparePaymentTransactionRequestSchema where
   parseJSON = A.withObject "PreparePaymentTransactionRequestSchema" $ \o ->
     PreparePaymentTransactionRequestSchema
-      <$> (o .:? "urgency")
-      <*> (o .:? "requestDetails")
-      <*> (o .:? "location")
-      <*> (o .:? "type")
+      <$> (o .:  "location")
+      <*> (o .:  "type")
+      <*> (o .:  "urgency")
+      <*> (o .:  "requestDetails")
 
 -- | ToJSON PreparePaymentTransactionRequestSchema
 instance A.ToJSON PreparePaymentTransactionRequestSchema where
   toJSON PreparePaymentTransactionRequestSchema {..} =
    _omitNulls
-      [ "urgency" .= preparePaymentTransactionRequestSchemaUrgency
-      , "requestDetails" .= preparePaymentTransactionRequestSchemaRequestDetails
-      , "location" .= preparePaymentTransactionRequestSchemaLocation
+      [ "location" .= preparePaymentTransactionRequestSchemaLocation
       , "type" .= preparePaymentTransactionRequestSchemaType
+      , "urgency" .= preparePaymentTransactionRequestSchemaUrgency
+      , "requestDetails" .= preparePaymentTransactionRequestSchemaRequestDetails
       ]
 
 
 -- | Construct a value of type 'PreparePaymentTransactionRequestSchema' (by applying it's required fields, if any)
 mkPreparePaymentTransactionRequestSchema
-  :: PreparePaymentTransactionRequestSchema
-mkPreparePaymentTransactionRequestSchema =
+  :: Location -- ^ 'preparePaymentTransactionRequestSchemaLocation' 
+  -> E'Type -- ^ 'preparePaymentTransactionRequestSchemaType': The type of the transaction
+  -> E'Urgency -- ^ 'preparePaymentTransactionRequestSchemaUrgency': This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  -> PaymentRequestDetailsSchema -- ^ 'preparePaymentTransactionRequestSchemaRequestDetails' 
+  -> PreparePaymentTransactionRequestSchema
+mkPreparePaymentTransactionRequestSchema preparePaymentTransactionRequestSchemaLocation preparePaymentTransactionRequestSchemaType preparePaymentTransactionRequestSchemaUrgency preparePaymentTransactionRequestSchemaRequestDetails =
   PreparePaymentTransactionRequestSchema
-  { preparePaymentTransactionRequestSchemaUrgency = Nothing
-  , preparePaymentTransactionRequestSchemaRequestDetails = Nothing
-  , preparePaymentTransactionRequestSchemaLocation = Nothing
-  , preparePaymentTransactionRequestSchemaType = Nothing
+  { preparePaymentTransactionRequestSchemaLocation
+  , preparePaymentTransactionRequestSchemaType
+  , preparePaymentTransactionRequestSchemaUrgency
+  , preparePaymentTransactionRequestSchemaRequestDetails
+  }
+
+-- ** PrepareRemoveSecondaryAccountTransactionRequestSchema
+-- | PrepareRemoveSecondaryAccountTransactionRequestSchema
+data PrepareRemoveSecondaryAccountTransactionRequestSchema = PrepareRemoveSecondaryAccountTransactionRequestSchema
+  { prepareRemoveSecondaryAccountTransactionRequestSchemaRemoveSecondaryAccountDetailsSchema :: !(Maybe RemoveSecondaryAccountDetailsSchema) -- ^ "removeSecondaryAccountDetailsSchema"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON PrepareRemoveSecondaryAccountTransactionRequestSchema
+instance A.FromJSON PrepareRemoveSecondaryAccountTransactionRequestSchema where
+  parseJSON = A.withObject "PrepareRemoveSecondaryAccountTransactionRequestSchema" $ \o ->
+    PrepareRemoveSecondaryAccountTransactionRequestSchema
+      <$> (o .:? "removeSecondaryAccountDetailsSchema")
+
+-- | ToJSON PrepareRemoveSecondaryAccountTransactionRequestSchema
+instance A.ToJSON PrepareRemoveSecondaryAccountTransactionRequestSchema where
+  toJSON PrepareRemoveSecondaryAccountTransactionRequestSchema {..} =
+   _omitNulls
+      [ "removeSecondaryAccountDetailsSchema" .= prepareRemoveSecondaryAccountTransactionRequestSchemaRemoveSecondaryAccountDetailsSchema
+      ]
+
+
+-- | Construct a value of type 'PrepareRemoveSecondaryAccountTransactionRequestSchema' (by applying it's required fields, if any)
+mkPrepareRemoveSecondaryAccountTransactionRequestSchema
+  :: PrepareRemoveSecondaryAccountTransactionRequestSchema
+mkPrepareRemoveSecondaryAccountTransactionRequestSchema =
+  PrepareRemoveSecondaryAccountTransactionRequestSchema
+  { prepareRemoveSecondaryAccountTransactionRequestSchemaRemoveSecondaryAccountDetailsSchema = Nothing
+  }
+
+-- ** PrepareRequest
+-- | PrepareRequest
+data PrepareRequest = PrepareRequest
+  { prepareRequestApiLookupPath :: !(Maybe Text) -- ^ "apiLookupPath"
+  , prepareRequestSmartContractTag :: !(Maybe [SmartContractTag]) -- ^ "smartContractTag"
+  , prepareRequestUrgency :: !(Maybe Text) -- ^ "urgency"
+  , prepareRequestRequestDetails :: !(Maybe PrepareRequestDetails) -- ^ "requestDetails"
+  , prepareRequestSmartContractAddress :: !(Maybe Text) -- ^ "smartContractAddress"
+  , prepareRequestLocation :: !(Maybe Location) -- ^ "location"
+  , prepareRequestType :: !(Maybe Text) -- ^ "type"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON PrepareRequest
+instance A.FromJSON PrepareRequest where
+  parseJSON = A.withObject "PrepareRequest" $ \o ->
+    PrepareRequest
+      <$> (o .:? "apiLookupPath")
+      <*> (o .:? "smartContractTag")
+      <*> (o .:? "urgency")
+      <*> (o .:? "requestDetails")
+      <*> (o .:? "smartContractAddress")
+      <*> (o .:? "location")
+      <*> (o .:? "type")
+
+-- | ToJSON PrepareRequest
+instance A.ToJSON PrepareRequest where
+  toJSON PrepareRequest {..} =
+   _omitNulls
+      [ "apiLookupPath" .= prepareRequestApiLookupPath
+      , "smartContractTag" .= prepareRequestSmartContractTag
+      , "urgency" .= prepareRequestUrgency
+      , "requestDetails" .= prepareRequestRequestDetails
+      , "smartContractAddress" .= prepareRequestSmartContractAddress
+      , "location" .= prepareRequestLocation
+      , "type" .= prepareRequestType
+      ]
+
+
+-- | Construct a value of type 'PrepareRequest' (by applying it's required fields, if any)
+mkPrepareRequest
+  :: PrepareRequest
+mkPrepareRequest =
+  PrepareRequest
+  { prepareRequestApiLookupPath = Nothing
+  , prepareRequestSmartContractTag = Nothing
+  , prepareRequestUrgency = Nothing
+  , prepareRequestRequestDetails = Nothing
+  , prepareRequestSmartContractAddress = Nothing
+  , prepareRequestLocation = Nothing
+  , prepareRequestType = Nothing
+  }
+
+-- ** PrepareRequestDetails
+-- | PrepareRequestDetails
+data PrepareRequestDetails = PrepareRequestDetails
+  { prepareRequestDetailsMandate :: !(Maybe [Mandate]) -- ^ "mandate"
+  , prepareRequestDetailsAliasDetails :: !(Maybe AliasDetails) -- ^ "aliasDetails"
+  , prepareRequestDetailsPagination :: !(Maybe Pagination) -- ^ "pagination"
+  , prepareRequestDetailsOrigin :: !(Maybe [Origin]) -- ^ "origin"
+  , prepareRequestDetailsDestination :: !(Maybe [Destination]) -- ^ "destination"
+  , prepareRequestDetailsTokenName :: !(Maybe Text) -- ^ "tokenName" - Name of the token
+  , prepareRequestDetailsBlockSearchType :: !(Maybe Text) -- ^ "blockSearchType"
+  , prepareRequestDetailsPayer :: !(Maybe [Payer]) -- ^ "payer"
+  , prepareRequestDetailsCollector :: !(Maybe Collector) -- ^ "collector"
+  , prepareRequestDetailsPayee :: !(Maybe [Payee]) -- ^ "payee"
+  , prepareRequestDetailsAdditionalOwner :: !(Maybe AdditionalOwner) -- ^ "additionalOwner"
+  , prepareRequestDetailsOwner :: !(Maybe Owner) -- ^ "owner"
+  , prepareRequestDetailsCreator :: !(Maybe Creator) -- ^ "creator"
+  , prepareRequestDetailsReceiver :: !(Maybe [Receiver]) -- ^ "receiver"
+  , prepareRequestDetailsTokenId :: !(Maybe Text) -- ^ "tokenId" - Unique identifier for the specific token
+  , prepareRequestDetailsMessage :: !(Maybe Text) -- ^ "message"
+  , prepareRequestDetailsLockDetails :: !(Maybe LockDetails) -- ^ "lockDetails"
+  , prepareRequestDetailsBlockId :: !(Maybe Text) -- ^ "blockId"
+  , prepareRequestDetailsAccountId :: !(Maybe Text) -- ^ "accountId" - The unique identifiers of the account
+  , prepareRequestDetailsTokenUnit :: !(Maybe Text) -- ^ "tokenUnit" - The unit of this token
+  , prepareRequestDetailsBeneficiary :: !(Maybe Beneficiary) -- ^ "beneficiary"
+  , prepareRequestDetailsSender :: !(Maybe [Sender]) -- ^ "sender"
+  , prepareRequestDetailsAccountDetails :: !(Maybe AccountDetails) -- ^ "accountDetails"
+  , prepareRequestDetailsOverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
+  , prepareRequestDetailsTotalPaymentAmount :: !(Maybe Payment) -- ^ "totalPaymentAmount"
+  , prepareRequestDetailsSignerAccount :: !(Maybe SignerAccount) -- ^ "signerAccount"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON PrepareRequestDetails
+instance A.FromJSON PrepareRequestDetails where
+  parseJSON = A.withObject "PrepareRequestDetails" $ \o ->
+    PrepareRequestDetails
+      <$> (o .:? "mandate")
+      <*> (o .:? "aliasDetails")
+      <*> (o .:? "pagination")
+      <*> (o .:? "origin")
+      <*> (o .:? "destination")
+      <*> (o .:? "tokenName")
+      <*> (o .:? "blockSearchType")
+      <*> (o .:? "payer")
+      <*> (o .:? "collector")
+      <*> (o .:? "payee")
+      <*> (o .:? "additionalOwner")
+      <*> (o .:? "owner")
+      <*> (o .:? "creator")
+      <*> (o .:? "receiver")
+      <*> (o .:? "tokenId")
+      <*> (o .:? "message")
+      <*> (o .:? "lockDetails")
+      <*> (o .:? "blockId")
+      <*> (o .:? "accountId")
+      <*> (o .:? "tokenUnit")
+      <*> (o .:? "beneficiary")
+      <*> (o .:? "sender")
+      <*> (o .:? "accountDetails")
+      <*> (o .:? "overledgerSigningType")
+      <*> (o .:? "totalPaymentAmount")
+      <*> (o .:? "signerAccount")
+
+-- | ToJSON PrepareRequestDetails
+instance A.ToJSON PrepareRequestDetails where
+  toJSON PrepareRequestDetails {..} =
+   _omitNulls
+      [ "mandate" .= prepareRequestDetailsMandate
+      , "aliasDetails" .= prepareRequestDetailsAliasDetails
+      , "pagination" .= prepareRequestDetailsPagination
+      , "origin" .= prepareRequestDetailsOrigin
+      , "destination" .= prepareRequestDetailsDestination
+      , "tokenName" .= prepareRequestDetailsTokenName
+      , "blockSearchType" .= prepareRequestDetailsBlockSearchType
+      , "payer" .= prepareRequestDetailsPayer
+      , "collector" .= prepareRequestDetailsCollector
+      , "payee" .= prepareRequestDetailsPayee
+      , "additionalOwner" .= prepareRequestDetailsAdditionalOwner
+      , "owner" .= prepareRequestDetailsOwner
+      , "creator" .= prepareRequestDetailsCreator
+      , "receiver" .= prepareRequestDetailsReceiver
+      , "tokenId" .= prepareRequestDetailsTokenId
+      , "message" .= prepareRequestDetailsMessage
+      , "lockDetails" .= prepareRequestDetailsLockDetails
+      , "blockId" .= prepareRequestDetailsBlockId
+      , "accountId" .= prepareRequestDetailsAccountId
+      , "tokenUnit" .= prepareRequestDetailsTokenUnit
+      , "beneficiary" .= prepareRequestDetailsBeneficiary
+      , "sender" .= prepareRequestDetailsSender
+      , "accountDetails" .= prepareRequestDetailsAccountDetails
+      , "overledgerSigningType" .= prepareRequestDetailsOverledgerSigningType
+      , "totalPaymentAmount" .= prepareRequestDetailsTotalPaymentAmount
+      , "signerAccount" .= prepareRequestDetailsSignerAccount
+      ]
+
+
+-- | Construct a value of type 'PrepareRequestDetails' (by applying it's required fields, if any)
+mkPrepareRequestDetails
+  :: PrepareRequestDetails
+mkPrepareRequestDetails =
+  PrepareRequestDetails
+  { prepareRequestDetailsMandate = Nothing
+  , prepareRequestDetailsAliasDetails = Nothing
+  , prepareRequestDetailsPagination = Nothing
+  , prepareRequestDetailsOrigin = Nothing
+  , prepareRequestDetailsDestination = Nothing
+  , prepareRequestDetailsTokenName = Nothing
+  , prepareRequestDetailsBlockSearchType = Nothing
+  , prepareRequestDetailsPayer = Nothing
+  , prepareRequestDetailsCollector = Nothing
+  , prepareRequestDetailsPayee = Nothing
+  , prepareRequestDetailsAdditionalOwner = Nothing
+  , prepareRequestDetailsOwner = Nothing
+  , prepareRequestDetailsCreator = Nothing
+  , prepareRequestDetailsReceiver = Nothing
+  , prepareRequestDetailsTokenId = Nothing
+  , prepareRequestDetailsMessage = Nothing
+  , prepareRequestDetailsLockDetails = Nothing
+  , prepareRequestDetailsBlockId = Nothing
+  , prepareRequestDetailsAccountId = Nothing
+  , prepareRequestDetailsTokenUnit = Nothing
+  , prepareRequestDetailsBeneficiary = Nothing
+  , prepareRequestDetailsSender = Nothing
+  , prepareRequestDetailsAccountDetails = Nothing
+  , prepareRequestDetailsOverledgerSigningType = Nothing
+  , prepareRequestDetailsTotalPaymentAmount = Nothing
+  , prepareRequestDetailsSignerAccount = Nothing
   }
 
 -- ** PrepareSearchResponseSchema
@@ -2458,81 +4336,476 @@ mkPrepareTransactionResponse =
 -- ** PrepareTransactionSmartContractInvokeRequestSchema
 -- | PrepareTransactionSmartContractInvokeRequestSchema
 data PrepareTransactionSmartContractInvokeRequestSchema = PrepareTransactionSmartContractInvokeRequestSchema
-  { prepareTransactionSmartContractInvokeRequestSchemaUrgency :: !(Maybe Text) -- ^ "urgency"
+  { prepareTransactionSmartContractInvokeRequestSchemaLocation :: !(Location) -- ^ /Required/ "location"
+  , prepareTransactionSmartContractInvokeRequestSchemaType :: !(E'Type) -- ^ /Required/ "type" - The type of the transaction
+  , prepareTransactionSmartContractInvokeRequestSchemaUrgency :: !(E'Urgency) -- ^ /Required/ "urgency" - This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
   , prepareTransactionSmartContractInvokeRequestSchemaRequestDetails :: !(Maybe SmartContractInvokeRequestDetailsSchema) -- ^ "requestDetails"
-  , prepareTransactionSmartContractInvokeRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
-  , prepareTransactionSmartContractInvokeRequestSchemaType :: !(Maybe Text) -- ^ "type"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON PrepareTransactionSmartContractInvokeRequestSchema
 instance A.FromJSON PrepareTransactionSmartContractInvokeRequestSchema where
   parseJSON = A.withObject "PrepareTransactionSmartContractInvokeRequestSchema" $ \o ->
     PrepareTransactionSmartContractInvokeRequestSchema
-      <$> (o .:? "urgency")
+      <$> (o .:  "location")
+      <*> (o .:  "type")
+      <*> (o .:  "urgency")
       <*> (o .:? "requestDetails")
-      <*> (o .:? "location")
-      <*> (o .:? "type")
 
 -- | ToJSON PrepareTransactionSmartContractInvokeRequestSchema
 instance A.ToJSON PrepareTransactionSmartContractInvokeRequestSchema where
   toJSON PrepareTransactionSmartContractInvokeRequestSchema {..} =
    _omitNulls
-      [ "urgency" .= prepareTransactionSmartContractInvokeRequestSchemaUrgency
-      , "requestDetails" .= prepareTransactionSmartContractInvokeRequestSchemaRequestDetails
-      , "location" .= prepareTransactionSmartContractInvokeRequestSchemaLocation
+      [ "location" .= prepareTransactionSmartContractInvokeRequestSchemaLocation
       , "type" .= prepareTransactionSmartContractInvokeRequestSchemaType
+      , "urgency" .= prepareTransactionSmartContractInvokeRequestSchemaUrgency
+      , "requestDetails" .= prepareTransactionSmartContractInvokeRequestSchemaRequestDetails
       ]
 
 
 -- | Construct a value of type 'PrepareTransactionSmartContractInvokeRequestSchema' (by applying it's required fields, if any)
 mkPrepareTransactionSmartContractInvokeRequestSchema
-  :: PrepareTransactionSmartContractInvokeRequestSchema
-mkPrepareTransactionSmartContractInvokeRequestSchema =
+  :: Location -- ^ 'prepareTransactionSmartContractInvokeRequestSchemaLocation' 
+  -> E'Type -- ^ 'prepareTransactionSmartContractInvokeRequestSchemaType': The type of the transaction
+  -> E'Urgency -- ^ 'prepareTransactionSmartContractInvokeRequestSchemaUrgency': This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  -> PrepareTransactionSmartContractInvokeRequestSchema
+mkPrepareTransactionSmartContractInvokeRequestSchema prepareTransactionSmartContractInvokeRequestSchemaLocation prepareTransactionSmartContractInvokeRequestSchemaType prepareTransactionSmartContractInvokeRequestSchemaUrgency =
   PrepareTransactionSmartContractInvokeRequestSchema
-  { prepareTransactionSmartContractInvokeRequestSchemaUrgency = Nothing
+  { prepareTransactionSmartContractInvokeRequestSchemaLocation
+  , prepareTransactionSmartContractInvokeRequestSchemaType
+  , prepareTransactionSmartContractInvokeRequestSchemaUrgency
   , prepareTransactionSmartContractInvokeRequestSchemaRequestDetails = Nothing
-  , prepareTransactionSmartContractInvokeRequestSchemaLocation = Nothing
-  , prepareTransactionSmartContractInvokeRequestSchemaType = Nothing
   }
 
 -- ** PrepareTransferTransactionRequestSchema
 -- | PrepareTransferTransactionRequestSchema
 data PrepareTransferTransactionRequestSchema = PrepareTransferTransactionRequestSchema
-  { prepareTransferTransactionRequestSchemaUrgency :: !(Maybe Text) -- ^ "urgency"
+  { prepareTransferTransactionRequestSchemaLocation :: !(Location) -- ^ /Required/ "location"
+  , prepareTransferTransactionRequestSchemaType :: !(E'Type) -- ^ /Required/ "type" - The type of the transaction
+  , prepareTransferTransactionRequestSchemaUrgency :: !(E'Urgency) -- ^ /Required/ "urgency" - This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
   , prepareTransferTransactionRequestSchemaRequestDetails :: !(Maybe TransferRequestDetailsSchema) -- ^ "requestDetails"
-  , prepareTransferTransactionRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
-  , prepareTransferTransactionRequestSchemaType :: !(Maybe Text) -- ^ "type"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON PrepareTransferTransactionRequestSchema
 instance A.FromJSON PrepareTransferTransactionRequestSchema where
   parseJSON = A.withObject "PrepareTransferTransactionRequestSchema" $ \o ->
     PrepareTransferTransactionRequestSchema
-      <$> (o .:? "urgency")
+      <$> (o .:  "location")
+      <*> (o .:  "type")
+      <*> (o .:  "urgency")
       <*> (o .:? "requestDetails")
-      <*> (o .:? "location")
-      <*> (o .:? "type")
 
 -- | ToJSON PrepareTransferTransactionRequestSchema
 instance A.ToJSON PrepareTransferTransactionRequestSchema where
   toJSON PrepareTransferTransactionRequestSchema {..} =
    _omitNulls
-      [ "urgency" .= prepareTransferTransactionRequestSchemaUrgency
-      , "requestDetails" .= prepareTransferTransactionRequestSchemaRequestDetails
-      , "location" .= prepareTransferTransactionRequestSchemaLocation
+      [ "location" .= prepareTransferTransactionRequestSchemaLocation
       , "type" .= prepareTransferTransactionRequestSchemaType
+      , "urgency" .= prepareTransferTransactionRequestSchemaUrgency
+      , "requestDetails" .= prepareTransferTransactionRequestSchemaRequestDetails
       ]
 
 
 -- | Construct a value of type 'PrepareTransferTransactionRequestSchema' (by applying it's required fields, if any)
 mkPrepareTransferTransactionRequestSchema
-  :: PrepareTransferTransactionRequestSchema
-mkPrepareTransferTransactionRequestSchema =
+  :: Location -- ^ 'prepareTransferTransactionRequestSchemaLocation' 
+  -> E'Type -- ^ 'prepareTransferTransactionRequestSchemaType': The type of the transaction
+  -> E'Urgency -- ^ 'prepareTransferTransactionRequestSchemaUrgency': This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+  -> PrepareTransferTransactionRequestSchema
+mkPrepareTransferTransactionRequestSchema prepareTransferTransactionRequestSchemaLocation prepareTransferTransactionRequestSchemaType prepareTransferTransactionRequestSchemaUrgency =
   PrepareTransferTransactionRequestSchema
-  { prepareTransferTransactionRequestSchemaUrgency = Nothing
+  { prepareTransferTransactionRequestSchemaLocation
+  , prepareTransferTransactionRequestSchemaType
+  , prepareTransferTransactionRequestSchemaUrgency
   , prepareTransferTransactionRequestSchemaRequestDetails = Nothing
-  , prepareTransferTransactionRequestSchemaLocation = Nothing
-  , prepareTransferTransactionRequestSchemaType = Nothing
+  }
+
+-- ** ReadAccountBalanceRequestSchema
+-- | ReadAccountBalanceRequestSchema
+data ReadAccountBalanceRequestSchema = ReadAccountBalanceRequestSchema
+  { readAccountBalanceRequestSchemaRequestDetails :: !(Maybe A.Value) -- ^ "requestDetails"
+  , readAccountBalanceRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON ReadAccountBalanceRequestSchema
+instance A.FromJSON ReadAccountBalanceRequestSchema where
+  parseJSON = A.withObject "ReadAccountBalanceRequestSchema" $ \o ->
+    ReadAccountBalanceRequestSchema
+      <$> (o .:? "requestDetails")
+      <*> (o .:? "location")
+
+-- | ToJSON ReadAccountBalanceRequestSchema
+instance A.ToJSON ReadAccountBalanceRequestSchema where
+  toJSON ReadAccountBalanceRequestSchema {..} =
+   _omitNulls
+      [ "requestDetails" .= readAccountBalanceRequestSchemaRequestDetails
+      , "location" .= readAccountBalanceRequestSchemaLocation
+      ]
+
+
+-- | Construct a value of type 'ReadAccountBalanceRequestSchema' (by applying it's required fields, if any)
+mkReadAccountBalanceRequestSchema
+  :: ReadAccountBalanceRequestSchema
+mkReadAccountBalanceRequestSchema =
+  ReadAccountBalanceRequestSchema
+  { readAccountBalanceRequestSchemaRequestDetails = Nothing
+  , readAccountBalanceRequestSchemaLocation = Nothing
+  }
+
+-- ** ReadApprovedAccountAllowanceRequestSchema
+-- | ReadApprovedAccountAllowanceRequestSchema
+data ReadApprovedAccountAllowanceRequestSchema = ReadApprovedAccountAllowanceRequestSchema
+  { readApprovedAccountAllowanceRequestSchemaRequestDetails :: !(Maybe A.Value) -- ^ "requestDetails"
+  , readApprovedAccountAllowanceRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON ReadApprovedAccountAllowanceRequestSchema
+instance A.FromJSON ReadApprovedAccountAllowanceRequestSchema where
+  parseJSON = A.withObject "ReadApprovedAccountAllowanceRequestSchema" $ \o ->
+    ReadApprovedAccountAllowanceRequestSchema
+      <$> (o .:? "requestDetails")
+      <*> (o .:? "location")
+
+-- | ToJSON ReadApprovedAccountAllowanceRequestSchema
+instance A.ToJSON ReadApprovedAccountAllowanceRequestSchema where
+  toJSON ReadApprovedAccountAllowanceRequestSchema {..} =
+   _omitNulls
+      [ "requestDetails" .= readApprovedAccountAllowanceRequestSchemaRequestDetails
+      , "location" .= readApprovedAccountAllowanceRequestSchemaLocation
+      ]
+
+
+-- | Construct a value of type 'ReadApprovedAccountAllowanceRequestSchema' (by applying it's required fields, if any)
+mkReadApprovedAccountAllowanceRequestSchema
+  :: ReadApprovedAccountAllowanceRequestSchema
+mkReadApprovedAccountAllowanceRequestSchema =
+  ReadApprovedAccountAllowanceRequestSchema
+  { readApprovedAccountAllowanceRequestSchemaRequestDetails = Nothing
+  , readApprovedAccountAllowanceRequestSchemaLocation = Nothing
+  }
+
+-- ** ReadApprovedAccountRequestDetailsSchema
+-- | ReadApprovedAccountRequestDetailsSchema
+data ReadApprovedAccountRequestDetailsSchema = ReadApprovedAccountRequestDetailsSchema
+  { readApprovedAccountRequestDetailsSchemaTokenId :: !(Maybe Text) -- ^ "tokenId" - Id of the token
+  , readApprovedAccountRequestDetailsSchemaTokenName :: !(Maybe Text) -- ^ "tokenName" - Name of the token
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON ReadApprovedAccountRequestDetailsSchema
+instance A.FromJSON ReadApprovedAccountRequestDetailsSchema where
+  parseJSON = A.withObject "ReadApprovedAccountRequestDetailsSchema" $ \o ->
+    ReadApprovedAccountRequestDetailsSchema
+      <$> (o .:? "tokenId")
+      <*> (o .:? "tokenName")
+
+-- | ToJSON ReadApprovedAccountRequestDetailsSchema
+instance A.ToJSON ReadApprovedAccountRequestDetailsSchema where
+  toJSON ReadApprovedAccountRequestDetailsSchema {..} =
+   _omitNulls
+      [ "tokenId" .= readApprovedAccountRequestDetailsSchemaTokenId
+      , "tokenName" .= readApprovedAccountRequestDetailsSchemaTokenName
+      ]
+
+
+-- | Construct a value of type 'ReadApprovedAccountRequestDetailsSchema' (by applying it's required fields, if any)
+mkReadApprovedAccountRequestDetailsSchema
+  :: ReadApprovedAccountRequestDetailsSchema
+mkReadApprovedAccountRequestDetailsSchema =
+  ReadApprovedAccountRequestDetailsSchema
+  { readApprovedAccountRequestDetailsSchemaTokenId = Nothing
+  , readApprovedAccountRequestDetailsSchemaTokenName = Nothing
+  }
+
+-- ** ReadApprovedAccountRequestSchema
+-- | ReadApprovedAccountRequestSchema
+data ReadApprovedAccountRequestSchema = ReadApprovedAccountRequestSchema
+  { readApprovedAccountRequestSchemaRequestDetails :: !(Maybe ReadApprovedAccountRequestDetailsSchema) -- ^ "requestDetails"
+  , readApprovedAccountRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON ReadApprovedAccountRequestSchema
+instance A.FromJSON ReadApprovedAccountRequestSchema where
+  parseJSON = A.withObject "ReadApprovedAccountRequestSchema" $ \o ->
+    ReadApprovedAccountRequestSchema
+      <$> (o .:? "requestDetails")
+      <*> (o .:? "location")
+
+-- | ToJSON ReadApprovedAccountRequestSchema
+instance A.ToJSON ReadApprovedAccountRequestSchema where
+  toJSON ReadApprovedAccountRequestSchema {..} =
+   _omitNulls
+      [ "requestDetails" .= readApprovedAccountRequestSchemaRequestDetails
+      , "location" .= readApprovedAccountRequestSchemaLocation
+      ]
+
+
+-- | Construct a value of type 'ReadApprovedAccountRequestSchema' (by applying it's required fields, if any)
+mkReadApprovedAccountRequestSchema
+  :: ReadApprovedAccountRequestSchema
+mkReadApprovedAccountRequestSchema =
+  ReadApprovedAccountRequestSchema
+  { readApprovedAccountRequestSchemaRequestDetails = Nothing
+  , readApprovedAccountRequestSchemaLocation = Nothing
+  }
+
+-- ** ReadBalanceRequestDetailsSchema
+-- | ReadBalanceRequestDetailsSchema
+data ReadBalanceRequestDetailsSchema = ReadBalanceRequestDetailsSchema
+  { readBalanceRequestDetailsSchemaTokenName :: !(Maybe Text) -- ^ "tokenName" - Name of the token
+  , readBalanceRequestDetailsSchemaAccountId :: !(Maybe Text) -- ^ "accountId" - The unique identifiers of the account
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON ReadBalanceRequestDetailsSchema
+instance A.FromJSON ReadBalanceRequestDetailsSchema where
+  parseJSON = A.withObject "ReadBalanceRequestDetailsSchema" $ \o ->
+    ReadBalanceRequestDetailsSchema
+      <$> (o .:? "tokenName")
+      <*> (o .:? "accountId")
+
+-- | ToJSON ReadBalanceRequestDetailsSchema
+instance A.ToJSON ReadBalanceRequestDetailsSchema where
+  toJSON ReadBalanceRequestDetailsSchema {..} =
+   _omitNulls
+      [ "tokenName" .= readBalanceRequestDetailsSchemaTokenName
+      , "accountId" .= readBalanceRequestDetailsSchemaAccountId
+      ]
+
+
+-- | Construct a value of type 'ReadBalanceRequestDetailsSchema' (by applying it's required fields, if any)
+mkReadBalanceRequestDetailsSchema
+  :: ReadBalanceRequestDetailsSchema
+mkReadBalanceRequestDetailsSchema =
+  ReadBalanceRequestDetailsSchema
+  { readBalanceRequestDetailsSchemaTokenName = Nothing
+  , readBalanceRequestDetailsSchemaAccountId = Nothing
+  }
+
+-- ** ReadBalanceRequestSchema
+-- | ReadBalanceRequestSchema
+data ReadBalanceRequestSchema = ReadBalanceRequestSchema
+  { readBalanceRequestSchemaRequestDetails :: !(Maybe ReadBalanceRequestDetailsSchema) -- ^ "requestDetails"
+  , readBalanceRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON ReadBalanceRequestSchema
+instance A.FromJSON ReadBalanceRequestSchema where
+  parseJSON = A.withObject "ReadBalanceRequestSchema" $ \o ->
+    ReadBalanceRequestSchema
+      <$> (o .:? "requestDetails")
+      <*> (o .:? "location")
+
+-- | ToJSON ReadBalanceRequestSchema
+instance A.ToJSON ReadBalanceRequestSchema where
+  toJSON ReadBalanceRequestSchema {..} =
+   _omitNulls
+      [ "requestDetails" .= readBalanceRequestSchemaRequestDetails
+      , "location" .= readBalanceRequestSchemaLocation
+      ]
+
+
+-- | Construct a value of type 'ReadBalanceRequestSchema' (by applying it's required fields, if any)
+mkReadBalanceRequestSchema
+  :: ReadBalanceRequestSchema
+mkReadBalanceRequestSchema =
+  ReadBalanceRequestSchema
+  { readBalanceRequestSchemaRequestDetails = Nothing
+  , readBalanceRequestSchemaLocation = Nothing
+  }
+
+-- ** ReadContractOwnerRequestDetailsSchema
+-- | ReadContractOwnerRequestDetailsSchema
+data ReadContractOwnerRequestDetailsSchema = ReadContractOwnerRequestDetailsSchema
+  { readContractOwnerRequestDetailsSchemaTokenName :: !(Maybe Text) -- ^ "tokenName" - Name of the token
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON ReadContractOwnerRequestDetailsSchema
+instance A.FromJSON ReadContractOwnerRequestDetailsSchema where
+  parseJSON = A.withObject "ReadContractOwnerRequestDetailsSchema" $ \o ->
+    ReadContractOwnerRequestDetailsSchema
+      <$> (o .:? "tokenName")
+
+-- | ToJSON ReadContractOwnerRequestDetailsSchema
+instance A.ToJSON ReadContractOwnerRequestDetailsSchema where
+  toJSON ReadContractOwnerRequestDetailsSchema {..} =
+   _omitNulls
+      [ "tokenName" .= readContractOwnerRequestDetailsSchemaTokenName
+      ]
+
+
+-- | Construct a value of type 'ReadContractOwnerRequestDetailsSchema' (by applying it's required fields, if any)
+mkReadContractOwnerRequestDetailsSchema
+  :: ReadContractOwnerRequestDetailsSchema
+mkReadContractOwnerRequestDetailsSchema =
+  ReadContractOwnerRequestDetailsSchema
+  { readContractOwnerRequestDetailsSchemaTokenName = Nothing
+  }
+
+-- ** ReadContractOwnerRequestSchema
+-- | ReadContractOwnerRequestSchema
+data ReadContractOwnerRequestSchema = ReadContractOwnerRequestSchema
+  { readContractOwnerRequestSchemaRequestDetails :: !(Maybe ReadContractOwnerRequestDetailsSchema) -- ^ "requestDetails"
+  , readContractOwnerRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON ReadContractOwnerRequestSchema
+instance A.FromJSON ReadContractOwnerRequestSchema where
+  parseJSON = A.withObject "ReadContractOwnerRequestSchema" $ \o ->
+    ReadContractOwnerRequestSchema
+      <$> (o .:? "requestDetails")
+      <*> (o .:? "location")
+
+-- | ToJSON ReadContractOwnerRequestSchema
+instance A.ToJSON ReadContractOwnerRequestSchema where
+  toJSON ReadContractOwnerRequestSchema {..} =
+   _omitNulls
+      [ "requestDetails" .= readContractOwnerRequestSchemaRequestDetails
+      , "location" .= readContractOwnerRequestSchemaLocation
+      ]
+
+
+-- | Construct a value of type 'ReadContractOwnerRequestSchema' (by applying it's required fields, if any)
+mkReadContractOwnerRequestSchema
+  :: ReadContractOwnerRequestSchema
+mkReadContractOwnerRequestSchema =
+  ReadContractOwnerRequestSchema
+  { readContractOwnerRequestSchemaRequestDetails = Nothing
+  , readContractOwnerRequestSchemaLocation = Nothing
+  }
+
+-- ** ReadTokenOwnerRequestDetailsSchema
+-- | ReadTokenOwnerRequestDetailsSchema
+data ReadTokenOwnerRequestDetailsSchema = ReadTokenOwnerRequestDetailsSchema
+  { readTokenOwnerRequestDetailsSchemaTokenId :: !(Maybe Text) -- ^ "tokenId" - Id of the token
+  , readTokenOwnerRequestDetailsSchemaTokenName :: !(Maybe Text) -- ^ "tokenName" - Name of the token
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON ReadTokenOwnerRequestDetailsSchema
+instance A.FromJSON ReadTokenOwnerRequestDetailsSchema where
+  parseJSON = A.withObject "ReadTokenOwnerRequestDetailsSchema" $ \o ->
+    ReadTokenOwnerRequestDetailsSchema
+      <$> (o .:? "tokenId")
+      <*> (o .:? "tokenName")
+
+-- | ToJSON ReadTokenOwnerRequestDetailsSchema
+instance A.ToJSON ReadTokenOwnerRequestDetailsSchema where
+  toJSON ReadTokenOwnerRequestDetailsSchema {..} =
+   _omitNulls
+      [ "tokenId" .= readTokenOwnerRequestDetailsSchemaTokenId
+      , "tokenName" .= readTokenOwnerRequestDetailsSchemaTokenName
+      ]
+
+
+-- | Construct a value of type 'ReadTokenOwnerRequestDetailsSchema' (by applying it's required fields, if any)
+mkReadTokenOwnerRequestDetailsSchema
+  :: ReadTokenOwnerRequestDetailsSchema
+mkReadTokenOwnerRequestDetailsSchema =
+  ReadTokenOwnerRequestDetailsSchema
+  { readTokenOwnerRequestDetailsSchemaTokenId = Nothing
+  , readTokenOwnerRequestDetailsSchemaTokenName = Nothing
+  }
+
+-- ** ReadTokenOwnerRequestSchema
+-- | ReadTokenOwnerRequestSchema
+data ReadTokenOwnerRequestSchema = ReadTokenOwnerRequestSchema
+  { readTokenOwnerRequestSchemaRequestDetails :: !(Maybe ReadTokenOwnerRequestDetailsSchema) -- ^ "requestDetails"
+  , readTokenOwnerRequestSchemaLocation :: !(Maybe Location) -- ^ "location"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON ReadTokenOwnerRequestSchema
+instance A.FromJSON ReadTokenOwnerRequestSchema where
+  parseJSON = A.withObject "ReadTokenOwnerRequestSchema" $ \o ->
+    ReadTokenOwnerRequestSchema
+      <$> (o .:? "requestDetails")
+      <*> (o .:? "location")
+
+-- | ToJSON ReadTokenOwnerRequestSchema
+instance A.ToJSON ReadTokenOwnerRequestSchema where
+  toJSON ReadTokenOwnerRequestSchema {..} =
+   _omitNulls
+      [ "requestDetails" .= readTokenOwnerRequestSchemaRequestDetails
+      , "location" .= readTokenOwnerRequestSchemaLocation
+      ]
+
+
+-- | Construct a value of type 'ReadTokenOwnerRequestSchema' (by applying it's required fields, if any)
+mkReadTokenOwnerRequestSchema
+  :: ReadTokenOwnerRequestSchema
+mkReadTokenOwnerRequestSchema =
+  ReadTokenOwnerRequestSchema
+  { readTokenOwnerRequestSchemaRequestDetails = Nothing
+  , readTokenOwnerRequestSchemaLocation = Nothing
+  }
+
+-- ** Receiver
+-- | Receiver
+-- The Destination of this transaction.
+data Receiver = Receiver
+  { receiverAccountId :: !(Maybe Text) -- ^ "accountId"
+  , receiverTransfer :: !(Maybe Transfer) -- ^ "transfer"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Receiver
+instance A.FromJSON Receiver where
+  parseJSON = A.withObject "Receiver" $ \o ->
+    Receiver
+      <$> (o .:? "accountId")
+      <*> (o .:? "transfer")
+
+-- | ToJSON Receiver
+instance A.ToJSON Receiver where
+  toJSON Receiver {..} =
+   _omitNulls
+      [ "accountId" .= receiverAccountId
+      , "transfer" .= receiverTransfer
+      ]
+
+
+-- | Construct a value of type 'Receiver' (by applying it's required fields, if any)
+mkReceiver
+  :: Receiver
+mkReceiver =
+  Receiver
+  { receiverAccountId = Nothing
+  , receiverTransfer = Nothing
+  }
+
+-- ** RemoveSecondaryAccountDetailsSchema
+-- | RemoveSecondaryAccountDetailsSchema
+data RemoveSecondaryAccountDetailsSchema = RemoveSecondaryAccountDetailsSchema
+  { removeSecondaryAccountDetailsSchemaOwner :: !(Maybe OwnerRemoveSecondarySchema) -- ^ "owner"
+  , removeSecondaryAccountDetailsSchemaAdditionalOwner :: !(Maybe AdditionalOwnerRemoveSecondarySchema) -- ^ "additionalOwner"
+  , removeSecondaryAccountDetailsSchemaMessage :: !(Maybe Text) -- ^ "message" - Any text-based element of the data payload
+  , removeSecondaryAccountDetailsSchemaOverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON RemoveSecondaryAccountDetailsSchema
+instance A.FromJSON RemoveSecondaryAccountDetailsSchema where
+  parseJSON = A.withObject "RemoveSecondaryAccountDetailsSchema" $ \o ->
+    RemoveSecondaryAccountDetailsSchema
+      <$> (o .:? "owner")
+      <*> (o .:? "additionalOwner")
+      <*> (o .:? "message")
+      <*> (o .:? "overledgerSigningType")
+
+-- | ToJSON RemoveSecondaryAccountDetailsSchema
+instance A.ToJSON RemoveSecondaryAccountDetailsSchema where
+  toJSON RemoveSecondaryAccountDetailsSchema {..} =
+   _omitNulls
+      [ "owner" .= removeSecondaryAccountDetailsSchemaOwner
+      , "additionalOwner" .= removeSecondaryAccountDetailsSchemaAdditionalOwner
+      , "message" .= removeSecondaryAccountDetailsSchemaMessage
+      , "overledgerSigningType" .= removeSecondaryAccountDetailsSchemaOverledgerSigningType
+      ]
+
+
+-- | Construct a value of type 'RemoveSecondaryAccountDetailsSchema' (by applying it's required fields, if any)
+mkRemoveSecondaryAccountDetailsSchema
+  :: RemoveSecondaryAccountDetailsSchema
+mkRemoveSecondaryAccountDetailsSchema =
+  RemoveSecondaryAccountDetailsSchema
+  { removeSecondaryAccountDetailsSchemaOwner = Nothing
+  , removeSecondaryAccountDetailsSchemaAdditionalOwner = Nothing
+  , removeSecondaryAccountDetailsSchemaMessage = Nothing
+  , removeSecondaryAccountDetailsSchemaOverledgerSigningType = Nothing
   }
 
 -- ** ResourceMonitoredAddressDetails
@@ -2706,26 +4979,26 @@ mkResourceMonitoringSmartContractEventDetails =
 -- ** ResourceMonitoringSubscription
 -- | ResourceMonitoringSubscription
 data ResourceMonitoringSubscription = ResourceMonitoringSubscription
-  { resourceMonitoringSubscriptionCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
-  , resourceMonitoringSubscriptionSubscriptionId :: !(Maybe Text) -- ^ "subscriptionId"
+  { resourceMonitoringSubscriptionSubscriptionId :: !(Maybe Text) -- ^ "subscriptionId"
   , resourceMonitoringSubscriptionType :: !(Maybe Text) -- ^ "type"
+  , resourceMonitoringSubscriptionCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON ResourceMonitoringSubscription
 instance A.FromJSON ResourceMonitoringSubscription where
   parseJSON = A.withObject "ResourceMonitoringSubscription" $ \o ->
     ResourceMonitoringSubscription
-      <$> (o .:? "callbackUrl")
-      <*> (o .:? "subscriptionId")
+      <$> (o .:? "subscriptionId")
       <*> (o .:? "type")
+      <*> (o .:? "callbackUrl")
 
 -- | ToJSON ResourceMonitoringSubscription
 instance A.ToJSON ResourceMonitoringSubscription where
   toJSON ResourceMonitoringSubscription {..} =
    _omitNulls
-      [ "callbackUrl" .= resourceMonitoringSubscriptionCallbackUrl
-      , "subscriptionId" .= resourceMonitoringSubscriptionSubscriptionId
+      [ "subscriptionId" .= resourceMonitoringSubscriptionSubscriptionId
       , "type" .= resourceMonitoringSubscriptionType
+      , "callbackUrl" .= resourceMonitoringSubscriptionCallbackUrl
       ]
 
 
@@ -2734,9 +5007,9 @@ mkResourceMonitoringSubscription
   :: ResourceMonitoringSubscription
 mkResourceMonitoringSubscription =
   ResourceMonitoringSubscription
-  { resourceMonitoringSubscriptionCallbackUrl = Nothing
-  , resourceMonitoringSubscriptionSubscriptionId = Nothing
+  { resourceMonitoringSubscriptionSubscriptionId = Nothing
   , resourceMonitoringSubscriptionType = Nothing
+  , resourceMonitoringSubscriptionCallbackUrl = Nothing
   }
 
 -- ** ResourceMonitoringSubscriptionDetails
@@ -2815,14 +5088,131 @@ mkScriptPubKey =
   , scriptPubKeyReqSigs = Nothing
   }
 
+-- ** SecondaryAccountAdditionalOwnerSchema
+-- | SecondaryAccountAdditionalOwnerSchema
+data SecondaryAccountAdditionalOwnerSchema = SecondaryAccountAdditionalOwnerSchema
+  { secondaryAccountAdditionalOwnerSchemaAccountId :: !(Maybe Text) -- ^ "accountId" - Unique Identifier of the owner
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON SecondaryAccountAdditionalOwnerSchema
+instance A.FromJSON SecondaryAccountAdditionalOwnerSchema where
+  parseJSON = A.withObject "SecondaryAccountAdditionalOwnerSchema" $ \o ->
+    SecondaryAccountAdditionalOwnerSchema
+      <$> (o .:? "accountId")
+
+-- | ToJSON SecondaryAccountAdditionalOwnerSchema
+instance A.ToJSON SecondaryAccountAdditionalOwnerSchema where
+  toJSON SecondaryAccountAdditionalOwnerSchema {..} =
+   _omitNulls
+      [ "accountId" .= secondaryAccountAdditionalOwnerSchemaAccountId
+      ]
+
+
+-- | Construct a value of type 'SecondaryAccountAdditionalOwnerSchema' (by applying it's required fields, if any)
+mkSecondaryAccountAdditionalOwnerSchema
+  :: SecondaryAccountAdditionalOwnerSchema
+mkSecondaryAccountAdditionalOwnerSchema =
+  SecondaryAccountAdditionalOwnerSchema
+  { secondaryAccountAdditionalOwnerSchemaAccountId = Nothing
+  }
+
+-- ** SecondaryAccountOwnerSchema
+-- | SecondaryAccountOwnerSchema
+data SecondaryAccountOwnerSchema = SecondaryAccountOwnerSchema
+  { secondaryAccountOwnerSchemaAccountId :: !(Maybe Text) -- ^ "accountId" - Unique Identifier of the owner
+  , secondaryAccountOwnerSchemaUnit :: !(Maybe Text) -- ^ "unit"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON SecondaryAccountOwnerSchema
+instance A.FromJSON SecondaryAccountOwnerSchema where
+  parseJSON = A.withObject "SecondaryAccountOwnerSchema" $ \o ->
+    SecondaryAccountOwnerSchema
+      <$> (o .:? "accountId")
+      <*> (o .:? "unit")
+
+-- | ToJSON SecondaryAccountOwnerSchema
+instance A.ToJSON SecondaryAccountOwnerSchema where
+  toJSON SecondaryAccountOwnerSchema {..} =
+   _omitNulls
+      [ "accountId" .= secondaryAccountOwnerSchemaAccountId
+      , "unit" .= secondaryAccountOwnerSchemaUnit
+      ]
+
+
+-- | Construct a value of type 'SecondaryAccountOwnerSchema' (by applying it's required fields, if any)
+mkSecondaryAccountOwnerSchema
+  :: SecondaryAccountOwnerSchema
+mkSecondaryAccountOwnerSchema =
+  SecondaryAccountOwnerSchema
+  { secondaryAccountOwnerSchemaAccountId = Nothing
+  , secondaryAccountOwnerSchemaUnit = Nothing
+  }
+
+-- ** Sender
+-- | Sender
+-- Where is this transaction coming from.
+data Sender = Sender
+  { senderAccountId :: !(Maybe Text) -- ^ "accountId"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON Sender
+instance A.FromJSON Sender where
+  parseJSON = A.withObject "Sender" $ \o ->
+    Sender
+      <$> (o .:? "accountId")
+
+-- | ToJSON Sender
+instance A.ToJSON Sender where
+  toJSON Sender {..} =
+   _omitNulls
+      [ "accountId" .= senderAccountId
+      ]
+
+
+-- | Construct a value of type 'Sender' (by applying it's required fields, if any)
+mkSender
+  :: Sender
+mkSender =
+  Sender
+  { senderAccountId = Nothing
+  }
+
+-- ** SignerAccount
+-- | SignerAccount
+data SignerAccount = SignerAccount
+  { signerAccountAccountId :: !(Maybe Text) -- ^ "accountId"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON SignerAccount
+instance A.FromJSON SignerAccount where
+  parseJSON = A.withObject "SignerAccount" $ \o ->
+    SignerAccount
+      <$> (o .:? "accountId")
+
+-- | ToJSON SignerAccount
+instance A.ToJSON SignerAccount where
+  toJSON SignerAccount {..} =
+   _omitNulls
+      [ "accountId" .= signerAccountAccountId
+      ]
+
+
+-- | Construct a value of type 'SignerAccount' (by applying it's required fields, if any)
+mkSignerAccount
+  :: SignerAccount
+mkSignerAccount =
+  SignerAccount
+  { signerAccountAccountId = Nothing
+  }
+
 -- ** SmartContract
 -- | SmartContract
 -- Computer program storage in a DLT system where the outcome is recorded on the distributed ledger
 data SmartContract = SmartContract
-  { smartContractFunction :: !(Maybe Function) -- ^ "function"
-  , smartContractDetail :: !(Maybe Text) -- ^ "detail"
+  { smartContractDetail :: !(Maybe Text) -- ^ "detail"
   , smartContractType :: !(Maybe Text) -- ^ "type" - Information on the object type
   , smartContractSmartContractId :: !(Maybe Text) -- ^ "smartContractId"
+  , smartContractFunction :: !(Maybe Function) -- ^ "function"
   , smartContractExtraFields :: !(Maybe A.Value) -- ^ "extraFields"
   } deriving (P.Show, P.Eq, P.Typeable)
 
@@ -2830,20 +5220,20 @@ data SmartContract = SmartContract
 instance A.FromJSON SmartContract where
   parseJSON = A.withObject "SmartContract" $ \o ->
     SmartContract
-      <$> (o .:? "function")
-      <*> (o .:? "detail")
+      <$> (o .:? "detail")
       <*> (o .:? "type")
       <*> (o .:? "smartContractId")
+      <*> (o .:? "function")
       <*> (o .:? "extraFields")
 
 -- | ToJSON SmartContract
 instance A.ToJSON SmartContract where
   toJSON SmartContract {..} =
    _omitNulls
-      [ "function" .= smartContractFunction
-      , "detail" .= smartContractDetail
+      [ "detail" .= smartContractDetail
       , "type" .= smartContractType
       , "smartContractId" .= smartContractSmartContractId
+      , "function" .= smartContractFunction
       , "extraFields" .= smartContractExtraFields
       ]
 
@@ -2853,36 +5243,36 @@ mkSmartContract
   :: SmartContract
 mkSmartContract =
   SmartContract
-  { smartContractFunction = Nothing
-  , smartContractDetail = Nothing
+  { smartContractDetail = Nothing
   , smartContractType = Nothing
   , smartContractSmartContractId = Nothing
+  , smartContractFunction = Nothing
   , smartContractExtraFields = Nothing
   }
 
 -- ** SmartContractDestinationSchema
 -- | SmartContractDestinationSchema
 data SmartContractDestinationSchema = SmartContractDestinationSchema
-  { smartContractDestinationSchemaSmartContract :: !(Maybe SmartContractSchema) -- ^ "smartContract"
+  { smartContractDestinationSchemaDestinationId :: !(Maybe Text) -- ^ "destinationId"
+  , smartContractDestinationSchemaSmartContract :: !(Maybe SmartContractSchema) -- ^ "smartContract"
   , smartContractDestinationSchemaPayment :: !(Maybe SmartContractPaymentSchema) -- ^ "payment"
-  , smartContractDestinationSchemaDestinationId :: !(Maybe Text) -- ^ "destinationId"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON SmartContractDestinationSchema
 instance A.FromJSON SmartContractDestinationSchema where
   parseJSON = A.withObject "SmartContractDestinationSchema" $ \o ->
     SmartContractDestinationSchema
-      <$> (o .:? "smartContract")
+      <$> (o .:? "destinationId")
+      <*> (o .:? "smartContract")
       <*> (o .:? "payment")
-      <*> (o .:? "destinationId")
 
 -- | ToJSON SmartContractDestinationSchema
 instance A.ToJSON SmartContractDestinationSchema where
   toJSON SmartContractDestinationSchema {..} =
    _omitNulls
-      [ "smartContract" .= smartContractDestinationSchemaSmartContract
+      [ "destinationId" .= smartContractDestinationSchemaDestinationId
+      , "smartContract" .= smartContractDestinationSchemaSmartContract
       , "payment" .= smartContractDestinationSchemaPayment
-      , "destinationId" .= smartContractDestinationSchemaDestinationId
       ]
 
 
@@ -2891,9 +5281,9 @@ mkSmartContractDestinationSchema
   :: SmartContractDestinationSchema
 mkSmartContractDestinationSchema =
   SmartContractDestinationSchema
-  { smartContractDestinationSchemaSmartContract = Nothing
+  { smartContractDestinationSchemaDestinationId = Nothing
+  , smartContractDestinationSchemaSmartContract = Nothing
   , smartContractDestinationSchemaPayment = Nothing
-  , smartContractDestinationSchemaDestinationId = Nothing
   }
 
 -- ** SmartContractEventHistory
@@ -3007,23 +5397,23 @@ mkSmartContractInputParameterSchema =
 -- ** SmartContractInvokeRequestDetailsSchema
 -- | SmartContractInvokeRequestDetailsSchema
 data SmartContractInvokeRequestDetailsSchema = SmartContractInvokeRequestDetailsSchema
-  { smartContractInvokeRequestDetailsSchemaOrigin :: !(Maybe [SmartContractRequestDetailsOrigin]) -- ^ "origin"
-  , smartContractInvokeRequestDetailsSchemaDestination :: !(Maybe [SmartContractDestinationSchema]) -- ^ "destination"
+  { smartContractInvokeRequestDetailsSchemaDestination :: !(Maybe [SmartContractDestinationSchema]) -- ^ "destination"
+  , smartContractInvokeRequestDetailsSchemaOrigin :: !(Maybe [SmartContractRequestDetailsOrigin]) -- ^ "origin"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON SmartContractInvokeRequestDetailsSchema
 instance A.FromJSON SmartContractInvokeRequestDetailsSchema where
   parseJSON = A.withObject "SmartContractInvokeRequestDetailsSchema" $ \o ->
     SmartContractInvokeRequestDetailsSchema
-      <$> (o .:? "origin")
-      <*> (o .:? "destination")
+      <$> (o .:? "destination")
+      <*> (o .:? "origin")
 
 -- | ToJSON SmartContractInvokeRequestDetailsSchema
 instance A.ToJSON SmartContractInvokeRequestDetailsSchema where
   toJSON SmartContractInvokeRequestDetailsSchema {..} =
    _omitNulls
-      [ "origin" .= smartContractInvokeRequestDetailsSchemaOrigin
-      , "destination" .= smartContractInvokeRequestDetailsSchemaDestination
+      [ "destination" .= smartContractInvokeRequestDetailsSchemaDestination
+      , "origin" .= smartContractInvokeRequestDetailsSchemaOrigin
       ]
 
 
@@ -3032,28 +5422,28 @@ mkSmartContractInvokeRequestDetailsSchema
   :: SmartContractInvokeRequestDetailsSchema
 mkSmartContractInvokeRequestDetailsSchema =
   SmartContractInvokeRequestDetailsSchema
-  { smartContractInvokeRequestDetailsSchemaOrigin = Nothing
-  , smartContractInvokeRequestDetailsSchemaDestination = Nothing
+  { smartContractInvokeRequestDetailsSchemaDestination = Nothing
+  , smartContractInvokeRequestDetailsSchemaOrigin = Nothing
   }
 
 -- ** SmartContractMonitoringDetailsSchema
 -- | SmartContractMonitoringDetailsSchema
 data SmartContractMonitoringDetailsSchema = SmartContractMonitoringDetailsSchema
-  { smartContractMonitoringDetailsSchemaSmartContractEventHistory :: !(Maybe [SmartContractEventHistory]) -- ^ "smartContractEventHistory"
-  , smartContractMonitoringDetailsSchemaSmartContractEventDetails :: !(Maybe ResourceMonitoringSmartContractEventDetails) -- ^ "smartContractEventDetails"
+  { smartContractMonitoringDetailsSchemaSmartContractEventDetails :: !(Maybe ResourceMonitoringSmartContractEventDetails) -- ^ "smartContractEventDetails"
   , smartContractMonitoringDetailsSchemaLocation :: !(Maybe Location) -- ^ "location"
+  , smartContractMonitoringDetailsSchemaSmartContractEventHistory :: !(Maybe [SmartContractEventHistory]) -- ^ "smartContractEventHistory"
   , smartContractMonitoringDetailsSchemaType :: !(Maybe Text) -- ^ "type"
   , smartContractMonitoringDetailsSchemaStatus :: !(Maybe Status) -- ^ "status"
-  , smartContractMonitoringDetailsSchemaTimestamp :: !(Maybe DateTime) -- ^ "timestamp"
+  , smartContractMonitoringDetailsSchemaTimestamp :: !(Maybe Text) -- ^ "timestamp"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON SmartContractMonitoringDetailsSchema
 instance A.FromJSON SmartContractMonitoringDetailsSchema where
   parseJSON = A.withObject "SmartContractMonitoringDetailsSchema" $ \o ->
     SmartContractMonitoringDetailsSchema
-      <$> (o .:? "smartContractEventHistory")
-      <*> (o .:? "smartContractEventDetails")
+      <$> (o .:? "smartContractEventDetails")
       <*> (o .:? "location")
+      <*> (o .:? "smartContractEventHistory")
       <*> (o .:? "type")
       <*> (o .:? "status")
       <*> (o .:? "timestamp")
@@ -3062,9 +5452,9 @@ instance A.FromJSON SmartContractMonitoringDetailsSchema where
 instance A.ToJSON SmartContractMonitoringDetailsSchema where
   toJSON SmartContractMonitoringDetailsSchema {..} =
    _omitNulls
-      [ "smartContractEventHistory" .= smartContractMonitoringDetailsSchemaSmartContractEventHistory
-      , "smartContractEventDetails" .= smartContractMonitoringDetailsSchemaSmartContractEventDetails
+      [ "smartContractEventDetails" .= smartContractMonitoringDetailsSchemaSmartContractEventDetails
       , "location" .= smartContractMonitoringDetailsSchemaLocation
+      , "smartContractEventHistory" .= smartContractMonitoringDetailsSchemaSmartContractEventHistory
       , "type" .= smartContractMonitoringDetailsSchemaType
       , "status" .= smartContractMonitoringDetailsSchemaStatus
       , "timestamp" .= smartContractMonitoringDetailsSchemaTimestamp
@@ -3076,9 +5466,9 @@ mkSmartContractMonitoringDetailsSchema
   :: SmartContractMonitoringDetailsSchema
 mkSmartContractMonitoringDetailsSchema =
   SmartContractMonitoringDetailsSchema
-  { smartContractMonitoringDetailsSchemaSmartContractEventHistory = Nothing
-  , smartContractMonitoringDetailsSchemaSmartContractEventDetails = Nothing
+  { smartContractMonitoringDetailsSchemaSmartContractEventDetails = Nothing
   , smartContractMonitoringDetailsSchemaLocation = Nothing
+  , smartContractMonitoringDetailsSchemaSmartContractEventHistory = Nothing
   , smartContractMonitoringDetailsSchemaType = Nothing
   , smartContractMonitoringDetailsSchemaStatus = Nothing
   , smartContractMonitoringDetailsSchemaTimestamp = Nothing
@@ -3179,8 +5569,8 @@ mkSmartContractPaymentSchema =
 -- ** SmartContractReadFunctionSchema
 -- | SmartContractReadFunctionSchema
 data SmartContractReadFunctionSchema = SmartContractReadFunctionSchema
-  { smartContractReadFunctionSchemaFunctionId :: !(Maybe Text) -- ^ "functionId"
-  , smartContractReadFunctionSchemaName :: !(Maybe Text) -- ^ "name"
+  { smartContractReadFunctionSchemaName :: !(Maybe Text) -- ^ "name"
+  , smartContractReadFunctionSchemaFunctionId :: !(Maybe Text) -- ^ "functionId"
   , smartContractReadFunctionSchemaInputParameters :: !(Maybe [SmartContractInputParameterSchema]) -- ^ "inputParameters"
   , smartContractReadFunctionSchemaOutputParameters :: !(Maybe [SmartContractInputParameterSchema]) -- ^ "outputParameters"
   } deriving (P.Show, P.Eq, P.Typeable)
@@ -3189,8 +5579,8 @@ data SmartContractReadFunctionSchema = SmartContractReadFunctionSchema
 instance A.FromJSON SmartContractReadFunctionSchema where
   parseJSON = A.withObject "SmartContractReadFunctionSchema" $ \o ->
     SmartContractReadFunctionSchema
-      <$> (o .:? "functionId")
-      <*> (o .:? "name")
+      <$> (o .:? "name")
+      <*> (o .:? "functionId")
       <*> (o .:? "inputParameters")
       <*> (o .:? "outputParameters")
 
@@ -3198,8 +5588,8 @@ instance A.FromJSON SmartContractReadFunctionSchema where
 instance A.ToJSON SmartContractReadFunctionSchema where
   toJSON SmartContractReadFunctionSchema {..} =
    _omitNulls
-      [ "functionId" .= smartContractReadFunctionSchemaFunctionId
-      , "name" .= smartContractReadFunctionSchemaName
+      [ "name" .= smartContractReadFunctionSchemaName
+      , "functionId" .= smartContractReadFunctionSchemaFunctionId
       , "inputParameters" .= smartContractReadFunctionSchemaInputParameters
       , "outputParameters" .= smartContractReadFunctionSchemaOutputParameters
       ]
@@ -3210,8 +5600,8 @@ mkSmartContractReadFunctionSchema
   :: SmartContractReadFunctionSchema
 mkSmartContractReadFunctionSchema =
   SmartContractReadFunctionSchema
-  { smartContractReadFunctionSchemaFunctionId = Nothing
-  , smartContractReadFunctionSchemaName = Nothing
+  { smartContractReadFunctionSchemaName = Nothing
+  , smartContractReadFunctionSchemaFunctionId = Nothing
   , smartContractReadFunctionSchemaInputParameters = Nothing
   , smartContractReadFunctionSchemaOutputParameters = Nothing
   }
@@ -3220,23 +5610,23 @@ mkSmartContractReadFunctionSchema =
 -- | SmartContractReadSchema
 -- Computer program storage in a DLT system where the outcome is recorded on the distributed ledger
 data SmartContractReadSchema = SmartContractReadSchema
-  { smartContractReadSchemaFunction :: !(Maybe SmartContractReadFunctionSchema) -- ^ "function"
-  , smartContractReadSchemaSmartContractId :: !(Maybe Text) -- ^ "smartContractId"
+  { smartContractReadSchemaSmartContractId :: !(Maybe Text) -- ^ "smartContractId"
+  , smartContractReadSchemaFunction :: !(Maybe SmartContractReadFunctionSchema) -- ^ "function"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON SmartContractReadSchema
 instance A.FromJSON SmartContractReadSchema where
   parseJSON = A.withObject "SmartContractReadSchema" $ \o ->
     SmartContractReadSchema
-      <$> (o .:? "function")
-      <*> (o .:? "smartContractId")
+      <$> (o .:? "smartContractId")
+      <*> (o .:? "function")
 
 -- | ToJSON SmartContractReadSchema
 instance A.ToJSON SmartContractReadSchema where
   toJSON SmartContractReadSchema {..} =
    _omitNulls
-      [ "function" .= smartContractReadSchemaFunction
-      , "smartContractId" .= smartContractReadSchemaSmartContractId
+      [ "smartContractId" .= smartContractReadSchemaSmartContractId
+      , "function" .= smartContractReadSchemaFunction
       ]
 
 
@@ -3245,8 +5635,8 @@ mkSmartContractReadSchema
   :: SmartContractReadSchema
 mkSmartContractReadSchema =
   SmartContractReadSchema
-  { smartContractReadSchemaFunction = Nothing
-  , smartContractReadSchemaSmartContractId = Nothing
+  { smartContractReadSchemaSmartContractId = Nothing
+  , smartContractReadSchemaFunction = Nothing
   }
 
 -- ** SmartContractRequestDetailsOrigin
@@ -3400,23 +5790,23 @@ mkSmartContractSearchRequestDetails =
 -- ** SmartContractSearchSchema
 -- | SmartContractSearchSchema
 data SmartContractSearchSchema = SmartContractSearchSchema
-  { smartContractSearchSchemaFunction :: !(Maybe SmartContractSearchFunctionSchema) -- ^ "function"
-  , smartContractSearchSchemaSmartContractId :: !(Maybe Text) -- ^ "smartContractId"
+  { smartContractSearchSchemaSmartContractId :: !(Maybe Text) -- ^ "smartContractId"
+  , smartContractSearchSchemaFunction :: !(Maybe SmartContractSearchFunctionSchema) -- ^ "function"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON SmartContractSearchSchema
 instance A.FromJSON SmartContractSearchSchema where
   parseJSON = A.withObject "SmartContractSearchSchema" $ \o ->
     SmartContractSearchSchema
-      <$> (o .:? "function")
-      <*> (o .:? "smartContractId")
+      <$> (o .:? "smartContractId")
+      <*> (o .:? "function")
 
 -- | ToJSON SmartContractSearchSchema
 instance A.ToJSON SmartContractSearchSchema where
   toJSON SmartContractSearchSchema {..} =
    _omitNulls
-      [ "function" .= smartContractSearchSchemaFunction
-      , "smartContractId" .= smartContractSearchSchemaSmartContractId
+      [ "smartContractId" .= smartContractSearchSchemaSmartContractId
+      , "function" .= smartContractSearchSchemaFunction
       ]
 
 
@@ -3425,15 +5815,51 @@ mkSmartContractSearchSchema
   :: SmartContractSearchSchema
 mkSmartContractSearchSchema =
   SmartContractSearchSchema
-  { smartContractSearchSchemaFunction = Nothing
-  , smartContractSearchSchemaSmartContractId = Nothing
+  { smartContractSearchSchemaSmartContractId = Nothing
+  , smartContractSearchSchemaFunction = Nothing
+  }
+
+-- ** SmartContractTag
+-- | SmartContractTag
+data SmartContractTag = SmartContractTag
+  { smartContractTagName :: !(Maybe Text) -- ^ "name"
+  , smartContractTagFunctionName :: !(Maybe Text) -- ^ "functionName"
+  , smartContractTagEventName :: !(Maybe Text) -- ^ "eventName"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON SmartContractTag
+instance A.FromJSON SmartContractTag where
+  parseJSON = A.withObject "SmartContractTag" $ \o ->
+    SmartContractTag
+      <$> (o .:? "name")
+      <*> (o .:? "functionName")
+      <*> (o .:? "eventName")
+
+-- | ToJSON SmartContractTag
+instance A.ToJSON SmartContractTag where
+  toJSON SmartContractTag {..} =
+   _omitNulls
+      [ "name" .= smartContractTagName
+      , "functionName" .= smartContractTagFunctionName
+      , "eventName" .= smartContractTagEventName
+      ]
+
+
+-- | Construct a value of type 'SmartContractTag' (by applying it's required fields, if any)
+mkSmartContractTag
+  :: SmartContractTag
+mkSmartContractTag =
+  SmartContractTag
+  { smartContractTagName = Nothing
+  , smartContractTagFunctionName = Nothing
+  , smartContractTagEventName = Nothing
   }
 
 -- ** Status
 -- | Status
 data Status = Status
-  { statusCode :: !(Maybe Text) -- ^ "code" - The code of an object
-  , statusDescription :: !(Maybe Text) -- ^ "description" - The description of an object
+  { statusDescription :: !(Maybe Text) -- ^ "description" - The description of an object
+  , statusCode :: !(Maybe Text) -- ^ "code" - The code of an object
   , statusMessage :: !(Maybe Text) -- ^ "message" - The message of an object
   , statusValue :: !(Maybe Text) -- ^ "value" - The value of an object
   , statusTimestamp :: !(Maybe Text) -- ^ "timestamp"
@@ -3443,8 +5869,8 @@ data Status = Status
 instance A.FromJSON Status where
   parseJSON = A.withObject "Status" $ \o ->
     Status
-      <$> (o .:? "code")
-      <*> (o .:? "description")
+      <$> (o .:? "description")
+      <*> (o .:? "code")
       <*> (o .:? "message")
       <*> (o .:? "value")
       <*> (o .:? "timestamp")
@@ -3453,8 +5879,8 @@ instance A.FromJSON Status where
 instance A.ToJSON Status where
   toJSON Status {..} =
    _omitNulls
-      [ "code" .= statusCode
-      , "description" .= statusDescription
+      [ "description" .= statusDescription
+      , "code" .= statusCode
       , "message" .= statusMessage
       , "value" .= statusValue
       , "timestamp" .= statusTimestamp
@@ -3466,8 +5892,8 @@ mkStatus
   :: Status
 mkStatus =
   Status
-  { statusCode = Nothing
-  , statusDescription = Nothing
+  { statusDescription = Nothing
+  , statusCode = Nothing
   , statusMessage = Nothing
   , statusValue = Nothing
   , statusTimestamp = Nothing
@@ -3529,148 +5955,148 @@ mkStatusUpdateSchema =
   { statusUpdateSchemaValue = Nothing
   }
 
--- ** SubscriptionDeletionResponse
--- | SubscriptionDeletionResponse
-data SubscriptionDeletionResponse = SubscriptionDeletionResponse
-  { subscriptionDeletionResponseSubscriptionDetails :: !(Maybe SubscriptionDetails) -- ^ "subscriptionDetails"
-  , subscriptionDeletionResponseCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
-  , subscriptionDeletionResponseSubscriptionId :: !(Maybe Text) -- ^ "subscriptionId"
-  , subscriptionDeletionResponseType :: !(Maybe Text) -- ^ "type"
+-- ** TierFunctionDTO
+-- | TierFunctionDTO
+data TierFunctionDTO = TierFunctionDTO
+  { tierFunctionDTOFunctionName :: !(Maybe Text) -- ^ "functionName"
+  , tierFunctionDTOApi :: !(Maybe Text) -- ^ "api"
   } deriving (P.Show, P.Eq, P.Typeable)
 
--- | FromJSON SubscriptionDeletionResponse
-instance A.FromJSON SubscriptionDeletionResponse where
-  parseJSON = A.withObject "SubscriptionDeletionResponse" $ \o ->
-    SubscriptionDeletionResponse
-      <$> (o .:? "subscriptionDetails")
-      <*> (o .:? "callbackUrl")
-      <*> (o .:? "subscriptionId")
+-- | FromJSON TierFunctionDTO
+instance A.FromJSON TierFunctionDTO where
+  parseJSON = A.withObject "TierFunctionDTO" $ \o ->
+    TierFunctionDTO
+      <$> (o .:? "functionName")
+      <*> (o .:? "api")
+
+-- | ToJSON TierFunctionDTO
+instance A.ToJSON TierFunctionDTO where
+  toJSON TierFunctionDTO {..} =
+   _omitNulls
+      [ "functionName" .= tierFunctionDTOFunctionName
+      , "api" .= tierFunctionDTOApi
+      ]
+
+
+-- | Construct a value of type 'TierFunctionDTO' (by applying it's required fields, if any)
+mkTierFunctionDTO
+  :: TierFunctionDTO
+mkTierFunctionDTO =
+  TierFunctionDTO
+  { tierFunctionDTOFunctionName = Nothing
+  , tierFunctionDTOApi = Nothing
+  }
+
+-- ** TokenReadQRC20Response
+-- | TokenReadQRC20Response
+data TokenReadQRC20Response = TokenReadQRC20Response
+  { tokenReadQRC20ResponseResponseDetails :: !(Maybe [TokenReadResponseDetails]) -- ^ "responseDetails"
+  , tokenReadQRC20ResponseRequestId :: !(Maybe Text) -- ^ "requestId" - The ID assigned to a preparation request in Overledger
+  , tokenReadQRC20ResponseLocation :: !(Maybe Location) -- ^ "location"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON TokenReadQRC20Response
+instance A.FromJSON TokenReadQRC20Response where
+  parseJSON = A.withObject "TokenReadQRC20Response" $ \o ->
+    TokenReadQRC20Response
+      <$> (o .:? "responseDetails")
+      <*> (o .:? "requestId")
+      <*> (o .:? "location")
+
+-- | ToJSON TokenReadQRC20Response
+instance A.ToJSON TokenReadQRC20Response where
+  toJSON TokenReadQRC20Response {..} =
+   _omitNulls
+      [ "responseDetails" .= tokenReadQRC20ResponseResponseDetails
+      , "requestId" .= tokenReadQRC20ResponseRequestId
+      , "location" .= tokenReadQRC20ResponseLocation
+      ]
+
+
+-- | Construct a value of type 'TokenReadQRC20Response' (by applying it's required fields, if any)
+mkTokenReadQRC20Response
+  :: TokenReadQRC20Response
+mkTokenReadQRC20Response =
+  TokenReadQRC20Response
+  { tokenReadQRC20ResponseResponseDetails = Nothing
+  , tokenReadQRC20ResponseRequestId = Nothing
+  , tokenReadQRC20ResponseLocation = Nothing
+  }
+
+-- ** TokenReadQRC721Response
+-- | TokenReadQRC721Response
+data TokenReadQRC721Response = TokenReadQRC721Response
+  { tokenReadQRC721ResponseTokenName :: !(Maybe Text) -- ^ "tokenName" - Name of the token
+  , tokenReadQRC721ResponseResponseDetails :: !(Maybe TokenReadResponseDetails) -- ^ "responseDetails"
+  , tokenReadQRC721ResponseLocation :: !(Maybe Location) -- ^ "location"
+  , tokenReadQRC721ResponseRequestId :: !(Maybe Text) -- ^ "requestId" - The ID assigned to a preparation request in Overledger
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON TokenReadQRC721Response
+instance A.FromJSON TokenReadQRC721Response where
+  parseJSON = A.withObject "TokenReadQRC721Response" $ \o ->
+    TokenReadQRC721Response
+      <$> (o .:? "tokenName")
+      <*> (o .:? "responseDetails")
+      <*> (o .:? "location")
+      <*> (o .:? "requestId")
+
+-- | ToJSON TokenReadQRC721Response
+instance A.ToJSON TokenReadQRC721Response where
+  toJSON TokenReadQRC721Response {..} =
+   _omitNulls
+      [ "tokenName" .= tokenReadQRC721ResponseTokenName
+      , "responseDetails" .= tokenReadQRC721ResponseResponseDetails
+      , "location" .= tokenReadQRC721ResponseLocation
+      , "requestId" .= tokenReadQRC721ResponseRequestId
+      ]
+
+
+-- | Construct a value of type 'TokenReadQRC721Response' (by applying it's required fields, if any)
+mkTokenReadQRC721Response
+  :: TokenReadQRC721Response
+mkTokenReadQRC721Response =
+  TokenReadQRC721Response
+  { tokenReadQRC721ResponseTokenName = Nothing
+  , tokenReadQRC721ResponseResponseDetails = Nothing
+  , tokenReadQRC721ResponseLocation = Nothing
+  , tokenReadQRC721ResponseRequestId = Nothing
+  }
+
+-- ** TokenReadResponseDetails
+-- | TokenReadResponseDetails
+data TokenReadResponseDetails = TokenReadResponseDetails
+  { tokenReadResponseDetailsName :: !(Maybe Text) -- ^ "name"
+  , tokenReadResponseDetailsType :: !(Maybe Text) -- ^ "type"
+  , tokenReadResponseDetailsValue :: !(Maybe A.Value) -- ^ "value"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON TokenReadResponseDetails
+instance A.FromJSON TokenReadResponseDetails where
+  parseJSON = A.withObject "TokenReadResponseDetails" $ \o ->
+    TokenReadResponseDetails
+      <$> (o .:? "name")
       <*> (o .:? "type")
+      <*> (o .:? "value")
 
--- | ToJSON SubscriptionDeletionResponse
-instance A.ToJSON SubscriptionDeletionResponse where
-  toJSON SubscriptionDeletionResponse {..} =
+-- | ToJSON TokenReadResponseDetails
+instance A.ToJSON TokenReadResponseDetails where
+  toJSON TokenReadResponseDetails {..} =
    _omitNulls
-      [ "subscriptionDetails" .= subscriptionDeletionResponseSubscriptionDetails
-      , "callbackUrl" .= subscriptionDeletionResponseCallbackUrl
-      , "subscriptionId" .= subscriptionDeletionResponseSubscriptionId
-      , "type" .= subscriptionDeletionResponseType
+      [ "name" .= tokenReadResponseDetailsName
+      , "type" .= tokenReadResponseDetailsType
+      , "value" .= tokenReadResponseDetailsValue
       ]
 
 
--- | Construct a value of type 'SubscriptionDeletionResponse' (by applying it's required fields, if any)
-mkSubscriptionDeletionResponse
-  :: SubscriptionDeletionResponse
-mkSubscriptionDeletionResponse =
-  SubscriptionDeletionResponse
-  { subscriptionDeletionResponseSubscriptionDetails = Nothing
-  , subscriptionDeletionResponseCallbackUrl = Nothing
-  , subscriptionDeletionResponseSubscriptionId = Nothing
-  , subscriptionDeletionResponseType = Nothing
-  }
-
--- ** SubscriptionDetails
--- | SubscriptionDetails
-data SubscriptionDetails = SubscriptionDetails
-  { subscriptionDetailsIds :: !(Maybe [Text]) -- ^ "ids"
-  , subscriptionDetailsStatus :: !(Maybe Status) -- ^ "status"
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON SubscriptionDetails
-instance A.FromJSON SubscriptionDetails where
-  parseJSON = A.withObject "SubscriptionDetails" $ \o ->
-    SubscriptionDetails
-      <$> (o .:? "ids")
-      <*> (o .:? "status")
-
--- | ToJSON SubscriptionDetails
-instance A.ToJSON SubscriptionDetails where
-  toJSON SubscriptionDetails {..} =
-   _omitNulls
-      [ "ids" .= subscriptionDetailsIds
-      , "status" .= subscriptionDetailsStatus
-      ]
-
-
--- | Construct a value of type 'SubscriptionDetails' (by applying it's required fields, if any)
-mkSubscriptionDetails
-  :: SubscriptionDetails
-mkSubscriptionDetails =
-  SubscriptionDetails
-  { subscriptionDetailsIds = Nothing
-  , subscriptionDetailsStatus = Nothing
-  }
-
--- ** SubscriptionDetailsSchema
--- | SubscriptionDetailsSchema
-data SubscriptionDetailsSchema = SubscriptionDetailsSchema
-  { subscriptionDetailsSchemaIds :: !(Maybe [Text]) -- ^ "ids"
-  , subscriptionDetailsSchemaStatus :: !(Maybe Status) -- ^ "status"
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON SubscriptionDetailsSchema
-instance A.FromJSON SubscriptionDetailsSchema where
-  parseJSON = A.withObject "SubscriptionDetailsSchema" $ \o ->
-    SubscriptionDetailsSchema
-      <$> (o .:? "ids")
-      <*> (o .:? "status")
-
--- | ToJSON SubscriptionDetailsSchema
-instance A.ToJSON SubscriptionDetailsSchema where
-  toJSON SubscriptionDetailsSchema {..} =
-   _omitNulls
-      [ "ids" .= subscriptionDetailsSchemaIds
-      , "status" .= subscriptionDetailsSchemaStatus
-      ]
-
-
--- | Construct a value of type 'SubscriptionDetailsSchema' (by applying it's required fields, if any)
-mkSubscriptionDetailsSchema
-  :: SubscriptionDetailsSchema
-mkSubscriptionDetailsSchema =
-  SubscriptionDetailsSchema
-  { subscriptionDetailsSchemaIds = Nothing
-  , subscriptionDetailsSchemaStatus = Nothing
-  }
-
--- ** SubscriptionUpdateResponse
--- | SubscriptionUpdateResponse
-data SubscriptionUpdateResponse = SubscriptionUpdateResponse
-  { subscriptionUpdateResponseSubscriptionDetails :: !(Maybe SubscriptionDetails) -- ^ "subscriptionDetails"
-  , subscriptionUpdateResponseCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
-  , subscriptionUpdateResponseSubscriptionId :: !(Maybe Text) -- ^ "subscriptionId"
-  , subscriptionUpdateResponseType :: !(Maybe Text) -- ^ "type"
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON SubscriptionUpdateResponse
-instance A.FromJSON SubscriptionUpdateResponse where
-  parseJSON = A.withObject "SubscriptionUpdateResponse" $ \o ->
-    SubscriptionUpdateResponse
-      <$> (o .:? "subscriptionDetails")
-      <*> (o .:? "callbackUrl")
-      <*> (o .:? "subscriptionId")
-      <*> (o .:? "type")
-
--- | ToJSON SubscriptionUpdateResponse
-instance A.ToJSON SubscriptionUpdateResponse where
-  toJSON SubscriptionUpdateResponse {..} =
-   _omitNulls
-      [ "subscriptionDetails" .= subscriptionUpdateResponseSubscriptionDetails
-      , "callbackUrl" .= subscriptionUpdateResponseCallbackUrl
-      , "subscriptionId" .= subscriptionUpdateResponseSubscriptionId
-      , "type" .= subscriptionUpdateResponseType
-      ]
-
-
--- | Construct a value of type 'SubscriptionUpdateResponse' (by applying it's required fields, if any)
-mkSubscriptionUpdateResponse
-  :: SubscriptionUpdateResponse
-mkSubscriptionUpdateResponse =
-  SubscriptionUpdateResponse
-  { subscriptionUpdateResponseSubscriptionDetails = Nothing
-  , subscriptionUpdateResponseCallbackUrl = Nothing
-  , subscriptionUpdateResponseSubscriptionId = Nothing
-  , subscriptionUpdateResponseType = Nothing
+-- | Construct a value of type 'TokenReadResponseDetails' (by applying it's required fields, if any)
+mkTokenReadResponseDetails
+  :: TokenReadResponseDetails
+mkTokenReadResponseDetails =
+  TokenReadResponseDetails
+  { tokenReadResponseDetailsName = Nothing
+  , tokenReadResponseDetailsType = Nothing
+  , tokenReadResponseDetailsValue = Nothing
   }
 
 -- ** Transaction
@@ -3777,29 +6203,29 @@ mkTransfer =
 -- ** TransferRequestDetailsSchema
 -- | TransferRequestDetailsSchema
 data TransferRequestDetailsSchema = TransferRequestDetailsSchema
-  { transferRequestDetailsSchemaOverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
-  , transferRequestDetailsSchemaOrigin :: !(Maybe [OriginTransferSchema]) -- ^ "origin"
-  , transferRequestDetailsSchemaDestination :: !(Maybe [DestinationTransferSchema]) -- ^ "destination"
+  { transferRequestDetailsSchemaDestination :: !(Maybe [DestinationTransferSchema]) -- ^ "destination"
   , transferRequestDetailsSchemaMessage :: !(Maybe Text) -- ^ "message"
+  , transferRequestDetailsSchemaOverledgerSigningType :: !(Maybe Text) -- ^ "overledgerSigningType"
+  , transferRequestDetailsSchemaOrigin :: !(Maybe [OriginTransferSchema]) -- ^ "origin"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON TransferRequestDetailsSchema
 instance A.FromJSON TransferRequestDetailsSchema where
   parseJSON = A.withObject "TransferRequestDetailsSchema" $ \o ->
     TransferRequestDetailsSchema
-      <$> (o .:? "overledgerSigningType")
-      <*> (o .:? "origin")
-      <*> (o .:? "destination")
+      <$> (o .:? "destination")
       <*> (o .:? "message")
+      <*> (o .:? "overledgerSigningType")
+      <*> (o .:? "origin")
 
 -- | ToJSON TransferRequestDetailsSchema
 instance A.ToJSON TransferRequestDetailsSchema where
   toJSON TransferRequestDetailsSchema {..} =
    _omitNulls
-      [ "overledgerSigningType" .= transferRequestDetailsSchemaOverledgerSigningType
-      , "origin" .= transferRequestDetailsSchemaOrigin
-      , "destination" .= transferRequestDetailsSchemaDestination
+      [ "destination" .= transferRequestDetailsSchemaDestination
       , "message" .= transferRequestDetailsSchemaMessage
+      , "overledgerSigningType" .= transferRequestDetailsSchemaOverledgerSigningType
+      , "origin" .= transferRequestDetailsSchemaOrigin
       ]
 
 
@@ -3808,10 +6234,10 @@ mkTransferRequestDetailsSchema
   :: TransferRequestDetailsSchema
 mkTransferRequestDetailsSchema =
   TransferRequestDetailsSchema
-  { transferRequestDetailsSchemaOverledgerSigningType = Nothing
-  , transferRequestDetailsSchemaOrigin = Nothing
-  , transferRequestDetailsSchemaDestination = Nothing
+  { transferRequestDetailsSchemaDestination = Nothing
   , transferRequestDetailsSchemaMessage = Nothing
+  , transferRequestDetailsSchemaOverledgerSigningType = Nothing
+  , transferRequestDetailsSchemaOrigin = Nothing
   }
 
 -- ** TransferSchema
@@ -3849,26 +6275,26 @@ mkTransferSchema =
 -- ** UTXODestination
 -- | UTXODestination
 data UTXODestination = UTXODestination
-  { uTXODestinationSmartContract :: !(Maybe UTXOSmartContract) -- ^ "smartContract"
+  { uTXODestinationDestinationId :: !(Maybe Text) -- ^ "destinationId"
+  , uTXODestinationSmartContract :: !(Maybe UTXOSmartContract) -- ^ "smartContract"
   , uTXODestinationPayment :: !(Maybe Payment) -- ^ "payment"
-  , uTXODestinationDestinationId :: !(Maybe Text) -- ^ "destinationId"
   } deriving (P.Show, P.Eq, P.Typeable)
 
 -- | FromJSON UTXODestination
 instance A.FromJSON UTXODestination where
   parseJSON = A.withObject "UTXODestination" $ \o ->
     UTXODestination
-      <$> (o .:? "smartContract")
+      <$> (o .:? "destinationId")
+      <*> (o .:? "smartContract")
       <*> (o .:? "payment")
-      <*> (o .:? "destinationId")
 
 -- | ToJSON UTXODestination
 instance A.ToJSON UTXODestination where
   toJSON UTXODestination {..} =
    _omitNulls
-      [ "smartContract" .= uTXODestinationSmartContract
+      [ "destinationId" .= uTXODestinationDestinationId
+      , "smartContract" .= uTXODestinationSmartContract
       , "payment" .= uTXODestinationPayment
-      , "destinationId" .= uTXODestinationDestinationId
       ]
 
 
@@ -3877,9 +6303,9 @@ mkUTXODestination
   :: UTXODestination
 mkUTXODestination =
   UTXODestination
-  { uTXODestinationSmartContract = Nothing
+  { uTXODestinationDestinationId = Nothing
+  , uTXODestinationSmartContract = Nothing
   , uTXODestinationPayment = Nothing
-  , uTXODestinationDestinationId = Nothing
   }
 
 -- ** UTXONativeData
@@ -3913,8 +6339,8 @@ mkUTXONativeData =
 -- ** UTXOSmartContract
 -- | UTXOSmartContract
 data UTXOSmartContract = UTXOSmartContract
-  { uTXOSmartContractDetail :: !(Maybe Text) -- ^ "detail"
-  , uTXOSmartContractType :: !(Maybe Text) -- ^ "type"
+  { uTXOSmartContractType :: !(Maybe Text) -- ^ "type"
+  , uTXOSmartContractDetail :: !(Maybe Text) -- ^ "detail"
   , uTXOSmartContractExtraFields :: !(Maybe ExtraFields) -- ^ "extraFields"
   } deriving (P.Show, P.Eq, P.Typeable)
 
@@ -3922,16 +6348,16 @@ data UTXOSmartContract = UTXOSmartContract
 instance A.FromJSON UTXOSmartContract where
   parseJSON = A.withObject "UTXOSmartContract" $ \o ->
     UTXOSmartContract
-      <$> (o .:? "detail")
-      <*> (o .:? "type")
+      <$> (o .:? "type")
+      <*> (o .:? "detail")
       <*> (o .:? "extraFields")
 
 -- | ToJSON UTXOSmartContract
 instance A.ToJSON UTXOSmartContract where
   toJSON UTXOSmartContract {..} =
    _omitNulls
-      [ "detail" .= uTXOSmartContractDetail
-      , "type" .= uTXOSmartContractType
+      [ "type" .= uTXOSmartContractType
+      , "detail" .= uTXOSmartContractDetail
       , "extraFields" .= uTXOSmartContractExtraFields
       ]
 
@@ -3941,41 +6367,9 @@ mkUTXOSmartContract
   :: UTXOSmartContract
 mkUTXOSmartContract =
   UTXOSmartContract
-  { uTXOSmartContractDetail = Nothing
-  , uTXOSmartContractType = Nothing
+  { uTXOSmartContractType = Nothing
+  , uTXOSmartContractDetail = Nothing
   , uTXOSmartContractExtraFields = Nothing
-  }
-
--- ** UTXOTimestampSchema
--- | UTXOTimestampSchema
-data UTXOTimestampSchema = UTXOTimestampSchema
-  { uTXOTimestampSchemaNano :: !(Maybe Text) -- ^ "nano"
-  , uTXOTimestampSchemaEpochSecond :: !(Maybe Text) -- ^ "epochSecond"
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON UTXOTimestampSchema
-instance A.FromJSON UTXOTimestampSchema where
-  parseJSON = A.withObject "UTXOTimestampSchema" $ \o ->
-    UTXOTimestampSchema
-      <$> (o .:? "nano")
-      <*> (o .:? "epochSecond")
-
--- | ToJSON UTXOTimestampSchema
-instance A.ToJSON UTXOTimestampSchema where
-  toJSON UTXOTimestampSchema {..} =
-   _omitNulls
-      [ "nano" .= uTXOTimestampSchemaNano
-      , "epochSecond" .= uTXOTimestampSchemaEpochSecond
-      ]
-
-
--- | Construct a value of type 'UTXOTimestampSchema' (by applying it's required fields, if any)
-mkUTXOTimestampSchema
-  :: UTXOTimestampSchema
-mkUTXOTimestampSchema =
-  UTXOTimestampSchema
-  { uTXOTimestampSchemaNano = Nothing
-  , uTXOTimestampSchemaEpochSecond = Nothing
   }
 
 -- ** UpdateAddressMonitoringSchema
@@ -4010,36 +6404,36 @@ mkUpdateAddressMonitoringSchema =
   , updateAddressMonitoringSchemaResourceMonitoring = Nothing
   }
 
--- ** UpdateSubscriptionRequestSchema
--- | UpdateSubscriptionRequestSchema
-data UpdateSubscriptionRequestSchema = UpdateSubscriptionRequestSchema
-  { updateSubscriptionRequestSchemaStatusUpdate :: !(Maybe StatusUpdateSchema) -- ^ "statusUpdate"
-  , updateSubscriptionRequestSchemaCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
+-- ** UpdateWebhookSubscriptionRequestSchema
+-- | UpdateWebhookSubscriptionRequestSchema
+data UpdateWebhookSubscriptionRequestSchema = UpdateWebhookSubscriptionRequestSchema
+  { updateWebhookSubscriptionRequestSchemaStatusUpdate :: !(Maybe WebhookStatusUpdateSchema) -- ^ "statusUpdate"
+  , updateWebhookSubscriptionRequestSchemaCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
   } deriving (P.Show, P.Eq, P.Typeable)
 
--- | FromJSON UpdateSubscriptionRequestSchema
-instance A.FromJSON UpdateSubscriptionRequestSchema where
-  parseJSON = A.withObject "UpdateSubscriptionRequestSchema" $ \o ->
-    UpdateSubscriptionRequestSchema
+-- | FromJSON UpdateWebhookSubscriptionRequestSchema
+instance A.FromJSON UpdateWebhookSubscriptionRequestSchema where
+  parseJSON = A.withObject "UpdateWebhookSubscriptionRequestSchema" $ \o ->
+    UpdateWebhookSubscriptionRequestSchema
       <$> (o .:? "statusUpdate")
       <*> (o .:? "callbackUrl")
 
--- | ToJSON UpdateSubscriptionRequestSchema
-instance A.ToJSON UpdateSubscriptionRequestSchema where
-  toJSON UpdateSubscriptionRequestSchema {..} =
+-- | ToJSON UpdateWebhookSubscriptionRequestSchema
+instance A.ToJSON UpdateWebhookSubscriptionRequestSchema where
+  toJSON UpdateWebhookSubscriptionRequestSchema {..} =
    _omitNulls
-      [ "statusUpdate" .= updateSubscriptionRequestSchemaStatusUpdate
-      , "callbackUrl" .= updateSubscriptionRequestSchemaCallbackUrl
+      [ "statusUpdate" .= updateWebhookSubscriptionRequestSchemaStatusUpdate
+      , "callbackUrl" .= updateWebhookSubscriptionRequestSchemaCallbackUrl
       ]
 
 
--- | Construct a value of type 'UpdateSubscriptionRequestSchema' (by applying it's required fields, if any)
-mkUpdateSubscriptionRequestSchema
-  :: UpdateSubscriptionRequestSchema
-mkUpdateSubscriptionRequestSchema =
-  UpdateSubscriptionRequestSchema
-  { updateSubscriptionRequestSchemaStatusUpdate = Nothing
-  , updateSubscriptionRequestSchemaCallbackUrl = Nothing
+-- | Construct a value of type 'UpdateWebhookSubscriptionRequestSchema' (by applying it's required fields, if any)
+mkUpdateWebhookSubscriptionRequestSchema
+  :: UpdateWebhookSubscriptionRequestSchema
+mkUpdateWebhookSubscriptionRequestSchema =
+  UpdateWebhookSubscriptionRequestSchema
+  { updateWebhookSubscriptionRequestSchemaStatusUpdate = Nothing
+  , updateWebhookSubscriptionRequestSchemaCallbackUrl = Nothing
   }
 
 -- ** Vout
@@ -4078,7 +6472,258 @@ mkVout =
   , voutN = Nothing
   }
 
+-- ** WebhookStatusUpdateSchema
+-- | WebhookStatusUpdateSchema
+data WebhookStatusUpdateSchema = WebhookStatusUpdateSchema
+  { webhookStatusUpdateSchemaValue :: !(Maybe Text) -- ^ "value"
+  } deriving (P.Show, P.Eq, P.Typeable)
 
+-- | FromJSON WebhookStatusUpdateSchema
+instance A.FromJSON WebhookStatusUpdateSchema where
+  parseJSON = A.withObject "WebhookStatusUpdateSchema" $ \o ->
+    WebhookStatusUpdateSchema
+      <$> (o .:? "value")
+
+-- | ToJSON WebhookStatusUpdateSchema
+instance A.ToJSON WebhookStatusUpdateSchema where
+  toJSON WebhookStatusUpdateSchema {..} =
+   _omitNulls
+      [ "value" .= webhookStatusUpdateSchemaValue
+      ]
+
+
+-- | Construct a value of type 'WebhookStatusUpdateSchema' (by applying it's required fields, if any)
+mkWebhookStatusUpdateSchema
+  :: WebhookStatusUpdateSchema
+mkWebhookStatusUpdateSchema =
+  WebhookStatusUpdateSchema
+  { webhookStatusUpdateSchemaValue = Nothing
+  }
+
+-- ** WebhookSubscriptionDetails
+-- | WebhookSubscriptionDetails
+data WebhookSubscriptionDetails = WebhookSubscriptionDetails
+  { webhookSubscriptionDetailsIds :: !(Maybe [Text]) -- ^ "ids"
+  , webhookSubscriptionDetailsStatus :: !(Maybe Status) -- ^ "status"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON WebhookSubscriptionDetails
+instance A.FromJSON WebhookSubscriptionDetails where
+  parseJSON = A.withObject "WebhookSubscriptionDetails" $ \o ->
+    WebhookSubscriptionDetails
+      <$> (o .:? "ids")
+      <*> (o .:? "status")
+
+-- | ToJSON WebhookSubscriptionDetails
+instance A.ToJSON WebhookSubscriptionDetails where
+  toJSON WebhookSubscriptionDetails {..} =
+   _omitNulls
+      [ "ids" .= webhookSubscriptionDetailsIds
+      , "status" .= webhookSubscriptionDetailsStatus
+      ]
+
+
+-- | Construct a value of type 'WebhookSubscriptionDetails' (by applying it's required fields, if any)
+mkWebhookSubscriptionDetails
+  :: WebhookSubscriptionDetails
+mkWebhookSubscriptionDetails =
+  WebhookSubscriptionDetails
+  { webhookSubscriptionDetailsIds = Nothing
+  , webhookSubscriptionDetailsStatus = Nothing
+  }
+
+-- ** WebhookSubscriptionDetailsSchema
+-- | WebhookSubscriptionDetailsSchema
+data WebhookSubscriptionDetailsSchema = WebhookSubscriptionDetailsSchema
+  { webhookSubscriptionDetailsSchemaIds :: !(Maybe [Text]) -- ^ "ids"
+  , webhookSubscriptionDetailsSchemaStatus :: !(Maybe Status) -- ^ "status"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON WebhookSubscriptionDetailsSchema
+instance A.FromJSON WebhookSubscriptionDetailsSchema where
+  parseJSON = A.withObject "WebhookSubscriptionDetailsSchema" $ \o ->
+    WebhookSubscriptionDetailsSchema
+      <$> (o .:? "ids")
+      <*> (o .:? "status")
+
+-- | ToJSON WebhookSubscriptionDetailsSchema
+instance A.ToJSON WebhookSubscriptionDetailsSchema where
+  toJSON WebhookSubscriptionDetailsSchema {..} =
+   _omitNulls
+      [ "ids" .= webhookSubscriptionDetailsSchemaIds
+      , "status" .= webhookSubscriptionDetailsSchemaStatus
+      ]
+
+
+-- | Construct a value of type 'WebhookSubscriptionDetailsSchema' (by applying it's required fields, if any)
+mkWebhookSubscriptionDetailsSchema
+  :: WebhookSubscriptionDetailsSchema
+mkWebhookSubscriptionDetailsSchema =
+  WebhookSubscriptionDetailsSchema
+  { webhookSubscriptionDetailsSchemaIds = Nothing
+  , webhookSubscriptionDetailsSchemaStatus = Nothing
+  }
+
+-- ** WebhookSubscriptionStatusUpdateResponse
+-- | WebhookSubscriptionStatusUpdateResponse
+data WebhookSubscriptionStatusUpdateResponse = WebhookSubscriptionStatusUpdateResponse
+  { webhookSubscriptionStatusUpdateResponseSubscriptionDetails :: !(Maybe WebhookSubscriptionDetails) -- ^ "subscriptionDetails"
+  , webhookSubscriptionStatusUpdateResponseCallbackUrl :: !(Maybe Text) -- ^ "callbackUrl"
+  , webhookSubscriptionStatusUpdateResponseSubscriptionId :: !(Maybe Text) -- ^ "subscriptionId"
+  , webhookSubscriptionStatusUpdateResponseType :: !(Maybe Text) -- ^ "type"
+  } deriving (P.Show, P.Eq, P.Typeable)
+
+-- | FromJSON WebhookSubscriptionStatusUpdateResponse
+instance A.FromJSON WebhookSubscriptionStatusUpdateResponse where
+  parseJSON = A.withObject "WebhookSubscriptionStatusUpdateResponse" $ \o ->
+    WebhookSubscriptionStatusUpdateResponse
+      <$> (o .:? "subscriptionDetails")
+      <*> (o .:? "callbackUrl")
+      <*> (o .:? "subscriptionId")
+      <*> (o .:? "type")
+
+-- | ToJSON WebhookSubscriptionStatusUpdateResponse
+instance A.ToJSON WebhookSubscriptionStatusUpdateResponse where
+  toJSON WebhookSubscriptionStatusUpdateResponse {..} =
+   _omitNulls
+      [ "subscriptionDetails" .= webhookSubscriptionStatusUpdateResponseSubscriptionDetails
+      , "callbackUrl" .= webhookSubscriptionStatusUpdateResponseCallbackUrl
+      , "subscriptionId" .= webhookSubscriptionStatusUpdateResponseSubscriptionId
+      , "type" .= webhookSubscriptionStatusUpdateResponseType
+      ]
+
+
+-- | Construct a value of type 'WebhookSubscriptionStatusUpdateResponse' (by applying it's required fields, if any)
+mkWebhookSubscriptionStatusUpdateResponse
+  :: WebhookSubscriptionStatusUpdateResponse
+mkWebhookSubscriptionStatusUpdateResponse =
+  WebhookSubscriptionStatusUpdateResponse
+  { webhookSubscriptionStatusUpdateResponseSubscriptionDetails = Nothing
+  , webhookSubscriptionStatusUpdateResponseCallbackUrl = Nothing
+  , webhookSubscriptionStatusUpdateResponseSubscriptionId = Nothing
+  , webhookSubscriptionStatusUpdateResponseType = Nothing
+  }
+
+
+-- * Enums
+
+
+-- ** E'ContractType
+
+-- | Enum of 'Text'
+data E'ContractType
+  = E'ContractType'ERC20 -- ^ @"ERC20"@
+  | E'ContractType'QRC20 -- ^ @"QRC20"@
+  deriving (P.Show, P.Eq, P.Typeable, P.Ord, P.Bounded, P.Enum)
+
+instance A.ToJSON E'ContractType where toJSON = A.toJSON . fromE'ContractType
+instance A.FromJSON E'ContractType where parseJSON o = P.either P.fail (pure . P.id) . toE'ContractType =<< A.parseJSON o
+instance WH.ToHttpApiData E'ContractType where toQueryParam = WH.toQueryParam . fromE'ContractType
+instance WH.FromHttpApiData E'ContractType where parseQueryParam o = WH.parseQueryParam o >>= P.left T.pack . toE'ContractType
+instance MimeRender MimeMultipartFormData E'ContractType where mimeRender _ = mimeRenderDefaultMultipartFormData
+
+-- | unwrap 'E'ContractType' enum
+fromE'ContractType :: E'ContractType -> Text
+fromE'ContractType = \case
+  E'ContractType'ERC20 -> "ERC20"
+  E'ContractType'QRC20 -> "QRC20"
+
+-- | parse 'E'ContractType' enum
+toE'ContractType :: Text -> P.Either String E'ContractType
+toE'ContractType = \case
+  "ERC20" -> P.Right E'ContractType'ERC20
+  "QRC20" -> P.Right E'ContractType'QRC20
+  s -> P.Left $ "toE'ContractType: enum parse failure: " P.++ P.show s
+
+
+-- ** E'OverledgerSigningType
+
+-- | Enum of 'Text' .
+-- The method of signing used to submit the transaction
+data E'OverledgerSigningType
+  = E'OverledgerSigningType'Overledger_javascript_library -- ^ @"overledger-javascript-library"@
+  deriving (P.Show, P.Eq, P.Typeable, P.Ord, P.Bounded, P.Enum)
+
+instance A.ToJSON E'OverledgerSigningType where toJSON = A.toJSON . fromE'OverledgerSigningType
+instance A.FromJSON E'OverledgerSigningType where parseJSON o = P.either P.fail (pure . P.id) . toE'OverledgerSigningType =<< A.parseJSON o
+instance WH.ToHttpApiData E'OverledgerSigningType where toQueryParam = WH.toQueryParam . fromE'OverledgerSigningType
+instance WH.FromHttpApiData E'OverledgerSigningType where parseQueryParam o = WH.parseQueryParam o >>= P.left T.pack . toE'OverledgerSigningType
+instance MimeRender MimeMultipartFormData E'OverledgerSigningType where mimeRender _ = mimeRenderDefaultMultipartFormData
+
+-- | unwrap 'E'OverledgerSigningType' enum
+fromE'OverledgerSigningType :: E'OverledgerSigningType -> Text
+fromE'OverledgerSigningType = \case
+  E'OverledgerSigningType'Overledger_javascript_library -> "overledger-javascript-library"
+
+-- | parse 'E'OverledgerSigningType' enum
+toE'OverledgerSigningType :: Text -> P.Either String E'OverledgerSigningType
+toE'OverledgerSigningType = \case
+  "overledger-javascript-library" -> P.Right E'OverledgerSigningType'Overledger_javascript_library
+  s -> P.Left $ "toE'OverledgerSigningType: enum parse failure: " P.++ P.show s
+
+
+-- ** E'Type
+
+-- | Enum of 'Text' .
+-- The type of the transaction
+data E'Type
+  = E'Type'Payment -- ^ @"Payment"@
+  | E'Type'Transfer -- ^ @"Transfer"@
+  | E'Type'Contract_Invoke -- ^ @"Contract Invoke"@
+  deriving (P.Show, P.Eq, P.Typeable, P.Ord, P.Bounded, P.Enum)
+
+instance A.ToJSON E'Type where toJSON = A.toJSON . fromE'Type
+instance A.FromJSON E'Type where parseJSON o = P.either P.fail (pure . P.id) . toE'Type =<< A.parseJSON o
+instance WH.ToHttpApiData E'Type where toQueryParam = WH.toQueryParam . fromE'Type
+instance WH.FromHttpApiData E'Type where parseQueryParam o = WH.parseQueryParam o >>= P.left T.pack . toE'Type
+instance MimeRender MimeMultipartFormData E'Type where mimeRender _ = mimeRenderDefaultMultipartFormData
+
+-- | unwrap 'E'Type' enum
+fromE'Type :: E'Type -> Text
+fromE'Type = \case
+  E'Type'Payment -> "Payment"
+  E'Type'Transfer -> "Transfer"
+  E'Type'Contract_Invoke -> "Contract Invoke"
+
+-- | parse 'E'Type' enum
+toE'Type :: Text -> P.Either String E'Type
+toE'Type = \case
+  "Payment" -> P.Right E'Type'Payment
+  "Transfer" -> P.Right E'Type'Transfer
+  "Contract Invoke" -> P.Right E'Type'Contract_Invoke
+  s -> P.Left $ "toE'Type: enum parse failure: " P.++ P.show s
+
+
+-- ** E'Urgency
+
+-- | Enum of 'Text' .
+-- This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+data E'Urgency
+  = E'Urgency'Normal -- ^ @"Normal"@
+  | E'Urgency'Fast -- ^ @"Fast"@
+  | E'Urgency'Urgent -- ^ @"Urgent"@
+  deriving (P.Show, P.Eq, P.Typeable, P.Ord, P.Bounded, P.Enum)
+
+instance A.ToJSON E'Urgency where toJSON = A.toJSON . fromE'Urgency
+instance A.FromJSON E'Urgency where parseJSON o = P.either P.fail (pure . P.id) . toE'Urgency =<< A.parseJSON o
+instance WH.ToHttpApiData E'Urgency where toQueryParam = WH.toQueryParam . fromE'Urgency
+instance WH.FromHttpApiData E'Urgency where parseQueryParam o = WH.parseQueryParam o >>= P.left T.pack . toE'Urgency
+instance MimeRender MimeMultipartFormData E'Urgency where mimeRender _ = mimeRenderDefaultMultipartFormData
+
+-- | unwrap 'E'Urgency' enum
+fromE'Urgency :: E'Urgency -> Text
+fromE'Urgency = \case
+  E'Urgency'Normal -> "Normal"
+  E'Urgency'Fast -> "Fast"
+  E'Urgency'Urgent -> "Urgent"
+
+-- | parse 'E'Urgency' enum
+toE'Urgency :: Text -> P.Either String E'Urgency
+toE'Urgency = \case
+  "Normal" -> P.Right E'Urgency'Normal
+  "Fast" -> P.Right E'Urgency'Fast
+  "Urgent" -> P.Right E'Urgency'Urgent
+  s -> P.Left $ "toE'Urgency: enum parse failure: " P.++ P.show s
 
 
 -- * Auth Methods

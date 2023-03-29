@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 Prepare Search for a UTXO State.
 
-Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
+Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
 
 ### Example
 ```java

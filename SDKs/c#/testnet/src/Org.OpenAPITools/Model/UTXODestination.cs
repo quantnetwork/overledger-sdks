@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,15 +33,21 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UTXODestination" /> class.
         /// </summary>
+        /// <param name="destinationId">destinationId.</param>
         /// <param name="smartContract">smartContract.</param>
         /// <param name="payment">payment.</param>
-        /// <param name="destinationId">destinationId.</param>
-        public UTXODestination(UTXOSmartContract smartContract = default(UTXOSmartContract), Payment payment = default(Payment), string destinationId = default(string))
+        public UTXODestination(string destinationId = default(string), UTXOSmartContract smartContract = default(UTXOSmartContract), Payment payment = default(Payment))
         {
+            this.DestinationId = destinationId;
             this.SmartContract = smartContract;
             this.Payment = payment;
-            this.DestinationId = destinationId;
         }
+
+        /// <summary>
+        /// Gets or Sets DestinationId
+        /// </summary>
+        [DataMember(Name="destinationId", EmitDefaultValue=false)]
+        public string DestinationId { get; set; }
 
         /// <summary>
         /// Gets or Sets SmartContract
@@ -56,12 +62,6 @@ namespace Org.OpenAPITools.Model
         public Payment Payment { get; set; }
 
         /// <summary>
-        /// Gets or Sets DestinationId
-        /// </summary>
-        [DataMember(Name="destinationId", EmitDefaultValue=false)]
-        public string DestinationId { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -69,9 +69,9 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class UTXODestination {\n");
+            sb.Append("  DestinationId: ").Append(DestinationId).Append("\n");
             sb.Append("  SmartContract: ").Append(SmartContract).Append("\n");
             sb.Append("  Payment: ").Append(Payment).Append("\n");
-            sb.Append("  DestinationId: ").Append(DestinationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -107,6 +107,11 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
+                    this.DestinationId == input.DestinationId ||
+                    (this.DestinationId != null &&
+                    this.DestinationId.Equals(input.DestinationId))
+                ) && 
+                (
                     this.SmartContract == input.SmartContract ||
                     (this.SmartContract != null &&
                     this.SmartContract.Equals(input.SmartContract))
@@ -115,11 +120,6 @@ namespace Org.OpenAPITools.Model
                     this.Payment == input.Payment ||
                     (this.Payment != null &&
                     this.Payment.Equals(input.Payment))
-                ) && 
-                (
-                    this.DestinationId == input.DestinationId ||
-                    (this.DestinationId != null &&
-                    this.DestinationId.Equals(input.DestinationId))
                 );
         }
 
@@ -132,12 +132,12 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.DestinationId != null)
+                    hashCode = hashCode * 59 + this.DestinationId.GetHashCode();
                 if (this.SmartContract != null)
                     hashCode = hashCode * 59 + this.SmartContract.GetHashCode();
                 if (this.Payment != null)
                     hashCode = hashCode * 59 + this.Payment.GetHashCode();
-                if (this.DestinationId != null)
-                    hashCode = hashCode * 59 + this.DestinationId.GetHashCode();
                 return hashCode;
             }
         }

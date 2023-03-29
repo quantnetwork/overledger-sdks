@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FunctionId** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
+**FunctionId** | Pointer to **string** |  | [optional] 
 **InputParameters** | Pointer to [**[]SmartContractInputParameterSchema**](SmartContractInputParameterSchema.md) |  | [optional] 
 **OutputParameters** | Pointer to [**[]SmartContractInputParameterSchema**](SmartContractInputParameterSchema.md) |  | [optional] 
 
@@ -27,31 +27,6 @@ will change when the set of required properties is changed
 NewSmartContractReadFunctionSchemaWithDefaults instantiates a new SmartContractReadFunctionSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetFunctionId
-
-`func (o *SmartContractReadFunctionSchema) GetFunctionId() string`
-
-GetFunctionId returns the FunctionId field if non-nil, zero value otherwise.
-
-### GetFunctionIdOk
-
-`func (o *SmartContractReadFunctionSchema) GetFunctionIdOk() (*string, bool)`
-
-GetFunctionIdOk returns a tuple with the FunctionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFunctionId
-
-`func (o *SmartContractReadFunctionSchema) SetFunctionId(v string)`
-
-SetFunctionId sets FunctionId field to given value.
-
-### HasFunctionId
-
-`func (o *SmartContractReadFunctionSchema) HasFunctionId() bool`
-
-HasFunctionId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -77,6 +52,31 @@ SetName sets Name field to given value.
 `func (o *SmartContractReadFunctionSchema) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetFunctionId
+
+`func (o *SmartContractReadFunctionSchema) GetFunctionId() string`
+
+GetFunctionId returns the FunctionId field if non-nil, zero value otherwise.
+
+### GetFunctionIdOk
+
+`func (o *SmartContractReadFunctionSchema) GetFunctionIdOk() (*string, bool)`
+
+GetFunctionIdOk returns a tuple with the FunctionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFunctionId
+
+`func (o *SmartContractReadFunctionSchema) SetFunctionId(v string)`
+
+SetFunctionId sets FunctionId field to given value.
+
+### HasFunctionId
+
+`func (o *SmartContractReadFunctionSchema) HasFunctionId() bool`
+
+HasFunctionId returns a boolean if a field has been set.
 
 ### GetInputParameters
 

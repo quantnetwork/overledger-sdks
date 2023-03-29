@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Transfer** | [**TransferSchema**](TransferSchema.md) |  | [optional] 
 **DestinationId** | **string** |  | [optional] 
+**Transfer** | [**TransferSchema**](TransferSchema.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)

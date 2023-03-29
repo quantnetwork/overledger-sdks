@@ -20,15 +20,15 @@ typedef struct address_monitoring_request_schema_t address_monitoring_request_sc
 
 
 typedef struct address_monitoring_request_schema_t {
-    char *call_back_url; // string
     struct location_t *location; //model
+    char *call_back_url; // string
     char *address_id; // string
 
 } address_monitoring_request_schema_t;
 
 address_monitoring_request_schema_t *address_monitoring_request_schema_create(
-    char *call_back_url,
     location_t *location,
+    char *call_back_url,
     char *address_id
 );
 

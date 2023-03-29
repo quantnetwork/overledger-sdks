@@ -2,7 +2,7 @@
 
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -54,7 +54,7 @@ sub new {
 # Prepare and automatically execute a search for a transaction on a DLT.
 #
 # @param string $authorization  (required)
-# @param string $transaction_id  (required)
+# @param string $transaction_id The transactionId to search for (required)
 # @param PrepareSearchSchema $prepare_search_schema  (required)
 {
     my $params = {
@@ -65,7 +65,7 @@ sub new {
     },
     'transaction_id' => {
         data_type => 'string',
-        description => '',
+        description => 'The transactionId to search for',
         required => '1',
     },
     'prepare_search_schema' => {
@@ -232,7 +232,7 @@ sub execute_prepared_search_request_transaction {
 # Prepare a search for a transaction on a DLT
 #
 # @param string $authorization  (required)
-# @param string $transaction_id  (required)
+# @param string $transaction_id The transactionId to search for (required)
 # @param PrepareSearchSchema $prepare_search_schema  (required)
 {
     my $params = {
@@ -243,7 +243,7 @@ sub execute_prepared_search_request_transaction {
     },
     'transaction_id' => {
         data_type => 'string',
-        description => '',
+        description => 'The transactionId to search for',
         required => '1',
     },
     'prepare_search_schema' => {

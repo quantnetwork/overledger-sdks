@@ -29,7 +29,7 @@ OAuth2_Security_Scheme.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new QuantOverledgerApi.BlockSearchApi();
 let authorization = "authorization_example"; // String | 
-let blockId = latest; // String | 
+let blockId = 54678; // String | 
 let prepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // PrepareSearchSchema | 
 apiInstance.autoExecuteSearchBlockRequest(authorization, blockId, prepareSearchSchema, (error, data, response) => {
   if (error) {
@@ -133,7 +133,7 @@ OAuth2_Security_Scheme.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new QuantOverledgerApi.BlockSearchApi();
 let authorization = "authorization_example"; // String | 
-let blockId = latest; // String | 
+let blockId = 54678; // String | 
 let prepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // PrepareSearchSchema | 
 apiInstance.prepareSearchBlockByBlockId(authorization, blockId, prepareSearchSchema, (error, data, response) => {
   if (error) {

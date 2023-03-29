@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OverledgerSigningType** | Pointer to **string** |  | [optional] 
-**Origin** | Pointer to [**[]OriginPaymentSchema**](OriginPaymentSchema.md) | Where is this transaction coming from | [optional] 
-**Destination** | Pointer to [**[]DestinationPaymentSchema**](DestinationPaymentSchema.md) | The Destination of this transaction | [optional] 
+**Destination** | [**[]DestinationPaymentSchema**](DestinationPaymentSchema.md) | List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail | 
 **Message** | Pointer to **string** | Any text-based element of the data payload | [optional] 
+**OverledgerSigningType** | Pointer to **string** | The method of signing used to submit the transaction | [optional] 
+**Origin** | [**[]OriginPaymentSchema**](OriginPaymentSchema.md) | List of where this transaction is coming from | 
 
 ## Methods
 
 ### NewPaymentRequestDetailsSchema
 
-`func NewPaymentRequestDetailsSchema() *PaymentRequestDetailsSchema`
+`func NewPaymentRequestDetailsSchema(destination []DestinationPaymentSchema, origin []OriginPaymentSchema, ) *PaymentRequestDetailsSchema`
 
 NewPaymentRequestDetailsSchema instantiates a new PaymentRequestDetailsSchema object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,51 @@ will change when the set of required properties is changed
 NewPaymentRequestDetailsSchemaWithDefaults instantiates a new PaymentRequestDetailsSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDestination
+
+`func (o *PaymentRequestDetailsSchema) GetDestination() []DestinationPaymentSchema`
+
+GetDestination returns the Destination field if non-nil, zero value otherwise.
+
+### GetDestinationOk
+
+`func (o *PaymentRequestDetailsSchema) GetDestinationOk() (*[]DestinationPaymentSchema, bool)`
+
+GetDestinationOk returns a tuple with the Destination field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDestination
+
+`func (o *PaymentRequestDetailsSchema) SetDestination(v []DestinationPaymentSchema)`
+
+SetDestination sets Destination field to given value.
+
+
+### GetMessage
+
+`func (o *PaymentRequestDetailsSchema) GetMessage() string`
+
+GetMessage returns the Message field if non-nil, zero value otherwise.
+
+### GetMessageOk
+
+`func (o *PaymentRequestDetailsSchema) GetMessageOk() (*string, bool)`
+
+GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMessage
+
+`func (o *PaymentRequestDetailsSchema) SetMessage(v string)`
+
+SetMessage sets Message field to given value.
+
+### HasMessage
+
+`func (o *PaymentRequestDetailsSchema) HasMessage() bool`
+
+HasMessage returns a boolean if a field has been set.
 
 ### GetOverledgerSigningType
 
@@ -72,61 +117,6 @@ and a boolean to check if the value has been set.
 
 SetOrigin sets Origin field to given value.
 
-### HasOrigin
-
-`func (o *PaymentRequestDetailsSchema) HasOrigin() bool`
-
-HasOrigin returns a boolean if a field has been set.
-
-### GetDestination
-
-`func (o *PaymentRequestDetailsSchema) GetDestination() []DestinationPaymentSchema`
-
-GetDestination returns the Destination field if non-nil, zero value otherwise.
-
-### GetDestinationOk
-
-`func (o *PaymentRequestDetailsSchema) GetDestinationOk() (*[]DestinationPaymentSchema, bool)`
-
-GetDestinationOk returns a tuple with the Destination field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDestination
-
-`func (o *PaymentRequestDetailsSchema) SetDestination(v []DestinationPaymentSchema)`
-
-SetDestination sets Destination field to given value.
-
-### HasDestination
-
-`func (o *PaymentRequestDetailsSchema) HasDestination() bool`
-
-HasDestination returns a boolean if a field has been set.
-
-### GetMessage
-
-`func (o *PaymentRequestDetailsSchema) GetMessage() string`
-
-GetMessage returns the Message field if non-nil, zero value otherwise.
-
-### GetMessageOk
-
-`func (o *PaymentRequestDetailsSchema) GetMessageOk() (*string, bool)`
-
-GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMessage
-
-`func (o *PaymentRequestDetailsSchema) SetMessage(v string)`
-
-SetMessage sets Message field to given value.
-
-### HasMessage
-
-`func (o *PaymentRequestDetailsSchema) HasMessage() bool`
-
-HasMessage returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

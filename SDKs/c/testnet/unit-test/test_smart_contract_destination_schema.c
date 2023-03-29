@@ -24,17 +24,17 @@ smart_contract_destination_schema_t* instantiate_smart_contract_destination_sche
   smart_contract_destination_schema_t* smart_contract_destination_schema = NULL;
   if (include_optional) {
     smart_contract_destination_schema = smart_contract_destination_schema_create(
+      "a",
        // false, not to have infinite recursion
       instantiate_smart_contract_schema(0),
        // false, not to have infinite recursion
-      instantiate_smart_contract_payment_schema(0),
-      "a"
+      instantiate_smart_contract_payment_schema(0)
     );
   } else {
     smart_contract_destination_schema = smart_contract_destination_schema_create(
+      "a",
       NULL,
-      NULL,
-      "a"
+      NULL
     );
   }
 

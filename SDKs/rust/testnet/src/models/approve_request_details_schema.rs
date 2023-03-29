@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -13,22 +13,22 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ApproveRequestDetailsSchema {
+    /// Who are the payers of this transaction
+    #[serde(rename = "payer", skip_serializing_if = "Option::is_none")]
+    pub payer: Option<Vec<crate::models::PayerCreditSchema>>,
     /// Who are the payees of this transaction
     #[serde(rename = "mandate", skip_serializing_if = "Option::is_none")]
     pub mandate: Option<Vec<crate::models::PayeeCreditSchema>>,
     #[serde(rename = "overledgerSigningType", skip_serializing_if = "Option::is_none")]
     pub overledger_signing_type: Option<String>,
-    /// Who are the payers of this transaction
-    #[serde(rename = "payer", skip_serializing_if = "Option::is_none")]
-    pub payer: Option<Vec<crate::models::PayerCreditSchema>>,
 }
 
 impl ApproveRequestDetailsSchema {
     pub fn new() -> ApproveRequestDetailsSchema {
         ApproveRequestDetailsSchema {
+            payer: None,
             mandate: None,
             overledger_signing_type: None,
-            payer: None,
         }
     }
 }

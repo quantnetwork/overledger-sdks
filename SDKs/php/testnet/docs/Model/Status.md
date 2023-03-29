@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **string** | The code of an object | [optional]
 **description** | **string** | The description of an object | [optional]
+**code** | **string** | The code of an object | [optional]
 **message** | **string** | The message of an object | [optional]
 **value** | **string** | The value of an object | [optional]
 **timestamp** | **string** |  | [optional]

@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -27,15 +27,38 @@ import java.io.IOException;
 /**
  * ExecuteTransactionRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class ExecuteTransactionRequest {
+  public static final String SERIALIZED_NAME_SIGNED = "signed";
+  @SerializedName(SERIALIZED_NAME_SIGNED)
+  private String signed;
+
   public static final String SERIALIZED_NAME_REQUEST_ID = "requestId";
   @SerializedName(SERIALIZED_NAME_REQUEST_ID)
   private String requestId;
 
-  public static final String SERIALIZED_NAME_SIGNED = "signed";
-  @SerializedName(SERIALIZED_NAME_SIGNED)
-  private String signed;
+
+  public ExecuteTransactionRequest signed(String signed) {
+    
+    this.signed = signed;
+    return this;
+  }
+
+   /**
+   * The raw data after transaction signing
+   * @return signed
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The raw data after transaction signing")
+
+  public String getSigned() {
+    return signed;
+  }
+
+
+  public void setSigned(String signed) {
+    this.signed = signed;
+  }
 
 
   public ExecuteTransactionRequest requestId(String requestId) {
@@ -61,29 +84,6 @@ public class ExecuteTransactionRequest {
   }
 
 
-  public ExecuteTransactionRequest signed(String signed) {
-    
-    this.signed = signed;
-    return this;
-  }
-
-   /**
-   * The raw data after transaction signing
-   * @return signed
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The raw data after transaction signing")
-
-  public String getSigned() {
-    return signed;
-  }
-
-
-  public void setSigned(String signed) {
-    this.signed = signed;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -93,21 +93,21 @@ public class ExecuteTransactionRequest {
       return false;
     }
     ExecuteTransactionRequest executeTransactionRequest = (ExecuteTransactionRequest) o;
-    return Objects.equals(this.requestId, executeTransactionRequest.requestId) &&
-        Objects.equals(this.signed, executeTransactionRequest.signed);
+    return Objects.equals(this.signed, executeTransactionRequest.signed) &&
+        Objects.equals(this.requestId, executeTransactionRequest.requestId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestId, signed);
+    return Objects.hash(signed, requestId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExecuteTransactionRequest {\n");
-    sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
     sb.append("    signed: ").append(toIndentedString(signed)).append("\n");
+    sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

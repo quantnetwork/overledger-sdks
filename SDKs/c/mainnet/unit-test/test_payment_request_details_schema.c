@@ -22,17 +22,17 @@ payment_request_details_schema_t* instantiate_payment_request_details_schema(int
   payment_request_details_schema_t* payment_request_details_schema = NULL;
   if (include_optional) {
     payment_request_details_schema = payment_request_details_schema_create(
+      list_create(),
       "a",
-      list_create(),
-      list_create(),
-      "a"
+      quant_overledger_api_payment_request_details_schema_OVERLEDGERSIGNINGTYPE_overledger-javascript-library,
+      list_create()
     );
   } else {
     payment_request_details_schema = payment_request_details_schema_create(
+      list_create(),
       "a",
-      list_create(),
-      list_create(),
-      "a"
+      quant_overledger_api_payment_request_details_schema_OVERLEDGERSIGNINGTYPE_overledger-javascript-library,
+      list_create()
     );
   }
 

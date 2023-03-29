@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -423,7 +423,7 @@ public class AddressSearchApi {
 
     /**
      * Execute a search for an address sequence on a DLT
-     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
+     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
      * @param authorization  (required)
      * @param requestId  (required)
      * @return ExecuteSearchSequenceResponse
@@ -444,7 +444,7 @@ public class AddressSearchApi {
 
     /**
      * Execute a search for an address sequence on a DLT
-     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
+     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
      * @param authorization  (required)
      * @param requestId  (required)
      * @return ApiResponse&lt;ExecuteSearchSequenceResponse&gt;
@@ -466,7 +466,7 @@ public class AddressSearchApi {
 
     /**
      * Execute a search for an address sequence on a DLT (asynchronously)
-     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
+     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
      * @param authorization  (required)
      * @param requestId  (required)
      * @param _callback The callback to be executed when the API call finishes

@@ -22,17 +22,17 @@ typedef struct credit_request_details_schema_t credit_request_details_schema_t;
 
 typedef struct credit_request_details_schema_t {
     list_t *payee; //nonprimitive container
-    char *overledger_signing_type; // string
     char *message; // string
     list_t *payer; //nonprimitive container
+    char *overledger_signing_type; // string
 
 } credit_request_details_schema_t;
 
 credit_request_details_schema_t *credit_request_details_schema_create(
     list_t *payee,
-    char *overledger_signing_type,
     char *message,
-    list_t *payer
+    list_t *payer,
+    char *overledger_signing_type
 );
 
 void credit_request_details_schema_free(credit_request_details_schema_t *credit_request_details_schema);

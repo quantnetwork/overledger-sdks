@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -29,12 +29,11 @@ import org.openapitools.client.model.Location;
 import org.openapitools.client.model.Status;
 import org.openapitools.client.model.UTXODestination;
 import org.openapitools.client.model.UTXONativeData;
-import org.openapitools.client.model.UTXOTimestampSchema;
 
 /**
  * ExecuteSearchUTXOResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class ExecuteSearchUTXOResponseSchema {
   public static final String SERIALIZED_NAME_UTXO_ID = "utxoId";
   @SerializedName(SERIALIZED_NAME_UTXO_ID)
@@ -50,7 +49,7 @@ public class ExecuteSearchUTXOResponseSchema {
 
   public static final String SERIALIZED_NAME_TIMESTAMP = "timestamp";
   @SerializedName(SERIALIZED_NAME_TIMESTAMP)
-  private UTXOTimestampSchema timestamp;
+  private String timestamp;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -138,7 +137,7 @@ public class ExecuteSearchUTXOResponseSchema {
   }
 
 
-  public ExecuteSearchUTXOResponseSchema timestamp(UTXOTimestampSchema timestamp) {
+  public ExecuteSearchUTXOResponseSchema timestamp(String timestamp) {
     
     this.timestamp = timestamp;
     return this;
@@ -151,12 +150,12 @@ public class ExecuteSearchUTXOResponseSchema {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public UTXOTimestampSchema getTimestamp() {
+  public String getTimestamp() {
     return timestamp;
   }
 
 
-  public void setTimestamp(UTXOTimestampSchema timestamp) {
+  public void setTimestamp(String timestamp) {
     this.timestamp = timestamp;
   }
 

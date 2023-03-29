@@ -6,9 +6,9 @@
 
 
 smart_contract_monitoring_details_schema_t *smart_contract_monitoring_details_schema_create(
-    list_t *smart_contract_event_history,
     resource_monitoring_smart_contract_event_details_t *smart_contract_event_details,
     location_t *location,
+    list_t *smart_contract_event_history,
     char *type,
     status_t *status,
     char *timestamp
@@ -17,9 +17,9 @@ smart_contract_monitoring_details_schema_t *smart_contract_monitoring_details_sc
     if (!smart_contract_monitoring_details_schema_local_var) {
         return NULL;
     }
-    smart_contract_monitoring_details_schema_local_var->smart_contract_event_history = smart_contract_event_history;
     smart_contract_monitoring_details_schema_local_var->smart_contract_event_details = smart_contract_event_details;
     smart_contract_monitoring_details_schema_local_var->location = location;
+    smart_contract_monitoring_details_schema_local_var->smart_contract_event_history = smart_contract_event_history;
     smart_contract_monitoring_details_schema_local_var->type = type;
     smart_contract_monitoring_details_schema_local_var->status = status;
     smart_contract_monitoring_details_schema_local_var->timestamp = timestamp;
@@ -33,13 +33,6 @@ void smart_contract_monitoring_details_schema_free(smart_contract_monitoring_det
         return ;
     }
     listEntry_t *listEntry;
-    if (smart_contract_monitoring_details_schema->smart_contract_event_history) {
-        list_ForEach(listEntry, smart_contract_monitoring_details_schema->smart_contract_event_history) {
-            smart_contract_event_history_free(listEntry->data);
-        }
-        list_free(smart_contract_monitoring_details_schema->smart_contract_event_history);
-        smart_contract_monitoring_details_schema->smart_contract_event_history = NULL;
-    }
     if (smart_contract_monitoring_details_schema->smart_contract_event_details) {
         resource_monitoring_smart_contract_event_details_free(smart_contract_monitoring_details_schema->smart_contract_event_details);
         smart_contract_monitoring_details_schema->smart_contract_event_details = NULL;
@@ -47,6 +40,13 @@ void smart_contract_monitoring_details_schema_free(smart_contract_monitoring_det
     if (smart_contract_monitoring_details_schema->location) {
         location_free(smart_contract_monitoring_details_schema->location);
         smart_contract_monitoring_details_schema->location = NULL;
+    }
+    if (smart_contract_monitoring_details_schema->smart_contract_event_history) {
+        list_ForEach(listEntry, smart_contract_monitoring_details_schema->smart_contract_event_history) {
+            smart_contract_event_history_free(listEntry->data);
+        }
+        list_free(smart_contract_monitoring_details_schema->smart_contract_event_history);
+        smart_contract_monitoring_details_schema->smart_contract_event_history = NULL;
     }
     if (smart_contract_monitoring_details_schema->type) {
         free(smart_contract_monitoring_details_schema->type);
@@ -65,26 +65,6 @@ void smart_contract_monitoring_details_schema_free(smart_contract_monitoring_det
 
 cJSON *smart_contract_monitoring_details_schema_convertToJSON(smart_contract_monitoring_details_schema_t *smart_contract_monitoring_details_schema) {
     cJSON *item = cJSON_CreateObject();
-
-    // smart_contract_monitoring_details_schema->smart_contract_event_history
-    if(smart_contract_monitoring_details_schema->smart_contract_event_history) { 
-    cJSON *smart_contract_event_history = cJSON_AddArrayToObject(item, "smartContractEventHistory");
-    if(smart_contract_event_history == NULL) {
-    goto fail; //nonprimitive container
-    }
-
-    listEntry_t *smart_contract_event_historyListEntry;
-    if (smart_contract_monitoring_details_schema->smart_contract_event_history) {
-    list_ForEach(smart_contract_event_historyListEntry, smart_contract_monitoring_details_schema->smart_contract_event_history) {
-    cJSON *itemLocal = smart_contract_event_history_convertToJSON(smart_contract_event_historyListEntry->data);
-    if(itemLocal == NULL) {
-    goto fail;
-    }
-    cJSON_AddItemToArray(smart_contract_event_history, itemLocal);
-    }
-    }
-     } 
-
 
     // smart_contract_monitoring_details_schema->smart_contract_event_details
     if(smart_contract_monitoring_details_schema->smart_contract_event_details) { 
@@ -108,6 +88,26 @@ cJSON *smart_contract_monitoring_details_schema_convertToJSON(smart_contract_mon
     cJSON_AddItemToObject(item, "location", location_local_JSON);
     if(item->child == NULL) {
     goto fail;
+    }
+     } 
+
+
+    // smart_contract_monitoring_details_schema->smart_contract_event_history
+    if(smart_contract_monitoring_details_schema->smart_contract_event_history) { 
+    cJSON *smart_contract_event_history = cJSON_AddArrayToObject(item, "smartContractEventHistory");
+    if(smart_contract_event_history == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *smart_contract_event_historyListEntry;
+    if (smart_contract_monitoring_details_schema->smart_contract_event_history) {
+    list_ForEach(smart_contract_event_historyListEntry, smart_contract_monitoring_details_schema->smart_contract_event_history) {
+    cJSON *itemLocal = smart_contract_event_history_convertToJSON(smart_contract_event_historyListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(smart_contract_event_history, itemLocal);
+    }
     }
      } 
 
@@ -136,7 +136,7 @@ cJSON *smart_contract_monitoring_details_schema_convertToJSON(smart_contract_mon
     // smart_contract_monitoring_details_schema->timestamp
     if(smart_contract_monitoring_details_schema->timestamp) { 
     if(cJSON_AddStringToObject(item, "timestamp", smart_contract_monitoring_details_schema->timestamp) == NULL) {
-    goto fail; //Date-Time
+    goto fail; //String
     }
      } 
 
@@ -151,6 +151,20 @@ fail:
 smart_contract_monitoring_details_schema_t *smart_contract_monitoring_details_schema_parseFromJSON(cJSON *smart_contract_monitoring_details_schemaJSON){
 
     smart_contract_monitoring_details_schema_t *smart_contract_monitoring_details_schema_local_var = NULL;
+
+    // smart_contract_monitoring_details_schema->smart_contract_event_details
+    cJSON *smart_contract_event_details = cJSON_GetObjectItemCaseSensitive(smart_contract_monitoring_details_schemaJSON, "smartContractEventDetails");
+    resource_monitoring_smart_contract_event_details_t *smart_contract_event_details_local_nonprim = NULL;
+    if (smart_contract_event_details) { 
+    smart_contract_event_details_local_nonprim = resource_monitoring_smart_contract_event_details_parseFromJSON(smart_contract_event_details); //nonprimitive
+    }
+
+    // smart_contract_monitoring_details_schema->location
+    cJSON *location = cJSON_GetObjectItemCaseSensitive(smart_contract_monitoring_details_schemaJSON, "location");
+    location_t *location_local_nonprim = NULL;
+    if (location) { 
+    location_local_nonprim = location_parseFromJSON(location); //nonprimitive
+    }
 
     // smart_contract_monitoring_details_schema->smart_contract_event_history
     cJSON *smart_contract_event_history = cJSON_GetObjectItemCaseSensitive(smart_contract_monitoring_details_schemaJSON, "smartContractEventHistory");
@@ -174,20 +188,6 @@ smart_contract_monitoring_details_schema_t *smart_contract_monitoring_details_sc
     }
     }
 
-    // smart_contract_monitoring_details_schema->smart_contract_event_details
-    cJSON *smart_contract_event_details = cJSON_GetObjectItemCaseSensitive(smart_contract_monitoring_details_schemaJSON, "smartContractEventDetails");
-    resource_monitoring_smart_contract_event_details_t *smart_contract_event_details_local_nonprim = NULL;
-    if (smart_contract_event_details) { 
-    smart_contract_event_details_local_nonprim = resource_monitoring_smart_contract_event_details_parseFromJSON(smart_contract_event_details); //nonprimitive
-    }
-
-    // smart_contract_monitoring_details_schema->location
-    cJSON *location = cJSON_GetObjectItemCaseSensitive(smart_contract_monitoring_details_schemaJSON, "location");
-    location_t *location_local_nonprim = NULL;
-    if (location) { 
-    location_local_nonprim = location_parseFromJSON(location); //nonprimitive
-    }
-
     // smart_contract_monitoring_details_schema->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(smart_contract_monitoring_details_schemaJSON, "type");
     if (type) { 
@@ -209,15 +209,15 @@ smart_contract_monitoring_details_schema_t *smart_contract_monitoring_details_sc
     if (timestamp) { 
     if(!cJSON_IsString(timestamp))
     {
-    goto end; //DateTime
+    goto end; //String
     }
     }
 
 
     smart_contract_monitoring_details_schema_local_var = smart_contract_monitoring_details_schema_create (
-        smart_contract_event_history ? smart_contract_event_historyList : NULL,
         smart_contract_event_details ? smart_contract_event_details_local_nonprim : NULL,
         location ? location_local_nonprim : NULL,
+        smart_contract_event_history ? smart_contract_event_historyList : NULL,
         type ? strdup(type->valuestring) : NULL,
         status ? status_local_nonprim : NULL,
         timestamp ? strdup(timestamp->valuestring) : NULL

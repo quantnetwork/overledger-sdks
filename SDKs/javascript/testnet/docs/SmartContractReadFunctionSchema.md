@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**functionId** | **String** |  | [optional] 
 **name** | **String** |  | [optional] 
+**functionId** | **String** |  | [optional] 
 **inputParameters** | [**[SmartContractInputParameterSchema]**](SmartContractInputParameterSchema.md) |  | [optional] 
 **outputParameters** | [**[SmartContractInputParameterSchema]**](SmartContractInputParameterSchema.md) |  | [optional] 
 

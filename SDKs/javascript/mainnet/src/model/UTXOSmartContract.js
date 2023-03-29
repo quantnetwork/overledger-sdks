@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -48,11 +48,11 @@ class UTXOSmartContract {
         if (data) {
             obj = obj || new UTXOSmartContract();
 
-            if (data.hasOwnProperty('detail')) {
-                obj['detail'] = ApiClient.convertToType(data['detail'], 'String');
-            }
             if (data.hasOwnProperty('type')) {
                 obj['type'] = ApiClient.convertToType(data['type'], 'String');
+            }
+            if (data.hasOwnProperty('detail')) {
+                obj['detail'] = ApiClient.convertToType(data['detail'], 'String');
             }
             if (data.hasOwnProperty('extraFields')) {
                 obj['extraFields'] = ExtraFields.constructFromObject(data['extraFields']);
@@ -65,14 +65,14 @@ class UTXOSmartContract {
 }
 
 /**
- * @member {String} detail
- */
-UTXOSmartContract.prototype['detail'] = undefined;
-
-/**
  * @member {String} type
  */
 UTXOSmartContract.prototype['type'] = undefined;
+
+/**
+ * @member {String} detail
+ */
+UTXOSmartContract.prototype['detail'] = undefined;
 
 /**
  * @member {module:model/ExtraFields} extraFields

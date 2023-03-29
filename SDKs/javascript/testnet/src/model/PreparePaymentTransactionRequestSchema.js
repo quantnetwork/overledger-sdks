@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -24,10 +24,14 @@ class PreparePaymentTransactionRequestSchema {
     /**
      * Constructs a new <code>PreparePaymentTransactionRequestSchema</code>.
      * @alias module:model/PreparePaymentTransactionRequestSchema
+     * @param location {module:model/Location} 
+     * @param type {module:model/PreparePaymentTransactionRequestSchema.TypeEnum} The type of the transaction
+     * @param urgency {module:model/PreparePaymentTransactionRequestSchema.UrgencyEnum} This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     * @param requestDetails {module:model/PaymentRequestDetailsSchema} 
      */
-    constructor() { 
+    constructor(location, type, urgency, requestDetails) { 
         
-        PreparePaymentTransactionRequestSchema.initialize(this);
+        PreparePaymentTransactionRequestSchema.initialize(this, location, type, urgency, requestDetails);
     }
 
     /**
@@ -35,7 +39,11 @@ class PreparePaymentTransactionRequestSchema {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, location, type, urgency, requestDetails) { 
+        obj['location'] = location;
+        obj['type'] = type;
+        obj['urgency'] = urgency;
+        obj['requestDetails'] = requestDetails;
     }
 
     /**
@@ -49,17 +57,17 @@ class PreparePaymentTransactionRequestSchema {
         if (data) {
             obj = obj || new PreparePaymentTransactionRequestSchema();
 
-            if (data.hasOwnProperty('urgency')) {
-                obj['urgency'] = ApiClient.convertToType(data['urgency'], 'String');
-            }
-            if (data.hasOwnProperty('requestDetails')) {
-                obj['requestDetails'] = PaymentRequestDetailsSchema.constructFromObject(data['requestDetails']);
-            }
             if (data.hasOwnProperty('location')) {
                 obj['location'] = Location.constructFromObject(data['location']);
             }
             if (data.hasOwnProperty('type')) {
                 obj['type'] = ApiClient.convertToType(data['type'], 'String');
+            }
+            if (data.hasOwnProperty('urgency')) {
+                obj['urgency'] = ApiClient.convertToType(data['urgency'], 'String');
+            }
+            if (data.hasOwnProperty('requestDetails')) {
+                obj['requestDetails'] = PaymentRequestDetailsSchema.constructFromObject(data['requestDetails']);
             }
         }
         return obj;
@@ -69,7 +77,19 @@ class PreparePaymentTransactionRequestSchema {
 }
 
 /**
- * @member {String} urgency
+ * @member {module:model/Location} location
+ */
+PreparePaymentTransactionRequestSchema.prototype['location'] = undefined;
+
+/**
+ * The type of the transaction
+ * @member {module:model/PreparePaymentTransactionRequestSchema.TypeEnum} type
+ */
+PreparePaymentTransactionRequestSchema.prototype['type'] = undefined;
+
+/**
+ * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+ * @member {module:model/PreparePaymentTransactionRequestSchema.UrgencyEnum} urgency
  */
 PreparePaymentTransactionRequestSchema.prototype['urgency'] = undefined;
 
@@ -78,18 +98,62 @@ PreparePaymentTransactionRequestSchema.prototype['urgency'] = undefined;
  */
 PreparePaymentTransactionRequestSchema.prototype['requestDetails'] = undefined;
 
+
+
+
+
 /**
- * @member {module:model/Location} location
+ * Allowed values for the <code>type</code> property.
+ * @enum {String}
+ * @readonly
  */
-PreparePaymentTransactionRequestSchema.prototype['location'] = undefined;
+PreparePaymentTransactionRequestSchema['TypeEnum'] = {
+
+    /**
+     * value: "Payment"
+     * @const
+     */
+    "Payment": "Payment",
+
+    /**
+     * value: "Transfer"
+     * @const
+     */
+    "Transfer": "Transfer",
+
+    /**
+     * value: "Contract Invoke"
+     * @const
+     */
+    "Contract Invoke": "Contract Invoke"
+};
+
 
 /**
- * @member {String} type
+ * Allowed values for the <code>urgency</code> property.
+ * @enum {String}
+ * @readonly
  */
-PreparePaymentTransactionRequestSchema.prototype['type'] = undefined;
+PreparePaymentTransactionRequestSchema['UrgencyEnum'] = {
 
+    /**
+     * value: "Normal"
+     * @const
+     */
+    "Normal": "Normal",
 
+    /**
+     * value: "Fast"
+     * @const
+     */
+    "Fast": "Fast",
 
+    /**
+     * value: "Urgent"
+     * @const
+     */
+    "Urgent": "Urgent"
+};
 
 
 

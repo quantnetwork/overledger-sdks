@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Urgency** | Pointer to **string** |  | [optional] 
+**Location** | [**Location**](Location.md) |  | 
+**Type** | **string** | The type of the transaction | 
+**Urgency** | **string** | This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal | 
 **RequestDetails** | Pointer to [**TransferRequestDetailsSchema**](TransferRequestDetailsSchema.md) |  | [optional] 
-**Location** | Pointer to [**Location**](Location.md) |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewPrepareTransferTransactionRequestSchema
 
-`func NewPrepareTransferTransactionRequestSchema() *PrepareTransferTransactionRequestSchema`
+`func NewPrepareTransferTransactionRequestSchema(location Location, type_ string, urgency string, ) *PrepareTransferTransactionRequestSchema`
 
 NewPrepareTransferTransactionRequestSchema instantiates a new PrepareTransferTransactionRequestSchema object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,46 @@ will change when the set of required properties is changed
 NewPrepareTransferTransactionRequestSchemaWithDefaults instantiates a new PrepareTransferTransactionRequestSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetLocation
+
+`func (o *PrepareTransferTransactionRequestSchema) GetLocation() Location`
+
+GetLocation returns the Location field if non-nil, zero value otherwise.
+
+### GetLocationOk
+
+`func (o *PrepareTransferTransactionRequestSchema) GetLocationOk() (*Location, bool)`
+
+GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocation
+
+`func (o *PrepareTransferTransactionRequestSchema) SetLocation(v Location)`
+
+SetLocation sets Location field to given value.
+
+
+### GetType
+
+`func (o *PrepareTransferTransactionRequestSchema) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *PrepareTransferTransactionRequestSchema) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *PrepareTransferTransactionRequestSchema) SetType(v string)`
+
+SetType sets Type field to given value.
+
 
 ### GetUrgency
 
@@ -47,11 +87,6 @@ and a boolean to check if the value has been set.
 
 SetUrgency sets Urgency field to given value.
 
-### HasUrgency
-
-`func (o *PrepareTransferTransactionRequestSchema) HasUrgency() bool`
-
-HasUrgency returns a boolean if a field has been set.
 
 ### GetRequestDetails
 
@@ -77,56 +112,6 @@ SetRequestDetails sets RequestDetails field to given value.
 `func (o *PrepareTransferTransactionRequestSchema) HasRequestDetails() bool`
 
 HasRequestDetails returns a boolean if a field has been set.
-
-### GetLocation
-
-`func (o *PrepareTransferTransactionRequestSchema) GetLocation() Location`
-
-GetLocation returns the Location field if non-nil, zero value otherwise.
-
-### GetLocationOk
-
-`func (o *PrepareTransferTransactionRequestSchema) GetLocationOk() (*Location, bool)`
-
-GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocation
-
-`func (o *PrepareTransferTransactionRequestSchema) SetLocation(v Location)`
-
-SetLocation sets Location field to given value.
-
-### HasLocation
-
-`func (o *PrepareTransferTransactionRequestSchema) HasLocation() bool`
-
-HasLocation returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *PrepareTransferTransactionRequestSchema) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *PrepareTransferTransactionRequestSchema) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *PrepareTransferTransactionRequestSchema) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *PrepareTransferTransactionRequestSchema) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

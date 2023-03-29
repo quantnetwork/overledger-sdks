@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Origin** | [**List&lt;SmartContractRequestDetailsOrigin&gt;**](SmartContractRequestDetailsOrigin.md) |  | [optional] 
 **Destination** | [**List&lt;SmartContractDestinationSchema&gt;**](SmartContractDestinationSchema.md) |  | [optional] 
+**Origin** | [**List&lt;SmartContractRequestDetailsOrigin&gt;**](SmartContractRequestDetailsOrigin.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)

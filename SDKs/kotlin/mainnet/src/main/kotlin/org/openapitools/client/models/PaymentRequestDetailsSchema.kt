@@ -1,7 +1,7 @@
 /**
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -26,30 +26,41 @@ import org.openapitools.client.models.OriginPaymentSchema
 import com.squareup.moshi.Json
 
 /**
- * 
+ * The payload request
  *
- * @param overledgerSigningType 
- * @param origin Where is this transaction coming from
- * @param destination The Destination of this transaction
+ * @param destination List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
+ * @param origin List of where this transaction is coming from
  * @param message Any text-based element of the data payload
+ * @param overledgerSigningType The method of signing used to submit the transaction
  */
 
 data class PaymentRequestDetailsSchema (
 
-    @Json(name = "overledgerSigningType")
-    val overledgerSigningType: kotlin.String? = null,
-
-    /* Where is this transaction coming from */
-    @Json(name = "origin")
-    val origin: kotlin.collections.List<OriginPaymentSchema>? = null,
-
-    /* The Destination of this transaction */
+    /* List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail */
     @Json(name = "destination")
-    val destination: kotlin.collections.List<DestinationPaymentSchema>? = null,
+    val destination: kotlin.collections.List<DestinationPaymentSchema>,
+
+    /* List of where this transaction is coming from */
+    @Json(name = "origin")
+    val origin: kotlin.collections.List<OriginPaymentSchema>,
 
     /* Any text-based element of the data payload */
     @Json(name = "message")
-    val message: kotlin.String? = null
+    val message: kotlin.String? = null,
 
-)
+    /* The method of signing used to submit the transaction */
+    @Json(name = "overledgerSigningType")
+    val overledgerSigningType: PaymentRequestDetailsSchema.OverledgerSigningType? = null
+
+) {
+
+    /**
+     * The method of signing used to submit the transaction
+     *
+     * Values: overledgerMinusJavascriptMinusLibrary
+     */
+    enum class OverledgerSigningType(val value: kotlin.String) {
+        @Json(name = "overledger-javascript-library") overledgerMinusJavascriptMinusLibrary("overledger-javascript-library");
+    }
+}
 

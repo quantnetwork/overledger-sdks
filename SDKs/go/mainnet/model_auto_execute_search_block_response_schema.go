@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,8 +16,8 @@ import (
 
 // AutoExecuteSearchBlockResponseSchema struct for AutoExecuteSearchBlockResponseSchema
 type AutoExecuteSearchBlockResponseSchema struct {
-	ExecutionBlockSearchResponse *ExecuteSearchBlockResponse `json:"executionBlockSearchResponse,omitempty"`
 	PrepareAndExecuteOverledgerErrorResponse *PrepareAndExecuteOverledgerErrorResponse `json:"prepareAndExecuteOverledgerErrorResponse,omitempty"`
+	ExecutionBlockSearchResponse *ExecuteSearchBlockResponse `json:"executionBlockSearchResponse,omitempty"`
 	PreparationBlockSearchResponse *PrepareSearchResponseSchema `json:"preparationBlockSearchResponse,omitempty"`
 }
 
@@ -36,38 +36,6 @@ func NewAutoExecuteSearchBlockResponseSchema() *AutoExecuteSearchBlockResponseSc
 func NewAutoExecuteSearchBlockResponseSchemaWithDefaults() *AutoExecuteSearchBlockResponseSchema {
 	this := AutoExecuteSearchBlockResponseSchema{}
 	return &this
-}
-
-// GetExecutionBlockSearchResponse returns the ExecutionBlockSearchResponse field value if set, zero value otherwise.
-func (o *AutoExecuteSearchBlockResponseSchema) GetExecutionBlockSearchResponse() ExecuteSearchBlockResponse {
-	if o == nil || o.ExecutionBlockSearchResponse == nil {
-		var ret ExecuteSearchBlockResponse
-		return ret
-	}
-	return *o.ExecutionBlockSearchResponse
-}
-
-// GetExecutionBlockSearchResponseOk returns a tuple with the ExecutionBlockSearchResponse field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AutoExecuteSearchBlockResponseSchema) GetExecutionBlockSearchResponseOk() (*ExecuteSearchBlockResponse, bool) {
-	if o == nil || o.ExecutionBlockSearchResponse == nil {
-		return nil, false
-	}
-	return o.ExecutionBlockSearchResponse, true
-}
-
-// HasExecutionBlockSearchResponse returns a boolean if a field has been set.
-func (o *AutoExecuteSearchBlockResponseSchema) HasExecutionBlockSearchResponse() bool {
-	if o != nil && o.ExecutionBlockSearchResponse != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetExecutionBlockSearchResponse gets a reference to the given ExecuteSearchBlockResponse and assigns it to the ExecutionBlockSearchResponse field.
-func (o *AutoExecuteSearchBlockResponseSchema) SetExecutionBlockSearchResponse(v ExecuteSearchBlockResponse) {
-	o.ExecutionBlockSearchResponse = &v
 }
 
 // GetPrepareAndExecuteOverledgerErrorResponse returns the PrepareAndExecuteOverledgerErrorResponse field value if set, zero value otherwise.
@@ -100,6 +68,38 @@ func (o *AutoExecuteSearchBlockResponseSchema) HasPrepareAndExecuteOverledgerErr
 // SetPrepareAndExecuteOverledgerErrorResponse gets a reference to the given PrepareAndExecuteOverledgerErrorResponse and assigns it to the PrepareAndExecuteOverledgerErrorResponse field.
 func (o *AutoExecuteSearchBlockResponseSchema) SetPrepareAndExecuteOverledgerErrorResponse(v PrepareAndExecuteOverledgerErrorResponse) {
 	o.PrepareAndExecuteOverledgerErrorResponse = &v
+}
+
+// GetExecutionBlockSearchResponse returns the ExecutionBlockSearchResponse field value if set, zero value otherwise.
+func (o *AutoExecuteSearchBlockResponseSchema) GetExecutionBlockSearchResponse() ExecuteSearchBlockResponse {
+	if o == nil || o.ExecutionBlockSearchResponse == nil {
+		var ret ExecuteSearchBlockResponse
+		return ret
+	}
+	return *o.ExecutionBlockSearchResponse
+}
+
+// GetExecutionBlockSearchResponseOk returns a tuple with the ExecutionBlockSearchResponse field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AutoExecuteSearchBlockResponseSchema) GetExecutionBlockSearchResponseOk() (*ExecuteSearchBlockResponse, bool) {
+	if o == nil || o.ExecutionBlockSearchResponse == nil {
+		return nil, false
+	}
+	return o.ExecutionBlockSearchResponse, true
+}
+
+// HasExecutionBlockSearchResponse returns a boolean if a field has been set.
+func (o *AutoExecuteSearchBlockResponseSchema) HasExecutionBlockSearchResponse() bool {
+	if o != nil && o.ExecutionBlockSearchResponse != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExecutionBlockSearchResponse gets a reference to the given ExecuteSearchBlockResponse and assigns it to the ExecutionBlockSearchResponse field.
+func (o *AutoExecuteSearchBlockResponseSchema) SetExecutionBlockSearchResponse(v ExecuteSearchBlockResponse) {
+	o.ExecutionBlockSearchResponse = &v
 }
 
 // GetPreparationBlockSearchResponse returns the PreparationBlockSearchResponse field value if set, zero value otherwise.
@@ -136,11 +136,11 @@ func (o *AutoExecuteSearchBlockResponseSchema) SetPreparationBlockSearchResponse
 
 func (o AutoExecuteSearchBlockResponseSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ExecutionBlockSearchResponse != nil {
-		toSerialize["executionBlockSearchResponse"] = o.ExecutionBlockSearchResponse
-	}
 	if o.PrepareAndExecuteOverledgerErrorResponse != nil {
 		toSerialize["prepareAndExecuteOverledgerErrorResponse"] = o.PrepareAndExecuteOverledgerErrorResponse
+	}
+	if o.ExecutionBlockSearchResponse != nil {
+		toSerialize["executionBlockSearchResponse"] = o.ExecutionBlockSearchResponse
 	}
 	if o.PreparationBlockSearchResponse != nil {
 		toSerialize["preparationBlockSearchResponse"] = o.PreparationBlockSearchResponse

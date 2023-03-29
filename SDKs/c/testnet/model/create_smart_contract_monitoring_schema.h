@@ -22,15 +22,15 @@ typedef struct create_smart_contract_monitoring_schema_t create_smart_contract_m
 
 
 typedef struct create_smart_contract_monitoring_schema_t {
-    struct resource_monitoring_subscription_details_t *subscription_details; //model
     struct resource_monitoring_details_t *resource_monitoring; //model
+    struct resource_monitoring_subscription_details_t *subscription_details; //model
     struct resource_monitoring_subscription_t *subscription; //model
 
 } create_smart_contract_monitoring_schema_t;
 
 create_smart_contract_monitoring_schema_t *create_smart_contract_monitoring_schema_create(
-    resource_monitoring_subscription_details_t *subscription_details,
     resource_monitoring_details_t *resource_monitoring,
+    resource_monitoring_subscription_details_t *subscription_details,
     resource_monitoring_subscription_t *subscription
 );
 

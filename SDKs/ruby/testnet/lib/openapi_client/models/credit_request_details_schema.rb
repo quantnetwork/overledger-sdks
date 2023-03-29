@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -18,21 +18,21 @@ module OpenapiClient
     # Who are the payees of this transaction
     attr_accessor :payee
 
-    attr_accessor :overledger_signing_type
-
     # Any text-based element of the data payload
     attr_accessor :message
 
     # Who are the payers of this transaction
     attr_accessor :payer
 
+    attr_accessor :overledger_signing_type
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'payee' => :'payee',
-        :'overledger_signing_type' => :'overledgerSigningType',
         :'message' => :'message',
-        :'payer' => :'payer'
+        :'payer' => :'payer',
+        :'overledger_signing_type' => :'overledgerSigningType'
       }
     end
 
@@ -45,9 +45,9 @@ module OpenapiClient
     def self.openapi_types
       {
         :'payee' => :'Array<PayeeCreditSchema>',
-        :'overledger_signing_type' => :'String',
         :'message' => :'String',
-        :'payer' => :'Array<PayerCreditSchema>'
+        :'payer' => :'Array<PayerCreditSchema>',
+        :'overledger_signing_type' => :'String'
       }
     end
 
@@ -78,10 +78,6 @@ module OpenapiClient
         end
       end
 
-      if attributes.key?(:'overledger_signing_type')
-        self.overledger_signing_type = attributes[:'overledger_signing_type']
-      end
-
       if attributes.key?(:'message')
         self.message = attributes[:'message']
       end
@@ -90,6 +86,10 @@ module OpenapiClient
         if (value = attributes[:'payer']).is_a?(Array)
           self.payer = value
         end
+      end
+
+      if attributes.key?(:'overledger_signing_type')
+        self.overledger_signing_type = attributes[:'overledger_signing_type']
       end
     end
 
@@ -103,19 +103,6 @@ module OpenapiClient
 
       if !@payee.nil? && @payee.length < 0
         invalid_properties.push('invalid value for "payee", number of items must be greater than or equal to 0.')
-      end
-
-      if !@overledger_signing_type.nil? && @overledger_signing_type.to_s.length > 30
-        invalid_properties.push('invalid value for "overledger_signing_type", the character length must be smaller than or equal to 30.')
-      end
-
-      if !@overledger_signing_type.nil? && @overledger_signing_type.to_s.length < 0
-        invalid_properties.push('invalid value for "overledger_signing_type", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^[A-Za-z- ]{1,30}/)
-      if !@overledger_signing_type.nil? && @overledger_signing_type !~ pattern
-        invalid_properties.push("invalid value for \"overledger_signing_type\", must conform to the pattern #{pattern}.")
       end
 
       if !@message.nil? && @message.to_s.length > 150
@@ -139,6 +126,19 @@ module OpenapiClient
         invalid_properties.push('invalid value for "payer", number of items must be greater than or equal to 0.')
       end
 
+      if !@overledger_signing_type.nil? && @overledger_signing_type.to_s.length > 30
+        invalid_properties.push('invalid value for "overledger_signing_type", the character length must be smaller than or equal to 30.')
+      end
+
+      if !@overledger_signing_type.nil? && @overledger_signing_type.to_s.length < 0
+        invalid_properties.push('invalid value for "overledger_signing_type", the character length must be great than or equal to 0.')
+      end
+
+      pattern = Regexp.new(/^[A-Za-z- ]{1,30}/)
+      if !@overledger_signing_type.nil? && @overledger_signing_type !~ pattern
+        invalid_properties.push("invalid value for \"overledger_signing_type\", must conform to the pattern #{pattern}.")
+      end
+
       invalid_properties
     end
 
@@ -147,14 +147,14 @@ module OpenapiClient
     def valid?
       return false if !@payee.nil? && @payee.length > 100
       return false if !@payee.nil? && @payee.length < 0
-      return false if !@overledger_signing_type.nil? && @overledger_signing_type.to_s.length > 30
-      return false if !@overledger_signing_type.nil? && @overledger_signing_type.to_s.length < 0
-      return false if !@overledger_signing_type.nil? && @overledger_signing_type !~ Regexp.new(/^[A-Za-z- ]{1,30}/)
       return false if !@message.nil? && @message.to_s.length > 150
       return false if !@message.nil? && @message.to_s.length < 0
       return false if !@message.nil? && @message !~ Regexp.new(/^[\S\s]{1,150}$/)
       return false if !@payer.nil? && @payer.length > 100
       return false if !@payer.nil? && @payer.length < 0
+      return false if !@overledger_signing_type.nil? && @overledger_signing_type.to_s.length > 30
+      return false if !@overledger_signing_type.nil? && @overledger_signing_type.to_s.length < 0
+      return false if !@overledger_signing_type.nil? && @overledger_signing_type !~ Regexp.new(/^[A-Za-z- ]{1,30}/)
       true
     end
 
@@ -170,25 +170,6 @@ module OpenapiClient
       end
 
       @payee = payee
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] overledger_signing_type Value to be assigned
-    def overledger_signing_type=(overledger_signing_type)
-      if !overledger_signing_type.nil? && overledger_signing_type.to_s.length > 30
-        fail ArgumentError, 'invalid value for "overledger_signing_type", the character length must be smaller than or equal to 30.'
-      end
-
-      if !overledger_signing_type.nil? && overledger_signing_type.to_s.length < 0
-        fail ArgumentError, 'invalid value for "overledger_signing_type", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[A-Za-z- ]{1,30}/)
-      if !overledger_signing_type.nil? && overledger_signing_type !~ pattern
-        fail ArgumentError, "invalid value for \"overledger_signing_type\", must conform to the pattern #{pattern}."
-      end
-
-      @overledger_signing_type = overledger_signing_type
     end
 
     # Custom attribute writer method with validation
@@ -224,15 +205,34 @@ module OpenapiClient
       @payer = payer
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] overledger_signing_type Value to be assigned
+    def overledger_signing_type=(overledger_signing_type)
+      if !overledger_signing_type.nil? && overledger_signing_type.to_s.length > 30
+        fail ArgumentError, 'invalid value for "overledger_signing_type", the character length must be smaller than or equal to 30.'
+      end
+
+      if !overledger_signing_type.nil? && overledger_signing_type.to_s.length < 0
+        fail ArgumentError, 'invalid value for "overledger_signing_type", the character length must be great than or equal to 0.'
+      end
+
+      pattern = Regexp.new(/^[A-Za-z- ]{1,30}/)
+      if !overledger_signing_type.nil? && overledger_signing_type !~ pattern
+        fail ArgumentError, "invalid value for \"overledger_signing_type\", must conform to the pattern #{pattern}."
+      end
+
+      @overledger_signing_type = overledger_signing_type
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           payee == o.payee &&
-          overledger_signing_type == o.overledger_signing_type &&
           message == o.message &&
-          payer == o.payer
+          payer == o.payer &&
+          overledger_signing_type == o.overledger_signing_type
     end
 
     # @see the `==` method
@@ -244,7 +244,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [payee, overledger_signing_type, message, payer].hash
+      [payee, message, payer, overledger_signing_type].hash
     end
 
     # Builds the object from hash

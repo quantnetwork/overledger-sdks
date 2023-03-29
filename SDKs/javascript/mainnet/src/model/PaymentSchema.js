@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -21,12 +21,14 @@ import ApiClient from '../ApiClient';
 class PaymentSchema {
     /**
      * Constructs a new <code>PaymentSchema</code>.
+     * The payload for each recipient
      * @alias module:model/PaymentSchema
-     * @param amount {String} The amount of a currency
+     * @param amount {String} The payload amount. The exact format depends on the unit of the token.
+     * @param unit {String} The currency or token code
      */
-    constructor(amount) { 
+    constructor(amount, unit) { 
         
-        PaymentSchema.initialize(this, amount);
+        PaymentSchema.initialize(this, amount, unit);
     }
 
     /**
@@ -34,8 +36,9 @@ class PaymentSchema {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, amount) { 
+    static initialize(obj, amount, unit) { 
         obj['amount'] = amount;
+        obj['unit'] = unit;
     }
 
     /**
@@ -63,13 +66,13 @@ class PaymentSchema {
 }
 
 /**
- * The amount of a currency
+ * The payload amount. The exact format depends on the unit of the token.
  * @member {String} amount
  */
 PaymentSchema.prototype['amount'] = undefined;
 
 /**
- * The unit of this currency/token
+ * The currency or token code
  * @member {String} unit
  */
 PaymentSchema.prototype['unit'] = undefined;

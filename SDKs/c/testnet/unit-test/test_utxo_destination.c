@@ -24,17 +24,17 @@ utxo_destination_t* instantiate_utxo_destination(int include_optional) {
   utxo_destination_t* utxo_destination = NULL;
   if (include_optional) {
     utxo_destination = utxo_destination_create(
+      "0",
        // false, not to have infinite recursion
       instantiate_utxo_smart_contract(0),
        // false, not to have infinite recursion
-      instantiate_payment(0),
-      "0"
+      instantiate_payment(0)
     );
   } else {
     utxo_destination = utxo_destination_create(
+      "0",
       NULL,
-      NULL,
-      "0"
+      NULL
     );
   }
 

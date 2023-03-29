@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -14,23 +14,26 @@ import (
 	"encoding/json"
 )
 
-// PaymentRequestDetailsSchema struct for PaymentRequestDetailsSchema
+// PaymentRequestDetailsSchema The payload request
 type PaymentRequestDetailsSchema struct {
-	OverledgerSigningType *string `json:"overledgerSigningType,omitempty"`
-	// Where is this transaction coming from
-	Origin *[]OriginPaymentSchema `json:"origin,omitempty"`
-	// The Destination of this transaction
-	Destination *[]DestinationPaymentSchema `json:"destination,omitempty"`
+	// List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
+	Destination []DestinationPaymentSchema `json:"destination"`
 	// Any text-based element of the data payload
 	Message *string `json:"message,omitempty"`
+	// The method of signing used to submit the transaction
+	OverledgerSigningType *string `json:"overledgerSigningType,omitempty"`
+	// List of where this transaction is coming from
+	Origin []OriginPaymentSchema `json:"origin"`
 }
 
 // NewPaymentRequestDetailsSchema instantiates a new PaymentRequestDetailsSchema object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaymentRequestDetailsSchema() *PaymentRequestDetailsSchema {
+func NewPaymentRequestDetailsSchema(destination []DestinationPaymentSchema, origin []OriginPaymentSchema) *PaymentRequestDetailsSchema {
 	this := PaymentRequestDetailsSchema{}
+	this.Destination = destination
+	this.Origin = origin
 	return &this
 }
 
@@ -42,100 +45,28 @@ func NewPaymentRequestDetailsSchemaWithDefaults() *PaymentRequestDetailsSchema {
 	return &this
 }
 
-// GetOverledgerSigningType returns the OverledgerSigningType field value if set, zero value otherwise.
-func (o *PaymentRequestDetailsSchema) GetOverledgerSigningType() string {
-	if o == nil || o.OverledgerSigningType == nil {
-		var ret string
-		return ret
-	}
-	return *o.OverledgerSigningType
-}
-
-// GetOverledgerSigningTypeOk returns a tuple with the OverledgerSigningType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PaymentRequestDetailsSchema) GetOverledgerSigningTypeOk() (*string, bool) {
-	if o == nil || o.OverledgerSigningType == nil {
-		return nil, false
-	}
-	return o.OverledgerSigningType, true
-}
-
-// HasOverledgerSigningType returns a boolean if a field has been set.
-func (o *PaymentRequestDetailsSchema) HasOverledgerSigningType() bool {
-	if o != nil && o.OverledgerSigningType != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOverledgerSigningType gets a reference to the given string and assigns it to the OverledgerSigningType field.
-func (o *PaymentRequestDetailsSchema) SetOverledgerSigningType(v string) {
-	o.OverledgerSigningType = &v
-}
-
-// GetOrigin returns the Origin field value if set, zero value otherwise.
-func (o *PaymentRequestDetailsSchema) GetOrigin() []OriginPaymentSchema {
-	if o == nil || o.Origin == nil {
-		var ret []OriginPaymentSchema
-		return ret
-	}
-	return *o.Origin
-}
-
-// GetOriginOk returns a tuple with the Origin field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PaymentRequestDetailsSchema) GetOriginOk() (*[]OriginPaymentSchema, bool) {
-	if o == nil || o.Origin == nil {
-		return nil, false
-	}
-	return o.Origin, true
-}
-
-// HasOrigin returns a boolean if a field has been set.
-func (o *PaymentRequestDetailsSchema) HasOrigin() bool {
-	if o != nil && o.Origin != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOrigin gets a reference to the given []OriginPaymentSchema and assigns it to the Origin field.
-func (o *PaymentRequestDetailsSchema) SetOrigin(v []OriginPaymentSchema) {
-	o.Origin = &v
-}
-
-// GetDestination returns the Destination field value if set, zero value otherwise.
+// GetDestination returns the Destination field value
 func (o *PaymentRequestDetailsSchema) GetDestination() []DestinationPaymentSchema {
-	if o == nil || o.Destination == nil {
+	if o == nil {
 		var ret []DestinationPaymentSchema
 		return ret
 	}
-	return *o.Destination
+
+	return o.Destination
 }
 
-// GetDestinationOk returns a tuple with the Destination field value if set, nil otherwise
+// GetDestinationOk returns a tuple with the Destination field value
 // and a boolean to check if the value has been set.
 func (o *PaymentRequestDetailsSchema) GetDestinationOk() (*[]DestinationPaymentSchema, bool) {
-	if o == nil || o.Destination == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Destination, true
+	return &o.Destination, true
 }
 
-// HasDestination returns a boolean if a field has been set.
-func (o *PaymentRequestDetailsSchema) HasDestination() bool {
-	if o != nil && o.Destination != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDestination gets a reference to the given []DestinationPaymentSchema and assigns it to the Destination field.
+// SetDestination sets field value
 func (o *PaymentRequestDetailsSchema) SetDestination(v []DestinationPaymentSchema) {
-	o.Destination = &v
+	o.Destination = v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -170,19 +101,75 @@ func (o *PaymentRequestDetailsSchema) SetMessage(v string) {
 	o.Message = &v
 }
 
+// GetOverledgerSigningType returns the OverledgerSigningType field value if set, zero value otherwise.
+func (o *PaymentRequestDetailsSchema) GetOverledgerSigningType() string {
+	if o == nil || o.OverledgerSigningType == nil {
+		var ret string
+		return ret
+	}
+	return *o.OverledgerSigningType
+}
+
+// GetOverledgerSigningTypeOk returns a tuple with the OverledgerSigningType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaymentRequestDetailsSchema) GetOverledgerSigningTypeOk() (*string, bool) {
+	if o == nil || o.OverledgerSigningType == nil {
+		return nil, false
+	}
+	return o.OverledgerSigningType, true
+}
+
+// HasOverledgerSigningType returns a boolean if a field has been set.
+func (o *PaymentRequestDetailsSchema) HasOverledgerSigningType() bool {
+	if o != nil && o.OverledgerSigningType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOverledgerSigningType gets a reference to the given string and assigns it to the OverledgerSigningType field.
+func (o *PaymentRequestDetailsSchema) SetOverledgerSigningType(v string) {
+	o.OverledgerSigningType = &v
+}
+
+// GetOrigin returns the Origin field value
+func (o *PaymentRequestDetailsSchema) GetOrigin() []OriginPaymentSchema {
+	if o == nil {
+		var ret []OriginPaymentSchema
+		return ret
+	}
+
+	return o.Origin
+}
+
+// GetOriginOk returns a tuple with the Origin field value
+// and a boolean to check if the value has been set.
+func (o *PaymentRequestDetailsSchema) GetOriginOk() (*[]OriginPaymentSchema, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Origin, true
+}
+
+// SetOrigin sets field value
+func (o *PaymentRequestDetailsSchema) SetOrigin(v []OriginPaymentSchema) {
+	o.Origin = v
+}
+
 func (o PaymentRequestDetailsSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.OverledgerSigningType != nil {
-		toSerialize["overledgerSigningType"] = o.OverledgerSigningType
-	}
-	if o.Origin != nil {
-		toSerialize["origin"] = o.Origin
-	}
-	if o.Destination != nil {
+	if true {
 		toSerialize["destination"] = o.Destination
 	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
+	}
+	if o.OverledgerSigningType != nil {
+		toSerialize["overledgerSigningType"] = o.OverledgerSigningType
+	}
+	if true {
+		toSerialize["origin"] = o.Origin
 	}
 	return json.Marshal(toSerialize)
 }

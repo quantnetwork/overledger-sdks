@@ -24,15 +24,15 @@ origin_t* instantiate_origin(int include_optional) {
   if (include_optional) {
     origin = origin_create(
       "a",
-      "a",
        // false, not to have infinite recursion
-      instantiate_smart_contract(0)
+      instantiate_smart_contract(0),
+      "a"
     );
   } else {
     origin = origin_create(
       "a",
-      "a",
-      NULL
+      NULL,
+      "a"
     );
   }
 

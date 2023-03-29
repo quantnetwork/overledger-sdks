@@ -1,7 +1,7 @@
 /*
  * origin_payment_schema.h
  *
- * Where is this transaction coming from
+ * List of where this transaction is coming from
  */
 
 #ifndef _origin_payment_schema_H_

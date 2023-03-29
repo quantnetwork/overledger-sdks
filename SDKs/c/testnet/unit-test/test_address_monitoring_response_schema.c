@@ -16,8 +16,8 @@
 #include "../model/address_monitoring_response_schema.h"
 address_monitoring_response_schema_t* instantiate_address_monitoring_response_schema(int include_optional);
 
-#include "test_resource_monitoring_subscription_details.c"
 #include "test_resource_monitoring_details.c"
+#include "test_resource_monitoring_subscription_details.c"
 #include "test_resource_monitoring_subscription.c"
 
 
@@ -26,9 +26,9 @@ address_monitoring_response_schema_t* instantiate_address_monitoring_response_sc
   if (include_optional) {
     address_monitoring_response_schema = address_monitoring_response_schema_create(
        // false, not to have infinite recursion
-      instantiate_resource_monitoring_subscription_details(0),
-       // false, not to have infinite recursion
       instantiate_resource_monitoring_details(0),
+       // false, not to have infinite recursion
+      instantiate_resource_monitoring_subscription_details(0),
        // false, not to have infinite recursion
       instantiate_resource_monitoring_subscription(0)
     );

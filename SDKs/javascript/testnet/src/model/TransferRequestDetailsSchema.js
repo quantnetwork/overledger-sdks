@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -49,17 +49,17 @@ class TransferRequestDetailsSchema {
         if (data) {
             obj = obj || new TransferRequestDetailsSchema();
 
-            if (data.hasOwnProperty('overledgerSigningType')) {
-                obj['overledgerSigningType'] = ApiClient.convertToType(data['overledgerSigningType'], 'String');
-            }
-            if (data.hasOwnProperty('origin')) {
-                obj['origin'] = ApiClient.convertToType(data['origin'], [OriginTransferSchema]);
-            }
             if (data.hasOwnProperty('destination')) {
                 obj['destination'] = ApiClient.convertToType(data['destination'], [DestinationTransferSchema]);
             }
             if (data.hasOwnProperty('message')) {
                 obj['message'] = ApiClient.convertToType(data['message'], 'String');
+            }
+            if (data.hasOwnProperty('overledgerSigningType')) {
+                obj['overledgerSigningType'] = ApiClient.convertToType(data['overledgerSigningType'], 'String');
+            }
+            if (data.hasOwnProperty('origin')) {
+                obj['origin'] = ApiClient.convertToType(data['origin'], [OriginTransferSchema]);
             }
         }
         return obj;
@@ -67,16 +67,6 @@ class TransferRequestDetailsSchema {
 
 
 }
-
-/**
- * @member {String} overledgerSigningType
- */
-TransferRequestDetailsSchema.prototype['overledgerSigningType'] = undefined;
-
-/**
- * @member {Array.<module:model/OriginTransferSchema>} origin
- */
-TransferRequestDetailsSchema.prototype['origin'] = undefined;
 
 /**
  * @member {Array.<module:model/DestinationTransferSchema>} destination
@@ -87,6 +77,16 @@ TransferRequestDetailsSchema.prototype['destination'] = undefined;
  * @member {String} message
  */
 TransferRequestDetailsSchema.prototype['message'] = undefined;
+
+/**
+ * @member {String} overledgerSigningType
+ */
+TransferRequestDetailsSchema.prototype['overledgerSigningType'] = undefined;
+
+/**
+ * @member {Array.<module:model/OriginTransferSchema>} origin
+ */
+TransferRequestDetailsSchema.prototype['origin'] = undefined;
 
 
 

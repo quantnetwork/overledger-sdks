@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,17 +15,17 @@ require 'time'
 
 module OpenapiClient
   class AutoExecuteSearchAddressBalanceResponseSchema
-    attr_accessor :execution_address_balance_search_response
-
     attr_accessor :prepare_and_execute_overledger_error_response
+
+    attr_accessor :execution_address_balance_search_response
 
     attr_accessor :preparation_address_balance_search_response
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'execution_address_balance_search_response' => :'executionAddressBalanceSearchResponse',
         :'prepare_and_execute_overledger_error_response' => :'prepareAndExecuteOverledgerErrorResponse',
+        :'execution_address_balance_search_response' => :'executionAddressBalanceSearchResponse',
         :'preparation_address_balance_search_response' => :'preparationAddressBalanceSearchResponse'
       }
     end
@@ -38,8 +38,8 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'execution_address_balance_search_response' => :'PrepareAndExecuteSearchAddressBalanceResponse',
         :'prepare_and_execute_overledger_error_response' => :'PrepareAndExecuteOverledgerErrorResponse',
+        :'execution_address_balance_search_response' => :'PrepareAndExecuteSearchAddressBalanceResponse',
         :'preparation_address_balance_search_response' => :'PrepareSearchResponseSchema'
       }
     end
@@ -65,12 +65,12 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'execution_address_balance_search_response')
-        self.execution_address_balance_search_response = attributes[:'execution_address_balance_search_response']
-      end
-
       if attributes.key?(:'prepare_and_execute_overledger_error_response')
         self.prepare_and_execute_overledger_error_response = attributes[:'prepare_and_execute_overledger_error_response']
+      end
+
+      if attributes.key?(:'execution_address_balance_search_response')
+        self.execution_address_balance_search_response = attributes[:'execution_address_balance_search_response']
       end
 
       if attributes.key?(:'preparation_address_balance_search_response')
@@ -96,8 +96,8 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          execution_address_balance_search_response == o.execution_address_balance_search_response &&
           prepare_and_execute_overledger_error_response == o.prepare_and_execute_overledger_error_response &&
+          execution_address_balance_search_response == o.execution_address_balance_search_response &&
           preparation_address_balance_search_response == o.preparation_address_balance_search_response
     end
 
@@ -110,7 +110,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [execution_address_balance_search_response, prepare_and_execute_overledger_error_response, preparation_address_balance_search_response].hash
+      [prepare_and_execute_overledger_error_response, execution_address_balance_search_response, preparation_address_balance_search_response].hash
     end
 
     # Builds the object from hash

@@ -32,7 +32,7 @@ my $api_instance = WWW::OpenAPIClient::TransactionSearchApi->new(
 );
 
 my $authorization = "authorization_example"; # string | 
-my $transaction_id = "transaction_id_example"; # string | 
+my $transaction_id = 0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab; # string | The transactionId to search for
 my $prepare_search_schema = WWW::OpenAPIClient::Object::PrepareSearchSchema->new(); # PrepareSearchSchema | 
 
 eval {
@@ -49,7 +49,7 @@ if ($@) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  | 
- **transaction_id** | **string**|  | 
+ **transaction_id** | **string**| The transactionId to search for | 
  **prepare_search_schema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  | 
 
 ### Return type
@@ -136,7 +136,7 @@ my $api_instance = WWW::OpenAPIClient::TransactionSearchApi->new(
 );
 
 my $authorization = "authorization_example"; # string | 
-my $transaction_id = "transaction_id_example"; # string | 
+my $transaction_id = 0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab; # string | The transactionId to search for
 my $prepare_search_schema = WWW::OpenAPIClient::Object::PrepareSearchSchema->new(); # PrepareSearchSchema | 
 
 eval {
@@ -153,7 +153,7 @@ if ($@) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  | 
- **transaction_id** | **string**|  | 
+ **transaction_id** | **string**| The transactionId to search for | 
  **prepare_search_schema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  | 
 
 ### Return type

@@ -38,7 +38,7 @@ public class Example {
 
     TransactionSearchApi apiInstance = new TransactionSearchApi(defaultClient);
     String authorization = "authorization_example"; // String | 
-    String transactionId = "transactionId_example"; // String | 
+    String transactionId = "0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab"; // String | The transactionId to search for
     PrepareSearchSchema prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
     try {
       PrepareAndExecuteTransactionResponse result = apiInstance.autoExecuteSearchTransactionRequest(authorization, transactionId, prepareSearchSchema);
@@ -59,7 +59,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**|  |
- **transactionId** | **String**|  |
+ **transactionId** | **String**| The transactionId to search for |
  **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  |
 
 ### Return type
@@ -186,7 +186,7 @@ public class Example {
 
     TransactionSearchApi apiInstance = new TransactionSearchApi(defaultClient);
     String authorization = "authorization_example"; // String | 
-    String transactionId = "transactionId_example"; // String | 
+    String transactionId = "0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab"; // String | The transactionId to search for
     PrepareSearchSchema prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
     try {
       PrepareSearchResponseSchema result = apiInstance.prepareSearchRequest(authorization, transactionId, prepareSearchSchema);
@@ -207,7 +207,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **String**|  |
- **transactionId** | **String**|  |
+ **transactionId** | **String**| The transactionId to search for |
  **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  |
 
 ### Return type

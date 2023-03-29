@@ -50,11 +50,13 @@ cJSON *payment_schema_convertToJSON(payment_schema_t *payment_schema) {
 
 
     // payment_schema->unit
-    if(payment_schema->unit) { 
+    if (!payment_schema->unit) {
+        goto fail;
+    }
+    
     if(cJSON_AddStringToObject(item, "unit", payment_schema->unit) == NULL) {
     goto fail; //String
     }
-     } 
 
     return item;
 fail:
@@ -82,17 +84,20 @@ payment_schema_t *payment_schema_parseFromJSON(cJSON *payment_schemaJSON){
 
     // payment_schema->unit
     cJSON *unit = cJSON_GetObjectItemCaseSensitive(payment_schemaJSON, "unit");
-    if (unit) { 
+    if (!unit) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsString(unit))
     {
     goto end; //String
-    }
     }
 
 
     payment_schema_local_var = payment_schema_create (
         strdup(amount->valuestring),
-        unit ? strdup(unit->valuestring) : NULL
+        strdup(unit->valuestring)
         );
 
     return payment_schema_local_var;

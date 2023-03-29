@@ -4,11 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FunctionId** | Pointer to **string** |  | [optional] 
-**Code** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**InputParameters** | Pointer to [**[]Parameter**](Parameter.md) |  | [optional] 
-**OutputParameters** | Pointer to [**[]Parameter**](Parameter.md) |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
+**Api** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -29,130 +26,55 @@ NewFunctionWithDefaults instantiates a new Function object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetFunctionId
+### GetType
 
-`func (o *Function) GetFunctionId() string`
+`func (o *Function) GetType() string`
 
-GetFunctionId returns the FunctionId field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetFunctionIdOk
+### GetTypeOk
 
-`func (o *Function) GetFunctionIdOk() (*string, bool)`
+`func (o *Function) GetTypeOk() (*string, bool)`
 
-GetFunctionIdOk returns a tuple with the FunctionId field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFunctionId
+### SetType
 
-`func (o *Function) SetFunctionId(v string)`
+`func (o *Function) SetType(v string)`
 
-SetFunctionId sets FunctionId field to given value.
+SetType sets Type field to given value.
 
-### HasFunctionId
+### HasType
 
-`func (o *Function) HasFunctionId() bool`
+`func (o *Function) HasType() bool`
 
-HasFunctionId returns a boolean if a field has been set.
+HasType returns a boolean if a field has been set.
 
-### GetCode
+### GetApi
 
-`func (o *Function) GetCode() string`
+`func (o *Function) GetApi() string`
 
-GetCode returns the Code field if non-nil, zero value otherwise.
+GetApi returns the Api field if non-nil, zero value otherwise.
 
-### GetCodeOk
+### GetApiOk
 
-`func (o *Function) GetCodeOk() (*string, bool)`
+`func (o *Function) GetApiOk() (*string, bool)`
 
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+GetApiOk returns a tuple with the Api field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCode
+### SetApi
 
-`func (o *Function) SetCode(v string)`
+`func (o *Function) SetApi(v string)`
 
-SetCode sets Code field to given value.
+SetApi sets Api field to given value.
 
-### HasCode
+### HasApi
 
-`func (o *Function) HasCode() bool`
+`func (o *Function) HasApi() bool`
 
-HasCode returns a boolean if a field has been set.
-
-### GetName
-
-`func (o *Function) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *Function) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *Function) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *Function) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### GetInputParameters
-
-`func (o *Function) GetInputParameters() []Parameter`
-
-GetInputParameters returns the InputParameters field if non-nil, zero value otherwise.
-
-### GetInputParametersOk
-
-`func (o *Function) GetInputParametersOk() (*[]Parameter, bool)`
-
-GetInputParametersOk returns a tuple with the InputParameters field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInputParameters
-
-`func (o *Function) SetInputParameters(v []Parameter)`
-
-SetInputParameters sets InputParameters field to given value.
-
-### HasInputParameters
-
-`func (o *Function) HasInputParameters() bool`
-
-HasInputParameters returns a boolean if a field has been set.
-
-### GetOutputParameters
-
-`func (o *Function) GetOutputParameters() []Parameter`
-
-GetOutputParameters returns the OutputParameters field if non-nil, zero value otherwise.
-
-### GetOutputParametersOk
-
-`func (o *Function) GetOutputParametersOk() (*[]Parameter, bool)`
-
-GetOutputParametersOk returns a tuple with the OutputParameters field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOutputParameters
-
-`func (o *Function) SetOutputParameters(v []Parameter)`
-
-SetOutputParameters sets OutputParameters field to given value.
-
-### HasOutputParameters
-
-`func (o *Function) HasOutputParameters() bool`
-
-HasOutputParameters returns a boolean if a field has been set.
+HasApi returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

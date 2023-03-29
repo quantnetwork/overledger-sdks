@@ -248,7 +248,7 @@ end:
 
 // Prepare Search for a UTXO State.
 //
-// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT's
+// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
 //
 prepare_search_response_schema_t*
 UTXOStatusSearchAPI_prepareSearchUTXOState(apiClient_t *apiClient, char * Authorization , char * utxoId , prepare_search_schema_t * prepare_search_schema )

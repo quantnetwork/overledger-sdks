@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -97,17 +97,12 @@ module OpenapiClient
         invalid_properties.push("invalid value for \"amount\", must conform to the pattern #{pattern}.")
       end
 
-      if !@unit.nil? && @unit.to_s.length > 5
-        invalid_properties.push('invalid value for "unit", the character length must be smaller than or equal to 5.')
+      if !@unit.nil? && @unit.to_s.length > 11
+        invalid_properties.push('invalid value for "unit", the character length must be smaller than or equal to 11.')
       end
 
       if !@unit.nil? && @unit.to_s.length < 0
         invalid_properties.push('invalid value for "unit", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^[A-Za-z0-9 ]{1,5}/)
-      if !@unit.nil? && @unit !~ pattern
-        invalid_properties.push("invalid value for \"unit\", must conform to the pattern #{pattern}.")
       end
 
       if !@issuer.nil? && @issuer.to_s.length > 20
@@ -132,9 +127,8 @@ module OpenapiClient
       return false if !@amount.nil? && @amount.to_s.length > 100
       return false if !@amount.nil? && @amount.to_s.length < 0
       return false if !@amount.nil? && @amount !~ Regexp.new(/^[A-Za-z0-9. ]{1,100}/)
-      return false if !@unit.nil? && @unit.to_s.length > 5
+      return false if !@unit.nil? && @unit.to_s.length > 11
       return false if !@unit.nil? && @unit.to_s.length < 0
-      return false if !@unit.nil? && @unit !~ Regexp.new(/^[A-Za-z0-9 ]{1,5}/)
       return false if !@issuer.nil? && @issuer.to_s.length > 20
       return false if !@issuer.nil? && @issuer.to_s.length < 0
       return false if !@issuer.nil? && @issuer !~ Regexp.new(/^[A-Za-z0-9 ]{1,20}/)
@@ -163,17 +157,12 @@ module OpenapiClient
     # Custom attribute writer method with validation
     # @param [Object] unit Value to be assigned
     def unit=(unit)
-      if !unit.nil? && unit.to_s.length > 5
-        fail ArgumentError, 'invalid value for "unit", the character length must be smaller than or equal to 5.'
+      if !unit.nil? && unit.to_s.length > 11
+        fail ArgumentError, 'invalid value for "unit", the character length must be smaller than or equal to 11.'
       end
 
       if !unit.nil? && unit.to_s.length < 0
         fail ArgumentError, 'invalid value for "unit", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[A-Za-z0-9 ]{1,5}/)
-      if !unit.nil? && unit !~ pattern
-        fail ArgumentError, "invalid value for \"unit\", must conform to the pattern #{pattern}."
       end
 
       @unit = unit

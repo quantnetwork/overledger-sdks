@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,25 +33,25 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DestinationTransferSchema" /> class.
         /// </summary>
-        /// <param name="transfer">transfer.</param>
         /// <param name="destinationId">destinationId.</param>
-        public DestinationTransferSchema(TransferSchema transfer = default(TransferSchema), string destinationId = default(string))
+        /// <param name="transfer">transfer.</param>
+        public DestinationTransferSchema(string destinationId = default(string), TransferSchema transfer = default(TransferSchema))
         {
-            this.Transfer = transfer;
             this.DestinationId = destinationId;
+            this.Transfer = transfer;
         }
-
-        /// <summary>
-        /// Gets or Sets Transfer
-        /// </summary>
-        [DataMember(Name="transfer", EmitDefaultValue=false)]
-        public TransferSchema Transfer { get; set; }
 
         /// <summary>
         /// Gets or Sets DestinationId
         /// </summary>
         [DataMember(Name="destinationId", EmitDefaultValue=false)]
         public string DestinationId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Transfer
+        /// </summary>
+        [DataMember(Name="transfer", EmitDefaultValue=false)]
+        public TransferSchema Transfer { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,8 +61,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DestinationTransferSchema {\n");
-            sb.Append("  Transfer: ").Append(Transfer).Append("\n");
             sb.Append("  DestinationId: ").Append(DestinationId).Append("\n");
+            sb.Append("  Transfer: ").Append(Transfer).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -98,14 +98,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.Transfer == input.Transfer ||
-                    (this.Transfer != null &&
-                    this.Transfer.Equals(input.Transfer))
-                ) && 
-                (
                     this.DestinationId == input.DestinationId ||
                     (this.DestinationId != null &&
                     this.DestinationId.Equals(input.DestinationId))
+                ) && 
+                (
+                    this.Transfer == input.Transfer ||
+                    (this.Transfer != null &&
+                    this.Transfer.Equals(input.Transfer))
                 );
         }
 
@@ -118,10 +118,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Transfer != null)
-                    hashCode = hashCode * 59 + this.Transfer.GetHashCode();
                 if (this.DestinationId != null)
                     hashCode = hashCode * 59 + this.DestinationId.GetHashCode();
+                if (this.Transfer != null)
+                    hashCode = hashCode * 59 + this.Transfer.GetHashCode();
                 return hashCode;
             }
         }
@@ -134,9 +134,9 @@ namespace Org.OpenAPITools.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // DestinationId (string) maxLength
-            if(this.DestinationId != null && this.DestinationId.Length > 100)
+            if(this.DestinationId != null && this.DestinationId.Length > 500)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DestinationId, length must be less than 100.", new [] { "DestinationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DestinationId, length must be less than 500.", new [] { "DestinationId" });
             }
 
             // DestinationId (string) minLength
@@ -146,7 +146,7 @@ namespace Org.OpenAPITools.Model
             }
 
             // DestinationId (string) pattern
-            Regex regexDestinationId = new Regex(@"^[a-zA-Z0-9]{1,100}$", RegexOptions.CultureInvariant);
+            Regex regexDestinationId = new Regex(@"^[a-zA-Z0-9:,\/.=\\-\\s]{1,500}", RegexOptions.CultureInvariant);
             if (false == regexDestinationId.Match(this.DestinationId).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DestinationId, must match a pattern of " + regexDestinationId, new [] { "DestinationId" });

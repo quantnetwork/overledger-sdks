@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**function_id** | **char \*** |  | [optional] 
 **name** | **char \*** |  | [optional] 
+**function_id** | **char \*** |  | [optional] 
 **input_parameters** | [**list_t**](smart_contract_input_parameter_schema.md) \* |  | [optional] 
 **output_parameters** | [**list_t**](smart_contract_input_parameter_schema.md) \* |  | [optional] 
 

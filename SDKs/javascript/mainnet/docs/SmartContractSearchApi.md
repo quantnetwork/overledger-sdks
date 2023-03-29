@@ -131,7 +131,7 @@ OAuth2_Security_Scheme.accessToken = 'YOUR ACCESS TOKEN';
 
 let apiInstance = new QuantOverledgerApi.SmartContractSearchApi();
 let authorization = "authorization_example"; // String | 
-let prepareSearchSmartContractRequestSchema = {"requestDetails":{"destination":[{"smartContract":{"function":{"name":"balanceOf","inputParameters":[{"type":"address","value":"0x8917cf2A57DF39D311a96c53FCCA76dAFB25392B"}],"outputParameters":[{"type":"uint256"}]},"smartContractId":"0xF9cd6C86992Fce1481dBc4bDB7E1b101c1e8cEE2"}}]},"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // PrepareSearchSmartContractRequestSchema | 
+let prepareSearchSmartContractRequestSchema = {"requestDetails":{"destination":[{"smartContract":{"smartContractId":"0xF9cd6C86992Fce1481dBc4bDB7E1b101c1e8cEE2","function":{"name":"balanceOf","inputParameters":[{"type":"address","value":"0x8917cf2A57DF39D311a96c53FCCA76dAFB25392B"}],"outputParameters":[{"type":"uint256"}]}}}]},"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // PrepareSearchSmartContractRequestSchema | 
 apiInstance.prepareSmartContractQueryRequest(authorization, prepareSearchSmartContractRequestSchema, (error, data, response) => {
   if (error) {
     console.error(error);

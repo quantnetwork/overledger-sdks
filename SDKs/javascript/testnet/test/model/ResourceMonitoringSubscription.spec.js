@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -54,12 +54,6 @@
       //expect(instance).to.be.a(QuantOverledgerApi.ResourceMonitoringSubscription);
     });
 
-    it('should have the property callbackUrl (base name: "callbackUrl")', function() {
-      // uncomment below and update the code to test the property callbackUrl
-      //var instance = new QuantOverledgerApi.ResourceMonitoringSubscription();
-      //expect(instance).to.be();
-    });
-
     it('should have the property subscriptionId (base name: "subscriptionId")', function() {
       // uncomment below and update the code to test the property subscriptionId
       //var instance = new QuantOverledgerApi.ResourceMonitoringSubscription();
@@ -68,6 +62,12 @@
 
     it('should have the property type (base name: "type")', function() {
       // uncomment below and update the code to test the property type
+      //var instance = new QuantOverledgerApi.ResourceMonitoringSubscription();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property callbackUrl (base name: "callbackUrl")', function() {
+      // uncomment below and update the code to test the property callbackUrl
       //var instance = new QuantOverledgerApi.ResourceMonitoringSubscription();
       //expect(instance).to.be();
     });

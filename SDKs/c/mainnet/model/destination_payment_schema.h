@@ -1,7 +1,7 @@
 /*
  * destination_payment_schema.h
  *
- * The Destination of this transaction
+ * List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
  */
 
 #ifndef _destination_payment_schema_H_
@@ -20,14 +20,14 @@ typedef struct destination_payment_schema_t destination_payment_schema_t;
 
 
 typedef struct destination_payment_schema_t {
-    struct payment_schema_t *payment; //model
     char *destination_id; // string
+    struct payment_schema_t *payment; //model
 
 } destination_payment_schema_t;
 
 destination_payment_schema_t *destination_payment_schema_create(
-    payment_schema_t *payment,
-    char *destination_id
+    char *destination_id,
+    payment_schema_t *payment
 );
 
 void destination_payment_schema_free(destination_payment_schema_t *destination_payment_schema);

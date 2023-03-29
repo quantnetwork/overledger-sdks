@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**callBackURL** | **kotlin.String** |  |  [optional]
 **location** | [**Location**](Location.md) |  |  [optional]
+**callBackURL** | **kotlin.String** |  |  [optional]
 **addressId** | **kotlin.String** |  |  [optional]
 
 

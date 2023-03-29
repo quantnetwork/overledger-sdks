@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,18 +16,24 @@ import (
 
 // PreparePaymentTransactionRequestSchema struct for PreparePaymentTransactionRequestSchema
 type PreparePaymentTransactionRequestSchema struct {
-	Urgency *string `json:"urgency,omitempty"`
-	RequestDetails *PaymentRequestDetailsSchema `json:"requestDetails,omitempty"`
-	Location *Location `json:"location,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Location Location `json:"location"`
+	// The type of the transaction
+	Type string `json:"type"`
+	// This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+	Urgency string `json:"urgency"`
+	RequestDetails PaymentRequestDetailsSchema `json:"requestDetails"`
 }
 
 // NewPreparePaymentTransactionRequestSchema instantiates a new PreparePaymentTransactionRequestSchema object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPreparePaymentTransactionRequestSchema() *PreparePaymentTransactionRequestSchema {
+func NewPreparePaymentTransactionRequestSchema(location Location, type_ string, urgency string, requestDetails PaymentRequestDetailsSchema) *PreparePaymentTransactionRequestSchema {
 	this := PreparePaymentTransactionRequestSchema{}
+	this.Location = location
+	this.Type = type_
+	this.Urgency = urgency
+	this.RequestDetails = requestDetails
 	return &this
 }
 
@@ -39,147 +45,115 @@ func NewPreparePaymentTransactionRequestSchemaWithDefaults() *PreparePaymentTran
 	return &this
 }
 
-// GetUrgency returns the Urgency field value if set, zero value otherwise.
-func (o *PreparePaymentTransactionRequestSchema) GetUrgency() string {
-	if o == nil || o.Urgency == nil {
-		var ret string
-		return ret
-	}
-	return *o.Urgency
-}
-
-// GetUrgencyOk returns a tuple with the Urgency field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PreparePaymentTransactionRequestSchema) GetUrgencyOk() (*string, bool) {
-	if o == nil || o.Urgency == nil {
-		return nil, false
-	}
-	return o.Urgency, true
-}
-
-// HasUrgency returns a boolean if a field has been set.
-func (o *PreparePaymentTransactionRequestSchema) HasUrgency() bool {
-	if o != nil && o.Urgency != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUrgency gets a reference to the given string and assigns it to the Urgency field.
-func (o *PreparePaymentTransactionRequestSchema) SetUrgency(v string) {
-	o.Urgency = &v
-}
-
-// GetRequestDetails returns the RequestDetails field value if set, zero value otherwise.
-func (o *PreparePaymentTransactionRequestSchema) GetRequestDetails() PaymentRequestDetailsSchema {
-	if o == nil || o.RequestDetails == nil {
-		var ret PaymentRequestDetailsSchema
-		return ret
-	}
-	return *o.RequestDetails
-}
-
-// GetRequestDetailsOk returns a tuple with the RequestDetails field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PreparePaymentTransactionRequestSchema) GetRequestDetailsOk() (*PaymentRequestDetailsSchema, bool) {
-	if o == nil || o.RequestDetails == nil {
-		return nil, false
-	}
-	return o.RequestDetails, true
-}
-
-// HasRequestDetails returns a boolean if a field has been set.
-func (o *PreparePaymentTransactionRequestSchema) HasRequestDetails() bool {
-	if o != nil && o.RequestDetails != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRequestDetails gets a reference to the given PaymentRequestDetailsSchema and assigns it to the RequestDetails field.
-func (o *PreparePaymentTransactionRequestSchema) SetRequestDetails(v PaymentRequestDetailsSchema) {
-	o.RequestDetails = &v
-}
-
-// GetLocation returns the Location field value if set, zero value otherwise.
+// GetLocation returns the Location field value
 func (o *PreparePaymentTransactionRequestSchema) GetLocation() Location {
-	if o == nil || o.Location == nil {
+	if o == nil {
 		var ret Location
 		return ret
 	}
-	return *o.Location
+
+	return o.Location
 }
 
-// GetLocationOk returns a tuple with the Location field value if set, nil otherwise
+// GetLocationOk returns a tuple with the Location field value
 // and a boolean to check if the value has been set.
 func (o *PreparePaymentTransactionRequestSchema) GetLocationOk() (*Location, bool) {
-	if o == nil || o.Location == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Location, true
+	return &o.Location, true
 }
 
-// HasLocation returns a boolean if a field has been set.
-func (o *PreparePaymentTransactionRequestSchema) HasLocation() bool {
-	if o != nil && o.Location != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLocation gets a reference to the given Location and assigns it to the Location field.
+// SetLocation sets field value
 func (o *PreparePaymentTransactionRequestSchema) SetLocation(v Location) {
-	o.Location = &v
+	o.Location = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *PreparePaymentTransactionRequestSchema) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *PreparePaymentTransactionRequestSchema) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *PreparePaymentTransactionRequestSchema) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
+// SetType sets field value
+func (o *PreparePaymentTransactionRequestSchema) SetType(v string) {
+	o.Type = v
+}
+
+// GetUrgency returns the Urgency field value
+func (o *PreparePaymentTransactionRequestSchema) GetUrgency() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Urgency
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *PreparePaymentTransactionRequestSchema) SetType(v string) {
-	o.Type = &v
+// GetUrgencyOk returns a tuple with the Urgency field value
+// and a boolean to check if the value has been set.
+func (o *PreparePaymentTransactionRequestSchema) GetUrgencyOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Urgency, true
+}
+
+// SetUrgency sets field value
+func (o *PreparePaymentTransactionRequestSchema) SetUrgency(v string) {
+	o.Urgency = v
+}
+
+// GetRequestDetails returns the RequestDetails field value
+func (o *PreparePaymentTransactionRequestSchema) GetRequestDetails() PaymentRequestDetailsSchema {
+	if o == nil {
+		var ret PaymentRequestDetailsSchema
+		return ret
+	}
+
+	return o.RequestDetails
+}
+
+// GetRequestDetailsOk returns a tuple with the RequestDetails field value
+// and a boolean to check if the value has been set.
+func (o *PreparePaymentTransactionRequestSchema) GetRequestDetailsOk() (*PaymentRequestDetailsSchema, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.RequestDetails, true
+}
+
+// SetRequestDetails sets field value
+func (o *PreparePaymentTransactionRequestSchema) SetRequestDetails(v PaymentRequestDetailsSchema) {
+	o.RequestDetails = v
 }
 
 func (o PreparePaymentTransactionRequestSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Urgency != nil {
-		toSerialize["urgency"] = o.Urgency
-	}
-	if o.RequestDetails != nil {
-		toSerialize["requestDetails"] = o.RequestDetails
-	}
-	if o.Location != nil {
+	if true {
 		toSerialize["location"] = o.Location
 	}
-	if o.Type != nil {
+	if true {
 		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["urgency"] = o.Urgency
+	}
+	if true {
+		toSerialize["requestDetails"] = o.RequestDetails
 	}
 	return json.Marshal(toSerialize)
 }

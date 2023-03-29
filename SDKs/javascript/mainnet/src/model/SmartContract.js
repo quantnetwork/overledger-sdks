@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -49,9 +49,6 @@ class SmartContract {
         if (data) {
             obj = obj || new SmartContract();
 
-            if (data.hasOwnProperty('function')) {
-                obj['function'] = Function.constructFromObject(data['function']);
-            }
             if (data.hasOwnProperty('detail')) {
                 obj['detail'] = ApiClient.convertToType(data['detail'], 'String');
             }
@@ -60,6 +57,9 @@ class SmartContract {
             }
             if (data.hasOwnProperty('smartContractId')) {
                 obj['smartContractId'] = ApiClient.convertToType(data['smartContractId'], 'String');
+            }
+            if (data.hasOwnProperty('function')) {
+                obj['function'] = Function.constructFromObject(data['function']);
             }
             if (data.hasOwnProperty('extraFields')) {
                 obj['extraFields'] = ApiClient.convertToType(data['extraFields'], Object);
@@ -70,11 +70,6 @@ class SmartContract {
 
 
 }
-
-/**
- * @member {module:model/Function} function
- */
-SmartContract.prototype['function'] = undefined;
 
 /**
  * @member {String} detail
@@ -91,6 +86,11 @@ SmartContract.prototype['type'] = undefined;
  * @member {String} smartContractId
  */
 SmartContract.prototype['smartContractId'] = undefined;
+
+/**
+ * @member {module:model/Function} function
+ */
+SmartContract.prototype['function'] = undefined;
 
 /**
  * @member {Object} extraFields

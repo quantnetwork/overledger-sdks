@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -18,16 +18,17 @@ module OpenapiClient
   class Origin
     attr_accessor :sequence
 
-    attr_accessor :origin_id
-
     attr_accessor :smart_contract
+
+    # The unique identifier of the origin
+    attr_accessor :origin_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'sequence' => :'sequence',
-        :'origin_id' => :'originId',
-        :'smart_contract' => :'smartContract'
+        :'smart_contract' => :'smartContract',
+        :'origin_id' => :'originId'
       }
     end
 
@@ -40,8 +41,8 @@ module OpenapiClient
     def self.openapi_types
       {
         :'sequence' => :'String',
-        :'origin_id' => :'String',
-        :'smart_contract' => :'SmartContract'
+        :'smart_contract' => :'SmartContract',
+        :'origin_id' => :'String'
       }
     end
 
@@ -70,12 +71,12 @@ module OpenapiClient
         self.sequence = attributes[:'sequence']
       end
 
-      if attributes.key?(:'origin_id')
-        self.origin_id = attributes[:'origin_id']
-      end
-
       if attributes.key?(:'smart_contract')
         self.smart_contract = attributes[:'smart_contract']
+      end
+
+      if attributes.key?(:'origin_id')
+        self.origin_id = attributes[:'origin_id']
       end
     end
 
@@ -83,28 +84,28 @@ module OpenapiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@sequence.nil? && @sequence.to_s.length > 100
-        invalid_properties.push('invalid value for "sequence", the character length must be smaller than or equal to 100.')
+      if !@sequence.nil? && @sequence.to_s.length > 18
+        invalid_properties.push('invalid value for "sequence", the character length must be smaller than or equal to 18.')
       end
 
       if !@sequence.nil? && @sequence.to_s.length < 0
         invalid_properties.push('invalid value for "sequence", the character length must be great than or equal to 0.')
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[0-9]{1,18}$/)
       if !@sequence.nil? && @sequence !~ pattern
         invalid_properties.push("invalid value for \"sequence\", must conform to the pattern #{pattern}.")
       end
 
-      if !@origin_id.nil? && @origin_id.to_s.length > 66
-        invalid_properties.push('invalid value for "origin_id", the character length must be smaller than or equal to 66.')
+      if !@origin_id.nil? && @origin_id.to_s.length > 500
+        invalid_properties.push('invalid value for "origin_id", the character length must be smaller than or equal to 500.')
       end
 
       if !@origin_id.nil? && @origin_id.to_s.length < 0
         invalid_properties.push('invalid value for "origin_id", the character length must be great than or equal to 0.')
       end
 
-      pattern = Regexp.new(/^[A-Za-z0-9:]{1,66}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       if !@origin_id.nil? && @origin_id !~ pattern
         invalid_properties.push("invalid value for \"origin_id\", must conform to the pattern #{pattern}.")
       end
@@ -115,27 +116,27 @@ module OpenapiClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@sequence.nil? && @sequence.to_s.length > 100
+      return false if !@sequence.nil? && @sequence.to_s.length > 18
       return false if !@sequence.nil? && @sequence.to_s.length < 0
-      return false if !@sequence.nil? && @sequence !~ Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
-      return false if !@origin_id.nil? && @origin_id.to_s.length > 66
+      return false if !@sequence.nil? && @sequence !~ Regexp.new(/^[0-9]{1,18}$/)
+      return false if !@origin_id.nil? && @origin_id.to_s.length > 500
       return false if !@origin_id.nil? && @origin_id.to_s.length < 0
-      return false if !@origin_id.nil? && @origin_id !~ Regexp.new(/^[A-Za-z0-9:]{1,66}$/)
+      return false if !@origin_id.nil? && @origin_id !~ Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] sequence Value to be assigned
     def sequence=(sequence)
-      if !sequence.nil? && sequence.to_s.length > 100
-        fail ArgumentError, 'invalid value for "sequence", the character length must be smaller than or equal to 100.'
+      if !sequence.nil? && sequence.to_s.length > 18
+        fail ArgumentError, 'invalid value for "sequence", the character length must be smaller than or equal to 18.'
       end
 
       if !sequence.nil? && sequence.to_s.length < 0
         fail ArgumentError, 'invalid value for "sequence", the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[0-9]{1,18}$/)
       if !sequence.nil? && sequence !~ pattern
         fail ArgumentError, "invalid value for \"sequence\", must conform to the pattern #{pattern}."
       end
@@ -146,15 +147,15 @@ module OpenapiClient
     # Custom attribute writer method with validation
     # @param [Object] origin_id Value to be assigned
     def origin_id=(origin_id)
-      if !origin_id.nil? && origin_id.to_s.length > 66
-        fail ArgumentError, 'invalid value for "origin_id", the character length must be smaller than or equal to 66.'
+      if !origin_id.nil? && origin_id.to_s.length > 500
+        fail ArgumentError, 'invalid value for "origin_id", the character length must be smaller than or equal to 500.'
       end
 
       if !origin_id.nil? && origin_id.to_s.length < 0
         fail ArgumentError, 'invalid value for "origin_id", the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^[A-Za-z0-9:]{1,66}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       if !origin_id.nil? && origin_id !~ pattern
         fail ArgumentError, "invalid value for \"origin_id\", must conform to the pattern #{pattern}."
       end
@@ -168,8 +169,8 @@ module OpenapiClient
       return true if self.equal?(o)
       self.class == o.class &&
           sequence == o.sequence &&
-          origin_id == o.origin_id &&
-          smart_contract == o.smart_contract
+          smart_contract == o.smart_contract &&
+          origin_id == o.origin_id
     end
 
     # @see the `==` method
@@ -181,7 +182,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [sequence, origin_id, smart_contract].hash
+      [sequence, smart_contract, origin_id].hash
     end
 
     # Builds the object from hash

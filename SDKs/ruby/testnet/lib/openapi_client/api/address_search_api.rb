@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -63,15 +63,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && address_id.nil?
         fail ArgumentError, "Missing the required parameter 'address_id' when calling AddressSearchApi.auto_execute_search_address_balance_request"
       end
-      if @api_client.config.client_side_validation && address_id.to_s.length > 100
-        fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.auto_execute_search_address_balance_request, the character length must be smaller than or equal to 100.'
+      if @api_client.config.client_side_validation && address_id.to_s.length > 500
+        fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.auto_execute_search_address_balance_request, the character length must be smaller than or equal to 500.'
       end
 
       if @api_client.config.client_side_validation && address_id.to_s.length < 0
         fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.auto_execute_search_address_balance_request, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       if @api_client.config.client_side_validation && address_id !~ pattern
         fail ArgumentError, "invalid value for 'address_id' when calling AddressSearchApi.auto_execute_search_address_balance_request, must conform to the pattern #{pattern}."
       end
@@ -224,7 +224,7 @@ module OpenapiClient
     end
 
     # Execute a search for an address sequence on a DLT
-    # Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT's
+    # Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
     # @param authorization [String] 
     # @param request_id [String] 
     # @param [Hash] opts the optional parameters
@@ -235,7 +235,7 @@ module OpenapiClient
     end
 
     # Execute a search for an address sequence on a DLT
-    # Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT&#39;s
+    # Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
     # @param authorization [String] 
     # @param request_id [String] 
     # @param [Hash] opts the optional parameters
@@ -364,15 +364,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && address_id.nil?
         fail ArgumentError, "Missing the required parameter 'address_id' when calling AddressSearchApi.prepare_address_balance_search_request"
       end
-      if @api_client.config.client_side_validation && address_id.to_s.length > 100
-        fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.prepare_address_balance_search_request, the character length must be smaller than or equal to 100.'
+      if @api_client.config.client_side_validation && address_id.to_s.length > 500
+        fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.prepare_address_balance_search_request, the character length must be smaller than or equal to 500.'
       end
 
       if @api_client.config.client_side_validation && address_id.to_s.length < 0
         fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.prepare_address_balance_search_request, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       if @api_client.config.client_side_validation && address_id !~ pattern
         fail ArgumentError, "invalid value for 'address_id' when calling AddressSearchApi.prepare_address_balance_search_request, must conform to the pattern #{pattern}."
       end
@@ -471,15 +471,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && address_id.nil?
         fail ArgumentError, "Missing the required parameter 'address_id' when calling AddressSearchApi.prepare_address_sequence_search_request"
       end
-      if @api_client.config.client_side_validation && address_id.to_s.length > 100
-        fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.prepare_address_sequence_search_request, the character length must be smaller than or equal to 100.'
+      if @api_client.config.client_side_validation && address_id.to_s.length > 500
+        fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.prepare_address_sequence_search_request, the character length must be smaller than or equal to 500.'
       end
 
       if @api_client.config.client_side_validation && address_id.to_s.length < 0
         fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.prepare_address_sequence_search_request, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       if @api_client.config.client_side_validation && address_id !~ pattern
         fail ArgumentError, "invalid value for 'address_id' when calling AddressSearchApi.prepare_address_sequence_search_request, must conform to the pattern #{pattern}."
       end
@@ -578,15 +578,15 @@ module OpenapiClient
       if @api_client.config.client_side_validation && address_id.nil?
         fail ArgumentError, "Missing the required parameter 'address_id' when calling AddressSearchApi.prepare_address_sequence_search_request1"
       end
-      if @api_client.config.client_side_validation && address_id.to_s.length > 100
-        fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.prepare_address_sequence_search_request1, the character length must be smaller than or equal to 100.'
+      if @api_client.config.client_side_validation && address_id.to_s.length > 500
+        fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.prepare_address_sequence_search_request1, the character length must be smaller than or equal to 500.'
       end
 
       if @api_client.config.client_side_validation && address_id.to_s.length < 0
         fail ArgumentError, 'invalid value for "address_id" when calling AddressSearchApi.prepare_address_sequence_search_request1, the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       if @api_client.config.client_side_validation && address_id !~ pattern
         fail ArgumentError, "invalid value for 'address_id' when calling AddressSearchApi.prepare_address_sequence_search_request1, must conform to the pattern #{pattern}."
       end

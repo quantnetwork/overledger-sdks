@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Function** | [**SmartContractSearchFunctionSchema**](SmartContractSearchFunctionSchema.md) |  | [optional] 
 **SmartContractId** | **string** |  | [optional] 
+**Function** | [**SmartContractSearchFunctionSchema**](SmartContractSearchFunctionSchema.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)

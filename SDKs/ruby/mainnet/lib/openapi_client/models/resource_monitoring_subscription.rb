@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,18 +15,18 @@ require 'time'
 
 module OpenapiClient
   class ResourceMonitoringSubscription
-    attr_accessor :callback_url
-
     attr_accessor :subscription_id
 
     attr_accessor :type
 
+    attr_accessor :callback_url
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'callback_url' => :'callbackUrl',
         :'subscription_id' => :'subscriptionId',
-        :'type' => :'type'
+        :'type' => :'type',
+        :'callback_url' => :'callbackUrl'
       }
     end
 
@@ -38,9 +38,9 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'callback_url' => :'String',
         :'subscription_id' => :'String',
-        :'type' => :'String'
+        :'type' => :'String',
+        :'callback_url' => :'String'
       }
     end
 
@@ -65,10 +65,6 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'callback_url')
-        self.callback_url = attributes[:'callback_url']
-      end
-
       if attributes.key?(:'subscription_id')
         self.subscription_id = attributes[:'subscription_id']
       end
@@ -76,25 +72,16 @@ module OpenapiClient
       if attributes.key?(:'type')
         self.type = attributes[:'type']
       end
+
+      if attributes.key?(:'callback_url')
+        self.callback_url = attributes[:'callback_url']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@callback_url.nil? && @callback_url.to_s.length > 300
-        invalid_properties.push('invalid value for "callback_url", the character length must be smaller than or equal to 300.')
-      end
-
-      if !@callback_url.nil? && @callback_url.to_s.length < 0
-        invalid_properties.push('invalid value for "callback_url", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^http[\S\s]{1,300}$/)
-      if !@callback_url.nil? && @callback_url !~ pattern
-        invalid_properties.push("invalid value for \"callback_url\", must conform to the pattern #{pattern}.")
-      end
-
       if !@subscription_id.nil? && @subscription_id.to_s.length > 24
         invalid_properties.push('invalid value for "subscription_id", the character length must be smaller than or equal to 24.')
       end
@@ -121,41 +108,35 @@ module OpenapiClient
         invalid_properties.push("invalid value for \"type\", must conform to the pattern #{pattern}.")
       end
 
+      if !@callback_url.nil? && @callback_url.to_s.length > 300
+        invalid_properties.push('invalid value for "callback_url", the character length must be smaller than or equal to 300.')
+      end
+
+      if !@callback_url.nil? && @callback_url.to_s.length < 0
+        invalid_properties.push('invalid value for "callback_url", the character length must be great than or equal to 0.')
+      end
+
+      pattern = Regexp.new(/^http[\S\s]{1,300}$/)
+      if !@callback_url.nil? && @callback_url !~ pattern
+        invalid_properties.push("invalid value for \"callback_url\", must conform to the pattern #{pattern}.")
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@callback_url.nil? && @callback_url.to_s.length > 300
-      return false if !@callback_url.nil? && @callback_url.to_s.length < 0
-      return false if !@callback_url.nil? && @callback_url !~ Regexp.new(/^http[\S\s]{1,300}$/)
       return false if !@subscription_id.nil? && @subscription_id.to_s.length > 24
       return false if !@subscription_id.nil? && @subscription_id.to_s.length < 0
       return false if !@subscription_id.nil? && @subscription_id !~ Regexp.new(/^[a-z0-9-]{1,24}$/)
       return false if !@type.nil? && @type.to_s.length > 50
       return false if !@type.nil? && @type.to_s.length < 0
       return false if !@type.nil? && @type !~ Regexp.new(/^[a-zA-Z0-9-_ ]{1,50}$/)
+      return false if !@callback_url.nil? && @callback_url.to_s.length > 300
+      return false if !@callback_url.nil? && @callback_url.to_s.length < 0
+      return false if !@callback_url.nil? && @callback_url !~ Regexp.new(/^http[\S\s]{1,300}$/)
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] callback_url Value to be assigned
-    def callback_url=(callback_url)
-      if !callback_url.nil? && callback_url.to_s.length > 300
-        fail ArgumentError, 'invalid value for "callback_url", the character length must be smaller than or equal to 300.'
-      end
-
-      if !callback_url.nil? && callback_url.to_s.length < 0
-        fail ArgumentError, 'invalid value for "callback_url", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^http[\S\s]{1,300}$/)
-      if !callback_url.nil? && callback_url !~ pattern
-        fail ArgumentError, "invalid value for \"callback_url\", must conform to the pattern #{pattern}."
-      end
-
-      @callback_url = callback_url
     end
 
     # Custom attribute writer method with validation
@@ -196,14 +177,33 @@ module OpenapiClient
       @type = type
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] callback_url Value to be assigned
+    def callback_url=(callback_url)
+      if !callback_url.nil? && callback_url.to_s.length > 300
+        fail ArgumentError, 'invalid value for "callback_url", the character length must be smaller than or equal to 300.'
+      end
+
+      if !callback_url.nil? && callback_url.to_s.length < 0
+        fail ArgumentError, 'invalid value for "callback_url", the character length must be great than or equal to 0.'
+      end
+
+      pattern = Regexp.new(/^http[\S\s]{1,300}$/)
+      if !callback_url.nil? && callback_url !~ pattern
+        fail ArgumentError, "invalid value for \"callback_url\", must conform to the pattern #{pattern}."
+      end
+
+      @callback_url = callback_url
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          callback_url == o.callback_url &&
           subscription_id == o.subscription_id &&
-          type == o.type
+          type == o.type &&
+          callback_url == o.callback_url
     end
 
     # @see the `==` method
@@ -215,7 +215,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [callback_url, subscription_id, type].hash
+      [subscription_id, type, callback_url].hash
     end
 
     # Builds the object from hash

@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -50,11 +50,11 @@ class AutoExecuteSearchBlockResponseSchema {
         if (data) {
             obj = obj || new AutoExecuteSearchBlockResponseSchema();
 
-            if (data.hasOwnProperty('executionBlockSearchResponse')) {
-                obj['executionBlockSearchResponse'] = ExecuteSearchBlockResponse.constructFromObject(data['executionBlockSearchResponse']);
-            }
             if (data.hasOwnProperty('prepareAndExecuteOverledgerErrorResponse')) {
                 obj['prepareAndExecuteOverledgerErrorResponse'] = PrepareAndExecuteOverledgerErrorResponse.constructFromObject(data['prepareAndExecuteOverledgerErrorResponse']);
+            }
+            if (data.hasOwnProperty('executionBlockSearchResponse')) {
+                obj['executionBlockSearchResponse'] = ExecuteSearchBlockResponse.constructFromObject(data['executionBlockSearchResponse']);
             }
             if (data.hasOwnProperty('preparationBlockSearchResponse')) {
                 obj['preparationBlockSearchResponse'] = PrepareSearchResponseSchema.constructFromObject(data['preparationBlockSearchResponse']);
@@ -67,14 +67,14 @@ class AutoExecuteSearchBlockResponseSchema {
 }
 
 /**
- * @member {module:model/ExecuteSearchBlockResponse} executionBlockSearchResponse
- */
-AutoExecuteSearchBlockResponseSchema.prototype['executionBlockSearchResponse'] = undefined;
-
-/**
  * @member {module:model/PrepareAndExecuteOverledgerErrorResponse} prepareAndExecuteOverledgerErrorResponse
  */
 AutoExecuteSearchBlockResponseSchema.prototype['prepareAndExecuteOverledgerErrorResponse'] = undefined;
+
+/**
+ * @member {module:model/ExecuteSearchBlockResponse} executionBlockSearchResponse
+ */
+AutoExecuteSearchBlockResponseSchema.prototype['executionBlockSearchResponse'] = undefined;
 
 /**
  * @member {module:model/PrepareSearchResponseSchema} preparationBlockSearchResponse

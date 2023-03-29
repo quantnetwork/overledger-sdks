@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -29,38 +29,15 @@ import org.openapitools.client.model.SmartContractReadFunctionSchema;
  * Computer program storage in a DLT system where the outcome is recorded on the distributed ledger
  */
 @ApiModel(description = "Computer program storage in a DLT system where the outcome is recorded on the distributed ledger")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:46:50.106642+01:00[Europe/London]")
 public class SmartContractReadSchema {
-  public static final String SERIALIZED_NAME_FUNCTION = "function";
-  @SerializedName(SERIALIZED_NAME_FUNCTION)
-  private SmartContractReadFunctionSchema function;
-
   public static final String SERIALIZED_NAME_SMART_CONTRACT_ID = "smartContractId";
   @SerializedName(SERIALIZED_NAME_SMART_CONTRACT_ID)
   private String smartContractId;
 
-
-  public SmartContractReadSchema function(SmartContractReadFunctionSchema function) {
-    
-    this.function = function;
-    return this;
-  }
-
-   /**
-   * Get function
-   * @return function
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public SmartContractReadFunctionSchema getFunction() {
-    return function;
-  }
-
-
-  public void setFunction(SmartContractReadFunctionSchema function) {
-    this.function = function;
-  }
+  public static final String SERIALIZED_NAME_FUNCTION = "function";
+  @SerializedName(SERIALIZED_NAME_FUNCTION)
+  private SmartContractReadFunctionSchema function;
 
 
   public SmartContractReadSchema smartContractId(String smartContractId) {
@@ -86,6 +63,29 @@ public class SmartContractReadSchema {
   }
 
 
+  public SmartContractReadSchema function(SmartContractReadFunctionSchema function) {
+    
+    this.function = function;
+    return this;
+  }
+
+   /**
+   * Get function
+   * @return function
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public SmartContractReadFunctionSchema getFunction() {
+    return function;
+  }
+
+
+  public void setFunction(SmartContractReadFunctionSchema function) {
+    this.function = function;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -95,21 +95,21 @@ public class SmartContractReadSchema {
       return false;
     }
     SmartContractReadSchema smartContractReadSchema = (SmartContractReadSchema) o;
-    return Objects.equals(this.function, smartContractReadSchema.function) &&
-        Objects.equals(this.smartContractId, smartContractReadSchema.smartContractId);
+    return Objects.equals(this.smartContractId, smartContractReadSchema.smartContractId) &&
+        Objects.equals(this.function, smartContractReadSchema.function);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(function, smartContractId);
+    return Objects.hash(smartContractId, function);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SmartContractReadSchema {\n");
-    sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("    smartContractId: ").append(toIndentedString(smartContractId)).append("\n");
+    sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("}");
     return sb.toString();
   }

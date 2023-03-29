@@ -78,7 +78,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::PrepareSearchResponseSchema prepare_search_utxo_state(authorization, utxo_id, prepare_search_schema)
 Prepare Search for a UTXO State.
 
-Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT's
+Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
 
 ### Parameters
 

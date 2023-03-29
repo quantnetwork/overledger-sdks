@@ -21,16 +21,16 @@ typedef struct approve_request_details_schema_t approve_request_details_schema_t
 
 
 typedef struct approve_request_details_schema_t {
+    list_t *payer; //nonprimitive container
     list_t *mandate; //nonprimitive container
     char *overledger_signing_type; // string
-    list_t *payer; //nonprimitive container
 
 } approve_request_details_schema_t;
 
 approve_request_details_schema_t *approve_request_details_schema_create(
+    list_t *payer,
     list_t *mandate,
-    char *overledger_signing_type,
-    list_t *payer
+    char *overledger_signing_type
 );
 
 void approve_request_details_schema_free(approve_request_details_schema_t *approve_request_details_schema);

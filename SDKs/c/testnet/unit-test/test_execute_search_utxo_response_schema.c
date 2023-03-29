@@ -17,7 +17,6 @@
 execute_search_utxo_response_schema_t* instantiate_execute_search_utxo_response_schema(int include_optional);
 
 #include "test_location.c"
-#include "test_utxo_timestamp_schema.c"
 #include "test_status.c"
 #include "test_utxo_native_data.c"
 
@@ -30,8 +29,7 @@ execute_search_utxo_response_schema_t* instantiate_execute_search_utxo_response_
       list_create(),
        // false, not to have infinite recursion
       instantiate_location(0),
-       // false, not to have infinite recursion
-      instantiate_utxo_timestamp_schema(0),
+      "0",
        // false, not to have infinite recursion
       instantiate_status(0),
        // false, not to have infinite recursion
@@ -42,7 +40,7 @@ execute_search_utxo_response_schema_t* instantiate_execute_search_utxo_response_
       "0",
       list_create(),
       NULL,
-      NULL,
+      "0",
       NULL,
       NULL
     );

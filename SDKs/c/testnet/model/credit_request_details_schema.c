@@ -7,18 +7,18 @@
 
 credit_request_details_schema_t *credit_request_details_schema_create(
     list_t *payee,
-    char *overledger_signing_type,
     char *message,
-    list_t *payer
+    list_t *payer,
+    char *overledger_signing_type
     ) {
     credit_request_details_schema_t *credit_request_details_schema_local_var = malloc(sizeof(credit_request_details_schema_t));
     if (!credit_request_details_schema_local_var) {
         return NULL;
     }
     credit_request_details_schema_local_var->payee = payee;
-    credit_request_details_schema_local_var->overledger_signing_type = overledger_signing_type;
     credit_request_details_schema_local_var->message = message;
     credit_request_details_schema_local_var->payer = payer;
+    credit_request_details_schema_local_var->overledger_signing_type = overledger_signing_type;
 
     return credit_request_details_schema_local_var;
 }
@@ -36,10 +36,6 @@ void credit_request_details_schema_free(credit_request_details_schema_t *credit_
         list_free(credit_request_details_schema->payee);
         credit_request_details_schema->payee = NULL;
     }
-    if (credit_request_details_schema->overledger_signing_type) {
-        free(credit_request_details_schema->overledger_signing_type);
-        credit_request_details_schema->overledger_signing_type = NULL;
-    }
     if (credit_request_details_schema->message) {
         free(credit_request_details_schema->message);
         credit_request_details_schema->message = NULL;
@@ -50,6 +46,10 @@ void credit_request_details_schema_free(credit_request_details_schema_t *credit_
         }
         list_free(credit_request_details_schema->payer);
         credit_request_details_schema->payer = NULL;
+    }
+    if (credit_request_details_schema->overledger_signing_type) {
+        free(credit_request_details_schema->overledger_signing_type);
+        credit_request_details_schema->overledger_signing_type = NULL;
     }
     free(credit_request_details_schema);
 }
@@ -73,14 +73,6 @@ cJSON *credit_request_details_schema_convertToJSON(credit_request_details_schema
     }
     cJSON_AddItemToArray(payee, itemLocal);
     }
-    }
-     } 
-
-
-    // credit_request_details_schema->overledger_signing_type
-    if(credit_request_details_schema->overledger_signing_type) { 
-    if(cJSON_AddStringToObject(item, "overledgerSigningType", credit_request_details_schema->overledger_signing_type) == NULL) {
-    goto fail; //String
     }
      } 
 
@@ -109,6 +101,14 @@ cJSON *credit_request_details_schema_convertToJSON(credit_request_details_schema
     }
     cJSON_AddItemToArray(payer, itemLocal);
     }
+    }
+     } 
+
+
+    // credit_request_details_schema->overledger_signing_type
+    if(credit_request_details_schema->overledger_signing_type) { 
+    if(cJSON_AddStringToObject(item, "overledgerSigningType", credit_request_details_schema->overledger_signing_type) == NULL) {
+    goto fail; //String
     }
      } 
 
@@ -146,15 +146,6 @@ credit_request_details_schema_t *credit_request_details_schema_parseFromJSON(cJS
     }
     }
 
-    // credit_request_details_schema->overledger_signing_type
-    cJSON *overledger_signing_type = cJSON_GetObjectItemCaseSensitive(credit_request_details_schemaJSON, "overledgerSigningType");
-    if (overledger_signing_type) { 
-    if(!cJSON_IsString(overledger_signing_type))
-    {
-    goto end; //String
-    }
-    }
-
     // credit_request_details_schema->message
     cJSON *message = cJSON_GetObjectItemCaseSensitive(credit_request_details_schemaJSON, "message");
     if (message) { 
@@ -186,12 +177,21 @@ credit_request_details_schema_t *credit_request_details_schema_parseFromJSON(cJS
     }
     }
 
+    // credit_request_details_schema->overledger_signing_type
+    cJSON *overledger_signing_type = cJSON_GetObjectItemCaseSensitive(credit_request_details_schemaJSON, "overledgerSigningType");
+    if (overledger_signing_type) { 
+    if(!cJSON_IsString(overledger_signing_type))
+    {
+    goto end; //String
+    }
+    }
+
 
     credit_request_details_schema_local_var = credit_request_details_schema_create (
         payee ? payeeList : NULL,
-        overledger_signing_type ? strdup(overledger_signing_type->valuestring) : NULL,
         message ? strdup(message->valuestring) : NULL,
-        payer ? payerList : NULL
+        payer ? payerList : NULL,
+        overledger_signing_type ? strdup(overledger_signing_type->valuestring) : NULL
         );
 
     return credit_request_details_schema_local_var;

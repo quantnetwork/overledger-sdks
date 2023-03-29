@@ -7,8 +7,8 @@
 
 error_t *error_create(
     int code,
-    char *service,
     char *message,
+    char *service,
     long timestamp
     ) {
     error_t *error_local_var = malloc(sizeof(error_t));
@@ -16,8 +16,8 @@ error_t *error_create(
         return NULL;
     }
     error_local_var->code = code;
-    error_local_var->service = service;
     error_local_var->message = message;
+    error_local_var->service = service;
     error_local_var->timestamp = timestamp;
 
     return error_local_var;
@@ -29,13 +29,13 @@ void error_free(error_t *error) {
         return ;
     }
     listEntry_t *listEntry;
-    if (error->service) {
-        free(error->service);
-        error->service = NULL;
-    }
     if (error->message) {
         free(error->message);
         error->message = NULL;
+    }
+    if (error->service) {
+        free(error->service);
+        error->service = NULL;
     }
     free(error);
 }
@@ -51,17 +51,17 @@ cJSON *error_convertToJSON(error_t *error) {
      } 
 
 
-    // error->service
-    if(error->service) { 
-    if(cJSON_AddStringToObject(item, "service", error->service) == NULL) {
+    // error->message
+    if(error->message) { 
+    if(cJSON_AddStringToObject(item, "message", error->message) == NULL) {
     goto fail; //String
     }
      } 
 
 
-    // error->message
-    if(error->message) { 
-    if(cJSON_AddStringToObject(item, "message", error->message) == NULL) {
+    // error->service
+    if(error->service) { 
+    if(cJSON_AddStringToObject(item, "service", error->service) == NULL) {
     goto fail; //String
     }
      } 
@@ -95,19 +95,19 @@ error_t *error_parseFromJSON(cJSON *errorJSON){
     }
     }
 
-    // error->service
-    cJSON *service = cJSON_GetObjectItemCaseSensitive(errorJSON, "service");
-    if (service) { 
-    if(!cJSON_IsString(service))
+    // error->message
+    cJSON *message = cJSON_GetObjectItemCaseSensitive(errorJSON, "message");
+    if (message) { 
+    if(!cJSON_IsString(message))
     {
     goto end; //String
     }
     }
 
-    // error->message
-    cJSON *message = cJSON_GetObjectItemCaseSensitive(errorJSON, "message");
-    if (message) { 
-    if(!cJSON_IsString(message))
+    // error->service
+    cJSON *service = cJSON_GetObjectItemCaseSensitive(errorJSON, "service");
+    if (service) { 
+    if(!cJSON_IsString(service))
     {
     goto end; //String
     }
@@ -125,8 +125,8 @@ error_t *error_parseFromJSON(cJSON *errorJSON){
 
     error_local_var = error_create (
         code ? code->valuedouble : 0,
-        service ? strdup(service->valuestring) : NULL,
         message ? strdup(message->valuestring) : NULL,
+        service ? strdup(service->valuestring) : NULL,
         timestamp ? timestamp->valuedouble : 0
         );
 

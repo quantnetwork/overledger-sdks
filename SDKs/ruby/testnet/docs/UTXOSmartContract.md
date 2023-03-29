@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **detail** | **String** |  | [optional] |
 | **type** | **String** |  | [optional] |
+| **detail** | **String** |  | [optional] |
 | **extra_fields** | [**ExtraFields**](ExtraFields.md) |  | [optional] |
 
 ## Example
@@ -14,8 +14,8 @@
 require 'openapi_client'
 
 instance = OpenapiClient::UTXOSmartContract.new(
-  detail: null,
   type: null,
+  detail: null,
   extra_fields: null
 )
 ```

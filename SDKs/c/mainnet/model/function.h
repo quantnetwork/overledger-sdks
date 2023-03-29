@@ -15,25 +15,18 @@
 
 typedef struct function_t function_t;
 
-#include "parameter.h"
 
 
 
 typedef struct function_t {
-    char *function_id; // string
-    char *code; // string
-    char *name; // string
-    list_t *input_parameters; //nonprimitive container
-    list_t *output_parameters; //nonprimitive container
+    char *type; // string
+    char *api; // string
 
 } function_t;
 
 function_t *function_create(
-    char *function_id,
-    char *code,
-    char *name,
-    list_t *input_parameters,
-    list_t *output_parameters
+    char *type,
+    char *api
 );
 
 void function_free(function_t *function);

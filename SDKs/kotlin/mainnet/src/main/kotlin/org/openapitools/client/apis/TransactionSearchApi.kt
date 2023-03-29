@@ -1,7 +1,7 @@
 /**
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -52,7 +52,7 @@ class TransactionSearchApi(basePath: kotlin.String = defaultBasePath) : ApiClien
     * Prepare and automatically execute a search for a transaction on a DLT.
     * Generates a request ID and automatically executes the transaction search on the requested DLT.
     * @param authorization  
-    * @param transactionId  
+    * @param transactionId The transactionId to search for 
     * @param prepareSearchSchema  
     * @return PrepareAndExecuteTransactionResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -87,7 +87,7 @@ class TransactionSearchApi(basePath: kotlin.String = defaultBasePath) : ApiClien
     * To obtain the request config of the operation autoExecuteSearchTransactionRequest
     *
     * @param authorization  
-    * @param transactionId  
+    * @param transactionId The transactionId to search for 
     * @param prepareSearchSchema  
     * @return RequestConfig
     */
@@ -172,7 +172,7 @@ class TransactionSearchApi(basePath: kotlin.String = defaultBasePath) : ApiClien
     * Prepare a search for a transaction on a DLT
     * Searches for and returns data on transactions on a particular DLT. Returns a request ID for executing a transaction search on the requested DLT
     * @param authorization  
-    * @param transactionId  
+    * @param transactionId The transactionId to search for 
     * @param prepareSearchSchema  
     * @return PrepareSearchResponseSchema
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -207,7 +207,7 @@ class TransactionSearchApi(basePath: kotlin.String = defaultBasePath) : ApiClien
     * To obtain the request config of the operation prepareSearchRequest
     *
     * @param authorization  
-    * @param transactionId  
+    * @param transactionId The transactionId to search for 
     * @param prepareSearchSchema  
     * @return RequestConfig
     */

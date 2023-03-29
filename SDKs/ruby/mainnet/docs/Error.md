@@ -5,8 +5,8 @@
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
 | **code** | **Integer** |  | [optional] |
-| **service** | **String** |  | [optional] |
 | **message** | **String** |  | [optional] |
+| **service** | **String** |  | [optional] |
 | **timestamp** | **Integer** |  | [optional] |
 
 ## Example
@@ -16,8 +16,8 @@ require 'openapi_client'
 
 instance = OpenapiClient::Error.new(
   code: null,
-  service: null,
   message: null,
+  service: null,
   timestamp: null
 )
 ```

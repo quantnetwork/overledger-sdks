@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,29 +33,17 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Destination" /> class.
         /// </summary>
-        /// <param name="transfer">transfer.</param>
-        /// <param name="smartContract">smartContract.</param>
         /// <param name="payment">payment.</param>
-        /// <param name="destinationId">The unique identifiers of the destination.</param>
-        public Destination(Transfer transfer = default(Transfer), SmartContract smartContract = default(SmartContract), Payment payment = default(Payment), string destinationId = default(string))
+        /// <param name="transfer">transfer.</param>
+        /// <param name="destinationId">The unique identifier of the destination.</param>
+        /// <param name="smartContract">smartContract.</param>
+        public Destination(Payment payment = default(Payment), Transfer transfer = default(Transfer), string destinationId = default(string), SmartContract smartContract = default(SmartContract))
         {
-            this.Transfer = transfer;
-            this.SmartContract = smartContract;
             this.Payment = payment;
+            this.Transfer = transfer;
             this.DestinationId = destinationId;
+            this.SmartContract = smartContract;
         }
-
-        /// <summary>
-        /// Gets or Sets Transfer
-        /// </summary>
-        [DataMember(Name="transfer", EmitDefaultValue=false)]
-        public Transfer Transfer { get; set; }
-
-        /// <summary>
-        /// Gets or Sets SmartContract
-        /// </summary>
-        [DataMember(Name="smartContract", EmitDefaultValue=false)]
-        public SmartContract SmartContract { get; set; }
 
         /// <summary>
         /// Gets or Sets Payment
@@ -64,11 +52,23 @@ namespace Org.OpenAPITools.Model
         public Payment Payment { get; set; }
 
         /// <summary>
-        /// The unique identifiers of the destination
+        /// Gets or Sets Transfer
         /// </summary>
-        /// <value>The unique identifiers of the destination</value>
+        [DataMember(Name="transfer", EmitDefaultValue=false)]
+        public Transfer Transfer { get; set; }
+
+        /// <summary>
+        /// The unique identifier of the destination
+        /// </summary>
+        /// <value>The unique identifier of the destination</value>
         [DataMember(Name="destinationId", EmitDefaultValue=false)]
         public string DestinationId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SmartContract
+        /// </summary>
+        [DataMember(Name="smartContract", EmitDefaultValue=false)]
+        public SmartContract SmartContract { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -78,10 +78,10 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Destination {\n");
-            sb.Append("  Transfer: ").Append(Transfer).Append("\n");
-            sb.Append("  SmartContract: ").Append(SmartContract).Append("\n");
             sb.Append("  Payment: ").Append(Payment).Append("\n");
+            sb.Append("  Transfer: ").Append(Transfer).Append("\n");
             sb.Append("  DestinationId: ").Append(DestinationId).Append("\n");
+            sb.Append("  SmartContract: ").Append(SmartContract).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -117,24 +117,24 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.Transfer == input.Transfer ||
-                    (this.Transfer != null &&
-                    this.Transfer.Equals(input.Transfer))
-                ) && 
-                (
-                    this.SmartContract == input.SmartContract ||
-                    (this.SmartContract != null &&
-                    this.SmartContract.Equals(input.SmartContract))
-                ) && 
-                (
                     this.Payment == input.Payment ||
                     (this.Payment != null &&
                     this.Payment.Equals(input.Payment))
                 ) && 
                 (
+                    this.Transfer == input.Transfer ||
+                    (this.Transfer != null &&
+                    this.Transfer.Equals(input.Transfer))
+                ) && 
+                (
                     this.DestinationId == input.DestinationId ||
                     (this.DestinationId != null &&
                     this.DestinationId.Equals(input.DestinationId))
+                ) && 
+                (
+                    this.SmartContract == input.SmartContract ||
+                    (this.SmartContract != null &&
+                    this.SmartContract.Equals(input.SmartContract))
                 );
         }
 
@@ -147,14 +147,14 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Transfer != null)
-                    hashCode = hashCode * 59 + this.Transfer.GetHashCode();
-                if (this.SmartContract != null)
-                    hashCode = hashCode * 59 + this.SmartContract.GetHashCode();
                 if (this.Payment != null)
                     hashCode = hashCode * 59 + this.Payment.GetHashCode();
+                if (this.Transfer != null)
+                    hashCode = hashCode * 59 + this.Transfer.GetHashCode();
                 if (this.DestinationId != null)
                     hashCode = hashCode * 59 + this.DestinationId.GetHashCode();
+                if (this.SmartContract != null)
+                    hashCode = hashCode * 59 + this.SmartContract.GetHashCode();
                 return hashCode;
             }
         }
@@ -167,9 +167,9 @@ namespace Org.OpenAPITools.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // DestinationId (string) maxLength
-            if(this.DestinationId != null && this.DestinationId.Length > 66)
+            if(this.DestinationId != null && this.DestinationId.Length > 500)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DestinationId, length must be less than 66.", new [] { "DestinationId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DestinationId, length must be less than 500.", new [] { "DestinationId" });
             }
 
             // DestinationId (string) minLength
@@ -179,7 +179,7 @@ namespace Org.OpenAPITools.Model
             }
 
             // DestinationId (string) pattern
-            Regex regexDestinationId = new Regex(@"^[A-Za-z0-9:]{1,66}", RegexOptions.CultureInvariant);
+            Regex regexDestinationId = new Regex(@"^[a-zA-Z0-9:,\/.=\\-\\s]{1,500}", RegexOptions.CultureInvariant);
             if (false == regexDestinationId.Match(this.DestinationId).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DestinationId, must match a pattern of " + regexDestinationId, new [] { "DestinationId" });

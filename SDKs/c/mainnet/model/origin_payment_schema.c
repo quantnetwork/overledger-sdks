@@ -34,11 +34,13 @@ cJSON *origin_payment_schema_convertToJSON(origin_payment_schema_t *origin_payme
     cJSON *item = cJSON_CreateObject();
 
     // origin_payment_schema->origin_id
-    if(origin_payment_schema->origin_id) { 
+    if (!origin_payment_schema->origin_id) {
+        goto fail;
+    }
+    
     if(cJSON_AddStringToObject(item, "originId", origin_payment_schema->origin_id) == NULL) {
     goto fail; //String
     }
-     } 
 
     return item;
 fail:
@@ -54,16 +56,19 @@ origin_payment_schema_t *origin_payment_schema_parseFromJSON(cJSON *origin_payme
 
     // origin_payment_schema->origin_id
     cJSON *origin_id = cJSON_GetObjectItemCaseSensitive(origin_payment_schemaJSON, "originId");
-    if (origin_id) { 
+    if (!origin_id) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsString(origin_id))
     {
     goto end; //String
     }
-    }
 
 
     origin_payment_schema_local_var = origin_payment_schema_create (
-        origin_id ? strdup(origin_id->valuestring) : NULL
+        strdup(origin_id->valuestring)
         );
 
     return origin_payment_schema_local_var;

@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -50,11 +50,11 @@ class Error {
             if (data.hasOwnProperty('code')) {
                 obj['code'] = ApiClient.convertToType(data['code'], 'Number');
             }
-            if (data.hasOwnProperty('service')) {
-                obj['service'] = ApiClient.convertToType(data['service'], 'String');
-            }
             if (data.hasOwnProperty('message')) {
                 obj['message'] = ApiClient.convertToType(data['message'], 'String');
+            }
+            if (data.hasOwnProperty('service')) {
+                obj['service'] = ApiClient.convertToType(data['service'], 'String');
             }
             if (data.hasOwnProperty('timestamp')) {
                 obj['timestamp'] = ApiClient.convertToType(data['timestamp'], 'Number');
@@ -72,14 +72,14 @@ class Error {
 Error.prototype['code'] = undefined;
 
 /**
- * @member {String} service
- */
-Error.prototype['service'] = undefined;
-
-/**
  * @member {String} message
  */
 Error.prototype['message'] = undefined;
+
+/**
+ * @member {String} service
+ */
+Error.prototype['service'] = undefined;
 
 /**
  * @member {Number} timestamp

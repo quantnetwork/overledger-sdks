@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Quant Overledger API
- * Quant\'s Overledger API allows developers to create applications for multiple DLT\'s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -21,6 +21,88 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
+/**
+ * Account Details of the tokens
+ * @export
+ * @interface AccountDetails
+ */
+export interface AccountDetails {
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountDetails
+     */
+    'parentAccountId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountDetails
+     */
+    'accountId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountDetails
+     */
+    'unit'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountDetails
+     */
+    'owningInstitutionId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountDetails
+     */
+    'accountType'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface AddSecondaryAccountRequestDetailsSchema
+ */
+export interface AddSecondaryAccountRequestDetailsSchema {
+    /**
+     * 
+     * @type {SecondaryAccountOwnerSchema}
+     * @memberof AddSecondaryAccountRequestDetailsSchema
+     */
+    'owner'?: SecondaryAccountOwnerSchema;
+    /**
+     * 
+     * @type {SecondaryAccountAdditionalOwnerSchema}
+     * @memberof AddSecondaryAccountRequestDetailsSchema
+     */
+    'additionalOwner'?: SecondaryAccountAdditionalOwnerSchema;
+}
+/**
+ * Who is authorized as an operator on behalf of the Owner.
+ * @export
+ * @interface AdditionalOwner
+ */
+export interface AdditionalOwner {
+    /**
+     * 
+     * @type {string}
+     * @memberof AdditionalOwner
+     */
+    'accountId'?: string;
+}
+/**
+ * Who are the additional owner of this transaction
+ * @export
+ * @interface AdditionalOwnerRemoveSecondarySchema
+ */
+export interface AdditionalOwnerRemoveSecondarySchema {
+    /**
+     * Unique Identifier of the owner
+     * @type {string}
+     * @memberof AdditionalOwnerRemoveSecondarySchema
+     */
+    'accountId'?: string;
+}
 /**
  * 
  * @export
@@ -79,16 +161,16 @@ export interface AddressMonitoringDetailsSchema {
 export interface AddressMonitoringRequestSchema {
     /**
      * 
-     * @type {string}
-     * @memberof AddressMonitoringRequestSchema
-     */
-    'callBackURL'?: string;
-    /**
-     * 
      * @type {Location}
      * @memberof AddressMonitoringRequestSchema
      */
     'location'?: Location;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddressMonitoringRequestSchema
+     */
+    'callBackURL'?: string;
     /**
      * 
      * @type {string}
@@ -104,16 +186,16 @@ export interface AddressMonitoringRequestSchema {
 export interface AddressMonitoringResponseSchema {
     /**
      * 
-     * @type {ResourceMonitoringSubscriptionDetails}
-     * @memberof AddressMonitoringResponseSchema
-     */
-    'subscriptionDetails'?: ResourceMonitoringSubscriptionDetails;
-    /**
-     * 
      * @type {ResourceMonitoringDetails}
      * @memberof AddressMonitoringResponseSchema
      */
     'resourceMonitoring'?: ResourceMonitoringDetails;
+    /**
+     * 
+     * @type {ResourceMonitoringSubscriptionDetails}
+     * @memberof AddressMonitoringResponseSchema
+     */
+    'subscriptionDetails'?: ResourceMonitoringSubscriptionDetails;
     /**
      * 
      * @type {ResourceMonitoringSubscription}
@@ -122,11 +204,60 @@ export interface AddressMonitoringResponseSchema {
     'subscription'?: ResourceMonitoringSubscription;
 }
 /**
+ * Alias Details of an account
+ * @export
+ * @interface AliasDetails
+ */
+export interface AliasDetails {
+    /**
+     * 
+     * @type {string}
+     * @memberof AliasDetails
+     */
+    'accountId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AliasDetails
+     */
+    'unit'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AliasDetails
+     */
+    'disposableAlias'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof AliasDetails
+     */
+    'aliasHash'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AliasDetails
+     */
+    'aliasType'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AliasDetails
+     */
+    'esipId'?: string;
+}
+/**
  * 
  * @export
  * @interface ApproveRequestDetailsSchema
  */
 export interface ApproveRequestDetailsSchema {
+    /**
+     * Who are the payers of this transaction
+     * @type {Array<PayerCreditSchema>}
+     * @memberof ApproveRequestDetailsSchema
+     */
+    'payer'?: Array<PayerCreditSchema>;
     /**
      * Who are the payees of this transaction
      * @type {Array<PayeeCreditSchema>}
@@ -139,12 +270,6 @@ export interface ApproveRequestDetailsSchema {
      * @memberof ApproveRequestDetailsSchema
      */
     'overledgerSigningType'?: string;
-    /**
-     * Who are the payers of this transaction
-     * @type {Array<PayerCreditSchema>}
-     * @memberof ApproveRequestDetailsSchema
-     */
-    'payer'?: Array<PayerCreditSchema>;
 }
 /**
  * 
@@ -152,12 +277,6 @@ export interface ApproveRequestDetailsSchema {
  * @interface AutoExecSearchAddressSequenceResponseSchema
  */
 export interface AutoExecSearchAddressSequenceResponseSchema {
-    /**
-     * 
-     * @type {PrepareSearchResponseSchema}
-     * @memberof AutoExecSearchAddressSequenceResponseSchema
-     */
-    'preparationAddressSequenceSearchResponse'?: PrepareSearchResponseSchema;
     /**
      * 
      * @type {PrepareAndExecuteOverledgerErrorResponse}
@@ -170,6 +289,12 @@ export interface AutoExecSearchAddressSequenceResponseSchema {
      * @memberof AutoExecSearchAddressSequenceResponseSchema
      */
     'executionAddressSequenceSearchResponse'?: ExecuteSearchSequenceResponse;
+    /**
+     * 
+     * @type {PrepareSearchResponseSchema}
+     * @memberof AutoExecSearchAddressSequenceResponseSchema
+     */
+    'preparationAddressSequenceSearchResponse'?: PrepareSearchResponseSchema;
 }
 /**
  * 
@@ -179,16 +304,16 @@ export interface AutoExecSearchAddressSequenceResponseSchema {
 export interface AutoExecuteSearchAddressBalanceResponseSchema {
     /**
      * 
-     * @type {PrepareAndExecuteSearchAddressBalanceResponse}
-     * @memberof AutoExecuteSearchAddressBalanceResponseSchema
-     */
-    'executionAddressBalanceSearchResponse'?: PrepareAndExecuteSearchAddressBalanceResponse;
-    /**
-     * 
      * @type {PrepareAndExecuteOverledgerErrorResponse}
      * @memberof AutoExecuteSearchAddressBalanceResponseSchema
      */
     'prepareAndExecuteOverledgerErrorResponse'?: PrepareAndExecuteOverledgerErrorResponse;
+    /**
+     * 
+     * @type {PrepareAndExecuteSearchAddressBalanceResponse}
+     * @memberof AutoExecuteSearchAddressBalanceResponseSchema
+     */
+    'executionAddressBalanceSearchResponse'?: PrepareAndExecuteSearchAddressBalanceResponse;
     /**
      * 
      * @type {PrepareSearchResponseSchema}
@@ -204,16 +329,16 @@ export interface AutoExecuteSearchAddressBalanceResponseSchema {
 export interface AutoExecuteSearchBlockResponseSchema {
     /**
      * 
-     * @type {ExecuteSearchBlockResponse}
-     * @memberof AutoExecuteSearchBlockResponseSchema
-     */
-    'executionBlockSearchResponse'?: ExecuteSearchBlockResponse;
-    /**
-     * 
      * @type {PrepareAndExecuteOverledgerErrorResponse}
      * @memberof AutoExecuteSearchBlockResponseSchema
      */
     'prepareAndExecuteOverledgerErrorResponse'?: PrepareAndExecuteOverledgerErrorResponse;
+    /**
+     * 
+     * @type {ExecuteSearchBlockResponse}
+     * @memberof AutoExecuteSearchBlockResponseSchema
+     */
+    'executionBlockSearchResponse'?: ExecuteSearchBlockResponse;
     /**
      * 
      * @type {PrepareSearchResponseSchema}
@@ -245,6 +370,63 @@ export interface AutoExecuteSearchUTXOResponseSchema {
      * @memberof AutoExecuteSearchUTXOResponseSchema
      */
     'preparationUtxoSearchResponse'?: PrepareTransactionResponse;
+}
+/**
+ * The Destination of this transaction
+ * @export
+ * @interface Beneficiary
+ */
+export interface Beneficiary {
+    /**
+     * The unique identifiers of the account
+     * @type {string}
+     * @memberof Beneficiary
+     */
+    'accountId'?: string;
+    /**
+     * 
+     * @type {Mint}
+     * @memberof Beneficiary
+     */
+    'mint'?: Mint;
+}
+/**
+ * Who is the beneficiary of this transaction
+ * @export
+ * @interface BeneficiaryMintSchemaQrc20
+ */
+export interface BeneficiaryMintSchemaQrc20 {
+    /**
+     * The unique identifiers of the beneficiaries
+     * @type {string}
+     * @memberof BeneficiaryMintSchemaQrc20
+     */
+    'accountId'?: string;
+    /**
+     * 
+     * @type {MintSchemaQrc20}
+     * @memberof BeneficiaryMintSchemaQrc20
+     */
+    'mint'?: MintSchemaQrc20;
+}
+/**
+ * Who is the beneficiary of this transaction
+ * @export
+ * @interface BeneficiaryMintSchemaQrc721
+ */
+export interface BeneficiaryMintSchemaQrc721 {
+    /**
+     * The unique identifiers of the beneficiaries
+     * @type {string}
+     * @memberof BeneficiaryMintSchemaQrc721
+     */
+    'accountId'?: string;
+    /**
+     * 
+     * @type {MintSchemaQrc721}
+     * @memberof BeneficiaryMintSchemaQrc721
+     */
+    'mint'?: MintSchemaQrc721;
 }
 /**
  * 
@@ -360,21 +542,140 @@ export interface BlockSize {
 /**
  * 
  * @export
+ * @interface Burn
+ */
+export interface Burn {
+    /**
+     * Name of the token
+     * @type {string}
+     * @memberof Burn
+     */
+    'tokenName'?: string;
+    /**
+     * The amount of a currency
+     * @type {string}
+     * @memberof Burn
+     */
+    'amount'?: string;
+    /**
+     * The unit of this currency/token
+     * @type {string}
+     * @memberof Burn
+     */
+    'unit'?: string;
+    /**
+     * (Optional) String of metadata
+     * @type {string}
+     * @memberof Burn
+     */
+    'metadata'?: string;
+    /**
+     * Unique identifier for the specific token
+     * @type {string}
+     * @memberof Burn
+     */
+    'tokenId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface BurnRequestDetailsSchema
+ */
+export interface BurnRequestDetailsSchema {
+    /**
+     * Who is the owner of the tokens
+     * @type {Array<OwnerBurnSchema>}
+     * @memberof BurnRequestDetailsSchema
+     */
+    'owner'?: Array<OwnerBurnSchema>;
+    /**
+     * Any text-based element of the data payload
+     * @type {string}
+     * @memberof BurnRequestDetailsSchema
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BurnRequestDetailsSchema
+     */
+    'overledgerSigningType'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface BurnRequestDetailsSchemaQrc721
+ */
+export interface BurnRequestDetailsSchemaQrc721 {
+    /**
+     * 
+     * @type {OwnerBurnSchema}
+     * @memberof BurnRequestDetailsSchemaQrc721
+     */
+    'owner'?: OwnerBurnSchema;
+    /**
+     * 
+     * @type {string}
+     * @memberof BurnRequestDetailsSchemaQrc721
+     */
+    'overledgerSigningType'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface BurnSchema
+ */
+export interface BurnSchema {
+    /**
+     * The amount of a currency
+     * @type {string}
+     * @memberof BurnSchema
+     */
+    'amount': string;
+    /**
+     * The unit of this currency/token
+     * @type {string}
+     * @memberof BurnSchema
+     */
+    'unit'?: string;
+}
+/**
+ * Who is the collector of the tokens.
+ * @export
+ * @interface Collector
+ */
+export interface Collector {
+    /**
+     * 
+     * @type {string}
+     * @memberof Collector
+     */
+    'accountId'?: string;
+    /**
+     * 
+     * @type {Transfer}
+     * @memberof Collector
+     */
+    'transfer'?: Transfer;
+}
+/**
+ * 
+ * @export
  * @interface CreateSmartContractMonitoringSchema
  */
 export interface CreateSmartContractMonitoringSchema {
-    /**
-     * 
-     * @type {ResourceMonitoringSubscriptionDetails}
-     * @memberof CreateSmartContractMonitoringSchema
-     */
-    'subscriptionDetails'?: ResourceMonitoringSubscriptionDetails;
     /**
      * 
      * @type {ResourceMonitoringDetails}
      * @memberof CreateSmartContractMonitoringSchema
      */
     'resourceMonitoring'?: ResourceMonitoringDetails;
+    /**
+     * 
+     * @type {ResourceMonitoringSubscriptionDetails}
+     * @memberof CreateSmartContractMonitoringSchema
+     */
+    'subscriptionDetails'?: ResourceMonitoringSubscriptionDetails;
     /**
      * 
      * @type {ResourceMonitoringSubscription}
@@ -385,46 +686,72 @@ export interface CreateSmartContractMonitoringSchema {
 /**
  * 
  * @export
- * @interface CreateSubscriptionRequestSchema
+ * @interface CreateWebhookSubscriptionRequestSchema
  */
-export interface CreateSubscriptionRequestSchema {
+export interface CreateWebhookSubscriptionRequestSchema {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateWebhookSubscriptionRequestSchema
+     */
+    'type'?: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof CreateSubscriptionRequestSchema
+     * @memberof CreateWebhookSubscriptionRequestSchema
      */
     'ids'?: Array<string>;
     /**
      * 
      * @type {string}
-     * @memberof CreateSubscriptionRequestSchema
+     * @memberof CreateWebhookSubscriptionRequestSchema
      */
     'callbackUrl'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateSubscriptionRequestSchema
-     */
-    'type'?: string;
 }
 /**
  * 
  * @export
- * @interface CreateSubscriptionResponseSchema
+ * @interface CreateWebhookSubscriptionResponseSchema
  */
-export interface CreateSubscriptionResponseSchema {
-    /**
-     * 
-     * @type {SubscriptionDetailsSchema}
-     * @memberof CreateSubscriptionResponseSchema
-     */
-    'scubscriptionDetails'?: SubscriptionDetailsSchema;
+export interface CreateWebhookSubscriptionResponseSchema {
     /**
      * 
      * @type {string}
-     * @memberof CreateSubscriptionResponseSchema
+     * @memberof CreateWebhookSubscriptionResponseSchema
      */
     'subscriptionId'?: string;
+    /**
+     * 
+     * @type {WebhookSubscriptionDetailsSchema}
+     * @memberof CreateWebhookSubscriptionResponseSchema
+     */
+    'scubscriptionDetails'?: WebhookSubscriptionDetailsSchema;
+}
+/**
+ * Where is this transaction coming from
+ * @export
+ * @interface Creator
+ */
+export interface Creator {
+    /**
+     * 
+     * @type {string}
+     * @memberof Creator
+     */
+    'accountId'?: string;
+}
+/**
+ * Who is the creator of this transaction
+ * @export
+ * @interface CreatorMintSchema
+ */
+export interface CreatorMintSchema {
+    /**
+     * Unique Identifier of the creator
+     * @type {string}
+     * @memberof CreatorMintSchema
+     */
+    'accountId'?: string;
 }
 /**
  * 
@@ -439,12 +766,6 @@ export interface CreditRequestDetailsSchema {
      */
     'payee'?: Array<PayeeCreditSchema>;
     /**
-     * 
-     * @type {string}
-     * @memberof CreditRequestDetailsSchema
-     */
-    'overledgerSigningType'?: string;
-    /**
      * Any text-based element of the data payload
      * @type {string}
      * @memberof CreditRequestDetailsSchema
@@ -456,6 +777,12 @@ export interface CreditRequestDetailsSchema {
      * @memberof CreditRequestDetailsSchema
      */
     'payer'?: Array<PayerCreditSchema>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreditRequestDetailsSchema
+     */
+    'overledgerSigningType'?: string;
 }
 /**
  * 
@@ -484,47 +811,47 @@ export interface DeleteResourceMonitoringAddressSchema {
 export interface Destination {
     /**
      * 
+     * @type {Payment}
+     * @memberof Destination
+     */
+    'payment'?: Payment;
+    /**
+     * 
      * @type {Transfer}
      * @memberof Destination
      */
     'transfer'?: Transfer;
+    /**
+     * The unique identifier of the destination
+     * @type {string}
+     * @memberof Destination
+     */
+    'destinationId'?: string;
     /**
      * 
      * @type {SmartContract}
      * @memberof Destination
      */
     'smartContract'?: SmartContract;
-    /**
-     * 
-     * @type {Payment}
-     * @memberof Destination
-     */
-    'payment'?: Payment;
-    /**
-     * The unique identifiers of the destination
-     * @type {string}
-     * @memberof Destination
-     */
-    'destinationId'?: string;
 }
 /**
- * The Destination of this transaction
+ * List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
  * @export
  * @interface DestinationPaymentSchema
  */
 export interface DestinationPaymentSchema {
     /**
+     * Unique identifier of the destination/recipient
+     * @type {string}
+     * @memberof DestinationPaymentSchema
+     */
+    'destinationId': string;
+    /**
      * 
      * @type {PaymentSchema}
      * @memberof DestinationPaymentSchema
      */
-    'payment'?: PaymentSchema;
-    /**
-     * The unique identifiers of the destination
-     * @type {string}
-     * @memberof DestinationPaymentSchema
-     */
-    'destinationId'?: string;
+    'payment': PaymentSchema;
 }
 /**
  * 
@@ -534,16 +861,83 @@ export interface DestinationPaymentSchema {
 export interface DestinationTransferSchema {
     /**
      * 
-     * @type {TransferSchema}
-     * @memberof DestinationTransferSchema
-     */
-    'transfer'?: TransferSchema;
-    /**
-     * 
      * @type {string}
      * @memberof DestinationTransferSchema
      */
     'destinationId'?: string;
+    /**
+     * 
+     * @type {TransferSchema}
+     * @memberof DestinationTransferSchema
+     */
+    'transfer'?: TransferSchema;
+}
+/**
+ * 
+ * @export
+ * @interface Erc20DTO
+ */
+export interface Erc20DTO {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Erc20DTO
+     */
+    'isQrc20'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Erc20DTO
+     */
+    'tokenUnit'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Erc20DTO
+     */
+    'decimalPlaces'?: number;
+    /**
+     * 
+     * @type {Array<TierFunctionDTO>}
+     * @memberof Erc20DTO
+     */
+    'functions'?: Array<TierFunctionDTO>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Erc20DTO
+     */
+    'tokenName'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Erc20DTO
+     */
+    'smartContractAddress'?: string;
+    /**
+     * 
+     * @type {LocationDTO}
+     * @memberof Erc20DTO
+     */
+    'location'?: LocationDTO;
+    /**
+     * 
+     * @type {string}
+     * @memberof Erc20DTO
+     */
+    'version'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Erc20DTO
+     */
+    'url'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Erc20DTO
+     */
+    'auditDate'?: string;
 }
 /**
  * 
@@ -556,7 +950,7 @@ export interface ErrorDetails {
      * @type {string}
      * @memberof ErrorDetails
      */
-    'code'?: string;
+    'category'?: string;
     /**
      * 
      * @type {string}
@@ -568,7 +962,7 @@ export interface ErrorDetails {
      * @type {string}
      * @memberof ErrorDetails
      */
-    'category'?: string;
+    'code'?: string;
 }
 /**
  * 
@@ -588,6 +982,111 @@ export interface ErrorList {
      * @memberof ErrorList
      */
     'errorCount'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface ErrorResponseMessage
+ */
+export interface ErrorResponseMessage {
+    /**
+     * 
+     * @type {number}
+     * @memberof ErrorResponseMessage
+     */
+    'code'?: number;
+    /**
+     * 
+     * @type {object}
+     * @memberof ErrorResponseMessage
+     */
+    'errorMessageExtraDetails'?: object;
+    /**
+     * 
+     * @type {number}
+     * @memberof ErrorResponseMessage
+     */
+    'subCode'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ErrorResponseMessage
+     */
+    'logTraceId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ErrorResponseMessage
+     */
+    'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ErrorResponseMessage
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ErrorResponseMessage
+     */
+    'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface EventSubscriptionResponse
+ */
+export interface EventSubscriptionResponse {
+    /**
+     * Name of the token
+     * @type {string}
+     * @memberof EventSubscriptionResponse
+     */
+    'tokenName'?: string;
+    /**
+     * 
+     * @type {EventSubscriptionResponseDetails}
+     * @memberof EventSubscriptionResponse
+     */
+    'subscriptionDetails'?: EventSubscriptionResponseDetails;
+    /**
+     * 
+     * @type {Location}
+     * @memberof EventSubscriptionResponse
+     */
+    'location'?: Location;
+    /**
+     * Type of event
+     * @type {string}
+     * @memberof EventSubscriptionResponse
+     */
+    'type'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface EventSubscriptionResponseDetails
+ */
+export interface EventSubscriptionResponseDetails {
+    /**
+     * 
+     * @type {string}
+     * @memberof EventSubscriptionResponseDetails
+     */
+    'subscriptionId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventSubscriptionResponseDetails
+     */
+    'callbackUrl'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventSubscriptionResponseDetails
+     */
+    'createdDate'?: string;
 }
 /**
  * 
@@ -788,10 +1287,10 @@ export interface ExecuteSearchUTXOResponseSchema {
     'location'?: Location;
     /**
      * 
-     * @type {UTXOTimestampSchema}
+     * @type {string}
      * @memberof ExecuteSearchUTXOResponseSchema
      */
-    'timestamp'?: UTXOTimestampSchema;
+    'timestamp'?: string;
     /**
      * 
      * @type {Status}
@@ -831,17 +1330,17 @@ export interface ExecuteSmartContractReadResponseSchema {
  */
 export interface ExecuteTransactionRequest {
     /**
+     * The raw data after transaction signing
+     * @type {string}
+     * @memberof ExecuteTransactionRequest
+     */
+    'signed'?: string;
+    /**
      * The ID assigned to a preparation request in Overledger
      * @type {string}
      * @memberof ExecuteTransactionRequest
      */
     'requestId': string;
-    /**
-     * The raw data after transaction signing
-     * @type {string}
-     * @memberof ExecuteTransactionRequest
-     */
-    'signed': string;
 }
 /**
  * 
@@ -935,32 +1434,92 @@ export interface Function {
      * @type {string}
      * @memberof Function
      */
-    'functionId'?: string;
+    'type'?: string;
     /**
      * 
      * @type {string}
      * @memberof Function
      */
-    'code'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Function
-     */
-    'name'?: string;
-    /**
-     * 
-     * @type {Array<Parameter>}
-     * @memberof Function
-     */
-    'inputParameters'?: Array<Parameter>;
-    /**
-     * 
-     * @type {Array<Parameter>}
-     * @memberof Function
-     */
-    'outputParameters'?: Array<Parameter>;
+    'api'?: string;
 }
+/**
+ * 
+ * @export
+ * @interface FunctionDTO
+ */
+export interface FunctionDTO {
+    /**
+     * 
+     * @type {string}
+     * @memberof FunctionDTO
+     */
+    'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FunctionDTO
+     */
+    'api'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface FungibleTokenResponseDTO
+ */
+export interface FungibleTokenResponseDTO {
+    /**
+     * 
+     * @type {string}
+     * @memberof FungibleTokenResponseDTO
+     */
+    'documentationUrl'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FungibleTokenResponseDTO
+     */
+    'unit'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof FungibleTokenResponseDTO
+     */
+    'decimalPlaces'?: number;
+    /**
+     * 
+     * @type {Array<FunctionDTO>}
+     * @memberof FungibleTokenResponseDTO
+     */
+    'functions'?: Array<FunctionDTO>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FungibleTokenResponseDTO
+     */
+    'contractType'?: FungibleTokenResponseDTOContractTypeEnum;
+    /**
+     * 
+     * @type {LocationDTO}
+     * @memberof FungibleTokenResponseDTO
+     */
+    'location'?: LocationDTO;
+    /**
+     * 
+     * @type {string}
+     * @memberof FungibleTokenResponseDTO
+     */
+    'smartContractId'?: string;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum FungibleTokenResponseDTOContractTypeEnum {
+    Erc20 = 'ERC20',
+    Qrc20 = 'QRC20'
+}
+
 /**
  * 
  * @export
@@ -1020,45 +1579,45 @@ export interface LinkedBlocks {
 /**
  * 
  * @export
- * @interface ListSubscriptionResponseSchema
+ * @interface ListWebhookSubscriptionResponseSchema
  */
-export interface ListSubscriptionResponseSchema {
+export interface ListWebhookSubscriptionResponseSchema {
     /**
      * 
-     * @type {SubscriptionDetailsSchema}
-     * @memberof ListSubscriptionResponseSchema
+     * @type {WebhookSubscriptionDetailsSchema}
+     * @memberof ListWebhookSubscriptionResponseSchema
      */
-    'subscriptionDetails'?: SubscriptionDetailsSchema;
+    'subscriptionDetails'?: WebhookSubscriptionDetailsSchema;
     /**
      * 
      * @type {string}
-     * @memberof ListSubscriptionResponseSchema
-     */
-    'subscribedTime'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ListSubscriptionResponseSchema
+     * @memberof ListWebhookSubscriptionResponseSchema
      */
     'lastUpdatedTime'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ListSubscriptionResponseSchema
+     * @memberof ListWebhookSubscriptionResponseSchema
      */
     'callbackUrl'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ListSubscriptionResponseSchema
+     * @memberof ListWebhookSubscriptionResponseSchema
      */
     'subscriptionId'?: string;
     /**
      * 
      * @type {string}
-     * @memberof ListSubscriptionResponseSchema
+     * @memberof ListWebhookSubscriptionResponseSchema
      */
     'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ListWebhookSubscriptionResponseSchema
+     */
+    'subscribedTime'?: string;
 }
 /**
  * Unique reference to the ledger on a particular ledger network (optionally accessed from a particular node)
@@ -1082,6 +1641,260 @@ export interface Location {
 /**
  * 
  * @export
+ * @interface LocationDTO
+ */
+export interface LocationDTO {
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationDTO
+     */
+    'technology'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LocationDTO
+     */
+    'network'?: string;
+}
+/**
+ * Lock Details of the tokens
+ * @export
+ * @interface LockDetails
+ */
+export interface LockDetails {
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'expiryDate'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'lockId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'accountId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'amount'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'unit'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'accountOwningInstitutionId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'lockDescription'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'payeeId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'secret'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'hash'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'payeeOwningInstitutionId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LockDetails
+     */
+    'lockOwningInstitutionId'?: string;
+}
+/**
+ * The Destination of this transaction
+ * @export
+ * @interface Mandate
+ */
+export interface Mandate {
+    /**
+     * 
+     * @type {Payment}
+     * @memberof Mandate
+     */
+    'payment'?: Payment;
+    /**
+     * The unique identifiers of the payee
+     * @type {string}
+     * @memberof Mandate
+     */
+    'payeeId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Mint
+ */
+export interface Mint {
+    /**
+     * Name of the token
+     * @type {string}
+     * @memberof Mint
+     */
+    'tokenName'?: string;
+    /**
+     * The amount of a currency
+     * @type {string}
+     * @memberof Mint
+     */
+    'amount'?: string;
+    /**
+     * The unit of this currency/token
+     * @type {string}
+     * @memberof Mint
+     */
+    'unit'?: string;
+    /**
+     * (Optional) String of metadata
+     * @type {string}
+     * @memberof Mint
+     */
+    'metadata'?: string;
+    /**
+     * Unique identifier for the specific token
+     * @type {string}
+     * @memberof Mint
+     */
+    'tokenId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface MintRequestDetailsSchemaQrc20
+ */
+export interface MintRequestDetailsSchemaQrc20 {
+    /**
+     * 
+     * @type {CreatorMintSchema}
+     * @memberof MintRequestDetailsSchemaQrc20
+     */
+    'creator'?: CreatorMintSchema;
+    /**
+     * 
+     * @type {BeneficiaryMintSchemaQrc20}
+     * @memberof MintRequestDetailsSchemaQrc20
+     */
+    'beneficiary'?: BeneficiaryMintSchemaQrc20;
+    /**
+     * Any text-based element of the data payload
+     * @type {string}
+     * @memberof MintRequestDetailsSchemaQrc20
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MintRequestDetailsSchemaQrc20
+     */
+    'overledgerSigningType'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface MintRequestDetailsSchemaQrc721
+ */
+export interface MintRequestDetailsSchemaQrc721 {
+    /**
+     * 
+     * @type {BeneficiaryMintSchemaQrc721}
+     * @memberof MintRequestDetailsSchemaQrc721
+     */
+    'beneficiary'?: BeneficiaryMintSchemaQrc721;
+    /**
+     * 
+     * @type {CreatorMintSchema}
+     * @memberof MintRequestDetailsSchemaQrc721
+     */
+    'creator'?: CreatorMintSchema;
+    /**
+     * 
+     * @type {string}
+     * @memberof MintRequestDetailsSchemaQrc721
+     */
+    'overledgerSigningType'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface MintSchemaQrc20
+ */
+export interface MintSchemaQrc20 {
+    /**
+     * The amount of a currency
+     * @type {string}
+     * @memberof MintSchemaQrc20
+     */
+    'amount': string;
+    /**
+     * The unit of this currency/token
+     * @type {string}
+     * @memberof MintSchemaQrc20
+     */
+    'unit'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface MintSchemaQrc721
+ */
+export interface MintSchemaQrc721 {
+    /**
+     * Unique identifier for the specific token
+     * @type {string}
+     * @memberof MintSchemaQrc721
+     */
+    'tokenId'?: string;
+    /**
+     * Name of the token
+     * @type {string}
+     * @memberof MintSchemaQrc721
+     */
+    'tokenName'?: string;
+    /**
+     * (Optional) String of metadata
+     * @type {string}
+     * @memberof MintSchemaQrc721
+     */
+    'metadata'?: string;
+}
+/**
+ * 
+ * @export
  * @interface ModelError
  */
 export interface ModelError {
@@ -1096,13 +1909,13 @@ export interface ModelError {
      * @type {string}
      * @memberof ModelError
      */
-    'service'?: string;
+    'message'?: string;
     /**
      * 
      * @type {string}
      * @memberof ModelError
      */
-    'message'?: string;
+    'service'?: string;
     /**
      * 
      * @type {number}
@@ -1143,12 +1956,6 @@ export interface MonitorSmartContractEventParam {
 export interface MonitorSmartContractRequestSchema {
     /**
      * 
-     * @type {string}
-     * @memberof MonitorSmartContractRequestSchema
-     */
-    'callBackURL'?: string;
-    /**
-     * 
      * @type {Array<MonitorSmartContractEventParam>}
      * @memberof MonitorSmartContractRequestSchema
      */
@@ -1170,6 +1977,104 @@ export interface MonitorSmartContractRequestSchema {
      * @type {string}
      * @memberof MonitorSmartContractRequestSchema
      */
+    'callBackURL'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MonitorSmartContractRequestSchema
+     */
+    'smartContractId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface NonFungibleTokenDTO
+ */
+export interface NonFungibleTokenDTO {
+    /**
+     * 
+     * @type {Array<TierFunctionDTO>}
+     * @memberof NonFungibleTokenDTO
+     */
+    'functions'?: Array<TierFunctionDTO>;
+    /**
+     * 
+     * @type {string}
+     * @memberof NonFungibleTokenDTO
+     */
+    'tokenName'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NonFungibleTokenDTO
+     */
+    'smartContractAddress'?: string;
+    /**
+     * 
+     * @type {LocationDTO}
+     * @memberof NonFungibleTokenDTO
+     */
+    'location'?: LocationDTO;
+    /**
+     * 
+     * @type {string}
+     * @memberof NonFungibleTokenDTO
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NonFungibleTokenDTO
+     */
+    'tokenType'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NonFungibleTokenDTO
+     */
+    'url'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface NonFungibleTokenResponse
+ */
+export interface NonFungibleTokenResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof NonFungibleTokenResponse
+     */
+    'tokenName'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NonFungibleTokenResponse
+     */
+    'documentationUrl'?: string;
+    /**
+     * 
+     * @type {Location}
+     * @memberof NonFungibleTokenResponse
+     */
+    'location'?: Location;
+    /**
+     * 
+     * @type {Array<Function>}
+     * @memberof NonFungibleTokenResponse
+     */
+    'functions'?: Array<Function>;
+    /**
+     * 
+     * @type {string}
+     * @memberof NonFungibleTokenResponse
+     */
+    'contractType'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NonFungibleTokenResponse
+     */
     'smartContractId'?: string;
 }
 /**
@@ -1186,29 +2091,29 @@ export interface Origin {
     'sequence'?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Origin
-     */
-    'originId'?: string;
-    /**
-     * 
      * @type {SmartContract}
      * @memberof Origin
      */
     'smartContract'?: SmartContract;
+    /**
+     * The unique identifier of the origin
+     * @type {string}
+     * @memberof Origin
+     */
+    'originId'?: string;
 }
 /**
- * Where is this transaction coming from
+ * List of where this transaction is coming from
  * @export
  * @interface OriginPaymentSchema
  */
 export interface OriginPaymentSchema {
     /**
-     * Unique Identifier of the originator
+     * Unique Identifier of the origin/sender
      * @type {string}
      * @memberof OriginPaymentSchema
      */
-    'originId'?: string;
+    'originId': string;
 }
 /**
  * 
@@ -1279,6 +2184,94 @@ export interface OverledgerTransactionResponseSchema {
     'status'?: Status;
 }
 /**
+ * Who is the owner of the tokens.
+ * @export
+ * @interface Owner
+ */
+export interface Owner {
+    /**
+     * 
+     * @type {string}
+     * @memberof Owner
+     */
+    'accountId'?: string;
+    /**
+     * 
+     * @type {Burn}
+     * @memberof Owner
+     */
+    'burn'?: Burn;
+    /**
+     * 
+     * @type {string}
+     * @memberof Owner
+     */
+    'unit'?: string;
+}
+/**
+ * Who is the owner of the tokens
+ * @export
+ * @interface OwnerBurnSchema
+ */
+export interface OwnerBurnSchema {
+    /**
+     * Unique Identifier of the owner
+     * @type {string}
+     * @memberof OwnerBurnSchema
+     */
+    'accountId'?: string;
+    /**
+     * 
+     * @type {BurnSchema}
+     * @memberof OwnerBurnSchema
+     */
+    'burn'?: BurnSchema;
+}
+/**
+ * Who are the owner of this transaction
+ * @export
+ * @interface OwnerRemoveSecondarySchema
+ */
+export interface OwnerRemoveSecondarySchema {
+    /**
+     * Unique Identifier of the owner
+     * @type {string}
+     * @memberof OwnerRemoveSecondarySchema
+     */
+    'accountId'?: string;
+    /**
+     * The unit of this currency/token
+     * @type {string}
+     * @memberof OwnerRemoveSecondarySchema
+     */
+    'unit'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Pagination
+ */
+export interface Pagination {
+    /**
+     * 
+     * @type {number}
+     * @memberof Pagination
+     */
+    'size'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Pagination
+     */
+    'total'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Pagination
+     */
+    'page'?: number;
+}
+/**
  * 
  * @export
  * @interface Parameter
@@ -1304,6 +2297,25 @@ export interface Parameter {
     'key'?: string;
 }
 /**
+ * The Destination of this transaction
+ * @export
+ * @interface Payee
+ */
+export interface Payee {
+    /**
+     * 
+     * @type {Payment}
+     * @memberof Payee
+     */
+    'payment'?: Payment;
+    /**
+     * The unique identifiers of the payee
+     * @type {string}
+     * @memberof Payee
+     */
+    'payeeId'?: string;
+}
+/**
  * Who are the payees of this transaction
  * @export
  * @interface PayeeCreditSchema
@@ -1321,6 +2333,19 @@ export interface PayeeCreditSchema {
      * @memberof PayeeCreditSchema
      */
     'payeeId'?: string;
+}
+/**
+ * Where is this transaction coming from
+ * @export
+ * @interface Payer
+ */
+export interface Payer {
+    /**
+     * 
+     * @type {string}
+     * @memberof Payer
+     */
+    'payerId'?: string;
 }
 /**
  * Who are the payers of this transaction
@@ -1361,55 +2386,115 @@ export interface Payment {
     'issuer'?: string;
 }
 /**
- * 
+ * The payload request
  * @export
  * @interface PaymentRequestDetailsSchema
  */
 export interface PaymentRequestDetailsSchema {
     /**
-     * 
-     * @type {string}
-     * @memberof PaymentRequestDetailsSchema
-     */
-    'overledgerSigningType'?: string;
-    /**
-     * Where is this transaction coming from
-     * @type {Array<OriginPaymentSchema>}
-     * @memberof PaymentRequestDetailsSchema
-     */
-    'origin'?: Array<OriginPaymentSchema>;
-    /**
-     * The Destination of this transaction
+     * List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
      * @type {Array<DestinationPaymentSchema>}
      * @memberof PaymentRequestDetailsSchema
      */
-    'destination'?: Array<DestinationPaymentSchema>;
+    'destination': Array<DestinationPaymentSchema>;
     /**
      * Any text-based element of the data payload
      * @type {string}
      * @memberof PaymentRequestDetailsSchema
      */
     'message'?: string;
+    /**
+     * The method of signing used to submit the transaction
+     * @type {string}
+     * @memberof PaymentRequestDetailsSchema
+     */
+    'overledgerSigningType'?: PaymentRequestDetailsSchemaOverledgerSigningTypeEnum;
+    /**
+     * List of where this transaction is coming from
+     * @type {Array<OriginPaymentSchema>}
+     * @memberof PaymentRequestDetailsSchema
+     */
+    'origin': Array<OriginPaymentSchema>;
 }
+
 /**
- * 
+    * @export
+    * @enum {string}
+    */
+export enum PaymentRequestDetailsSchemaOverledgerSigningTypeEnum {
+    OverledgerJavascriptLibrary = 'overledger-javascript-library'
+}
+
+/**
+ * The payload for each recipient
  * @export
  * @interface PaymentSchema
  */
 export interface PaymentSchema {
     /**
-     * The amount of a currency
+     * The payload amount. The exact format depends on the unit of the token.
      * @type {string}
      * @memberof PaymentSchema
      */
     'amount': string;
     /**
-     * The unit of this currency/token
+     * The currency or token code
      * @type {string}
      * @memberof PaymentSchema
      */
-    'unit'?: string;
+    'unit': string;
 }
+/**
+ * 
+ * @export
+ * @interface PrepareAddSecondaryAccountRequestSchema
+ */
+export interface PrepareAddSecondaryAccountRequestSchema {
+    /**
+     * 
+     * @type {Location}
+     * @memberof PrepareAddSecondaryAccountRequestSchema
+     */
+    'location': Location;
+    /**
+     * The type of the transaction
+     * @type {string}
+     * @memberof PrepareAddSecondaryAccountRequestSchema
+     */
+    'type': PrepareAddSecondaryAccountRequestSchemaTypeEnum;
+    /**
+     * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     * @type {string}
+     * @memberof PrepareAddSecondaryAccountRequestSchema
+     */
+    'urgency': PrepareAddSecondaryAccountRequestSchemaUrgencyEnum;
+    /**
+     * 
+     * @type {AddSecondaryAccountRequestDetailsSchema}
+     * @memberof PrepareAddSecondaryAccountRequestSchema
+     */
+    'requestDetails'?: AddSecondaryAccountRequestDetailsSchema;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareAddSecondaryAccountRequestSchemaTypeEnum {
+    Payment = 'Payment',
+    Transfer = 'Transfer',
+    ContractInvoke = 'Contract Invoke'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareAddSecondaryAccountRequestSchemaUrgencyEnum {
+    Normal = 'Normal',
+    Fast = 'Fast',
+    Urgent = 'Urgent'
+}
+
 /**
  * 
  * @export
@@ -1440,7 +2525,7 @@ export interface PrepareAndExecuteOverledgerErrorResponse {
      * @type {string}
      * @memberof PrepareAndExecuteOverledgerErrorResponse
      */
-    'code'?: string;
+    'category'?: string;
     /**
      * 
      * @type {string}
@@ -1452,7 +2537,7 @@ export interface PrepareAndExecuteOverledgerErrorResponse {
      * @type {string}
      * @memberof PrepareAndExecuteOverledgerErrorResponse
      */
-    'category'?: string;
+    'code'?: string;
 }
 /**
  * 
@@ -1493,12 +2578,6 @@ export interface PrepareAndExecuteSearchAddressBalanceResponse {
 export interface PrepareAndExecuteTransactionResponse {
     /**
      * 
-     * @type {PrepareAndExecuteOverledgerErrorResponse}
-     * @memberof PrepareAndExecuteTransactionResponse
-     */
-    'executionTransactionSearchOverledgerErrorResponse'?: PrepareAndExecuteOverledgerErrorResponse;
-    /**
-     * 
      * @type {PrepareTransactionResponse}
      * @memberof PrepareAndExecuteTransactionResponse
      */
@@ -1509,6 +2588,12 @@ export interface PrepareAndExecuteTransactionResponse {
      * @memberof PrepareAndExecuteTransactionResponse
      */
     'executionTransactionSearchResponse'?: ExecuteSearchTransactionResponse;
+    /**
+     * 
+     * @type {PrepareAndExecuteOverledgerErrorResponse}
+     * @memberof PrepareAndExecuteTransactionResponse
+     */
+    'executionTransactionSearchOverledgerErrorResponse'?: PrepareAndExecuteOverledgerErrorResponse;
 }
 /**
  * 
@@ -1518,29 +2603,151 @@ export interface PrepareAndExecuteTransactionResponse {
 export interface PrepareApproveDebitTransactionRequestSchema {
     /**
      * 
+     * @type {Location}
+     * @memberof PrepareApproveDebitTransactionRequestSchema
+     */
+    'location': Location;
+    /**
+     * The type of the transaction
      * @type {string}
      * @memberof PrepareApproveDebitTransactionRequestSchema
      */
-    'urgency'?: string;
+    'type': PrepareApproveDebitTransactionRequestSchemaTypeEnum;
+    /**
+     * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     * @type {string}
+     * @memberof PrepareApproveDebitTransactionRequestSchema
+     */
+    'urgency': PrepareApproveDebitTransactionRequestSchemaUrgencyEnum;
     /**
      * 
      * @type {ApproveRequestDetailsSchema}
      * @memberof PrepareApproveDebitTransactionRequestSchema
      */
     'requestDetails'?: ApproveRequestDetailsSchema;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareApproveDebitTransactionRequestSchemaTypeEnum {
+    Payment = 'Payment',
+    Transfer = 'Transfer',
+    ContractInvoke = 'Contract Invoke'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareApproveDebitTransactionRequestSchemaUrgencyEnum {
+    Normal = 'Normal',
+    Fast = 'Fast',
+    Urgent = 'Urgent'
+}
+
+/**
+ * 
+ * @export
+ * @interface PrepareBurnTransactionRequestSchema
+ */
+export interface PrepareBurnTransactionRequestSchema {
     /**
      * 
      * @type {Location}
-     * @memberof PrepareApproveDebitTransactionRequestSchema
+     * @memberof PrepareBurnTransactionRequestSchema
      */
-    'location'?: Location;
+    'location': Location;
+    /**
+     * The type of the transaction
+     * @type {string}
+     * @memberof PrepareBurnTransactionRequestSchema
+     */
+    'type': PrepareBurnTransactionRequestSchemaTypeEnum;
+    /**
+     * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     * @type {string}
+     * @memberof PrepareBurnTransactionRequestSchema
+     */
+    'urgency': PrepareBurnTransactionRequestSchemaUrgencyEnum;
     /**
      * 
-     * @type {string}
-     * @memberof PrepareApproveDebitTransactionRequestSchema
+     * @type {BurnRequestDetailsSchema}
+     * @memberof PrepareBurnTransactionRequestSchema
      */
-    'type'?: string;
+    'requestDetails'?: BurnRequestDetailsSchema;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareBurnTransactionRequestSchemaTypeEnum {
+    Payment = 'Payment',
+    Transfer = 'Transfer',
+    ContractInvoke = 'Contract Invoke'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareBurnTransactionRequestSchemaUrgencyEnum {
+    Normal = 'Normal',
+    Fast = 'Fast',
+    Urgent = 'Urgent'
+}
+
+/**
+ * 
+ * @export
+ * @interface PrepareBurnTransactionRequestSchemaQrc721
+ */
+export interface PrepareBurnTransactionRequestSchemaQrc721 {
+    /**
+     * 
+     * @type {Location}
+     * @memberof PrepareBurnTransactionRequestSchemaQrc721
+     */
+    'location': Location;
+    /**
+     * The type of the transaction
+     * @type {string}
+     * @memberof PrepareBurnTransactionRequestSchemaQrc721
+     */
+    'type': PrepareBurnTransactionRequestSchemaQrc721TypeEnum;
+    /**
+     * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     * @type {string}
+     * @memberof PrepareBurnTransactionRequestSchemaQrc721
+     */
+    'urgency': PrepareBurnTransactionRequestSchemaQrc721UrgencyEnum;
+    /**
+     * 
+     * @type {BurnRequestDetailsSchemaQrc721}
+     * @memberof PrepareBurnTransactionRequestSchemaQrc721
+     */
+    'requestDetails'?: BurnRequestDetailsSchemaQrc721;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareBurnTransactionRequestSchemaQrc721TypeEnum {
+    Payment = 'Payment',
+    Transfer = 'Transfer',
+    ContractInvoke = 'Contract Invoke'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareBurnTransactionRequestSchemaQrc721UrgencyEnum {
+    Normal = 'Normal',
+    Fast = 'Fast',
+    Urgent = 'Urgent'
+}
+
 /**
  * 
  * @export
@@ -1549,29 +2756,151 @@ export interface PrepareApproveDebitTransactionRequestSchema {
 export interface PrepareCreditTransactionRequestSchema {
     /**
      * 
+     * @type {Location}
+     * @memberof PrepareCreditTransactionRequestSchema
+     */
+    'location': Location;
+    /**
+     * The type of the transaction
      * @type {string}
      * @memberof PrepareCreditTransactionRequestSchema
      */
-    'urgency'?: string;
+    'type': PrepareCreditTransactionRequestSchemaTypeEnum;
+    /**
+     * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     * @type {string}
+     * @memberof PrepareCreditTransactionRequestSchema
+     */
+    'urgency': PrepareCreditTransactionRequestSchemaUrgencyEnum;
     /**
      * 
      * @type {CreditRequestDetailsSchema}
      * @memberof PrepareCreditTransactionRequestSchema
      */
     'requestDetails'?: CreditRequestDetailsSchema;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareCreditTransactionRequestSchemaTypeEnum {
+    Payment = 'Payment',
+    Transfer = 'Transfer',
+    ContractInvoke = 'Contract Invoke'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareCreditTransactionRequestSchemaUrgencyEnum {
+    Normal = 'Normal',
+    Fast = 'Fast',
+    Urgent = 'Urgent'
+}
+
+/**
+ * 
+ * @export
+ * @interface PrepareMintTransactionRequestSchemaQrc20
+ */
+export interface PrepareMintTransactionRequestSchemaQrc20 {
     /**
      * 
      * @type {Location}
-     * @memberof PrepareCreditTransactionRequestSchema
+     * @memberof PrepareMintTransactionRequestSchemaQrc20
      */
-    'location'?: Location;
+    'location': Location;
+    /**
+     * The type of the transaction
+     * @type {string}
+     * @memberof PrepareMintTransactionRequestSchemaQrc20
+     */
+    'type': PrepareMintTransactionRequestSchemaQrc20TypeEnum;
+    /**
+     * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     * @type {string}
+     * @memberof PrepareMintTransactionRequestSchemaQrc20
+     */
+    'urgency': PrepareMintTransactionRequestSchemaQrc20UrgencyEnum;
     /**
      * 
-     * @type {string}
-     * @memberof PrepareCreditTransactionRequestSchema
+     * @type {MintRequestDetailsSchemaQrc20}
+     * @memberof PrepareMintTransactionRequestSchemaQrc20
      */
-    'type'?: string;
+    'requestDetails'?: MintRequestDetailsSchemaQrc20;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareMintTransactionRequestSchemaQrc20TypeEnum {
+    Payment = 'Payment',
+    Transfer = 'Transfer',
+    ContractInvoke = 'Contract Invoke'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareMintTransactionRequestSchemaQrc20UrgencyEnum {
+    Normal = 'Normal',
+    Fast = 'Fast',
+    Urgent = 'Urgent'
+}
+
+/**
+ * 
+ * @export
+ * @interface PrepareMintTransactionRequestSchemaQrc721
+ */
+export interface PrepareMintTransactionRequestSchemaQrc721 {
+    /**
+     * 
+     * @type {Location}
+     * @memberof PrepareMintTransactionRequestSchemaQrc721
+     */
+    'location': Location;
+    /**
+     * The type of the transaction
+     * @type {string}
+     * @memberof PrepareMintTransactionRequestSchemaQrc721
+     */
+    'type': PrepareMintTransactionRequestSchemaQrc721TypeEnum;
+    /**
+     * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     * @type {string}
+     * @memberof PrepareMintTransactionRequestSchemaQrc721
+     */
+    'urgency': PrepareMintTransactionRequestSchemaQrc721UrgencyEnum;
+    /**
+     * 
+     * @type {MintRequestDetailsSchemaQrc721}
+     * @memberof PrepareMintTransactionRequestSchemaQrc721
+     */
+    'requestDetails'?: MintRequestDetailsSchemaQrc721;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareMintTransactionRequestSchemaQrc721TypeEnum {
+    Payment = 'Payment',
+    Transfer = 'Transfer',
+    ContractInvoke = 'Contract Invoke'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareMintTransactionRequestSchemaQrc721UrgencyEnum {
+    Normal = 'Normal',
+    Fast = 'Fast',
+    Urgent = 'Urgent'
+}
+
 /**
  * 
  * @export
@@ -1579,17 +2908,17 @@ export interface PrepareCreditTransactionRequestSchema {
  */
 export interface PrepareNativeTransactionRequestSchema {
     /**
-     * 
-     * @type {Location}
-     * @memberof PrepareNativeTransactionRequestSchema
-     */
-    'location'?: Location;
-    /**
      * The type of the object
      * @type {string}
      * @memberof PrepareNativeTransactionRequestSchema
      */
     'type'?: string;
+    /**
+     * 
+     * @type {Location}
+     * @memberof PrepareNativeTransactionRequestSchema
+     */
+    'location'?: Location;
 }
 /**
  * 
@@ -1599,28 +2928,273 @@ export interface PrepareNativeTransactionRequestSchema {
 export interface PreparePaymentTransactionRequestSchema {
     /**
      * 
+     * @type {Location}
+     * @memberof PreparePaymentTransactionRequestSchema
+     */
+    'location': Location;
+    /**
+     * The type of the transaction
      * @type {string}
      * @memberof PreparePaymentTransactionRequestSchema
      */
-    'urgency'?: string;
+    'type': PreparePaymentTransactionRequestSchemaTypeEnum;
+    /**
+     * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     * @type {string}
+     * @memberof PreparePaymentTransactionRequestSchema
+     */
+    'urgency': PreparePaymentTransactionRequestSchemaUrgencyEnum;
     /**
      * 
      * @type {PaymentRequestDetailsSchema}
      * @memberof PreparePaymentTransactionRequestSchema
      */
-    'requestDetails'?: PaymentRequestDetailsSchema;
+    'requestDetails': PaymentRequestDetailsSchema;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PreparePaymentTransactionRequestSchemaTypeEnum {
+    Payment = 'Payment',
+    Transfer = 'Transfer',
+    ContractInvoke = 'Contract Invoke'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PreparePaymentTransactionRequestSchemaUrgencyEnum {
+    Normal = 'Normal',
+    Fast = 'Fast',
+    Urgent = 'Urgent'
+}
+
+/**
+ * 
+ * @export
+ * @interface PrepareRemoveSecondaryAccountTransactionRequestSchema
+ */
+export interface PrepareRemoveSecondaryAccountTransactionRequestSchema {
+    /**
+     * 
+     * @type {RemoveSecondaryAccountDetailsSchema}
+     * @memberof PrepareRemoveSecondaryAccountTransactionRequestSchema
+     */
+    'removeSecondaryAccountDetailsSchema'?: RemoveSecondaryAccountDetailsSchema;
+}
+/**
+ * 
+ * @export
+ * @interface PrepareRequest
+ */
+export interface PrepareRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareRequest
+     */
+    'apiLookupPath'?: string;
+    /**
+     * 
+     * @type {Array<SmartContractTag>}
+     * @memberof PrepareRequest
+     */
+    'smartContractTag'?: Array<SmartContractTag>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareRequest
+     */
+    'urgency'?: string;
+    /**
+     * 
+     * @type {PrepareRequestDetails}
+     * @memberof PrepareRequest
+     */
+    'requestDetails'?: PrepareRequestDetails;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareRequest
+     */
+    'smartContractAddress'?: string;
     /**
      * 
      * @type {Location}
-     * @memberof PreparePaymentTransactionRequestSchema
+     * @memberof PrepareRequest
      */
     'location'?: Location;
     /**
      * 
      * @type {string}
-     * @memberof PreparePaymentTransactionRequestSchema
+     * @memberof PrepareRequest
      */
     'type'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface PrepareRequestDetails
+ */
+export interface PrepareRequestDetails {
+    /**
+     * 
+     * @type {Array<Mandate>}
+     * @memberof PrepareRequestDetails
+     */
+    'mandate'?: Array<Mandate>;
+    /**
+     * 
+     * @type {AliasDetails}
+     * @memberof PrepareRequestDetails
+     */
+    'aliasDetails'?: AliasDetails;
+    /**
+     * 
+     * @type {Pagination}
+     * @memberof PrepareRequestDetails
+     */
+    'pagination'?: Pagination;
+    /**
+     * 
+     * @type {Array<Origin>}
+     * @memberof PrepareRequestDetails
+     */
+    'origin'?: Array<Origin>;
+    /**
+     * 
+     * @type {Array<Destination>}
+     * @memberof PrepareRequestDetails
+     */
+    'destination'?: Array<Destination>;
+    /**
+     * Name of the token
+     * @type {string}
+     * @memberof PrepareRequestDetails
+     */
+    'tokenName'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareRequestDetails
+     */
+    'blockSearchType'?: string;
+    /**
+     * 
+     * @type {Array<Payer>}
+     * @memberof PrepareRequestDetails
+     */
+    'payer'?: Array<Payer>;
+    /**
+     * 
+     * @type {Collector}
+     * @memberof PrepareRequestDetails
+     */
+    'collector'?: Collector;
+    /**
+     * 
+     * @type {Array<Payee>}
+     * @memberof PrepareRequestDetails
+     */
+    'payee'?: Array<Payee>;
+    /**
+     * 
+     * @type {AdditionalOwner}
+     * @memberof PrepareRequestDetails
+     */
+    'additionalOwner'?: AdditionalOwner;
+    /**
+     * 
+     * @type {Owner}
+     * @memberof PrepareRequestDetails
+     */
+    'owner'?: Owner;
+    /**
+     * 
+     * @type {Creator}
+     * @memberof PrepareRequestDetails
+     */
+    'creator'?: Creator;
+    /**
+     * 
+     * @type {Array<Receiver>}
+     * @memberof PrepareRequestDetails
+     */
+    'receiver'?: Array<Receiver>;
+    /**
+     * Unique identifier for the specific token
+     * @type {string}
+     * @memberof PrepareRequestDetails
+     */
+    'tokenId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareRequestDetails
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {LockDetails}
+     * @memberof PrepareRequestDetails
+     */
+    'lockDetails'?: LockDetails;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareRequestDetails
+     */
+    'blockId'?: string;
+    /**
+     * The unique identifiers of the account
+     * @type {string}
+     * @memberof PrepareRequestDetails
+     */
+    'accountId'?: string;
+    /**
+     * The unit of this token
+     * @type {string}
+     * @memberof PrepareRequestDetails
+     */
+    'tokenUnit'?: string;
+    /**
+     * 
+     * @type {Beneficiary}
+     * @memberof PrepareRequestDetails
+     */
+    'beneficiary'?: Beneficiary;
+    /**
+     * 
+     * @type {Array<Sender>}
+     * @memberof PrepareRequestDetails
+     */
+    'sender'?: Array<Sender>;
+    /**
+     * 
+     * @type {AccountDetails}
+     * @memberof PrepareRequestDetails
+     */
+    'accountDetails'?: AccountDetails;
+    /**
+     * 
+     * @type {string}
+     * @memberof PrepareRequestDetails
+     */
+    'overledgerSigningType'?: string;
+    /**
+     * 
+     * @type {Payment}
+     * @memberof PrepareRequestDetails
+     */
+    'totalPaymentAmount'?: Payment;
+    /**
+     * 
+     * @type {SignerAccount}
+     * @memberof PrepareRequestDetails
+     */
+    'signerAccount'?: SignerAccount;
 }
 /**
  * 
@@ -1712,29 +3286,49 @@ export interface PrepareTransactionResponse {
 export interface PrepareTransactionSmartContractInvokeRequestSchema {
     /**
      * 
+     * @type {Location}
+     * @memberof PrepareTransactionSmartContractInvokeRequestSchema
+     */
+    'location': Location;
+    /**
+     * The type of the transaction
      * @type {string}
      * @memberof PrepareTransactionSmartContractInvokeRequestSchema
      */
-    'urgency'?: string;
+    'type': PrepareTransactionSmartContractInvokeRequestSchemaTypeEnum;
+    /**
+     * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     * @type {string}
+     * @memberof PrepareTransactionSmartContractInvokeRequestSchema
+     */
+    'urgency': PrepareTransactionSmartContractInvokeRequestSchemaUrgencyEnum;
     /**
      * 
      * @type {SmartContractInvokeRequestDetailsSchema}
      * @memberof PrepareTransactionSmartContractInvokeRequestSchema
      */
     'requestDetails'?: SmartContractInvokeRequestDetailsSchema;
-    /**
-     * 
-     * @type {Location}
-     * @memberof PrepareTransactionSmartContractInvokeRequestSchema
-     */
-    'location'?: Location;
-    /**
-     * 
-     * @type {string}
-     * @memberof PrepareTransactionSmartContractInvokeRequestSchema
-     */
-    'type'?: string;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareTransactionSmartContractInvokeRequestSchemaTypeEnum {
+    Payment = 'Payment',
+    Transfer = 'Transfer',
+    ContractInvoke = 'Contract Invoke'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareTransactionSmartContractInvokeRequestSchemaUrgencyEnum {
+    Normal = 'Normal',
+    Fast = 'Fast',
+    Urgent = 'Urgent'
+}
+
 /**
  * 
  * @export
@@ -1743,28 +3337,282 @@ export interface PrepareTransactionSmartContractInvokeRequestSchema {
 export interface PrepareTransferTransactionRequestSchema {
     /**
      * 
+     * @type {Location}
+     * @memberof PrepareTransferTransactionRequestSchema
+     */
+    'location': Location;
+    /**
+     * The type of the transaction
      * @type {string}
      * @memberof PrepareTransferTransactionRequestSchema
      */
-    'urgency'?: string;
+    'type': PrepareTransferTransactionRequestSchemaTypeEnum;
+    /**
+     * This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal
+     * @type {string}
+     * @memberof PrepareTransferTransactionRequestSchema
+     */
+    'urgency': PrepareTransferTransactionRequestSchemaUrgencyEnum;
     /**
      * 
      * @type {TransferRequestDetailsSchema}
      * @memberof PrepareTransferTransactionRequestSchema
      */
     'requestDetails'?: TransferRequestDetailsSchema;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareTransferTransactionRequestSchemaTypeEnum {
+    Payment = 'Payment',
+    Transfer = 'Transfer',
+    ContractInvoke = 'Contract Invoke'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum PrepareTransferTransactionRequestSchemaUrgencyEnum {
+    Normal = 'Normal',
+    Fast = 'Fast',
+    Urgent = 'Urgent'
+}
+
+/**
+ * 
+ * @export
+ * @interface ReadAccountBalanceRequestSchema
+ */
+export interface ReadAccountBalanceRequestSchema {
+    /**
+     * 
+     * @type {object}
+     * @memberof ReadAccountBalanceRequestSchema
+     */
+    'requestDetails'?: object;
     /**
      * 
      * @type {Location}
-     * @memberof PrepareTransferTransactionRequestSchema
+     * @memberof ReadAccountBalanceRequestSchema
      */
     'location'?: Location;
+}
+/**
+ * 
+ * @export
+ * @interface ReadApprovedAccountAllowanceRequestSchema
+ */
+export interface ReadApprovedAccountAllowanceRequestSchema {
+    /**
+     * 
+     * @type {object}
+     * @memberof ReadApprovedAccountAllowanceRequestSchema
+     */
+    'requestDetails'?: object;
+    /**
+     * 
+     * @type {Location}
+     * @memberof ReadApprovedAccountAllowanceRequestSchema
+     */
+    'location'?: Location;
+}
+/**
+ * 
+ * @export
+ * @interface ReadApprovedAccountRequestDetailsSchema
+ */
+export interface ReadApprovedAccountRequestDetailsSchema {
+    /**
+     * Id of the token
+     * @type {string}
+     * @memberof ReadApprovedAccountRequestDetailsSchema
+     */
+    'tokenId'?: string;
+    /**
+     * Name of the token
+     * @type {string}
+     * @memberof ReadApprovedAccountRequestDetailsSchema
+     */
+    'tokenName'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ReadApprovedAccountRequestSchema
+ */
+export interface ReadApprovedAccountRequestSchema {
+    /**
+     * 
+     * @type {ReadApprovedAccountRequestDetailsSchema}
+     * @memberof ReadApprovedAccountRequestSchema
+     */
+    'requestDetails'?: ReadApprovedAccountRequestDetailsSchema;
+    /**
+     * 
+     * @type {Location}
+     * @memberof ReadApprovedAccountRequestSchema
+     */
+    'location'?: Location;
+}
+/**
+ * 
+ * @export
+ * @interface ReadBalanceRequestDetailsSchema
+ */
+export interface ReadBalanceRequestDetailsSchema {
+    /**
+     * Name of the token
+     * @type {string}
+     * @memberof ReadBalanceRequestDetailsSchema
+     */
+    'tokenName'?: string;
+    /**
+     * The unique identifiers of the account
+     * @type {string}
+     * @memberof ReadBalanceRequestDetailsSchema
+     */
+    'accountId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ReadBalanceRequestSchema
+ */
+export interface ReadBalanceRequestSchema {
+    /**
+     * 
+     * @type {ReadBalanceRequestDetailsSchema}
+     * @memberof ReadBalanceRequestSchema
+     */
+    'requestDetails'?: ReadBalanceRequestDetailsSchema;
+    /**
+     * 
+     * @type {Location}
+     * @memberof ReadBalanceRequestSchema
+     */
+    'location'?: Location;
+}
+/**
+ * 
+ * @export
+ * @interface ReadContractOwnerRequestDetailsSchema
+ */
+export interface ReadContractOwnerRequestDetailsSchema {
+    /**
+     * Name of the token
+     * @type {string}
+     * @memberof ReadContractOwnerRequestDetailsSchema
+     */
+    'tokenName'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ReadContractOwnerRequestSchema
+ */
+export interface ReadContractOwnerRequestSchema {
+    /**
+     * 
+     * @type {ReadContractOwnerRequestDetailsSchema}
+     * @memberof ReadContractOwnerRequestSchema
+     */
+    'requestDetails'?: ReadContractOwnerRequestDetailsSchema;
+    /**
+     * 
+     * @type {Location}
+     * @memberof ReadContractOwnerRequestSchema
+     */
+    'location'?: Location;
+}
+/**
+ * 
+ * @export
+ * @interface ReadTokenOwnerRequestDetailsSchema
+ */
+export interface ReadTokenOwnerRequestDetailsSchema {
+    /**
+     * Id of the token
+     * @type {string}
+     * @memberof ReadTokenOwnerRequestDetailsSchema
+     */
+    'tokenId'?: string;
+    /**
+     * Name of the token
+     * @type {string}
+     * @memberof ReadTokenOwnerRequestDetailsSchema
+     */
+    'tokenName'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ReadTokenOwnerRequestSchema
+ */
+export interface ReadTokenOwnerRequestSchema {
+    /**
+     * 
+     * @type {ReadTokenOwnerRequestDetailsSchema}
+     * @memberof ReadTokenOwnerRequestSchema
+     */
+    'requestDetails'?: ReadTokenOwnerRequestDetailsSchema;
+    /**
+     * 
+     * @type {Location}
+     * @memberof ReadTokenOwnerRequestSchema
+     */
+    'location'?: Location;
+}
+/**
+ * The Destination of this transaction.
+ * @export
+ * @interface Receiver
+ */
+export interface Receiver {
     /**
      * 
      * @type {string}
-     * @memberof PrepareTransferTransactionRequestSchema
+     * @memberof Receiver
      */
-    'type'?: string;
+    'accountId'?: string;
+    /**
+     * 
+     * @type {Transfer}
+     * @memberof Receiver
+     */
+    'transfer'?: Transfer;
+}
+/**
+ * 
+ * @export
+ * @interface RemoveSecondaryAccountDetailsSchema
+ */
+export interface RemoveSecondaryAccountDetailsSchema {
+    /**
+     * 
+     * @type {OwnerRemoveSecondarySchema}
+     * @memberof RemoveSecondaryAccountDetailsSchema
+     */
+    'owner'?: OwnerRemoveSecondarySchema;
+    /**
+     * 
+     * @type {AdditionalOwnerRemoveSecondarySchema}
+     * @memberof RemoveSecondaryAccountDetailsSchema
+     */
+    'additionalOwner'?: AdditionalOwnerRemoveSecondarySchema;
+    /**
+     * Any text-based element of the data payload
+     * @type {string}
+     * @memberof RemoveSecondaryAccountDetailsSchema
+     */
+    'message'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoveSecondaryAccountDetailsSchema
+     */
+    'overledgerSigningType'?: string;
 }
 /**
  * 
@@ -1884,12 +3732,6 @@ export interface ResourceMonitoringSubscription {
      * @type {string}
      * @memberof ResourceMonitoringSubscription
      */
-    'callbackUrl'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ResourceMonitoringSubscription
-     */
     'subscriptionId'?: string;
     /**
      * 
@@ -1897,6 +3739,12 @@ export interface ResourceMonitoringSubscription {
      * @memberof ResourceMonitoringSubscription
      */
     'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ResourceMonitoringSubscription
+     */
+    'callbackUrl'?: string;
 }
 /**
  * 
@@ -1955,17 +3803,69 @@ export interface ScriptPubKey {
     'reqSigs'?: string;
 }
 /**
+ * 
+ * @export
+ * @interface SecondaryAccountAdditionalOwnerSchema
+ */
+export interface SecondaryAccountAdditionalOwnerSchema {
+    /**
+     * Unique Identifier of the owner
+     * @type {string}
+     * @memberof SecondaryAccountAdditionalOwnerSchema
+     */
+    'accountId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface SecondaryAccountOwnerSchema
+ */
+export interface SecondaryAccountOwnerSchema {
+    /**
+     * Unique Identifier of the owner
+     * @type {string}
+     * @memberof SecondaryAccountOwnerSchema
+     */
+    'accountId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SecondaryAccountOwnerSchema
+     */
+    'unit'?: string;
+}
+/**
+ * Where is this transaction coming from.
+ * @export
+ * @interface Sender
+ */
+export interface Sender {
+    /**
+     * 
+     * @type {string}
+     * @memberof Sender
+     */
+    'accountId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface SignerAccount
+ */
+export interface SignerAccount {
+    /**
+     * 
+     * @type {string}
+     * @memberof SignerAccount
+     */
+    'accountId'?: string;
+}
+/**
  * Computer program storage in a DLT system where the outcome is recorded on the distributed ledger
  * @export
  * @interface SmartContract
  */
 export interface SmartContract {
-    /**
-     * 
-     * @type {Function}
-     * @memberof SmartContract
-     */
-    'function'?: Function;
     /**
      * 
      * @type {string}
@@ -1986,6 +3886,12 @@ export interface SmartContract {
     'smartContractId'?: string;
     /**
      * 
+     * @type {Function}
+     * @memberof SmartContract
+     */
+    'function'?: Function;
+    /**
+     * 
      * @type {object}
      * @memberof SmartContract
      */
@@ -1999,6 +3905,12 @@ export interface SmartContract {
 export interface SmartContractDestinationSchema {
     /**
      * 
+     * @type {string}
+     * @memberof SmartContractDestinationSchema
+     */
+    'destinationId'?: string;
+    /**
+     * 
      * @type {SmartContractSchema}
      * @memberof SmartContractDestinationSchema
      */
@@ -2009,12 +3921,6 @@ export interface SmartContractDestinationSchema {
      * @memberof SmartContractDestinationSchema
      */
     'payment'?: SmartContractPaymentSchema;
-    /**
-     * 
-     * @type {string}
-     * @memberof SmartContractDestinationSchema
-     */
-    'destinationId'?: string;
 }
 /**
  * 
@@ -2099,16 +4005,16 @@ export interface SmartContractInputParameterSchema {
 export interface SmartContractInvokeRequestDetailsSchema {
     /**
      * 
-     * @type {Array<SmartContractRequestDetailsOrigin>}
-     * @memberof SmartContractInvokeRequestDetailsSchema
-     */
-    'origin'?: Array<SmartContractRequestDetailsOrigin>;
-    /**
-     * 
      * @type {Array<SmartContractDestinationSchema>}
      * @memberof SmartContractInvokeRequestDetailsSchema
      */
     'destination'?: Array<SmartContractDestinationSchema>;
+    /**
+     * 
+     * @type {Array<SmartContractRequestDetailsOrigin>}
+     * @memberof SmartContractInvokeRequestDetailsSchema
+     */
+    'origin'?: Array<SmartContractRequestDetailsOrigin>;
 }
 /**
  * 
@@ -2116,12 +4022,6 @@ export interface SmartContractInvokeRequestDetailsSchema {
  * @interface SmartContractMonitoringDetailsSchema
  */
 export interface SmartContractMonitoringDetailsSchema {
-    /**
-     * 
-     * @type {Array<SmartContractEventHistory>}
-     * @memberof SmartContractMonitoringDetailsSchema
-     */
-    'smartContractEventHistory'?: Array<SmartContractEventHistory>;
     /**
      * 
      * @type {ResourceMonitoringSmartContractEventDetails}
@@ -2134,6 +4034,12 @@ export interface SmartContractMonitoringDetailsSchema {
      * @memberof SmartContractMonitoringDetailsSchema
      */
     'location'?: Location;
+    /**
+     * 
+     * @type {Array<SmartContractEventHistory>}
+     * @memberof SmartContractMonitoringDetailsSchema
+     */
+    'smartContractEventHistory'?: Array<SmartContractEventHistory>;
     /**
      * 
      * @type {string}
@@ -2215,13 +4121,13 @@ export interface SmartContractReadFunctionSchema {
      * @type {string}
      * @memberof SmartContractReadFunctionSchema
      */
-    'functionId'?: string;
+    'name'?: string;
     /**
      * 
      * @type {string}
      * @memberof SmartContractReadFunctionSchema
      */
-    'name'?: string;
+    'functionId'?: string;
     /**
      * 
      * @type {Array<SmartContractInputParameterSchema>}
@@ -2243,16 +4149,16 @@ export interface SmartContractReadFunctionSchema {
 export interface SmartContractReadSchema {
     /**
      * 
-     * @type {SmartContractReadFunctionSchema}
-     * @memberof SmartContractReadSchema
-     */
-    'function'?: SmartContractReadFunctionSchema;
-    /**
-     * 
      * @type {string}
      * @memberof SmartContractReadSchema
      */
     'smartContractId'?: string;
+    /**
+     * 
+     * @type {SmartContractReadFunctionSchema}
+     * @memberof SmartContractReadSchema
+     */
+    'function'?: SmartContractReadFunctionSchema;
 }
 /**
  * 
@@ -2339,16 +4245,41 @@ export interface SmartContractSearchRequestDetails {
 export interface SmartContractSearchSchema {
     /**
      * 
-     * @type {SmartContractSearchFunctionSchema}
-     * @memberof SmartContractSearchSchema
-     */
-    'function'?: SmartContractSearchFunctionSchema;
-    /**
-     * 
      * @type {string}
      * @memberof SmartContractSearchSchema
      */
     'smartContractId'?: string;
+    /**
+     * 
+     * @type {SmartContractSearchFunctionSchema}
+     * @memberof SmartContractSearchSchema
+     */
+    'function'?: SmartContractSearchFunctionSchema;
+}
+/**
+ * 
+ * @export
+ * @interface SmartContractTag
+ */
+export interface SmartContractTag {
+    /**
+     * 
+     * @type {string}
+     * @memberof SmartContractTag
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SmartContractTag
+     */
+    'functionName'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SmartContractTag
+     */
+    'eventName'?: string;
 }
 /**
  * 
@@ -2357,17 +4288,17 @@ export interface SmartContractSearchSchema {
  */
 export interface Status {
     /**
-     * The code of an object
-     * @type {string}
-     * @memberof Status
-     */
-    'code'?: string;
-    /**
      * The description of an object
      * @type {string}
      * @memberof Status
      */
     'description'?: string;
+    /**
+     * The code of an object
+     * @type {string}
+     * @memberof Status
+     */
+    'code'?: string;
     /**
      * The message of an object
      * @type {string}
@@ -2416,102 +4347,102 @@ export interface StatusUpdateSchema {
 /**
  * 
  * @export
- * @interface SubscriptionDeletionResponse
+ * @interface TierFunctionDTO
  */
-export interface SubscriptionDeletionResponse {
-    /**
-     * 
-     * @type {SubscriptionDetails}
-     * @memberof SubscriptionDeletionResponse
-     */
-    'subscriptionDetails'?: SubscriptionDetails;
+export interface TierFunctionDTO {
     /**
      * 
      * @type {string}
-     * @memberof SubscriptionDeletionResponse
+     * @memberof TierFunctionDTO
      */
-    'callbackUrl'?: string;
+    'functionName'?: string;
     /**
      * 
      * @type {string}
-     * @memberof SubscriptionDeletionResponse
+     * @memberof TierFunctionDTO
      */
-    'subscriptionId'?: string;
+    'api'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface TokenReadQRC20Response
+ */
+export interface TokenReadQRC20Response {
+    /**
+     * 
+     * @type {Array<TokenReadResponseDetails>}
+     * @memberof TokenReadQRC20Response
+     */
+    'responseDetails'?: Array<TokenReadResponseDetails>;
+    /**
+     * The ID assigned to a preparation request in Overledger
+     * @type {string}
+     * @memberof TokenReadQRC20Response
+     */
+    'requestId'?: string;
+    /**
+     * 
+     * @type {Location}
+     * @memberof TokenReadQRC20Response
+     */
+    'location'?: Location;
+}
+/**
+ * 
+ * @export
+ * @interface TokenReadQRC721Response
+ */
+export interface TokenReadQRC721Response {
+    /**
+     * Name of the token
+     * @type {string}
+     * @memberof TokenReadQRC721Response
+     */
+    'tokenName'?: string;
+    /**
+     * 
+     * @type {TokenReadResponseDetails}
+     * @memberof TokenReadQRC721Response
+     */
+    'responseDetails'?: TokenReadResponseDetails;
+    /**
+     * 
+     * @type {Location}
+     * @memberof TokenReadQRC721Response
+     */
+    'location'?: Location;
+    /**
+     * The ID assigned to a preparation request in Overledger
+     * @type {string}
+     * @memberof TokenReadQRC721Response
+     */
+    'requestId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface TokenReadResponseDetails
+ */
+export interface TokenReadResponseDetails {
     /**
      * 
      * @type {string}
-     * @memberof SubscriptionDeletionResponse
+     * @memberof TokenReadResponseDetails
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TokenReadResponseDetails
      */
     'type'?: string;
-}
-/**
- * 
- * @export
- * @interface SubscriptionDetails
- */
-export interface SubscriptionDetails {
     /**
      * 
-     * @type {Array<string>}
-     * @memberof SubscriptionDetails
+     * @type {object}
+     * @memberof TokenReadResponseDetails
      */
-    'ids'?: Array<string>;
-    /**
-     * 
-     * @type {Status}
-     * @memberof SubscriptionDetails
-     */
-    'status'?: Status;
-}
-/**
- * 
- * @export
- * @interface SubscriptionDetailsSchema
- */
-export interface SubscriptionDetailsSchema {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof SubscriptionDetailsSchema
-     */
-    'ids'?: Array<string>;
-    /**
-     * 
-     * @type {Status}
-     * @memberof SubscriptionDetailsSchema
-     */
-    'status'?: Status;
-}
-/**
- * 
- * @export
- * @interface SubscriptionUpdateResponse
- */
-export interface SubscriptionUpdateResponse {
-    /**
-     * 
-     * @type {SubscriptionDetails}
-     * @memberof SubscriptionUpdateResponse
-     */
-    'subscriptionDetails'?: SubscriptionDetails;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionUpdateResponse
-     */
-    'callbackUrl'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionUpdateResponse
-     */
-    'subscriptionId'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SubscriptionUpdateResponse
-     */
-    'type'?: string;
+    'value'?: object;
 }
 /**
  * Smallest unit of a work process related to interactions with distributed ledgers
@@ -2613,18 +4544,6 @@ export interface Transfer {
 export interface TransferRequestDetailsSchema {
     /**
      * 
-     * @type {string}
-     * @memberof TransferRequestDetailsSchema
-     */
-    'overledgerSigningType'?: string;
-    /**
-     * 
-     * @type {Array<OriginTransferSchema>}
-     * @memberof TransferRequestDetailsSchema
-     */
-    'origin'?: Array<OriginTransferSchema>;
-    /**
-     * 
      * @type {Array<DestinationTransferSchema>}
      * @memberof TransferRequestDetailsSchema
      */
@@ -2635,6 +4554,18 @@ export interface TransferRequestDetailsSchema {
      * @memberof TransferRequestDetailsSchema
      */
     'message'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TransferRequestDetailsSchema
+     */
+    'overledgerSigningType'?: string;
+    /**
+     * 
+     * @type {Array<OriginTransferSchema>}
+     * @memberof TransferRequestDetailsSchema
+     */
+    'origin'?: Array<OriginTransferSchema>;
 }
 /**
  * 
@@ -2663,6 +4594,12 @@ export interface TransferSchema {
 export interface UTXODestination {
     /**
      * 
+     * @type {string}
+     * @memberof UTXODestination
+     */
+    'destinationId'?: string;
+    /**
+     * 
      * @type {UTXOSmartContract}
      * @memberof UTXODestination
      */
@@ -2673,12 +4610,6 @@ export interface UTXODestination {
      * @memberof UTXODestination
      */
     'payment'?: Payment;
-    /**
-     * 
-     * @type {string}
-     * @memberof UTXODestination
-     */
-    'destinationId'?: string;
 }
 /**
  * 
@@ -2704,38 +4635,19 @@ export interface UTXOSmartContract {
      * @type {string}
      * @memberof UTXOSmartContract
      */
-    'detail'?: string;
+    'type'?: string;
     /**
      * 
      * @type {string}
      * @memberof UTXOSmartContract
      */
-    'type'?: string;
+    'detail'?: string;
     /**
      * 
      * @type {ExtraFields}
      * @memberof UTXOSmartContract
      */
     'extraFields'?: ExtraFields;
-}
-/**
- * 
- * @export
- * @interface UTXOTimestampSchema
- */
-export interface UTXOTimestampSchema {
-    /**
-     * 
-     * @type {string}
-     * @memberof UTXOTimestampSchema
-     */
-    'nano'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UTXOTimestampSchema
-     */
-    'epochSecond'?: string;
 }
 /**
  * 
@@ -2759,19 +4671,19 @@ export interface UpdateAddressMonitoringSchema {
 /**
  * 
  * @export
- * @interface UpdateSubscriptionRequestSchema
+ * @interface UpdateWebhookSubscriptionRequestSchema
  */
-export interface UpdateSubscriptionRequestSchema {
+export interface UpdateWebhookSubscriptionRequestSchema {
     /**
      * 
-     * @type {StatusUpdateSchema}
-     * @memberof UpdateSubscriptionRequestSchema
+     * @type {WebhookStatusUpdateSchema}
+     * @memberof UpdateWebhookSubscriptionRequestSchema
      */
-    'statusUpdate'?: StatusUpdateSchema;
+    'statusUpdate'?: WebhookStatusUpdateSchema;
     /**
      * 
      * @type {string}
-     * @memberof UpdateSubscriptionRequestSchema
+     * @memberof UpdateWebhookSubscriptionRequestSchema
      */
     'callbackUrl'?: string;
 }
@@ -2799,6 +4711,88 @@ export interface Vout {
      * @memberof Vout
      */
     'n'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookStatusUpdateSchema
+ */
+export interface WebhookStatusUpdateSchema {
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookStatusUpdateSchema
+     */
+    'value'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookSubscriptionDetails
+ */
+export interface WebhookSubscriptionDetails {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebhookSubscriptionDetails
+     */
+    'ids'?: Array<string>;
+    /**
+     * 
+     * @type {Status}
+     * @memberof WebhookSubscriptionDetails
+     */
+    'status'?: Status;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookSubscriptionDetailsSchema
+ */
+export interface WebhookSubscriptionDetailsSchema {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WebhookSubscriptionDetailsSchema
+     */
+    'ids'?: Array<string>;
+    /**
+     * 
+     * @type {Status}
+     * @memberof WebhookSubscriptionDetailsSchema
+     */
+    'status'?: Status;
+}
+/**
+ * 
+ * @export
+ * @interface WebhookSubscriptionStatusUpdateResponse
+ */
+export interface WebhookSubscriptionStatusUpdateResponse {
+    /**
+     * 
+     * @type {WebhookSubscriptionDetails}
+     * @memberof WebhookSubscriptionStatusUpdateResponse
+     */
+    'subscriptionDetails'?: WebhookSubscriptionDetails;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSubscriptionStatusUpdateResponse
+     */
+    'callbackUrl'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSubscriptionStatusUpdateResponse
+     */
+    'subscriptionId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WebhookSubscriptionStatusUpdateResponse
+     */
+    'type'?: string;
 }
 
 /**
@@ -2907,7 +4901,7 @@ export const AddressSearchApiAxiosParamCreator = function (configuration?: Confi
             };
         },
         /**
-         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT\'s
+         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
          * @summary Execute a search for an address sequence on a DLT
          * @param {string} authorization 
          * @param {string} requestId 
@@ -3143,7 +5137,7 @@ export const AddressSearchApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT\'s
+         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
          * @summary Execute a search for an address sequence on a DLT
          * @param {string} authorization 
          * @param {string} requestId 
@@ -3227,7 +5221,7 @@ export const AddressSearchApiFactory = function (configuration?: Configuration, 
             return localVarFp.executePreparedSearchRequestAddressBalance(authorization, requestId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT\'s
+         * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
          * @summary Execute a search for an address sequence on a DLT
          * @param {string} authorization 
          * @param {string} requestId 
@@ -3311,7 +5305,7 @@ export class AddressSearchApi extends BaseAPI {
     }
 
     /**
-     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT\'s
+     * Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
      * @summary Execute a search for an address sequence on a DLT
      * @param {string} authorization 
      * @param {string} requestId 
@@ -3676,7 +5670,54 @@ export class BlockSearchApi extends BaseAPI {
 export const CreateAQRC20CreditTransactionApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is \"Create Credit\" which will allow you to make a payment to another specified account.
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executePreparedRequestTransaction: async (authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('executePreparedRequestTransaction', 'authorization', authorization)
+            // verify required parameter 'executeTransactionRequest' is not null or undefined
+            assertParamExists('executePreparedRequestTransaction', 'executeTransactionRequest', executeTransactionRequest)
+            const localVarPath = `/v2/execution/transaction`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(executeTransactionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is “Create Credit” which will allow you to make a payment to another specified account.
          * @summary Prepare a QRC20 token credit transaction for signing
          * @param {string} authorization 
          * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
@@ -3733,7 +5774,19 @@ export const CreateAQRC20CreditTransactionApiFp = function(configuration?: Confi
     const localVarAxiosParamCreator = CreateAQRC20CreditTransactionApiAxiosParamCreator(configuration)
     return {
         /**
-         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is \"Create Credit\" which will allow you to make a payment to another specified account.
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExecuteTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.executePreparedRequestTransaction(authorization, executeTransactionRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is “Create Credit” which will allow you to make a payment to another specified account.
          * @summary Prepare a QRC20 token credit transaction for signing
          * @param {string} authorization 
          * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
@@ -3755,7 +5808,18 @@ export const CreateAQRC20CreditTransactionApiFactory = function (configuration?:
     const localVarFp = CreateAQRC20CreditTransactionApiFp(configuration)
     return {
         /**
-         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is \"Create Credit\" which will allow you to make a payment to another specified account.
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: any): AxiosPromise<ExecuteTransactionResponse> {
+            return localVarFp.executePreparedRequestTransaction(authorization, executeTransactionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is “Create Credit” which will allow you to make a payment to another specified account.
          * @summary Prepare a QRC20 token credit transaction for signing
          * @param {string} authorization 
          * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
@@ -3776,7 +5840,20 @@ export const CreateAQRC20CreditTransactionApiFactory = function (configuration?:
  */
 export class CreateAQRC20CreditTransactionApi extends BaseAPI {
     /**
-     * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is \"Create Credit\" which will allow you to make a payment to another specified account.
+     * Takes a request ID and submits a signed transaction to the requested DLT.
+     * @summary Execute a transaction on a DLT
+     * @param {string} authorization 
+     * @param {ExecuteTransactionRequest} executeTransactionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CreateAQRC20CreditTransactionApi
+     */
+    public executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: AxiosRequestConfig) {
+        return CreateAQRC20CreditTransactionApiFp(this.configuration).executePreparedRequestTransaction(authorization, executeTransactionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is “Create Credit” which will allow you to make a payment to another specified account.
      * @summary Prepare a QRC20 token credit transaction for signing
      * @param {string} authorization 
      * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
@@ -3797,7 +5874,54 @@ export class CreateAQRC20CreditTransactionApi extends BaseAPI {
 export const CreateAQRC20DebitTransactionApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \"Approve Debit\" and \"Create Debit\". The \'Approve Debit\' transaction type will allow you to approve someone to make a pull payment from your account and the \"Create Debit\" transaction type will create the payment to pull the approved amount from an account.
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executePreparedRequestTransaction: async (authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('executePreparedRequestTransaction', 'authorization', authorization)
+            // verify required parameter 'executeTransactionRequest' is not null or undefined
+            assertParamExists('executePreparedRequestTransaction', 'executeTransactionRequest', executeTransactionRequest)
+            const localVarPath = `/v2/execution/transaction`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(executeTransactionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
          * @summary Prepare a QRC20 token debit transaction for signing
          * @param {string} authorization 
          * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
@@ -3854,7 +5978,19 @@ export const CreateAQRC20DebitTransactionApiFp = function(configuration?: Config
     const localVarAxiosParamCreator = CreateAQRC20DebitTransactionApiAxiosParamCreator(configuration)
     return {
         /**
-         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \"Approve Debit\" and \"Create Debit\". The \'Approve Debit\' transaction type will allow you to approve someone to make a pull payment from your account and the \"Create Debit\" transaction type will create the payment to pull the approved amount from an account.
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExecuteTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.executePreparedRequestTransaction(authorization, executeTransactionRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
          * @summary Prepare a QRC20 token debit transaction for signing
          * @param {string} authorization 
          * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
@@ -3876,7 +6012,18 @@ export const CreateAQRC20DebitTransactionApiFactory = function (configuration?: 
     const localVarFp = CreateAQRC20DebitTransactionApiFp(configuration)
     return {
         /**
-         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \"Approve Debit\" and \"Create Debit\". The \'Approve Debit\' transaction type will allow you to approve someone to make a pull payment from your account and the \"Create Debit\" transaction type will create the payment to pull the approved amount from an account.
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: any): AxiosPromise<ExecuteTransactionResponse> {
+            return localVarFp.executePreparedRequestTransaction(authorization, executeTransactionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
          * @summary Prepare a QRC20 token debit transaction for signing
          * @param {string} authorization 
          * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
@@ -3897,7 +6044,20 @@ export const CreateAQRC20DebitTransactionApiFactory = function (configuration?: 
  */
 export class CreateAQRC20DebitTransactionApi extends BaseAPI {
     /**
-     * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \"Approve Debit\" and \"Create Debit\". The \'Approve Debit\' transaction type will allow you to approve someone to make a pull payment from your account and the \"Create Debit\" transaction type will create the payment to pull the approved amount from an account.
+     * Takes a request ID and submits a signed transaction to the requested DLT.
+     * @summary Execute a transaction on a DLT
+     * @param {string} authorization 
+     * @param {ExecuteTransactionRequest} executeTransactionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CreateAQRC20DebitTransactionApi
+     */
+    public executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: AxiosRequestConfig) {
+        return CreateAQRC20DebitTransactionApiFp(this.configuration).executePreparedRequestTransaction(authorization, executeTransactionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
      * @summary Prepare a QRC20 token debit transaction for signing
      * @param {string} authorization 
      * @param {PrepareCreditTransactionRequestSchema} prepareCreditTransactionRequestSchema 
@@ -3912,24 +6072,266 @@ export class CreateAQRC20DebitTransactionApi extends BaseAPI {
 
 
 /**
- * CreateSubscriptionApi - axios parameter creator
+ * CreateAQRC721TokenCollectionTransactionApi - axios parameter creator
  * @export
  */
-export const CreateSubscriptionApiAxiosParamCreator = function (configuration?: Configuration) {
+export const CreateAQRC721TokenCollectionTransactionApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Asset Collect” and “Collect Asset”. The “Approve Asset Collect” transaction type will allow you to approve someone to subsequently make a transaction that takes the NFT from your address into their own. The “Collect Asset” transaction type will create the transaction to pull the approved NFT from an account into the receiving account. Successfully prepared transactions can then be executed using the /execution/transaction API.
+         * @summary Prepare a QRC721 token collection transaction for signing
+         * @param {string} authorization 
+         * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareCollectRequest: async (authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('prepareCollectRequest', 'authorization', authorization)
+            // verify required parameter 'preparePaymentTransactionRequestSchema' is not null or undefined
+            assertParamExists('prepareCollectRequest', 'preparePaymentTransactionRequestSchema', preparePaymentTransactionRequestSchema)
+            const localVarPath = `/v2/tokenise/preparation/transaction/qrc721/collect`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(preparePaymentTransactionRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CreateAQRC721TokenCollectionTransactionApi - functional programming interface
+ * @export
+ */
+export const CreateAQRC721TokenCollectionTransactionApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CreateAQRC721TokenCollectionTransactionApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Asset Collect” and “Collect Asset”. The “Approve Asset Collect” transaction type will allow you to approve someone to subsequently make a transaction that takes the NFT from your address into their own. The “Collect Asset” transaction type will create the transaction to pull the approved NFT from an account into the receiving account. Successfully prepared transactions can then be executed using the /execution/transaction API.
+         * @summary Prepare a QRC721 token collection transaction for signing
+         * @param {string} authorization 
+         * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async prepareCollectRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareCollectRequest(authorization, preparePaymentTransactionRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * CreateAQRC721TokenCollectionTransactionApi - factory interface
+ * @export
+ */
+export const CreateAQRC721TokenCollectionTransactionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CreateAQRC721TokenCollectionTransactionApiFp(configuration)
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Asset Collect” and “Collect Asset”. The “Approve Asset Collect” transaction type will allow you to approve someone to subsequently make a transaction that takes the NFT from your address into their own. The “Collect Asset” transaction type will create the transaction to pull the approved NFT from an account into the receiving account. Successfully prepared transactions can then be executed using the /execution/transaction API.
+         * @summary Prepare a QRC721 token collection transaction for signing
+         * @param {string} authorization 
+         * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareCollectRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: any): AxiosPromise<PrepareTransactionResponse> {
+            return localVarFp.prepareCollectRequest(authorization, preparePaymentTransactionRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * CreateAQRC721TokenCollectionTransactionApi - object-oriented interface
+ * @export
+ * @class CreateAQRC721TokenCollectionTransactionApi
+ * @extends {BaseAPI}
+ */
+export class CreateAQRC721TokenCollectionTransactionApi extends BaseAPI {
+    /**
+     * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Asset Collect” and “Collect Asset”. The “Approve Asset Collect” transaction type will allow you to approve someone to subsequently make a transaction that takes the NFT from your address into their own. The “Collect Asset” transaction type will create the transaction to pull the approved NFT from an account into the receiving account. Successfully prepared transactions can then be executed using the /execution/transaction API.
+     * @summary Prepare a QRC721 token collection transaction for signing
+     * @param {string} authorization 
+     * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CreateAQRC721TokenCollectionTransactionApi
+     */
+    public prepareCollectRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: AxiosRequestConfig) {
+        return CreateAQRC721TokenCollectionTransactionApiFp(this.configuration).prepareCollectRequest(authorization, preparePaymentTransactionRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * CreateAQRC721TransferTransactionApi - axios parameter creator
+ * @export
+ */
+export const CreateAQRC721TransferTransactionApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is “Create Transfer” which will allow you to transfer a QRC721 token to another specified account. Successfully prepared transactions can then be executed using the /execution/transaction API.
+         * @summary Prepare a QRC721 token transfer transaction for signing
+         * @param {string} authorization 
+         * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareTransactionRequest: async (authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('prepareTransactionRequest', 'authorization', authorization)
+            // verify required parameter 'preparePaymentTransactionRequestSchema' is not null or undefined
+            assertParamExists('prepareTransactionRequest', 'preparePaymentTransactionRequestSchema', preparePaymentTransactionRequestSchema)
+            const localVarPath = `/v2/tokenise/preparation/transaction/qrc721/transfer`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(preparePaymentTransactionRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CreateAQRC721TransferTransactionApi - functional programming interface
+ * @export
+ */
+export const CreateAQRC721TransferTransactionApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CreateAQRC721TransferTransactionApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is “Create Transfer” which will allow you to transfer a QRC721 token to another specified account. Successfully prepared transactions can then be executed using the /execution/transaction API.
+         * @summary Prepare a QRC721 token transfer transaction for signing
+         * @param {string} authorization 
+         * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * CreateAQRC721TransferTransactionApi - factory interface
+ * @export
+ */
+export const CreateAQRC721TransferTransactionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CreateAQRC721TransferTransactionApiFp(configuration)
+    return {
+        /**
+         * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is “Create Transfer” which will allow you to transfer a QRC721 token to another specified account. Successfully prepared transactions can then be executed using the /execution/transaction API.
+         * @summary Prepare a QRC721 token transfer transaction for signing
+         * @param {string} authorization 
+         * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: any): AxiosPromise<PrepareTransactionResponse> {
+            return localVarFp.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * CreateAQRC721TransferTransactionApi - object-oriented interface
+ * @export
+ * @class CreateAQRC721TransferTransactionApi
+ * @extends {BaseAPI}
+ */
+export class CreateAQRC721TransferTransactionApi extends BaseAPI {
+    /**
+     * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction type is “Create Transfer” which will allow you to transfer a QRC721 token to another specified account. Successfully prepared transactions can then be executed using the /execution/transaction API.
+     * @summary Prepare a QRC721 token transfer transaction for signing
+     * @param {string} authorization 
+     * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CreateAQRC721TransferTransactionApi
+     */
+    public prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: AxiosRequestConfig) {
+        return CreateAQRC721TransferTransactionApiFp(this.configuration).prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * CreateASubscriptionApi - axios parameter creator
+ * @export
+ */
+export const CreateASubscriptionApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * Creates a subscription to receive status updates for a transaction created in Overledger, or to receive updates each time a transaction happens on the requested DLT for a resource (e.g. address) being monitored, to the requested callback URL.  Subscriptions are created using an Overledger Transaction ID or Resource Monitoring ID
          * @summary Create a subscription for a transaction or monitored resource 
          * @param {string} authorization 
-         * @param {CreateSubscriptionRequestSchema} createSubscriptionRequestSchema 
+         * @param {CreateWebhookSubscriptionRequestSchema} createWebhookSubscriptionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscription: async (authorization: string, createSubscriptionRequestSchema: CreateSubscriptionRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        subscription: async (authorization: string, createWebhookSubscriptionRequestSchema: CreateWebhookSubscriptionRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('subscription', 'authorization', authorization)
-            // verify required parameter 'createSubscriptionRequestSchema' is not null or undefined
-            assertParamExists('subscription', 'createSubscriptionRequestSchema', createSubscriptionRequestSchema)
+            // verify required parameter 'createWebhookSubscriptionRequestSchema' is not null or undefined
+            assertParamExists('subscription', 'createWebhookSubscriptionRequestSchema', createWebhookSubscriptionRequestSchema)
             const localVarPath = `/v2/webhook/subscription`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3957,7 +6359,7 @@ export const CreateSubscriptionApiAxiosParamCreator = function (configuration?: 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createSubscriptionRequestSchema, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createWebhookSubscriptionRequestSchema, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3968,75 +6370,75 @@ export const CreateSubscriptionApiAxiosParamCreator = function (configuration?: 
 };
 
 /**
- * CreateSubscriptionApi - functional programming interface
+ * CreateASubscriptionApi - functional programming interface
  * @export
  */
-export const CreateSubscriptionApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = CreateSubscriptionApiAxiosParamCreator(configuration)
+export const CreateASubscriptionApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CreateASubscriptionApiAxiosParamCreator(configuration)
     return {
         /**
          * Creates a subscription to receive status updates for a transaction created in Overledger, or to receive updates each time a transaction happens on the requested DLT for a resource (e.g. address) being monitored, to the requested callback URL.  Subscriptions are created using an Overledger Transaction ID or Resource Monitoring ID
          * @summary Create a subscription for a transaction or monitored resource 
          * @param {string} authorization 
-         * @param {CreateSubscriptionRequestSchema} createSubscriptionRequestSchema 
+         * @param {CreateWebhookSubscriptionRequestSchema} createWebhookSubscriptionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async subscription(authorization: string, createSubscriptionRequestSchema: CreateSubscriptionRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CreateSubscriptionResponseSchema>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.subscription(authorization, createSubscriptionRequestSchema, options);
+        async subscription(authorization: string, createWebhookSubscriptionRequestSchema: CreateWebhookSubscriptionRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CreateWebhookSubscriptionResponseSchema>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscription(authorization, createWebhookSubscriptionRequestSchema, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
 
 /**
- * CreateSubscriptionApi - factory interface
+ * CreateASubscriptionApi - factory interface
  * @export
  */
-export const CreateSubscriptionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = CreateSubscriptionApiFp(configuration)
+export const CreateASubscriptionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CreateASubscriptionApiFp(configuration)
     return {
         /**
          * Creates a subscription to receive status updates for a transaction created in Overledger, or to receive updates each time a transaction happens on the requested DLT for a resource (e.g. address) being monitored, to the requested callback URL.  Subscriptions are created using an Overledger Transaction ID or Resource Monitoring ID
          * @summary Create a subscription for a transaction or monitored resource 
          * @param {string} authorization 
-         * @param {CreateSubscriptionRequestSchema} createSubscriptionRequestSchema 
+         * @param {CreateWebhookSubscriptionRequestSchema} createWebhookSubscriptionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        subscription(authorization: string, createSubscriptionRequestSchema: CreateSubscriptionRequestSchema, options?: any): AxiosPromise<Array<CreateSubscriptionResponseSchema>> {
-            return localVarFp.subscription(authorization, createSubscriptionRequestSchema, options).then((request) => request(axios, basePath));
+        subscription(authorization: string, createWebhookSubscriptionRequestSchema: CreateWebhookSubscriptionRequestSchema, options?: any): AxiosPromise<Array<CreateWebhookSubscriptionResponseSchema>> {
+            return localVarFp.subscription(authorization, createWebhookSubscriptionRequestSchema, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * CreateSubscriptionApi - object-oriented interface
+ * CreateASubscriptionApi - object-oriented interface
  * @export
- * @class CreateSubscriptionApi
+ * @class CreateASubscriptionApi
  * @extends {BaseAPI}
  */
-export class CreateSubscriptionApi extends BaseAPI {
+export class CreateASubscriptionApi extends BaseAPI {
     /**
      * Creates a subscription to receive status updates for a transaction created in Overledger, or to receive updates each time a transaction happens on the requested DLT for a resource (e.g. address) being monitored, to the requested callback URL.  Subscriptions are created using an Overledger Transaction ID or Resource Monitoring ID
      * @summary Create a subscription for a transaction or monitored resource 
      * @param {string} authorization 
-     * @param {CreateSubscriptionRequestSchema} createSubscriptionRequestSchema 
+     * @param {CreateWebhookSubscriptionRequestSchema} createWebhookSubscriptionRequestSchema 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CreateSubscriptionApi
+     * @memberof CreateASubscriptionApi
      */
-    public subscription(authorization: string, createSubscriptionRequestSchema: CreateSubscriptionRequestSchema, options?: AxiosRequestConfig) {
-        return CreateSubscriptionApiFp(this.configuration).subscription(authorization, createSubscriptionRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    public subscription(authorization: string, createWebhookSubscriptionRequestSchema: CreateWebhookSubscriptionRequestSchema, options?: AxiosRequestConfig) {
+        return CreateASubscriptionApiFp(this.configuration).subscription(authorization, createWebhookSubscriptionRequestSchema, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
 
 /**
- * CreateTransactionApi - axios parameter creator
+ * CreateATransactionApi - axios parameter creator
  * @export
  */
-export const CreateTransactionApiAxiosParamCreator = function (configuration?: Configuration) {
+export const CreateATransactionApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * Takes a request ID and submits a signed native transaction to the requested DLT
@@ -4087,7 +6489,7 @@ export const CreateTransactionApiAxiosParamCreator = function (configuration?: C
         },
         /**
          * Takes a request ID and submits a signed transaction to the requested DLT.
-         * @summary Execute a transaction on the DLT
+         * @summary Execute a transaction on a DLT
          * @param {string} authorization 
          * @param {ExecuteTransactionRequest} executeTransactionRequest 
          * @param {*} [options] Override http request option.
@@ -4180,18 +6582,18 @@ export const CreateTransactionApiAxiosParamCreator = function (configuration?: C
             };
         },
         /**
-         * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \"Payment\" (to send payments) and \"Smart Contract Invoke\" (to invoke arbitrary smart contract functions).   Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
+         * The first step of submitting a transaction to Overledger requires preparing the transaction for signing. This API transforms a transaction request into a payload that can be signed. It returns a request ID that is used to execute the transaction after it is signed.  There are three types of transactions supported: * Payment     * Send payments in the native token of the network     * Send payments with ERC20 fungible tokens supported by Overledger on Ethereum-compatible networks. To help you test ERC20 functionality we have deployed the QNT token on the Ethereum-based test networks we support. You can check the request samples to view an example of a Smart Contract Invoke which requests test QNT from our faucet contracts. Please note that the faucet Smart Contract ID is different for all the test networks. Here is a list of faucet ids per network:         * Ethereum Goerli Testnet: 0x8cFCC46A00d6E9e86aacFa74AC5f74e90Fb6994c  * Transfer     * Transfer ownership of ERC721 non-fungible tokens supported by Overledger on Ethereum * Contract Invoke     * Call any function on any contract deployed on Ethereum, Polygon, XDC Network or our Hyperledger Fabric Sandbox
          * @summary Prepare a DLT transaction for signing
          * @param {string} authorization 
          * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        prepareTransactionRequest: async (authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        prepareTransactionRequest1: async (authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
-            assertParamExists('prepareTransactionRequest', 'authorization', authorization)
+            assertParamExists('prepareTransactionRequest1', 'authorization', authorization)
             // verify required parameter 'preparePaymentTransactionRequestSchema' is not null or undefined
-            assertParamExists('prepareTransactionRequest', 'preparePaymentTransactionRequestSchema', preparePaymentTransactionRequestSchema)
+            assertParamExists('prepareTransactionRequest1', 'preparePaymentTransactionRequestSchema', preparePaymentTransactionRequestSchema)
             const localVarPath = `/v2/preparation/transaction`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4230,11 +6632,11 @@ export const CreateTransactionApiAxiosParamCreator = function (configuration?: C
 };
 
 /**
- * CreateTransactionApi - functional programming interface
+ * CreateATransactionApi - functional programming interface
  * @export
  */
-export const CreateTransactionApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = CreateTransactionApiAxiosParamCreator(configuration)
+export const CreateATransactionApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CreateATransactionApiAxiosParamCreator(configuration)
     return {
         /**
          * Takes a request ID and submits a signed native transaction to the requested DLT
@@ -4250,7 +6652,7 @@ export const CreateTransactionApiFp = function(configuration?: Configuration) {
         },
         /**
          * Takes a request ID and submits a signed transaction to the requested DLT.
-         * @summary Execute a transaction on the DLT
+         * @summary Execute a transaction on a DLT
          * @param {string} authorization 
          * @param {ExecuteTransactionRequest} executeTransactionRequest 
          * @param {*} [options] Override http request option.
@@ -4273,26 +6675,26 @@ export const CreateTransactionApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \"Payment\" (to send payments) and \"Smart Contract Invoke\" (to invoke arbitrary smart contract functions).   Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
+         * The first step of submitting a transaction to Overledger requires preparing the transaction for signing. This API transforms a transaction request into a payload that can be signed. It returns a request ID that is used to execute the transaction after it is signed.  There are three types of transactions supported: * Payment     * Send payments in the native token of the network     * Send payments with ERC20 fungible tokens supported by Overledger on Ethereum-compatible networks. To help you test ERC20 functionality we have deployed the QNT token on the Ethereum-based test networks we support. You can check the request samples to view an example of a Smart Contract Invoke which requests test QNT from our faucet contracts. Please note that the faucet Smart Contract ID is different for all the test networks. Here is a list of faucet ids per network:         * Ethereum Goerli Testnet: 0x8cFCC46A00d6E9e86aacFa74AC5f74e90Fb6994c  * Transfer     * Transfer ownership of ERC721 non-fungible tokens supported by Overledger on Ethereum * Contract Invoke     * Call any function on any contract deployed on Ethereum, Polygon, XDC Network or our Hyperledger Fabric Sandbox
          * @summary Prepare a DLT transaction for signing
          * @param {string} authorization 
          * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareTransactionResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema, options);
+        async prepareTransactionRequest1(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareTransactionRequest1(authorization, preparePaymentTransactionRequestSchema, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
 
 /**
- * CreateTransactionApi - factory interface
+ * CreateATransactionApi - factory interface
  * @export
  */
-export const CreateTransactionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = CreateTransactionApiFp(configuration)
+export const CreateATransactionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CreateATransactionApiFp(configuration)
     return {
         /**
          * Takes a request ID and submits a signed native transaction to the requested DLT
@@ -4307,7 +6709,7 @@ export const CreateTransactionApiFactory = function (configuration?: Configurati
         },
         /**
          * Takes a request ID and submits a signed transaction to the requested DLT.
-         * @summary Execute a transaction on the DLT
+         * @summary Execute a transaction on a DLT
          * @param {string} authorization 
          * @param {ExecuteTransactionRequest} executeTransactionRequest 
          * @param {*} [options] Override http request option.
@@ -4328,26 +6730,26 @@ export const CreateTransactionApiFactory = function (configuration?: Configurati
             return localVarFp.prepareNativeTransaction(authorization, prepareNativeTransactionRequestSchema, options).then((request) => request(axios, basePath));
         },
         /**
-         * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \"Payment\" (to send payments) and \"Smart Contract Invoke\" (to invoke arbitrary smart contract functions).   Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
+         * The first step of submitting a transaction to Overledger requires preparing the transaction for signing. This API transforms a transaction request into a payload that can be signed. It returns a request ID that is used to execute the transaction after it is signed.  There are three types of transactions supported: * Payment     * Send payments in the native token of the network     * Send payments with ERC20 fungible tokens supported by Overledger on Ethereum-compatible networks. To help you test ERC20 functionality we have deployed the QNT token on the Ethereum-based test networks we support. You can check the request samples to view an example of a Smart Contract Invoke which requests test QNT from our faucet contracts. Please note that the faucet Smart Contract ID is different for all the test networks. Here is a list of faucet ids per network:         * Ethereum Goerli Testnet: 0x8cFCC46A00d6E9e86aacFa74AC5f74e90Fb6994c  * Transfer     * Transfer ownership of ERC721 non-fungible tokens supported by Overledger on Ethereum * Contract Invoke     * Call any function on any contract deployed on Ethereum, Polygon, XDC Network or our Hyperledger Fabric Sandbox
          * @summary Prepare a DLT transaction for signing
          * @param {string} authorization 
          * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: any): AxiosPromise<PrepareTransactionResponse> {
-            return localVarFp.prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema, options).then((request) => request(axios, basePath));
+        prepareTransactionRequest1(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: any): AxiosPromise<PrepareTransactionResponse> {
+            return localVarFp.prepareTransactionRequest1(authorization, preparePaymentTransactionRequestSchema, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * CreateTransactionApi - object-oriented interface
+ * CreateATransactionApi - object-oriented interface
  * @export
- * @class CreateTransactionApi
+ * @class CreateATransactionApi
  * @extends {BaseAPI}
  */
-export class CreateTransactionApi extends BaseAPI {
+export class CreateATransactionApi extends BaseAPI {
     /**
      * Takes a request ID and submits a signed native transaction to the requested DLT
      * @summary Execute a native transaction on the DLT
@@ -4355,23 +6757,23 @@ export class CreateTransactionApi extends BaseAPI {
      * @param {ExecuteTransactionRequest} executeTransactionRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CreateTransactionApi
+     * @memberof CreateATransactionApi
      */
     public executePreparedRequestNativeTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: AxiosRequestConfig) {
-        return CreateTransactionApiFp(this.configuration).executePreparedRequestNativeTransaction(authorization, executeTransactionRequest, options).then((request) => request(this.axios, this.basePath));
+        return CreateATransactionApiFp(this.configuration).executePreparedRequestNativeTransaction(authorization, executeTransactionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Takes a request ID and submits a signed transaction to the requested DLT.
-     * @summary Execute a transaction on the DLT
+     * @summary Execute a transaction on a DLT
      * @param {string} authorization 
      * @param {ExecuteTransactionRequest} executeTransactionRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CreateTransactionApi
+     * @memberof CreateATransactionApi
      */
     public executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: AxiosRequestConfig) {
-        return CreateTransactionApiFp(this.configuration).executePreparedRequestTransaction(authorization, executeTransactionRequest, options).then((request) => request(this.axios, this.basePath));
+        return CreateATransactionApiFp(this.configuration).executePreparedRequestTransaction(authorization, executeTransactionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4381,32 +6783,360 @@ export class CreateTransactionApi extends BaseAPI {
      * @param {PrepareNativeTransactionRequestSchema} prepareNativeTransactionRequestSchema 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CreateTransactionApi
+     * @memberof CreateATransactionApi
      */
     public prepareNativeTransaction(authorization: string, prepareNativeTransactionRequestSchema: PrepareNativeTransactionRequestSchema, options?: AxiosRequestConfig) {
-        return CreateTransactionApiFp(this.configuration).prepareNativeTransaction(authorization, prepareNativeTransactionRequestSchema, options).then((request) => request(this.axios, this.basePath));
+        return CreateATransactionApiFp(this.configuration).prepareNativeTransaction(authorization, prepareNativeTransactionRequestSchema, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Transforms a transaction request into a payload ready for signing for the requested DLT and returns a request ID for executing. Supported transaction types in this release are \"Payment\" (to send payments) and \"Smart Contract Invoke\" (to invoke arbitrary smart contract functions).   Warning: Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail.
+     * The first step of submitting a transaction to Overledger requires preparing the transaction for signing. This API transforms a transaction request into a payload that can be signed. It returns a request ID that is used to execute the transaction after it is signed.  There are three types of transactions supported: * Payment     * Send payments in the native token of the network     * Send payments with ERC20 fungible tokens supported by Overledger on Ethereum-compatible networks. To help you test ERC20 functionality we have deployed the QNT token on the Ethereum-based test networks we support. You can check the request samples to view an example of a Smart Contract Invoke which requests test QNT from our faucet contracts. Please note that the faucet Smart Contract ID is different for all the test networks. Here is a list of faucet ids per network:         * Ethereum Goerli Testnet: 0x8cFCC46A00d6E9e86aacFa74AC5f74e90Fb6994c  * Transfer     * Transfer ownership of ERC721 non-fungible tokens supported by Overledger on Ethereum * Contract Invoke     * Call any function on any contract deployed on Ethereum, Polygon, XDC Network or our Hyperledger Fabric Sandbox
      * @summary Prepare a DLT transaction for signing
      * @param {string} authorization 
      * @param {PreparePaymentTransactionRequestSchema} preparePaymentTransactionRequestSchema 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CreateTransactionApi
+     * @memberof CreateATransactionApi
      */
-    public prepareTransactionRequest(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: AxiosRequestConfig) {
-        return CreateTransactionApiFp(this.configuration).prepareTransactionRequest(authorization, preparePaymentTransactionRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    public prepareTransactionRequest1(authorization: string, preparePaymentTransactionRequestSchema: PreparePaymentTransactionRequestSchema, options?: AxiosRequestConfig) {
+        return CreateATransactionApiFp(this.configuration).prepareTransactionRequest1(authorization, preparePaymentTransactionRequestSchema, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
 
 /**
- * MDappTransactionQueryApi - axios parameter creator
+ * CreateAndPayFromAQRC20SharedAccountApi - axios parameter creator
  * @export
  */
-export const MDappTransactionQueryApiAxiosParamCreator = function (configuration?: Configuration) {
+export const CreateAndPayFromAQRC20SharedAccountApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executePreparedRequestTransaction: async (authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('executePreparedRequestTransaction', 'authorization', authorization)
+            // verify required parameter 'executeTransactionRequest' is not null or undefined
+            assertParamExists('executePreparedRequestTransaction', 'executeTransactionRequest', executeTransactionRequest)
+            const localVarPath = `/v2/execution/transaction`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(executeTransactionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Transforms a transaction request for a QRC20 shared account to be signed and returns a request ID for executing. The supported types for this API are “Add Account”, which will add someone as an operator of your account so that they can make payments on your behalf, \"Remove Account\" which will remove someone as an operator of your account so that they can no longer make payments on your behalf and “Create Credit” for account operators to make a QRC20 token payment on behalf of the account owner. Successfully prepared transactions can then be executed using the /execution/transaction API
+         * @summary Prepare a request for a QRC20 shared account
+         * @param {string} authorization 
+         * @param {PrepareAddSecondaryAccountRequestSchema} prepareAddSecondaryAccountRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareSecondaryOwnerRequest: async (authorization: string, prepareAddSecondaryAccountRequestSchema: PrepareAddSecondaryAccountRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('prepareSecondaryOwnerRequest', 'authorization', authorization)
+            // verify required parameter 'prepareAddSecondaryAccountRequestSchema' is not null or undefined
+            assertParamExists('prepareSecondaryOwnerRequest', 'prepareAddSecondaryAccountRequestSchema', prepareAddSecondaryAccountRequestSchema)
+            const localVarPath = `/v2/preparation/secondaryaccountowner`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareAddSecondaryAccountRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CreateAndPayFromAQRC20SharedAccountApi - functional programming interface
+ * @export
+ */
+export const CreateAndPayFromAQRC20SharedAccountApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = CreateAndPayFromAQRC20SharedAccountApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExecuteTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.executePreparedRequestTransaction(authorization, executeTransactionRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Transforms a transaction request for a QRC20 shared account to be signed and returns a request ID for executing. The supported types for this API are “Add Account”, which will add someone as an operator of your account so that they can make payments on your behalf, \"Remove Account\" which will remove someone as an operator of your account so that they can no longer make payments on your behalf and “Create Credit” for account operators to make a QRC20 token payment on behalf of the account owner. Successfully prepared transactions can then be executed using the /execution/transaction API
+         * @summary Prepare a request for a QRC20 shared account
+         * @param {string} authorization 
+         * @param {PrepareAddSecondaryAccountRequestSchema} prepareAddSecondaryAccountRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async prepareSecondaryOwnerRequest(authorization: string, prepareAddSecondaryAccountRequestSchema: PrepareAddSecondaryAccountRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareSecondaryOwnerRequest(authorization, prepareAddSecondaryAccountRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * CreateAndPayFromAQRC20SharedAccountApi - factory interface
+ * @export
+ */
+export const CreateAndPayFromAQRC20SharedAccountApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = CreateAndPayFromAQRC20SharedAccountApiFp(configuration)
+    return {
+        /**
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: any): AxiosPromise<ExecuteTransactionResponse> {
+            return localVarFp.executePreparedRequestTransaction(authorization, executeTransactionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Transforms a transaction request for a QRC20 shared account to be signed and returns a request ID for executing. The supported types for this API are “Add Account”, which will add someone as an operator of your account so that they can make payments on your behalf, \"Remove Account\" which will remove someone as an operator of your account so that they can no longer make payments on your behalf and “Create Credit” for account operators to make a QRC20 token payment on behalf of the account owner. Successfully prepared transactions can then be executed using the /execution/transaction API
+         * @summary Prepare a request for a QRC20 shared account
+         * @param {string} authorization 
+         * @param {PrepareAddSecondaryAccountRequestSchema} prepareAddSecondaryAccountRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareSecondaryOwnerRequest(authorization: string, prepareAddSecondaryAccountRequestSchema: PrepareAddSecondaryAccountRequestSchema, options?: any): AxiosPromise<PrepareTransactionResponse> {
+            return localVarFp.prepareSecondaryOwnerRequest(authorization, prepareAddSecondaryAccountRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * CreateAndPayFromAQRC20SharedAccountApi - object-oriented interface
+ * @export
+ * @class CreateAndPayFromAQRC20SharedAccountApi
+ * @extends {BaseAPI}
+ */
+export class CreateAndPayFromAQRC20SharedAccountApi extends BaseAPI {
+    /**
+     * Takes a request ID and submits a signed transaction to the requested DLT.
+     * @summary Execute a transaction on a DLT
+     * @param {string} authorization 
+     * @param {ExecuteTransactionRequest} executeTransactionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CreateAndPayFromAQRC20SharedAccountApi
+     */
+    public executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: AxiosRequestConfig) {
+        return CreateAndPayFromAQRC20SharedAccountApiFp(this.configuration).executePreparedRequestTransaction(authorization, executeTransactionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Transforms a transaction request for a QRC20 shared account to be signed and returns a request ID for executing. The supported types for this API are “Add Account”, which will add someone as an operator of your account so that they can make payments on your behalf, \"Remove Account\" which will remove someone as an operator of your account so that they can no longer make payments on your behalf and “Create Credit” for account operators to make a QRC20 token payment on behalf of the account owner. Successfully prepared transactions can then be executed using the /execution/transaction API
+     * @summary Prepare a request for a QRC20 shared account
+     * @param {string} authorization 
+     * @param {PrepareAddSecondaryAccountRequestSchema} prepareAddSecondaryAccountRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CreateAndPayFromAQRC20SharedAccountApi
+     */
+    public prepareSecondaryOwnerRequest(authorization: string, prepareAddSecondaryAccountRequestSchema: PrepareAddSecondaryAccountRequestSchema, options?: AxiosRequestConfig) {
+        return CreateAndPayFromAQRC20SharedAccountApiFp(this.configuration).prepareSecondaryOwnerRequest(authorization, prepareAddSecondaryAccountRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * FungibleTokenControllerApi - axios parameter creator
+ * @export
+ */
+export const FungibleTokenControllerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} technology 
+         * @param {string} network 
+         * @param {string} unit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getToken: async (technology: string, network: string, unit: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'technology' is not null or undefined
+            assertParamExists('getToken', 'technology', technology)
+            // verify required parameter 'network' is not null or undefined
+            assertParamExists('getToken', 'network', network)
+            // verify required parameter 'unit' is not null or undefined
+            assertParamExists('getToken', 'unit', unit)
+            const localVarPath = `/v2/token/fungible`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (technology !== undefined) {
+                localVarQueryParameter['technology'] = technology;
+            }
+
+            if (network !== undefined) {
+                localVarQueryParameter['network'] = network;
+            }
+
+            if (unit !== undefined) {
+                localVarQueryParameter['unit'] = unit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * FungibleTokenControllerApi - functional programming interface
+ * @export
+ */
+export const FungibleTokenControllerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = FungibleTokenControllerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {string} technology 
+         * @param {string} network 
+         * @param {string} unit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getToken(technology: string, network: string, unit: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Erc20DTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getToken(technology, network, unit, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * FungibleTokenControllerApi - factory interface
+ * @export
+ */
+export const FungibleTokenControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = FungibleTokenControllerApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {string} technology 
+         * @param {string} network 
+         * @param {string} unit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getToken(technology: string, network: string, unit: string, options?: any): AxiosPromise<Erc20DTO> {
+            return localVarFp.getToken(technology, network, unit, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * FungibleTokenControllerApi - object-oriented interface
+ * @export
+ * @class FungibleTokenControllerApi
+ * @extends {BaseAPI}
+ */
+export class FungibleTokenControllerApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} technology 
+     * @param {string} network 
+     * @param {string} unit 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FungibleTokenControllerApi
+     */
+    public getToken(technology: string, network: string, unit: string, options?: AxiosRequestConfig) {
+        return FungibleTokenControllerApiFp(this.configuration).getToken(technology, network, unit, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * MDAppTransactionQueryApi - axios parameter creator
+ * @export
+ */
+export const MDAppTransactionQueryApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * Returns information for a specific transaction based on a given Overledger Transaction ID. Does not require a Prepare step, as this data is held within Overledger, rather than on the DLT
@@ -4508,11 +7238,11 @@ export const MDappTransactionQueryApiAxiosParamCreator = function (configuration
 };
 
 /**
- * MDappTransactionQueryApi - functional programming interface
+ * MDAppTransactionQueryApi - functional programming interface
  * @export
  */
-export const MDappTransactionQueryApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = MDappTransactionQueryApiAxiosParamCreator(configuration)
+export const MDAppTransactionQueryApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MDAppTransactionQueryApiAxiosParamCreator(configuration)
     return {
         /**
          * Returns information for a specific transaction based on a given Overledger Transaction ID. Does not require a Prepare step, as this data is held within Overledger, rather than on the DLT
@@ -4543,11 +7273,11 @@ export const MDappTransactionQueryApiFp = function(configuration?: Configuration
 };
 
 /**
- * MDappTransactionQueryApi - factory interface
+ * MDAppTransactionQueryApi - factory interface
  * @export
  */
-export const MDappTransactionQueryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = MDappTransactionQueryApiFp(configuration)
+export const MDAppTransactionQueryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MDAppTransactionQueryApiFp(configuration)
     return {
         /**
          * Returns information for a specific transaction based on a given Overledger Transaction ID. Does not require a Prepare step, as this data is held within Overledger, rather than on the DLT
@@ -4576,12 +7306,12 @@ export const MDappTransactionQueryApiFactory = function (configuration?: Configu
 };
 
 /**
- * MDappTransactionQueryApi - object-oriented interface
+ * MDAppTransactionQueryApi - object-oriented interface
  * @export
- * @class MDappTransactionQueryApi
+ * @class MDAppTransactionQueryApi
  * @extends {BaseAPI}
  */
-export class MDappTransactionQueryApi extends BaseAPI {
+export class MDAppTransactionQueryApi extends BaseAPI {
     /**
      * Returns information for a specific transaction based on a given Overledger Transaction ID. Does not require a Prepare step, as this data is held within Overledger, rather than on the DLT
      * @summary Retrieve information about a specific transaction created by your application in Overledger
@@ -4589,10 +7319,10 @@ export class MDappTransactionQueryApi extends BaseAPI {
      * @param {string} overledgertransactionid 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MDappTransactionQueryApi
+     * @memberof MDAppTransactionQueryApi
      */
     public getOvlTransactionByTxId(authorization: string, overledgertransactionid: string, options?: AxiosRequestConfig) {
-        return MDappTransactionQueryApiFp(this.configuration).getOvlTransactionByTxId(authorization, overledgertransactionid, options).then((request) => request(this.axios, this.basePath));
+        return MDAppTransactionQueryApiFp(this.configuration).getOvlTransactionByTxId(authorization, overledgertransactionid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4603,10 +7333,10 @@ export class MDappTransactionQueryApi extends BaseAPI {
      * @param {number} [length] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MDappTransactionQueryApi
+     * @memberof MDAppTransactionQueryApi
      */
     public getOvlTransactionsByClientId(authorization: string, offset?: number, length?: number, options?: AxiosRequestConfig) {
-        return MDappTransactionQueryApiFp(this.configuration).getOvlTransactionsByClientId(authorization, offset, length, options).then((request) => request(this.axios, this.basePath));
+        return MDAppTransactionQueryApiFp(this.configuration).getOvlTransactionsByClientId(authorization, offset, length, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -5376,10 +8106,335 @@ export class ManageMonitoredResourcesApi extends BaseAPI {
 
 
 /**
- * ManageSubscriptionApi - axios parameter creator
+ * ManageQRC20TokenSupplyApi - axios parameter creator
  * @export
  */
-export const ManageSubscriptionApiAxiosParamCreator = function (configuration?: Configuration) {
+export const ManageQRC20TokenSupplyApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executePreparedRequestTransaction: async (authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('executePreparedRequestTransaction', 'authorization', authorization)
+            // verify required parameter 'executeTransactionRequest' is not null or undefined
+            assertParamExists('executePreparedRequestTransaction', 'executeTransactionRequest', executeTransactionRequest)
+            const localVarPath = `/v2/execution/transaction`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(executeTransactionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Transforms a transaction request to manage QRC20 token supply ready to be signed and returns a request ID for executing. The supported types for this API are “Mint Tokens”, which will allow you to issue more tokens for your QRC20 token, and \"Burn Tokens\" which will allow you to destroy your QRC20 tokens. Successfully prepared transactions can then be executed using the /execution/transaction API.
+         * @summary Prepare a request to manage QRC20 token supply
+         * @param {string} authorization 
+         * @param {PrepareMintTransactionRequestSchemaQrc20} prepareMintTransactionRequestSchemaQrc20 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareSupplyRequest1: async (authorization: string, prepareMintTransactionRequestSchemaQrc20: PrepareMintTransactionRequestSchemaQrc20, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('prepareSupplyRequest1', 'authorization', authorization)
+            // verify required parameter 'prepareMintTransactionRequestSchemaQrc20' is not null or undefined
+            assertParamExists('prepareSupplyRequest1', 'prepareMintTransactionRequestSchemaQrc20', prepareMintTransactionRequestSchemaQrc20)
+            const localVarPath = `/v2/preparation/supply`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareMintTransactionRequestSchemaQrc20, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ManageQRC20TokenSupplyApi - functional programming interface
+ * @export
+ */
+export const ManageQRC20TokenSupplyApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ManageQRC20TokenSupplyApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExecuteTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.executePreparedRequestTransaction(authorization, executeTransactionRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Transforms a transaction request to manage QRC20 token supply ready to be signed and returns a request ID for executing. The supported types for this API are “Mint Tokens”, which will allow you to issue more tokens for your QRC20 token, and \"Burn Tokens\" which will allow you to destroy your QRC20 tokens. Successfully prepared transactions can then be executed using the /execution/transaction API.
+         * @summary Prepare a request to manage QRC20 token supply
+         * @param {string} authorization 
+         * @param {PrepareMintTransactionRequestSchemaQrc20} prepareMintTransactionRequestSchemaQrc20 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async prepareSupplyRequest1(authorization: string, prepareMintTransactionRequestSchemaQrc20: PrepareMintTransactionRequestSchemaQrc20, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareSupplyRequest1(authorization, prepareMintTransactionRequestSchemaQrc20, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ManageQRC20TokenSupplyApi - factory interface
+ * @export
+ */
+export const ManageQRC20TokenSupplyApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ManageQRC20TokenSupplyApiFp(configuration)
+    return {
+        /**
+         * Takes a request ID and submits a signed transaction to the requested DLT.
+         * @summary Execute a transaction on a DLT
+         * @param {string} authorization 
+         * @param {ExecuteTransactionRequest} executeTransactionRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: any): AxiosPromise<ExecuteTransactionResponse> {
+            return localVarFp.executePreparedRequestTransaction(authorization, executeTransactionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Transforms a transaction request to manage QRC20 token supply ready to be signed and returns a request ID for executing. The supported types for this API are “Mint Tokens”, which will allow you to issue more tokens for your QRC20 token, and \"Burn Tokens\" which will allow you to destroy your QRC20 tokens. Successfully prepared transactions can then be executed using the /execution/transaction API.
+         * @summary Prepare a request to manage QRC20 token supply
+         * @param {string} authorization 
+         * @param {PrepareMintTransactionRequestSchemaQrc20} prepareMintTransactionRequestSchemaQrc20 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareSupplyRequest1(authorization: string, prepareMintTransactionRequestSchemaQrc20: PrepareMintTransactionRequestSchemaQrc20, options?: any): AxiosPromise<PrepareTransactionResponse> {
+            return localVarFp.prepareSupplyRequest1(authorization, prepareMintTransactionRequestSchemaQrc20, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ManageQRC20TokenSupplyApi - object-oriented interface
+ * @export
+ * @class ManageQRC20TokenSupplyApi
+ * @extends {BaseAPI}
+ */
+export class ManageQRC20TokenSupplyApi extends BaseAPI {
+    /**
+     * Takes a request ID and submits a signed transaction to the requested DLT.
+     * @summary Execute a transaction on a DLT
+     * @param {string} authorization 
+     * @param {ExecuteTransactionRequest} executeTransactionRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ManageQRC20TokenSupplyApi
+     */
+    public executePreparedRequestTransaction(authorization: string, executeTransactionRequest: ExecuteTransactionRequest, options?: AxiosRequestConfig) {
+        return ManageQRC20TokenSupplyApiFp(this.configuration).executePreparedRequestTransaction(authorization, executeTransactionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Transforms a transaction request to manage QRC20 token supply ready to be signed and returns a request ID for executing. The supported types for this API are “Mint Tokens”, which will allow you to issue more tokens for your QRC20 token, and \"Burn Tokens\" which will allow you to destroy your QRC20 tokens. Successfully prepared transactions can then be executed using the /execution/transaction API.
+     * @summary Prepare a request to manage QRC20 token supply
+     * @param {string} authorization 
+     * @param {PrepareMintTransactionRequestSchemaQrc20} prepareMintTransactionRequestSchemaQrc20 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ManageQRC20TokenSupplyApi
+     */
+    public prepareSupplyRequest1(authorization: string, prepareMintTransactionRequestSchemaQrc20: PrepareMintTransactionRequestSchemaQrc20, options?: AxiosRequestConfig) {
+        return ManageQRC20TokenSupplyApiFp(this.configuration).prepareSupplyRequest1(authorization, prepareMintTransactionRequestSchemaQrc20, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * ManageQRC721TokenSupplyApi - axios parameter creator
+ * @export
+ */
+export const ManageQRC721TokenSupplyApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Transforms a transaction request to manage QRC721 token supply ready to be signed and returns a request ID for executing. The supported types for this API are “Mint Tokens”, which will allow you to issue an new NFT for your QRC721 token, and \"Burn Tokens\" which will allow you to destroy your QRC721 token. Successfully prepared transactions can then be executed using the /execution/transaction API
+         * @summary Prepare a transaction to manage QRC721 token supply
+         * @param {string} authorization 
+         * @param {PrepareMintTransactionRequestSchemaQrc721} prepareMintTransactionRequestSchemaQrc721 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareSupplyRequest: async (authorization: string, prepareMintTransactionRequestSchemaQrc721: PrepareMintTransactionRequestSchemaQrc721, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('prepareSupplyRequest', 'authorization', authorization)
+            // verify required parameter 'prepareMintTransactionRequestSchemaQrc721' is not null or undefined
+            assertParamExists('prepareSupplyRequest', 'prepareMintTransactionRequestSchemaQrc721', prepareMintTransactionRequestSchemaQrc721)
+            const localVarPath = `/v2/tokenise/preparation/transaction/qrc721/supply`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareMintTransactionRequestSchemaQrc721, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ManageQRC721TokenSupplyApi - functional programming interface
+ * @export
+ */
+export const ManageQRC721TokenSupplyApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ManageQRC721TokenSupplyApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Transforms a transaction request to manage QRC721 token supply ready to be signed and returns a request ID for executing. The supported types for this API are “Mint Tokens”, which will allow you to issue an new NFT for your QRC721 token, and \"Burn Tokens\" which will allow you to destroy your QRC721 token. Successfully prepared transactions can then be executed using the /execution/transaction API
+         * @summary Prepare a transaction to manage QRC721 token supply
+         * @param {string} authorization 
+         * @param {PrepareMintTransactionRequestSchemaQrc721} prepareMintTransactionRequestSchemaQrc721 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async prepareSupplyRequest(authorization: string, prepareMintTransactionRequestSchemaQrc721: PrepareMintTransactionRequestSchemaQrc721, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PrepareTransactionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.prepareSupplyRequest(authorization, prepareMintTransactionRequestSchemaQrc721, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ManageQRC721TokenSupplyApi - factory interface
+ * @export
+ */
+export const ManageQRC721TokenSupplyApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ManageQRC721TokenSupplyApiFp(configuration)
+    return {
+        /**
+         * Transforms a transaction request to manage QRC721 token supply ready to be signed and returns a request ID for executing. The supported types for this API are “Mint Tokens”, which will allow you to issue an new NFT for your QRC721 token, and \"Burn Tokens\" which will allow you to destroy your QRC721 token. Successfully prepared transactions can then be executed using the /execution/transaction API
+         * @summary Prepare a transaction to manage QRC721 token supply
+         * @param {string} authorization 
+         * @param {PrepareMintTransactionRequestSchemaQrc721} prepareMintTransactionRequestSchemaQrc721 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        prepareSupplyRequest(authorization: string, prepareMintTransactionRequestSchemaQrc721: PrepareMintTransactionRequestSchemaQrc721, options?: any): AxiosPromise<PrepareTransactionResponse> {
+            return localVarFp.prepareSupplyRequest(authorization, prepareMintTransactionRequestSchemaQrc721, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ManageQRC721TokenSupplyApi - object-oriented interface
+ * @export
+ * @class ManageQRC721TokenSupplyApi
+ * @extends {BaseAPI}
+ */
+export class ManageQRC721TokenSupplyApi extends BaseAPI {
+    /**
+     * Transforms a transaction request to manage QRC721 token supply ready to be signed and returns a request ID for executing. The supported types for this API are “Mint Tokens”, which will allow you to issue an new NFT for your QRC721 token, and \"Burn Tokens\" which will allow you to destroy your QRC721 token. Successfully prepared transactions can then be executed using the /execution/transaction API
+     * @summary Prepare a transaction to manage QRC721 token supply
+     * @param {string} authorization 
+     * @param {PrepareMintTransactionRequestSchemaQrc721} prepareMintTransactionRequestSchemaQrc721 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ManageQRC721TokenSupplyApi
+     */
+    public prepareSupplyRequest(authorization: string, prepareMintTransactionRequestSchemaQrc721: PrepareMintTransactionRequestSchemaQrc721, options?: AxiosRequestConfig) {
+        return ManageQRC721TokenSupplyApiFp(this.configuration).prepareSupplyRequest(authorization, prepareMintTransactionRequestSchemaQrc721, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * ManageSubscriptionsApi - axios parameter creator
+ * @export
+ */
+export const ManageSubscriptionsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * Deletes a subscription created by your application based onthe given Subscription ID. Deleting a subscription will stop updates being sent to the requested callback URL
@@ -5472,17 +8527,17 @@ export const ManageSubscriptionApiAxiosParamCreator = function (configuration?: 
          * @summary Update a specific subscription created by your application
          * @param {string} authorization 
          * @param {string} subscriptionId 
-         * @param {UpdateSubscriptionRequestSchema} updateSubscriptionRequestSchema 
+         * @param {UpdateWebhookSubscriptionRequestSchema} updateWebhookSubscriptionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSubscription: async (authorization: string, subscriptionId: string, updateSubscriptionRequestSchema: UpdateSubscriptionRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateSubscription: async (authorization: string, subscriptionId: string, updateWebhookSubscriptionRequestSchema: UpdateWebhookSubscriptionRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'authorization' is not null or undefined
             assertParamExists('updateSubscription', 'authorization', authorization)
             // verify required parameter 'subscriptionId' is not null or undefined
             assertParamExists('updateSubscription', 'subscriptionId', subscriptionId)
-            // verify required parameter 'updateSubscriptionRequestSchema' is not null or undefined
-            assertParamExists('updateSubscription', 'updateSubscriptionRequestSchema', updateSubscriptionRequestSchema)
+            // verify required parameter 'updateWebhookSubscriptionRequestSchema' is not null or undefined
+            assertParamExists('updateSubscription', 'updateWebhookSubscriptionRequestSchema', updateWebhookSubscriptionRequestSchema)
             const localVarPath = `/v2/webhook/subscription/{subscriptionId}`
                 .replace(`{${"subscriptionId"}}`, encodeURIComponent(String(subscriptionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -5511,7 +8566,7 @@ export const ManageSubscriptionApiAxiosParamCreator = function (configuration?: 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateSubscriptionRequestSchema, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateWebhookSubscriptionRequestSchema, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -5522,11 +8577,11 @@ export const ManageSubscriptionApiAxiosParamCreator = function (configuration?: 
 };
 
 /**
- * ManageSubscriptionApi - functional programming interface
+ * ManageSubscriptionsApi - functional programming interface
  * @export
  */
-export const ManageSubscriptionApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ManageSubscriptionApiAxiosParamCreator(configuration)
+export const ManageSubscriptionsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ManageSubscriptionsApiAxiosParamCreator(configuration)
     return {
         /**
          * Deletes a subscription created by your application based onthe given Subscription ID. Deleting a subscription will stop updates being sent to the requested callback URL
@@ -5536,7 +8591,7 @@ export const ManageSubscriptionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteSubscription(authorization: string, subscriptionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionDeletionResponse>> {
+        async deleteSubscription(authorization: string, subscriptionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookSubscriptionStatusUpdateResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteSubscription(authorization, subscriptionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5547,7 +8602,7 @@ export const ManageSubscriptionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listSubscriptions(authorization: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ListSubscriptionResponseSchema>>> {
+        async listSubscriptions(authorization: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ListWebhookSubscriptionResponseSchema>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listSubscriptions(authorization, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5556,23 +8611,23 @@ export const ManageSubscriptionApiFp = function(configuration?: Configuration) {
          * @summary Update a specific subscription created by your application
          * @param {string} authorization 
          * @param {string} subscriptionId 
-         * @param {UpdateSubscriptionRequestSchema} updateSubscriptionRequestSchema 
+         * @param {UpdateWebhookSubscriptionRequestSchema} updateWebhookSubscriptionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateSubscription(authorization: string, subscriptionId: string, updateSubscriptionRequestSchema: UpdateSubscriptionRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubscriptionUpdateResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateSubscription(authorization, subscriptionId, updateSubscriptionRequestSchema, options);
+        async updateSubscription(authorization: string, subscriptionId: string, updateWebhookSubscriptionRequestSchema: UpdateWebhookSubscriptionRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookSubscriptionStatusUpdateResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateSubscription(authorization, subscriptionId, updateWebhookSubscriptionRequestSchema, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
 
 /**
- * ManageSubscriptionApi - factory interface
+ * ManageSubscriptionsApi - factory interface
  * @export
  */
-export const ManageSubscriptionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ManageSubscriptionApiFp(configuration)
+export const ManageSubscriptionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ManageSubscriptionsApiFp(configuration)
     return {
         /**
          * Deletes a subscription created by your application based onthe given Subscription ID. Deleting a subscription will stop updates being sent to the requested callback URL
@@ -5582,7 +8637,7 @@ export const ManageSubscriptionApiFactory = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteSubscription(authorization: string, subscriptionId: string, options?: any): AxiosPromise<SubscriptionDeletionResponse> {
+        deleteSubscription(authorization: string, subscriptionId: string, options?: any): AxiosPromise<WebhookSubscriptionStatusUpdateResponse> {
             return localVarFp.deleteSubscription(authorization, subscriptionId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5592,7 +8647,7 @@ export const ManageSubscriptionApiFactory = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listSubscriptions(authorization: string, options?: any): AxiosPromise<Array<ListSubscriptionResponseSchema>> {
+        listSubscriptions(authorization: string, options?: any): AxiosPromise<Array<ListWebhookSubscriptionResponseSchema>> {
             return localVarFp.listSubscriptions(authorization, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5600,23 +8655,23 @@ export const ManageSubscriptionApiFactory = function (configuration?: Configurat
          * @summary Update a specific subscription created by your application
          * @param {string} authorization 
          * @param {string} subscriptionId 
-         * @param {UpdateSubscriptionRequestSchema} updateSubscriptionRequestSchema 
+         * @param {UpdateWebhookSubscriptionRequestSchema} updateWebhookSubscriptionRequestSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSubscription(authorization: string, subscriptionId: string, updateSubscriptionRequestSchema: UpdateSubscriptionRequestSchema, options?: any): AxiosPromise<SubscriptionUpdateResponse> {
-            return localVarFp.updateSubscription(authorization, subscriptionId, updateSubscriptionRequestSchema, options).then((request) => request(axios, basePath));
+        updateSubscription(authorization: string, subscriptionId: string, updateWebhookSubscriptionRequestSchema: UpdateWebhookSubscriptionRequestSchema, options?: any): AxiosPromise<WebhookSubscriptionStatusUpdateResponse> {
+            return localVarFp.updateSubscription(authorization, subscriptionId, updateWebhookSubscriptionRequestSchema, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * ManageSubscriptionApi - object-oriented interface
+ * ManageSubscriptionsApi - object-oriented interface
  * @export
- * @class ManageSubscriptionApi
+ * @class ManageSubscriptionsApi
  * @extends {BaseAPI}
  */
-export class ManageSubscriptionApi extends BaseAPI {
+export class ManageSubscriptionsApi extends BaseAPI {
     /**
      * Deletes a subscription created by your application based onthe given Subscription ID. Deleting a subscription will stop updates being sent to the requested callback URL
      * @summary Remove a subscription created by your application
@@ -5624,10 +8679,10 @@ export class ManageSubscriptionApi extends BaseAPI {
      * @param {string} subscriptionId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ManageSubscriptionApi
+     * @memberof ManageSubscriptionsApi
      */
     public deleteSubscription(authorization: string, subscriptionId: string, options?: AxiosRequestConfig) {
-        return ManageSubscriptionApiFp(this.configuration).deleteSubscription(authorization, subscriptionId, options).then((request) => request(this.axios, this.basePath));
+        return ManageSubscriptionsApiFp(this.configuration).deleteSubscription(authorization, subscriptionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5636,10 +8691,10 @@ export class ManageSubscriptionApi extends BaseAPI {
      * @param {string} authorization 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ManageSubscriptionApi
+     * @memberof ManageSubscriptionsApi
      */
     public listSubscriptions(authorization: string, options?: AxiosRequestConfig) {
-        return ManageSubscriptionApiFp(this.configuration).listSubscriptions(authorization, options).then((request) => request(this.axios, this.basePath));
+        return ManageSubscriptionsApiFp(this.configuration).listSubscriptions(authorization, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5647,13 +8702,13 @@ export class ManageSubscriptionApi extends BaseAPI {
      * @summary Update a specific subscription created by your application
      * @param {string} authorization 
      * @param {string} subscriptionId 
-     * @param {UpdateSubscriptionRequestSchema} updateSubscriptionRequestSchema 
+     * @param {UpdateWebhookSubscriptionRequestSchema} updateWebhookSubscriptionRequestSchema 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ManageSubscriptionApi
+     * @memberof ManageSubscriptionsApi
      */
-    public updateSubscription(authorization: string, subscriptionId: string, updateSubscriptionRequestSchema: UpdateSubscriptionRequestSchema, options?: AxiosRequestConfig) {
-        return ManageSubscriptionApiFp(this.configuration).updateSubscription(authorization, subscriptionId, updateSubscriptionRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    public updateSubscription(authorization: string, subscriptionId: string, updateWebhookSubscriptionRequestSchema: UpdateWebhookSubscriptionRequestSchema, options?: AxiosRequestConfig) {
+        return ManageSubscriptionsApiFp(this.configuration).updateSubscription(authorization, subscriptionId, updateWebhookSubscriptionRequestSchema, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -5858,6 +8913,1109 @@ export class MonitorAResourceApi extends BaseAPI {
      */
     public trackAndSubscribeEvent(authorization: string, monitorSmartContractRequestSchema: MonitorSmartContractRequestSchema, options?: AxiosRequestConfig) {
         return MonitorAResourceApiFp(this.configuration).trackAndSubscribeEvent(authorization, monitorSmartContractRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * RetrieveAccountBalanceForAQRC20TokenApi - axios parameter creator
+ * @export
+ */
+export const RetrieveAccountBalanceForAQRC20TokenApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the balance of QRC20 tokens for an account .
+         * @summary Retrieve the balance of QRC20 tokens for an account
+         * @param {string} authorization 
+         * @param {ReadAccountBalanceRequestSchema} readAccountBalanceRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC20SmartContractBalance: async (authorization: string, readAccountBalanceRequestSchema: ReadAccountBalanceRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('readQRC20SmartContractBalance', 'authorization', authorization)
+            // verify required parameter 'readAccountBalanceRequestSchema' is not null or undefined
+            assertParamExists('readQRC20SmartContractBalance', 'readAccountBalanceRequestSchema', readAccountBalanceRequestSchema)
+            const localVarPath = `/v2/tokenise/tokens/qrc20/account-balance`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(readAccountBalanceRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RetrieveAccountBalanceForAQRC20TokenApi - functional programming interface
+ * @export
+ */
+export const RetrieveAccountBalanceForAQRC20TokenApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RetrieveAccountBalanceForAQRC20TokenApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the balance of QRC20 tokens for an account .
+         * @summary Retrieve the balance of QRC20 tokens for an account
+         * @param {string} authorization 
+         * @param {ReadAccountBalanceRequestSchema} readAccountBalanceRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async readQRC20SmartContractBalance(authorization: string, readAccountBalanceRequestSchema: ReadAccountBalanceRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenReadQRC20Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.readQRC20SmartContractBalance(authorization, readAccountBalanceRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RetrieveAccountBalanceForAQRC20TokenApi - factory interface
+ * @export
+ */
+export const RetrieveAccountBalanceForAQRC20TokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RetrieveAccountBalanceForAQRC20TokenApiFp(configuration)
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the balance of QRC20 tokens for an account .
+         * @summary Retrieve the balance of QRC20 tokens for an account
+         * @param {string} authorization 
+         * @param {ReadAccountBalanceRequestSchema} readAccountBalanceRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC20SmartContractBalance(authorization: string, readAccountBalanceRequestSchema: ReadAccountBalanceRequestSchema, options?: any): AxiosPromise<TokenReadQRC20Response> {
+            return localVarFp.readQRC20SmartContractBalance(authorization, readAccountBalanceRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RetrieveAccountBalanceForAQRC20TokenApi - object-oriented interface
+ * @export
+ * @class RetrieveAccountBalanceForAQRC20TokenApi
+ * @extends {BaseAPI}
+ */
+export class RetrieveAccountBalanceForAQRC20TokenApi extends BaseAPI {
+    /**
+     * Submits a query to the Blockchain Network and returns the balance of QRC20 tokens for an account .
+     * @summary Retrieve the balance of QRC20 tokens for an account
+     * @param {string} authorization 
+     * @param {ReadAccountBalanceRequestSchema} readAccountBalanceRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RetrieveAccountBalanceForAQRC20TokenApi
+     */
+    public readQRC20SmartContractBalance(authorization: string, readAccountBalanceRequestSchema: ReadAccountBalanceRequestSchema, options?: AxiosRequestConfig) {
+        return RetrieveAccountBalanceForAQRC20TokenApiFp(this.configuration).readQRC20SmartContractBalance(authorization, readAccountBalanceRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * RetrieveApprovedAccountAllowanceForAQRC20TokenApi - axios parameter creator
+ * @export
+ */
+export const RetrieveApprovedAccountAllowanceForAQRC20TokenApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the number of QRC20 tokens a particular account is allowed to debit from another account
+         * @summary Retrieve how many QRC20 tokens an address is allowed to debit
+         * @param {string} authorization 
+         * @param {ReadApprovedAccountAllowanceRequestSchema} readApprovedAccountAllowanceRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readApprovedDebitAmount: async (authorization: string, readApprovedAccountAllowanceRequestSchema: ReadApprovedAccountAllowanceRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('readApprovedDebitAmount', 'authorization', authorization)
+            // verify required parameter 'readApprovedAccountAllowanceRequestSchema' is not null or undefined
+            assertParamExists('readApprovedDebitAmount', 'readApprovedAccountAllowanceRequestSchema', readApprovedAccountAllowanceRequestSchema)
+            const localVarPath = `/v2/tokenise/tokens/qrc20/approved-debit-amount`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(readApprovedAccountAllowanceRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RetrieveApprovedAccountAllowanceForAQRC20TokenApi - functional programming interface
+ * @export
+ */
+export const RetrieveApprovedAccountAllowanceForAQRC20TokenApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RetrieveApprovedAccountAllowanceForAQRC20TokenApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the number of QRC20 tokens a particular account is allowed to debit from another account
+         * @summary Retrieve how many QRC20 tokens an address is allowed to debit
+         * @param {string} authorization 
+         * @param {ReadApprovedAccountAllowanceRequestSchema} readApprovedAccountAllowanceRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async readApprovedDebitAmount(authorization: string, readApprovedAccountAllowanceRequestSchema: ReadApprovedAccountAllowanceRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenReadQRC20Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.readApprovedDebitAmount(authorization, readApprovedAccountAllowanceRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RetrieveApprovedAccountAllowanceForAQRC20TokenApi - factory interface
+ * @export
+ */
+export const RetrieveApprovedAccountAllowanceForAQRC20TokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RetrieveApprovedAccountAllowanceForAQRC20TokenApiFp(configuration)
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the number of QRC20 tokens a particular account is allowed to debit from another account
+         * @summary Retrieve how many QRC20 tokens an address is allowed to debit
+         * @param {string} authorization 
+         * @param {ReadApprovedAccountAllowanceRequestSchema} readApprovedAccountAllowanceRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readApprovedDebitAmount(authorization: string, readApprovedAccountAllowanceRequestSchema: ReadApprovedAccountAllowanceRequestSchema, options?: any): AxiosPromise<TokenReadQRC20Response> {
+            return localVarFp.readApprovedDebitAmount(authorization, readApprovedAccountAllowanceRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RetrieveApprovedAccountAllowanceForAQRC20TokenApi - object-oriented interface
+ * @export
+ * @class RetrieveApprovedAccountAllowanceForAQRC20TokenApi
+ * @extends {BaseAPI}
+ */
+export class RetrieveApprovedAccountAllowanceForAQRC20TokenApi extends BaseAPI {
+    /**
+     * Submits a query to the Blockchain Network and returns the number of QRC20 tokens a particular account is allowed to debit from another account
+     * @summary Retrieve how many QRC20 tokens an address is allowed to debit
+     * @param {string} authorization 
+     * @param {ReadApprovedAccountAllowanceRequestSchema} readApprovedAccountAllowanceRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RetrieveApprovedAccountAllowanceForAQRC20TokenApi
+     */
+    public readApprovedDebitAmount(authorization: string, readApprovedAccountAllowanceRequestSchema: ReadApprovedAccountAllowanceRequestSchema, options?: AxiosRequestConfig) {
+        return RetrieveApprovedAccountAllowanceForAQRC20TokenApiFp(this.configuration).readApprovedDebitAmount(authorization, readApprovedAccountAllowanceRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * RetrieveApprovedAccountInformationForAQRC20TokenApi - axios parameter creator
+ * @export
+ */
+export const RetrieveApprovedAccountInformationForAQRC20TokenApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns whether an account is approved to make payments on behalf of another account for a particular QRC20 token.
+         * @summary Retrieve whether an account is approved to make payments on behalf of another account for a particular QRC20 token.
+         * @param {string} authorization 
+         * @param {ReadContractOwnerRequestSchema} readContractOwnerRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC20SecondaryAccountOwner: async (authorization: string, readContractOwnerRequestSchema: ReadContractOwnerRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('readQRC20SecondaryAccountOwner', 'authorization', authorization)
+            // verify required parameter 'readContractOwnerRequestSchema' is not null or undefined
+            assertParamExists('readQRC20SecondaryAccountOwner', 'readContractOwnerRequestSchema', readContractOwnerRequestSchema)
+            const localVarPath = `/v2/tokenise/tokens/qrc20/secondary-account-owner`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(readContractOwnerRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RetrieveApprovedAccountInformationForAQRC20TokenApi - functional programming interface
+ * @export
+ */
+export const RetrieveApprovedAccountInformationForAQRC20TokenApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RetrieveApprovedAccountInformationForAQRC20TokenApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns whether an account is approved to make payments on behalf of another account for a particular QRC20 token.
+         * @summary Retrieve whether an account is approved to make payments on behalf of another account for a particular QRC20 token.
+         * @param {string} authorization 
+         * @param {ReadContractOwnerRequestSchema} readContractOwnerRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async readQRC20SecondaryAccountOwner(authorization: string, readContractOwnerRequestSchema: ReadContractOwnerRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenReadQRC20Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.readQRC20SecondaryAccountOwner(authorization, readContractOwnerRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RetrieveApprovedAccountInformationForAQRC20TokenApi - factory interface
+ * @export
+ */
+export const RetrieveApprovedAccountInformationForAQRC20TokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RetrieveApprovedAccountInformationForAQRC20TokenApiFp(configuration)
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns whether an account is approved to make payments on behalf of another account for a particular QRC20 token.
+         * @summary Retrieve whether an account is approved to make payments on behalf of another account for a particular QRC20 token.
+         * @param {string} authorization 
+         * @param {ReadContractOwnerRequestSchema} readContractOwnerRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC20SecondaryAccountOwner(authorization: string, readContractOwnerRequestSchema: ReadContractOwnerRequestSchema, options?: any): AxiosPromise<TokenReadQRC20Response> {
+            return localVarFp.readQRC20SecondaryAccountOwner(authorization, readContractOwnerRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RetrieveApprovedAccountInformationForAQRC20TokenApi - object-oriented interface
+ * @export
+ * @class RetrieveApprovedAccountInformationForAQRC20TokenApi
+ * @extends {BaseAPI}
+ */
+export class RetrieveApprovedAccountInformationForAQRC20TokenApi extends BaseAPI {
+    /**
+     * Submits a query to the Blockchain Network and returns whether an account is approved to make payments on behalf of another account for a particular QRC20 token.
+     * @summary Retrieve whether an account is approved to make payments on behalf of another account for a particular QRC20 token.
+     * @param {string} authorization 
+     * @param {ReadContractOwnerRequestSchema} readContractOwnerRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RetrieveApprovedAccountInformationForAQRC20TokenApi
+     */
+    public readQRC20SecondaryAccountOwner(authorization: string, readContractOwnerRequestSchema: ReadContractOwnerRequestSchema, options?: AxiosRequestConfig) {
+        return RetrieveApprovedAccountInformationForAQRC20TokenApiFp(this.configuration).readQRC20SecondaryAccountOwner(authorization, readContractOwnerRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * RetrieveApprovedAccountInformationOfAQRC721TokenApi - axios parameter creator
+ * @export
+ */
+export const RetrieveApprovedAccountInformationOfAQRC721TokenApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Submits a query to the DLN and returns the address that is approved to collect a particular QRC721 token ID.
+         * @summary Retrieve which account is approved to collect a QRC721 token
+         * @param {string} authorization 
+         * @param {ReadApprovedAccountRequestSchema} readApprovedAccountRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC721SmartContractApprovedAccount: async (authorization: string, readApprovedAccountRequestSchema: ReadApprovedAccountRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('readQRC721SmartContractApprovedAccount', 'authorization', authorization)
+            // verify required parameter 'readApprovedAccountRequestSchema' is not null or undefined
+            assertParamExists('readQRC721SmartContractApprovedAccount', 'readApprovedAccountRequestSchema', readApprovedAccountRequestSchema)
+            const localVarPath = `/v2/tokenise/tokens/qrc721/approved-account`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(readApprovedAccountRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RetrieveApprovedAccountInformationOfAQRC721TokenApi - functional programming interface
+ * @export
+ */
+export const RetrieveApprovedAccountInformationOfAQRC721TokenApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RetrieveApprovedAccountInformationOfAQRC721TokenApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Submits a query to the DLN and returns the address that is approved to collect a particular QRC721 token ID.
+         * @summary Retrieve which account is approved to collect a QRC721 token
+         * @param {string} authorization 
+         * @param {ReadApprovedAccountRequestSchema} readApprovedAccountRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async readQRC721SmartContractApprovedAccount(authorization: string, readApprovedAccountRequestSchema: ReadApprovedAccountRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenReadQRC721Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.readQRC721SmartContractApprovedAccount(authorization, readApprovedAccountRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RetrieveApprovedAccountInformationOfAQRC721TokenApi - factory interface
+ * @export
+ */
+export const RetrieveApprovedAccountInformationOfAQRC721TokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RetrieveApprovedAccountInformationOfAQRC721TokenApiFp(configuration)
+    return {
+        /**
+         * Submits a query to the DLN and returns the address that is approved to collect a particular QRC721 token ID.
+         * @summary Retrieve which account is approved to collect a QRC721 token
+         * @param {string} authorization 
+         * @param {ReadApprovedAccountRequestSchema} readApprovedAccountRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC721SmartContractApprovedAccount(authorization: string, readApprovedAccountRequestSchema: ReadApprovedAccountRequestSchema, options?: any): AxiosPromise<TokenReadQRC721Response> {
+            return localVarFp.readQRC721SmartContractApprovedAccount(authorization, readApprovedAccountRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RetrieveApprovedAccountInformationOfAQRC721TokenApi - object-oriented interface
+ * @export
+ * @class RetrieveApprovedAccountInformationOfAQRC721TokenApi
+ * @extends {BaseAPI}
+ */
+export class RetrieveApprovedAccountInformationOfAQRC721TokenApi extends BaseAPI {
+    /**
+     * Submits a query to the DLN and returns the address that is approved to collect a particular QRC721 token ID.
+     * @summary Retrieve which account is approved to collect a QRC721 token
+     * @param {string} authorization 
+     * @param {ReadApprovedAccountRequestSchema} readApprovedAccountRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RetrieveApprovedAccountInformationOfAQRC721TokenApi
+     */
+    public readQRC721SmartContractApprovedAccount(authorization: string, readApprovedAccountRequestSchema: ReadApprovedAccountRequestSchema, options?: AxiosRequestConfig) {
+        return RetrieveApprovedAccountInformationOfAQRC721TokenApiFp(this.configuration).readQRC721SmartContractApprovedAccount(authorization, readApprovedAccountRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * RetrieveContractOwnerInformationOfAQRCTokenApi - axios parameter creator
+ * @export
+ */
+export const RetrieveContractOwnerInformationOfAQRCTokenApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the address that currently has contract owner permissions for a particular QRC token.
+         * @summary Retrieve which account has contract owner permissions for a QRC token
+         * @param {string} authorization 
+         * @param {string} flowType 
+         * @param {PrepareRequest} prepareRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRCSmartContractOwner: async (authorization: string, flowType: string, prepareRequest: PrepareRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('readQRCSmartContractOwner', 'authorization', authorization)
+            // verify required parameter 'flowType' is not null or undefined
+            assertParamExists('readQRCSmartContractOwner', 'flowType', flowType)
+            // verify required parameter 'prepareRequest' is not null or undefined
+            assertParamExists('readQRCSmartContractOwner', 'prepareRequest', prepareRequest)
+            const localVarPath = `/v2/tokenise/tokens/{flowType}/contract-owner`
+                .replace(`{${"flowType"}}`, encodeURIComponent(String(flowType)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RetrieveContractOwnerInformationOfAQRCTokenApi - functional programming interface
+ * @export
+ */
+export const RetrieveContractOwnerInformationOfAQRCTokenApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RetrieveContractOwnerInformationOfAQRCTokenApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the address that currently has contract owner permissions for a particular QRC token.
+         * @summary Retrieve which account has contract owner permissions for a QRC token
+         * @param {string} authorization 
+         * @param {string} flowType 
+         * @param {PrepareRequest} prepareRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async readQRCSmartContractOwner(authorization: string, flowType: string, prepareRequest: PrepareRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenReadQRC721Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.readQRCSmartContractOwner(authorization, flowType, prepareRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RetrieveContractOwnerInformationOfAQRCTokenApi - factory interface
+ * @export
+ */
+export const RetrieveContractOwnerInformationOfAQRCTokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RetrieveContractOwnerInformationOfAQRCTokenApiFp(configuration)
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the address that currently has contract owner permissions for a particular QRC token.
+         * @summary Retrieve which account has contract owner permissions for a QRC token
+         * @param {string} authorization 
+         * @param {string} flowType 
+         * @param {PrepareRequest} prepareRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRCSmartContractOwner(authorization: string, flowType: string, prepareRequest: PrepareRequest, options?: any): AxiosPromise<TokenReadQRC721Response> {
+            return localVarFp.readQRCSmartContractOwner(authorization, flowType, prepareRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RetrieveContractOwnerInformationOfAQRCTokenApi - object-oriented interface
+ * @export
+ * @class RetrieveContractOwnerInformationOfAQRCTokenApi
+ * @extends {BaseAPI}
+ */
+export class RetrieveContractOwnerInformationOfAQRCTokenApi extends BaseAPI {
+    /**
+     * Submits a query to the Blockchain Network and returns the address that currently has contract owner permissions for a particular QRC token.
+     * @summary Retrieve which account has contract owner permissions for a QRC token
+     * @param {string} authorization 
+     * @param {string} flowType 
+     * @param {PrepareRequest} prepareRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RetrieveContractOwnerInformationOfAQRCTokenApi
+     */
+    public readQRCSmartContractOwner(authorization: string, flowType: string, prepareRequest: PrepareRequest, options?: AxiosRequestConfig) {
+        return RetrieveContractOwnerInformationOfAQRCTokenApiFp(this.configuration).readQRCSmartContractOwner(authorization, flowType, prepareRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * RetrieveOwnerInformationForAQRC721TokenApi - axios parameter creator
+ * @export
+ */
+export const RetrieveOwnerInformationForAQRC721TokenApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Submits a query to the DLN and returns the address that currently has owns a particular QRC721 token.
+         * @summary Retrieve which account currently owns a specific QRC721 token
+         * @param {string} authorization 
+         * @param {ReadTokenOwnerRequestSchema} readTokenOwnerRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC721SmartContractTokenOwner: async (authorization: string, readTokenOwnerRequestSchema: ReadTokenOwnerRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('readQRC721SmartContractTokenOwner', 'authorization', authorization)
+            // verify required parameter 'readTokenOwnerRequestSchema' is not null or undefined
+            assertParamExists('readQRC721SmartContractTokenOwner', 'readTokenOwnerRequestSchema', readTokenOwnerRequestSchema)
+            const localVarPath = `/v2/tokenise/tokens/qrc721/token-owner`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(readTokenOwnerRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RetrieveOwnerInformationForAQRC721TokenApi - functional programming interface
+ * @export
+ */
+export const RetrieveOwnerInformationForAQRC721TokenApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RetrieveOwnerInformationForAQRC721TokenApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Submits a query to the DLN and returns the address that currently has owns a particular QRC721 token.
+         * @summary Retrieve which account currently owns a specific QRC721 token
+         * @param {string} authorization 
+         * @param {ReadTokenOwnerRequestSchema} readTokenOwnerRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async readQRC721SmartContractTokenOwner(authorization: string, readTokenOwnerRequestSchema: ReadTokenOwnerRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenReadQRC721Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.readQRC721SmartContractTokenOwner(authorization, readTokenOwnerRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RetrieveOwnerInformationForAQRC721TokenApi - factory interface
+ * @export
+ */
+export const RetrieveOwnerInformationForAQRC721TokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RetrieveOwnerInformationForAQRC721TokenApiFp(configuration)
+    return {
+        /**
+         * Submits a query to the DLN and returns the address that currently has owns a particular QRC721 token.
+         * @summary Retrieve which account currently owns a specific QRC721 token
+         * @param {string} authorization 
+         * @param {ReadTokenOwnerRequestSchema} readTokenOwnerRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC721SmartContractTokenOwner(authorization: string, readTokenOwnerRequestSchema: ReadTokenOwnerRequestSchema, options?: any): AxiosPromise<TokenReadQRC721Response> {
+            return localVarFp.readQRC721SmartContractTokenOwner(authorization, readTokenOwnerRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RetrieveOwnerInformationForAQRC721TokenApi - object-oriented interface
+ * @export
+ * @class RetrieveOwnerInformationForAQRC721TokenApi
+ * @extends {BaseAPI}
+ */
+export class RetrieveOwnerInformationForAQRC721TokenApi extends BaseAPI {
+    /**
+     * Submits a query to the DLN and returns the address that currently has owns a particular QRC721 token.
+     * @summary Retrieve which account currently owns a specific QRC721 token
+     * @param {string} authorization 
+     * @param {ReadTokenOwnerRequestSchema} readTokenOwnerRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RetrieveOwnerInformationForAQRC721TokenApi
+     */
+    public readQRC721SmartContractTokenOwner(authorization: string, readTokenOwnerRequestSchema: ReadTokenOwnerRequestSchema, options?: AxiosRequestConfig) {
+        return RetrieveOwnerInformationForAQRC721TokenApiFp(this.configuration).readQRC721SmartContractTokenOwner(authorization, readTokenOwnerRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * RetrieveSupplyInformationForAQRCTokenApi - axios parameter creator
+ * @export
+ */
+export const RetrieveSupplyInformationForAQRCTokenApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the number of QRC tokens that are currently in circulation after tokens have been minted and burned.
+         * @summary Retrieve how many QRC tokens are currently in supply
+         * @param {string} authorization 
+         * @param {string} flowType 
+         * @param {PrepareRequest} prepareRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC721SmartContractCurrentSupply: async (authorization: string, flowType: string, prepareRequest: PrepareRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('readQRC721SmartContractCurrentSupply', 'authorization', authorization)
+            // verify required parameter 'flowType' is not null or undefined
+            assertParamExists('readQRC721SmartContractCurrentSupply', 'flowType', flowType)
+            // verify required parameter 'prepareRequest' is not null or undefined
+            assertParamExists('readQRC721SmartContractCurrentSupply', 'prepareRequest', prepareRequest)
+            const localVarPath = `/v2/tokenise/tokens/{flowType}/current-supply`
+                .replace(`{${"flowType"}}`, encodeURIComponent(String(flowType)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(prepareRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RetrieveSupplyInformationForAQRCTokenApi - functional programming interface
+ * @export
+ */
+export const RetrieveSupplyInformationForAQRCTokenApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RetrieveSupplyInformationForAQRCTokenApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the number of QRC tokens that are currently in circulation after tokens have been minted and burned.
+         * @summary Retrieve how many QRC tokens are currently in supply
+         * @param {string} authorization 
+         * @param {string} flowType 
+         * @param {PrepareRequest} prepareRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async readQRC721SmartContractCurrentSupply(authorization: string, flowType: string, prepareRequest: PrepareRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenReadQRC721Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.readQRC721SmartContractCurrentSupply(authorization, flowType, prepareRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RetrieveSupplyInformationForAQRCTokenApi - factory interface
+ * @export
+ */
+export const RetrieveSupplyInformationForAQRCTokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RetrieveSupplyInformationForAQRCTokenApiFp(configuration)
+    return {
+        /**
+         * Submits a query to the Blockchain Network and returns the number of QRC tokens that are currently in circulation after tokens have been minted and burned.
+         * @summary Retrieve how many QRC tokens are currently in supply
+         * @param {string} authorization 
+         * @param {string} flowType 
+         * @param {PrepareRequest} prepareRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC721SmartContractCurrentSupply(authorization: string, flowType: string, prepareRequest: PrepareRequest, options?: any): AxiosPromise<TokenReadQRC721Response> {
+            return localVarFp.readQRC721SmartContractCurrentSupply(authorization, flowType, prepareRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RetrieveSupplyInformationForAQRCTokenApi - object-oriented interface
+ * @export
+ * @class RetrieveSupplyInformationForAQRCTokenApi
+ * @extends {BaseAPI}
+ */
+export class RetrieveSupplyInformationForAQRCTokenApi extends BaseAPI {
+    /**
+     * Submits a query to the Blockchain Network and returns the number of QRC tokens that are currently in circulation after tokens have been minted and burned.
+     * @summary Retrieve how many QRC tokens are currently in supply
+     * @param {string} authorization 
+     * @param {string} flowType 
+     * @param {PrepareRequest} prepareRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RetrieveSupplyInformationForAQRCTokenApi
+     */
+    public readQRC721SmartContractCurrentSupply(authorization: string, flowType: string, prepareRequest: PrepareRequest, options?: AxiosRequestConfig) {
+        return RetrieveSupplyInformationForAQRCTokenApiFp(this.configuration).readQRC721SmartContractCurrentSupply(authorization, flowType, prepareRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * RetrieveTheCountOfQRC721TokensApi - axios parameter creator
+ * @export
+ */
+export const RetrieveTheCountOfQRC721TokensApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Submits a query to the DLN and returns the number of QRC721 tokens held by the given account ID
+         * @summary Retrieve the count of a QRC721 token for a particular account
+         * @param {string} authorization 
+         * @param {ReadBalanceRequestSchema} readBalanceRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTokenCount: async (authorization: string, readBalanceRequestSchema: ReadBalanceRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('getTokenCount', 'authorization', authorization)
+            // verify required parameter 'readBalanceRequestSchema' is not null or undefined
+            assertParamExists('getTokenCount', 'readBalanceRequestSchema', readBalanceRequestSchema)
+            const localVarPath = `/v2/tokenise/tokens/qrc721/token-count`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(readBalanceRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RetrieveTheCountOfQRC721TokensApi - functional programming interface
+ * @export
+ */
+export const RetrieveTheCountOfQRC721TokensApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RetrieveTheCountOfQRC721TokensApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Submits a query to the DLN and returns the number of QRC721 tokens held by the given account ID
+         * @summary Retrieve the count of a QRC721 token for a particular account
+         * @param {string} authorization 
+         * @param {ReadBalanceRequestSchema} readBalanceRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getTokenCount(authorization: string, readBalanceRequestSchema: ReadBalanceRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenReadQRC721Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTokenCount(authorization, readBalanceRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RetrieveTheCountOfQRC721TokensApi - factory interface
+ * @export
+ */
+export const RetrieveTheCountOfQRC721TokensApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RetrieveTheCountOfQRC721TokensApiFp(configuration)
+    return {
+        /**
+         * Submits a query to the DLN and returns the number of QRC721 tokens held by the given account ID
+         * @summary Retrieve the count of a QRC721 token for a particular account
+         * @param {string} authorization 
+         * @param {ReadBalanceRequestSchema} readBalanceRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTokenCount(authorization: string, readBalanceRequestSchema: ReadBalanceRequestSchema, options?: any): AxiosPromise<TokenReadQRC721Response> {
+            return localVarFp.getTokenCount(authorization, readBalanceRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RetrieveTheCountOfQRC721TokensApi - object-oriented interface
+ * @export
+ * @class RetrieveTheCountOfQRC721TokensApi
+ * @extends {BaseAPI}
+ */
+export class RetrieveTheCountOfQRC721TokensApi extends BaseAPI {
+    /**
+     * Submits a query to the DLN and returns the number of QRC721 tokens held by the given account ID
+     * @summary Retrieve the count of a QRC721 token for a particular account
+     * @param {string} authorization 
+     * @param {ReadBalanceRequestSchema} readBalanceRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RetrieveTheCountOfQRC721TokensApi
+     */
+    public getTokenCount(authorization: string, readBalanceRequestSchema: ReadBalanceRequestSchema, options?: AxiosRequestConfig) {
+        return RetrieveTheCountOfQRC721TokensApiFp(this.configuration).getTokenCount(authorization, readBalanceRequestSchema, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * RetrieveURIInformationForAQRC721TokenApi - axios parameter creator
+ * @export
+ */
+export const RetrieveURIInformationForAQRC721TokenApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Submits a query to the DLN and returns the URI that is assigned to a particular QRC721 token
+         * @summary Retrieve the URI for a specific QRC721 token
+         * @param {string} authorization 
+         * @param {ReadApprovedAccountRequestSchema} readApprovedAccountRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC721SmartContractUri: async (authorization: string, readApprovedAccountRequestSchema: ReadApprovedAccountRequestSchema, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('readQRC721SmartContractUri', 'authorization', authorization)
+            // verify required parameter 'readApprovedAccountRequestSchema' is not null or undefined
+            assertParamExists('readQRC721SmartContractUri', 'readApprovedAccountRequestSchema', readApprovedAccountRequestSchema)
+            const localVarPath = `/v2/tokenise/tokens/qrc721/token-uri`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication OAuth2_Security_Scheme required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "OAuth2_Security_Scheme", ["overledger/read.scope"], configuration)
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(readApprovedAccountRequestSchema, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RetrieveURIInformationForAQRC721TokenApi - functional programming interface
+ * @export
+ */
+export const RetrieveURIInformationForAQRC721TokenApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RetrieveURIInformationForAQRC721TokenApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Submits a query to the DLN and returns the URI that is assigned to a particular QRC721 token
+         * @summary Retrieve the URI for a specific QRC721 token
+         * @param {string} authorization 
+         * @param {ReadApprovedAccountRequestSchema} readApprovedAccountRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async readQRC721SmartContractUri(authorization: string, readApprovedAccountRequestSchema: ReadApprovedAccountRequestSchema, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenReadQRC721Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.readQRC721SmartContractUri(authorization, readApprovedAccountRequestSchema, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * RetrieveURIInformationForAQRC721TokenApi - factory interface
+ * @export
+ */
+export const RetrieveURIInformationForAQRC721TokenApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RetrieveURIInformationForAQRC721TokenApiFp(configuration)
+    return {
+        /**
+         * Submits a query to the DLN and returns the URI that is assigned to a particular QRC721 token
+         * @summary Retrieve the URI for a specific QRC721 token
+         * @param {string} authorization 
+         * @param {ReadApprovedAccountRequestSchema} readApprovedAccountRequestSchema 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        readQRC721SmartContractUri(authorization: string, readApprovedAccountRequestSchema: ReadApprovedAccountRequestSchema, options?: any): AxiosPromise<TokenReadQRC721Response> {
+            return localVarFp.readQRC721SmartContractUri(authorization, readApprovedAccountRequestSchema, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RetrieveURIInformationForAQRC721TokenApi - object-oriented interface
+ * @export
+ * @class RetrieveURIInformationForAQRC721TokenApi
+ * @extends {BaseAPI}
+ */
+export class RetrieveURIInformationForAQRC721TokenApi extends BaseAPI {
+    /**
+     * Submits a query to the DLN and returns the URI that is assigned to a particular QRC721 token
+     * @summary Retrieve the URI for a specific QRC721 token
+     * @param {string} authorization 
+     * @param {ReadApprovedAccountRequestSchema} readApprovedAccountRequestSchema 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RetrieveURIInformationForAQRC721TokenApi
+     */
+    public readQRC721SmartContractUri(authorization: string, readApprovedAccountRequestSchema: ReadApprovedAccountRequestSchema, options?: AxiosRequestConfig) {
+        return RetrieveURIInformationForAQRC721TokenApiFp(this.configuration).readQRC721SmartContractUri(authorization, readApprovedAccountRequestSchema, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -6151,6 +10309,1225 @@ export class SmartContractSearchApi extends BaseAPI {
 
 
 /**
+ * SubscribeToQRC20AccountCreditPaymentsApi - axios parameter creator
+ * @export
+ */
+export const SubscribeToQRC20AccountCreditPaymentsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time there is a credit on a QRC20 token.
+         * @summary Receive updates each time there is a credit payment on your account
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeCreditEvent: async (authorization: string, body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('subscribeCreditEvent', 'authorization', authorization)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('subscribeCreditEvent', 'body', body)
+            const localVarPath = `/v2/tokenise/tokens/subscription/qrc20/credit`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC20AccountCreditPaymentsApi - functional programming interface
+ * @export
+ */
+export const SubscribeToQRC20AccountCreditPaymentsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SubscribeToQRC20AccountCreditPaymentsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time there is a credit on a QRC20 token.
+         * @summary Receive updates each time there is a credit payment on your account
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async subscribeCreditEvent(authorization: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventSubscriptionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribeCreditEvent(authorization, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC20AccountCreditPaymentsApi - factory interface
+ * @export
+ */
+export const SubscribeToQRC20AccountCreditPaymentsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SubscribeToQRC20AccountCreditPaymentsApiFp(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time there is a credit on a QRC20 token.
+         * @summary Receive updates each time there is a credit payment on your account
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeCreditEvent(authorization: string, body: object, options?: any): AxiosPromise<EventSubscriptionResponse> {
+            return localVarFp.subscribeCreditEvent(authorization, body, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SubscribeToQRC20AccountCreditPaymentsApi - object-oriented interface
+ * @export
+ * @class SubscribeToQRC20AccountCreditPaymentsApi
+ * @extends {BaseAPI}
+ */
+export class SubscribeToQRC20AccountCreditPaymentsApi extends BaseAPI {
+    /**
+     * Set up a subscription to receive updates to a callback URL each time there is a credit on a QRC20 token.
+     * @summary Receive updates each time there is a credit payment on your account
+     * @param {string} authorization 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribeToQRC20AccountCreditPaymentsApi
+     */
+    public subscribeCreditEvent(authorization: string, body: object, options?: AxiosRequestConfig) {
+        return SubscribeToQRC20AccountCreditPaymentsApiFp(this.configuration).subscribeCreditEvent(authorization, body, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * SubscribeToQRC20AccountDebitPaymentsApi - axios parameter creator
+ * @export
+ */
+export const SubscribeToQRC20AccountDebitPaymentsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time there is a debit on a QRC20 token or a QRC20 debit is approved. Use the type \"Create Debit\" to get an update when there is a debit payment on your account or \"Approve Debit\" to receive an update each time a token has been approved for debit.
+         * @summary Receive updates each time there is a debit transaction on QRC20 token or a QRC20 debit is approved
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeQRC20DebitEvent: async (authorization: string, body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('subscribeQRC20DebitEvent', 'authorization', authorization)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('subscribeQRC20DebitEvent', 'body', body)
+            const localVarPath = `/v2/tokenise/tokens/subscription/qrc20/debit`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC20AccountDebitPaymentsApi - functional programming interface
+ * @export
+ */
+export const SubscribeToQRC20AccountDebitPaymentsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SubscribeToQRC20AccountDebitPaymentsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time there is a debit on a QRC20 token or a QRC20 debit is approved. Use the type \"Create Debit\" to get an update when there is a debit payment on your account or \"Approve Debit\" to receive an update each time a token has been approved for debit.
+         * @summary Receive updates each time there is a debit transaction on QRC20 token or a QRC20 debit is approved
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async subscribeQRC20DebitEvent(authorization: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventSubscriptionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribeQRC20DebitEvent(authorization, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC20AccountDebitPaymentsApi - factory interface
+ * @export
+ */
+export const SubscribeToQRC20AccountDebitPaymentsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SubscribeToQRC20AccountDebitPaymentsApiFp(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time there is a debit on a QRC20 token or a QRC20 debit is approved. Use the type \"Create Debit\" to get an update when there is a debit payment on your account or \"Approve Debit\" to receive an update each time a token has been approved for debit.
+         * @summary Receive updates each time there is a debit transaction on QRC20 token or a QRC20 debit is approved
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeQRC20DebitEvent(authorization: string, body: object, options?: any): AxiosPromise<EventSubscriptionResponse> {
+            return localVarFp.subscribeQRC20DebitEvent(authorization, body, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SubscribeToQRC20AccountDebitPaymentsApi - object-oriented interface
+ * @export
+ * @class SubscribeToQRC20AccountDebitPaymentsApi
+ * @extends {BaseAPI}
+ */
+export class SubscribeToQRC20AccountDebitPaymentsApi extends BaseAPI {
+    /**
+     * Set up a subscription to receive updates to a callback URL each time there is a debit on a QRC20 token or a QRC20 debit is approved. Use the type \"Create Debit\" to get an update when there is a debit payment on your account or \"Approve Debit\" to receive an update each time a token has been approved for debit.
+     * @summary Receive updates each time there is a debit transaction on QRC20 token or a QRC20 debit is approved
+     * @param {string} authorization 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribeToQRC20AccountDebitPaymentsApi
+     */
+    public subscribeQRC20DebitEvent(authorization: string, body: object, options?: AxiosRequestConfig) {
+        return SubscribeToQRC20AccountDebitPaymentsApiFp(this.configuration).subscribeQRC20DebitEvent(authorization, body, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * SubscribeToQRC20SharedAccountUpdatesApi - axios parameter creator
+ * @export
+ */
+export const SubscribeToQRC20SharedAccountUpdatesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a secondary account owner is added or removed using the \"Add Account\" & \"Remove Account\" Request Types. Also sends update when a shared account creates a QRC20 credit payment using the \"Create Credit\" Request Type.
+         * @summary Receive updates for a shared account
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeSecondaryOwnerEvent: async (authorization: string, body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('subscribeSecondaryOwnerEvent', 'authorization', authorization)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('subscribeSecondaryOwnerEvent', 'body', body)
+            const localVarPath = `/v2/tokenise/tokens/subscription/qrc20/secondaryaccountowner`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC20SharedAccountUpdatesApi - functional programming interface
+ * @export
+ */
+export const SubscribeToQRC20SharedAccountUpdatesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SubscribeToQRC20SharedAccountUpdatesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a secondary account owner is added or removed using the \"Add Account\" & \"Remove Account\" Request Types. Also sends update when a shared account creates a QRC20 credit payment using the \"Create Credit\" Request Type.
+         * @summary Receive updates for a shared account
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async subscribeSecondaryOwnerEvent(authorization: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventSubscriptionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribeSecondaryOwnerEvent(authorization, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC20SharedAccountUpdatesApi - factory interface
+ * @export
+ */
+export const SubscribeToQRC20SharedAccountUpdatesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SubscribeToQRC20SharedAccountUpdatesApiFp(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a secondary account owner is added or removed using the \"Add Account\" & \"Remove Account\" Request Types. Also sends update when a shared account creates a QRC20 credit payment using the \"Create Credit\" Request Type.
+         * @summary Receive updates for a shared account
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeSecondaryOwnerEvent(authorization: string, body: object, options?: any): AxiosPromise<EventSubscriptionResponse> {
+            return localVarFp.subscribeSecondaryOwnerEvent(authorization, body, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SubscribeToQRC20SharedAccountUpdatesApi - object-oriented interface
+ * @export
+ * @class SubscribeToQRC20SharedAccountUpdatesApi
+ * @extends {BaseAPI}
+ */
+export class SubscribeToQRC20SharedAccountUpdatesApi extends BaseAPI {
+    /**
+     * Set up a subscription to receive updates to a callback URL each time a secondary account owner is added or removed using the \"Add Account\" & \"Remove Account\" Request Types. Also sends update when a shared account creates a QRC20 credit payment using the \"Create Credit\" Request Type.
+     * @summary Receive updates for a shared account
+     * @param {string} authorization 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribeToQRC20SharedAccountUpdatesApi
+     */
+    public subscribeSecondaryOwnerEvent(authorization: string, body: object, options?: AxiosRequestConfig) {
+        return SubscribeToQRC20SharedAccountUpdatesApiFp(this.configuration).subscribeSecondaryOwnerEvent(authorization, body, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * SubscribeToQRC20TokenSupplyChangesApi - axios parameter creator
+ * @export
+ */
+export const SubscribeToQRC20TokenSupplyChangesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a change in QRC721 or QRC20 token supply occurs. Use the type \"Mint Tokens\" to receive an update each time a new token is created, or use the type \"Burn Tokens\" to receive an update each time a token is destroyed.
+         * @summary Receive updates each time a supply changes for a QRC721 or QRC20 token
+         * @param {string} authorization 
+         * @param {string} flowtype 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeSupplyEvent: async (authorization: string, flowtype: string, body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('subscribeSupplyEvent', 'authorization', authorization)
+            // verify required parameter 'flowtype' is not null or undefined
+            assertParamExists('subscribeSupplyEvent', 'flowtype', flowtype)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('subscribeSupplyEvent', 'body', body)
+            const localVarPath = `/v2/tokenise/tokens/subscription/{flowtype}/supply`
+                .replace(`{${"flowtype"}}`, encodeURIComponent(String(flowtype)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC20TokenSupplyChangesApi - functional programming interface
+ * @export
+ */
+export const SubscribeToQRC20TokenSupplyChangesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SubscribeToQRC20TokenSupplyChangesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a change in QRC721 or QRC20 token supply occurs. Use the type \"Mint Tokens\" to receive an update each time a new token is created, or use the type \"Burn Tokens\" to receive an update each time a token is destroyed.
+         * @summary Receive updates each time a supply changes for a QRC721 or QRC20 token
+         * @param {string} authorization 
+         * @param {string} flowtype 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async subscribeSupplyEvent(authorization: string, flowtype: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventSubscriptionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribeSupplyEvent(authorization, flowtype, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC20TokenSupplyChangesApi - factory interface
+ * @export
+ */
+export const SubscribeToQRC20TokenSupplyChangesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SubscribeToQRC20TokenSupplyChangesApiFp(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a change in QRC721 or QRC20 token supply occurs. Use the type \"Mint Tokens\" to receive an update each time a new token is created, or use the type \"Burn Tokens\" to receive an update each time a token is destroyed.
+         * @summary Receive updates each time a supply changes for a QRC721 or QRC20 token
+         * @param {string} authorization 
+         * @param {string} flowtype 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeSupplyEvent(authorization: string, flowtype: string, body: object, options?: any): AxiosPromise<EventSubscriptionResponse> {
+            return localVarFp.subscribeSupplyEvent(authorization, flowtype, body, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SubscribeToQRC20TokenSupplyChangesApi - object-oriented interface
+ * @export
+ * @class SubscribeToQRC20TokenSupplyChangesApi
+ * @extends {BaseAPI}
+ */
+export class SubscribeToQRC20TokenSupplyChangesApi extends BaseAPI {
+    /**
+     * Set up a subscription to receive updates to a callback URL each time a change in QRC721 or QRC20 token supply occurs. Use the type \"Mint Tokens\" to receive an update each time a new token is created, or use the type \"Burn Tokens\" to receive an update each time a token is destroyed.
+     * @summary Receive updates each time a supply changes for a QRC721 or QRC20 token
+     * @param {string} authorization 
+     * @param {string} flowtype 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribeToQRC20TokenSupplyChangesApi
+     */
+    public subscribeSupplyEvent(authorization: string, flowtype: string, body: object, options?: AxiosRequestConfig) {
+        return SubscribeToQRC20TokenSupplyChangesApiFp(this.configuration).subscribeSupplyEvent(authorization, flowtype, body, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * SubscribeToQRC721AssetCollectionUpdatesApi - axios parameter creator
+ * @export
+ */
+export const SubscribeToQRC721AssetCollectionUpdatesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a QRC721 token is either approved for collected or collected. Use the type \"Approve Asset Collect\" to receive an update each time a token has been approved for collection, or use the type \"Collect Asset\" to receive an update each time a token has been collected.
+         * @summary Receive updates each time a QRC721 token is approved for collection or collected
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeCollectEvent: async (authorization: string, body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('subscribeCollectEvent', 'authorization', authorization)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('subscribeCollectEvent', 'body', body)
+            const localVarPath = `/v2/tokenise/tokens/subscription/qrc721/collect`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC721AssetCollectionUpdatesApi - functional programming interface
+ * @export
+ */
+export const SubscribeToQRC721AssetCollectionUpdatesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SubscribeToQRC721AssetCollectionUpdatesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a QRC721 token is either approved for collected or collected. Use the type \"Approve Asset Collect\" to receive an update each time a token has been approved for collection, or use the type \"Collect Asset\" to receive an update each time a token has been collected.
+         * @summary Receive updates each time a QRC721 token is approved for collection or collected
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async subscribeCollectEvent(authorization: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventSubscriptionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribeCollectEvent(authorization, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC721AssetCollectionUpdatesApi - factory interface
+ * @export
+ */
+export const SubscribeToQRC721AssetCollectionUpdatesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SubscribeToQRC721AssetCollectionUpdatesApiFp(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a QRC721 token is either approved for collected or collected. Use the type \"Approve Asset Collect\" to receive an update each time a token has been approved for collection, or use the type \"Collect Asset\" to receive an update each time a token has been collected.
+         * @summary Receive updates each time a QRC721 token is approved for collection or collected
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeCollectEvent(authorization: string, body: object, options?: any): AxiosPromise<EventSubscriptionResponse> {
+            return localVarFp.subscribeCollectEvent(authorization, body, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SubscribeToQRC721AssetCollectionUpdatesApi - object-oriented interface
+ * @export
+ * @class SubscribeToQRC721AssetCollectionUpdatesApi
+ * @extends {BaseAPI}
+ */
+export class SubscribeToQRC721AssetCollectionUpdatesApi extends BaseAPI {
+    /**
+     * Set up a subscription to receive updates to a callback URL each time a QRC721 token is either approved for collected or collected. Use the type \"Approve Asset Collect\" to receive an update each time a token has been approved for collection, or use the type \"Collect Asset\" to receive an update each time a token has been collected.
+     * @summary Receive updates each time a QRC721 token is approved for collection or collected
+     * @param {string} authorization 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribeToQRC721AssetCollectionUpdatesApi
+     */
+    public subscribeCollectEvent(authorization: string, body: object, options?: AxiosRequestConfig) {
+        return SubscribeToQRC721AssetCollectionUpdatesApiFp(this.configuration).subscribeCollectEvent(authorization, body, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * SubscribeToQRC721AssetTransfersApi - axios parameter creator
+ * @export
+ */
+export const SubscribeToQRC721AssetTransfersApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a QRC721 token is transferred to a different owner. Use the type \"Create Transfer\" to receive an update each time a token is transferred to a different owner.
+         * @summary Receive updates each time a QRC721 token is transferred
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeTransferEvent: async (authorization: string, body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('subscribeTransferEvent', 'authorization', authorization)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('subscribeTransferEvent', 'body', body)
+            const localVarPath = `/v2/tokenise/tokens/subscription/qrc721/transfer`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC721AssetTransfersApi - functional programming interface
+ * @export
+ */
+export const SubscribeToQRC721AssetTransfersApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SubscribeToQRC721AssetTransfersApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a QRC721 token is transferred to a different owner. Use the type \"Create Transfer\" to receive an update each time a token is transferred to a different owner.
+         * @summary Receive updates each time a QRC721 token is transferred
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async subscribeTransferEvent(authorization: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventSubscriptionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribeTransferEvent(authorization, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC721AssetTransfersApi - factory interface
+ * @export
+ */
+export const SubscribeToQRC721AssetTransfersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SubscribeToQRC721AssetTransfersApiFp(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a QRC721 token is transferred to a different owner. Use the type \"Create Transfer\" to receive an update each time a token is transferred to a different owner.
+         * @summary Receive updates each time a QRC721 token is transferred
+         * @param {string} authorization 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeTransferEvent(authorization: string, body: object, options?: any): AxiosPromise<EventSubscriptionResponse> {
+            return localVarFp.subscribeTransferEvent(authorization, body, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SubscribeToQRC721AssetTransfersApi - object-oriented interface
+ * @export
+ * @class SubscribeToQRC721AssetTransfersApi
+ * @extends {BaseAPI}
+ */
+export class SubscribeToQRC721AssetTransfersApi extends BaseAPI {
+    /**
+     * Set up a subscription to receive updates to a callback URL each time a QRC721 token is transferred to a different owner. Use the type \"Create Transfer\" to receive an update each time a token is transferred to a different owner.
+     * @summary Receive updates each time a QRC721 token is transferred
+     * @param {string} authorization 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribeToQRC721AssetTransfersApi
+     */
+    public subscribeTransferEvent(authorization: string, body: object, options?: AxiosRequestConfig) {
+        return SubscribeToQRC721AssetTransfersApiFp(this.configuration).subscribeTransferEvent(authorization, body, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * SubscribeToQRC721SupplyChangeUpdatesApi - axios parameter creator
+ * @export
+ */
+export const SubscribeToQRC721SupplyChangeUpdatesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a change in QRC721 or QRC20 token supply occurs. Use the type \"Mint Tokens\" to receive an update each time a new token is created, or use the type \"Burn Tokens\" to receive an update each time a token is destroyed.
+         * @summary Receive updates each time a supply changes for a QRC721 or QRC20 token
+         * @param {string} authorization 
+         * @param {string} flowtype 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeSupplyEvent: async (authorization: string, flowtype: string, body: object, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('subscribeSupplyEvent', 'authorization', authorization)
+            // verify required parameter 'flowtype' is not null or undefined
+            assertParamExists('subscribeSupplyEvent', 'flowtype', flowtype)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('subscribeSupplyEvent', 'body', body)
+            const localVarPath = `/v2/tokenise/tokens/subscription/{flowtype}/supply`
+                .replace(`{${"flowtype"}}`, encodeURIComponent(String(flowtype)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC721SupplyChangeUpdatesApi - functional programming interface
+ * @export
+ */
+export const SubscribeToQRC721SupplyChangeUpdatesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SubscribeToQRC721SupplyChangeUpdatesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a change in QRC721 or QRC20 token supply occurs. Use the type \"Mint Tokens\" to receive an update each time a new token is created, or use the type \"Burn Tokens\" to receive an update each time a token is destroyed.
+         * @summary Receive updates each time a supply changes for a QRC721 or QRC20 token
+         * @param {string} authorization 
+         * @param {string} flowtype 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async subscribeSupplyEvent(authorization: string, flowtype: string, body: object, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<EventSubscriptionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.subscribeSupplyEvent(authorization, flowtype, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SubscribeToQRC721SupplyChangeUpdatesApi - factory interface
+ * @export
+ */
+export const SubscribeToQRC721SupplyChangeUpdatesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SubscribeToQRC721SupplyChangeUpdatesApiFp(configuration)
+    return {
+        /**
+         * Set up a subscription to receive updates to a callback URL each time a change in QRC721 or QRC20 token supply occurs. Use the type \"Mint Tokens\" to receive an update each time a new token is created, or use the type \"Burn Tokens\" to receive an update each time a token is destroyed.
+         * @summary Receive updates each time a supply changes for a QRC721 or QRC20 token
+         * @param {string} authorization 
+         * @param {string} flowtype 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        subscribeSupplyEvent(authorization: string, flowtype: string, body: object, options?: any): AxiosPromise<EventSubscriptionResponse> {
+            return localVarFp.subscribeSupplyEvent(authorization, flowtype, body, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SubscribeToQRC721SupplyChangeUpdatesApi - object-oriented interface
+ * @export
+ * @class SubscribeToQRC721SupplyChangeUpdatesApi
+ * @extends {BaseAPI}
+ */
+export class SubscribeToQRC721SupplyChangeUpdatesApi extends BaseAPI {
+    /**
+     * Set up a subscription to receive updates to a callback URL each time a change in QRC721 or QRC20 token supply occurs. Use the type \"Mint Tokens\" to receive an update each time a new token is created, or use the type \"Burn Tokens\" to receive an update each time a token is destroyed.
+     * @summary Receive updates each time a supply changes for a QRC721 or QRC20 token
+     * @param {string} authorization 
+     * @param {string} flowtype 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubscribeToQRC721SupplyChangeUpdatesApi
+     */
+    public subscribeSupplyEvent(authorization: string, flowtype: string, body: object, options?: AxiosRequestConfig) {
+        return SubscribeToQRC721SupplyChangeUpdatesApiFp(this.configuration).subscribeSupplyEvent(authorization, flowtype, body, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * SupportedFungibleTokensApi - axios parameter creator
+ * @export
+ */
+export const SupportedFungibleTokensApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Retrieves a list of fungible tokens supported by Overledger and which APIs and functions you can use for each. You can retrieve all fungible token types for all locations without providing parameters. If you want to see what tokens are supported for a specific contract type you can pass in either ERC20 or QRC20 as a contract type parameter. You can then filter further by including the resource using the technology and network parameters. You can also look for a specific token by passing in the unit as a parameter.
+         * @summary Retrieve a list of ERC20 and QRC20 tokens
+         * @param {Location} [location] 
+         * @param {string} [contractType] 
+         * @param {string} [unit] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTokens: async (location?: Location, contractType?: string, unit?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/v2/tokens/fungible`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (location !== undefined) {
+                localVarQueryParameter['location'] = location;
+            }
+
+            if (contractType !== undefined) {
+                localVarQueryParameter['contractType'] = contractType;
+            }
+
+            if (unit !== undefined) {
+                localVarQueryParameter['unit'] = unit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SupportedFungibleTokensApi - functional programming interface
+ * @export
+ */
+export const SupportedFungibleTokensApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SupportedFungibleTokensApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Retrieves a list of fungible tokens supported by Overledger and which APIs and functions you can use for each. You can retrieve all fungible token types for all locations without providing parameters. If you want to see what tokens are supported for a specific contract type you can pass in either ERC20 or QRC20 as a contract type parameter. You can then filter further by including the resource using the technology and network parameters. You can also look for a specific token by passing in the unit as a parameter.
+         * @summary Retrieve a list of ERC20 and QRC20 tokens
+         * @param {Location} [location] 
+         * @param {string} [contractType] 
+         * @param {string} [unit] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getTokens(location?: Location, contractType?: string, unit?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FungibleTokenResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTokens(location, contractType, unit, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SupportedFungibleTokensApi - factory interface
+ * @export
+ */
+export const SupportedFungibleTokensApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SupportedFungibleTokensApiFp(configuration)
+    return {
+        /**
+         * Retrieves a list of fungible tokens supported by Overledger and which APIs and functions you can use for each. You can retrieve all fungible token types for all locations without providing parameters. If you want to see what tokens are supported for a specific contract type you can pass in either ERC20 or QRC20 as a contract type parameter. You can then filter further by including the resource using the technology and network parameters. You can also look for a specific token by passing in the unit as a parameter.
+         * @summary Retrieve a list of ERC20 and QRC20 tokens
+         * @param {Location} [location] 
+         * @param {string} [contractType] 
+         * @param {string} [unit] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTokens(location?: Location, contractType?: string, unit?: string, options?: any): AxiosPromise<FungibleTokenResponseDTO> {
+            return localVarFp.getTokens(location, contractType, unit, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SupportedFungibleTokensApi - object-oriented interface
+ * @export
+ * @class SupportedFungibleTokensApi
+ * @extends {BaseAPI}
+ */
+export class SupportedFungibleTokensApi extends BaseAPI {
+    /**
+     * Retrieves a list of fungible tokens supported by Overledger and which APIs and functions you can use for each. You can retrieve all fungible token types for all locations without providing parameters. If you want to see what tokens are supported for a specific contract type you can pass in either ERC20 or QRC20 as a contract type parameter. You can then filter further by including the resource using the technology and network parameters. You can also look for a specific token by passing in the unit as a parameter.
+     * @summary Retrieve a list of ERC20 and QRC20 tokens
+     * @param {Location} [location] 
+     * @param {string} [contractType] 
+     * @param {string} [unit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SupportedFungibleTokensApi
+     */
+    public getTokens(location?: Location, contractType?: string, unit?: string, options?: AxiosRequestConfig) {
+        return SupportedFungibleTokensApiFp(this.configuration).getTokens(location, contractType, unit, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * SupportedNonFungibleTokensApi - axios parameter creator
+ * @export
+ */
+export const SupportedNonFungibleTokensApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Retrieves a list of non-fungible tokens supported by Overledger and which API\'s and functions you can use for each. You can retrieve all non-fungible token types for all locations without providing parameters. If you want to see what tokens are supported for a specific contract type you can pass in either ERC721 or QRC721 as a contract type parameter. You can then filter further by including the resource using technology and network parameters. You can also look for a specific token by passing in the tokenName as a parameter.
+         * @summary Retrieve a list of ERC721 and QRC721 tokens
+         * @param {string} authorization 
+         * @param {string} [contractType] 
+         * @param {string} [technology] 
+         * @param {string} [network] 
+         * @param {string} [tokenName] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllNonFungibleTokens: async (authorization: string, contractType?: string, technology?: string, network?: string, tokenName?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'authorization' is not null or undefined
+            assertParamExists('getAllNonFungibleTokens', 'authorization', authorization)
+            const localVarPath = `/v2/tokenise/tokens/nonfungible`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (contractType !== undefined) {
+                localVarQueryParameter['contractType'] = contractType;
+            }
+
+            if (technology !== undefined) {
+                localVarQueryParameter['technology'] = technology;
+            }
+
+            if (network !== undefined) {
+                localVarQueryParameter['network'] = network;
+            }
+
+            if (tokenName !== undefined) {
+                localVarQueryParameter['tokenName'] = tokenName;
+            }
+
+            if (authorization !== undefined && authorization !== null) {
+                localVarHeaderParameter['Authorization'] = String(authorization);
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SupportedNonFungibleTokensApi - functional programming interface
+ * @export
+ */
+export const SupportedNonFungibleTokensApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SupportedNonFungibleTokensApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Retrieves a list of non-fungible tokens supported by Overledger and which API\'s and functions you can use for each. You can retrieve all non-fungible token types for all locations without providing parameters. If you want to see what tokens are supported for a specific contract type you can pass in either ERC721 or QRC721 as a contract type parameter. You can then filter further by including the resource using technology and network parameters. You can also look for a specific token by passing in the tokenName as a parameter.
+         * @summary Retrieve a list of ERC721 and QRC721 tokens
+         * @param {string} authorization 
+         * @param {string} [contractType] 
+         * @param {string} [technology] 
+         * @param {string} [network] 
+         * @param {string} [tokenName] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAllNonFungibleTokens(authorization: string, contractType?: string, technology?: string, network?: string, tokenName?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NonFungibleTokenResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllNonFungibleTokens(authorization, contractType, technology, network, tokenName, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * SupportedNonFungibleTokensApi - factory interface
+ * @export
+ */
+export const SupportedNonFungibleTokensApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SupportedNonFungibleTokensApiFp(configuration)
+    return {
+        /**
+         * Retrieves a list of non-fungible tokens supported by Overledger and which API\'s and functions you can use for each. You can retrieve all non-fungible token types for all locations without providing parameters. If you want to see what tokens are supported for a specific contract type you can pass in either ERC721 or QRC721 as a contract type parameter. You can then filter further by including the resource using technology and network parameters. You can also look for a specific token by passing in the tokenName as a parameter.
+         * @summary Retrieve a list of ERC721 and QRC721 tokens
+         * @param {string} authorization 
+         * @param {string} [contractType] 
+         * @param {string} [technology] 
+         * @param {string} [network] 
+         * @param {string} [tokenName] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllNonFungibleTokens(authorization: string, contractType?: string, technology?: string, network?: string, tokenName?: string, options?: any): AxiosPromise<NonFungibleTokenResponse> {
+            return localVarFp.getAllNonFungibleTokens(authorization, contractType, technology, network, tokenName, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SupportedNonFungibleTokensApi - object-oriented interface
+ * @export
+ * @class SupportedNonFungibleTokensApi
+ * @extends {BaseAPI}
+ */
+export class SupportedNonFungibleTokensApi extends BaseAPI {
+    /**
+     * Retrieves a list of non-fungible tokens supported by Overledger and which API\'s and functions you can use for each. You can retrieve all non-fungible token types for all locations without providing parameters. If you want to see what tokens are supported for a specific contract type you can pass in either ERC721 or QRC721 as a contract type parameter. You can then filter further by including the resource using technology and network parameters. You can also look for a specific token by passing in the tokenName as a parameter.
+     * @summary Retrieve a list of ERC721 and QRC721 tokens
+     * @param {string} authorization 
+     * @param {string} [contractType] 
+     * @param {string} [technology] 
+     * @param {string} [network] 
+     * @param {string} [tokenName] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SupportedNonFungibleTokensApi
+     */
+    public getAllNonFungibleTokens(authorization: string, contractType?: string, technology?: string, network?: string, tokenName?: string, options?: AxiosRequestConfig) {
+        return SupportedNonFungibleTokensApiFp(this.configuration).getAllNonFungibleTokens(authorization, contractType, technology, network, tokenName, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * TokenControllerApi - axios parameter creator
+ * @export
+ */
+export const TokenControllerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} tokenName 
+         * @param {string} technology 
+         * @param {string} network 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getNonFungibleToken: async (tokenName: string, technology: string, network: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'tokenName' is not null or undefined
+            assertParamExists('getNonFungibleToken', 'tokenName', tokenName)
+            // verify required parameter 'technology' is not null or undefined
+            assertParamExists('getNonFungibleToken', 'technology', technology)
+            // verify required parameter 'network' is not null or undefined
+            assertParamExists('getNonFungibleToken', 'network', network)
+            const localVarPath = `/v2/nonfungibletoken`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (tokenName !== undefined) {
+                localVarQueryParameter['tokenName'] = tokenName;
+            }
+
+            if (technology !== undefined) {
+                localVarQueryParameter['technology'] = technology;
+            }
+
+            if (network !== undefined) {
+                localVarQueryParameter['network'] = network;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * TokenControllerApi - functional programming interface
+ * @export
+ */
+export const TokenControllerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = TokenControllerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {string} tokenName 
+         * @param {string} technology 
+         * @param {string} network 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getNonFungibleToken(tokenName: string, technology: string, network: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NonFungibleTokenDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getNonFungibleToken(tokenName, technology, network, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * TokenControllerApi - factory interface
+ * @export
+ */
+export const TokenControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = TokenControllerApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {string} tokenName 
+         * @param {string} technology 
+         * @param {string} network 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getNonFungibleToken(tokenName: string, technology: string, network: string, options?: any): AxiosPromise<NonFungibleTokenDTO> {
+            return localVarFp.getNonFungibleToken(tokenName, technology, network, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * TokenControllerApi - object-oriented interface
+ * @export
+ * @class TokenControllerApi
+ * @extends {BaseAPI}
+ */
+export class TokenControllerApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} tokenName 
+     * @param {string} technology 
+     * @param {string} network 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TokenControllerApi
+     */
+    public getNonFungibleToken(tokenName: string, technology: string, network: string, options?: AxiosRequestConfig) {
+        return TokenControllerApiFp(this.configuration).getNonFungibleToken(tokenName, technology, network, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
  * TransactionSearchApi - axios parameter creator
  * @export
  */
@@ -6160,7 +11537,7 @@ export const TransactionSearchApiAxiosParamCreator = function (configuration?: C
          * Generates a request ID and automatically executes the transaction search on the requested DLT.
          * @summary Prepare and automatically execute a search for a transaction on a DLT.
          * @param {string} authorization 
-         * @param {string} transactionId 
+         * @param {string} transactionId The transactionId to search for
          * @param {PrepareSearchSchema} prepareSearchSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6262,7 +11639,7 @@ export const TransactionSearchApiAxiosParamCreator = function (configuration?: C
          * Searches for and returns data on transactions on a particular DLT. Returns a request ID for executing a transaction search on the requested DLT
          * @summary Prepare a search for a transaction on a DLT
          * @param {string} authorization 
-         * @param {string} transactionId 
+         * @param {string} transactionId The transactionId to search for
          * @param {PrepareSearchSchema} prepareSearchSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6326,7 +11703,7 @@ export const TransactionSearchApiFp = function(configuration?: Configuration) {
          * Generates a request ID and automatically executes the transaction search on the requested DLT.
          * @summary Prepare and automatically execute a search for a transaction on a DLT.
          * @param {string} authorization 
-         * @param {string} transactionId 
+         * @param {string} transactionId The transactionId to search for
          * @param {PrepareSearchSchema} prepareSearchSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6351,7 +11728,7 @@ export const TransactionSearchApiFp = function(configuration?: Configuration) {
          * Searches for and returns data on transactions on a particular DLT. Returns a request ID for executing a transaction search on the requested DLT
          * @summary Prepare a search for a transaction on a DLT
          * @param {string} authorization 
-         * @param {string} transactionId 
+         * @param {string} transactionId The transactionId to search for
          * @param {PrepareSearchSchema} prepareSearchSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6374,7 +11751,7 @@ export const TransactionSearchApiFactory = function (configuration?: Configurati
          * Generates a request ID and automatically executes the transaction search on the requested DLT.
          * @summary Prepare and automatically execute a search for a transaction on a DLT.
          * @param {string} authorization 
-         * @param {string} transactionId 
+         * @param {string} transactionId The transactionId to search for
          * @param {PrepareSearchSchema} prepareSearchSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6397,7 +11774,7 @@ export const TransactionSearchApiFactory = function (configuration?: Configurati
          * Searches for and returns data on transactions on a particular DLT. Returns a request ID for executing a transaction search on the requested DLT
          * @summary Prepare a search for a transaction on a DLT
          * @param {string} authorization 
-         * @param {string} transactionId 
+         * @param {string} transactionId The transactionId to search for
          * @param {PrepareSearchSchema} prepareSearchSchema 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6419,7 +11796,7 @@ export class TransactionSearchApi extends BaseAPI {
      * Generates a request ID and automatically executes the transaction search on the requested DLT.
      * @summary Prepare and automatically execute a search for a transaction on a DLT.
      * @param {string} authorization 
-     * @param {string} transactionId 
+     * @param {string} transactionId The transactionId to search for
      * @param {PrepareSearchSchema} prepareSearchSchema 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6446,7 +11823,7 @@ export class TransactionSearchApi extends BaseAPI {
      * Searches for and returns data on transactions on a particular DLT. Returns a request ID for executing a transaction search on the requested DLT
      * @summary Prepare a search for a transaction on a DLT
      * @param {string} authorization 
-     * @param {string} transactionId 
+     * @param {string} transactionId The transactionId to search for
      * @param {PrepareSearchSchema} prepareSearchSchema 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6564,7 +11941,7 @@ export const UTXOStatusSearchApiAxiosParamCreator = function (configuration?: Co
             };
         },
         /**
-         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT\'s
+         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
          * @summary Prepare Search for a UTXO State.
          * @param {string} authorization 
          * @param {string} utxoId 
@@ -6650,7 +12027,7 @@ export const UTXOStatusSearchApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT\'s
+         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
          * @summary Prepare Search for a UTXO State.
          * @param {string} authorization 
          * @param {string} utxoId 
@@ -6696,7 +12073,7 @@ export const UTXOStatusSearchApiFactory = function (configuration?: Configuratio
             return localVarFp.executeUTXOPreparedSearchRequest(authorization, requestId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT\'s
+         * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
          * @summary Prepare Search for a UTXO State.
          * @param {string} authorization 
          * @param {string} utxoId 
@@ -6745,7 +12122,7 @@ export class UTXOStatusSearchApi extends BaseAPI {
     }
 
     /**
-     * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT\'s
+     * Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
      * @summary Prepare Search for a UTXO State.
      * @param {string} authorization 
      * @param {string} utxoId 

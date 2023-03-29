@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -66,12 +66,12 @@ namespace Org.OpenAPITools.Test
 
 
         /// <summary>
-        /// Test the property 'Code'
+        /// Test the property 'Category'
         /// </summary>
         [Test]
-        public void CodeTest()
+        public void CategoryTest()
         {
-            // TODO unit test for the property 'Code'
+            // TODO unit test for the property 'Category'
         }
         /// <summary>
         /// Test the property 'Description'
@@ -82,12 +82,12 @@ namespace Org.OpenAPITools.Test
             // TODO unit test for the property 'Description'
         }
         /// <summary>
-        /// Test the property 'Category'
+        /// Test the property 'Code'
         /// </summary>
         [Test]
-        public void CategoryTest()
+        public void CodeTest()
         {
-            // TODO unit test for the property 'Category'
+            // TODO unit test for the property 'Code'
         }
 
     }

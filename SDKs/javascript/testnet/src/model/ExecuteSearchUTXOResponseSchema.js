@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -16,7 +16,6 @@ import Location from './Location';
 import Status from './Status';
 import UTXODestination from './UTXODestination';
 import UTXONativeData from './UTXONativeData';
-import UTXOTimestampSchema from './UTXOTimestampSchema';
 
 /**
  * The ExecuteSearchUTXOResponseSchema model module.
@@ -62,7 +61,7 @@ class ExecuteSearchUTXOResponseSchema {
                 obj['location'] = Location.constructFromObject(data['location']);
             }
             if (data.hasOwnProperty('timestamp')) {
-                obj['timestamp'] = UTXOTimestampSchema.constructFromObject(data['timestamp']);
+                obj['timestamp'] = ApiClient.convertToType(data['timestamp'], 'String');
             }
             if (data.hasOwnProperty('status')) {
                 obj['status'] = Status.constructFromObject(data['status']);
@@ -93,7 +92,7 @@ ExecuteSearchUTXOResponseSchema.prototype['destination'] = undefined;
 ExecuteSearchUTXOResponseSchema.prototype['location'] = undefined;
 
 /**
- * @member {module:model/UTXOTimestampSchema} timestamp
+ * @member {String} timestamp
  */
 ExecuteSearchUTXOResponseSchema.prototype['timestamp'] = undefined;
 

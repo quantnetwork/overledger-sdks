@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -49,9 +49,6 @@ class MonitorSmartContractRequestSchema {
         if (data) {
             obj = obj || new MonitorSmartContractRequestSchema();
 
-            if (data.hasOwnProperty('callBackURL')) {
-                obj['callBackURL'] = ApiClient.convertToType(data['callBackURL'], 'String');
-            }
             if (data.hasOwnProperty('eventParams')) {
                 obj['eventParams'] = ApiClient.convertToType(data['eventParams'], [MonitorSmartContractEventParam]);
             }
@@ -60,6 +57,9 @@ class MonitorSmartContractRequestSchema {
             }
             if (data.hasOwnProperty('location')) {
                 obj['location'] = Location.constructFromObject(data['location']);
+            }
+            if (data.hasOwnProperty('callBackURL')) {
+                obj['callBackURL'] = ApiClient.convertToType(data['callBackURL'], 'String');
             }
             if (data.hasOwnProperty('smartContractId')) {
                 obj['smartContractId'] = ApiClient.convertToType(data['smartContractId'], 'String');
@@ -70,11 +70,6 @@ class MonitorSmartContractRequestSchema {
 
 
 }
-
-/**
- * @member {String} callBackURL
- */
-MonitorSmartContractRequestSchema.prototype['callBackURL'] = undefined;
 
 /**
  * @member {Array.<module:model/MonitorSmartContractEventParam>} eventParams
@@ -90,6 +85,11 @@ MonitorSmartContractRequestSchema.prototype['eventName'] = undefined;
  * @member {module:model/Location} location
  */
 MonitorSmartContractRequestSchema.prototype['location'] = undefined;
+
+/**
+ * @member {String} callBackURL
+ */
+MonitorSmartContractRequestSchema.prototype['callBackURL'] = undefined;
 
 /**
  * @member {String} smartContractId

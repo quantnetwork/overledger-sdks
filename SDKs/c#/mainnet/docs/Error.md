@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | **int** |  | [optional] 
-**Service** | **string** |  | [optional] 
 **Message** | **string** |  | [optional] 
+**Service** | **string** |  | [optional] 
 **Timestamp** | **long** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)

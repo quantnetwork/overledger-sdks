@@ -1,7 +1,7 @@
 /*
  * payment_request_details_schema.h
  *
- * 
+ * The payload request
  */
 
 #ifndef _payment_request_details_schema_H_
@@ -18,21 +18,29 @@ typedef struct payment_request_details_schema_t payment_request_details_schema_t
 #include "destination_payment_schema.h"
 #include "origin_payment_schema.h"
 
+// Enum OVERLEDGERSIGNINGTYPE for payment_request_details_schema
+
+typedef enum  { quant_overledger_api_payment_request_details_schema_OVERLEDGERSIGNINGTYPE_NULL = 0, quant_overledger_api_payment_request_details_schema_OVERLEDGERSIGNINGTYPE_overledger_javascript_library } quant_overledger_api_payment_request_details_schema_OVERLEDGERSIGNINGTYPE_e;
+
+char* payment_request_details_schema_overledger_signing_type_ToString(quant_overledger_api_payment_request_details_schema_OVERLEDGERSIGNINGTYPE_e overledger_signing_type);
+
+quant_overledger_api_payment_request_details_schema_OVERLEDGERSIGNINGTYPE_e payment_request_details_schema_overledger_signing_type_FromString(char* overledger_signing_type);
+
 
 
 typedef struct payment_request_details_schema_t {
-    char *overledger_signing_type; // string
-    list_t *origin; //nonprimitive container
     list_t *destination; //nonprimitive container
     char *message; // string
+    quant_overledger_api_payment_request_details_schema_OVERLEDGERSIGNINGTYPE_e overledger_signing_type; //enum
+    list_t *origin; //nonprimitive container
 
 } payment_request_details_schema_t;
 
 payment_request_details_schema_t *payment_request_details_schema_create(
-    char *overledger_signing_type,
-    list_t *origin,
     list_t *destination,
-    char *message
+    char *message,
+    quant_overledger_api_payment_request_details_schema_OVERLEDGERSIGNINGTYPE_e overledger_signing_type,
+    list_t *origin
 );
 
 void payment_request_details_schema_free(payment_request_details_schema_t *payment_request_details_schema);

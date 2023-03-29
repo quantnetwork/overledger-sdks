@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,27 +33,21 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SmartContractMonitoringDetailsSchema" /> class.
         /// </summary>
-        /// <param name="smartContractEventHistory">smartContractEventHistory.</param>
         /// <param name="smartContractEventDetails">smartContractEventDetails.</param>
         /// <param name="location">location.</param>
+        /// <param name="smartContractEventHistory">smartContractEventHistory.</param>
         /// <param name="type">type.</param>
         /// <param name="status">status.</param>
         /// <param name="timestamp">timestamp.</param>
-        public SmartContractMonitoringDetailsSchema(List<SmartContractEventHistory> smartContractEventHistory = default(List<SmartContractEventHistory>), ResourceMonitoringSmartContractEventDetails smartContractEventDetails = default(ResourceMonitoringSmartContractEventDetails), Location location = default(Location), string type = default(string), Status status = default(Status), DateTime timestamp = default(DateTime))
+        public SmartContractMonitoringDetailsSchema(ResourceMonitoringSmartContractEventDetails smartContractEventDetails = default(ResourceMonitoringSmartContractEventDetails), Location location = default(Location), List<SmartContractEventHistory> smartContractEventHistory = default(List<SmartContractEventHistory>), string type = default(string), Status status = default(Status), string timestamp = default(string))
         {
-            this.SmartContractEventHistory = smartContractEventHistory;
             this.SmartContractEventDetails = smartContractEventDetails;
             this.Location = location;
+            this.SmartContractEventHistory = smartContractEventHistory;
             this.Type = type;
             this.Status = status;
             this.Timestamp = timestamp;
         }
-
-        /// <summary>
-        /// Gets or Sets SmartContractEventHistory
-        /// </summary>
-        [DataMember(Name="smartContractEventHistory", EmitDefaultValue=false)]
-        public List<SmartContractEventHistory> SmartContractEventHistory { get; set; }
 
         /// <summary>
         /// Gets or Sets SmartContractEventDetails
@@ -66,6 +60,12 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name="location", EmitDefaultValue=false)]
         public Location Location { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SmartContractEventHistory
+        /// </summary>
+        [DataMember(Name="smartContractEventHistory", EmitDefaultValue=false)]
+        public List<SmartContractEventHistory> SmartContractEventHistory { get; set; }
 
         /// <summary>
         /// Gets or Sets Type
@@ -83,7 +83,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public DateTime Timestamp { get; set; }
+        public string Timestamp { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,9 +93,9 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class SmartContractMonitoringDetailsSchema {\n");
-            sb.Append("  SmartContractEventHistory: ").Append(SmartContractEventHistory).Append("\n");
             sb.Append("  SmartContractEventDetails: ").Append(SmartContractEventDetails).Append("\n");
             sb.Append("  Location: ").Append(Location).Append("\n");
+            sb.Append("  SmartContractEventHistory: ").Append(SmartContractEventHistory).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
@@ -134,12 +134,6 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.SmartContractEventHistory == input.SmartContractEventHistory ||
-                    this.SmartContractEventHistory != null &&
-                    input.SmartContractEventHistory != null &&
-                    this.SmartContractEventHistory.SequenceEqual(input.SmartContractEventHistory)
-                ) && 
-                (
                     this.SmartContractEventDetails == input.SmartContractEventDetails ||
                     (this.SmartContractEventDetails != null &&
                     this.SmartContractEventDetails.Equals(input.SmartContractEventDetails))
@@ -148,6 +142,12 @@ namespace Org.OpenAPITools.Model
                     this.Location == input.Location ||
                     (this.Location != null &&
                     this.Location.Equals(input.Location))
+                ) && 
+                (
+                    this.SmartContractEventHistory == input.SmartContractEventHistory ||
+                    this.SmartContractEventHistory != null &&
+                    input.SmartContractEventHistory != null &&
+                    this.SmartContractEventHistory.SequenceEqual(input.SmartContractEventHistory)
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -175,12 +175,12 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.SmartContractEventHistory != null)
-                    hashCode = hashCode * 59 + this.SmartContractEventHistory.GetHashCode();
                 if (this.SmartContractEventDetails != null)
                     hashCode = hashCode * 59 + this.SmartContractEventDetails.GetHashCode();
                 if (this.Location != null)
                     hashCode = hashCode * 59 + this.Location.GetHashCode();
+                if (this.SmartContractEventHistory != null)
+                    hashCode = hashCode * 59 + this.SmartContractEventHistory.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.Status != null)

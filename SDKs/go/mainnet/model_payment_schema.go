@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -14,21 +14,22 @@ import (
 	"encoding/json"
 )
 
-// PaymentSchema struct for PaymentSchema
+// PaymentSchema The payload for each recipient
 type PaymentSchema struct {
-	// The amount of a currency
+	// The payload amount. The exact format depends on the unit of the token.
 	Amount string `json:"amount"`
-	// The unit of this currency/token
-	Unit *string `json:"unit,omitempty"`
+	// The currency or token code
+	Unit string `json:"unit"`
 }
 
 // NewPaymentSchema instantiates a new PaymentSchema object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaymentSchema(amount string) *PaymentSchema {
+func NewPaymentSchema(amount string, unit string) *PaymentSchema {
 	this := PaymentSchema{}
 	this.Amount = amount
+	this.Unit = unit
 	return &this
 }
 
@@ -64,36 +65,28 @@ func (o *PaymentSchema) SetAmount(v string) {
 	o.Amount = v
 }
 
-// GetUnit returns the Unit field value if set, zero value otherwise.
+// GetUnit returns the Unit field value
 func (o *PaymentSchema) GetUnit() string {
-	if o == nil || o.Unit == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Unit
+
+	return o.Unit
 }
 
-// GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
+// GetUnitOk returns a tuple with the Unit field value
 // and a boolean to check if the value has been set.
 func (o *PaymentSchema) GetUnitOk() (*string, bool) {
-	if o == nil || o.Unit == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Unit, true
+	return &o.Unit, true
 }
 
-// HasUnit returns a boolean if a field has been set.
-func (o *PaymentSchema) HasUnit() bool {
-	if o != nil && o.Unit != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUnit gets a reference to the given string and assigns it to the Unit field.
+// SetUnit sets field value
 func (o *PaymentSchema) SetUnit(v string) {
-	o.Unit = &v
+	o.Unit = v
 }
 
 func (o PaymentSchema) MarshalJSON() ([]byte, error) {
@@ -101,7 +94,7 @@ func (o PaymentSchema) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["amount"] = o.Amount
 	}
-	if o.Unit != nil {
+	if true {
 		toSerialize["unit"] = o.Unit
 	}
 	return json.Marshal(toSerialize)

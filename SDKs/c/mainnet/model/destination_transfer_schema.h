@@ -20,14 +20,14 @@ typedef struct destination_transfer_schema_t destination_transfer_schema_t;
 
 
 typedef struct destination_transfer_schema_t {
-    struct transfer_schema_t *transfer; //model
     char *destination_id; // string
+    struct transfer_schema_t *transfer; //model
 
 } destination_transfer_schema_t;
 
 destination_transfer_schema_t *destination_transfer_schema_create(
-    transfer_schema_t *transfer,
-    char *destination_id
+    char *destination_id,
+    transfer_schema_t *transfer
 );
 
 void destination_transfer_schema_free(destination_transfer_schema_t *destination_transfer_schema);

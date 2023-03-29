@@ -23,14 +23,14 @@ destination_payment_schema_t* instantiate_destination_payment_schema(int include
   destination_payment_schema_t* destination_payment_schema = NULL;
   if (include_optional) {
     destination_payment_schema = destination_payment_schema_create(
+      "a",
        // false, not to have infinite recursion
-      instantiate_payment_schema(0),
-      "a"
+      instantiate_payment_schema(0)
     );
   } else {
     destination_payment_schema = destination_payment_schema_create(
-      NULL,
-      "a"
+      "a",
+      NULL
     );
   }
 

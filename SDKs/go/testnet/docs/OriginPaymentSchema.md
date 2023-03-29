@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OriginId** | Pointer to **string** | Unique Identifier of the originator | [optional] 
+**OriginId** | **string** | Unique Identifier of the origin/sender | 
 
 ## Methods
 
 ### NewOriginPaymentSchema
 
-`func NewOriginPaymentSchema() *OriginPaymentSchema`
+`func NewOriginPaymentSchema(originId string, ) *OriginPaymentSchema`
 
 NewOriginPaymentSchema instantiates a new OriginPaymentSchema object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetOriginId sets OriginId field to given value.
 
-### HasOriginId
-
-`func (o *OriginPaymentSchema) HasOriginId() bool`
-
-HasOriginId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

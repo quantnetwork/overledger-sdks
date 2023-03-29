@@ -4,9 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**urgency** | **String** |  | [optional] 
-**requestDetails** | [**PaymentRequestDetailsSchema**](PaymentRequestDetailsSchema.md) |  | [optional] 
-**location** | [**Location**](Location.md) |  | [optional] 
-**type** | **String** |  | [optional] 
+**location** | [**Location**](Location.md) |  | 
+**type** | **String** | The type of the transaction | 
+**urgency** | **String** | This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal | 
+**requestDetails** | [**PaymentRequestDetailsSchema**](PaymentRequestDetailsSchema.md) |  | 
+
+
+
+## Enum: TypeEnum
+
+
+* `Payment` (value: `"Payment"`)
+
+* `Transfer` (value: `"Transfer"`)
+
+* `Contract Invoke` (value: `"Contract Invoke"`)
+
+
+
+
+
+## Enum: UrgencyEnum
+
+
+* `Normal` (value: `"Normal"`)
+
+* `Fast` (value: `"Fast"`)
+
+* `Urgent` (value: `"Urgent"`)
+
+
 
 

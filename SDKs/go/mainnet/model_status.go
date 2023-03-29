@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,10 +16,10 @@ import (
 
 // Status struct for Status
 type Status struct {
-	// The code of an object
-	Code *string `json:"code,omitempty"`
 	// The description of an object
 	Description *string `json:"description,omitempty"`
+	// The code of an object
+	Code *string `json:"code,omitempty"`
 	// The message of an object
 	Message *string `json:"message,omitempty"`
 	// The value of an object
@@ -42,38 +42,6 @@ func NewStatus() *Status {
 func NewStatusWithDefaults() *Status {
 	this := Status{}
 	return &this
-}
-
-// GetCode returns the Code field value if set, zero value otherwise.
-func (o *Status) GetCode() string {
-	if o == nil || o.Code == nil {
-		var ret string
-		return ret
-	}
-	return *o.Code
-}
-
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Status) GetCodeOk() (*string, bool) {
-	if o == nil || o.Code == nil {
-		return nil, false
-	}
-	return o.Code, true
-}
-
-// HasCode returns a boolean if a field has been set.
-func (o *Status) HasCode() bool {
-	if o != nil && o.Code != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given string and assigns it to the Code field.
-func (o *Status) SetCode(v string) {
-	o.Code = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -106,6 +74,38 @@ func (o *Status) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *Status) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetCode returns the Code field value if set, zero value otherwise.
+func (o *Status) GetCode() string {
+	if o == nil || o.Code == nil {
+		var ret string
+		return ret
+	}
+	return *o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Status) GetCodeOk() (*string, bool) {
+	if o == nil || o.Code == nil {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// HasCode returns a boolean if a field has been set.
+func (o *Status) HasCode() bool {
+	if o != nil && o.Code != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given string and assigns it to the Code field.
+func (o *Status) SetCode(v string) {
+	o.Code = &v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -206,11 +206,11 @@ func (o *Status) SetTimestamp(v string) {
 
 func (o Status) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Code != nil {
-		toSerialize["code"] = o.Code
-	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
+	}
+	if o.Code != nil {
+		toSerialize["code"] = o.Code
 	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message

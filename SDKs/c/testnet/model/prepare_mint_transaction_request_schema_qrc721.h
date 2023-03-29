@@ -1,0 +1,61 @@
+/*
+ * prepare_mint_transaction_request_schema_qrc721.h
+ *
+ * 
+ */
+
+#ifndef _prepare_mint_transaction_request_schema_qrc721_H_
+#define _prepare_mint_transaction_request_schema_qrc721_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct prepare_mint_transaction_request_schema_qrc721_t prepare_mint_transaction_request_schema_qrc721_t;
+
+#include "location.h"
+#include "mint_request_details_schema_qrc721.h"
+
+// Enum TYPE for prepare_mint_transaction_request_schema_qrc721
+
+typedef enum  { quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_TYPE_NULL = 0, quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_TYPE_Payment, quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_TYPE_Transfer, quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_TYPE_Contract Invoke } quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_TYPE_e;
+
+char* prepare_mint_transaction_request_schema_qrc721_type_ToString(quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_TYPE_e type);
+
+quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_TYPE_e prepare_mint_transaction_request_schema_qrc721_type_FromString(char* type);
+
+// Enum URGENCY for prepare_mint_transaction_request_schema_qrc721
+
+typedef enum  { quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_URGENCY_NULL = 0, quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_URGENCY_Normal, quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_URGENCY_Fast, quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_URGENCY_Urgent } quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_URGENCY_e;
+
+char* prepare_mint_transaction_request_schema_qrc721_urgency_ToString(quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_URGENCY_e urgency);
+
+quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_URGENCY_e prepare_mint_transaction_request_schema_qrc721_urgency_FromString(char* urgency);
+
+
+
+typedef struct prepare_mint_transaction_request_schema_qrc721_t {
+    struct location_t *location; //model
+    quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_TYPE_e type; //enum
+    quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_URGENCY_e urgency; //enum
+    struct mint_request_details_schema_qrc721_t *request_details; //model
+
+} prepare_mint_transaction_request_schema_qrc721_t;
+
+prepare_mint_transaction_request_schema_qrc721_t *prepare_mint_transaction_request_schema_qrc721_create(
+    location_t *location,
+    quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_TYPE_e type,
+    quant_overledger_api_prepare_mint_transaction_request_schema_qrc721_URGENCY_e urgency,
+    mint_request_details_schema_qrc721_t *request_details
+);
+
+void prepare_mint_transaction_request_schema_qrc721_free(prepare_mint_transaction_request_schema_qrc721_t *prepare_mint_transaction_request_schema_qrc721);
+
+prepare_mint_transaction_request_schema_qrc721_t *prepare_mint_transaction_request_schema_qrc721_parseFromJSON(cJSON *prepare_mint_transaction_request_schema_qrc721JSON);
+
+cJSON *prepare_mint_transaction_request_schema_qrc721_convertToJSON(prepare_mint_transaction_request_schema_qrc721_t *prepare_mint_transaction_request_schema_qrc721);
+
+#endif /* _prepare_mint_transaction_request_schema_qrc721_H_ */
+

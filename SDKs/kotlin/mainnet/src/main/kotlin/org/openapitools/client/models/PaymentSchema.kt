@@ -1,7 +1,7 @@
 /**
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -24,21 +24,21 @@ package org.openapitools.client.models
 import com.squareup.moshi.Json
 
 /**
- * 
+ * The payload for each recipient
  *
- * @param amount The amount of a currency
- * @param unit The unit of this currency/token
+ * @param amount The payload amount. The exact format depends on the unit of the token.
+ * @param unit The currency or token code
  */
 
 data class PaymentSchema (
 
-    /* The amount of a currency */
+    /* The payload amount. The exact format depends on the unit of the token. */
     @Json(name = "amount")
     val amount: kotlin.String,
 
-    /* The unit of this currency/token */
+    /* The currency or token code */
     @Json(name = "unit")
-    val unit: kotlin.String? = null
+    val unit: kotlin.String
 
 )
 

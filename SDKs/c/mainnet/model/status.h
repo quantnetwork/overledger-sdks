@@ -19,8 +19,8 @@ typedef struct status_t status_t;
 
 
 typedef struct status_t {
-    char *code; // string
     char *description; // string
+    char *code; // string
     char *message; // string
     char *value; // string
     char *timestamp; // string
@@ -28,8 +28,8 @@ typedef struct status_t {
 } status_t;
 
 status_t *status_create(
-    char *code,
     char *description,
+    char *code,
     char *message,
     char *value,
     char *timestamp

@@ -6,17 +6,17 @@
 
 
 resource_monitoring_subscription_t *resource_monitoring_subscription_create(
-    char *callback_url,
     char *subscription_id,
-    char *type
+    char *type,
+    char *callback_url
     ) {
     resource_monitoring_subscription_t *resource_monitoring_subscription_local_var = malloc(sizeof(resource_monitoring_subscription_t));
     if (!resource_monitoring_subscription_local_var) {
         return NULL;
     }
-    resource_monitoring_subscription_local_var->callback_url = callback_url;
     resource_monitoring_subscription_local_var->subscription_id = subscription_id;
     resource_monitoring_subscription_local_var->type = type;
+    resource_monitoring_subscription_local_var->callback_url = callback_url;
 
     return resource_monitoring_subscription_local_var;
 }
@@ -27,10 +27,6 @@ void resource_monitoring_subscription_free(resource_monitoring_subscription_t *r
         return ;
     }
     listEntry_t *listEntry;
-    if (resource_monitoring_subscription->callback_url) {
-        free(resource_monitoring_subscription->callback_url);
-        resource_monitoring_subscription->callback_url = NULL;
-    }
     if (resource_monitoring_subscription->subscription_id) {
         free(resource_monitoring_subscription->subscription_id);
         resource_monitoring_subscription->subscription_id = NULL;
@@ -39,19 +35,15 @@ void resource_monitoring_subscription_free(resource_monitoring_subscription_t *r
         free(resource_monitoring_subscription->type);
         resource_monitoring_subscription->type = NULL;
     }
+    if (resource_monitoring_subscription->callback_url) {
+        free(resource_monitoring_subscription->callback_url);
+        resource_monitoring_subscription->callback_url = NULL;
+    }
     free(resource_monitoring_subscription);
 }
 
 cJSON *resource_monitoring_subscription_convertToJSON(resource_monitoring_subscription_t *resource_monitoring_subscription) {
     cJSON *item = cJSON_CreateObject();
-
-    // resource_monitoring_subscription->callback_url
-    if(resource_monitoring_subscription->callback_url) { 
-    if(cJSON_AddStringToObject(item, "callbackUrl", resource_monitoring_subscription->callback_url) == NULL) {
-    goto fail; //String
-    }
-     } 
-
 
     // resource_monitoring_subscription->subscription_id
     if(resource_monitoring_subscription->subscription_id) { 
@@ -68,6 +60,14 @@ cJSON *resource_monitoring_subscription_convertToJSON(resource_monitoring_subscr
     }
      } 
 
+
+    // resource_monitoring_subscription->callback_url
+    if(resource_monitoring_subscription->callback_url) { 
+    if(cJSON_AddStringToObject(item, "callbackUrl", resource_monitoring_subscription->callback_url) == NULL) {
+    goto fail; //String
+    }
+     } 
+
     return item;
 fail:
     if (item) {
@@ -79,15 +79,6 @@ fail:
 resource_monitoring_subscription_t *resource_monitoring_subscription_parseFromJSON(cJSON *resource_monitoring_subscriptionJSON){
 
     resource_monitoring_subscription_t *resource_monitoring_subscription_local_var = NULL;
-
-    // resource_monitoring_subscription->callback_url
-    cJSON *callback_url = cJSON_GetObjectItemCaseSensitive(resource_monitoring_subscriptionJSON, "callbackUrl");
-    if (callback_url) { 
-    if(!cJSON_IsString(callback_url))
-    {
-    goto end; //String
-    }
-    }
 
     // resource_monitoring_subscription->subscription_id
     cJSON *subscription_id = cJSON_GetObjectItemCaseSensitive(resource_monitoring_subscriptionJSON, "subscriptionId");
@@ -107,11 +98,20 @@ resource_monitoring_subscription_t *resource_monitoring_subscription_parseFromJS
     }
     }
 
+    // resource_monitoring_subscription->callback_url
+    cJSON *callback_url = cJSON_GetObjectItemCaseSensitive(resource_monitoring_subscriptionJSON, "callbackUrl");
+    if (callback_url) { 
+    if(!cJSON_IsString(callback_url))
+    {
+    goto end; //String
+    }
+    }
+
 
     resource_monitoring_subscription_local_var = resource_monitoring_subscription_create (
-        callback_url ? strdup(callback_url->valuestring) : NULL,
         subscription_id ? strdup(subscription_id->valuestring) : NULL,
-        type ? strdup(type->valuestring) : NULL
+        type ? strdup(type->valuestring) : NULL,
+        callback_url ? strdup(callback_url->valuestring) : NULL
         );
 
     return resource_monitoring_subscription_local_var;

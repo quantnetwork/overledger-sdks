@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **transfer** | [**TransferSchema**](TransferSchema.md) |  | [optional] |
 | **destination_id** | **String** |  | [optional] |
+| **transfer** | [**TransferSchema**](TransferSchema.md) |  | [optional] |
 
 ## Example
 
@@ -13,8 +13,8 @@
 require 'openapi_client'
 
 instance = OpenapiClient::DestinationTransferSchema.new(
-  transfer: null,
-  destination_id: null
+  destination_id: null,
+  transfer: null
 )
 ```
 

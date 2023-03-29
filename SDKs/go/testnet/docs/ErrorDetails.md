@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
 **Category** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** |  | [optional] 
+**Code** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -27,30 +27,30 @@ NewErrorDetailsWithDefaults instantiates a new ErrorDetails object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCode
+### GetCategory
 
-`func (o *ErrorDetails) GetCode() string`
+`func (o *ErrorDetails) GetCategory() string`
 
-GetCode returns the Code field if non-nil, zero value otherwise.
+GetCategory returns the Category field if non-nil, zero value otherwise.
 
-### GetCodeOk
+### GetCategoryOk
 
-`func (o *ErrorDetails) GetCodeOk() (*string, bool)`
+`func (o *ErrorDetails) GetCategoryOk() (*string, bool)`
 
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+GetCategoryOk returns a tuple with the Category field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCode
+### SetCategory
 
-`func (o *ErrorDetails) SetCode(v string)`
+`func (o *ErrorDetails) SetCategory(v string)`
 
-SetCode sets Code field to given value.
+SetCategory sets Category field to given value.
 
-### HasCode
+### HasCategory
 
-`func (o *ErrorDetails) HasCode() bool`
+`func (o *ErrorDetails) HasCategory() bool`
 
-HasCode returns a boolean if a field has been set.
+HasCategory returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -77,30 +77,30 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetCategory
+### GetCode
 
-`func (o *ErrorDetails) GetCategory() string`
+`func (o *ErrorDetails) GetCode() string`
 
-GetCategory returns the Category field if non-nil, zero value otherwise.
+GetCode returns the Code field if non-nil, zero value otherwise.
 
-### GetCategoryOk
+### GetCodeOk
 
-`func (o *ErrorDetails) GetCategoryOk() (*string, bool)`
+`func (o *ErrorDetails) GetCodeOk() (*string, bool)`
 
-GetCategoryOk returns a tuple with the Category field if it's non-nil, zero value otherwise
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCategory
+### SetCode
 
-`func (o *ErrorDetails) SetCategory(v string)`
+`func (o *ErrorDetails) SetCode(v string)`
 
-SetCategory sets Category field to given value.
+SetCode sets Code field to given value.
 
-### HasCategory
+### HasCode
 
-`func (o *ErrorDetails) HasCategory() bool`
+`func (o *ErrorDetails) HasCode() bool`
 
-HasCategory returns a boolean if a field has been set.
+HasCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

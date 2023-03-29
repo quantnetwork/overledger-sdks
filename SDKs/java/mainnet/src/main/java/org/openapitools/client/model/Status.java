@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -27,15 +27,15 @@ import java.io.IOException;
 /**
  * Status
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:46:50.106642+01:00[Europe/London]")
 public class Status {
-  public static final String SERIALIZED_NAME_CODE = "code";
-  @SerializedName(SERIALIZED_NAME_CODE)
-  private String code;
-
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
+
+  public static final String SERIALIZED_NAME_CODE = "code";
+  @SerializedName(SERIALIZED_NAME_CODE)
+  private String code;
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -48,29 +48,6 @@ public class Status {
   public static final String SERIALIZED_NAME_TIMESTAMP = "timestamp";
   @SerializedName(SERIALIZED_NAME_TIMESTAMP)
   private String timestamp;
-
-
-  public Status code(String code) {
-    
-    this.code = code;
-    return this;
-  }
-
-   /**
-   * The code of an object
-   * @return code
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The code of an object")
-
-  public String getCode() {
-    return code;
-  }
-
-
-  public void setCode(String code) {
-    this.code = code;
-  }
 
 
   public Status description(String description) {
@@ -93,6 +70,29 @@ public class Status {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+
+  public Status code(String code) {
+    
+    this.code = code;
+    return this;
+  }
+
+   /**
+   * The code of an object
+   * @return code
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The code of an object")
+
+  public String getCode() {
+    return code;
+  }
+
+
+  public void setCode(String code) {
+    this.code = code;
   }
 
 
@@ -174,8 +174,8 @@ public class Status {
       return false;
     }
     Status status = (Status) o;
-    return Objects.equals(this.code, status.code) &&
-        Objects.equals(this.description, status.description) &&
+    return Objects.equals(this.description, status.description) &&
+        Objects.equals(this.code, status.code) &&
         Objects.equals(this.message, status.message) &&
         Objects.equals(this.value, status.value) &&
         Objects.equals(this.timestamp, status.timestamp);
@@ -183,15 +183,15 @@ public class Status {
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, description, message, value, timestamp);
+    return Objects.hash(description, code, message, value, timestamp);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Status {\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");

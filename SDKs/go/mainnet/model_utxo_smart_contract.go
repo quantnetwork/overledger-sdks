@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,8 +16,8 @@ import (
 
 // UTXOSmartContract struct for UTXOSmartContract
 type UTXOSmartContract struct {
-	Detail *string `json:"detail,omitempty"`
 	Type *string `json:"type,omitempty"`
+	Detail *string `json:"detail,omitempty"`
 	ExtraFields *ExtraFields `json:"extraFields,omitempty"`
 }
 
@@ -36,38 +36,6 @@ func NewUTXOSmartContract() *UTXOSmartContract {
 func NewUTXOSmartContractWithDefaults() *UTXOSmartContract {
 	this := UTXOSmartContract{}
 	return &this
-}
-
-// GetDetail returns the Detail field value if set, zero value otherwise.
-func (o *UTXOSmartContract) GetDetail() string {
-	if o == nil || o.Detail == nil {
-		var ret string
-		return ret
-	}
-	return *o.Detail
-}
-
-// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UTXOSmartContract) GetDetailOk() (*string, bool) {
-	if o == nil || o.Detail == nil {
-		return nil, false
-	}
-	return o.Detail, true
-}
-
-// HasDetail returns a boolean if a field has been set.
-func (o *UTXOSmartContract) HasDetail() bool {
-	if o != nil && o.Detail != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDetail gets a reference to the given string and assigns it to the Detail field.
-func (o *UTXOSmartContract) SetDetail(v string) {
-	o.Detail = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -100,6 +68,38 @@ func (o *UTXOSmartContract) HasType() bool {
 // SetType gets a reference to the given string and assigns it to the Type field.
 func (o *UTXOSmartContract) SetType(v string) {
 	o.Type = &v
+}
+
+// GetDetail returns the Detail field value if set, zero value otherwise.
+func (o *UTXOSmartContract) GetDetail() string {
+	if o == nil || o.Detail == nil {
+		var ret string
+		return ret
+	}
+	return *o.Detail
+}
+
+// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UTXOSmartContract) GetDetailOk() (*string, bool) {
+	if o == nil || o.Detail == nil {
+		return nil, false
+	}
+	return o.Detail, true
+}
+
+// HasDetail returns a boolean if a field has been set.
+func (o *UTXOSmartContract) HasDetail() bool {
+	if o != nil && o.Detail != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDetail gets a reference to the given string and assigns it to the Detail field.
+func (o *UTXOSmartContract) SetDetail(v string) {
+	o.Detail = &v
 }
 
 // GetExtraFields returns the ExtraFields field value if set, zero value otherwise.
@@ -136,11 +136,11 @@ func (o *UTXOSmartContract) SetExtraFields(v ExtraFields) {
 
 func (o UTXOSmartContract) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Detail != nil {
-		toSerialize["detail"] = o.Detail
-	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+	if o.Detail != nil {
+		toSerialize["detail"] = o.Detail
 	}
 	if o.ExtraFields != nil {
 		toSerialize["extraFields"] = o.ExtraFields

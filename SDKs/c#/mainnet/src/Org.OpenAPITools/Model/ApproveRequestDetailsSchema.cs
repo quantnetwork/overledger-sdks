@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,15 +33,22 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApproveRequestDetailsSchema" /> class.
         /// </summary>
+        /// <param name="payer">Who are the payers of this transaction.</param>
         /// <param name="mandate">Who are the payees of this transaction.</param>
         /// <param name="overledgerSigningType">overledgerSigningType.</param>
-        /// <param name="payer">Who are the payers of this transaction.</param>
-        public ApproveRequestDetailsSchema(List<PayeeCreditSchema> mandate = default(List<PayeeCreditSchema>), string overledgerSigningType = default(string), List<PayerCreditSchema> payer = default(List<PayerCreditSchema>))
+        public ApproveRequestDetailsSchema(List<PayerCreditSchema> payer = default(List<PayerCreditSchema>), List<PayeeCreditSchema> mandate = default(List<PayeeCreditSchema>), string overledgerSigningType = default(string))
         {
+            this.Payer = payer;
             this.Mandate = mandate;
             this.OverledgerSigningType = overledgerSigningType;
-            this.Payer = payer;
         }
+
+        /// <summary>
+        /// Who are the payers of this transaction
+        /// </summary>
+        /// <value>Who are the payers of this transaction</value>
+        [DataMember(Name="payer", EmitDefaultValue=false)]
+        public List<PayerCreditSchema> Payer { get; set; }
 
         /// <summary>
         /// Who are the payees of this transaction
@@ -57,13 +64,6 @@ namespace Org.OpenAPITools.Model
         public string OverledgerSigningType { get; set; }
 
         /// <summary>
-        /// Who are the payers of this transaction
-        /// </summary>
-        /// <value>Who are the payers of this transaction</value>
-        [DataMember(Name="payer", EmitDefaultValue=false)]
-        public List<PayerCreditSchema> Payer { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -71,9 +71,9 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ApproveRequestDetailsSchema {\n");
+            sb.Append("  Payer: ").Append(Payer).Append("\n");
             sb.Append("  Mandate: ").Append(Mandate).Append("\n");
             sb.Append("  OverledgerSigningType: ").Append(OverledgerSigningType).Append("\n");
-            sb.Append("  Payer: ").Append(Payer).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -109,6 +109,12 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
+                    this.Payer == input.Payer ||
+                    this.Payer != null &&
+                    input.Payer != null &&
+                    this.Payer.SequenceEqual(input.Payer)
+                ) && 
+                (
                     this.Mandate == input.Mandate ||
                     this.Mandate != null &&
                     input.Mandate != null &&
@@ -118,12 +124,6 @@ namespace Org.OpenAPITools.Model
                     this.OverledgerSigningType == input.OverledgerSigningType ||
                     (this.OverledgerSigningType != null &&
                     this.OverledgerSigningType.Equals(input.OverledgerSigningType))
-                ) && 
-                (
-                    this.Payer == input.Payer ||
-                    this.Payer != null &&
-                    input.Payer != null &&
-                    this.Payer.SequenceEqual(input.Payer)
                 );
         }
 
@@ -136,12 +136,12 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Payer != null)
+                    hashCode = hashCode * 59 + this.Payer.GetHashCode();
                 if (this.Mandate != null)
                     hashCode = hashCode * 59 + this.Mandate.GetHashCode();
                 if (this.OverledgerSigningType != null)
                     hashCode = hashCode * 59 + this.OverledgerSigningType.GetHashCode();
-                if (this.Payer != null)
-                    hashCode = hashCode * 59 + this.Payer.GetHashCode();
                 return hashCode;
             }
         }
@@ -153,6 +153,8 @@ namespace Org.OpenAPITools.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+
+
 
 
             // OverledgerSigningType (string) maxLength
@@ -173,8 +175,6 @@ namespace Org.OpenAPITools.Model
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OverledgerSigningType, must match a pattern of " + regexOverledgerSigningType, new [] { "OverledgerSigningType" });
             }
-
-
 
             yield break;
         }

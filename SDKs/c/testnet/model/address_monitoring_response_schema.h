@@ -22,15 +22,15 @@ typedef struct address_monitoring_response_schema_t address_monitoring_response_
 
 
 typedef struct address_monitoring_response_schema_t {
-    struct resource_monitoring_subscription_details_t *subscription_details; //model
     struct resource_monitoring_details_t *resource_monitoring; //model
+    struct resource_monitoring_subscription_details_t *subscription_details; //model
     struct resource_monitoring_subscription_t *subscription; //model
 
 } address_monitoring_response_schema_t;
 
 address_monitoring_response_schema_t *address_monitoring_response_schema_create(
-    resource_monitoring_subscription_details_t *subscription_details,
     resource_monitoring_details_t *resource_monitoring,
+    resource_monitoring_subscription_details_t *subscription_details,
     resource_monitoring_subscription_t *subscription
 );
 

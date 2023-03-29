@@ -37,7 +37,7 @@ $apiInstance = new OpenAPI\Client\Api\BlockSearchApi(
     $config
 );
 $authorization = 'authorization_example'; // string
-$block_id = latest; // string
+$block_id = 54678; // string
 $prepare_search_schema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // \OpenAPI\Client\Model\PrepareSearchSchema
 
 try {
@@ -163,7 +163,7 @@ $apiInstance = new OpenAPI\Client\Api\BlockSearchApi(
     $config
 );
 $authorization = 'authorization_example'; // string
-$block_id = latest; // string
+$block_id = 54678; // string
 $prepare_search_schema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}}; // \OpenAPI\Client\Model\PrepareSearchSchema
 
 try {

@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -30,42 +30,19 @@ import org.openapitools.client.model.ResourceMonitoringSubscriptionDetails;
 /**
  * AddressMonitoringResponseSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class AddressMonitoringResponseSchema {
-  public static final String SERIALIZED_NAME_SUBSCRIPTION_DETAILS = "subscriptionDetails";
-  @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_DETAILS)
-  private ResourceMonitoringSubscriptionDetails subscriptionDetails;
-
   public static final String SERIALIZED_NAME_RESOURCE_MONITORING = "resourceMonitoring";
   @SerializedName(SERIALIZED_NAME_RESOURCE_MONITORING)
   private ResourceMonitoringDetails resourceMonitoring;
 
+  public static final String SERIALIZED_NAME_SUBSCRIPTION_DETAILS = "subscriptionDetails";
+  @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_DETAILS)
+  private ResourceMonitoringSubscriptionDetails subscriptionDetails;
+
   public static final String SERIALIZED_NAME_SUBSCRIPTION = "subscription";
   @SerializedName(SERIALIZED_NAME_SUBSCRIPTION)
   private ResourceMonitoringSubscription subscription;
-
-
-  public AddressMonitoringResponseSchema subscriptionDetails(ResourceMonitoringSubscriptionDetails subscriptionDetails) {
-    
-    this.subscriptionDetails = subscriptionDetails;
-    return this;
-  }
-
-   /**
-   * Get subscriptionDetails
-   * @return subscriptionDetails
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public ResourceMonitoringSubscriptionDetails getSubscriptionDetails() {
-    return subscriptionDetails;
-  }
-
-
-  public void setSubscriptionDetails(ResourceMonitoringSubscriptionDetails subscriptionDetails) {
-    this.subscriptionDetails = subscriptionDetails;
-  }
 
 
   public AddressMonitoringResponseSchema resourceMonitoring(ResourceMonitoringDetails resourceMonitoring) {
@@ -88,6 +65,29 @@ public class AddressMonitoringResponseSchema {
 
   public void setResourceMonitoring(ResourceMonitoringDetails resourceMonitoring) {
     this.resourceMonitoring = resourceMonitoring;
+  }
+
+
+  public AddressMonitoringResponseSchema subscriptionDetails(ResourceMonitoringSubscriptionDetails subscriptionDetails) {
+    
+    this.subscriptionDetails = subscriptionDetails;
+    return this;
+  }
+
+   /**
+   * Get subscriptionDetails
+   * @return subscriptionDetails
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public ResourceMonitoringSubscriptionDetails getSubscriptionDetails() {
+    return subscriptionDetails;
+  }
+
+
+  public void setSubscriptionDetails(ResourceMonitoringSubscriptionDetails subscriptionDetails) {
+    this.subscriptionDetails = subscriptionDetails;
   }
 
 
@@ -123,22 +123,22 @@ public class AddressMonitoringResponseSchema {
       return false;
     }
     AddressMonitoringResponseSchema addressMonitoringResponseSchema = (AddressMonitoringResponseSchema) o;
-    return Objects.equals(this.subscriptionDetails, addressMonitoringResponseSchema.subscriptionDetails) &&
-        Objects.equals(this.resourceMonitoring, addressMonitoringResponseSchema.resourceMonitoring) &&
+    return Objects.equals(this.resourceMonitoring, addressMonitoringResponseSchema.resourceMonitoring) &&
+        Objects.equals(this.subscriptionDetails, addressMonitoringResponseSchema.subscriptionDetails) &&
         Objects.equals(this.subscription, addressMonitoringResponseSchema.subscription);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subscriptionDetails, resourceMonitoring, subscription);
+    return Objects.hash(resourceMonitoring, subscriptionDetails, subscription);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddressMonitoringResponseSchema {\n");
-    sb.append("    subscriptionDetails: ").append(toIndentedString(subscriptionDetails)).append("\n");
     sb.append("    resourceMonitoring: ").append(toIndentedString(resourceMonitoring)).append("\n");
+    sb.append("    subscriptionDetails: ").append(toIndentedString(subscriptionDetails)).append("\n");
     sb.append("    subscription: ").append(toIndentedString(subscription)).append("\n");
     sb.append("}");
     return sb.toString();

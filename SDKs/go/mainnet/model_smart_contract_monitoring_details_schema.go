@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -12,17 +12,16 @@ package openapi
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // SmartContractMonitoringDetailsSchema struct for SmartContractMonitoringDetailsSchema
 type SmartContractMonitoringDetailsSchema struct {
-	SmartContractEventHistory *[]SmartContractEventHistory `json:"smartContractEventHistory,omitempty"`
 	SmartContractEventDetails *ResourceMonitoringSmartContractEventDetails `json:"smartContractEventDetails,omitempty"`
 	Location *Location `json:"location,omitempty"`
+	SmartContractEventHistory *[]SmartContractEventHistory `json:"smartContractEventHistory,omitempty"`
 	Type *string `json:"type,omitempty"`
 	Status *Status `json:"status,omitempty"`
-	Timestamp *time.Time `json:"timestamp,omitempty"`
+	Timestamp *string `json:"timestamp,omitempty"`
 }
 
 // NewSmartContractMonitoringDetailsSchema instantiates a new SmartContractMonitoringDetailsSchema object
@@ -40,38 +39,6 @@ func NewSmartContractMonitoringDetailsSchema() *SmartContractMonitoringDetailsSc
 func NewSmartContractMonitoringDetailsSchemaWithDefaults() *SmartContractMonitoringDetailsSchema {
 	this := SmartContractMonitoringDetailsSchema{}
 	return &this
-}
-
-// GetSmartContractEventHistory returns the SmartContractEventHistory field value if set, zero value otherwise.
-func (o *SmartContractMonitoringDetailsSchema) GetSmartContractEventHistory() []SmartContractEventHistory {
-	if o == nil || o.SmartContractEventHistory == nil {
-		var ret []SmartContractEventHistory
-		return ret
-	}
-	return *o.SmartContractEventHistory
-}
-
-// GetSmartContractEventHistoryOk returns a tuple with the SmartContractEventHistory field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SmartContractMonitoringDetailsSchema) GetSmartContractEventHistoryOk() (*[]SmartContractEventHistory, bool) {
-	if o == nil || o.SmartContractEventHistory == nil {
-		return nil, false
-	}
-	return o.SmartContractEventHistory, true
-}
-
-// HasSmartContractEventHistory returns a boolean if a field has been set.
-func (o *SmartContractMonitoringDetailsSchema) HasSmartContractEventHistory() bool {
-	if o != nil && o.SmartContractEventHistory != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSmartContractEventHistory gets a reference to the given []SmartContractEventHistory and assigns it to the SmartContractEventHistory field.
-func (o *SmartContractMonitoringDetailsSchema) SetSmartContractEventHistory(v []SmartContractEventHistory) {
-	o.SmartContractEventHistory = &v
 }
 
 // GetSmartContractEventDetails returns the SmartContractEventDetails field value if set, zero value otherwise.
@@ -136,6 +103,38 @@ func (o *SmartContractMonitoringDetailsSchema) HasLocation() bool {
 // SetLocation gets a reference to the given Location and assigns it to the Location field.
 func (o *SmartContractMonitoringDetailsSchema) SetLocation(v Location) {
 	o.Location = &v
+}
+
+// GetSmartContractEventHistory returns the SmartContractEventHistory field value if set, zero value otherwise.
+func (o *SmartContractMonitoringDetailsSchema) GetSmartContractEventHistory() []SmartContractEventHistory {
+	if o == nil || o.SmartContractEventHistory == nil {
+		var ret []SmartContractEventHistory
+		return ret
+	}
+	return *o.SmartContractEventHistory
+}
+
+// GetSmartContractEventHistoryOk returns a tuple with the SmartContractEventHistory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SmartContractMonitoringDetailsSchema) GetSmartContractEventHistoryOk() (*[]SmartContractEventHistory, bool) {
+	if o == nil || o.SmartContractEventHistory == nil {
+		return nil, false
+	}
+	return o.SmartContractEventHistory, true
+}
+
+// HasSmartContractEventHistory returns a boolean if a field has been set.
+func (o *SmartContractMonitoringDetailsSchema) HasSmartContractEventHistory() bool {
+	if o != nil && o.SmartContractEventHistory != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSmartContractEventHistory gets a reference to the given []SmartContractEventHistory and assigns it to the SmartContractEventHistory field.
+func (o *SmartContractMonitoringDetailsSchema) SetSmartContractEventHistory(v []SmartContractEventHistory) {
+	o.SmartContractEventHistory = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -203,9 +202,9 @@ func (o *SmartContractMonitoringDetailsSchema) SetStatus(v Status) {
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *SmartContractMonitoringDetailsSchema) GetTimestamp() time.Time {
+func (o *SmartContractMonitoringDetailsSchema) GetTimestamp() string {
 	if o == nil || o.Timestamp == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.Timestamp
@@ -213,7 +212,7 @@ func (o *SmartContractMonitoringDetailsSchema) GetTimestamp() time.Time {
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SmartContractMonitoringDetailsSchema) GetTimestampOk() (*time.Time, bool) {
+func (o *SmartContractMonitoringDetailsSchema) GetTimestampOk() (*string, bool) {
 	if o == nil || o.Timestamp == nil {
 		return nil, false
 	}
@@ -229,21 +228,21 @@ func (o *SmartContractMonitoringDetailsSchema) HasTimestamp() bool {
 	return false
 }
 
-// SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.
-func (o *SmartContractMonitoringDetailsSchema) SetTimestamp(v time.Time) {
+// SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
+func (o *SmartContractMonitoringDetailsSchema) SetTimestamp(v string) {
 	o.Timestamp = &v
 }
 
 func (o SmartContractMonitoringDetailsSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.SmartContractEventHistory != nil {
-		toSerialize["smartContractEventHistory"] = o.SmartContractEventHistory
-	}
 	if o.SmartContractEventDetails != nil {
 		toSerialize["smartContractEventDetails"] = o.SmartContractEventDetails
 	}
 	if o.Location != nil {
 		toSerialize["location"] = o.Location
+	}
+	if o.SmartContractEventHistory != nil {
+		toSerialize["smartContractEventHistory"] = o.SmartContractEventHistory
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type

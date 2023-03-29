@@ -9,7 +9,7 @@ execute_search_utxo_response_schema_t *execute_search_utxo_response_schema_creat
     char *utxo_id,
     list_t *destination,
     location_t *location,
-    utxo_timestamp_schema_t *timestamp,
+    char *timestamp,
     status_t *status,
     utxo_native_data_t *native_data
     ) {
@@ -49,7 +49,7 @@ void execute_search_utxo_response_schema_free(execute_search_utxo_response_schem
         execute_search_utxo_response_schema->location = NULL;
     }
     if (execute_search_utxo_response_schema->timestamp) {
-        utxo_timestamp_schema_free(execute_search_utxo_response_schema->timestamp);
+        free(execute_search_utxo_response_schema->timestamp);
         execute_search_utxo_response_schema->timestamp = NULL;
     }
     if (execute_search_utxo_response_schema->status) {
@@ -109,13 +109,8 @@ cJSON *execute_search_utxo_response_schema_convertToJSON(execute_search_utxo_res
 
     // execute_search_utxo_response_schema->timestamp
     if(execute_search_utxo_response_schema->timestamp) { 
-    cJSON *timestamp_local_JSON = utxo_timestamp_schema_convertToJSON(execute_search_utxo_response_schema->timestamp);
-    if(timestamp_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "timestamp", timestamp_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
+    if(cJSON_AddStringToObject(item, "timestamp", execute_search_utxo_response_schema->timestamp) == NULL) {
+    goto fail; //String
     }
      } 
 
@@ -197,9 +192,11 @@ execute_search_utxo_response_schema_t *execute_search_utxo_response_schema_parse
 
     // execute_search_utxo_response_schema->timestamp
     cJSON *timestamp = cJSON_GetObjectItemCaseSensitive(execute_search_utxo_response_schemaJSON, "timestamp");
-    utxo_timestamp_schema_t *timestamp_local_nonprim = NULL;
     if (timestamp) { 
-    timestamp_local_nonprim = utxo_timestamp_schema_parseFromJSON(timestamp); //nonprimitive
+    if(!cJSON_IsString(timestamp))
+    {
+    goto end; //String
+    }
     }
 
     // execute_search_utxo_response_schema->status
@@ -221,7 +218,7 @@ execute_search_utxo_response_schema_t *execute_search_utxo_response_schema_parse
         utxo_id ? strdup(utxo_id->valuestring) : NULL,
         destination ? destinationList : NULL,
         location ? location_local_nonprim : NULL,
-        timestamp ? timestamp_local_nonprim : NULL,
+        timestamp ? strdup(timestamp->valuestring) : NULL,
         status ? status_local_nonprim : NULL,
         native_data ? native_data_local_nonprim : NULL
         );
@@ -231,10 +228,6 @@ end:
     if (location_local_nonprim) {
         location_free(location_local_nonprim);
         location_local_nonprim = NULL;
-    }
-    if (timestamp_local_nonprim) {
-        utxo_timestamp_schema_free(timestamp_local_nonprim);
-        timestamp_local_nonprim = NULL;
     }
     if (status_local_nonprim) {
         status_free(status_local_nonprim);

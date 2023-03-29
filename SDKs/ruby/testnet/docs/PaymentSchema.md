@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **amount** | **String** | The amount of a currency |  |
-| **unit** | **String** | The unit of this currency/token | [optional] |
+| **amount** | **String** | The payload amount. The exact format depends on the unit of the token. |  |
+| **unit** | **String** | The currency or token code |  |
 
 ## Example
 

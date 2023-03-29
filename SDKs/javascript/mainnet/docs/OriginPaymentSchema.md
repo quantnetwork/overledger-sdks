@@ -4,6 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**originId** | **String** | Unique Identifier of the originator | [optional] 
+**originId** | **String** | Unique Identifier of the origin/sender | 
 
 

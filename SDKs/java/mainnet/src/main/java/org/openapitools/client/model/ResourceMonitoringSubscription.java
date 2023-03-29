@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -27,12 +27,8 @@ import java.io.IOException;
 /**
  * ResourceMonitoringSubscription
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:46:50.106642+01:00[Europe/London]")
 public class ResourceMonitoringSubscription {
-  public static final String SERIALIZED_NAME_CALLBACK_URL = "callbackUrl";
-  @SerializedName(SERIALIZED_NAME_CALLBACK_URL)
-  private String callbackUrl;
-
   public static final String SERIALIZED_NAME_SUBSCRIPTION_ID = "subscriptionId";
   @SerializedName(SERIALIZED_NAME_SUBSCRIPTION_ID)
   private String subscriptionId;
@@ -41,28 +37,9 @@ public class ResourceMonitoringSubscription {
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
 
-
-  public ResourceMonitoringSubscription callbackUrl(String callbackUrl) {
-    
-    this.callbackUrl = callbackUrl;
-    return this;
-  }
-
-   /**
-   * Get callbackUrl
-   * @return callbackUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getCallbackUrl() {
-    return callbackUrl;
-  }
-
-
-  public void setCallbackUrl(String callbackUrl) {
-    this.callbackUrl = callbackUrl;
-  }
+  public static final String SERIALIZED_NAME_CALLBACK_URL = "callbackUrl";
+  @SerializedName(SERIALIZED_NAME_CALLBACK_URL)
+  private String callbackUrl;
 
 
   public ResourceMonitoringSubscription subscriptionId(String subscriptionId) {
@@ -111,6 +88,29 @@ public class ResourceMonitoringSubscription {
   }
 
 
+  public ResourceMonitoringSubscription callbackUrl(String callbackUrl) {
+    
+    this.callbackUrl = callbackUrl;
+    return this;
+  }
+
+   /**
+   * Get callbackUrl
+   * @return callbackUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getCallbackUrl() {
+    return callbackUrl;
+  }
+
+
+  public void setCallbackUrl(String callbackUrl) {
+    this.callbackUrl = callbackUrl;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -120,23 +120,23 @@ public class ResourceMonitoringSubscription {
       return false;
     }
     ResourceMonitoringSubscription resourceMonitoringSubscription = (ResourceMonitoringSubscription) o;
-    return Objects.equals(this.callbackUrl, resourceMonitoringSubscription.callbackUrl) &&
-        Objects.equals(this.subscriptionId, resourceMonitoringSubscription.subscriptionId) &&
-        Objects.equals(this.type, resourceMonitoringSubscription.type);
+    return Objects.equals(this.subscriptionId, resourceMonitoringSubscription.subscriptionId) &&
+        Objects.equals(this.type, resourceMonitoringSubscription.type) &&
+        Objects.equals(this.callbackUrl, resourceMonitoringSubscription.callbackUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(callbackUrl, subscriptionId, type);
+    return Objects.hash(subscriptionId, type, callbackUrl);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourceMonitoringSubscription {\n");
-    sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
     sb.append("    subscriptionId: ").append(toIndentedString(subscriptionId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    callbackUrl: ").append(toIndentedString(callbackUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }

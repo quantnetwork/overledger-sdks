@@ -2,7 +2,7 @@
 
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -30,7 +30,6 @@ use Log::Any qw($log);
 use Date::Parse;
 use DateTime;
 
-use WWW::OpenAPIClient::Object::Parameter;
 
 use base ("Class::Accessor", "Class::Data::Inheritable");
 
@@ -45,7 +44,7 @@ use base ("Class::Accessor", "Class::Data::Inheritable");
 
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -161,37 +160,16 @@ __PACKAGE__->class_documentation({description => '',
 }                                 );
 
 __PACKAGE__->method_documentation({
-    'function_id' => {
+    'type' => {
         datatype => 'string',
-        base_name => 'functionId',
+        base_name => 'type',
         description => '',
         format => '',
         read_only => '',
             },
-    'code' => {
+    'api' => {
         datatype => 'string',
-        base_name => 'code',
-        description => '',
-        format => '',
-        read_only => '',
-            },
-    'name' => {
-        datatype => 'string',
-        base_name => 'name',
-        description => '',
-        format => '',
-        read_only => '',
-            },
-    'input_parameters' => {
-        datatype => 'ARRAY[Parameter]',
-        base_name => 'inputParameters',
-        description => '',
-        format => '',
-        read_only => '',
-            },
-    'output_parameters' => {
-        datatype => 'ARRAY[Parameter]',
-        base_name => 'outputParameters',
+        base_name => 'api',
         description => '',
         format => '',
         read_only => '',
@@ -199,19 +177,13 @@ __PACKAGE__->method_documentation({
 });
 
 __PACKAGE__->openapi_types( {
-    'function_id' => 'string',
-    'code' => 'string',
-    'name' => 'string',
-    'input_parameters' => 'ARRAY[Parameter]',
-    'output_parameters' => 'ARRAY[Parameter]'
+    'type' => 'string',
+    'api' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
-    'function_id' => 'functionId',
-    'code' => 'code',
-    'name' => 'name',
-    'input_parameters' => 'inputParameters',
-    'output_parameters' => 'outputParameters'
+    'type' => 'type',
+    'api' => 'api'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

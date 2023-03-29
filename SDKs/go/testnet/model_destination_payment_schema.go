@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -14,19 +14,21 @@ import (
 	"encoding/json"
 )
 
-// DestinationPaymentSchema The Destination of this transaction
+// DestinationPaymentSchema List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
 type DestinationPaymentSchema struct {
-	Payment *PaymentSchema `json:"payment,omitempty"`
-	// The unique identifiers of the destination
-	DestinationId *string `json:"destinationId,omitempty"`
+	// Unique identifier of the destination/recipient
+	DestinationId string `json:"destinationId"`
+	Payment PaymentSchema `json:"payment"`
 }
 
 // NewDestinationPaymentSchema instantiates a new DestinationPaymentSchema object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDestinationPaymentSchema() *DestinationPaymentSchema {
+func NewDestinationPaymentSchema(destinationId string, payment PaymentSchema) *DestinationPaymentSchema {
 	this := DestinationPaymentSchema{}
+	this.DestinationId = destinationId
+	this.Payment = payment
 	return &this
 }
 
@@ -38,77 +40,61 @@ func NewDestinationPaymentSchemaWithDefaults() *DestinationPaymentSchema {
 	return &this
 }
 
-// GetPayment returns the Payment field value if set, zero value otherwise.
-func (o *DestinationPaymentSchema) GetPayment() PaymentSchema {
-	if o == nil || o.Payment == nil {
-		var ret PaymentSchema
-		return ret
-	}
-	return *o.Payment
-}
-
-// GetPaymentOk returns a tuple with the Payment field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DestinationPaymentSchema) GetPaymentOk() (*PaymentSchema, bool) {
-	if o == nil || o.Payment == nil {
-		return nil, false
-	}
-	return o.Payment, true
-}
-
-// HasPayment returns a boolean if a field has been set.
-func (o *DestinationPaymentSchema) HasPayment() bool {
-	if o != nil && o.Payment != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPayment gets a reference to the given PaymentSchema and assigns it to the Payment field.
-func (o *DestinationPaymentSchema) SetPayment(v PaymentSchema) {
-	o.Payment = &v
-}
-
-// GetDestinationId returns the DestinationId field value if set, zero value otherwise.
+// GetDestinationId returns the DestinationId field value
 func (o *DestinationPaymentSchema) GetDestinationId() string {
-	if o == nil || o.DestinationId == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.DestinationId
+
+	return o.DestinationId
 }
 
-// GetDestinationIdOk returns a tuple with the DestinationId field value if set, nil otherwise
+// GetDestinationIdOk returns a tuple with the DestinationId field value
 // and a boolean to check if the value has been set.
 func (o *DestinationPaymentSchema) GetDestinationIdOk() (*string, bool) {
-	if o == nil || o.DestinationId == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.DestinationId, true
+	return &o.DestinationId, true
 }
 
-// HasDestinationId returns a boolean if a field has been set.
-func (o *DestinationPaymentSchema) HasDestinationId() bool {
-	if o != nil && o.DestinationId != nil {
-		return true
+// SetDestinationId sets field value
+func (o *DestinationPaymentSchema) SetDestinationId(v string) {
+	o.DestinationId = v
+}
+
+// GetPayment returns the Payment field value
+func (o *DestinationPaymentSchema) GetPayment() PaymentSchema {
+	if o == nil {
+		var ret PaymentSchema
+		return ret
 	}
 
-	return false
+	return o.Payment
 }
 
-// SetDestinationId gets a reference to the given string and assigns it to the DestinationId field.
-func (o *DestinationPaymentSchema) SetDestinationId(v string) {
-	o.DestinationId = &v
+// GetPaymentOk returns a tuple with the Payment field value
+// and a boolean to check if the value has been set.
+func (o *DestinationPaymentSchema) GetPaymentOk() (*PaymentSchema, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Payment, true
+}
+
+// SetPayment sets field value
+func (o *DestinationPaymentSchema) SetPayment(v PaymentSchema) {
+	o.Payment = v
 }
 
 func (o DestinationPaymentSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Payment != nil {
-		toSerialize["payment"] = o.Payment
-	}
-	if o.DestinationId != nil {
+	if true {
 		toSerialize["destinationId"] = o.DestinationId
+	}
+	if true {
+		toSerialize["payment"] = o.Payment
 	}
 	return json.Marshal(toSerialize)
 }

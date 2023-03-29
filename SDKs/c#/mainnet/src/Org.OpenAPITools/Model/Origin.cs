@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -34,13 +34,13 @@ namespace Org.OpenAPITools.Model
         /// Initializes a new instance of the <see cref="Origin" /> class.
         /// </summary>
         /// <param name="sequence">sequence.</param>
-        /// <param name="originId">originId.</param>
         /// <param name="smartContract">smartContract.</param>
-        public Origin(string sequence = default(string), string originId = default(string), SmartContract smartContract = default(SmartContract))
+        /// <param name="originId">The unique identifier of the origin.</param>
+        public Origin(string sequence = default(string), SmartContract smartContract = default(SmartContract), string originId = default(string))
         {
             this.Sequence = sequence;
-            this.OriginId = originId;
             this.SmartContract = smartContract;
+            this.OriginId = originId;
         }
 
         /// <summary>
@@ -50,16 +50,17 @@ namespace Org.OpenAPITools.Model
         public string Sequence { get; set; }
 
         /// <summary>
-        /// Gets or Sets OriginId
-        /// </summary>
-        [DataMember(Name="originId", EmitDefaultValue=false)]
-        public string OriginId { get; set; }
-
-        /// <summary>
         /// Gets or Sets SmartContract
         /// </summary>
         [DataMember(Name="smartContract", EmitDefaultValue=false)]
         public SmartContract SmartContract { get; set; }
+
+        /// <summary>
+        /// The unique identifier of the origin
+        /// </summary>
+        /// <value>The unique identifier of the origin</value>
+        [DataMember(Name="originId", EmitDefaultValue=false)]
+        public string OriginId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -70,8 +71,8 @@ namespace Org.OpenAPITools.Model
             var sb = new StringBuilder();
             sb.Append("class Origin {\n");
             sb.Append("  Sequence: ").Append(Sequence).Append("\n");
-            sb.Append("  OriginId: ").Append(OriginId).Append("\n");
             sb.Append("  SmartContract: ").Append(SmartContract).Append("\n");
+            sb.Append("  OriginId: ").Append(OriginId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -112,14 +113,14 @@ namespace Org.OpenAPITools.Model
                     this.Sequence.Equals(input.Sequence))
                 ) && 
                 (
-                    this.OriginId == input.OriginId ||
-                    (this.OriginId != null &&
-                    this.OriginId.Equals(input.OriginId))
-                ) && 
-                (
                     this.SmartContract == input.SmartContract ||
                     (this.SmartContract != null &&
                     this.SmartContract.Equals(input.SmartContract))
+                ) && 
+                (
+                    this.OriginId == input.OriginId ||
+                    (this.OriginId != null &&
+                    this.OriginId.Equals(input.OriginId))
                 );
         }
 
@@ -134,10 +135,10 @@ namespace Org.OpenAPITools.Model
                 int hashCode = 41;
                 if (this.Sequence != null)
                     hashCode = hashCode * 59 + this.Sequence.GetHashCode();
-                if (this.OriginId != null)
-                    hashCode = hashCode * 59 + this.OriginId.GetHashCode();
                 if (this.SmartContract != null)
                     hashCode = hashCode * 59 + this.SmartContract.GetHashCode();
+                if (this.OriginId != null)
+                    hashCode = hashCode * 59 + this.OriginId.GetHashCode();
                 return hashCode;
             }
         }
@@ -150,9 +151,9 @@ namespace Org.OpenAPITools.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Sequence (string) maxLength
-            if(this.Sequence != null && this.Sequence.Length > 100)
+            if(this.Sequence != null && this.Sequence.Length > 18)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Sequence, length must be less than 100.", new [] { "Sequence" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Sequence, length must be less than 18.", new [] { "Sequence" });
             }
 
             // Sequence (string) minLength
@@ -162,16 +163,16 @@ namespace Org.OpenAPITools.Model
             }
 
             // Sequence (string) pattern
-            Regex regexSequence = new Regex(@"^[a-zA-Z0-9]{1,100}$", RegexOptions.CultureInvariant);
+            Regex regexSequence = new Regex(@"^[0-9]{1,18}$", RegexOptions.CultureInvariant);
             if (false == regexSequence.Match(this.Sequence).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Sequence, must match a pattern of " + regexSequence, new [] { "Sequence" });
             }
 
             // OriginId (string) maxLength
-            if(this.OriginId != null && this.OriginId.Length > 66)
+            if(this.OriginId != null && this.OriginId.Length > 500)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OriginId, length must be less than 66.", new [] { "OriginId" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OriginId, length must be less than 500.", new [] { "OriginId" });
             }
 
             // OriginId (string) minLength
@@ -181,7 +182,7 @@ namespace Org.OpenAPITools.Model
             }
 
             // OriginId (string) pattern
-            Regex regexOriginId = new Regex(@"^[A-Za-z0-9:]{1,66}$", RegexOptions.CultureInvariant);
+            Regex regexOriginId = new Regex(@"^[a-zA-Z0-9:,\/.=\\-\\s]{1,500}", RegexOptions.CultureInvariant);
             if (false == regexOriginId.Match(this.OriginId).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OriginId, must match a pattern of " + regexOriginId, new [] { "OriginId" });

@@ -4,10 +4,10 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **transfer** | [**Transfer**](Transfer.md) |  | [optional] |
-| **smart_contract** | [**SmartContract**](SmartContract.md) |  | [optional] |
 | **payment** | [**Payment**](Payment.md) |  | [optional] |
-| **destination_id** | **String** | The unique identifiers of the destination | [optional] |
+| **transfer** | [**Transfer**](Transfer.md) |  | [optional] |
+| **destination_id** | **String** | The unique identifier of the destination | [optional] |
+| **smart_contract** | [**SmartContract**](SmartContract.md) |  | [optional] |
 
 ## Example
 
@@ -15,10 +15,10 @@
 require 'openapi_client'
 
 instance = OpenapiClient::Destination.new(
-  transfer: null,
-  smart_contract: null,
   payment: null,
-  destination_id: null
+  transfer: null,
+  destination_id: null,
+  smart_contract: null
 )
 ```
 

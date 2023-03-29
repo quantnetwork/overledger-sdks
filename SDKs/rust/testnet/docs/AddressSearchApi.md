@@ -81,7 +81,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::ExecuteSearchSequenceResponse execute_prepared_search_request_address_sequence(authorization, request_id)
 Execute a search for an address sequence on a DLT
 
-Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT's
+Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
 
 ### Parameters
 

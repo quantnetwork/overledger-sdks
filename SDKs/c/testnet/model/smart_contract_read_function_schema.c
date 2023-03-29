@@ -6,8 +6,8 @@
 
 
 smart_contract_read_function_schema_t *smart_contract_read_function_schema_create(
-    char *function_id,
     char *name,
+    char *function_id,
     list_t *input_parameters,
     list_t *output_parameters
     ) {
@@ -15,8 +15,8 @@ smart_contract_read_function_schema_t *smart_contract_read_function_schema_creat
     if (!smart_contract_read_function_schema_local_var) {
         return NULL;
     }
-    smart_contract_read_function_schema_local_var->function_id = function_id;
     smart_contract_read_function_schema_local_var->name = name;
+    smart_contract_read_function_schema_local_var->function_id = function_id;
     smart_contract_read_function_schema_local_var->input_parameters = input_parameters;
     smart_contract_read_function_schema_local_var->output_parameters = output_parameters;
 
@@ -29,13 +29,13 @@ void smart_contract_read_function_schema_free(smart_contract_read_function_schem
         return ;
     }
     listEntry_t *listEntry;
-    if (smart_contract_read_function_schema->function_id) {
-        free(smart_contract_read_function_schema->function_id);
-        smart_contract_read_function_schema->function_id = NULL;
-    }
     if (smart_contract_read_function_schema->name) {
         free(smart_contract_read_function_schema->name);
         smart_contract_read_function_schema->name = NULL;
+    }
+    if (smart_contract_read_function_schema->function_id) {
+        free(smart_contract_read_function_schema->function_id);
+        smart_contract_read_function_schema->function_id = NULL;
     }
     if (smart_contract_read_function_schema->input_parameters) {
         list_ForEach(listEntry, smart_contract_read_function_schema->input_parameters) {
@@ -57,17 +57,17 @@ void smart_contract_read_function_schema_free(smart_contract_read_function_schem
 cJSON *smart_contract_read_function_schema_convertToJSON(smart_contract_read_function_schema_t *smart_contract_read_function_schema) {
     cJSON *item = cJSON_CreateObject();
 
-    // smart_contract_read_function_schema->function_id
-    if(smart_contract_read_function_schema->function_id) { 
-    if(cJSON_AddStringToObject(item, "functionId", smart_contract_read_function_schema->function_id) == NULL) {
+    // smart_contract_read_function_schema->name
+    if(smart_contract_read_function_schema->name) { 
+    if(cJSON_AddStringToObject(item, "name", smart_contract_read_function_schema->name) == NULL) {
     goto fail; //String
     }
      } 
 
 
-    // smart_contract_read_function_schema->name
-    if(smart_contract_read_function_schema->name) { 
-    if(cJSON_AddStringToObject(item, "name", smart_contract_read_function_schema->name) == NULL) {
+    // smart_contract_read_function_schema->function_id
+    if(smart_contract_read_function_schema->function_id) { 
+    if(cJSON_AddStringToObject(item, "functionId", smart_contract_read_function_schema->function_id) == NULL) {
     goto fail; //String
     }
      } 
@@ -124,19 +124,19 @@ smart_contract_read_function_schema_t *smart_contract_read_function_schema_parse
 
     smart_contract_read_function_schema_t *smart_contract_read_function_schema_local_var = NULL;
 
-    // smart_contract_read_function_schema->function_id
-    cJSON *function_id = cJSON_GetObjectItemCaseSensitive(smart_contract_read_function_schemaJSON, "functionId");
-    if (function_id) { 
-    if(!cJSON_IsString(function_id))
+    // smart_contract_read_function_schema->name
+    cJSON *name = cJSON_GetObjectItemCaseSensitive(smart_contract_read_function_schemaJSON, "name");
+    if (name) { 
+    if(!cJSON_IsString(name))
     {
     goto end; //String
     }
     }
 
-    // smart_contract_read_function_schema->name
-    cJSON *name = cJSON_GetObjectItemCaseSensitive(smart_contract_read_function_schemaJSON, "name");
-    if (name) { 
-    if(!cJSON_IsString(name))
+    // smart_contract_read_function_schema->function_id
+    cJSON *function_id = cJSON_GetObjectItemCaseSensitive(smart_contract_read_function_schemaJSON, "functionId");
+    if (function_id) { 
+    if(!cJSON_IsString(function_id))
     {
     goto end; //String
     }
@@ -188,8 +188,8 @@ smart_contract_read_function_schema_t *smart_contract_read_function_schema_parse
 
 
     smart_contract_read_function_schema_local_var = smart_contract_read_function_schema_create (
-        function_id ? strdup(function_id->valuestring) : NULL,
         name ? strdup(name->valuestring) : NULL,
+        function_id ? strdup(function_id->valuestring) : NULL,
         input_parameters ? input_parametersList : NULL,
         output_parameters ? output_parametersList : NULL
         );

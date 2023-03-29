@@ -23,14 +23,14 @@ smart_contract_search_schema_t* instantiate_smart_contract_search_schema(int inc
   smart_contract_search_schema_t* smart_contract_search_schema = NULL;
   if (include_optional) {
     smart_contract_search_schema = smart_contract_search_schema_create(
+      "a",
        // false, not to have infinite recursion
-      instantiate_smart_contract_search_function_schema(0),
-      "a"
+      instantiate_smart_contract_search_function_schema(0)
     );
   } else {
     smart_contract_search_schema = smart_contract_search_schema_create(
-      NULL,
-      "a"
+      "a",
+      NULL
     );
   }
 

@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -50,7 +50,7 @@ module OpenapiClient
         :'utxo_id' => :'String',
         :'destination' => :'Array<UTXODestination>',
         :'location' => :'Location',
-        :'timestamp' => :'UTXOTimestampSchema',
+        :'timestamp' => :'String',
         :'status' => :'Status',
         :'native_data' => :'UTXONativeData'
       }
@@ -116,6 +116,14 @@ module OpenapiClient
         invalid_properties.push('invalid value for "destination", number of items must be greater than or equal to 0.')
       end
 
+      if !@timestamp.nil? && @timestamp.to_s.length > 50
+        invalid_properties.push('invalid value for "timestamp", the character length must be smaller than or equal to 50.')
+      end
+
+      if !@timestamp.nil? && @timestamp.to_s.length < 0
+        invalid_properties.push('invalid value for "timestamp", the character length must be great than or equal to 0.')
+      end
+
       invalid_properties
     end
 
@@ -124,6 +132,8 @@ module OpenapiClient
     def valid?
       return false if !@destination.nil? && @destination.length > 1
       return false if !@destination.nil? && @destination.length < 0
+      return false if !@timestamp.nil? && @timestamp.to_s.length > 50
+      return false if !@timestamp.nil? && @timestamp.to_s.length < 0
       true
     end
 
@@ -139,6 +149,20 @@ module OpenapiClient
       end
 
       @destination = destination
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] timestamp Value to be assigned
+    def timestamp=(timestamp)
+      if !timestamp.nil? && timestamp.to_s.length > 50
+        fail ArgumentError, 'invalid value for "timestamp", the character length must be smaller than or equal to 50.'
+      end
+
+      if !timestamp.nil? && timestamp.to_s.length < 0
+        fail ArgumentError, 'invalid value for "timestamp", the character length must be great than or equal to 0.'
+      end
+
+      @timestamp = timestamp
     end
 
     # Checks equality by comparing each attribute.

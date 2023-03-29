@@ -16,8 +16,8 @@
 #include "../model/auto_execute_search_address_balance_response_schema.h"
 auto_execute_search_address_balance_response_schema_t* instantiate_auto_execute_search_address_balance_response_schema(int include_optional);
 
-#include "test_prepare_and_execute_search_address_balance_response.c"
 #include "test_prepare_and_execute_overledger_error_response.c"
+#include "test_prepare_and_execute_search_address_balance_response.c"
 #include "test_prepare_search_response_schema.c"
 
 
@@ -26,9 +26,9 @@ auto_execute_search_address_balance_response_schema_t* instantiate_auto_execute_
   if (include_optional) {
     auto_execute_search_address_balance_response_schema = auto_execute_search_address_balance_response_schema_create(
        // false, not to have infinite recursion
-      instantiate_prepare_and_execute_search_address_balance_response(0),
-       // false, not to have infinite recursion
       instantiate_prepare_and_execute_overledger_error_response(0),
+       // false, not to have infinite recursion
+      instantiate_prepare_and_execute_search_address_balance_response(0),
        // false, not to have infinite recursion
       instantiate_prepare_search_response_schema(0)
     );

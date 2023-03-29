@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExecutionAddressBalanceSearchResponse** | Pointer to [**PrepareAndExecuteSearchAddressBalanceResponse**](PrepareAndExecuteSearchAddressBalanceResponse.md) |  | [optional] 
 **PrepareAndExecuteOverledgerErrorResponse** | Pointer to [**PrepareAndExecuteOverledgerErrorResponse**](PrepareAndExecuteOverledgerErrorResponse.md) |  | [optional] 
+**ExecutionAddressBalanceSearchResponse** | Pointer to [**PrepareAndExecuteSearchAddressBalanceResponse**](PrepareAndExecuteSearchAddressBalanceResponse.md) |  | [optional] 
 **PreparationAddressBalanceSearchResponse** | Pointer to [**PrepareSearchResponseSchema**](PrepareSearchResponseSchema.md) |  | [optional] 
 
 ## Methods
@@ -26,31 +26,6 @@ will change when the set of required properties is changed
 NewAutoExecuteSearchAddressBalanceResponseSchemaWithDefaults instantiates a new AutoExecuteSearchAddressBalanceResponseSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetExecutionAddressBalanceSearchResponse
-
-`func (o *AutoExecuteSearchAddressBalanceResponseSchema) GetExecutionAddressBalanceSearchResponse() PrepareAndExecuteSearchAddressBalanceResponse`
-
-GetExecutionAddressBalanceSearchResponse returns the ExecutionAddressBalanceSearchResponse field if non-nil, zero value otherwise.
-
-### GetExecutionAddressBalanceSearchResponseOk
-
-`func (o *AutoExecuteSearchAddressBalanceResponseSchema) GetExecutionAddressBalanceSearchResponseOk() (*PrepareAndExecuteSearchAddressBalanceResponse, bool)`
-
-GetExecutionAddressBalanceSearchResponseOk returns a tuple with the ExecutionAddressBalanceSearchResponse field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExecutionAddressBalanceSearchResponse
-
-`func (o *AutoExecuteSearchAddressBalanceResponseSchema) SetExecutionAddressBalanceSearchResponse(v PrepareAndExecuteSearchAddressBalanceResponse)`
-
-SetExecutionAddressBalanceSearchResponse sets ExecutionAddressBalanceSearchResponse field to given value.
-
-### HasExecutionAddressBalanceSearchResponse
-
-`func (o *AutoExecuteSearchAddressBalanceResponseSchema) HasExecutionAddressBalanceSearchResponse() bool`
-
-HasExecutionAddressBalanceSearchResponse returns a boolean if a field has been set.
 
 ### GetPrepareAndExecuteOverledgerErrorResponse
 
@@ -76,6 +51,31 @@ SetPrepareAndExecuteOverledgerErrorResponse sets PrepareAndExecuteOverledgerErro
 `func (o *AutoExecuteSearchAddressBalanceResponseSchema) HasPrepareAndExecuteOverledgerErrorResponse() bool`
 
 HasPrepareAndExecuteOverledgerErrorResponse returns a boolean if a field has been set.
+
+### GetExecutionAddressBalanceSearchResponse
+
+`func (o *AutoExecuteSearchAddressBalanceResponseSchema) GetExecutionAddressBalanceSearchResponse() PrepareAndExecuteSearchAddressBalanceResponse`
+
+GetExecutionAddressBalanceSearchResponse returns the ExecutionAddressBalanceSearchResponse field if non-nil, zero value otherwise.
+
+### GetExecutionAddressBalanceSearchResponseOk
+
+`func (o *AutoExecuteSearchAddressBalanceResponseSchema) GetExecutionAddressBalanceSearchResponseOk() (*PrepareAndExecuteSearchAddressBalanceResponse, bool)`
+
+GetExecutionAddressBalanceSearchResponseOk returns a tuple with the ExecutionAddressBalanceSearchResponse field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExecutionAddressBalanceSearchResponse
+
+`func (o *AutoExecuteSearchAddressBalanceResponseSchema) SetExecutionAddressBalanceSearchResponse(v PrepareAndExecuteSearchAddressBalanceResponse)`
+
+SetExecutionAddressBalanceSearchResponse sets ExecutionAddressBalanceSearchResponse field to given value.
+
+### HasExecutionAddressBalanceSearchResponse
+
+`func (o *AutoExecuteSearchAddressBalanceResponseSchema) HasExecutionAddressBalanceSearchResponse() bool`
+
+HasExecutionAddressBalanceSearchResponse returns a boolean if a field has been set.
 
 ### GetPreparationAddressBalanceSearchResponse
 

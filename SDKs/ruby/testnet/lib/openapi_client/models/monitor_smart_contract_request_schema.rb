@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,23 +15,23 @@ require 'time'
 
 module OpenapiClient
   class MonitorSmartContractRequestSchema
-    attr_accessor :call_back_url
-
     attr_accessor :event_params
 
     attr_accessor :event_name
 
     attr_accessor :location
 
+    attr_accessor :call_back_url
+
     attr_accessor :smart_contract_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'call_back_url' => :'callBackURL',
         :'event_params' => :'eventParams',
         :'event_name' => :'eventName',
         :'location' => :'location',
+        :'call_back_url' => :'callBackURL',
         :'smart_contract_id' => :'smartContractId'
       }
     end
@@ -44,10 +44,10 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'call_back_url' => :'String',
         :'event_params' => :'Array<MonitorSmartContractEventParam>',
         :'event_name' => :'String',
         :'location' => :'Location',
+        :'call_back_url' => :'String',
         :'smart_contract_id' => :'String'
       }
     end
@@ -73,10 +73,6 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'call_back_url')
-        self.call_back_url = attributes[:'call_back_url']
-      end
-
       if attributes.key?(:'event_params')
         if (value = attributes[:'event_params']).is_a?(Array)
           self.event_params = value
@@ -91,6 +87,10 @@ module OpenapiClient
         self.location = attributes[:'location']
       end
 
+      if attributes.key?(:'call_back_url')
+        self.call_back_url = attributes[:'call_back_url']
+      end
+
       if attributes.key?(:'smart_contract_id')
         self.smart_contract_id = attributes[:'smart_contract_id']
       end
@@ -100,19 +100,6 @@ module OpenapiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@call_back_url.nil? && @call_back_url.to_s.length > 300
-        invalid_properties.push('invalid value for "call_back_url", the character length must be smaller than or equal to 300.')
-      end
-
-      if !@call_back_url.nil? && @call_back_url.to_s.length < 0
-        invalid_properties.push('invalid value for "call_back_url", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^http[\S\s]{1,300}$/)
-      if !@call_back_url.nil? && @call_back_url !~ pattern
-        invalid_properties.push("invalid value for \"call_back_url\", must conform to the pattern #{pattern}.")
-      end
-
       if !@event_name.nil? && @event_name.to_s.length > 100
         invalid_properties.push('invalid value for "event_name", the character length must be smaller than or equal to 100.')
       end
@@ -126,6 +113,19 @@ module OpenapiClient
         invalid_properties.push("invalid value for \"event_name\", must conform to the pattern #{pattern}.")
       end
 
+      if !@call_back_url.nil? && @call_back_url.to_s.length > 300
+        invalid_properties.push('invalid value for "call_back_url", the character length must be smaller than or equal to 300.')
+      end
+
+      if !@call_back_url.nil? && @call_back_url.to_s.length < 0
+        invalid_properties.push('invalid value for "call_back_url", the character length must be great than or equal to 0.')
+      end
+
+      pattern = Regexp.new(/^http[\S\s]{1,300}$/)
+      if !@call_back_url.nil? && @call_back_url !~ pattern
+        invalid_properties.push("invalid value for \"call_back_url\", must conform to the pattern #{pattern}.")
+      end
+
       if !@smart_contract_id.nil? && @smart_contract_id.to_s.length > 100
         invalid_properties.push('invalid value for "smart_contract_id", the character length must be smaller than or equal to 100.')
       end
@@ -134,7 +134,7 @@ module OpenapiClient
         invalid_properties.push('invalid value for "smart_contract_id", the character length must be great than or equal to 0.')
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9-]{1,100}$/)
       if !@smart_contract_id.nil? && @smart_contract_id !~ pattern
         invalid_properties.push("invalid value for \"smart_contract_id\", must conform to the pattern #{pattern}.")
       end
@@ -145,35 +145,16 @@ module OpenapiClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@call_back_url.nil? && @call_back_url.to_s.length > 300
-      return false if !@call_back_url.nil? && @call_back_url.to_s.length < 0
-      return false if !@call_back_url.nil? && @call_back_url !~ Regexp.new(/^http[\S\s]{1,300}$/)
       return false if !@event_name.nil? && @event_name.to_s.length > 100
       return false if !@event_name.nil? && @event_name.to_s.length < 0
       return false if !@event_name.nil? && @event_name !~ Regexp.new(/^[a-zA-Z0-9 ]{1,100}$/)
+      return false if !@call_back_url.nil? && @call_back_url.to_s.length > 300
+      return false if !@call_back_url.nil? && @call_back_url.to_s.length < 0
+      return false if !@call_back_url.nil? && @call_back_url !~ Regexp.new(/^http[\S\s]{1,300}$/)
       return false if !@smart_contract_id.nil? && @smart_contract_id.to_s.length > 100
       return false if !@smart_contract_id.nil? && @smart_contract_id.to_s.length < 0
-      return false if !@smart_contract_id.nil? && @smart_contract_id !~ Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      return false if !@smart_contract_id.nil? && @smart_contract_id !~ Regexp.new(/^[a-zA-Z0-9-]{1,100}$/)
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] call_back_url Value to be assigned
-    def call_back_url=(call_back_url)
-      if !call_back_url.nil? && call_back_url.to_s.length > 300
-        fail ArgumentError, 'invalid value for "call_back_url", the character length must be smaller than or equal to 300.'
-      end
-
-      if !call_back_url.nil? && call_back_url.to_s.length < 0
-        fail ArgumentError, 'invalid value for "call_back_url", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^http[\S\s]{1,300}$/)
-      if !call_back_url.nil? && call_back_url !~ pattern
-        fail ArgumentError, "invalid value for \"call_back_url\", must conform to the pattern #{pattern}."
-      end
-
-      @call_back_url = call_back_url
     end
 
     # Custom attribute writer method with validation
@@ -196,6 +177,25 @@ module OpenapiClient
     end
 
     # Custom attribute writer method with validation
+    # @param [Object] call_back_url Value to be assigned
+    def call_back_url=(call_back_url)
+      if !call_back_url.nil? && call_back_url.to_s.length > 300
+        fail ArgumentError, 'invalid value for "call_back_url", the character length must be smaller than or equal to 300.'
+      end
+
+      if !call_back_url.nil? && call_back_url.to_s.length < 0
+        fail ArgumentError, 'invalid value for "call_back_url", the character length must be great than or equal to 0.'
+      end
+
+      pattern = Regexp.new(/^http[\S\s]{1,300}$/)
+      if !call_back_url.nil? && call_back_url !~ pattern
+        fail ArgumentError, "invalid value for \"call_back_url\", must conform to the pattern #{pattern}."
+      end
+
+      @call_back_url = call_back_url
+    end
+
+    # Custom attribute writer method with validation
     # @param [Object] smart_contract_id Value to be assigned
     def smart_contract_id=(smart_contract_id)
       if !smart_contract_id.nil? && smart_contract_id.to_s.length > 100
@@ -206,7 +206,7 @@ module OpenapiClient
         fail ArgumentError, 'invalid value for "smart_contract_id", the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9-]{1,100}$/)
       if !smart_contract_id.nil? && smart_contract_id !~ pattern
         fail ArgumentError, "invalid value for \"smart_contract_id\", must conform to the pattern #{pattern}."
       end
@@ -219,10 +219,10 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          call_back_url == o.call_back_url &&
           event_params == o.event_params &&
           event_name == o.event_name &&
           location == o.location &&
+          call_back_url == o.call_back_url &&
           smart_contract_id == o.smart_contract_id
     end
 
@@ -235,7 +235,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [call_back_url, event_params, event_name, location, smart_contract_id].hash
+      [event_params, event_name, location, call_back_url, smart_contract_id].hash
     end
 
     # Builds the object from hash

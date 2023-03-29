@@ -23,14 +23,14 @@ approve_request_details_schema_t* instantiate_approve_request_details_schema(int
   if (include_optional) {
     approve_request_details_schema = approve_request_details_schema_create(
       list_create(),
-      "a",
-      list_create()
+      list_create(),
+      "a"
     );
   } else {
     approve_request_details_schema = approve_request_details_schema_create(
       list_create(),
-      "a",
-      list_create()
+      list_create(),
+      "a"
     );
   }
 

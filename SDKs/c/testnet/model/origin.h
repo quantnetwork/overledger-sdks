@@ -21,15 +21,15 @@ typedef struct origin_t origin_t;
 
 typedef struct origin_t {
     char *sequence; // string
-    char *origin_id; // string
     struct smart_contract_t *smart_contract; //model
+    char *origin_id; // string
 
 } origin_t;
 
 origin_t *origin_create(
     char *sequence,
-    char *origin_id,
-    smart_contract_t *smart_contract
+    smart_contract_t *smart_contract,
+    char *origin_id
 );
 
 void origin_free(origin_t *origin);

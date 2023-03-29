@@ -19,16 +19,16 @@ typedef struct resource_monitoring_subscription_t resource_monitoring_subscripti
 
 
 typedef struct resource_monitoring_subscription_t {
-    char *callback_url; // string
     char *subscription_id; // string
     char *type; // string
+    char *callback_url; // string
 
 } resource_monitoring_subscription_t;
 
 resource_monitoring_subscription_t *resource_monitoring_subscription_create(
-    char *callback_url,
     char *subscription_id,
-    char *type
+    char *type,
+    char *callback_url
 );
 
 void resource_monitoring_subscription_free(resource_monitoring_subscription_t *resource_monitoring_subscription);

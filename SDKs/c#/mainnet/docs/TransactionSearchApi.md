@@ -39,7 +39,7 @@ namespace Example
 
             var apiInstance = new TransactionSearchApi(Configuration.Default);
             var authorization = authorization_example;  // string | 
-            var transactionId = transactionId_example;  // string | 
+            var transactionId = 0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab;  // string | The transactionId to search for
             var prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
 
             try
@@ -65,7 +65,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  | 
- **transactionId** | **string**|  | 
+ **transactionId** | **string**| The transactionId to search for | 
  **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  | 
 
 ### Return type
@@ -211,7 +211,7 @@ namespace Example
 
             var apiInstance = new TransactionSearchApi(Configuration.Default);
             var authorization = authorization_example;  // string | 
-            var transactionId = transactionId_example;  // string | 
+            var transactionId = 0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab;  // string | The transactionId to search for
             var prepareSearchSchema = new PrepareSearchSchema(); // PrepareSearchSchema | 
 
             try
@@ -237,7 +237,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  | 
- **transactionId** | **string**|  | 
+ **transactionId** | **string**| The transactionId to search for | 
  **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  | 
 
 ### Return type

@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **function_id** | **String** |  | [optional] |
 | **name** | **String** |  | [optional] |
+| **function_id** | **String** |  | [optional] |
 | **input_parameters** | [**Array&lt;SmartContractInputParameterSchema&gt;**](SmartContractInputParameterSchema.md) |  | [optional] |
 | **output_parameters** | [**Array&lt;SmartContractInputParameterSchema&gt;**](SmartContractInputParameterSchema.md) |  | [optional] |
 
@@ -15,8 +15,8 @@
 require 'openapi_client'
 
 instance = OpenapiClient::SmartContractReadFunctionSchema.new(
-  function_id: null,
   name: null,
+  function_id: null,
   input_parameters: null,
   output_parameters: null
 )

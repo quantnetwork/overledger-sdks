@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,18 +15,18 @@ require 'time'
 
 module OpenapiClient
   class UTXODestination
+    attr_accessor :destination_id
+
     attr_accessor :smart_contract
 
     attr_accessor :payment
 
-    attr_accessor :destination_id
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'destination_id' => :'destinationId',
         :'smart_contract' => :'smartContract',
-        :'payment' => :'payment',
-        :'destination_id' => :'destinationId'
+        :'payment' => :'payment'
       }
     end
 
@@ -38,9 +38,9 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'destination_id' => :'String',
         :'smart_contract' => :'UTXOSmartContract',
-        :'payment' => :'Payment',
-        :'destination_id' => :'String'
+        :'payment' => :'Payment'
       }
     end
 
@@ -65,16 +65,16 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'destination_id')
+        self.destination_id = attributes[:'destination_id']
+      end
+
       if attributes.key?(:'smart_contract')
         self.smart_contract = attributes[:'smart_contract']
       end
 
       if attributes.key?(:'payment')
         self.payment = attributes[:'payment']
-      end
-
-      if attributes.key?(:'destination_id')
-        self.destination_id = attributes[:'destination_id']
       end
     end
 
@@ -96,9 +96,9 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          destination_id == o.destination_id &&
           smart_contract == o.smart_contract &&
-          payment == o.payment &&
-          destination_id == o.destination_id
+          payment == o.payment
     end
 
     # @see the `==` method
@@ -110,7 +110,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [smart_contract, payment, destination_id].hash
+      [destination_id, smart_contract, payment].hash
     end
 
     # Builds the object from hash

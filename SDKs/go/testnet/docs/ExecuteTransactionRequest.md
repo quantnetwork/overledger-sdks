@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Signed** | Pointer to **string** | The raw data after transaction signing | [optional] 
 **RequestId** | **string** | The ID assigned to a preparation request in Overledger | 
-**Signed** | **string** | The raw data after transaction signing | 
 
 ## Methods
 
 ### NewExecuteTransactionRequest
 
-`func NewExecuteTransactionRequest(requestId string, signed string, ) *ExecuteTransactionRequest`
+`func NewExecuteTransactionRequest(requestId string, ) *ExecuteTransactionRequest`
 
 NewExecuteTransactionRequest instantiates a new ExecuteTransactionRequest object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewExecuteTransactionRequestWithDefaults instantiates a new ExecuteTransactionRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetRequestId
-
-`func (o *ExecuteTransactionRequest) GetRequestId() string`
-
-GetRequestId returns the RequestId field if non-nil, zero value otherwise.
-
-### GetRequestIdOk
-
-`func (o *ExecuteTransactionRequest) GetRequestIdOk() (*string, bool)`
-
-GetRequestIdOk returns a tuple with the RequestId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequestId
-
-`func (o *ExecuteTransactionRequest) SetRequestId(v string)`
-
-SetRequestId sets RequestId field to given value.
-
 
 ### GetSigned
 
@@ -64,6 +44,31 @@ and a boolean to check if the value has been set.
 `func (o *ExecuteTransactionRequest) SetSigned(v string)`
 
 SetSigned sets Signed field to given value.
+
+### HasSigned
+
+`func (o *ExecuteTransactionRequest) HasSigned() bool`
+
+HasSigned returns a boolean if a field has been set.
+
+### GetRequestId
+
+`func (o *ExecuteTransactionRequest) GetRequestId() string`
+
+GetRequestId returns the RequestId field if non-nil, zero value otherwise.
+
+### GetRequestIdOk
+
+`func (o *ExecuteTransactionRequest) GetRequestIdOk() (*string, bool)`
+
+GetRequestIdOk returns a tuple with the RequestId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestId
+
+`func (o *ExecuteTransactionRequest) SetRequestId(v string)`
+
+SetRequestId sets RequestId field to given value.
 
 
 

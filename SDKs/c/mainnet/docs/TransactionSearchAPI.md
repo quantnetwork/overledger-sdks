@@ -23,7 +23,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **Authorization** | **char \*** |  | 
-**transactionId** | **char \*** |  | 
+**transactionId** | **char \*** | The transactionId to search for | 
 **prepare_search_schema** | **[prepare_search_schema_t](prepare_search_schema.md) \*** |  | 
 
 ### Return type
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **Authorization** | **char \*** |  | 
-**transactionId** | **char \*** |  | 
+**transactionId** | **char \*** | The transactionId to search for | 
 **prepare_search_schema** | **[prepare_search_schema_t](prepare_search_schema.md) \*** |  | 
 
 ### Return type

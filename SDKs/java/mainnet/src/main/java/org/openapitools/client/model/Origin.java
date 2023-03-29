@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -29,19 +29,19 @@ import org.openapitools.client.model.SmartContract;
  * Where is this transaction coming from
  */
 @ApiModel(description = "Where is this transaction coming from")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:46:50.106642+01:00[Europe/London]")
 public class Origin {
   public static final String SERIALIZED_NAME_SEQUENCE = "sequence";
   @SerializedName(SERIALIZED_NAME_SEQUENCE)
   private String sequence;
 
-  public static final String SERIALIZED_NAME_ORIGIN_ID = "originId";
-  @SerializedName(SERIALIZED_NAME_ORIGIN_ID)
-  private String originId;
-
   public static final String SERIALIZED_NAME_SMART_CONTRACT = "smartContract";
   @SerializedName(SERIALIZED_NAME_SMART_CONTRACT)
   private SmartContract smartContract;
+
+  public static final String SERIALIZED_NAME_ORIGIN_ID = "originId";
+  @SerializedName(SERIALIZED_NAME_ORIGIN_ID)
+  private String originId;
 
 
   public Origin sequence(String sequence) {
@@ -64,29 +64,6 @@ public class Origin {
 
   public void setSequence(String sequence) {
     this.sequence = sequence;
-  }
-
-
-  public Origin originId(String originId) {
-    
-    this.originId = originId;
-    return this;
-  }
-
-   /**
-   * Get originId
-   * @return originId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getOriginId() {
-    return originId;
-  }
-
-
-  public void setOriginId(String originId) {
-    this.originId = originId;
   }
 
 
@@ -113,6 +90,29 @@ public class Origin {
   }
 
 
+  public Origin originId(String originId) {
+    
+    this.originId = originId;
+    return this;
+  }
+
+   /**
+   * The unique identifier of the origin
+   * @return originId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The unique identifier of the origin")
+
+  public String getOriginId() {
+    return originId;
+  }
+
+
+  public void setOriginId(String originId) {
+    this.originId = originId;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -123,13 +123,13 @@ public class Origin {
     }
     Origin origin = (Origin) o;
     return Objects.equals(this.sequence, origin.sequence) &&
-        Objects.equals(this.originId, origin.originId) &&
-        Objects.equals(this.smartContract, origin.smartContract);
+        Objects.equals(this.smartContract, origin.smartContract) &&
+        Objects.equals(this.originId, origin.originId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sequence, originId, smartContract);
+    return Objects.hash(sequence, smartContract, originId);
   }
 
   @Override
@@ -137,8 +137,8 @@ public class Origin {
     StringBuilder sb = new StringBuilder();
     sb.append("class Origin {\n");
     sb.append("    sequence: ").append(toIndentedString(sequence)).append("\n");
-    sb.append("    originId: ").append(toIndentedString(originId)).append("\n");
     sb.append("    smartContract: ").append(toIndentedString(smartContract)).append("\n");
+    sb.append("    originId: ").append(toIndentedString(originId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

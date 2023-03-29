@@ -36,7 +36,7 @@ $apiInstance = new OpenAPI\Client\Api\MonitorAResourceApi(
     $config
 );
 $authorization = 'authorization_example'; // string
-$address_monitoring_request_schema = {"callBackURL":"https://callbackurl/endpoint","location":{"technology":"Ethereum","network":"Ropsten"},"addressId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"}; // \OpenAPI\Client\Model\AddressMonitoringRequestSchema
+$address_monitoring_request_schema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"},"callBackURL":"https://callbackurl/endpoint","addressId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"}; // \OpenAPI\Client\Model\AddressMonitoringRequestSchema
 
 try {
     $result = $apiInstance->resourceMonitoringAddress($authorization, $address_monitoring_request_schema);
@@ -98,7 +98,7 @@ $apiInstance = new OpenAPI\Client\Api\MonitorAResourceApi(
     $config
 );
 $authorization = 'authorization_example'; // string
-$monitor_smart_contract_request_schema = {"callBackURL":"https://test-post.free.beeceptor.com/comments","eventParams":[{"selectedIntegerLength":"B256","type":"UINT","value":"3"},{"selectedIntegerLength":"B256","type":"UINT","value":"2"}],"eventName":"mul","location":{"technology":"Ethereum","network":"Ethereum Ropsten Testnet"},"smartContractId":"0x8781d54e454377451D9C6928538Db544Caa65CDf"}; // \OpenAPI\Client\Model\MonitorSmartContractRequestSchema
+$monitor_smart_contract_request_schema = {"eventParams":[{"selectedIntegerLength":"B256","type":"UINT","value":"3"},{"selectedIntegerLength":"B256","type":"UINT","value":"2"}],"eventName":"mul","location":{"technology":"Ethereum","network":"Ropsten Testnet"},"callBackURL":"https://test-post.free.beeceptor.com/comments","smartContractId":"0x8781d54e454377451D9C6928538Db544Caa65CDf"}; // \OpenAPI\Client\Model\MonitorSmartContractRequestSchema
 
 try {
     $result = $apiInstance->trackAndSubscribeEvent($authorization, $monitor_smart_contract_request_schema);

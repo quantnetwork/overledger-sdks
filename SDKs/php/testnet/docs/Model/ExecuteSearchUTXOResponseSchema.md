@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **utxo_id** | **string** |  | [optional]
 **destination** | [**\OpenAPI\Client\Model\UTXODestination[]**](UTXODestination.md) |  | [optional]
 **location** | [**\OpenAPI\Client\Model\Location**](Location.md) |  | [optional]
-**timestamp** | [**\OpenAPI\Client\Model\UTXOTimestampSchema**](UTXOTimestampSchema.md) |  | [optional]
+**timestamp** | **string** |  | [optional]
 **status** | [**\OpenAPI\Client\Model\Status**](Status.md) |  | [optional]
 **native_data** | [**\OpenAPI\Client\Model\UTXONativeData**](UTXONativeData.md) |  | [optional]
 

@@ -7,8 +7,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subscriptionDetails** | [**ResourceMonitoringSubscriptionDetails**](ResourceMonitoringSubscriptionDetails.md) |  |  [optional]
 **resourceMonitoring** | [**ResourceMonitoringDetails**](ResourceMonitoringDetails.md) |  |  [optional]
+**subscriptionDetails** | [**ResourceMonitoringSubscriptionDetails**](ResourceMonitoringSubscriptionDetails.md) |  |  [optional]
 **subscription** | [**ResourceMonitoringSubscription**](ResourceMonitoringSubscription.md) |  |  [optional]
 
 

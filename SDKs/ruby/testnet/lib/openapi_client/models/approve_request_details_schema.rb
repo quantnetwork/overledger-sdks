@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,20 +15,20 @@ require 'time'
 
 module OpenapiClient
   class ApproveRequestDetailsSchema
+    # Who are the payers of this transaction
+    attr_accessor :payer
+
     # Who are the payees of this transaction
     attr_accessor :mandate
 
     attr_accessor :overledger_signing_type
 
-    # Who are the payers of this transaction
-    attr_accessor :payer
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'payer' => :'payer',
         :'mandate' => :'mandate',
-        :'overledger_signing_type' => :'overledgerSigningType',
-        :'payer' => :'payer'
+        :'overledger_signing_type' => :'overledgerSigningType'
       }
     end
 
@@ -40,9 +40,9 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'payer' => :'Array<PayerCreditSchema>',
         :'mandate' => :'Array<PayeeCreditSchema>',
-        :'overledger_signing_type' => :'String',
-        :'payer' => :'Array<PayerCreditSchema>'
+        :'overledger_signing_type' => :'String'
       }
     end
 
@@ -67,6 +67,12 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'payer')
+        if (value = attributes[:'payer']).is_a?(Array)
+          self.payer = value
+        end
+      end
+
       if attributes.key?(:'mandate')
         if (value = attributes[:'mandate']).is_a?(Array)
           self.mandate = value
@@ -76,18 +82,20 @@ module OpenapiClient
       if attributes.key?(:'overledger_signing_type')
         self.overledger_signing_type = attributes[:'overledger_signing_type']
       end
-
-      if attributes.key?(:'payer')
-        if (value = attributes[:'payer']).is_a?(Array)
-          self.payer = value
-        end
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@payer.nil? && @payer.length > 100
+        invalid_properties.push('invalid value for "payer", number of items must be less than or equal to 100.')
+      end
+
+      if !@payer.nil? && @payer.length < 0
+        invalid_properties.push('invalid value for "payer", number of items must be greater than or equal to 0.')
+      end
+
       if !@mandate.nil? && @mandate.length > 100
         invalid_properties.push('invalid value for "mandate", number of items must be less than or equal to 100.')
       end
@@ -109,28 +117,34 @@ module OpenapiClient
         invalid_properties.push("invalid value for \"overledger_signing_type\", must conform to the pattern #{pattern}.")
       end
 
-      if !@payer.nil? && @payer.length > 100
-        invalid_properties.push('invalid value for "payer", number of items must be less than or equal to 100.')
-      end
-
-      if !@payer.nil? && @payer.length < 0
-        invalid_properties.push('invalid value for "payer", number of items must be greater than or equal to 0.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@payer.nil? && @payer.length > 100
+      return false if !@payer.nil? && @payer.length < 0
       return false if !@mandate.nil? && @mandate.length > 100
       return false if !@mandate.nil? && @mandate.length < 0
       return false if !@overledger_signing_type.nil? && @overledger_signing_type.to_s.length > 30
       return false if !@overledger_signing_type.nil? && @overledger_signing_type.to_s.length < 0
       return false if !@overledger_signing_type.nil? && @overledger_signing_type !~ Regexp.new(/^[A-Za-z- ]{1,30}/)
-      return false if !@payer.nil? && @payer.length > 100
-      return false if !@payer.nil? && @payer.length < 0
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] payer Value to be assigned
+    def payer=(payer)
+      if !payer.nil? && payer.length > 100
+        fail ArgumentError, 'invalid value for "payer", number of items must be less than or equal to 100.'
+      end
+
+      if !payer.nil? && payer.length < 0
+        fail ArgumentError, 'invalid value for "payer", number of items must be greater than or equal to 0.'
+      end
+
+      @payer = payer
     end
 
     # Custom attribute writer method with validation
@@ -166,28 +180,14 @@ module OpenapiClient
       @overledger_signing_type = overledger_signing_type
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] payer Value to be assigned
-    def payer=(payer)
-      if !payer.nil? && payer.length > 100
-        fail ArgumentError, 'invalid value for "payer", number of items must be less than or equal to 100.'
-      end
-
-      if !payer.nil? && payer.length < 0
-        fail ArgumentError, 'invalid value for "payer", number of items must be greater than or equal to 0.'
-      end
-
-      @payer = payer
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          payer == o.payer &&
           mandate == o.mandate &&
-          overledger_signing_type == o.overledger_signing_type &&
-          payer == o.payer
+          overledger_signing_type == o.overledger_signing_type
     end
 
     # @see the `==` method
@@ -199,7 +199,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [mandate, overledger_signing_type, payer].hash
+      [payer, mandate, overledger_signing_type].hash
     end
 
     # Builds the object from hash

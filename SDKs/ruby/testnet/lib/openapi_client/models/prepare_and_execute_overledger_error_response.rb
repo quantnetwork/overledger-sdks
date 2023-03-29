@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,18 +15,18 @@ require 'time'
 
 module OpenapiClient
   class PrepareAndExecuteOverledgerErrorResponse
-    attr_accessor :code
+    attr_accessor :category
 
     attr_accessor :description
 
-    attr_accessor :category
+    attr_accessor :code
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'code' => :'code',
+        :'category' => :'category',
         :'description' => :'description',
-        :'category' => :'category'
+        :'code' => :'code'
       }
     end
 
@@ -38,9 +38,9 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'code' => :'String',
+        :'category' => :'String',
         :'description' => :'String',
-        :'category' => :'String'
+        :'code' => :'String'
       }
     end
 
@@ -65,16 +65,16 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'code')
-        self.code = attributes[:'code']
+      if attributes.key?(:'category')
+        self.category = attributes[:'category']
       end
 
       if attributes.key?(:'description')
         self.description = attributes[:'description']
       end
 
-      if attributes.key?(:'category')
-        self.category = attributes[:'category']
+      if attributes.key?(:'code')
+        self.code = attributes[:'code']
       end
     end
 
@@ -96,9 +96,9 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          code == o.code &&
+          category == o.category &&
           description == o.description &&
-          category == o.category
+          code == o.code
     end
 
     # @see the `==` method
@@ -110,7 +110,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [code, description, category].hash
+      [category, description, code].hash
     end
 
     # Builds the object from hash

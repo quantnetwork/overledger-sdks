@@ -30,7 +30,7 @@ end
 
 api_instance = OpenapiClient::BlockSearchApi.new
 authorization = 'authorization_example' # String | 
-block_id = 'latest' # String | 
+block_id = '54678' # String | 
 prepare_search_schema = OpenapiClient::PrepareSearchSchema.new # PrepareSearchSchema | 
 
 begin
@@ -174,7 +174,7 @@ end
 
 api_instance = OpenapiClient::BlockSearchApi.new
 authorization = 'authorization_example' # String | 
-block_id = 'latest' # String | 
+block_id = '54678' # String | 
 prepare_search_schema = OpenapiClient::PrepareSearchSchema.new # PrepareSearchSchema | 
 
 begin

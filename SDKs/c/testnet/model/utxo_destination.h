@@ -21,16 +21,16 @@ typedef struct utxo_destination_t utxo_destination_t;
 
 
 typedef struct utxo_destination_t {
+    char *destination_id; // string
     struct utxo_smart_contract_t *smart_contract; //model
     struct payment_t *payment; //model
-    char *destination_id; // string
 
 } utxo_destination_t;
 
 utxo_destination_t *utxo_destination_create(
+    char *destination_id,
     utxo_smart_contract_t *smart_contract,
-    payment_t *payment,
-    char *destination_id
+    payment_t *payment
 );
 
 void utxo_destination_free(utxo_destination_t *utxo_destination);

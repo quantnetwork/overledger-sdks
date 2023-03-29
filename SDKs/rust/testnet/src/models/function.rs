@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -13,26 +13,17 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Function {
-    #[serde(rename = "functionId", skip_serializing_if = "Option::is_none")]
-    pub function_id: Option<String>,
-    #[serde(rename = "code", skip_serializing_if = "Option::is_none")]
-    pub code: Option<String>,
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(rename = "inputParameters", skip_serializing_if = "Option::is_none")]
-    pub input_parameters: Option<Vec<crate::models::Parameter>>,
-    #[serde(rename = "outputParameters", skip_serializing_if = "Option::is_none")]
-    pub output_parameters: Option<Vec<crate::models::Parameter>>,
+    #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
+    pub _type: Option<String>,
+    #[serde(rename = "api", skip_serializing_if = "Option::is_none")]
+    pub api: Option<String>,
 }
 
 impl Function {
     pub fn new() -> Function {
         Function {
-            function_id: None,
-            code: None,
-            name: None,
-            input_parameters: None,
-            output_parameters: None,
+            _type: None,
+            api: None,
         }
     }
 }

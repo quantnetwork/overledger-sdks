@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CallBackURL** | Pointer to **string** |  | [optional] 
 **Location** | Pointer to [**Location**](Location.md) |  | [optional] 
+**CallBackURL** | Pointer to **string** |  | [optional] 
 **AddressId** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -26,31 +26,6 @@ will change when the set of required properties is changed
 NewAddressMonitoringRequestSchemaWithDefaults instantiates a new AddressMonitoringRequestSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetCallBackURL
-
-`func (o *AddressMonitoringRequestSchema) GetCallBackURL() string`
-
-GetCallBackURL returns the CallBackURL field if non-nil, zero value otherwise.
-
-### GetCallBackURLOk
-
-`func (o *AddressMonitoringRequestSchema) GetCallBackURLOk() (*string, bool)`
-
-GetCallBackURLOk returns a tuple with the CallBackURL field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCallBackURL
-
-`func (o *AddressMonitoringRequestSchema) SetCallBackURL(v string)`
-
-SetCallBackURL sets CallBackURL field to given value.
-
-### HasCallBackURL
-
-`func (o *AddressMonitoringRequestSchema) HasCallBackURL() bool`
-
-HasCallBackURL returns a boolean if a field has been set.
 
 ### GetLocation
 
@@ -76,6 +51,31 @@ SetLocation sets Location field to given value.
 `func (o *AddressMonitoringRequestSchema) HasLocation() bool`
 
 HasLocation returns a boolean if a field has been set.
+
+### GetCallBackURL
+
+`func (o *AddressMonitoringRequestSchema) GetCallBackURL() string`
+
+GetCallBackURL returns the CallBackURL field if non-nil, zero value otherwise.
+
+### GetCallBackURLOk
+
+`func (o *AddressMonitoringRequestSchema) GetCallBackURLOk() (*string, bool)`
+
+GetCallBackURLOk returns a tuple with the CallBackURL field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCallBackURL
+
+`func (o *AddressMonitoringRequestSchema) SetCallBackURL(v string)`
+
+SetCallBackURL sets CallBackURL field to given value.
+
+### HasCallBackURL
+
+`func (o *AddressMonitoringRequestSchema) HasCallBackURL() bool`
+
+HasCallBackURL returns a boolean if a field has been set.
 
 ### GetAddressId
 

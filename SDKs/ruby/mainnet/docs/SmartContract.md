@@ -4,10 +4,10 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **function** | [**Function**](Function.md) |  | [optional] |
 | **detail** | **String** |  | [optional] |
 | **type** | **String** | Information on the object type | [optional] |
 | **smart_contract_id** | **String** |  | [optional] |
+| **function** | [**Function**](Function.md) |  | [optional] |
 | **extra_fields** | **Object** |  | [optional] |
 
 ## Example
@@ -16,10 +16,10 @@
 require 'openapi_client'
 
 instance = OpenapiClient::SmartContract.new(
-  function: null,
   detail: null,
   type: null,
   smart_contract_id: null,
+  function: null,
   extra_fields: null
 )
 ```

@@ -23,19 +23,19 @@ typedef struct smart_contract_monitoring_details_schema_t smart_contract_monitor
 
 
 typedef struct smart_contract_monitoring_details_schema_t {
-    list_t *smart_contract_event_history; //nonprimitive container
     struct resource_monitoring_smart_contract_event_details_t *smart_contract_event_details; //model
     struct location_t *location; //model
+    list_t *smart_contract_event_history; //nonprimitive container
     char *type; // string
     struct status_t *status; //model
-    char *timestamp; //date time
+    char *timestamp; // string
 
 } smart_contract_monitoring_details_schema_t;
 
 smart_contract_monitoring_details_schema_t *smart_contract_monitoring_details_schema_create(
-    list_t *smart_contract_event_history,
     resource_monitoring_smart_contract_event_details_t *smart_contract_event_details,
     location_t *location,
+    list_t *smart_contract_event_history,
     char *type,
     status_t *status,
     char *timestamp

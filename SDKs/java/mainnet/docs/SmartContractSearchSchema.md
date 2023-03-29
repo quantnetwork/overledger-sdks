@@ -7,8 +7,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**function** | [**SmartContractSearchFunctionSchema**](SmartContractSearchFunctionSchema.md) |  |  [optional]
 **smartContractId** | **String** |  |  [optional]
+**function** | [**SmartContractSearchFunctionSchema**](SmartContractSearchFunctionSchema.md) |  |  [optional]
 
 
 

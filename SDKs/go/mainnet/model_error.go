@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -17,8 +17,8 @@ import (
 // Error struct for Error
 type Error struct {
 	Code *int32 `json:"code,omitempty"`
-	Service *string `json:"service,omitempty"`
 	Message *string `json:"message,omitempty"`
+	Service *string `json:"service,omitempty"`
 	Timestamp *int64 `json:"timestamp,omitempty"`
 }
 
@@ -71,38 +71,6 @@ func (o *Error) SetCode(v int32) {
 	o.Code = &v
 }
 
-// GetService returns the Service field value if set, zero value otherwise.
-func (o *Error) GetService() string {
-	if o == nil || o.Service == nil {
-		var ret string
-		return ret
-	}
-	return *o.Service
-}
-
-// GetServiceOk returns a tuple with the Service field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Error) GetServiceOk() (*string, bool) {
-	if o == nil || o.Service == nil {
-		return nil, false
-	}
-	return o.Service, true
-}
-
-// HasService returns a boolean if a field has been set.
-func (o *Error) HasService() bool {
-	if o != nil && o.Service != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetService gets a reference to the given string and assigns it to the Service field.
-func (o *Error) SetService(v string) {
-	o.Service = &v
-}
-
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *Error) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -133,6 +101,38 @@ func (o *Error) HasMessage() bool {
 // SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *Error) SetMessage(v string) {
 	o.Message = &v
+}
+
+// GetService returns the Service field value if set, zero value otherwise.
+func (o *Error) GetService() string {
+	if o == nil || o.Service == nil {
+		var ret string
+		return ret
+	}
+	return *o.Service
+}
+
+// GetServiceOk returns a tuple with the Service field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Error) GetServiceOk() (*string, bool) {
+	if o == nil || o.Service == nil {
+		return nil, false
+	}
+	return o.Service, true
+}
+
+// HasService returns a boolean if a field has been set.
+func (o *Error) HasService() bool {
+	if o != nil && o.Service != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetService gets a reference to the given string and assigns it to the Service field.
+func (o *Error) SetService(v string) {
+	o.Service = &v
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
@@ -172,11 +172,11 @@ func (o Error) MarshalJSON() ([]byte, error) {
 	if o.Code != nil {
 		toSerialize["code"] = o.Code
 	}
-	if o.Service != nil {
-		toSerialize["service"] = o.Service
-	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
+	}
+	if o.Service != nil {
+		toSerialize["service"] = o.Service
 	}
 	if o.Timestamp != nil {
 		toSerialize["timestamp"] = o.Timestamp

@@ -6,20 +6,20 @@
 
 
 monitor_smart_contract_request_schema_t *monitor_smart_contract_request_schema_create(
-    char *call_back_url,
     list_t *event_params,
     char *event_name,
     location_t *location,
+    char *call_back_url,
     char *smart_contract_id
     ) {
     monitor_smart_contract_request_schema_t *monitor_smart_contract_request_schema_local_var = malloc(sizeof(monitor_smart_contract_request_schema_t));
     if (!monitor_smart_contract_request_schema_local_var) {
         return NULL;
     }
-    monitor_smart_contract_request_schema_local_var->call_back_url = call_back_url;
     monitor_smart_contract_request_schema_local_var->event_params = event_params;
     monitor_smart_contract_request_schema_local_var->event_name = event_name;
     monitor_smart_contract_request_schema_local_var->location = location;
+    monitor_smart_contract_request_schema_local_var->call_back_url = call_back_url;
     monitor_smart_contract_request_schema_local_var->smart_contract_id = smart_contract_id;
 
     return monitor_smart_contract_request_schema_local_var;
@@ -31,10 +31,6 @@ void monitor_smart_contract_request_schema_free(monitor_smart_contract_request_s
         return ;
     }
     listEntry_t *listEntry;
-    if (monitor_smart_contract_request_schema->call_back_url) {
-        free(monitor_smart_contract_request_schema->call_back_url);
-        monitor_smart_contract_request_schema->call_back_url = NULL;
-    }
     if (monitor_smart_contract_request_schema->event_params) {
         list_ForEach(listEntry, monitor_smart_contract_request_schema->event_params) {
             monitor_smart_contract_event_param_free(listEntry->data);
@@ -50,6 +46,10 @@ void monitor_smart_contract_request_schema_free(monitor_smart_contract_request_s
         location_free(monitor_smart_contract_request_schema->location);
         monitor_smart_contract_request_schema->location = NULL;
     }
+    if (monitor_smart_contract_request_schema->call_back_url) {
+        free(monitor_smart_contract_request_schema->call_back_url);
+        monitor_smart_contract_request_schema->call_back_url = NULL;
+    }
     if (monitor_smart_contract_request_schema->smart_contract_id) {
         free(monitor_smart_contract_request_schema->smart_contract_id);
         monitor_smart_contract_request_schema->smart_contract_id = NULL;
@@ -59,14 +59,6 @@ void monitor_smart_contract_request_schema_free(monitor_smart_contract_request_s
 
 cJSON *monitor_smart_contract_request_schema_convertToJSON(monitor_smart_contract_request_schema_t *monitor_smart_contract_request_schema) {
     cJSON *item = cJSON_CreateObject();
-
-    // monitor_smart_contract_request_schema->call_back_url
-    if(monitor_smart_contract_request_schema->call_back_url) { 
-    if(cJSON_AddStringToObject(item, "callBackURL", monitor_smart_contract_request_schema->call_back_url) == NULL) {
-    goto fail; //String
-    }
-     } 
-
 
     // monitor_smart_contract_request_schema->event_params
     if(monitor_smart_contract_request_schema->event_params) { 
@@ -109,6 +101,14 @@ cJSON *monitor_smart_contract_request_schema_convertToJSON(monitor_smart_contrac
      } 
 
 
+    // monitor_smart_contract_request_schema->call_back_url
+    if(monitor_smart_contract_request_schema->call_back_url) { 
+    if(cJSON_AddStringToObject(item, "callBackURL", monitor_smart_contract_request_schema->call_back_url) == NULL) {
+    goto fail; //String
+    }
+     } 
+
+
     // monitor_smart_contract_request_schema->smart_contract_id
     if(monitor_smart_contract_request_schema->smart_contract_id) { 
     if(cJSON_AddStringToObject(item, "smartContractId", monitor_smart_contract_request_schema->smart_contract_id) == NULL) {
@@ -127,15 +127,6 @@ fail:
 monitor_smart_contract_request_schema_t *monitor_smart_contract_request_schema_parseFromJSON(cJSON *monitor_smart_contract_request_schemaJSON){
 
     monitor_smart_contract_request_schema_t *monitor_smart_contract_request_schema_local_var = NULL;
-
-    // monitor_smart_contract_request_schema->call_back_url
-    cJSON *call_back_url = cJSON_GetObjectItemCaseSensitive(monitor_smart_contract_request_schemaJSON, "callBackURL");
-    if (call_back_url) { 
-    if(!cJSON_IsString(call_back_url))
-    {
-    goto end; //String
-    }
-    }
 
     // monitor_smart_contract_request_schema->event_params
     cJSON *event_params = cJSON_GetObjectItemCaseSensitive(monitor_smart_contract_request_schemaJSON, "eventParams");
@@ -175,6 +166,15 @@ monitor_smart_contract_request_schema_t *monitor_smart_contract_request_schema_p
     location_local_nonprim = location_parseFromJSON(location); //nonprimitive
     }
 
+    // monitor_smart_contract_request_schema->call_back_url
+    cJSON *call_back_url = cJSON_GetObjectItemCaseSensitive(monitor_smart_contract_request_schemaJSON, "callBackURL");
+    if (call_back_url) { 
+    if(!cJSON_IsString(call_back_url))
+    {
+    goto end; //String
+    }
+    }
+
     // monitor_smart_contract_request_schema->smart_contract_id
     cJSON *smart_contract_id = cJSON_GetObjectItemCaseSensitive(monitor_smart_contract_request_schemaJSON, "smartContractId");
     if (smart_contract_id) { 
@@ -186,10 +186,10 @@ monitor_smart_contract_request_schema_t *monitor_smart_contract_request_schema_p
 
 
     monitor_smart_contract_request_schema_local_var = monitor_smart_contract_request_schema_create (
-        call_back_url ? strdup(call_back_url->valuestring) : NULL,
         event_params ? event_paramsList : NULL,
         event_name ? strdup(event_name->valuestring) : NULL,
         location ? location_local_nonprim : NULL,
+        call_back_url ? strdup(call_back_url->valuestring) : NULL,
         smart_contract_id ? strdup(smart_contract_id->valuestring) : NULL
         );
 

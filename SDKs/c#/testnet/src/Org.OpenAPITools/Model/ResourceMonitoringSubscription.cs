@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,21 +33,15 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ResourceMonitoringSubscription" /> class.
         /// </summary>
-        /// <param name="callbackUrl">callbackUrl.</param>
         /// <param name="subscriptionId">subscriptionId.</param>
         /// <param name="type">type.</param>
-        public ResourceMonitoringSubscription(string callbackUrl = default(string), string subscriptionId = default(string), string type = default(string))
+        /// <param name="callbackUrl">callbackUrl.</param>
+        public ResourceMonitoringSubscription(string subscriptionId = default(string), string type = default(string), string callbackUrl = default(string))
         {
-            this.CallbackUrl = callbackUrl;
             this.SubscriptionId = subscriptionId;
             this.Type = type;
+            this.CallbackUrl = callbackUrl;
         }
-
-        /// <summary>
-        /// Gets or Sets CallbackUrl
-        /// </summary>
-        [DataMember(Name="callbackUrl", EmitDefaultValue=false)]
-        public string CallbackUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets SubscriptionId
@@ -62,6 +56,12 @@ namespace Org.OpenAPITools.Model
         public string Type { get; set; }
 
         /// <summary>
+        /// Gets or Sets CallbackUrl
+        /// </summary>
+        [DataMember(Name="callbackUrl", EmitDefaultValue=false)]
+        public string CallbackUrl { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -69,9 +69,9 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ResourceMonitoringSubscription {\n");
-            sb.Append("  CallbackUrl: ").Append(CallbackUrl).Append("\n");
             sb.Append("  SubscriptionId: ").Append(SubscriptionId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  CallbackUrl: ").Append(CallbackUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -107,11 +107,6 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.CallbackUrl == input.CallbackUrl ||
-                    (this.CallbackUrl != null &&
-                    this.CallbackUrl.Equals(input.CallbackUrl))
-                ) && 
-                (
                     this.SubscriptionId == input.SubscriptionId ||
                     (this.SubscriptionId != null &&
                     this.SubscriptionId.Equals(input.SubscriptionId))
@@ -120,6 +115,11 @@ namespace Org.OpenAPITools.Model
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
+                ) && 
+                (
+                    this.CallbackUrl == input.CallbackUrl ||
+                    (this.CallbackUrl != null &&
+                    this.CallbackUrl.Equals(input.CallbackUrl))
                 );
         }
 
@@ -132,12 +132,12 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CallbackUrl != null)
-                    hashCode = hashCode * 59 + this.CallbackUrl.GetHashCode();
                 if (this.SubscriptionId != null)
                     hashCode = hashCode * 59 + this.SubscriptionId.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
+                if (this.CallbackUrl != null)
+                    hashCode = hashCode * 59 + this.CallbackUrl.GetHashCode();
                 return hashCode;
             }
         }
@@ -149,25 +149,6 @@ namespace Org.OpenAPITools.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // CallbackUrl (string) maxLength
-            if(this.CallbackUrl != null && this.CallbackUrl.Length > 300)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallbackUrl, length must be less than 300.", new [] { "CallbackUrl" });
-            }
-
-            // CallbackUrl (string) minLength
-            if(this.CallbackUrl != null && this.CallbackUrl.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallbackUrl, length must be greater than 0.", new [] { "CallbackUrl" });
-            }
-
-            // CallbackUrl (string) pattern
-            Regex regexCallbackUrl = new Regex(@"^http[\\S\\s]{1,300}$", RegexOptions.CultureInvariant);
-            if (false == regexCallbackUrl.Match(this.CallbackUrl).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallbackUrl, must match a pattern of " + regexCallbackUrl, new [] { "CallbackUrl" });
-            }
-
             // SubscriptionId (string) maxLength
             if(this.SubscriptionId != null && this.SubscriptionId.Length > 24)
             {
@@ -204,6 +185,25 @@ namespace Org.OpenAPITools.Model
             if (false == regexType.Match(this.Type).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, must match a pattern of " + regexType, new [] { "Type" });
+            }
+
+            // CallbackUrl (string) maxLength
+            if(this.CallbackUrl != null && this.CallbackUrl.Length > 300)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallbackUrl, length must be less than 300.", new [] { "CallbackUrl" });
+            }
+
+            // CallbackUrl (string) minLength
+            if(this.CallbackUrl != null && this.CallbackUrl.Length < 0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallbackUrl, length must be greater than 0.", new [] { "CallbackUrl" });
+            }
+
+            // CallbackUrl (string) pattern
+            Regex regexCallbackUrl = new Regex(@"^http[\\S\\s]{1,300}$", RegexOptions.CultureInvariant);
+            if (false == regexCallbackUrl.Match(this.CallbackUrl).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallbackUrl, must match a pattern of " + regexCallbackUrl, new [] { "CallbackUrl" });
             }
 
             yield break;

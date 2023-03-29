@@ -8,8 +8,8 @@ use WWW::OpenAPIClient::Object::CreateSmartContractMonitoringSchema;
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subscription_details** | [**ResourceMonitoringSubscriptionDetails**](ResourceMonitoringSubscriptionDetails.md) |  | [optional] 
 **resource_monitoring** | [**ResourceMonitoringDetails**](ResourceMonitoringDetails.md) |  | [optional] 
+**subscription_details** | [**ResourceMonitoringSubscriptionDetails**](ResourceMonitoringSubscriptionDetails.md) |  | [optional] 
 **subscription** | [**ResourceMonitoringSubscription**](ResourceMonitoringSubscription.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

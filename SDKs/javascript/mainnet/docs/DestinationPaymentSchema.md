@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payment** | [**PaymentSchema**](PaymentSchema.md) |  | [optional] 
-**destinationId** | **String** | The unique identifiers of the destination | [optional] 
+**destinationId** | **String** | Unique identifier of the destination/recipient | 
+**payment** | [**PaymentSchema**](PaymentSchema.md) |  | 
 
 

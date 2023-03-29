@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,8 +16,8 @@ import (
 
 // DestinationTransferSchema struct for DestinationTransferSchema
 type DestinationTransferSchema struct {
-	Transfer *TransferSchema `json:"transfer,omitempty"`
 	DestinationId *string `json:"destinationId,omitempty"`
+	Transfer *TransferSchema `json:"transfer,omitempty"`
 }
 
 // NewDestinationTransferSchema instantiates a new DestinationTransferSchema object
@@ -35,38 +35,6 @@ func NewDestinationTransferSchema() *DestinationTransferSchema {
 func NewDestinationTransferSchemaWithDefaults() *DestinationTransferSchema {
 	this := DestinationTransferSchema{}
 	return &this
-}
-
-// GetTransfer returns the Transfer field value if set, zero value otherwise.
-func (o *DestinationTransferSchema) GetTransfer() TransferSchema {
-	if o == nil || o.Transfer == nil {
-		var ret TransferSchema
-		return ret
-	}
-	return *o.Transfer
-}
-
-// GetTransferOk returns a tuple with the Transfer field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DestinationTransferSchema) GetTransferOk() (*TransferSchema, bool) {
-	if o == nil || o.Transfer == nil {
-		return nil, false
-	}
-	return o.Transfer, true
-}
-
-// HasTransfer returns a boolean if a field has been set.
-func (o *DestinationTransferSchema) HasTransfer() bool {
-	if o != nil && o.Transfer != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTransfer gets a reference to the given TransferSchema and assigns it to the Transfer field.
-func (o *DestinationTransferSchema) SetTransfer(v TransferSchema) {
-	o.Transfer = &v
 }
 
 // GetDestinationId returns the DestinationId field value if set, zero value otherwise.
@@ -101,13 +69,45 @@ func (o *DestinationTransferSchema) SetDestinationId(v string) {
 	o.DestinationId = &v
 }
 
+// GetTransfer returns the Transfer field value if set, zero value otherwise.
+func (o *DestinationTransferSchema) GetTransfer() TransferSchema {
+	if o == nil || o.Transfer == nil {
+		var ret TransferSchema
+		return ret
+	}
+	return *o.Transfer
+}
+
+// GetTransferOk returns a tuple with the Transfer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DestinationTransferSchema) GetTransferOk() (*TransferSchema, bool) {
+	if o == nil || o.Transfer == nil {
+		return nil, false
+	}
+	return o.Transfer, true
+}
+
+// HasTransfer returns a boolean if a field has been set.
+func (o *DestinationTransferSchema) HasTransfer() bool {
+	if o != nil && o.Transfer != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTransfer gets a reference to the given TransferSchema and assigns it to the Transfer field.
+func (o *DestinationTransferSchema) SetTransfer(v TransferSchema) {
+	o.Transfer = &v
+}
+
 func (o DestinationTransferSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Transfer != nil {
-		toSerialize["transfer"] = o.Transfer
-	}
 	if o.DestinationId != nil {
 		toSerialize["destinationId"] = o.DestinationId
+	}
+	if o.Transfer != nil {
+		toSerialize["transfer"] = o.Transfer
 	}
 	return json.Marshal(toSerialize)
 }

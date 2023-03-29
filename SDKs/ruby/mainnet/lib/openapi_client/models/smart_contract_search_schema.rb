@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,15 +15,15 @@ require 'time'
 
 module OpenapiClient
   class SmartContractSearchSchema
-    attr_accessor :function
-
     attr_accessor :smart_contract_id
+
+    attr_accessor :function
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'function' => :'function',
-        :'smart_contract_id' => :'smartContractId'
+        :'smart_contract_id' => :'smartContractId',
+        :'function' => :'function'
       }
     end
 
@@ -35,8 +35,8 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'function' => :'SmartContractSearchFunctionSchema',
-        :'smart_contract_id' => :'String'
+        :'smart_contract_id' => :'String',
+        :'function' => :'SmartContractSearchFunctionSchema'
       }
     end
 
@@ -61,12 +61,12 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'function')
-        self.function = attributes[:'function']
-      end
-
       if attributes.key?(:'smart_contract_id')
         self.smart_contract_id = attributes[:'smart_contract_id']
+      end
+
+      if attributes.key?(:'function')
+        self.function = attributes[:'function']
       end
     end
 
@@ -123,8 +123,8 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          function == o.function &&
-          smart_contract_id == o.smart_contract_id
+          smart_contract_id == o.smart_contract_id &&
+          function == o.function
     end
 
     # @see the `==` method
@@ -136,7 +136,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [function, smart_contract_id].hash
+      [smart_contract_id, function].hash
     end
 
     # Builds the object from hash

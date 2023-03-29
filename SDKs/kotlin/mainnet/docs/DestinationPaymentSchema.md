@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payment** | [**PaymentSchema**](PaymentSchema.md) |  |  [optional]
-**destinationId** | **kotlin.String** | The unique identifiers of the destination |  [optional]
+**destinationId** | **kotlin.String** | Unique identifier of the destination/recipient | 
+**payment** | [**PaymentSchema**](PaymentSchema.md) |  | 
 
 
 

@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -31,8 +31,12 @@ import org.openapitools.client.model.PayerCreditSchema;
 /**
  * ApproveRequestDetailsSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:46:50.106642+01:00[Europe/London]")
 public class ApproveRequestDetailsSchema {
+  public static final String SERIALIZED_NAME_PAYER = "payer";
+  @SerializedName(SERIALIZED_NAME_PAYER)
+  private List<PayerCreditSchema> payer = null;
+
   public static final String SERIALIZED_NAME_MANDATE = "mandate";
   @SerializedName(SERIALIZED_NAME_MANDATE)
   private List<PayeeCreditSchema> mandate = null;
@@ -41,9 +45,36 @@ public class ApproveRequestDetailsSchema {
   @SerializedName(SERIALIZED_NAME_OVERLEDGER_SIGNING_TYPE)
   private String overledgerSigningType;
 
-  public static final String SERIALIZED_NAME_PAYER = "payer";
-  @SerializedName(SERIALIZED_NAME_PAYER)
-  private List<PayerCreditSchema> payer = null;
+
+  public ApproveRequestDetailsSchema payer(List<PayerCreditSchema> payer) {
+    
+    this.payer = payer;
+    return this;
+  }
+
+  public ApproveRequestDetailsSchema addPayerItem(PayerCreditSchema payerItem) {
+    if (this.payer == null) {
+      this.payer = new ArrayList<PayerCreditSchema>();
+    }
+    this.payer.add(payerItem);
+    return this;
+  }
+
+   /**
+   * Who are the payers of this transaction
+   * @return payer
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Who are the payers of this transaction")
+
+  public List<PayerCreditSchema> getPayer() {
+    return payer;
+  }
+
+
+  public void setPayer(List<PayerCreditSchema> payer) {
+    this.payer = payer;
+  }
 
 
   public ApproveRequestDetailsSchema mandate(List<PayeeCreditSchema> mandate) {
@@ -100,37 +131,6 @@ public class ApproveRequestDetailsSchema {
   }
 
 
-  public ApproveRequestDetailsSchema payer(List<PayerCreditSchema> payer) {
-    
-    this.payer = payer;
-    return this;
-  }
-
-  public ApproveRequestDetailsSchema addPayerItem(PayerCreditSchema payerItem) {
-    if (this.payer == null) {
-      this.payer = new ArrayList<PayerCreditSchema>();
-    }
-    this.payer.add(payerItem);
-    return this;
-  }
-
-   /**
-   * Who are the payers of this transaction
-   * @return payer
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Who are the payers of this transaction")
-
-  public List<PayerCreditSchema> getPayer() {
-    return payer;
-  }
-
-
-  public void setPayer(List<PayerCreditSchema> payer) {
-    this.payer = payer;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -140,23 +140,23 @@ public class ApproveRequestDetailsSchema {
       return false;
     }
     ApproveRequestDetailsSchema approveRequestDetailsSchema = (ApproveRequestDetailsSchema) o;
-    return Objects.equals(this.mandate, approveRequestDetailsSchema.mandate) &&
-        Objects.equals(this.overledgerSigningType, approveRequestDetailsSchema.overledgerSigningType) &&
-        Objects.equals(this.payer, approveRequestDetailsSchema.payer);
+    return Objects.equals(this.payer, approveRequestDetailsSchema.payer) &&
+        Objects.equals(this.mandate, approveRequestDetailsSchema.mandate) &&
+        Objects.equals(this.overledgerSigningType, approveRequestDetailsSchema.overledgerSigningType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mandate, overledgerSigningType, payer);
+    return Objects.hash(payer, mandate, overledgerSigningType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ApproveRequestDetailsSchema {\n");
+    sb.append("    payer: ").append(toIndentedString(payer)).append("\n");
     sb.append("    mandate: ").append(toIndentedString(mandate)).append("\n");
     sb.append("    overledgerSigningType: ").append(toIndentedString(overledgerSigningType)).append("\n");
-    sb.append("    payer: ").append(toIndentedString(payer)).append("\n");
     sb.append("}");
     return sb.toString();
   }

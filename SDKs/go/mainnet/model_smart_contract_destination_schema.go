@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,9 +16,9 @@ import (
 
 // SmartContractDestinationSchema struct for SmartContractDestinationSchema
 type SmartContractDestinationSchema struct {
+	DestinationId *string `json:"destinationId,omitempty"`
 	SmartContract *SmartContractSchema `json:"smartContract,omitempty"`
 	Payment *SmartContractPaymentSchema `json:"payment,omitempty"`
-	DestinationId *string `json:"destinationId,omitempty"`
 }
 
 // NewSmartContractDestinationSchema instantiates a new SmartContractDestinationSchema object
@@ -36,6 +36,38 @@ func NewSmartContractDestinationSchema() *SmartContractDestinationSchema {
 func NewSmartContractDestinationSchemaWithDefaults() *SmartContractDestinationSchema {
 	this := SmartContractDestinationSchema{}
 	return &this
+}
+
+// GetDestinationId returns the DestinationId field value if set, zero value otherwise.
+func (o *SmartContractDestinationSchema) GetDestinationId() string {
+	if o == nil || o.DestinationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.DestinationId
+}
+
+// GetDestinationIdOk returns a tuple with the DestinationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SmartContractDestinationSchema) GetDestinationIdOk() (*string, bool) {
+	if o == nil || o.DestinationId == nil {
+		return nil, false
+	}
+	return o.DestinationId, true
+}
+
+// HasDestinationId returns a boolean if a field has been set.
+func (o *SmartContractDestinationSchema) HasDestinationId() bool {
+	if o != nil && o.DestinationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDestinationId gets a reference to the given string and assigns it to the DestinationId field.
+func (o *SmartContractDestinationSchema) SetDestinationId(v string) {
+	o.DestinationId = &v
 }
 
 // GetSmartContract returns the SmartContract field value if set, zero value otherwise.
@@ -102,48 +134,16 @@ func (o *SmartContractDestinationSchema) SetPayment(v SmartContractPaymentSchema
 	o.Payment = &v
 }
 
-// GetDestinationId returns the DestinationId field value if set, zero value otherwise.
-func (o *SmartContractDestinationSchema) GetDestinationId() string {
-	if o == nil || o.DestinationId == nil {
-		var ret string
-		return ret
-	}
-	return *o.DestinationId
-}
-
-// GetDestinationIdOk returns a tuple with the DestinationId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SmartContractDestinationSchema) GetDestinationIdOk() (*string, bool) {
-	if o == nil || o.DestinationId == nil {
-		return nil, false
-	}
-	return o.DestinationId, true
-}
-
-// HasDestinationId returns a boolean if a field has been set.
-func (o *SmartContractDestinationSchema) HasDestinationId() bool {
-	if o != nil && o.DestinationId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDestinationId gets a reference to the given string and assigns it to the DestinationId field.
-func (o *SmartContractDestinationSchema) SetDestinationId(v string) {
-	o.DestinationId = &v
-}
-
 func (o SmartContractDestinationSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.DestinationId != nil {
+		toSerialize["destinationId"] = o.DestinationId
+	}
 	if o.SmartContract != nil {
 		toSerialize["smartContract"] = o.SmartContract
 	}
 	if o.Payment != nil {
 		toSerialize["payment"] = o.Payment
-	}
-	if o.DestinationId != nil {
-		toSerialize["destinationId"] = o.DestinationId
 	}
 	return json.Marshal(toSerialize)
 }

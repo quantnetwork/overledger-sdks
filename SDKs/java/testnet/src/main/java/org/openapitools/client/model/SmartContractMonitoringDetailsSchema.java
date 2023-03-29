@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -29,17 +29,12 @@ import org.openapitools.client.model.Location;
 import org.openapitools.client.model.ResourceMonitoringSmartContractEventDetails;
 import org.openapitools.client.model.SmartContractEventHistory;
 import org.openapitools.client.model.Status;
-import org.threeten.bp.OffsetDateTime;
 
 /**
  * SmartContractMonitoringDetailsSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class SmartContractMonitoringDetailsSchema {
-  public static final String SERIALIZED_NAME_SMART_CONTRACT_EVENT_HISTORY = "smartContractEventHistory";
-  @SerializedName(SERIALIZED_NAME_SMART_CONTRACT_EVENT_HISTORY)
-  private List<SmartContractEventHistory> smartContractEventHistory = null;
-
   public static final String SERIALIZED_NAME_SMART_CONTRACT_EVENT_DETAILS = "smartContractEventDetails";
   @SerializedName(SERIALIZED_NAME_SMART_CONTRACT_EVENT_DETAILS)
   private ResourceMonitoringSmartContractEventDetails smartContractEventDetails;
@@ -47,6 +42,10 @@ public class SmartContractMonitoringDetailsSchema {
   public static final String SERIALIZED_NAME_LOCATION = "location";
   @SerializedName(SERIALIZED_NAME_LOCATION)
   private Location location;
+
+  public static final String SERIALIZED_NAME_SMART_CONTRACT_EVENT_HISTORY = "smartContractEventHistory";
+  @SerializedName(SERIALIZED_NAME_SMART_CONTRACT_EVENT_HISTORY)
+  private List<SmartContractEventHistory> smartContractEventHistory = null;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -58,38 +57,7 @@ public class SmartContractMonitoringDetailsSchema {
 
   public static final String SERIALIZED_NAME_TIMESTAMP = "timestamp";
   @SerializedName(SERIALIZED_NAME_TIMESTAMP)
-  private OffsetDateTime timestamp;
-
-
-  public SmartContractMonitoringDetailsSchema smartContractEventHistory(List<SmartContractEventHistory> smartContractEventHistory) {
-    
-    this.smartContractEventHistory = smartContractEventHistory;
-    return this;
-  }
-
-  public SmartContractMonitoringDetailsSchema addSmartContractEventHistoryItem(SmartContractEventHistory smartContractEventHistoryItem) {
-    if (this.smartContractEventHistory == null) {
-      this.smartContractEventHistory = new ArrayList<SmartContractEventHistory>();
-    }
-    this.smartContractEventHistory.add(smartContractEventHistoryItem);
-    return this;
-  }
-
-   /**
-   * Get smartContractEventHistory
-   * @return smartContractEventHistory
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public List<SmartContractEventHistory> getSmartContractEventHistory() {
-    return smartContractEventHistory;
-  }
-
-
-  public void setSmartContractEventHistory(List<SmartContractEventHistory> smartContractEventHistory) {
-    this.smartContractEventHistory = smartContractEventHistory;
-  }
+  private String timestamp;
 
 
   public SmartContractMonitoringDetailsSchema smartContractEventDetails(ResourceMonitoringSmartContractEventDetails smartContractEventDetails) {
@@ -135,6 +103,37 @@ public class SmartContractMonitoringDetailsSchema {
 
   public void setLocation(Location location) {
     this.location = location;
+  }
+
+
+  public SmartContractMonitoringDetailsSchema smartContractEventHistory(List<SmartContractEventHistory> smartContractEventHistory) {
+    
+    this.smartContractEventHistory = smartContractEventHistory;
+    return this;
+  }
+
+  public SmartContractMonitoringDetailsSchema addSmartContractEventHistoryItem(SmartContractEventHistory smartContractEventHistoryItem) {
+    if (this.smartContractEventHistory == null) {
+      this.smartContractEventHistory = new ArrayList<SmartContractEventHistory>();
+    }
+    this.smartContractEventHistory.add(smartContractEventHistoryItem);
+    return this;
+  }
+
+   /**
+   * Get smartContractEventHistory
+   * @return smartContractEventHistory
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<SmartContractEventHistory> getSmartContractEventHistory() {
+    return smartContractEventHistory;
+  }
+
+
+  public void setSmartContractEventHistory(List<SmartContractEventHistory> smartContractEventHistory) {
+    this.smartContractEventHistory = smartContractEventHistory;
   }
 
 
@@ -184,7 +183,7 @@ public class SmartContractMonitoringDetailsSchema {
   }
 
 
-  public SmartContractMonitoringDetailsSchema timestamp(OffsetDateTime timestamp) {
+  public SmartContractMonitoringDetailsSchema timestamp(String timestamp) {
     
     this.timestamp = timestamp;
     return this;
@@ -197,12 +196,12 @@ public class SmartContractMonitoringDetailsSchema {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public OffsetDateTime getTimestamp() {
+  public String getTimestamp() {
     return timestamp;
   }
 
 
-  public void setTimestamp(OffsetDateTime timestamp) {
+  public void setTimestamp(String timestamp) {
     this.timestamp = timestamp;
   }
 
@@ -216,9 +215,9 @@ public class SmartContractMonitoringDetailsSchema {
       return false;
     }
     SmartContractMonitoringDetailsSchema smartContractMonitoringDetailsSchema = (SmartContractMonitoringDetailsSchema) o;
-    return Objects.equals(this.smartContractEventHistory, smartContractMonitoringDetailsSchema.smartContractEventHistory) &&
-        Objects.equals(this.smartContractEventDetails, smartContractMonitoringDetailsSchema.smartContractEventDetails) &&
+    return Objects.equals(this.smartContractEventDetails, smartContractMonitoringDetailsSchema.smartContractEventDetails) &&
         Objects.equals(this.location, smartContractMonitoringDetailsSchema.location) &&
+        Objects.equals(this.smartContractEventHistory, smartContractMonitoringDetailsSchema.smartContractEventHistory) &&
         Objects.equals(this.type, smartContractMonitoringDetailsSchema.type) &&
         Objects.equals(this.status, smartContractMonitoringDetailsSchema.status) &&
         Objects.equals(this.timestamp, smartContractMonitoringDetailsSchema.timestamp);
@@ -226,16 +225,16 @@ public class SmartContractMonitoringDetailsSchema {
 
   @Override
   public int hashCode() {
-    return Objects.hash(smartContractEventHistory, smartContractEventDetails, location, type, status, timestamp);
+    return Objects.hash(smartContractEventDetails, location, smartContractEventHistory, type, status, timestamp);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SmartContractMonitoringDetailsSchema {\n");
-    sb.append("    smartContractEventHistory: ").append(toIndentedString(smartContractEventHistory)).append("\n");
     sb.append("    smartContractEventDetails: ").append(toIndentedString(smartContractEventDetails)).append("\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("    smartContractEventHistory: ").append(toIndentedString(smartContractEventHistory)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");

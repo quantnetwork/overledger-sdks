@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **UtxoId** | Pointer to **string** |  | [optional] 
 **Destination** | Pointer to [**[]UTXODestination**](UTXODestination.md) |  | [optional] 
 **Location** | Pointer to [**Location**](Location.md) |  | [optional] 
-**Timestamp** | Pointer to [**UTXOTimestampSchema**](UTXOTimestampSchema.md) |  | [optional] 
+**Timestamp** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**Status**](Status.md) |  | [optional] 
 **NativeData** | Pointer to [**UTXONativeData**](UTXONativeData.md) |  | [optional] 
 
@@ -107,20 +107,20 @@ HasLocation returns a boolean if a field has been set.
 
 ### GetTimestamp
 
-`func (o *ExecuteSearchUTXOResponseSchema) GetTimestamp() UTXOTimestampSchema`
+`func (o *ExecuteSearchUTXOResponseSchema) GetTimestamp() string`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *ExecuteSearchUTXOResponseSchema) GetTimestampOk() (*UTXOTimestampSchema, bool)`
+`func (o *ExecuteSearchUTXOResponseSchema) GetTimestampOk() (*string, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *ExecuteSearchUTXOResponseSchema) SetTimestamp(v UTXOTimestampSchema)`
+`func (o *ExecuteSearchUTXOResponseSchema) SetTimestamp(v string)`
 
 SetTimestamp sets Timestamp field to given value.
 

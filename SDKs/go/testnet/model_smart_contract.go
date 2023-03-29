@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,11 +16,11 @@ import (
 
 // SmartContract Computer program storage in a DLT system where the outcome is recorded on the distributed ledger
 type SmartContract struct {
-	Function *Function `json:"function,omitempty"`
 	Detail *string `json:"detail,omitempty"`
 	// Information on the object type
 	Type *string `json:"type,omitempty"`
 	SmartContractId *string `json:"smartContractId,omitempty"`
+	Function *Function `json:"function,omitempty"`
 	ExtraFields *map[string]interface{} `json:"extraFields,omitempty"`
 }
 
@@ -39,38 +39,6 @@ func NewSmartContract() *SmartContract {
 func NewSmartContractWithDefaults() *SmartContract {
 	this := SmartContract{}
 	return &this
-}
-
-// GetFunction returns the Function field value if set, zero value otherwise.
-func (o *SmartContract) GetFunction() Function {
-	if o == nil || o.Function == nil {
-		var ret Function
-		return ret
-	}
-	return *o.Function
-}
-
-// GetFunctionOk returns a tuple with the Function field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SmartContract) GetFunctionOk() (*Function, bool) {
-	if o == nil || o.Function == nil {
-		return nil, false
-	}
-	return o.Function, true
-}
-
-// HasFunction returns a boolean if a field has been set.
-func (o *SmartContract) HasFunction() bool {
-	if o != nil && o.Function != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFunction gets a reference to the given Function and assigns it to the Function field.
-func (o *SmartContract) SetFunction(v Function) {
-	o.Function = &v
 }
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
@@ -169,6 +137,38 @@ func (o *SmartContract) SetSmartContractId(v string) {
 	o.SmartContractId = &v
 }
 
+// GetFunction returns the Function field value if set, zero value otherwise.
+func (o *SmartContract) GetFunction() Function {
+	if o == nil || o.Function == nil {
+		var ret Function
+		return ret
+	}
+	return *o.Function
+}
+
+// GetFunctionOk returns a tuple with the Function field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SmartContract) GetFunctionOk() (*Function, bool) {
+	if o == nil || o.Function == nil {
+		return nil, false
+	}
+	return o.Function, true
+}
+
+// HasFunction returns a boolean if a field has been set.
+func (o *SmartContract) HasFunction() bool {
+	if o != nil && o.Function != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFunction gets a reference to the given Function and assigns it to the Function field.
+func (o *SmartContract) SetFunction(v Function) {
+	o.Function = &v
+}
+
 // GetExtraFields returns the ExtraFields field value if set, zero value otherwise.
 func (o *SmartContract) GetExtraFields() map[string]interface{} {
 	if o == nil || o.ExtraFields == nil {
@@ -203,9 +203,6 @@ func (o *SmartContract) SetExtraFields(v map[string]interface{}) {
 
 func (o SmartContract) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Function != nil {
-		toSerialize["function"] = o.Function
-	}
 	if o.Detail != nil {
 		toSerialize["detail"] = o.Detail
 	}
@@ -214,6 +211,9 @@ func (o SmartContract) MarshalJSON() ([]byte, error) {
 	}
 	if o.SmartContractId != nil {
 		toSerialize["smartContractId"] = o.SmartContractId
+	}
+	if o.Function != nil {
+		toSerialize["function"] = o.Function
 	}
 	if o.ExtraFields != nil {
 		toSerialize["extraFields"] = o.ExtraFields

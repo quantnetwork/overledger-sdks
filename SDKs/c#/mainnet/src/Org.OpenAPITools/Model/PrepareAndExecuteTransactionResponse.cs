@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,21 +33,15 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PrepareAndExecuteTransactionResponse" /> class.
         /// </summary>
-        /// <param name="executionTransactionSearchOverledgerErrorResponse">executionTransactionSearchOverledgerErrorResponse.</param>
         /// <param name="preparationTransactionSearchResponse">preparationTransactionSearchResponse.</param>
         /// <param name="executionTransactionSearchResponse">executionTransactionSearchResponse.</param>
-        public PrepareAndExecuteTransactionResponse(PrepareAndExecuteOverledgerErrorResponse executionTransactionSearchOverledgerErrorResponse = default(PrepareAndExecuteOverledgerErrorResponse), PrepareTransactionResponse preparationTransactionSearchResponse = default(PrepareTransactionResponse), ExecuteSearchTransactionResponse executionTransactionSearchResponse = default(ExecuteSearchTransactionResponse))
+        /// <param name="executionTransactionSearchOverledgerErrorResponse">executionTransactionSearchOverledgerErrorResponse.</param>
+        public PrepareAndExecuteTransactionResponse(PrepareTransactionResponse preparationTransactionSearchResponse = default(PrepareTransactionResponse), ExecuteSearchTransactionResponse executionTransactionSearchResponse = default(ExecuteSearchTransactionResponse), PrepareAndExecuteOverledgerErrorResponse executionTransactionSearchOverledgerErrorResponse = default(PrepareAndExecuteOverledgerErrorResponse))
         {
-            this.ExecutionTransactionSearchOverledgerErrorResponse = executionTransactionSearchOverledgerErrorResponse;
             this.PreparationTransactionSearchResponse = preparationTransactionSearchResponse;
             this.ExecutionTransactionSearchResponse = executionTransactionSearchResponse;
+            this.ExecutionTransactionSearchOverledgerErrorResponse = executionTransactionSearchOverledgerErrorResponse;
         }
-
-        /// <summary>
-        /// Gets or Sets ExecutionTransactionSearchOverledgerErrorResponse
-        /// </summary>
-        [DataMember(Name="executionTransactionSearchOverledgerErrorResponse", EmitDefaultValue=false)]
-        public PrepareAndExecuteOverledgerErrorResponse ExecutionTransactionSearchOverledgerErrorResponse { get; set; }
 
         /// <summary>
         /// Gets or Sets PreparationTransactionSearchResponse
@@ -62,6 +56,12 @@ namespace Org.OpenAPITools.Model
         public ExecuteSearchTransactionResponse ExecutionTransactionSearchResponse { get; set; }
 
         /// <summary>
+        /// Gets or Sets ExecutionTransactionSearchOverledgerErrorResponse
+        /// </summary>
+        [DataMember(Name="executionTransactionSearchOverledgerErrorResponse", EmitDefaultValue=false)]
+        public PrepareAndExecuteOverledgerErrorResponse ExecutionTransactionSearchOverledgerErrorResponse { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -69,9 +69,9 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class PrepareAndExecuteTransactionResponse {\n");
-            sb.Append("  ExecutionTransactionSearchOverledgerErrorResponse: ").Append(ExecutionTransactionSearchOverledgerErrorResponse).Append("\n");
             sb.Append("  PreparationTransactionSearchResponse: ").Append(PreparationTransactionSearchResponse).Append("\n");
             sb.Append("  ExecutionTransactionSearchResponse: ").Append(ExecutionTransactionSearchResponse).Append("\n");
+            sb.Append("  ExecutionTransactionSearchOverledgerErrorResponse: ").Append(ExecutionTransactionSearchOverledgerErrorResponse).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -107,11 +107,6 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.ExecutionTransactionSearchOverledgerErrorResponse == input.ExecutionTransactionSearchOverledgerErrorResponse ||
-                    (this.ExecutionTransactionSearchOverledgerErrorResponse != null &&
-                    this.ExecutionTransactionSearchOverledgerErrorResponse.Equals(input.ExecutionTransactionSearchOverledgerErrorResponse))
-                ) && 
-                (
                     this.PreparationTransactionSearchResponse == input.PreparationTransactionSearchResponse ||
                     (this.PreparationTransactionSearchResponse != null &&
                     this.PreparationTransactionSearchResponse.Equals(input.PreparationTransactionSearchResponse))
@@ -120,6 +115,11 @@ namespace Org.OpenAPITools.Model
                     this.ExecutionTransactionSearchResponse == input.ExecutionTransactionSearchResponse ||
                     (this.ExecutionTransactionSearchResponse != null &&
                     this.ExecutionTransactionSearchResponse.Equals(input.ExecutionTransactionSearchResponse))
+                ) && 
+                (
+                    this.ExecutionTransactionSearchOverledgerErrorResponse == input.ExecutionTransactionSearchOverledgerErrorResponse ||
+                    (this.ExecutionTransactionSearchOverledgerErrorResponse != null &&
+                    this.ExecutionTransactionSearchOverledgerErrorResponse.Equals(input.ExecutionTransactionSearchOverledgerErrorResponse))
                 );
         }
 
@@ -132,12 +132,12 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ExecutionTransactionSearchOverledgerErrorResponse != null)
-                    hashCode = hashCode * 59 + this.ExecutionTransactionSearchOverledgerErrorResponse.GetHashCode();
                 if (this.PreparationTransactionSearchResponse != null)
                     hashCode = hashCode * 59 + this.PreparationTransactionSearchResponse.GetHashCode();
                 if (this.ExecutionTransactionSearchResponse != null)
                     hashCode = hashCode * 59 + this.ExecutionTransactionSearchResponse.GetHashCode();
+                if (this.ExecutionTransactionSearchOverledgerErrorResponse != null)
+                    hashCode = hashCode * 59 + this.ExecutionTransactionSearchOverledgerErrorResponse.GetHashCode();
                 return hashCode;
             }
         }

@@ -7,7 +7,7 @@
 | **utxo_id** | **String** |  | [optional] |
 | **destination** | [**Array&lt;UTXODestination&gt;**](UTXODestination.md) |  | [optional] |
 | **location** | [**Location**](Location.md) |  | [optional] |
-| **timestamp** | [**UTXOTimestampSchema**](UTXOTimestampSchema.md) |  | [optional] |
+| **timestamp** | **String** |  | [optional] |
 | **status** | [**Status**](Status.md) |  | [optional] |
 | **native_data** | [**UTXONativeData**](UTXONativeData.md) |  | [optional] |
 

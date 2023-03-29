@@ -19,16 +19,16 @@ typedef struct error_details_t error_details_t;
 
 
 typedef struct error_details_t {
-    char *code; // string
-    char *description; // string
     char *category; // string
+    char *description; // string
+    char *code; // string
 
 } error_details_t;
 
 error_details_t *error_details_create(
-    char *code,
+    char *category,
     char *description,
-    char *category
+    char *code
 );
 
 void error_details_free(error_details_t *error_details);

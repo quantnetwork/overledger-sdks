@@ -22,15 +22,15 @@ typedef struct auto_execute_search_address_balance_response_schema_t auto_execut
 
 
 typedef struct auto_execute_search_address_balance_response_schema_t {
-    struct prepare_and_execute_search_address_balance_response_t *execution_address_balance_search_response; //model
     struct prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_error_response; //model
+    struct prepare_and_execute_search_address_balance_response_t *execution_address_balance_search_response; //model
     struct prepare_search_response_schema_t *preparation_address_balance_search_response; //model
 
 } auto_execute_search_address_balance_response_schema_t;
 
 auto_execute_search_address_balance_response_schema_t *auto_execute_search_address_balance_response_schema_create(
-    prepare_and_execute_search_address_balance_response_t *execution_address_balance_search_response,
     prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_error_response,
+    prepare_and_execute_search_address_balance_response_t *execution_address_balance_search_response,
     prepare_search_response_schema_t *preparation_address_balance_search_response
 );
 

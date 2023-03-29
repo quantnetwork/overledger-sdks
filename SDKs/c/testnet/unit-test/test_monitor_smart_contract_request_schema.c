@@ -23,19 +23,19 @@ monitor_smart_contract_request_schema_t* instantiate_monitor_smart_contract_requ
   monitor_smart_contract_request_schema_t* monitor_smart_contract_request_schema = NULL;
   if (include_optional) {
     monitor_smart_contract_request_schema = monitor_smart_contract_request_schema_create(
-      "a",
       list_create(),
       "a",
        // false, not to have infinite recursion
       instantiate_location(0),
+      "a",
       "a"
     );
   } else {
     monitor_smart_contract_request_schema = monitor_smart_contract_request_schema_create(
-      "a",
       list_create(),
       "a",
       NULL,
+      "a",
       "a"
     );
   }

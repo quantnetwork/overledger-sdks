@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -16,10 +16,11 @@
 pub struct Origin {
     #[serde(rename = "sequence", skip_serializing_if = "Option::is_none")]
     pub sequence: Option<String>,
-    #[serde(rename = "originId", skip_serializing_if = "Option::is_none")]
-    pub origin_id: Option<String>,
     #[serde(rename = "smartContract", skip_serializing_if = "Option::is_none")]
     pub smart_contract: Option<Box<crate::models::SmartContract>>,
+    /// The unique identifier of the origin
+    #[serde(rename = "originId", skip_serializing_if = "Option::is_none")]
+    pub origin_id: Option<String>,
 }
 
 impl Origin {
@@ -27,8 +28,8 @@ impl Origin {
     pub fn new() -> Origin {
         Origin {
             sequence: None,
-            origin_id: None,
             smart_contract: None,
+            origin_id: None,
         }
     }
 }

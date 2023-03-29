@@ -32,7 +32,7 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | 
-    blockId := "latest" // string | 
+    blockId := "54678" // string | 
     prepareSearchSchema := *openapiclient.NewPrepareSearchSchema() // PrepareSearchSchema | 
 
     configuration := openapiclient.NewConfiguration()
@@ -174,7 +174,7 @@ import (
 
 func main() {
     authorization := "authorization_example" // string | 
-    blockId := "latest" // string | 
+    blockId := "54678" // string | 
     prepareSearchSchema := *openapiclient.NewPrepareSearchSchema() // PrepareSearchSchema | 
 
     configuration := openapiclient.NewConfiguration()

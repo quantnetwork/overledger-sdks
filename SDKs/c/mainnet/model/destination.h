@@ -22,18 +22,18 @@ typedef struct destination_t destination_t;
 
 
 typedef struct destination_t {
-    struct transfer_t *transfer; //model
-    struct smart_contract_t *smart_contract; //model
     struct payment_t *payment; //model
+    struct transfer_t *transfer; //model
     char *destination_id; // string
+    struct smart_contract_t *smart_contract; //model
 
 } destination_t;
 
 destination_t *destination_create(
-    transfer_t *transfer,
-    smart_contract_t *smart_contract,
     payment_t *payment,
-    char *destination_id
+    transfer_t *transfer,
+    char *destination_id,
+    smart_contract_t *smart_contract
 );
 
 void destination_free(destination_t *destination);

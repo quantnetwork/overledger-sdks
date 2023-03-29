@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Urgency** | Pointer to **string** |  | [optional] 
+**Location** | [**Location**](Location.md) |  | 
+**Type** | **string** | The type of the transaction | 
+**Urgency** | **string** | This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal | 
 **RequestDetails** | Pointer to [**SmartContractInvokeRequestDetailsSchema**](SmartContractInvokeRequestDetailsSchema.md) |  | [optional] 
-**Location** | Pointer to [**Location**](Location.md) |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewPrepareTransactionSmartContractInvokeRequestSchema
 
-`func NewPrepareTransactionSmartContractInvokeRequestSchema() *PrepareTransactionSmartContractInvokeRequestSchema`
+`func NewPrepareTransactionSmartContractInvokeRequestSchema(location Location, type_ string, urgency string, ) *PrepareTransactionSmartContractInvokeRequestSchema`
 
 NewPrepareTransactionSmartContractInvokeRequestSchema instantiates a new PrepareTransactionSmartContractInvokeRequestSchema object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,46 @@ will change when the set of required properties is changed
 NewPrepareTransactionSmartContractInvokeRequestSchemaWithDefaults instantiates a new PrepareTransactionSmartContractInvokeRequestSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetLocation
+
+`func (o *PrepareTransactionSmartContractInvokeRequestSchema) GetLocation() Location`
+
+GetLocation returns the Location field if non-nil, zero value otherwise.
+
+### GetLocationOk
+
+`func (o *PrepareTransactionSmartContractInvokeRequestSchema) GetLocationOk() (*Location, bool)`
+
+GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocation
+
+`func (o *PrepareTransactionSmartContractInvokeRequestSchema) SetLocation(v Location)`
+
+SetLocation sets Location field to given value.
+
+
+### GetType
+
+`func (o *PrepareTransactionSmartContractInvokeRequestSchema) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *PrepareTransactionSmartContractInvokeRequestSchema) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *PrepareTransactionSmartContractInvokeRequestSchema) SetType(v string)`
+
+SetType sets Type field to given value.
+
 
 ### GetUrgency
 
@@ -47,11 +87,6 @@ and a boolean to check if the value has been set.
 
 SetUrgency sets Urgency field to given value.
 
-### HasUrgency
-
-`func (o *PrepareTransactionSmartContractInvokeRequestSchema) HasUrgency() bool`
-
-HasUrgency returns a boolean if a field has been set.
 
 ### GetRequestDetails
 
@@ -77,56 +112,6 @@ SetRequestDetails sets RequestDetails field to given value.
 `func (o *PrepareTransactionSmartContractInvokeRequestSchema) HasRequestDetails() bool`
 
 HasRequestDetails returns a boolean if a field has been set.
-
-### GetLocation
-
-`func (o *PrepareTransactionSmartContractInvokeRequestSchema) GetLocation() Location`
-
-GetLocation returns the Location field if non-nil, zero value otherwise.
-
-### GetLocationOk
-
-`func (o *PrepareTransactionSmartContractInvokeRequestSchema) GetLocationOk() (*Location, bool)`
-
-GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocation
-
-`func (o *PrepareTransactionSmartContractInvokeRequestSchema) SetLocation(v Location)`
-
-SetLocation sets Location field to given value.
-
-### HasLocation
-
-`func (o *PrepareTransactionSmartContractInvokeRequestSchema) HasLocation() bool`
-
-HasLocation returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *PrepareTransactionSmartContractInvokeRequestSchema) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *PrepareTransactionSmartContractInvokeRequestSchema) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *PrepareTransactionSmartContractInvokeRequestSchema) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *PrepareTransactionSmartContractInvokeRequestSchema) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

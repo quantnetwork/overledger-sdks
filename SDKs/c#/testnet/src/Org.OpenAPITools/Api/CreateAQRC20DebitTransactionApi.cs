@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -26,10 +26,33 @@ namespace Org.OpenAPITools.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Execute a transaction on a DLT
+        /// </summary>
+        /// <remarks>
+        /// Takes a request ID and submits a signed transaction to the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="executeTransactionRequest"></param>
+        /// <returns>ExecuteTransactionResponse</returns>
+        ExecuteTransactionResponse ExecutePreparedRequestTransaction (string authorization, ExecuteTransactionRequest executeTransactionRequest);
+
+        /// <summary>
+        /// Execute a transaction on a DLT
+        /// </summary>
+        /// <remarks>
+        /// Takes a request ID and submits a signed transaction to the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="executeTransactionRequest"></param>
+        /// <returns>ApiResponse of ExecuteTransactionResponse</returns>
+        ApiResponse<ExecuteTransactionResponse> ExecutePreparedRequestTransactionWithHttpInfo (string authorization, ExecuteTransactionRequest executeTransactionRequest);
+        /// <summary>
         /// Prepare a QRC20 token debit transaction for signing
         /// </summary>
         /// <remarks>
-        /// Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \&quot;Approve Debit\&quot; and \&quot;Create Debit\&quot;. The &#39;Approve Debit&#39; transaction type will allow you to approve someone to make a pull payment from your account and the \&quot;Create Debit\&quot; transaction type will create the payment to pull the approved amount from an account.
+        /// Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -41,7 +64,7 @@ namespace Org.OpenAPITools.Api
         /// Prepare a QRC20 token debit transaction for signing
         /// </summary>
         /// <remarks>
-        /// Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \&quot;Approve Debit\&quot; and \&quot;Create Debit\&quot;. The &#39;Approve Debit&#39; transaction type will allow you to approve someone to make a pull payment from your account and the \&quot;Create Debit\&quot; transaction type will create the payment to pull the approved amount from an account.
+        /// Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -51,10 +74,35 @@ namespace Org.OpenAPITools.Api
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
+        /// Execute a transaction on a DLT
+        /// </summary>
+        /// <remarks>
+        /// Takes a request ID and submits a signed transaction to the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="executeTransactionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ExecuteTransactionResponse</returns>
+        System.Threading.Tasks.Task<ExecuteTransactionResponse> ExecutePreparedRequestTransactionAsync (string authorization, ExecuteTransactionRequest executeTransactionRequest, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Execute a transaction on a DLT
+        /// </summary>
+        /// <remarks>
+        /// Takes a request ID and submits a signed transaction to the requested DLT.
+        /// </remarks>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="executeTransactionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ApiResponse (ExecuteTransactionResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ExecuteTransactionResponse>> ExecutePreparedRequestTransactionWithHttpInfoAsync (string authorization, ExecuteTransactionRequest executeTransactionRequest, CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
         /// Prepare a QRC20 token debit transaction for signing
         /// </summary>
         /// <remarks>
-        /// Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \&quot;Approve Debit\&quot; and \&quot;Create Debit\&quot;. The &#39;Approve Debit&#39; transaction type will allow you to approve someone to make a pull payment from your account and the \&quot;Create Debit\&quot; transaction type will create the payment to pull the approved amount from an account.
+        /// Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -67,7 +115,7 @@ namespace Org.OpenAPITools.Api
         /// Prepare a QRC20 token debit transaction for signing
         /// </summary>
         /// <remarks>
-        /// Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \&quot;Approve Debit\&quot; and \&quot;Create Debit\&quot;. The &#39;Approve Debit&#39; transaction type will allow you to approve someone to make a pull payment from your account and the \&quot;Create Debit\&quot; transaction type will create the payment to pull the approved amount from an account.
+        /// Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -187,7 +235,182 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Prepare a QRC20 token debit transaction for signing Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \&quot;Approve Debit\&quot; and \&quot;Create Debit\&quot;. The &#39;Approve Debit&#39; transaction type will allow you to approve someone to make a pull payment from your account and the \&quot;Create Debit\&quot; transaction type will create the payment to pull the approved amount from an account.
+        /// Execute a transaction on a DLT Takes a request ID and submits a signed transaction to the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="executeTransactionRequest"></param>
+        /// <returns>ExecuteTransactionResponse</returns>
+        public ExecuteTransactionResponse ExecutePreparedRequestTransaction (string authorization, ExecuteTransactionRequest executeTransactionRequest)
+        {
+             ApiResponse<ExecuteTransactionResponse> localVarResponse = ExecutePreparedRequestTransactionWithHttpInfo(authorization, executeTransactionRequest);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Execute a transaction on a DLT Takes a request ID and submits a signed transaction to the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="executeTransactionRequest"></param>
+        /// <returns>ApiResponse of ExecuteTransactionResponse</returns>
+        public ApiResponse<ExecuteTransactionResponse> ExecutePreparedRequestTransactionWithHttpInfo (string authorization, ExecuteTransactionRequest executeTransactionRequest)
+        {
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling CreateAQRC20DebitTransactionApi->ExecutePreparedRequestTransaction");
+            // verify the required parameter 'executeTransactionRequest' is set
+            if (executeTransactionRequest == null)
+                throw new ApiException(400, "Missing required parameter 'executeTransactionRequest' when calling CreateAQRC20DebitTransactionApi->ExecutePreparedRequestTransaction");
+
+            var localVarPath = "/v2/execution/transaction";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            if (executeTransactionRequest != null && executeTransactionRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(executeTransactionRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = executeTransactionRequest; // byte array
+            }
+
+            // authentication (OAuth2_Security_Scheme) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) this.Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ExecutePreparedRequestTransaction", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ExecuteTransactionResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (ExecuteTransactionResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(ExecuteTransactionResponse)));
+        }
+
+        /// <summary>
+        /// Execute a transaction on a DLT Takes a request ID and submits a signed transaction to the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="executeTransactionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ExecuteTransactionResponse</returns>
+        public async System.Threading.Tasks.Task<ExecuteTransactionResponse> ExecutePreparedRequestTransactionAsync (string authorization, ExecuteTransactionRequest executeTransactionRequest, CancellationToken cancellationToken = default(CancellationToken))
+        {
+             ApiResponse<ExecuteTransactionResponse> localVarResponse = await ExecutePreparedRequestTransactionWithHttpInfoAsync(authorization, executeTransactionRequest, cancellationToken);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Execute a transaction on a DLT Takes a request ID and submits a signed transaction to the requested DLT.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="authorization"></param>
+        /// <param name="executeTransactionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
+        /// <returns>Task of ApiResponse (ExecuteTransactionResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ExecuteTransactionResponse>> ExecutePreparedRequestTransactionWithHttpInfoAsync (string authorization, ExecuteTransactionRequest executeTransactionRequest, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            // verify the required parameter 'authorization' is set
+            if (authorization == null)
+                throw new ApiException(400, "Missing required parameter 'authorization' when calling CreateAQRC20DebitTransactionApi->ExecutePreparedRequestTransaction");
+            // verify the required parameter 'executeTransactionRequest' is set
+            if (executeTransactionRequest == null)
+                throw new ApiException(400, "Missing required parameter 'executeTransactionRequest' when calling CreateAQRC20DebitTransactionApi->ExecutePreparedRequestTransaction");
+
+            var localVarPath = "/v2/execution/transaction";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(this.Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = this.Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = this.Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (authorization != null) localVarHeaderParams.Add("Authorization", this.Configuration.ApiClient.ParameterToString(authorization)); // header parameter
+            if (executeTransactionRequest != null && executeTransactionRequest.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = this.Configuration.ApiClient.Serialize(executeTransactionRequest); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = executeTransactionRequest; // byte array
+            }
+
+            // authentication (OAuth2_Security_Scheme) required
+            // oauth required
+            if (!String.IsNullOrEmpty(this.Configuration.AccessToken))
+            {
+                localVarHeaderParams["Authorization"] = "Bearer " + this.Configuration.AccessToken;
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await this.Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType, cancellationToken);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ExecutePreparedRequestTransaction", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ExecuteTransactionResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
+                (ExecuteTransactionResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(ExecuteTransactionResponse)));
+        }
+
+        /// <summary>
+        /// Prepare a QRC20 token debit transaction for signing Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -200,7 +423,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Prepare a QRC20 token debit transaction for signing Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \&quot;Approve Debit\&quot; and \&quot;Create Debit\&quot;. The &#39;Approve Debit&#39; transaction type will allow you to approve someone to make a pull payment from your account and the \&quot;Create Debit\&quot; transaction type will create the payment to pull the approved amount from an account.
+        /// Prepare a QRC20 token debit transaction for signing Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -273,7 +496,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Prepare a QRC20 token debit transaction for signing Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \&quot;Approve Debit\&quot; and \&quot;Create Debit\&quot;. The &#39;Approve Debit&#39; transaction type will allow you to approve someone to make a pull payment from your account and the \&quot;Create Debit\&quot; transaction type will create the payment to pull the approved amount from an account.
+        /// Prepare a QRC20 token debit transaction for signing Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -288,7 +511,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Prepare a QRC20 token debit transaction for signing Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \&quot;Approve Debit\&quot; and \&quot;Create Debit\&quot;. The &#39;Approve Debit&#39; transaction type will allow you to approve someone to make a pull payment from your account and the \&quot;Create Debit\&quot; transaction type will create the payment to pull the approved amount from an account.
+        /// Prepare a QRC20 token debit transaction for signing Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>

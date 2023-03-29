@@ -16,8 +16,8 @@
 #include "../model/create_smart_contract_monitoring_schema.h"
 create_smart_contract_monitoring_schema_t* instantiate_create_smart_contract_monitoring_schema(int include_optional);
 
-#include "test_resource_monitoring_subscription_details.c"
 #include "test_resource_monitoring_details.c"
+#include "test_resource_monitoring_subscription_details.c"
 #include "test_resource_monitoring_subscription.c"
 
 
@@ -26,9 +26,9 @@ create_smart_contract_monitoring_schema_t* instantiate_create_smart_contract_mon
   if (include_optional) {
     create_smart_contract_monitoring_schema = create_smart_contract_monitoring_schema_create(
        // false, not to have infinite recursion
-      instantiate_resource_monitoring_subscription_details(0),
-       // false, not to have infinite recursion
       instantiate_resource_monitoring_details(0),
+       // false, not to have infinite recursion
+      instantiate_resource_monitoring_subscription_details(0),
        // false, not to have infinite recursion
       instantiate_resource_monitoring_subscription(0)
     );

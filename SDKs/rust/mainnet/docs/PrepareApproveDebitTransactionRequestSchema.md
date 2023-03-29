@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**urgency** | Option<**String**> |  | [optional]
+**location** | [**crate::models::Location**](Location.md) |  | 
+**_type** | **String** | The type of the transaction | 
+**urgency** | **String** | This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal | 
 **request_details** | Option<[**crate::models::ApproveRequestDetailsSchema**](ApproveRequestDetailsSchema.md)> |  | [optional]
-**location** | Option<[**crate::models::Location**](Location.md)> |  | [optional]
-**_type** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

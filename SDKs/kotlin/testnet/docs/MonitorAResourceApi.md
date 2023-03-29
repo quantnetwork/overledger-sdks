@@ -24,7 +24,7 @@ Overledger creates a tracking record for the given address and records informati
 
 val apiInstance = MonitorAResourceApi()
 val authorization : kotlin.String = authorization_example // kotlin.String | 
-val addressMonitoringRequestSchema : AddressMonitoringRequestSchema = {"callBackURL":"https://callbackurl/endpoint","location":{"technology":"Ethereum","network":"Ropsten"},"addressId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"} // AddressMonitoringRequestSchema | 
+val addressMonitoringRequestSchema : AddressMonitoringRequestSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"},"callBackURL":"https://callbackurl/endpoint","addressId":"0xd8b31B65878a6B1a6cAf9f4819C1A42d68a7A116"} // AddressMonitoringRequestSchema | 
 try {
     val result : AddressMonitoringResponseSchema = apiInstance.resourceMonitoringAddress(authorization, addressMonitoringRequestSchema)
     println(result)
@@ -75,7 +75,7 @@ Overledger creates a tracking record for the given smart contract and records in
 
 val apiInstance = MonitorAResourceApi()
 val authorization : kotlin.String = authorization_example // kotlin.String | 
-val monitorSmartContractRequestSchema : MonitorSmartContractRequestSchema = {"callBackURL":"https://test-post.free.beeceptor.com/comments","eventParams":[{"selectedIntegerLength":"B256","type":"UINT","value":"3"},{"selectedIntegerLength":"B256","type":"UINT","value":"2"}],"eventName":"mul","location":{"technology":"Ethereum","network":"Ethereum Ropsten Testnet"},"smartContractId":"0x8781d54e454377451D9C6928538Db544Caa65CDf"} // MonitorSmartContractRequestSchema | 
+val monitorSmartContractRequestSchema : MonitorSmartContractRequestSchema = {"eventParams":[{"selectedIntegerLength":"B256","type":"UINT","value":"3"},{"selectedIntegerLength":"B256","type":"UINT","value":"2"}],"eventName":"mul","location":{"technology":"Ethereum","network":"Ropsten Testnet"},"callBackURL":"https://test-post.free.beeceptor.com/comments","smartContractId":"0x8781d54e454377451D9C6928538Db544Caa65CDf"} // MonitorSmartContractRequestSchema | 
 try {
     val result : CreateSmartContractMonitoringSchema = apiInstance.trackAndSubscribeEvent(authorization, monitorSmartContractRequestSchema)
     println(result)

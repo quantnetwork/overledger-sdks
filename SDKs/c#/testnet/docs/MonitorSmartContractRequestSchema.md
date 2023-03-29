@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CallBackURL** | **string** |  | [optional] 
 **EventParams** | [**List&lt;MonitorSmartContractEventParam&gt;**](MonitorSmartContractEventParam.md) |  | [optional] 
 **EventName** | **string** |  | [optional] 
 **Location** | [**Location**](Location.md) |  | [optional] 
+**CallBackURL** | **string** |  | [optional] 
 **SmartContractId** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)

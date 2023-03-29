@@ -68,13 +68,38 @@ library
       QuantOverledger.API.BlockSearch
       QuantOverledger.API.CreateAQRC20CreditTransaction
       QuantOverledger.API.CreateAQRC20DebitTransaction
-      QuantOverledger.API.CreateSubscription
-      QuantOverledger.API.CreateTransaction
-      QuantOverledger.API.MDappTransactionQuery
+      QuantOverledger.API.CreateAQRC721TokenCollectionTransaction
+      QuantOverledger.API.CreateAQRC721TransferTransaction
+      QuantOverledger.API.CreateASubscription
+      QuantOverledger.API.CreateATransaction
+      QuantOverledger.API.CreateAndPayFromAQRC20SharedAccount
+      QuantOverledger.API.FungibleTokenController
+      QuantOverledger.API.MDAppTransactionQuery
       QuantOverledger.API.ManageMonitoredResources
-      QuantOverledger.API.ManageSubscription
+      QuantOverledger.API.ManageQRC20TokenSupply
+      QuantOverledger.API.ManageQRC721TokenSupply
+      QuantOverledger.API.ManageSubscriptions
       QuantOverledger.API.MonitorAResource
+      QuantOverledger.API.RetrieveAccountBalanceForAQRC20Token
+      QuantOverledger.API.RetrieveApprovedAccountAllowanceForAQRC20Token
+      QuantOverledger.API.RetrieveApprovedAccountInformationForAQRC20Token
+      QuantOverledger.API.RetrieveApprovedAccountInformationOfAQRC721Token
+      QuantOverledger.API.RetrieveContractOwnerInformationOfAQRCToken
+      QuantOverledger.API.RetrieveOwnerInformationForAQRC721Token
+      QuantOverledger.API.RetrieveSupplyInformationForAQRCToken
+      QuantOverledger.API.RetrieveTheCountOfQRC721Tokens
+      QuantOverledger.API.RetrieveURIInformationForAQRC721Token
       QuantOverledger.API.SmartContractSearch
+      QuantOverledger.API.SubscribeToQRC20AccountCreditPayments
+      QuantOverledger.API.SubscribeToQRC20AccountDebitPayments
+      QuantOverledger.API.SubscribeToQRC20SharedAccountUpdates
+      QuantOverledger.API.SubscribeToQRC20TokenSupplyChanges
+      QuantOverledger.API.SubscribeToQRC721AssetCollectionUpdates
+      QuantOverledger.API.SubscribeToQRC721AssetTransfers
+      QuantOverledger.API.SubscribeToQRC721SupplyChangeUpdates
+      QuantOverledger.API.SupportedFungibleTokens
+      QuantOverledger.API.SupportedNonFungibleTokens
+      QuantOverledger.API.TokenController
       QuantOverledger.API.TransactionSearch
       QuantOverledger.API.UTXOStatusSearch
       QuantOverledger.Client

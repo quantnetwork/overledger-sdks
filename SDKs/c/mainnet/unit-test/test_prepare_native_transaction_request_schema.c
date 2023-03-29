@@ -23,14 +23,14 @@ prepare_native_transaction_request_schema_t* instantiate_prepare_native_transact
   prepare_native_transaction_request_schema_t* prepare_native_transaction_request_schema = NULL;
   if (include_optional) {
     prepare_native_transaction_request_schema = prepare_native_transaction_request_schema_create(
+      "a",
        // false, not to have infinite recursion
-      instantiate_location(0),
-      "a"
+      instantiate_location(0)
     );
   } else {
     prepare_native_transaction_request_schema = prepare_native_transaction_request_schema_create(
-      NULL,
-      "a"
+      "a",
+      NULL
     );
   }
 

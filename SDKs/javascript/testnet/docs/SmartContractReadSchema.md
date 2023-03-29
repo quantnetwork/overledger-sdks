@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_function** | [**SmartContractReadFunctionSchema**](SmartContractReadFunctionSchema.md) |  | [optional] 
 **smartContractId** | **String** |  | [optional] 
+**_function** | [**SmartContractReadFunctionSchema**](SmartContractReadFunctionSchema.md) |  | [optional] 
 
 

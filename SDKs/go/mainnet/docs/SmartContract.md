@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Function** | Pointer to [**Function**](Function.md) |  | [optional] 
 **Detail** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** | Information on the object type | [optional] 
 **SmartContractId** | Pointer to **string** |  | [optional] 
+**Function** | Pointer to [**Function**](Function.md) |  | [optional] 
 **ExtraFields** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
@@ -28,31 +28,6 @@ will change when the set of required properties is changed
 NewSmartContractWithDefaults instantiates a new SmartContract object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetFunction
-
-`func (o *SmartContract) GetFunction() Function`
-
-GetFunction returns the Function field if non-nil, zero value otherwise.
-
-### GetFunctionOk
-
-`func (o *SmartContract) GetFunctionOk() (*Function, bool)`
-
-GetFunctionOk returns a tuple with the Function field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFunction
-
-`func (o *SmartContract) SetFunction(v Function)`
-
-SetFunction sets Function field to given value.
-
-### HasFunction
-
-`func (o *SmartContract) HasFunction() bool`
-
-HasFunction returns a boolean if a field has been set.
 
 ### GetDetail
 
@@ -128,6 +103,31 @@ SetSmartContractId sets SmartContractId field to given value.
 `func (o *SmartContract) HasSmartContractId() bool`
 
 HasSmartContractId returns a boolean if a field has been set.
+
+### GetFunction
+
+`func (o *SmartContract) GetFunction() Function`
+
+GetFunction returns the Function field if non-nil, zero value otherwise.
+
+### GetFunctionOk
+
+`func (o *SmartContract) GetFunctionOk() (*Function, bool)`
+
+GetFunctionOk returns a tuple with the Function field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFunction
+
+`func (o *SmartContract) SetFunction(v Function)`
+
+SetFunction sets Function field to given value.
+
+### HasFunction
+
+`func (o *SmartContract) HasFunction() bool`
+
+HasFunction returns a boolean if a field has been set.
 
 ### GetExtraFields
 

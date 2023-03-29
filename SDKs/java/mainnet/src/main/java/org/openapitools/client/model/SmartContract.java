@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -29,12 +29,8 @@ import org.openapitools.client.model.Function;
  * Computer program storage in a DLT system where the outcome is recorded on the distributed ledger
  */
 @ApiModel(description = "Computer program storage in a DLT system where the outcome is recorded on the distributed ledger")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:46:50.106642+01:00[Europe/London]")
 public class SmartContract {
-  public static final String SERIALIZED_NAME_FUNCTION = "function";
-  @SerializedName(SERIALIZED_NAME_FUNCTION)
-  private Function function;
-
   public static final String SERIALIZED_NAME_DETAIL = "detail";
   @SerializedName(SERIALIZED_NAME_DETAIL)
   private String detail;
@@ -47,32 +43,13 @@ public class SmartContract {
   @SerializedName(SERIALIZED_NAME_SMART_CONTRACT_ID)
   private String smartContractId;
 
+  public static final String SERIALIZED_NAME_FUNCTION = "function";
+  @SerializedName(SERIALIZED_NAME_FUNCTION)
+  private Function function;
+
   public static final String SERIALIZED_NAME_EXTRA_FIELDS = "extraFields";
   @SerializedName(SERIALIZED_NAME_EXTRA_FIELDS)
   private Object extraFields;
-
-
-  public SmartContract function(Function function) {
-    
-    this.function = function;
-    return this;
-  }
-
-   /**
-   * Get function
-   * @return function
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Function getFunction() {
-    return function;
-  }
-
-
-  public void setFunction(Function function) {
-    this.function = function;
-  }
 
 
   public SmartContract detail(String detail) {
@@ -144,6 +121,29 @@ public class SmartContract {
   }
 
 
+  public SmartContract function(Function function) {
+    
+    this.function = function;
+    return this;
+  }
+
+   /**
+   * Get function
+   * @return function
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Function getFunction() {
+    return function;
+  }
+
+
+  public void setFunction(Function function) {
+    this.function = function;
+  }
+
+
   public SmartContract extraFields(Object extraFields) {
     
     this.extraFields = extraFields;
@@ -176,26 +176,26 @@ public class SmartContract {
       return false;
     }
     SmartContract smartContract = (SmartContract) o;
-    return Objects.equals(this.function, smartContract.function) &&
-        Objects.equals(this.detail, smartContract.detail) &&
+    return Objects.equals(this.detail, smartContract.detail) &&
         Objects.equals(this.type, smartContract.type) &&
         Objects.equals(this.smartContractId, smartContract.smartContractId) &&
+        Objects.equals(this.function, smartContract.function) &&
         Objects.equals(this.extraFields, smartContract.extraFields);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(function, detail, type, smartContractId, extraFields);
+    return Objects.hash(detail, type, smartContractId, function, extraFields);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SmartContract {\n");
-    sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    smartContractId: ").append(toIndentedString(smartContractId)).append("\n");
+    sb.append("    function: ").append(toIndentedString(function)).append("\n");
     sb.append("    extraFields: ").append(toIndentedString(extraFields)).append("\n");
     sb.append("}");
     return sb.toString();

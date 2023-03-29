@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,29 +33,29 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SmartContractReadFunctionSchema" /> class.
         /// </summary>
-        /// <param name="functionId">functionId.</param>
         /// <param name="name">name.</param>
+        /// <param name="functionId">functionId.</param>
         /// <param name="inputParameters">inputParameters.</param>
         /// <param name="outputParameters">outputParameters.</param>
-        public SmartContractReadFunctionSchema(string functionId = default(string), string name = default(string), List<SmartContractInputParameterSchema> inputParameters = default(List<SmartContractInputParameterSchema>), List<SmartContractInputParameterSchema> outputParameters = default(List<SmartContractInputParameterSchema>))
+        public SmartContractReadFunctionSchema(string name = default(string), string functionId = default(string), List<SmartContractInputParameterSchema> inputParameters = default(List<SmartContractInputParameterSchema>), List<SmartContractInputParameterSchema> outputParameters = default(List<SmartContractInputParameterSchema>))
         {
-            this.FunctionId = functionId;
             this.Name = name;
+            this.FunctionId = functionId;
             this.InputParameters = inputParameters;
             this.OutputParameters = outputParameters;
         }
-
-        /// <summary>
-        /// Gets or Sets FunctionId
-        /// </summary>
-        [DataMember(Name="functionId", EmitDefaultValue=false)]
-        public string FunctionId { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FunctionId
+        /// </summary>
+        [DataMember(Name="functionId", EmitDefaultValue=false)]
+        public string FunctionId { get; set; }
 
         /// <summary>
         /// Gets or Sets InputParameters
@@ -77,8 +77,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class SmartContractReadFunctionSchema {\n");
-            sb.Append("  FunctionId: ").Append(FunctionId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  FunctionId: ").Append(FunctionId).Append("\n");
             sb.Append("  InputParameters: ").Append(InputParameters).Append("\n");
             sb.Append("  OutputParameters: ").Append(OutputParameters).Append("\n");
             sb.Append("}\n");
@@ -116,14 +116,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.FunctionId == input.FunctionId ||
-                    (this.FunctionId != null &&
-                    this.FunctionId.Equals(input.FunctionId))
-                ) && 
-                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.FunctionId == input.FunctionId ||
+                    (this.FunctionId != null &&
+                    this.FunctionId.Equals(input.FunctionId))
                 ) && 
                 (
                     this.InputParameters == input.InputParameters ||
@@ -148,10 +148,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.FunctionId != null)
-                    hashCode = hashCode * 59 + this.FunctionId.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.FunctionId != null)
+                    hashCode = hashCode * 59 + this.FunctionId.GetHashCode();
                 if (this.InputParameters != null)
                     hashCode = hashCode * 59 + this.InputParameters.GetHashCode();
                 if (this.OutputParameters != null)

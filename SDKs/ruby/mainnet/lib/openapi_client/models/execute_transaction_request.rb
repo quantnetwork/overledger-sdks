@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,17 +15,17 @@ require 'time'
 
 module OpenapiClient
   class ExecuteTransactionRequest
-    # The ID assigned to a preparation request in Overledger
-    attr_accessor :request_id
-
     # The raw data after transaction signing
     attr_accessor :signed
+
+    # The ID assigned to a preparation request in Overledger
+    attr_accessor :request_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'request_id' => :'requestId',
-        :'signed' => :'signed'
+        :'signed' => :'signed',
+        :'request_id' => :'requestId'
       }
     end
 
@@ -37,8 +37,8 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'request_id' => :'String',
-        :'signed' => :'String'
+        :'signed' => :'String',
+        :'request_id' => :'String'
       }
     end
 
@@ -63,12 +63,12 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'request_id')
-        self.request_id = attributes[:'request_id']
-      end
-
       if attributes.key?(:'signed')
         self.signed = attributes[:'signed']
+      end
+
+      if attributes.key?(:'request_id')
+        self.request_id = attributes[:'request_id']
       end
     end
 
@@ -76,6 +76,19 @@ module OpenapiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if !@signed.nil? && @signed.to_s.length > 400
+        invalid_properties.push('invalid value for "signed", the character length must be smaller than or equal to 400.')
+      end
+
+      if !@signed.nil? && @signed.to_s.length < 0
+        invalid_properties.push('invalid value for "signed", the character length must be great than or equal to 0.')
+      end
+
+      pattern = Regexp.new(/^[A-Za-z0-9-]{1,400}$/)
+      if !@signed.nil? && @signed !~ pattern
+        invalid_properties.push("invalid value for \"signed\", must conform to the pattern #{pattern}.")
+      end
+
       if @request_id.nil?
         invalid_properties.push('invalid value for "request_id", request_id cannot be nil.')
       end
@@ -93,38 +106,39 @@ module OpenapiClient
         invalid_properties.push("invalid value for \"request_id\", must conform to the pattern #{pattern}.")
       end
 
-      if @signed.nil?
-        invalid_properties.push('invalid value for "signed", signed cannot be nil.')
-      end
-
-      if @signed.to_s.length > 400
-        invalid_properties.push('invalid value for "signed", the character length must be smaller than or equal to 400.')
-      end
-
-      if @signed.to_s.length < 0
-        invalid_properties.push('invalid value for "signed", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^[A-Za-z0-9-]{1,400}$/)
-      if @signed !~ pattern
-        invalid_properties.push("invalid value for \"signed\", must conform to the pattern #{pattern}.")
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if !@signed.nil? && @signed.to_s.length > 400
+      return false if !@signed.nil? && @signed.to_s.length < 0
+      return false if !@signed.nil? && @signed !~ Regexp.new(/^[A-Za-z0-9-]{1,400}$/)
       return false if @request_id.nil?
       return false if @request_id.to_s.length > 36
       return false if @request_id.to_s.length < 0
       return false if @request_id !~ Regexp.new(/^[A-Za-z0-9-]{1,36}$/)
-      return false if @signed.nil?
-      return false if @signed.to_s.length > 400
-      return false if @signed.to_s.length < 0
-      return false if @signed !~ Regexp.new(/^[A-Za-z0-9-]{1,400}$/)
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] signed Value to be assigned
+    def signed=(signed)
+      if !signed.nil? && signed.to_s.length > 400
+        fail ArgumentError, 'invalid value for "signed", the character length must be smaller than or equal to 400.'
+      end
+
+      if !signed.nil? && signed.to_s.length < 0
+        fail ArgumentError, 'invalid value for "signed", the character length must be great than or equal to 0.'
+      end
+
+      pattern = Regexp.new(/^[A-Za-z0-9-]{1,400}$/)
+      if !signed.nil? && signed !~ pattern
+        fail ArgumentError, "invalid value for \"signed\", must conform to the pattern #{pattern}."
+      end
+
+      @signed = signed
     end
 
     # Custom attribute writer method with validation
@@ -150,36 +164,13 @@ module OpenapiClient
       @request_id = request_id
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] signed Value to be assigned
-    def signed=(signed)
-      if signed.nil?
-        fail ArgumentError, 'signed cannot be nil'
-      end
-
-      if signed.to_s.length > 400
-        fail ArgumentError, 'invalid value for "signed", the character length must be smaller than or equal to 400.'
-      end
-
-      if signed.to_s.length < 0
-        fail ArgumentError, 'invalid value for "signed", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[A-Za-z0-9-]{1,400}$/)
-      if signed !~ pattern
-        fail ArgumentError, "invalid value for \"signed\", must conform to the pattern #{pattern}."
-      end
-
-      @signed = signed
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          request_id == o.request_id &&
-          signed == o.signed
+          signed == o.signed &&
+          request_id == o.request_id
     end
 
     # @see the `==` method
@@ -191,7 +182,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [request_id, signed].hash
+      [signed, request_id].hash
     end
 
     # Builds the object from hash

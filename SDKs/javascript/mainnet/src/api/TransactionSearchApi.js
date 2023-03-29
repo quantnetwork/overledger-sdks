@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -52,7 +52,7 @@ export default class TransactionSearchApi {
      * Prepare and automatically execute a search for a transaction on a DLT.
      * Generates a request ID and automatically executes the transaction search on the requested DLT.
      * @param {String} authorization 
-     * @param {String} transactionId 
+     * @param {String} transactionId The transactionId to search for
      * @param {module:model/PrepareSearchSchema} prepareSearchSchema 
      * @param {module:api/TransactionSearchApi~autoExecuteSearchTransactionRequestCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/PrepareAndExecuteTransactionResponse}
@@ -155,7 +155,7 @@ export default class TransactionSearchApi {
      * Prepare a search for a transaction on a DLT
      * Searches for and returns data on transactions on a particular DLT. Returns a request ID for executing a transaction search on the requested DLT
      * @param {String} authorization 
-     * @param {String} transactionId 
+     * @param {String} transactionId The transactionId to search for
      * @param {module:model/PrepareSearchSchema} prepareSearchSchema 
      * @param {module:api/TransactionSearchApi~prepareSearchRequestCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/PrepareSearchResponseSchema}

@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,17 +15,17 @@ require 'time'
 
 module OpenapiClient
   class AddressMonitoringResponseSchema
-    attr_accessor :subscription_details
-
     attr_accessor :resource_monitoring
+
+    attr_accessor :subscription_details
 
     attr_accessor :subscription
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'subscription_details' => :'subscriptionDetails',
         :'resource_monitoring' => :'resourceMonitoring',
+        :'subscription_details' => :'subscriptionDetails',
         :'subscription' => :'subscription'
       }
     end
@@ -38,8 +38,8 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'subscription_details' => :'ResourceMonitoringSubscriptionDetails',
         :'resource_monitoring' => :'ResourceMonitoringDetails',
+        :'subscription_details' => :'ResourceMonitoringSubscriptionDetails',
         :'subscription' => :'ResourceMonitoringSubscription'
       }
     end
@@ -65,12 +65,12 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'subscription_details')
-        self.subscription_details = attributes[:'subscription_details']
-      end
-
       if attributes.key?(:'resource_monitoring')
         self.resource_monitoring = attributes[:'resource_monitoring']
+      end
+
+      if attributes.key?(:'subscription_details')
+        self.subscription_details = attributes[:'subscription_details']
       end
 
       if attributes.key?(:'subscription')
@@ -96,8 +96,8 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          subscription_details == o.subscription_details &&
           resource_monitoring == o.resource_monitoring &&
+          subscription_details == o.subscription_details &&
           subscription == o.subscription
     end
 
@@ -110,7 +110,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [subscription_details, resource_monitoring, subscription].hash
+      [resource_monitoring, subscription_details, subscription].hash
     end
 
     # Builds the object from hash

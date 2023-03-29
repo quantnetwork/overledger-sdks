@@ -6,17 +6,17 @@
 
 
 prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_error_response_create(
-    char *code,
+    char *category,
     char *description,
-    char *category
+    char *code
     ) {
     prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_error_response_local_var = malloc(sizeof(prepare_and_execute_overledger_error_response_t));
     if (!prepare_and_execute_overledger_error_response_local_var) {
         return NULL;
     }
-    prepare_and_execute_overledger_error_response_local_var->code = code;
-    prepare_and_execute_overledger_error_response_local_var->description = description;
     prepare_and_execute_overledger_error_response_local_var->category = category;
+    prepare_and_execute_overledger_error_response_local_var->description = description;
+    prepare_and_execute_overledger_error_response_local_var->code = code;
 
     return prepare_and_execute_overledger_error_response_local_var;
 }
@@ -27,17 +27,17 @@ void prepare_and_execute_overledger_error_response_free(prepare_and_execute_over
         return ;
     }
     listEntry_t *listEntry;
-    if (prepare_and_execute_overledger_error_response->code) {
-        free(prepare_and_execute_overledger_error_response->code);
-        prepare_and_execute_overledger_error_response->code = NULL;
+    if (prepare_and_execute_overledger_error_response->category) {
+        free(prepare_and_execute_overledger_error_response->category);
+        prepare_and_execute_overledger_error_response->category = NULL;
     }
     if (prepare_and_execute_overledger_error_response->description) {
         free(prepare_and_execute_overledger_error_response->description);
         prepare_and_execute_overledger_error_response->description = NULL;
     }
-    if (prepare_and_execute_overledger_error_response->category) {
-        free(prepare_and_execute_overledger_error_response->category);
-        prepare_and_execute_overledger_error_response->category = NULL;
+    if (prepare_and_execute_overledger_error_response->code) {
+        free(prepare_and_execute_overledger_error_response->code);
+        prepare_and_execute_overledger_error_response->code = NULL;
     }
     free(prepare_and_execute_overledger_error_response);
 }
@@ -45,9 +45,9 @@ void prepare_and_execute_overledger_error_response_free(prepare_and_execute_over
 cJSON *prepare_and_execute_overledger_error_response_convertToJSON(prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_error_response) {
     cJSON *item = cJSON_CreateObject();
 
-    // prepare_and_execute_overledger_error_response->code
-    if(prepare_and_execute_overledger_error_response->code) { 
-    if(cJSON_AddStringToObject(item, "code", prepare_and_execute_overledger_error_response->code) == NULL) {
+    // prepare_and_execute_overledger_error_response->category
+    if(prepare_and_execute_overledger_error_response->category) { 
+    if(cJSON_AddStringToObject(item, "category", prepare_and_execute_overledger_error_response->category) == NULL) {
     goto fail; //String
     }
      } 
@@ -61,9 +61,9 @@ cJSON *prepare_and_execute_overledger_error_response_convertToJSON(prepare_and_e
      } 
 
 
-    // prepare_and_execute_overledger_error_response->category
-    if(prepare_and_execute_overledger_error_response->category) { 
-    if(cJSON_AddStringToObject(item, "category", prepare_and_execute_overledger_error_response->category) == NULL) {
+    // prepare_and_execute_overledger_error_response->code
+    if(prepare_and_execute_overledger_error_response->code) { 
+    if(cJSON_AddStringToObject(item, "code", prepare_and_execute_overledger_error_response->code) == NULL) {
     goto fail; //String
     }
      } 
@@ -80,10 +80,10 @@ prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_
 
     prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_error_response_local_var = NULL;
 
-    // prepare_and_execute_overledger_error_response->code
-    cJSON *code = cJSON_GetObjectItemCaseSensitive(prepare_and_execute_overledger_error_responseJSON, "code");
-    if (code) { 
-    if(!cJSON_IsString(code))
+    // prepare_and_execute_overledger_error_response->category
+    cJSON *category = cJSON_GetObjectItemCaseSensitive(prepare_and_execute_overledger_error_responseJSON, "category");
+    if (category) { 
+    if(!cJSON_IsString(category))
     {
     goto end; //String
     }
@@ -98,10 +98,10 @@ prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_
     }
     }
 
-    // prepare_and_execute_overledger_error_response->category
-    cJSON *category = cJSON_GetObjectItemCaseSensitive(prepare_and_execute_overledger_error_responseJSON, "category");
-    if (category) { 
-    if(!cJSON_IsString(category))
+    // prepare_and_execute_overledger_error_response->code
+    cJSON *code = cJSON_GetObjectItemCaseSensitive(prepare_and_execute_overledger_error_responseJSON, "code");
+    if (code) { 
+    if(!cJSON_IsString(code))
     {
     goto end; //String
     }
@@ -109,9 +109,9 @@ prepare_and_execute_overledger_error_response_t *prepare_and_execute_overledger_
 
 
     prepare_and_execute_overledger_error_response_local_var = prepare_and_execute_overledger_error_response_create (
-        code ? strdup(code->valuestring) : NULL,
+        category ? strdup(category->valuestring) : NULL,
         description ? strdup(description->valuestring) : NULL,
-        category ? strdup(category->valuestring) : NULL
+        code ? strdup(code->valuestring) : NULL
         );
 
     return prepare_and_execute_overledger_error_response_local_var;

@@ -6,17 +6,17 @@
 
 
 approve_request_details_schema_t *approve_request_details_schema_create(
+    list_t *payer,
     list_t *mandate,
-    char *overledger_signing_type,
-    list_t *payer
+    char *overledger_signing_type
     ) {
     approve_request_details_schema_t *approve_request_details_schema_local_var = malloc(sizeof(approve_request_details_schema_t));
     if (!approve_request_details_schema_local_var) {
         return NULL;
     }
+    approve_request_details_schema_local_var->payer = payer;
     approve_request_details_schema_local_var->mandate = mandate;
     approve_request_details_schema_local_var->overledger_signing_type = overledger_signing_type;
-    approve_request_details_schema_local_var->payer = payer;
 
     return approve_request_details_schema_local_var;
 }
@@ -27,6 +27,13 @@ void approve_request_details_schema_free(approve_request_details_schema_t *appro
         return ;
     }
     listEntry_t *listEntry;
+    if (approve_request_details_schema->payer) {
+        list_ForEach(listEntry, approve_request_details_schema->payer) {
+            payer_credit_schema_free(listEntry->data);
+        }
+        list_free(approve_request_details_schema->payer);
+        approve_request_details_schema->payer = NULL;
+    }
     if (approve_request_details_schema->mandate) {
         list_ForEach(listEntry, approve_request_details_schema->mandate) {
             payee_credit_schema_free(listEntry->data);
@@ -38,18 +45,31 @@ void approve_request_details_schema_free(approve_request_details_schema_t *appro
         free(approve_request_details_schema->overledger_signing_type);
         approve_request_details_schema->overledger_signing_type = NULL;
     }
-    if (approve_request_details_schema->payer) {
-        list_ForEach(listEntry, approve_request_details_schema->payer) {
-            payer_credit_schema_free(listEntry->data);
-        }
-        list_free(approve_request_details_schema->payer);
-        approve_request_details_schema->payer = NULL;
-    }
     free(approve_request_details_schema);
 }
 
 cJSON *approve_request_details_schema_convertToJSON(approve_request_details_schema_t *approve_request_details_schema) {
     cJSON *item = cJSON_CreateObject();
+
+    // approve_request_details_schema->payer
+    if(approve_request_details_schema->payer) { 
+    cJSON *payer = cJSON_AddArrayToObject(item, "payer");
+    if(payer == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *payerListEntry;
+    if (approve_request_details_schema->payer) {
+    list_ForEach(payerListEntry, approve_request_details_schema->payer) {
+    cJSON *itemLocal = payer_credit_schema_convertToJSON(payerListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(payer, itemLocal);
+    }
+    }
+     } 
+
 
     // approve_request_details_schema->mandate
     if(approve_request_details_schema->mandate) { 
@@ -78,26 +98,6 @@ cJSON *approve_request_details_schema_convertToJSON(approve_request_details_sche
     }
      } 
 
-
-    // approve_request_details_schema->payer
-    if(approve_request_details_schema->payer) { 
-    cJSON *payer = cJSON_AddArrayToObject(item, "payer");
-    if(payer == NULL) {
-    goto fail; //nonprimitive container
-    }
-
-    listEntry_t *payerListEntry;
-    if (approve_request_details_schema->payer) {
-    list_ForEach(payerListEntry, approve_request_details_schema->payer) {
-    cJSON *itemLocal = payer_credit_schema_convertToJSON(payerListEntry->data);
-    if(itemLocal == NULL) {
-    goto fail;
-    }
-    cJSON_AddItemToArray(payer, itemLocal);
-    }
-    }
-     } 
-
     return item;
 fail:
     if (item) {
@@ -109,6 +109,28 @@ fail:
 approve_request_details_schema_t *approve_request_details_schema_parseFromJSON(cJSON *approve_request_details_schemaJSON){
 
     approve_request_details_schema_t *approve_request_details_schema_local_var = NULL;
+
+    // approve_request_details_schema->payer
+    cJSON *payer = cJSON_GetObjectItemCaseSensitive(approve_request_details_schemaJSON, "payer");
+    list_t *payerList;
+    if (payer) { 
+    cJSON *payer_local_nonprimitive;
+    if(!cJSON_IsArray(payer)){
+        goto end; //nonprimitive container
+    }
+
+    payerList = list_create();
+
+    cJSON_ArrayForEach(payer_local_nonprimitive,payer )
+    {
+        if(!cJSON_IsObject(payer_local_nonprimitive)){
+            goto end;
+        }
+        payer_credit_schema_t *payerItem = payer_credit_schema_parseFromJSON(payer_local_nonprimitive);
+
+        list_addElement(payerList, payerItem);
+    }
+    }
 
     // approve_request_details_schema->mandate
     cJSON *mandate = cJSON_GetObjectItemCaseSensitive(approve_request_details_schemaJSON, "mandate");
@@ -141,33 +163,11 @@ approve_request_details_schema_t *approve_request_details_schema_parseFromJSON(c
     }
     }
 
-    // approve_request_details_schema->payer
-    cJSON *payer = cJSON_GetObjectItemCaseSensitive(approve_request_details_schemaJSON, "payer");
-    list_t *payerList;
-    if (payer) { 
-    cJSON *payer_local_nonprimitive;
-    if(!cJSON_IsArray(payer)){
-        goto end; //nonprimitive container
-    }
-
-    payerList = list_create();
-
-    cJSON_ArrayForEach(payer_local_nonprimitive,payer )
-    {
-        if(!cJSON_IsObject(payer_local_nonprimitive)){
-            goto end;
-        }
-        payer_credit_schema_t *payerItem = payer_credit_schema_parseFromJSON(payer_local_nonprimitive);
-
-        list_addElement(payerList, payerItem);
-    }
-    }
-
 
     approve_request_details_schema_local_var = approve_request_details_schema_create (
+        payer ? payerList : NULL,
         mandate ? mandateList : NULL,
-        overledger_signing_type ? strdup(overledger_signing_type->valuestring) : NULL,
-        payer ? payerList : NULL
+        overledger_signing_type ? strdup(overledger_signing_type->valuestring) : NULL
         );
 
     return approve_request_details_schema_local_var;

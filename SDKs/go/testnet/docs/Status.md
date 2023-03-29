@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | Pointer to **string** | The code of an object | [optional] 
 **Description** | Pointer to **string** | The description of an object | [optional] 
+**Code** | Pointer to **string** | The code of an object | [optional] 
 **Message** | Pointer to **string** | The message of an object | [optional] 
 **Value** | Pointer to **string** | The value of an object | [optional] 
 **Timestamp** | Pointer to **string** |  | [optional] 
@@ -28,31 +28,6 @@ will change when the set of required properties is changed
 NewStatusWithDefaults instantiates a new Status object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetCode
-
-`func (o *Status) GetCode() string`
-
-GetCode returns the Code field if non-nil, zero value otherwise.
-
-### GetCodeOk
-
-`func (o *Status) GetCodeOk() (*string, bool)`
-
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCode
-
-`func (o *Status) SetCode(v string)`
-
-SetCode sets Code field to given value.
-
-### HasCode
-
-`func (o *Status) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -78,6 +53,31 @@ SetDescription sets Description field to given value.
 `func (o *Status) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetCode
+
+`func (o *Status) GetCode() string`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *Status) GetCodeOk() (*string, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCode
+
+`func (o *Status) SetCode(v string)`
+
+SetCode sets Code field to given value.
+
+### HasCode
+
+`func (o *Status) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
 
 ### GetMessage
 

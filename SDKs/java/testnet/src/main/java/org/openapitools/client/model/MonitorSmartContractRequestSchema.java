@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -31,12 +31,8 @@ import org.openapitools.client.model.MonitorSmartContractEventParam;
 /**
  * MonitorSmartContractRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class MonitorSmartContractRequestSchema {
-  public static final String SERIALIZED_NAME_CALL_BACK_U_R_L = "callBackURL";
-  @SerializedName(SERIALIZED_NAME_CALL_BACK_U_R_L)
-  private String callBackURL;
-
   public static final String SERIALIZED_NAME_EVENT_PARAMS = "eventParams";
   @SerializedName(SERIALIZED_NAME_EVENT_PARAMS)
   private List<MonitorSmartContractEventParam> eventParams = null;
@@ -49,32 +45,13 @@ public class MonitorSmartContractRequestSchema {
   @SerializedName(SERIALIZED_NAME_LOCATION)
   private Location location;
 
+  public static final String SERIALIZED_NAME_CALL_BACK_U_R_L = "callBackURL";
+  @SerializedName(SERIALIZED_NAME_CALL_BACK_U_R_L)
+  private String callBackURL;
+
   public static final String SERIALIZED_NAME_SMART_CONTRACT_ID = "smartContractId";
   @SerializedName(SERIALIZED_NAME_SMART_CONTRACT_ID)
   private String smartContractId;
-
-
-  public MonitorSmartContractRequestSchema callBackURL(String callBackURL) {
-    
-    this.callBackURL = callBackURL;
-    return this;
-  }
-
-   /**
-   * Get callBackURL
-   * @return callBackURL
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getCallBackURL() {
-    return callBackURL;
-  }
-
-
-  public void setCallBackURL(String callBackURL) {
-    this.callBackURL = callBackURL;
-  }
 
 
   public MonitorSmartContractRequestSchema eventParams(List<MonitorSmartContractEventParam> eventParams) {
@@ -154,6 +131,29 @@ public class MonitorSmartContractRequestSchema {
   }
 
 
+  public MonitorSmartContractRequestSchema callBackURL(String callBackURL) {
+    
+    this.callBackURL = callBackURL;
+    return this;
+  }
+
+   /**
+   * Get callBackURL
+   * @return callBackURL
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getCallBackURL() {
+    return callBackURL;
+  }
+
+
+  public void setCallBackURL(String callBackURL) {
+    this.callBackURL = callBackURL;
+  }
+
+
   public MonitorSmartContractRequestSchema smartContractId(String smartContractId) {
     
     this.smartContractId = smartContractId;
@@ -186,26 +186,26 @@ public class MonitorSmartContractRequestSchema {
       return false;
     }
     MonitorSmartContractRequestSchema monitorSmartContractRequestSchema = (MonitorSmartContractRequestSchema) o;
-    return Objects.equals(this.callBackURL, monitorSmartContractRequestSchema.callBackURL) &&
-        Objects.equals(this.eventParams, monitorSmartContractRequestSchema.eventParams) &&
+    return Objects.equals(this.eventParams, monitorSmartContractRequestSchema.eventParams) &&
         Objects.equals(this.eventName, monitorSmartContractRequestSchema.eventName) &&
         Objects.equals(this.location, monitorSmartContractRequestSchema.location) &&
+        Objects.equals(this.callBackURL, monitorSmartContractRequestSchema.callBackURL) &&
         Objects.equals(this.smartContractId, monitorSmartContractRequestSchema.smartContractId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(callBackURL, eventParams, eventName, location, smartContractId);
+    return Objects.hash(eventParams, eventName, location, callBackURL, smartContractId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MonitorSmartContractRequestSchema {\n");
-    sb.append("    callBackURL: ").append(toIndentedString(callBackURL)).append("\n");
     sb.append("    eventParams: ").append(toIndentedString(eventParams)).append("\n");
     sb.append("    eventName: ").append(toIndentedString(eventName)).append("\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("    callBackURL: ").append(toIndentedString(callBackURL)).append("\n");
     sb.append("    smartContractId: ").append(toIndentedString(smartContractId)).append("\n");
     sb.append("}");
     return sb.toString();

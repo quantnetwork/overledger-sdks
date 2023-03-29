@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -28,38 +28,15 @@ import org.openapitools.client.model.TransferSchema;
 /**
  * DestinationTransferSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class DestinationTransferSchema {
-  public static final String SERIALIZED_NAME_TRANSFER = "transfer";
-  @SerializedName(SERIALIZED_NAME_TRANSFER)
-  private TransferSchema transfer;
-
   public static final String SERIALIZED_NAME_DESTINATION_ID = "destinationId";
   @SerializedName(SERIALIZED_NAME_DESTINATION_ID)
   private String destinationId;
 
-
-  public DestinationTransferSchema transfer(TransferSchema transfer) {
-    
-    this.transfer = transfer;
-    return this;
-  }
-
-   /**
-   * Get transfer
-   * @return transfer
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public TransferSchema getTransfer() {
-    return transfer;
-  }
-
-
-  public void setTransfer(TransferSchema transfer) {
-    this.transfer = transfer;
-  }
+  public static final String SERIALIZED_NAME_TRANSFER = "transfer";
+  @SerializedName(SERIALIZED_NAME_TRANSFER)
+  private TransferSchema transfer;
 
 
   public DestinationTransferSchema destinationId(String destinationId) {
@@ -85,6 +62,29 @@ public class DestinationTransferSchema {
   }
 
 
+  public DestinationTransferSchema transfer(TransferSchema transfer) {
+    
+    this.transfer = transfer;
+    return this;
+  }
+
+   /**
+   * Get transfer
+   * @return transfer
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public TransferSchema getTransfer() {
+    return transfer;
+  }
+
+
+  public void setTransfer(TransferSchema transfer) {
+    this.transfer = transfer;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -94,21 +94,21 @@ public class DestinationTransferSchema {
       return false;
     }
     DestinationTransferSchema destinationTransferSchema = (DestinationTransferSchema) o;
-    return Objects.equals(this.transfer, destinationTransferSchema.transfer) &&
-        Objects.equals(this.destinationId, destinationTransferSchema.destinationId);
+    return Objects.equals(this.destinationId, destinationTransferSchema.destinationId) &&
+        Objects.equals(this.transfer, destinationTransferSchema.transfer);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(transfer, destinationId);
+    return Objects.hash(destinationId, transfer);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DestinationTransferSchema {\n");
-    sb.append("    transfer: ").append(toIndentedString(transfer)).append("\n");
     sb.append("    destinationId: ").append(toIndentedString(destinationId)).append("\n");
+    sb.append("    transfer: ").append(toIndentedString(transfer)).append("\n");
     sb.append("}");
     return sb.toString();
   }

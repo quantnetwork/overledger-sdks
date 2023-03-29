@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **location** | [**Location**](Location.md) |  | [optional] |
 | **type** | **String** | The type of the object | [optional] |
+| **location** | [**Location**](Location.md) |  | [optional] |
 
 ## Example
 
@@ -13,8 +13,8 @@
 require 'openapi_client'
 
 instance = OpenapiClient::PrepareNativeTransactionRequestSchema.new(
-  location: null,
-  type: null
+  type: null,
+  location: null
 )
 ```
 

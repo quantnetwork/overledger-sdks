@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Urgency** | Pointer to **string** |  | [optional] 
-**RequestDetails** | Pointer to [**PaymentRequestDetailsSchema**](PaymentRequestDetailsSchema.md) |  | [optional] 
-**Location** | Pointer to [**Location**](Location.md) |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Location** | [**Location**](Location.md) |  | 
+**Type** | **string** | The type of the transaction | 
+**Urgency** | **string** | This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal | 
+**RequestDetails** | [**PaymentRequestDetailsSchema**](PaymentRequestDetailsSchema.md) |  | 
 
 ## Methods
 
 ### NewPreparePaymentTransactionRequestSchema
 
-`func NewPreparePaymentTransactionRequestSchema() *PreparePaymentTransactionRequestSchema`
+`func NewPreparePaymentTransactionRequestSchema(location Location, type_ string, urgency string, requestDetails PaymentRequestDetailsSchema, ) *PreparePaymentTransactionRequestSchema`
 
 NewPreparePaymentTransactionRequestSchema instantiates a new PreparePaymentTransactionRequestSchema object
 This constructor will assign default values to properties that have it defined,
@@ -27,56 +27,6 @@ will change when the set of required properties is changed
 NewPreparePaymentTransactionRequestSchemaWithDefaults instantiates a new PreparePaymentTransactionRequestSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetUrgency
-
-`func (o *PreparePaymentTransactionRequestSchema) GetUrgency() string`
-
-GetUrgency returns the Urgency field if non-nil, zero value otherwise.
-
-### GetUrgencyOk
-
-`func (o *PreparePaymentTransactionRequestSchema) GetUrgencyOk() (*string, bool)`
-
-GetUrgencyOk returns a tuple with the Urgency field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUrgency
-
-`func (o *PreparePaymentTransactionRequestSchema) SetUrgency(v string)`
-
-SetUrgency sets Urgency field to given value.
-
-### HasUrgency
-
-`func (o *PreparePaymentTransactionRequestSchema) HasUrgency() bool`
-
-HasUrgency returns a boolean if a field has been set.
-
-### GetRequestDetails
-
-`func (o *PreparePaymentTransactionRequestSchema) GetRequestDetails() PaymentRequestDetailsSchema`
-
-GetRequestDetails returns the RequestDetails field if non-nil, zero value otherwise.
-
-### GetRequestDetailsOk
-
-`func (o *PreparePaymentTransactionRequestSchema) GetRequestDetailsOk() (*PaymentRequestDetailsSchema, bool)`
-
-GetRequestDetailsOk returns a tuple with the RequestDetails field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRequestDetails
-
-`func (o *PreparePaymentTransactionRequestSchema) SetRequestDetails(v PaymentRequestDetailsSchema)`
-
-SetRequestDetails sets RequestDetails field to given value.
-
-### HasRequestDetails
-
-`func (o *PreparePaymentTransactionRequestSchema) HasRequestDetails() bool`
-
-HasRequestDetails returns a boolean if a field has been set.
 
 ### GetLocation
 
@@ -97,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetLocation sets Location field to given value.
 
-### HasLocation
-
-`func (o *PreparePaymentTransactionRequestSchema) HasLocation() bool`
-
-HasLocation returns a boolean if a field has been set.
 
 ### GetType
 
@@ -122,11 +67,46 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
 
-`func (o *PreparePaymentTransactionRequestSchema) HasType() bool`
+### GetUrgency
 
-HasType returns a boolean if a field has been set.
+`func (o *PreparePaymentTransactionRequestSchema) GetUrgency() string`
+
+GetUrgency returns the Urgency field if non-nil, zero value otherwise.
+
+### GetUrgencyOk
+
+`func (o *PreparePaymentTransactionRequestSchema) GetUrgencyOk() (*string, bool)`
+
+GetUrgencyOk returns a tuple with the Urgency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUrgency
+
+`func (o *PreparePaymentTransactionRequestSchema) SetUrgency(v string)`
+
+SetUrgency sets Urgency field to given value.
+
+
+### GetRequestDetails
+
+`func (o *PreparePaymentTransactionRequestSchema) GetRequestDetails() PaymentRequestDetailsSchema`
+
+GetRequestDetails returns the RequestDetails field if non-nil, zero value otherwise.
+
+### GetRequestDetailsOk
+
+`func (o *PreparePaymentTransactionRequestSchema) GetRequestDetailsOk() (*PaymentRequestDetailsSchema, bool)`
+
+GetRequestDetailsOk returns a tuple with the RequestDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestDetails
+
+`func (o *PreparePaymentTransactionRequestSchema) SetRequestDetails(v PaymentRequestDetailsSchema)`
+
+SetRequestDetails sets RequestDetails field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

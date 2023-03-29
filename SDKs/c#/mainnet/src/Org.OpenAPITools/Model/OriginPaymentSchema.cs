@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -25,7 +25,7 @@ using OpenAPIDateConverter = Org.OpenAPITools.Client.OpenAPIDateConverter;
 namespace Org.OpenAPITools.Model
 {
     /// <summary>
-    /// Where is this transaction coming from
+    /// List of where this transaction is coming from
     /// </summary>
     [DataContract]
     public partial class OriginPaymentSchema :  IEquatable<OriginPaymentSchema>, IValidatableObject
@@ -33,17 +33,31 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="OriginPaymentSchema" /> class.
         /// </summary>
-        /// <param name="originId">Unique Identifier of the originator.</param>
+        [JsonConstructorAttribute]
+        protected OriginPaymentSchema() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OriginPaymentSchema" /> class.
+        /// </summary>
+        /// <param name="originId">Unique Identifier of the origin/sender (required).</param>
         public OriginPaymentSchema(string originId = default(string))
         {
-            this.OriginId = originId;
+            // to ensure "originId" is required (not null)
+            if (originId == null)
+            {
+                throw new InvalidDataException("originId is a required property for OriginPaymentSchema and cannot be null");
+            }
+            else
+            {
+                this.OriginId = originId;
+            }
+
         }
 
         /// <summary>
-        /// Unique Identifier of the originator
+        /// Unique Identifier of the origin/sender
         /// </summary>
-        /// <value>Unique Identifier of the originator</value>
-        [DataMember(Name="originId", EmitDefaultValue=false)]
+        /// <value>Unique Identifier of the origin/sender</value>
+        [DataMember(Name="originId", EmitDefaultValue=true)]
         public string OriginId { get; set; }
 
         /// <summary>
@@ -118,20 +132,10 @@ namespace Org.OpenAPITools.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // OriginId (string) maxLength
-            if(this.OriginId != null && this.OriginId.Length > 66)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OriginId, length must be less than 66.", new [] { "OriginId" });
-            }
 
-            // OriginId (string) minLength
-            if(this.OriginId != null && this.OriginId.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OriginId, length must be greater than 0.", new [] { "OriginId" });
-            }
 
             // OriginId (string) pattern
-            Regex regexOriginId = new Regex(@"^[A-Za-z0-9:]{1,66}$", RegexOptions.CultureInvariant);
+            Regex regexOriginId = new Regex(@"^[a-zA-Z0-9:,\/.=\\-\\s]{1,500}", RegexOptions.CultureInvariant);
             if (false == regexOriginId.Match(this.OriginId).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OriginId, must match a pattern of " + regexOriginId, new [] { "OriginId" });

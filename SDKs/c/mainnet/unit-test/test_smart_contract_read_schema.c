@@ -23,14 +23,14 @@ smart_contract_read_schema_t* instantiate_smart_contract_read_schema(int include
   smart_contract_read_schema_t* smart_contract_read_schema = NULL;
   if (include_optional) {
     smart_contract_read_schema = smart_contract_read_schema_create(
+      "0",
        // false, not to have infinite recursion
-      instantiate_smart_contract_read_function_schema(0),
-      "0"
+      instantiate_smart_contract_read_function_schema(0)
     );
   } else {
     smart_contract_read_schema = smart_contract_read_schema_create(
-      NULL,
-      "0"
+      "0",
+      NULL
     );
   }
 

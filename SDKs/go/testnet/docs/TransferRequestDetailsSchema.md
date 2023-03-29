@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OverledgerSigningType** | Pointer to **string** |  | [optional] 
-**Origin** | Pointer to [**[]OriginTransferSchema**](OriginTransferSchema.md) |  | [optional] 
 **Destination** | Pointer to [**[]DestinationTransferSchema**](DestinationTransferSchema.md) |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
+**OverledgerSigningType** | Pointer to **string** |  | [optional] 
+**Origin** | Pointer to [**[]OriginTransferSchema**](OriginTransferSchema.md) |  | [optional] 
 
 ## Methods
 
@@ -27,56 +27,6 @@ will change when the set of required properties is changed
 NewTransferRequestDetailsSchemaWithDefaults instantiates a new TransferRequestDetailsSchema object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetOverledgerSigningType
-
-`func (o *TransferRequestDetailsSchema) GetOverledgerSigningType() string`
-
-GetOverledgerSigningType returns the OverledgerSigningType field if non-nil, zero value otherwise.
-
-### GetOverledgerSigningTypeOk
-
-`func (o *TransferRequestDetailsSchema) GetOverledgerSigningTypeOk() (*string, bool)`
-
-GetOverledgerSigningTypeOk returns a tuple with the OverledgerSigningType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOverledgerSigningType
-
-`func (o *TransferRequestDetailsSchema) SetOverledgerSigningType(v string)`
-
-SetOverledgerSigningType sets OverledgerSigningType field to given value.
-
-### HasOverledgerSigningType
-
-`func (o *TransferRequestDetailsSchema) HasOverledgerSigningType() bool`
-
-HasOverledgerSigningType returns a boolean if a field has been set.
-
-### GetOrigin
-
-`func (o *TransferRequestDetailsSchema) GetOrigin() []OriginTransferSchema`
-
-GetOrigin returns the Origin field if non-nil, zero value otherwise.
-
-### GetOriginOk
-
-`func (o *TransferRequestDetailsSchema) GetOriginOk() (*[]OriginTransferSchema, bool)`
-
-GetOriginOk returns a tuple with the Origin field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOrigin
-
-`func (o *TransferRequestDetailsSchema) SetOrigin(v []OriginTransferSchema)`
-
-SetOrigin sets Origin field to given value.
-
-### HasOrigin
-
-`func (o *TransferRequestDetailsSchema) HasOrigin() bool`
-
-HasOrigin returns a boolean if a field has been set.
 
 ### GetDestination
 
@@ -127,6 +77,56 @@ SetMessage sets Message field to given value.
 `func (o *TransferRequestDetailsSchema) HasMessage() bool`
 
 HasMessage returns a boolean if a field has been set.
+
+### GetOverledgerSigningType
+
+`func (o *TransferRequestDetailsSchema) GetOverledgerSigningType() string`
+
+GetOverledgerSigningType returns the OverledgerSigningType field if non-nil, zero value otherwise.
+
+### GetOverledgerSigningTypeOk
+
+`func (o *TransferRequestDetailsSchema) GetOverledgerSigningTypeOk() (*string, bool)`
+
+GetOverledgerSigningTypeOk returns a tuple with the OverledgerSigningType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverledgerSigningType
+
+`func (o *TransferRequestDetailsSchema) SetOverledgerSigningType(v string)`
+
+SetOverledgerSigningType sets OverledgerSigningType field to given value.
+
+### HasOverledgerSigningType
+
+`func (o *TransferRequestDetailsSchema) HasOverledgerSigningType() bool`
+
+HasOverledgerSigningType returns a boolean if a field has been set.
+
+### GetOrigin
+
+`func (o *TransferRequestDetailsSchema) GetOrigin() []OriginTransferSchema`
+
+GetOrigin returns the Origin field if non-nil, zero value otherwise.
+
+### GetOriginOk
+
+`func (o *TransferRequestDetailsSchema) GetOriginOk() (*[]OriginTransferSchema, bool)`
+
+GetOriginOk returns a tuple with the Origin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrigin
+
+`func (o *TransferRequestDetailsSchema) SetOrigin(v []OriginTransferSchema)`
+
+SetOrigin sets Origin field to given value.
+
+### HasOrigin
+
+`func (o *TransferRequestDetailsSchema) HasOrigin() bool`
+
+HasOrigin returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

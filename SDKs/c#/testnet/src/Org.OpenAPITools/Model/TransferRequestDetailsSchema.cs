@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,29 +33,17 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferRequestDetailsSchema" /> class.
         /// </summary>
-        /// <param name="overledgerSigningType">overledgerSigningType.</param>
-        /// <param name="origin">origin.</param>
         /// <param name="destination">destination.</param>
         /// <param name="message">message.</param>
-        public TransferRequestDetailsSchema(string overledgerSigningType = default(string), List<OriginTransferSchema> origin = default(List<OriginTransferSchema>), List<DestinationTransferSchema> destination = default(List<DestinationTransferSchema>), string message = default(string))
+        /// <param name="overledgerSigningType">overledgerSigningType.</param>
+        /// <param name="origin">origin.</param>
+        public TransferRequestDetailsSchema(List<DestinationTransferSchema> destination = default(List<DestinationTransferSchema>), string message = default(string), string overledgerSigningType = default(string), List<OriginTransferSchema> origin = default(List<OriginTransferSchema>))
         {
-            this.OverledgerSigningType = overledgerSigningType;
-            this.Origin = origin;
             this.Destination = destination;
             this.Message = message;
+            this.OverledgerSigningType = overledgerSigningType;
+            this.Origin = origin;
         }
-
-        /// <summary>
-        /// Gets or Sets OverledgerSigningType
-        /// </summary>
-        [DataMember(Name="overledgerSigningType", EmitDefaultValue=false)]
-        public string OverledgerSigningType { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Origin
-        /// </summary>
-        [DataMember(Name="origin", EmitDefaultValue=false)]
-        public List<OriginTransferSchema> Origin { get; set; }
 
         /// <summary>
         /// Gets or Sets Destination
@@ -70,6 +58,18 @@ namespace Org.OpenAPITools.Model
         public string Message { get; set; }
 
         /// <summary>
+        /// Gets or Sets OverledgerSigningType
+        /// </summary>
+        [DataMember(Name="overledgerSigningType", EmitDefaultValue=false)]
+        public string OverledgerSigningType { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Origin
+        /// </summary>
+        [DataMember(Name="origin", EmitDefaultValue=false)]
+        public List<OriginTransferSchema> Origin { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -77,10 +77,10 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class TransferRequestDetailsSchema {\n");
-            sb.Append("  OverledgerSigningType: ").Append(OverledgerSigningType).Append("\n");
-            sb.Append("  Origin: ").Append(Origin).Append("\n");
             sb.Append("  Destination: ").Append(Destination).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  OverledgerSigningType: ").Append(OverledgerSigningType).Append("\n");
+            sb.Append("  Origin: ").Append(Origin).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -116,17 +116,6 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.OverledgerSigningType == input.OverledgerSigningType ||
-                    (this.OverledgerSigningType != null &&
-                    this.OverledgerSigningType.Equals(input.OverledgerSigningType))
-                ) && 
-                (
-                    this.Origin == input.Origin ||
-                    this.Origin != null &&
-                    input.Origin != null &&
-                    this.Origin.SequenceEqual(input.Origin)
-                ) && 
-                (
                     this.Destination == input.Destination ||
                     this.Destination != null &&
                     input.Destination != null &&
@@ -136,6 +125,17 @@ namespace Org.OpenAPITools.Model
                     this.Message == input.Message ||
                     (this.Message != null &&
                     this.Message.Equals(input.Message))
+                ) && 
+                (
+                    this.OverledgerSigningType == input.OverledgerSigningType ||
+                    (this.OverledgerSigningType != null &&
+                    this.OverledgerSigningType.Equals(input.OverledgerSigningType))
+                ) && 
+                (
+                    this.Origin == input.Origin ||
+                    this.Origin != null &&
+                    input.Origin != null &&
+                    this.Origin.SequenceEqual(input.Origin)
                 );
         }
 
@@ -148,14 +148,14 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.OverledgerSigningType != null)
-                    hashCode = hashCode * 59 + this.OverledgerSigningType.GetHashCode();
-                if (this.Origin != null)
-                    hashCode = hashCode * 59 + this.Origin.GetHashCode();
                 if (this.Destination != null)
                     hashCode = hashCode * 59 + this.Destination.GetHashCode();
                 if (this.Message != null)
                     hashCode = hashCode * 59 + this.Message.GetHashCode();
+                if (this.OverledgerSigningType != null)
+                    hashCode = hashCode * 59 + this.OverledgerSigningType.GetHashCode();
+                if (this.Origin != null)
+                    hashCode = hashCode * 59 + this.Origin.GetHashCode();
                 return hashCode;
             }
         }
@@ -167,27 +167,6 @@ namespace Org.OpenAPITools.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // OverledgerSigningType (string) maxLength
-            if(this.OverledgerSigningType != null && this.OverledgerSigningType.Length > 30)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OverledgerSigningType, length must be less than 30.", new [] { "OverledgerSigningType" });
-            }
-
-            // OverledgerSigningType (string) minLength
-            if(this.OverledgerSigningType != null && this.OverledgerSigningType.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OverledgerSigningType, length must be greater than 0.", new [] { "OverledgerSigningType" });
-            }
-
-            // OverledgerSigningType (string) pattern
-            Regex regexOverledgerSigningType = new Regex(@"^[A-Za-z- ]{1,30}", RegexOptions.CultureInvariant);
-            if (false == regexOverledgerSigningType.Match(this.OverledgerSigningType).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OverledgerSigningType, must match a pattern of " + regexOverledgerSigningType, new [] { "OverledgerSigningType" });
-            }
-
-
-
 
 
             // Message (string) maxLength
@@ -208,6 +187,27 @@ namespace Org.OpenAPITools.Model
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Message, must match a pattern of " + regexMessage, new [] { "Message" });
             }
+
+            // OverledgerSigningType (string) maxLength
+            if(this.OverledgerSigningType != null && this.OverledgerSigningType.Length > 30)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OverledgerSigningType, length must be less than 30.", new [] { "OverledgerSigningType" });
+            }
+
+            // OverledgerSigningType (string) minLength
+            if(this.OverledgerSigningType != null && this.OverledgerSigningType.Length < 0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OverledgerSigningType, length must be greater than 0.", new [] { "OverledgerSigningType" });
+            }
+
+            // OverledgerSigningType (string) pattern
+            Regex regexOverledgerSigningType = new Regex(@"^[A-Za-z- ]{1,30}", RegexOptions.CultureInvariant);
+            if (false == regexOverledgerSigningType.Match(this.OverledgerSigningType).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OverledgerSigningType, must match a pattern of " + regexOverledgerSigningType, new [] { "OverledgerSigningType" });
+            }
+
+
 
             yield break;
         }

@@ -1,7 +1,7 @@
 /**
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -22,6 +22,8 @@ package org.openapitools.client.apis
 
 import org.openapitools.client.models.ErrorDetails
 import org.openapitools.client.models.ErrorList
+import org.openapitools.client.models.ExecuteTransactionRequest
+import org.openapitools.client.models.ExecuteTransactionResponse
 import org.openapitools.client.models.InternalServerErrorSchema
 import org.openapitools.client.models.PrepareCreditTransactionRequestSchema
 import org.openapitools.client.models.PrepareTransactionResponse
@@ -47,8 +49,64 @@ class CreateAQRC20DebitTransactionApi(basePath: kotlin.String = defaultBasePath)
     }
 
     /**
+    * Execute a transaction on a DLT
+    * Takes a request ID and submits a signed transaction to the requested DLT.
+    * @param authorization  
+    * @param executeTransactionRequest  
+    * @return ExecuteTransactionResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun executePreparedRequestTransaction(authorization: kotlin.String, executeTransactionRequest: ExecuteTransactionRequest) : ExecuteTransactionResponse {
+        val localVariableConfig = executePreparedRequestTransactionRequestConfig(authorization = authorization, executeTransactionRequest = executeTransactionRequest)
+
+        val localVarResponse = request<ExecuteTransactionRequest, ExecuteTransactionResponse>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as ExecuteTransactionResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation executePreparedRequestTransaction
+    *
+    * @param authorization  
+    * @param executeTransactionRequest  
+    * @return RequestConfig
+    */
+    fun executePreparedRequestTransactionRequestConfig(authorization: kotlin.String, executeTransactionRequest: ExecuteTransactionRequest) : RequestConfig<ExecuteTransactionRequest> {
+        val localVariableBody = executeTransactionRequest
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        authorization.apply { localVariableHeaders["Authorization"] = this.toString() }
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/v2/execution/transaction",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
     * Prepare a QRC20 token debit transaction for signing
-    * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \&quot;Approve Debit\&quot; and \&quot;Create Debit\&quot;. The &#39;Approve Debit&#39; transaction type will allow you to approve someone to make a pull payment from your account and the \&quot;Create Debit\&quot; transaction type will create the payment to pull the approved amount from an account.
+    * Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
     * @param authorization  
     * @param prepareCreditTransactionRequestSchema  
     * @return PrepareTransactionResponse

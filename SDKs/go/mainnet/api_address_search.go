@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -100,8 +100,8 @@ func (a *AddressSearchApiService) AutoExecuteSearchAddressBalanceRequestExecute(
 	if strlen(r.addressId) < 0 {
 		return localVarReturnValue, nil, reportError("addressId must have at least 0 elements")
 	}
-	if strlen(r.addressId) > 100 {
-		return localVarReturnValue, nil, reportError("addressId must have less than 100 elements")
+	if strlen(r.addressId) > 500 {
+		return localVarReturnValue, nil, reportError("addressId must have less than 500 elements")
 	}
 	if r.prepareSearchSchema == nil {
 		return localVarReturnValue, nil, reportError("prepareSearchSchema is required and must be specified")
@@ -377,7 +377,7 @@ func (r ApiExecutePreparedSearchRequestAddressSequenceRequest) Execute() (Execut
 /*
 ExecutePreparedSearchRequestAddressSequence Execute a search for an address sequence on a DLT
 
-Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT's
+Takes a request ID, searches for the address and retrieves the sequence on the requested DLT. This API is only applicable for account based DLT’s
 
  @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiExecutePreparedSearchRequestAddressSequenceRequest
@@ -588,8 +588,8 @@ func (a *AddressSearchApiService) PrepareAddressBalanceSearchRequestExecute(r Ap
 	if strlen(r.addressId) < 0 {
 		return localVarReturnValue, nil, reportError("addressId must have at least 0 elements")
 	}
-	if strlen(r.addressId) > 100 {
-		return localVarReturnValue, nil, reportError("addressId must have less than 100 elements")
+	if strlen(r.addressId) > 500 {
+		return localVarReturnValue, nil, reportError("addressId must have less than 500 elements")
 	}
 	if r.prepareSearchSchema == nil {
 		return localVarReturnValue, nil, reportError("prepareSearchSchema is required and must be specified")
@@ -744,8 +744,8 @@ func (a *AddressSearchApiService) PrepareAddressSequenceSearchRequestExecute(r A
 	if strlen(r.addressId) < 0 {
 		return localVarReturnValue, nil, reportError("addressId must have at least 0 elements")
 	}
-	if strlen(r.addressId) > 100 {
-		return localVarReturnValue, nil, reportError("addressId must have less than 100 elements")
+	if strlen(r.addressId) > 500 {
+		return localVarReturnValue, nil, reportError("addressId must have less than 500 elements")
 	}
 	if r.prepareSearchSchema == nil {
 		return localVarReturnValue, nil, reportError("prepareSearchSchema is required and must be specified")
@@ -900,8 +900,8 @@ func (a *AddressSearchApiService) PrepareAddressSequenceSearchRequest1Execute(r 
 	if strlen(r.addressId) < 0 {
 		return localVarReturnValue, nil, reportError("addressId must have at least 0 elements")
 	}
-	if strlen(r.addressId) > 100 {
-		return localVarReturnValue, nil, reportError("addressId must have less than 100 elements")
+	if strlen(r.addressId) > 500 {
+		return localVarReturnValue, nil, reportError("addressId must have less than 500 elements")
 	}
 	if r.prepareSearchSchema == nil {
 		return localVarReturnValue, nil, reportError("prepareSearchSchema is required and must be specified")

@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,7 +33,7 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <returns>PrepareAndExecuteTransactionResponse</returns>
         PrepareAndExecuteTransactionResponse AutoExecuteSearchTransactionRequest (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema);
@@ -46,7 +46,7 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <returns>ApiResponse of PrepareAndExecuteTransactionResponse</returns>
         ApiResponse<PrepareAndExecuteTransactionResponse> AutoExecuteSearchTransactionRequestWithHttpInfo (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema);
@@ -81,7 +81,7 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <returns>PrepareSearchResponseSchema</returns>
         PrepareSearchResponseSchema PrepareSearchRequest (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema);
@@ -94,7 +94,7 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <returns>ApiResponse of PrepareSearchResponseSchema</returns>
         ApiResponse<PrepareSearchResponseSchema> PrepareSearchRequestWithHttpInfo (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema);
@@ -108,7 +108,7 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of PrepareAndExecuteTransactionResponse</returns>
@@ -122,7 +122,7 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (PrepareAndExecuteTransactionResponse)</returns>
@@ -160,7 +160,7 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of PrepareSearchResponseSchema</returns>
@@ -174,7 +174,7 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (PrepareSearchResponseSchema)</returns>
@@ -295,7 +295,7 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <returns>PrepareAndExecuteTransactionResponse</returns>
         public PrepareAndExecuteTransactionResponse AutoExecuteSearchTransactionRequest (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema)
@@ -309,7 +309,7 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <returns>ApiResponse of PrepareAndExecuteTransactionResponse</returns>
         public ApiResponse<PrepareAndExecuteTransactionResponse> AutoExecuteSearchTransactionRequestWithHttpInfo (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema)
@@ -387,7 +387,7 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of PrepareAndExecuteTransactionResponse</returns>
@@ -403,7 +403,7 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (PrepareAndExecuteTransactionResponse)</returns>
@@ -641,7 +641,7 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <returns>PrepareSearchResponseSchema</returns>
         public PrepareSearchResponseSchema PrepareSearchRequest (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema)
@@ -655,7 +655,7 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <returns>ApiResponse of PrepareSearchResponseSchema</returns>
         public ApiResponse<PrepareSearchResponseSchema> PrepareSearchRequestWithHttpInfo (string authorization, string transactionId, PrepareSearchSchema prepareSearchSchema)
@@ -733,7 +733,7 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of PrepareSearchResponseSchema</returns>
@@ -749,7 +749,7 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
-        /// <param name="transactionId"></param>
+        /// <param name="transactionId">The transactionId to search for</param>
         /// <param name="prepareSearchSchema"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel request (optional) </param>
         /// <returns>Task of ApiResponse (PrepareSearchResponseSchema)</returns>

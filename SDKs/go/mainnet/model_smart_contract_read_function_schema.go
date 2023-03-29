@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,8 +16,8 @@ import (
 
 // SmartContractReadFunctionSchema struct for SmartContractReadFunctionSchema
 type SmartContractReadFunctionSchema struct {
-	FunctionId *string `json:"functionId,omitempty"`
 	Name *string `json:"name,omitempty"`
+	FunctionId *string `json:"functionId,omitempty"`
 	InputParameters *[]SmartContractInputParameterSchema `json:"inputParameters,omitempty"`
 	OutputParameters *[]SmartContractInputParameterSchema `json:"outputParameters,omitempty"`
 }
@@ -37,38 +37,6 @@ func NewSmartContractReadFunctionSchema() *SmartContractReadFunctionSchema {
 func NewSmartContractReadFunctionSchemaWithDefaults() *SmartContractReadFunctionSchema {
 	this := SmartContractReadFunctionSchema{}
 	return &this
-}
-
-// GetFunctionId returns the FunctionId field value if set, zero value otherwise.
-func (o *SmartContractReadFunctionSchema) GetFunctionId() string {
-	if o == nil || o.FunctionId == nil {
-		var ret string
-		return ret
-	}
-	return *o.FunctionId
-}
-
-// GetFunctionIdOk returns a tuple with the FunctionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SmartContractReadFunctionSchema) GetFunctionIdOk() (*string, bool) {
-	if o == nil || o.FunctionId == nil {
-		return nil, false
-	}
-	return o.FunctionId, true
-}
-
-// HasFunctionId returns a boolean if a field has been set.
-func (o *SmartContractReadFunctionSchema) HasFunctionId() bool {
-	if o != nil && o.FunctionId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFunctionId gets a reference to the given string and assigns it to the FunctionId field.
-func (o *SmartContractReadFunctionSchema) SetFunctionId(v string) {
-	o.FunctionId = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -101,6 +69,38 @@ func (o *SmartContractReadFunctionSchema) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *SmartContractReadFunctionSchema) SetName(v string) {
 	o.Name = &v
+}
+
+// GetFunctionId returns the FunctionId field value if set, zero value otherwise.
+func (o *SmartContractReadFunctionSchema) GetFunctionId() string {
+	if o == nil || o.FunctionId == nil {
+		var ret string
+		return ret
+	}
+	return *o.FunctionId
+}
+
+// GetFunctionIdOk returns a tuple with the FunctionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SmartContractReadFunctionSchema) GetFunctionIdOk() (*string, bool) {
+	if o == nil || o.FunctionId == nil {
+		return nil, false
+	}
+	return o.FunctionId, true
+}
+
+// HasFunctionId returns a boolean if a field has been set.
+func (o *SmartContractReadFunctionSchema) HasFunctionId() bool {
+	if o != nil && o.FunctionId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFunctionId gets a reference to the given string and assigns it to the FunctionId field.
+func (o *SmartContractReadFunctionSchema) SetFunctionId(v string) {
+	o.FunctionId = &v
 }
 
 // GetInputParameters returns the InputParameters field value if set, zero value otherwise.
@@ -169,11 +169,11 @@ func (o *SmartContractReadFunctionSchema) SetOutputParameters(v []SmartContractI
 
 func (o SmartContractReadFunctionSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.FunctionId != nil {
-		toSerialize["functionId"] = o.FunctionId
-	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.FunctionId != nil {
+		toSerialize["functionId"] = o.FunctionId
 	}
 	if o.InputParameters != nil {
 		toSerialize["inputParameters"] = o.InputParameters

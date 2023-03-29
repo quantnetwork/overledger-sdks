@@ -4,8 +4,8 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **origin** | [**Array&lt;SmartContractRequestDetailsOrigin&gt;**](SmartContractRequestDetailsOrigin.md) |  | [optional] |
 | **destination** | [**Array&lt;SmartContractDestinationSchema&gt;**](SmartContractDestinationSchema.md) |  | [optional] |
+| **origin** | [**Array&lt;SmartContractRequestDetailsOrigin&gt;**](SmartContractRequestDetailsOrigin.md) |  | [optional] |
 
 ## Example
 
@@ -13,8 +13,8 @@
 require 'openapi_client'
 
 instance = OpenapiClient::SmartContractInvokeRequestDetailsSchema.new(
-  origin: null,
-  destination: null
+  destination: null,
+  origin: null
 )
 ```
 

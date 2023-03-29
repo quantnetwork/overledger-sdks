@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,27 +33,27 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UTXOSmartContract" /> class.
         /// </summary>
-        /// <param name="detail">detail.</param>
         /// <param name="type">type.</param>
+        /// <param name="detail">detail.</param>
         /// <param name="extraFields">extraFields.</param>
-        public UTXOSmartContract(string detail = default(string), string type = default(string), ExtraFields extraFields = default(ExtraFields))
+        public UTXOSmartContract(string type = default(string), string detail = default(string), ExtraFields extraFields = default(ExtraFields))
         {
-            this.Detail = detail;
             this.Type = type;
+            this.Detail = detail;
             this.ExtraFields = extraFields;
         }
-
-        /// <summary>
-        /// Gets or Sets Detail
-        /// </summary>
-        [DataMember(Name="detail", EmitDefaultValue=false)]
-        public string Detail { get; set; }
 
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
         [DataMember(Name="type", EmitDefaultValue=false)]
         public string Type { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Detail
+        /// </summary>
+        [DataMember(Name="detail", EmitDefaultValue=false)]
+        public string Detail { get; set; }
 
         /// <summary>
         /// Gets or Sets ExtraFields
@@ -69,8 +69,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class UTXOSmartContract {\n");
-            sb.Append("  Detail: ").Append(Detail).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Detail: ").Append(Detail).Append("\n");
             sb.Append("  ExtraFields: ").Append(ExtraFields).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -107,14 +107,14 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.Detail == input.Detail ||
-                    (this.Detail != null &&
-                    this.Detail.Equals(input.Detail))
-                ) && 
-                (
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
+                ) && 
+                (
+                    this.Detail == input.Detail ||
+                    (this.Detail != null &&
+                    this.Detail.Equals(input.Detail))
                 ) && 
                 (
                     this.ExtraFields == input.ExtraFields ||
@@ -132,10 +132,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Detail != null)
-                    hashCode = hashCode * 59 + this.Detail.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
+                if (this.Detail != null)
+                    hashCode = hashCode * 59 + this.Detail.GetHashCode();
                 if (this.ExtraFields != null)
                     hashCode = hashCode * 59 + this.ExtraFields.GetHashCode();
                 return hashCode;

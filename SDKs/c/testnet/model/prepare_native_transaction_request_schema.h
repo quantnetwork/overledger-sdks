@@ -20,14 +20,14 @@ typedef struct prepare_native_transaction_request_schema_t prepare_native_transa
 
 
 typedef struct prepare_native_transaction_request_schema_t {
-    struct location_t *location; //model
     char *type; // string
+    struct location_t *location; //model
 
 } prepare_native_transaction_request_schema_t;
 
 prepare_native_transaction_request_schema_t *prepare_native_transaction_request_schema_create(
-    location_t *location,
-    char *type
+    char *type,
+    location_t *location
 );
 
 void prepare_native_transaction_request_schema_free(prepare_native_transaction_request_schema_t *prepare_native_transaction_request_schema);

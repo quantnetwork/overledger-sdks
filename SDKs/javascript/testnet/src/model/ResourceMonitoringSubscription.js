@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -47,14 +47,14 @@ class ResourceMonitoringSubscription {
         if (data) {
             obj = obj || new ResourceMonitoringSubscription();
 
-            if (data.hasOwnProperty('callbackUrl')) {
-                obj['callbackUrl'] = ApiClient.convertToType(data['callbackUrl'], 'String');
-            }
             if (data.hasOwnProperty('subscriptionId')) {
                 obj['subscriptionId'] = ApiClient.convertToType(data['subscriptionId'], 'String');
             }
             if (data.hasOwnProperty('type')) {
                 obj['type'] = ApiClient.convertToType(data['type'], 'String');
+            }
+            if (data.hasOwnProperty('callbackUrl')) {
+                obj['callbackUrl'] = ApiClient.convertToType(data['callbackUrl'], 'String');
             }
         }
         return obj;
@@ -62,11 +62,6 @@ class ResourceMonitoringSubscription {
 
 
 }
-
-/**
- * @member {String} callbackUrl
- */
-ResourceMonitoringSubscription.prototype['callbackUrl'] = undefined;
 
 /**
  * @member {String} subscriptionId
@@ -77,6 +72,11 @@ ResourceMonitoringSubscription.prototype['subscriptionId'] = undefined;
  * @member {String} type
  */
 ResourceMonitoringSubscription.prototype['type'] = undefined;
+
+/**
+ * @member {String} callbackUrl
+ */
+ResourceMonitoringSubscription.prototype['callbackUrl'] = undefined;
 
 
 

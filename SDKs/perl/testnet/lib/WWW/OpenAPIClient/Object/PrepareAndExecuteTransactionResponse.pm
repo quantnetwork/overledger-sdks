@@ -2,7 +2,7 @@
 
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -47,7 +47,7 @@ use base ("Class::Accessor", "Class::Data::Inheritable");
 
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -163,13 +163,6 @@ __PACKAGE__->class_documentation({description => '',
 }                                 );
 
 __PACKAGE__->method_documentation({
-    'execution_transaction_search_overledger_error_response' => {
-        datatype => 'PrepareAndExecuteOverledgerErrorResponse',
-        base_name => 'executionTransactionSearchOverledgerErrorResponse',
-        description => '',
-        format => '',
-        read_only => '',
-            },
     'preparation_transaction_search_response' => {
         datatype => 'PrepareTransactionResponse',
         base_name => 'preparationTransactionSearchResponse',
@@ -184,18 +177,25 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
+    'execution_transaction_search_overledger_error_response' => {
+        datatype => 'PrepareAndExecuteOverledgerErrorResponse',
+        base_name => 'executionTransactionSearchOverledgerErrorResponse',
+        description => '',
+        format => '',
+        read_only => '',
+            },
 });
 
 __PACKAGE__->openapi_types( {
-    'execution_transaction_search_overledger_error_response' => 'PrepareAndExecuteOverledgerErrorResponse',
     'preparation_transaction_search_response' => 'PrepareTransactionResponse',
-    'execution_transaction_search_response' => 'ExecuteSearchTransactionResponse'
+    'execution_transaction_search_response' => 'ExecuteSearchTransactionResponse',
+    'execution_transaction_search_overledger_error_response' => 'PrepareAndExecuteOverledgerErrorResponse'
 } );
 
 __PACKAGE__->attribute_map( {
-    'execution_transaction_search_overledger_error_response' => 'executionTransactionSearchOverledgerErrorResponse',
     'preparation_transaction_search_response' => 'preparationTransactionSearchResponse',
-    'execution_transaction_search_response' => 'executionTransactionSearchResponse'
+    'execution_transaction_search_response' => 'executionTransactionSearchResponse',
+    'execution_transaction_search_overledger_error_response' => 'executionTransactionSearchOverledgerErrorResponse'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

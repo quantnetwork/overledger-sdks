@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -66,44 +66,20 @@ namespace Org.OpenAPITools.Test
 
 
         /// <summary>
-        /// Test the property 'FunctionId'
+        /// Test the property 'Type'
         /// </summary>
         [Test]
-        public void FunctionIdTest()
+        public void TypeTest()
         {
-            // TODO unit test for the property 'FunctionId'
+            // TODO unit test for the property 'Type'
         }
         /// <summary>
-        /// Test the property 'Code'
+        /// Test the property 'Api'
         /// </summary>
         [Test]
-        public void CodeTest()
+        public void ApiTest()
         {
-            // TODO unit test for the property 'Code'
-        }
-        /// <summary>
-        /// Test the property 'Name'
-        /// </summary>
-        [Test]
-        public void NameTest()
-        {
-            // TODO unit test for the property 'Name'
-        }
-        /// <summary>
-        /// Test the property 'InputParameters'
-        /// </summary>
-        [Test]
-        public void InputParametersTest()
-        {
-            // TODO unit test for the property 'InputParameters'
-        }
-        /// <summary>
-        /// Test the property 'OutputParameters'
-        /// </summary>
-        [Test]
-        public void OutputParametersTest()
-        {
-            // TODO unit test for the property 'OutputParameters'
+            // TODO unit test for the property 'Api'
         }
 
     }

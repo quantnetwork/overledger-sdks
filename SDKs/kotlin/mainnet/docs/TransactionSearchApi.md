@@ -25,7 +25,7 @@ Generates a request ID and automatically executes the transaction search on the 
 
 val apiInstance = TransactionSearchApi()
 val authorization : kotlin.String = authorization_example // kotlin.String | 
-val transactionId : kotlin.String = transactionId_example // kotlin.String | 
+val transactionId : kotlin.String = 0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab // kotlin.String | The transactionId to search for
 val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}} // PrepareSearchSchema | 
 try {
     val result : PrepareAndExecuteTransactionResponse = apiInstance.autoExecuteSearchTransactionRequest(authorization, transactionId, prepareSearchSchema)
@@ -44,7 +44,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **kotlin.String**|  |
- **transactionId** | **kotlin.String**|  |
+ **transactionId** | **kotlin.String**| The transactionId to search for |
  **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  |
 
 ### Return type
@@ -129,7 +129,7 @@ Searches for and returns data on transactions on a particular DLT. Returns a req
 
 val apiInstance = TransactionSearchApi()
 val authorization : kotlin.String = authorization_example // kotlin.String | 
-val transactionId : kotlin.String = transactionId_example // kotlin.String | 
+val transactionId : kotlin.String = 0x5169fb4538904777b272041ef2ec43a6cfa69515dffead2809d54d9f53c172ab // kotlin.String | The transactionId to search for
 val prepareSearchSchema : PrepareSearchSchema = {"location":{"technology":"Ethereum","network":"Ropsten Testnet"}} // PrepareSearchSchema | 
 try {
     val result : PrepareSearchResponseSchema = apiInstance.prepareSearchRequest(authorization, transactionId, prepareSearchSchema)
@@ -148,7 +148,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **kotlin.String**|  |
- **transactionId** | **kotlin.String**|  |
+ **transactionId** | **kotlin.String**| The transactionId to search for |
  **prepareSearchSchema** | [**PrepareSearchSchema**](PrepareSearchSchema.md)|  |
 
 ### Return type

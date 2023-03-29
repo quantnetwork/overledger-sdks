@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,25 +33,19 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SmartContract" /> class.
         /// </summary>
-        /// <param name="function">function.</param>
         /// <param name="detail">detail.</param>
         /// <param name="type">Information on the object type.</param>
         /// <param name="smartContractId">smartContractId.</param>
+        /// <param name="function">function.</param>
         /// <param name="extraFields">extraFields.</param>
-        public SmartContract(Function function = default(Function), string detail = default(string), string type = default(string), string smartContractId = default(string), Object extraFields = default(Object))
+        public SmartContract(string detail = default(string), string type = default(string), string smartContractId = default(string), Function function = default(Function), Object extraFields = default(Object))
         {
-            this.Function = function;
             this.Detail = detail;
             this.Type = type;
             this.SmartContractId = smartContractId;
+            this.Function = function;
             this.ExtraFields = extraFields;
         }
-
-        /// <summary>
-        /// Gets or Sets Function
-        /// </summary>
-        [DataMember(Name="function", EmitDefaultValue=false)]
-        public Function Function { get; set; }
 
         /// <summary>
         /// Gets or Sets Detail
@@ -73,6 +67,12 @@ namespace Org.OpenAPITools.Model
         public string SmartContractId { get; set; }
 
         /// <summary>
+        /// Gets or Sets Function
+        /// </summary>
+        [DataMember(Name="function", EmitDefaultValue=false)]
+        public Function Function { get; set; }
+
+        /// <summary>
         /// Gets or Sets ExtraFields
         /// </summary>
         [DataMember(Name="extraFields", EmitDefaultValue=false)]
@@ -86,10 +86,10 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class SmartContract {\n");
-            sb.Append("  Function: ").Append(Function).Append("\n");
             sb.Append("  Detail: ").Append(Detail).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  SmartContractId: ").Append(SmartContractId).Append("\n");
+            sb.Append("  Function: ").Append(Function).Append("\n");
             sb.Append("  ExtraFields: ").Append(ExtraFields).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -126,11 +126,6 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.Function == input.Function ||
-                    (this.Function != null &&
-                    this.Function.Equals(input.Function))
-                ) && 
-                (
                     this.Detail == input.Detail ||
                     (this.Detail != null &&
                     this.Detail.Equals(input.Detail))
@@ -144,6 +139,11 @@ namespace Org.OpenAPITools.Model
                     this.SmartContractId == input.SmartContractId ||
                     (this.SmartContractId != null &&
                     this.SmartContractId.Equals(input.SmartContractId))
+                ) && 
+                (
+                    this.Function == input.Function ||
+                    (this.Function != null &&
+                    this.Function.Equals(input.Function))
                 ) && 
                 (
                     this.ExtraFields == input.ExtraFields ||
@@ -161,14 +161,14 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Function != null)
-                    hashCode = hashCode * 59 + this.Function.GetHashCode();
                 if (this.Detail != null)
                     hashCode = hashCode * 59 + this.Detail.GetHashCode();
                 if (this.Type != null)
                     hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.SmartContractId != null)
                     hashCode = hashCode * 59 + this.SmartContractId.GetHashCode();
+                if (this.Function != null)
+                    hashCode = hashCode * 59 + this.Function.GetHashCode();
                 if (this.ExtraFields != null)
                     hashCode = hashCode * 59 + this.ExtraFields.GetHashCode();
                 return hashCode;

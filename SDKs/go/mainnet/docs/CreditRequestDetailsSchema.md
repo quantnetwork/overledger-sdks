@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Payee** | Pointer to [**[]PayeeCreditSchema**](PayeeCreditSchema.md) | Who are the payees of this transaction | [optional] 
-**OverledgerSigningType** | Pointer to **string** |  | [optional] 
 **Message** | Pointer to **string** | Any text-based element of the data payload | [optional] 
 **Payer** | Pointer to [**[]PayerCreditSchema**](PayerCreditSchema.md) | Who are the payers of this transaction | [optional] 
+**OverledgerSigningType** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -52,31 +52,6 @@ SetPayee sets Payee field to given value.
 `func (o *CreditRequestDetailsSchema) HasPayee() bool`
 
 HasPayee returns a boolean if a field has been set.
-
-### GetOverledgerSigningType
-
-`func (o *CreditRequestDetailsSchema) GetOverledgerSigningType() string`
-
-GetOverledgerSigningType returns the OverledgerSigningType field if non-nil, zero value otherwise.
-
-### GetOverledgerSigningTypeOk
-
-`func (o *CreditRequestDetailsSchema) GetOverledgerSigningTypeOk() (*string, bool)`
-
-GetOverledgerSigningTypeOk returns a tuple with the OverledgerSigningType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOverledgerSigningType
-
-`func (o *CreditRequestDetailsSchema) SetOverledgerSigningType(v string)`
-
-SetOverledgerSigningType sets OverledgerSigningType field to given value.
-
-### HasOverledgerSigningType
-
-`func (o *CreditRequestDetailsSchema) HasOverledgerSigningType() bool`
-
-HasOverledgerSigningType returns a boolean if a field has been set.
 
 ### GetMessage
 
@@ -127,6 +102,31 @@ SetPayer sets Payer field to given value.
 `func (o *CreditRequestDetailsSchema) HasPayer() bool`
 
 HasPayer returns a boolean if a field has been set.
+
+### GetOverledgerSigningType
+
+`func (o *CreditRequestDetailsSchema) GetOverledgerSigningType() string`
+
+GetOverledgerSigningType returns the OverledgerSigningType field if non-nil, zero value otherwise.
+
+### GetOverledgerSigningTypeOk
+
+`func (o *CreditRequestDetailsSchema) GetOverledgerSigningTypeOk() (*string, bool)`
+
+GetOverledgerSigningTypeOk returns a tuple with the OverledgerSigningType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverledgerSigningType
+
+`func (o *CreditRequestDetailsSchema) SetOverledgerSigningType(v string)`
+
+SetOverledgerSigningType sets OverledgerSigningType field to given value.
+
+### HasOverledgerSigningType
+
+`func (o *CreditRequestDetailsSchema) HasOverledgerSigningType() bool`
+
+HasOverledgerSigningType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

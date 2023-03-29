@@ -1,7 +1,7 @@
 {-
    Quant Overledger API
 
-   Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+   Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
    OpenAPI Version: 3.0.1
    Quant Overledger API API version: 2.0
@@ -57,13 +57,44 @@ import qualified Prelude as P
 
 -- ** CreateAQRC20DebitTransaction
 
+-- *** executePreparedRequestTransaction1
+
+-- | @POST \/v2\/execution\/transaction@
+-- 
+-- Execute a transaction on a DLT
+-- 
+-- Takes a request ID and submits a signed transaction to the requested DLT.
+-- 
+-- AuthMethod: 'AuthOAuthOAuth2SecurityScheme'
+-- 
+executePreparedRequestTransaction1
+  :: (Consumes ExecutePreparedRequestTransaction1 MimeJSON, MimeRender MimeJSON ExecuteTransactionRequest)
+  => ExecuteTransactionRequest -- ^ "executeTransactionRequest"
+  -> Authorization -- ^ "authorization"
+  -> QuantOverledgerRequest ExecutePreparedRequestTransaction1 MimeJSON ExecuteTransactionResponse MimeJSON
+executePreparedRequestTransaction1 executeTransactionRequest (Authorization authorization) =
+  _mkRequest "POST" ["/v2/execution/transaction"]
+    `_hasAuthType` (P.Proxy :: P.Proxy AuthOAuthOAuth2SecurityScheme)
+    `setBodyParam` executeTransactionRequest
+    `addHeader` toHeader ("Authorization", authorization)
+
+data ExecutePreparedRequestTransaction1 
+instance HasBodyParam ExecutePreparedRequestTransaction1 ExecuteTransactionRequest 
+
+-- | @application/json@
+instance Consumes ExecutePreparedRequestTransaction1 MimeJSON
+
+-- | @application/json@
+instance Produces ExecutePreparedRequestTransaction1 MimeJSON
+
+
 -- *** prepareDebitRequest
 
 -- | @POST \/v2\/preparation\/debit@
 -- 
 -- Prepare a QRC20 token debit transaction for signing
 -- 
--- Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are \"Approve Debit\" and \"Create Debit\". The 'Approve Debit' transaction type will allow you to approve someone to make a pull payment from your account and the \"Create Debit\" transaction type will create the payment to pull the approved amount from an account.
+-- Transforms a transaction request ready to be signed and returns a request ID for executing. The supported transaction types are “Approve Debit” and “Create Debit”. The ‘Approve Debit’ transaction type will allow you to approve someone to make a pull payment from your account and the “Create Debit” transaction type will create the payment to pull the approved amount from an account.
 -- 
 -- AuthMethod: 'AuthOAuthOAuth2SecurityScheme'
 -- 

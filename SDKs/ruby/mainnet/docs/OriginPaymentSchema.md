@@ -4,7 +4,7 @@
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **origin_id** | **String** | Unique Identifier of the originator | [optional] |
+| **origin_id** | **String** | Unique Identifier of the origin/sender |  |
 
 ## Example
 

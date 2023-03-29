@@ -1,7 +1,7 @@
 /**
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -28,17 +28,14 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param callBackURL 
  * @param eventParams 
  * @param eventName 
  * @param location 
+ * @param callBackURL 
  * @param smartContractId 
  */
 
 data class MonitorSmartContractRequestSchema (
-
-    @Json(name = "callBackURL")
-    val callBackURL: kotlin.String? = null,
 
     @Json(name = "eventParams")
     val eventParams: kotlin.collections.List<MonitorSmartContractEventParam>? = null,
@@ -48,6 +45,9 @@ data class MonitorSmartContractRequestSchema (
 
     @Json(name = "location")
     val location: Location? = null,
+
+    @Json(name = "callBackURL")
+    val callBackURL: kotlin.String? = null,
 
     @Json(name = "smartContractId")
     val smartContractId: kotlin.String? = null

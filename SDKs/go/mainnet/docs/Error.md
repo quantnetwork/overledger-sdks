@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | Pointer to **int32** |  | [optional] 
-**Service** | Pointer to **string** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
+**Service** | Pointer to **string** |  | [optional] 
 **Timestamp** | Pointer to **int64** |  | [optional] 
 
 ## Methods
@@ -53,31 +53,6 @@ SetCode sets Code field to given value.
 
 HasCode returns a boolean if a field has been set.
 
-### GetService
-
-`func (o *Error) GetService() string`
-
-GetService returns the Service field if non-nil, zero value otherwise.
-
-### GetServiceOk
-
-`func (o *Error) GetServiceOk() (*string, bool)`
-
-GetServiceOk returns a tuple with the Service field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetService
-
-`func (o *Error) SetService(v string)`
-
-SetService sets Service field to given value.
-
-### HasService
-
-`func (o *Error) HasService() bool`
-
-HasService returns a boolean if a field has been set.
-
 ### GetMessage
 
 `func (o *Error) GetMessage() string`
@@ -102,6 +77,31 @@ SetMessage sets Message field to given value.
 `func (o *Error) HasMessage() bool`
 
 HasMessage returns a boolean if a field has been set.
+
+### GetService
+
+`func (o *Error) GetService() string`
+
+GetService returns the Service field if non-nil, zero value otherwise.
+
+### GetServiceOk
+
+`func (o *Error) GetServiceOk() (*string, bool)`
+
+GetServiceOk returns a tuple with the Service field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetService
+
+`func (o *Error) SetService(v string)`
+
+SetService sets Service field to given value.
+
+### HasService
+
+`func (o *Error) HasService() bool`
+
+HasService returns a boolean if a field has been set.
 
 ### GetTimestamp
 

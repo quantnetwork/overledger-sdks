@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -22,12 +22,14 @@ import PaymentSchema from './PaymentSchema';
 class DestinationPaymentSchema {
     /**
      * Constructs a new <code>DestinationPaymentSchema</code>.
-     * The Destination of this transaction
+     * List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
      * @alias module:model/DestinationPaymentSchema
+     * @param destinationId {String} Unique identifier of the destination/recipient
+     * @param payment {module:model/PaymentSchema} 
      */
-    constructor() { 
+    constructor(destinationId, payment) { 
         
-        DestinationPaymentSchema.initialize(this);
+        DestinationPaymentSchema.initialize(this, destinationId, payment);
     }
 
     /**
@@ -35,7 +37,9 @@ class DestinationPaymentSchema {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj) { 
+    static initialize(obj, destinationId, payment) { 
+        obj['destinationId'] = destinationId;
+        obj['payment'] = payment;
     }
 
     /**
@@ -49,11 +53,11 @@ class DestinationPaymentSchema {
         if (data) {
             obj = obj || new DestinationPaymentSchema();
 
-            if (data.hasOwnProperty('payment')) {
-                obj['payment'] = PaymentSchema.constructFromObject(data['payment']);
-            }
             if (data.hasOwnProperty('destinationId')) {
                 obj['destinationId'] = ApiClient.convertToType(data['destinationId'], 'String');
+            }
+            if (data.hasOwnProperty('payment')) {
+                obj['payment'] = PaymentSchema.constructFromObject(data['payment']);
             }
         }
         return obj;
@@ -63,15 +67,15 @@ class DestinationPaymentSchema {
 }
 
 /**
- * @member {module:model/PaymentSchema} payment
- */
-DestinationPaymentSchema.prototype['payment'] = undefined;
-
-/**
- * The unique identifiers of the destination
+ * Unique identifier of the destination/recipient
  * @member {String} destinationId
  */
 DestinationPaymentSchema.prototype['destinationId'] = undefined;
+
+/**
+ * @member {module:model/PaymentSchema} payment
+ */
+DestinationPaymentSchema.prototype['payment'] = undefined;
 
 
 

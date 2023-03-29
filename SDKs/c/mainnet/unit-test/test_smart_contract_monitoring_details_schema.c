@@ -25,24 +25,24 @@ smart_contract_monitoring_details_schema_t* instantiate_smart_contract_monitorin
   smart_contract_monitoring_details_schema_t* smart_contract_monitoring_details_schema = NULL;
   if (include_optional) {
     smart_contract_monitoring_details_schema = smart_contract_monitoring_details_schema_create(
-      list_create(),
        // false, not to have infinite recursion
       instantiate_resource_monitoring_smart_contract_event_details(0),
        // false, not to have infinite recursion
       instantiate_location(0),
+      list_create(),
       "a",
        // false, not to have infinite recursion
       instantiate_status(0),
-      "2013-10-20T19:20:30+01:00"
+      "0"
     );
   } else {
     smart_contract_monitoring_details_schema = smart_contract_monitoring_details_schema_create(
+      NULL,
+      NULL,
       list_create(),
-      NULL,
-      NULL,
       "a",
       NULL,
-      "2013-10-20T19:20:30+01:00"
+      "0"
     );
   }
 

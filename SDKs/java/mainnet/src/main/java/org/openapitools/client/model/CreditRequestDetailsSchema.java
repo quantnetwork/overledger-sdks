@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -31,15 +31,11 @@ import org.openapitools.client.model.PayerCreditSchema;
 /**
  * CreditRequestDetailsSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T17:53:26.576945Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:46:50.106642+01:00[Europe/London]")
 public class CreditRequestDetailsSchema {
   public static final String SERIALIZED_NAME_PAYEE = "payee";
   @SerializedName(SERIALIZED_NAME_PAYEE)
   private List<PayeeCreditSchema> payee = null;
-
-  public static final String SERIALIZED_NAME_OVERLEDGER_SIGNING_TYPE = "overledgerSigningType";
-  @SerializedName(SERIALIZED_NAME_OVERLEDGER_SIGNING_TYPE)
-  private String overledgerSigningType;
 
   public static final String SERIALIZED_NAME_MESSAGE = "message";
   @SerializedName(SERIALIZED_NAME_MESSAGE)
@@ -48,6 +44,10 @@ public class CreditRequestDetailsSchema {
   public static final String SERIALIZED_NAME_PAYER = "payer";
   @SerializedName(SERIALIZED_NAME_PAYER)
   private List<PayerCreditSchema> payer = null;
+
+  public static final String SERIALIZED_NAME_OVERLEDGER_SIGNING_TYPE = "overledgerSigningType";
+  @SerializedName(SERIALIZED_NAME_OVERLEDGER_SIGNING_TYPE)
+  private String overledgerSigningType;
 
 
   public CreditRequestDetailsSchema payee(List<PayeeCreditSchema> payee) {
@@ -78,29 +78,6 @@ public class CreditRequestDetailsSchema {
 
   public void setPayee(List<PayeeCreditSchema> payee) {
     this.payee = payee;
-  }
-
-
-  public CreditRequestDetailsSchema overledgerSigningType(String overledgerSigningType) {
-    
-    this.overledgerSigningType = overledgerSigningType;
-    return this;
-  }
-
-   /**
-   * Get overledgerSigningType
-   * @return overledgerSigningType
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getOverledgerSigningType() {
-    return overledgerSigningType;
-  }
-
-
-  public void setOverledgerSigningType(String overledgerSigningType) {
-    this.overledgerSigningType = overledgerSigningType;
   }
 
 
@@ -158,6 +135,29 @@ public class CreditRequestDetailsSchema {
   }
 
 
+  public CreditRequestDetailsSchema overledgerSigningType(String overledgerSigningType) {
+    
+    this.overledgerSigningType = overledgerSigningType;
+    return this;
+  }
+
+   /**
+   * Get overledgerSigningType
+   * @return overledgerSigningType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getOverledgerSigningType() {
+    return overledgerSigningType;
+  }
+
+
+  public void setOverledgerSigningType(String overledgerSigningType) {
+    this.overledgerSigningType = overledgerSigningType;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -168,14 +168,14 @@ public class CreditRequestDetailsSchema {
     }
     CreditRequestDetailsSchema creditRequestDetailsSchema = (CreditRequestDetailsSchema) o;
     return Objects.equals(this.payee, creditRequestDetailsSchema.payee) &&
-        Objects.equals(this.overledgerSigningType, creditRequestDetailsSchema.overledgerSigningType) &&
         Objects.equals(this.message, creditRequestDetailsSchema.message) &&
-        Objects.equals(this.payer, creditRequestDetailsSchema.payer);
+        Objects.equals(this.payer, creditRequestDetailsSchema.payer) &&
+        Objects.equals(this.overledgerSigningType, creditRequestDetailsSchema.overledgerSigningType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(payee, overledgerSigningType, message, payer);
+    return Objects.hash(payee, message, payer, overledgerSigningType);
   }
 
   @Override
@@ -183,9 +183,9 @@ public class CreditRequestDetailsSchema {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreditRequestDetailsSchema {\n");
     sb.append("    payee: ").append(toIndentedString(payee)).append("\n");
-    sb.append("    overledgerSigningType: ").append(toIndentedString(overledgerSigningType)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    payer: ").append(toIndentedString(payer)).append("\n");
+    sb.append("    overledgerSigningType: ").append(toIndentedString(overledgerSigningType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,0 +1,16 @@
+# WWW::OpenAPIClient::Object::BeneficiaryMintSchemaQrc721
+
+## Load the model package
+```perl
+use WWW::OpenAPIClient::Object::BeneficiaryMintSchemaQrc721;
+```
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**account_id** | **string** | The unique identifiers of the beneficiaries | [optional] 
+**mint** | [**MintSchemaQrc721**](MintSchemaQrc721.md) |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

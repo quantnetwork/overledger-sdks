@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -90,28 +90,28 @@ module OpenapiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@sequence.nil? && @sequence.to_s.length > 100
-        invalid_properties.push('invalid value for "sequence", the character length must be smaller than or equal to 100.')
+      if !@sequence.nil? && @sequence.to_s.length > 18
+        invalid_properties.push('invalid value for "sequence", the character length must be smaller than or equal to 18.')
       end
 
       if !@sequence.nil? && @sequence.to_s.length < 0
         invalid_properties.push('invalid value for "sequence", the character length must be great than or equal to 0.')
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[0-9]{1,18}$/)
       if !@sequence.nil? && @sequence !~ pattern
         invalid_properties.push("invalid value for \"sequence\", must conform to the pattern #{pattern}.")
       end
 
-      if !@address_id.nil? && @address_id.to_s.length > 100
-        invalid_properties.push('invalid value for "address_id", the character length must be smaller than or equal to 100.')
+      if !@address_id.nil? && @address_id.to_s.length > 500
+        invalid_properties.push('invalid value for "address_id", the character length must be smaller than or equal to 500.')
       end
 
       if !@address_id.nil? && @address_id.to_s.length < 0
         invalid_properties.push('invalid value for "address_id", the character length must be great than or equal to 0.')
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       if !@address_id.nil? && @address_id !~ pattern
         invalid_properties.push("invalid value for \"address_id\", must conform to the pattern #{pattern}.")
       end
@@ -122,27 +122,27 @@ module OpenapiClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@sequence.nil? && @sequence.to_s.length > 100
+      return false if !@sequence.nil? && @sequence.to_s.length > 18
       return false if !@sequence.nil? && @sequence.to_s.length < 0
-      return false if !@sequence.nil? && @sequence !~ Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
-      return false if !@address_id.nil? && @address_id.to_s.length > 100
+      return false if !@sequence.nil? && @sequence !~ Regexp.new(/^[0-9]{1,18}$/)
+      return false if !@address_id.nil? && @address_id.to_s.length > 500
       return false if !@address_id.nil? && @address_id.to_s.length < 0
-      return false if !@address_id.nil? && @address_id !~ Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      return false if !@address_id.nil? && @address_id !~ Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] sequence Value to be assigned
     def sequence=(sequence)
-      if !sequence.nil? && sequence.to_s.length > 100
-        fail ArgumentError, 'invalid value for "sequence", the character length must be smaller than or equal to 100.'
+      if !sequence.nil? && sequence.to_s.length > 18
+        fail ArgumentError, 'invalid value for "sequence", the character length must be smaller than or equal to 18.'
       end
 
       if !sequence.nil? && sequence.to_s.length < 0
         fail ArgumentError, 'invalid value for "sequence", the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[0-9]{1,18}$/)
       if !sequence.nil? && sequence !~ pattern
         fail ArgumentError, "invalid value for \"sequence\", must conform to the pattern #{pattern}."
       end
@@ -153,15 +153,15 @@ module OpenapiClient
     # Custom attribute writer method with validation
     # @param [Object] address_id Value to be assigned
     def address_id=(address_id)
-      if !address_id.nil? && address_id.to_s.length > 100
-        fail ArgumentError, 'invalid value for "address_id", the character length must be smaller than or equal to 100.'
+      if !address_id.nil? && address_id.to_s.length > 500
+        fail ArgumentError, 'invalid value for "address_id", the character length must be smaller than or equal to 500.'
       end
 
       if !address_id.nil? && address_id.to_s.length < 0
         fail ArgumentError, 'invalid value for "address_id", the character length must be great than or equal to 0.'
       end
 
-      pattern = Regexp.new(/^[a-zA-Z0-9]{1,100}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9:,\\/.=\-\s]{1,500}/)
       if !address_id.nil? && address_id !~ pattern
         fail ArgumentError, "invalid value for \"address_id\", must conform to the pattern #{pattern}."
       end

@@ -2,7 +2,7 @@
 
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -46,7 +46,7 @@ use base ("Class::Accessor", "Class::Data::Inheritable");
 
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -162,20 +162,6 @@ __PACKAGE__->class_documentation({description => '',
 }                                 );
 
 __PACKAGE__->method_documentation({
-    'overledger_signing_type' => {
-        datatype => 'string',
-        base_name => 'overledgerSigningType',
-        description => '',
-        format => '',
-        read_only => '',
-            },
-    'origin' => {
-        datatype => 'ARRAY[OriginTransferSchema]',
-        base_name => 'origin',
-        description => '',
-        format => '',
-        read_only => '',
-            },
     'destination' => {
         datatype => 'ARRAY[DestinationTransferSchema]',
         base_name => 'destination',
@@ -190,20 +176,34 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
+    'overledger_signing_type' => {
+        datatype => 'string',
+        base_name => 'overledgerSigningType',
+        description => '',
+        format => '',
+        read_only => '',
+            },
+    'origin' => {
+        datatype => 'ARRAY[OriginTransferSchema]',
+        base_name => 'origin',
+        description => '',
+        format => '',
+        read_only => '',
+            },
 });
 
 __PACKAGE__->openapi_types( {
-    'overledger_signing_type' => 'string',
-    'origin' => 'ARRAY[OriginTransferSchema]',
     'destination' => 'ARRAY[DestinationTransferSchema]',
-    'message' => 'string'
+    'message' => 'string',
+    'overledger_signing_type' => 'string',
+    'origin' => 'ARRAY[OriginTransferSchema]'
 } );
 
 __PACKAGE__->attribute_map( {
-    'overledger_signing_type' => 'overledgerSigningType',
-    'origin' => 'origin',
     'destination' => 'destination',
-    'message' => 'message'
+    'message' => 'message',
+    'overledger_signing_type' => 'overledgerSigningType',
+    'origin' => 'origin'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

@@ -1,7 +1,7 @@
 {-
    Quant Overledger API
 
-   Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+   Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
    OpenAPI Version: 3.0.1
    Quant Overledger API API version: 2.0
@@ -71,7 +71,7 @@ autoExecuteSearchTransactionRequest
   :: (Consumes AutoExecuteSearchTransactionRequest MimeJSON, MimeRender MimeJSON PrepareSearchSchema)
   => PrepareSearchSchema -- ^ "prepareSearchSchema"
   -> Authorization -- ^ "authorization"
-  -> TransactionId -- ^ "transactionId"
+  -> TransactionId -- ^ "transactionId" -  The transactionId to search for
   -> QuantOverledgerRequest AutoExecuteSearchTransactionRequest MimeJSON PrepareAndExecuteTransactionResponse MimeJSON
 autoExecuteSearchTransactionRequest prepareSearchSchema (Authorization authorization) (TransactionId transactionId) =
   _mkRequest "POST" ["/v2/autoexecution/search/transaction"]
@@ -129,7 +129,7 @@ prepareSearchRequest
   :: (Consumes PrepareSearchRequest MimeJSON, MimeRender MimeJSON PrepareSearchSchema)
   => PrepareSearchSchema -- ^ "prepareSearchSchema"
   -> Authorization -- ^ "authorization"
-  -> TransactionId -- ^ "transactionId"
+  -> TransactionId -- ^ "transactionId" -  The transactionId to search for
   -> QuantOverledgerRequest PrepareSearchRequest MimeJSON PrepareSearchResponseSchema MimeJSON
 prepareSearchRequest prepareSearchSchema (Authorization authorization) (TransactionId transactionId) =
   _mkRequest "POST" ["/v2/preparation/search/transaction"]

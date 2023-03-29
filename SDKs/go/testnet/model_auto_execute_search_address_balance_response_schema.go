@@ -1,7 +1,7 @@
 /*
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 API version: 2.0
 */
@@ -16,8 +16,8 @@ import (
 
 // AutoExecuteSearchAddressBalanceResponseSchema struct for AutoExecuteSearchAddressBalanceResponseSchema
 type AutoExecuteSearchAddressBalanceResponseSchema struct {
-	ExecutionAddressBalanceSearchResponse *PrepareAndExecuteSearchAddressBalanceResponse `json:"executionAddressBalanceSearchResponse,omitempty"`
 	PrepareAndExecuteOverledgerErrorResponse *PrepareAndExecuteOverledgerErrorResponse `json:"prepareAndExecuteOverledgerErrorResponse,omitempty"`
+	ExecutionAddressBalanceSearchResponse *PrepareAndExecuteSearchAddressBalanceResponse `json:"executionAddressBalanceSearchResponse,omitempty"`
 	PreparationAddressBalanceSearchResponse *PrepareSearchResponseSchema `json:"preparationAddressBalanceSearchResponse,omitempty"`
 }
 
@@ -36,38 +36,6 @@ func NewAutoExecuteSearchAddressBalanceResponseSchema() *AutoExecuteSearchAddres
 func NewAutoExecuteSearchAddressBalanceResponseSchemaWithDefaults() *AutoExecuteSearchAddressBalanceResponseSchema {
 	this := AutoExecuteSearchAddressBalanceResponseSchema{}
 	return &this
-}
-
-// GetExecutionAddressBalanceSearchResponse returns the ExecutionAddressBalanceSearchResponse field value if set, zero value otherwise.
-func (o *AutoExecuteSearchAddressBalanceResponseSchema) GetExecutionAddressBalanceSearchResponse() PrepareAndExecuteSearchAddressBalanceResponse {
-	if o == nil || o.ExecutionAddressBalanceSearchResponse == nil {
-		var ret PrepareAndExecuteSearchAddressBalanceResponse
-		return ret
-	}
-	return *o.ExecutionAddressBalanceSearchResponse
-}
-
-// GetExecutionAddressBalanceSearchResponseOk returns a tuple with the ExecutionAddressBalanceSearchResponse field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AutoExecuteSearchAddressBalanceResponseSchema) GetExecutionAddressBalanceSearchResponseOk() (*PrepareAndExecuteSearchAddressBalanceResponse, bool) {
-	if o == nil || o.ExecutionAddressBalanceSearchResponse == nil {
-		return nil, false
-	}
-	return o.ExecutionAddressBalanceSearchResponse, true
-}
-
-// HasExecutionAddressBalanceSearchResponse returns a boolean if a field has been set.
-func (o *AutoExecuteSearchAddressBalanceResponseSchema) HasExecutionAddressBalanceSearchResponse() bool {
-	if o != nil && o.ExecutionAddressBalanceSearchResponse != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetExecutionAddressBalanceSearchResponse gets a reference to the given PrepareAndExecuteSearchAddressBalanceResponse and assigns it to the ExecutionAddressBalanceSearchResponse field.
-func (o *AutoExecuteSearchAddressBalanceResponseSchema) SetExecutionAddressBalanceSearchResponse(v PrepareAndExecuteSearchAddressBalanceResponse) {
-	o.ExecutionAddressBalanceSearchResponse = &v
 }
 
 // GetPrepareAndExecuteOverledgerErrorResponse returns the PrepareAndExecuteOverledgerErrorResponse field value if set, zero value otherwise.
@@ -100,6 +68,38 @@ func (o *AutoExecuteSearchAddressBalanceResponseSchema) HasPrepareAndExecuteOver
 // SetPrepareAndExecuteOverledgerErrorResponse gets a reference to the given PrepareAndExecuteOverledgerErrorResponse and assigns it to the PrepareAndExecuteOverledgerErrorResponse field.
 func (o *AutoExecuteSearchAddressBalanceResponseSchema) SetPrepareAndExecuteOverledgerErrorResponse(v PrepareAndExecuteOverledgerErrorResponse) {
 	o.PrepareAndExecuteOverledgerErrorResponse = &v
+}
+
+// GetExecutionAddressBalanceSearchResponse returns the ExecutionAddressBalanceSearchResponse field value if set, zero value otherwise.
+func (o *AutoExecuteSearchAddressBalanceResponseSchema) GetExecutionAddressBalanceSearchResponse() PrepareAndExecuteSearchAddressBalanceResponse {
+	if o == nil || o.ExecutionAddressBalanceSearchResponse == nil {
+		var ret PrepareAndExecuteSearchAddressBalanceResponse
+		return ret
+	}
+	return *o.ExecutionAddressBalanceSearchResponse
+}
+
+// GetExecutionAddressBalanceSearchResponseOk returns a tuple with the ExecutionAddressBalanceSearchResponse field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AutoExecuteSearchAddressBalanceResponseSchema) GetExecutionAddressBalanceSearchResponseOk() (*PrepareAndExecuteSearchAddressBalanceResponse, bool) {
+	if o == nil || o.ExecutionAddressBalanceSearchResponse == nil {
+		return nil, false
+	}
+	return o.ExecutionAddressBalanceSearchResponse, true
+}
+
+// HasExecutionAddressBalanceSearchResponse returns a boolean if a field has been set.
+func (o *AutoExecuteSearchAddressBalanceResponseSchema) HasExecutionAddressBalanceSearchResponse() bool {
+	if o != nil && o.ExecutionAddressBalanceSearchResponse != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExecutionAddressBalanceSearchResponse gets a reference to the given PrepareAndExecuteSearchAddressBalanceResponse and assigns it to the ExecutionAddressBalanceSearchResponse field.
+func (o *AutoExecuteSearchAddressBalanceResponseSchema) SetExecutionAddressBalanceSearchResponse(v PrepareAndExecuteSearchAddressBalanceResponse) {
+	o.ExecutionAddressBalanceSearchResponse = &v
 }
 
 // GetPreparationAddressBalanceSearchResponse returns the PreparationAddressBalanceSearchResponse field value if set, zero value otherwise.
@@ -136,11 +136,11 @@ func (o *AutoExecuteSearchAddressBalanceResponseSchema) SetPreparationAddressBal
 
 func (o AutoExecuteSearchAddressBalanceResponseSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ExecutionAddressBalanceSearchResponse != nil {
-		toSerialize["executionAddressBalanceSearchResponse"] = o.ExecutionAddressBalanceSearchResponse
-	}
 	if o.PrepareAndExecuteOverledgerErrorResponse != nil {
 		toSerialize["prepareAndExecuteOverledgerErrorResponse"] = o.PrepareAndExecuteOverledgerErrorResponse
+	}
+	if o.ExecutionAddressBalanceSearchResponse != nil {
+		toSerialize["executionAddressBalanceSearchResponse"] = o.ExecutionAddressBalanceSearchResponse
 	}
 	if o.PreparationAddressBalanceSearchResponse != nil {
 		toSerialize["preparationAddressBalanceSearchResponse"] = o.PreparationAddressBalanceSearchResponse

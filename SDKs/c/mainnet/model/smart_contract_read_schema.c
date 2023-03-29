@@ -6,15 +6,15 @@
 
 
 smart_contract_read_schema_t *smart_contract_read_schema_create(
-    smart_contract_read_function_schema_t *function,
-    char *smart_contract_id
+    char *smart_contract_id,
+    smart_contract_read_function_schema_t *function
     ) {
     smart_contract_read_schema_t *smart_contract_read_schema_local_var = malloc(sizeof(smart_contract_read_schema_t));
     if (!smart_contract_read_schema_local_var) {
         return NULL;
     }
-    smart_contract_read_schema_local_var->function = function;
     smart_contract_read_schema_local_var->smart_contract_id = smart_contract_id;
+    smart_contract_read_schema_local_var->function = function;
 
     return smart_contract_read_schema_local_var;
 }
@@ -25,19 +25,27 @@ void smart_contract_read_schema_free(smart_contract_read_schema_t *smart_contrac
         return ;
     }
     listEntry_t *listEntry;
-    if (smart_contract_read_schema->function) {
-        smart_contract_read_function_schema_free(smart_contract_read_schema->function);
-        smart_contract_read_schema->function = NULL;
-    }
     if (smart_contract_read_schema->smart_contract_id) {
         free(smart_contract_read_schema->smart_contract_id);
         smart_contract_read_schema->smart_contract_id = NULL;
+    }
+    if (smart_contract_read_schema->function) {
+        smart_contract_read_function_schema_free(smart_contract_read_schema->function);
+        smart_contract_read_schema->function = NULL;
     }
     free(smart_contract_read_schema);
 }
 
 cJSON *smart_contract_read_schema_convertToJSON(smart_contract_read_schema_t *smart_contract_read_schema) {
     cJSON *item = cJSON_CreateObject();
+
+    // smart_contract_read_schema->smart_contract_id
+    if(smart_contract_read_schema->smart_contract_id) { 
+    if(cJSON_AddStringToObject(item, "smartContractId", smart_contract_read_schema->smart_contract_id) == NULL) {
+    goto fail; //String
+    }
+     } 
+
 
     // smart_contract_read_schema->function
     if(smart_contract_read_schema->function) { 
@@ -48,14 +56,6 @@ cJSON *smart_contract_read_schema_convertToJSON(smart_contract_read_schema_t *sm
     cJSON_AddItemToObject(item, "function", function_local_JSON);
     if(item->child == NULL) {
     goto fail;
-    }
-     } 
-
-
-    // smart_contract_read_schema->smart_contract_id
-    if(smart_contract_read_schema->smart_contract_id) { 
-    if(cJSON_AddStringToObject(item, "smartContractId", smart_contract_read_schema->smart_contract_id) == NULL) {
-    goto fail; //String
     }
      } 
 
@@ -71,13 +71,6 @@ smart_contract_read_schema_t *smart_contract_read_schema_parseFromJSON(cJSON *sm
 
     smart_contract_read_schema_t *smart_contract_read_schema_local_var = NULL;
 
-    // smart_contract_read_schema->function
-    cJSON *function = cJSON_GetObjectItemCaseSensitive(smart_contract_read_schemaJSON, "function");
-    smart_contract_read_function_schema_t *function_local_nonprim = NULL;
-    if (function) { 
-    function_local_nonprim = smart_contract_read_function_schema_parseFromJSON(function); //nonprimitive
-    }
-
     // smart_contract_read_schema->smart_contract_id
     cJSON *smart_contract_id = cJSON_GetObjectItemCaseSensitive(smart_contract_read_schemaJSON, "smartContractId");
     if (smart_contract_id) { 
@@ -87,10 +80,17 @@ smart_contract_read_schema_t *smart_contract_read_schema_parseFromJSON(cJSON *sm
     }
     }
 
+    // smart_contract_read_schema->function
+    cJSON *function = cJSON_GetObjectItemCaseSensitive(smart_contract_read_schemaJSON, "function");
+    smart_contract_read_function_schema_t *function_local_nonprim = NULL;
+    if (function) { 
+    function_local_nonprim = smart_contract_read_function_schema_parseFromJSON(function); //nonprimitive
+    }
+
 
     smart_contract_read_schema_local_var = smart_contract_read_schema_create (
-        function ? function_local_nonprim : NULL,
-        smart_contract_id ? strdup(smart_contract_id->valuestring) : NULL
+        smart_contract_id ? strdup(smart_contract_id->valuestring) : NULL,
+        function ? function_local_nonprim : NULL
         );
 
     return smart_contract_read_schema_local_var;

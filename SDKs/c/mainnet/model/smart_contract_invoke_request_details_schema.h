@@ -21,14 +21,14 @@ typedef struct smart_contract_invoke_request_details_schema_t smart_contract_inv
 
 
 typedef struct smart_contract_invoke_request_details_schema_t {
-    list_t *origin; //nonprimitive container
     list_t *destination; //nonprimitive container
+    list_t *origin; //nonprimitive container
 
 } smart_contract_invoke_request_details_schema_t;
 
 smart_contract_invoke_request_details_schema_t *smart_contract_invoke_request_details_schema_create(
-    list_t *origin,
-    list_t *destination
+    list_t *destination,
+    list_t *origin
 );
 
 void smart_contract_invoke_request_details_schema_free(smart_contract_invoke_request_details_schema_t *smart_contract_invoke_request_details_schema);

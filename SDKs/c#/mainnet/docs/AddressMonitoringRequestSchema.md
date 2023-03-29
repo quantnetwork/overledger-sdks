@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CallBackURL** | **string** |  | [optional] 
 **Location** | [**Location**](Location.md) |  | [optional] 
+**CallBackURL** | **string** |  | [optional] 
 **AddressId** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)

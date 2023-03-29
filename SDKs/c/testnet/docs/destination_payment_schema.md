@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payment** | [**payment_schema_t**](payment_schema.md) \* |  | [optional] 
-**destination_id** | **char \*** | The unique identifiers of the destination | [optional] 
+**destination_id** | **char \*** | Unique identifier of the destination/recipient | 
+**payment** | [**payment_schema_t**](payment_schema.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

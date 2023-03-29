@@ -23,7 +23,7 @@ Generates a request ID and automatically executes the transaction search on the 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **authorization** | **String** |  | [required] |
-**transaction_id** | **String** |  | [required] |
+**transaction_id** | **String** | The transactionId to search for | [required] |
 **prepare_search_schema** | [**PrepareSearchSchema**](PrepareSearchSchema.md) |  | [required] |
 
 ### Return type
@@ -86,7 +86,7 @@ Searches for and returns data on transactions on a particular DLT. Returns a req
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **authorization** | **String** |  | [required] |
-**transaction_id** | **String** |  | [required] |
+**transaction_id** | **String** | The transactionId to search for | [required] |
 **prepare_search_schema** | [**PrepareSearchSchema**](PrepareSearchSchema.md) |  | [required] |
 
 ### Return type

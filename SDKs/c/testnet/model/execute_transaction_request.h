@@ -19,14 +19,14 @@ typedef struct execute_transaction_request_t execute_transaction_request_t;
 
 
 typedef struct execute_transaction_request_t {
-    char *request_id; // string
     char *_signed; // string
+    char *request_id; // string
 
 } execute_transaction_request_t;
 
 execute_transaction_request_t *execute_transaction_request_create(
-    char *request_id,
-    char *_signed
+    char *_signed,
+    char *request_id
 );
 
 void execute_transaction_request_free(execute_transaction_request_t *execute_transaction_request);

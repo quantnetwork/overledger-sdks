@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -39,7 +39,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="timestamp">timestamp.</param>
         /// <param name="status">status.</param>
         /// <param name="nativeData">nativeData.</param>
-        public ExecuteSearchUTXOResponseSchema(string utxoId = default(string), List<UTXODestination> destination = default(List<UTXODestination>), Location location = default(Location), UTXOTimestampSchema timestamp = default(UTXOTimestampSchema), Status status = default(Status), UTXONativeData nativeData = default(UTXONativeData))
+        public ExecuteSearchUTXOResponseSchema(string utxoId = default(string), List<UTXODestination> destination = default(List<UTXODestination>), Location location = default(Location), string timestamp = default(string), Status status = default(Status), UTXONativeData nativeData = default(UTXONativeData))
         {
             this.UtxoId = utxoId;
             this.Destination = destination;
@@ -71,7 +71,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets Timestamp
         /// </summary>
         [DataMember(Name="timestamp", EmitDefaultValue=false)]
-        public UTXOTimestampSchema Timestamp { get; set; }
+        public string Timestamp { get; set; }
 
         /// <summary>
         /// Gets or Sets Status
@@ -199,6 +199,18 @@ namespace Org.OpenAPITools.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
 
+
+            // Timestamp (string) maxLength
+            if(this.Timestamp != null && this.Timestamp.Length > 50)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Timestamp, length must be less than 50.", new [] { "Timestamp" });
+            }
+
+            // Timestamp (string) minLength
+            if(this.Timestamp != null && this.Timestamp.Length < 0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Timestamp, length must be greater than 0.", new [] { "Timestamp" });
+            }
 
             yield break;
         }

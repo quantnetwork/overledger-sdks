@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -28,38 +28,15 @@ import org.openapitools.client.model.Location;
 /**
  * PrepareNativeTransactionRequestSchema
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class PrepareNativeTransactionRequestSchema {
-  public static final String SERIALIZED_NAME_LOCATION = "location";
-  @SerializedName(SERIALIZED_NAME_LOCATION)
-  private Location location;
-
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
   private String type;
 
-
-  public PrepareNativeTransactionRequestSchema location(Location location) {
-    
-    this.location = location;
-    return this;
-  }
-
-   /**
-   * Get location
-   * @return location
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Location getLocation() {
-    return location;
-  }
-
-
-  public void setLocation(Location location) {
-    this.location = location;
-  }
+  public static final String SERIALIZED_NAME_LOCATION = "location";
+  @SerializedName(SERIALIZED_NAME_LOCATION)
+  private Location location;
 
 
   public PrepareNativeTransactionRequestSchema type(String type) {
@@ -85,6 +62,29 @@ public class PrepareNativeTransactionRequestSchema {
   }
 
 
+  public PrepareNativeTransactionRequestSchema location(Location location) {
+    
+    this.location = location;
+    return this;
+  }
+
+   /**
+   * Get location
+   * @return location
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Location getLocation() {
+    return location;
+  }
+
+
+  public void setLocation(Location location) {
+    this.location = location;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -94,21 +94,21 @@ public class PrepareNativeTransactionRequestSchema {
       return false;
     }
     PrepareNativeTransactionRequestSchema prepareNativeTransactionRequestSchema = (PrepareNativeTransactionRequestSchema) o;
-    return Objects.equals(this.location, prepareNativeTransactionRequestSchema.location) &&
-        Objects.equals(this.type, prepareNativeTransactionRequestSchema.type);
+    return Objects.equals(this.type, prepareNativeTransactionRequestSchema.type) &&
+        Objects.equals(this.location, prepareNativeTransactionRequestSchema.location);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(location, type);
+    return Objects.hash(type, location);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PrepareNativeTransactionRequestSchema {\n");
-    sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("}");
     return sb.toString();
   }

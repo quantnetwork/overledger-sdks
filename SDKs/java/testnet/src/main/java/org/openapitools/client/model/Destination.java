@@ -1,6 +1,6 @@
 /*
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -31,23 +31,46 @@ import org.openapitools.client.model.Transfer;
  * The Destination of this transaction
  */
 @ApiModel(description = "The Destination of this transaction")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-17T18:03:02.158365Z[Europe/London]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-03-29T09:47:12.017872+01:00[Europe/London]")
 public class Destination {
+  public static final String SERIALIZED_NAME_PAYMENT = "payment";
+  @SerializedName(SERIALIZED_NAME_PAYMENT)
+  private Payment payment;
+
   public static final String SERIALIZED_NAME_TRANSFER = "transfer";
   @SerializedName(SERIALIZED_NAME_TRANSFER)
   private Transfer transfer;
+
+  public static final String SERIALIZED_NAME_DESTINATION_ID = "destinationId";
+  @SerializedName(SERIALIZED_NAME_DESTINATION_ID)
+  private String destinationId;
 
   public static final String SERIALIZED_NAME_SMART_CONTRACT = "smartContract";
   @SerializedName(SERIALIZED_NAME_SMART_CONTRACT)
   private SmartContract smartContract;
 
-  public static final String SERIALIZED_NAME_PAYMENT = "payment";
-  @SerializedName(SERIALIZED_NAME_PAYMENT)
-  private Payment payment;
 
-  public static final String SERIALIZED_NAME_DESTINATION_ID = "destinationId";
-  @SerializedName(SERIALIZED_NAME_DESTINATION_ID)
-  private String destinationId;
+  public Destination payment(Payment payment) {
+    
+    this.payment = payment;
+    return this;
+  }
+
+   /**
+   * Get payment
+   * @return payment
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Payment getPayment() {
+    return payment;
+  }
+
+
+  public void setPayment(Payment payment) {
+    this.payment = payment;
+  }
 
 
   public Destination transfer(Transfer transfer) {
@@ -70,6 +93,29 @@ public class Destination {
 
   public void setTransfer(Transfer transfer) {
     this.transfer = transfer;
+  }
+
+
+  public Destination destinationId(String destinationId) {
+    
+    this.destinationId = destinationId;
+    return this;
+  }
+
+   /**
+   * The unique identifier of the destination
+   * @return destinationId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The unique identifier of the destination")
+
+  public String getDestinationId() {
+    return destinationId;
+  }
+
+
+  public void setDestinationId(String destinationId) {
+    this.destinationId = destinationId;
   }
 
 
@@ -96,52 +142,6 @@ public class Destination {
   }
 
 
-  public Destination payment(Payment payment) {
-    
-    this.payment = payment;
-    return this;
-  }
-
-   /**
-   * Get payment
-   * @return payment
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Payment getPayment() {
-    return payment;
-  }
-
-
-  public void setPayment(Payment payment) {
-    this.payment = payment;
-  }
-
-
-  public Destination destinationId(String destinationId) {
-    
-    this.destinationId = destinationId;
-    return this;
-  }
-
-   /**
-   * The unique identifiers of the destination
-   * @return destinationId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The unique identifiers of the destination")
-
-  public String getDestinationId() {
-    return destinationId;
-  }
-
-
-  public void setDestinationId(String destinationId) {
-    this.destinationId = destinationId;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -151,25 +151,25 @@ public class Destination {
       return false;
     }
     Destination destination = (Destination) o;
-    return Objects.equals(this.transfer, destination.transfer) &&
-        Objects.equals(this.smartContract, destination.smartContract) &&
-        Objects.equals(this.payment, destination.payment) &&
-        Objects.equals(this.destinationId, destination.destinationId);
+    return Objects.equals(this.payment, destination.payment) &&
+        Objects.equals(this.transfer, destination.transfer) &&
+        Objects.equals(this.destinationId, destination.destinationId) &&
+        Objects.equals(this.smartContract, destination.smartContract);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(transfer, smartContract, payment, destinationId);
+    return Objects.hash(payment, transfer, destinationId, smartContract);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Destination {\n");
-    sb.append("    transfer: ").append(toIndentedString(transfer)).append("\n");
-    sb.append("    smartContract: ").append(toIndentedString(smartContract)).append("\n");
     sb.append("    payment: ").append(toIndentedString(payment)).append("\n");
+    sb.append("    transfer: ").append(toIndentedString(transfer)).append("\n");
     sb.append("    destinationId: ").append(toIndentedString(destinationId)).append("\n");
+    sb.append("    smartContract: ").append(toIndentedString(smartContract)).append("\n");
     sb.append("}");
     return sb.toString();
   }

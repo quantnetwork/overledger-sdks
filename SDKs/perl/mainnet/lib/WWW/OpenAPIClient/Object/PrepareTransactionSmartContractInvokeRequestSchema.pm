@@ -2,7 +2,7 @@
 
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -46,7 +46,7 @@ use base ("Class::Accessor", "Class::Data::Inheritable");
 
 Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -162,20 +162,6 @@ __PACKAGE__->class_documentation({description => '',
 }                                 );
 
 __PACKAGE__->method_documentation({
-    'urgency' => {
-        datatype => 'string',
-        base_name => 'urgency',
-        description => '',
-        format => '',
-        read_only => '',
-            },
-    'request_details' => {
-        datatype => 'SmartContractInvokeRequestDetailsSchema',
-        base_name => 'requestDetails',
-        description => '',
-        format => '',
-        read_only => '',
-            },
     'location' => {
         datatype => 'Location',
         base_name => 'location',
@@ -186,6 +172,20 @@ __PACKAGE__->method_documentation({
     'type' => {
         datatype => 'string',
         base_name => 'type',
+        description => 'The type of the transaction',
+        format => '',
+        read_only => '',
+            },
+    'urgency' => {
+        datatype => 'string',
+        base_name => 'urgency',
+        description => 'This value defines how fast a transaction is processed on a network. A faster processing requirement will result in higher fees. If the urgency field is not provided, the default setting is normal',
+        format => '',
+        read_only => '',
+            },
+    'request_details' => {
+        datatype => 'SmartContractInvokeRequestDetailsSchema',
+        base_name => 'requestDetails',
         description => '',
         format => '',
         read_only => '',
@@ -193,17 +193,17 @@ __PACKAGE__->method_documentation({
 });
 
 __PACKAGE__->openapi_types( {
-    'urgency' => 'string',
-    'request_details' => 'SmartContractInvokeRequestDetailsSchema',
     'location' => 'Location',
-    'type' => 'string'
+    'type' => 'string',
+    'urgency' => 'string',
+    'request_details' => 'SmartContractInvokeRequestDetailsSchema'
 } );
 
 __PACKAGE__->attribute_map( {
-    'urgency' => 'urgency',
-    'request_details' => 'requestDetails',
     'location' => 'location',
-    'type' => 'type'
+    'type' => 'type',
+    'urgency' => 'urgency',
+    'request_details' => 'requestDetails'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

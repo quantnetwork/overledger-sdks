@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **UtxoId** | **string** |  | [optional] 
 **Destination** | [**List&lt;UTXODestination&gt;**](UTXODestination.md) |  | [optional] 
 **Location** | [**Location**](Location.md) |  | [optional] 
-**Timestamp** | [**UTXOTimestampSchema**](UTXOTimestampSchema.md) |  | [optional] 
+**Timestamp** | **string** |  | [optional] 
 **Status** | [**Status**](Status.md) |  | [optional] 
 **NativeData** | [**UTXONativeData**](UTXONativeData.md) |  | [optional] 
 

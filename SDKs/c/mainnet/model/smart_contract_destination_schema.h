@@ -21,16 +21,16 @@ typedef struct smart_contract_destination_schema_t smart_contract_destination_sc
 
 
 typedef struct smart_contract_destination_schema_t {
+    char *destination_id; // string
     struct smart_contract_schema_t *smart_contract; //model
     struct smart_contract_payment_schema_t *payment; //model
-    char *destination_id; // string
 
 } smart_contract_destination_schema_t;
 
 smart_contract_destination_schema_t *smart_contract_destination_schema_create(
+    char *destination_id,
     smart_contract_schema_t *smart_contract,
-    smart_contract_payment_schema_t *payment,
-    char *destination_id
+    smart_contract_payment_schema_t *payment
 );
 
 void smart_contract_destination_schema_free(smart_contract_destination_schema_t *smart_contract_destination_schema);

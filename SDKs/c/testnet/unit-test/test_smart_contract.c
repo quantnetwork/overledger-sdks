@@ -23,19 +23,19 @@ smart_contract_t* instantiate_smart_contract(int include_optional) {
   smart_contract_t* smart_contract = NULL;
   if (include_optional) {
     smart_contract = smart_contract_create(
-       // false, not to have infinite recursion
-      instantiate_function(0),
       "a",
       "a",
       "0",
+       // false, not to have infinite recursion
+      instantiate_function(0),
       0
     );
   } else {
     smart_contract = smart_contract_create(
-      NULL,
       "a",
       "a",
       "0",
+      NULL,
       0
     );
   }

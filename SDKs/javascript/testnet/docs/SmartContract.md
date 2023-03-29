@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_function** | [**Function**](Function.md) |  | [optional] 
 **detail** | **String** |  | [optional] 
 **type** | **String** | Information on the object type | [optional] 
 **smartContractId** | **String** |  | [optional] 
+**_function** | [**Function**](Function.md) |  | [optional] 
 **extraFields** | **Object** |  | [optional] 
 
 

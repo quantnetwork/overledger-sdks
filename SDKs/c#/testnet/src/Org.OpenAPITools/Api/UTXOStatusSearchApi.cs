@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -77,7 +77,7 @@ namespace Org.OpenAPITools.Api
         /// Prepare Search for a UTXO State.
         /// </summary>
         /// <remarks>
-        /// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
+        /// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -90,7 +90,7 @@ namespace Org.OpenAPITools.Api
         /// Prepare Search for a UTXO State.
         /// </summary>
         /// <remarks>
-        /// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
+        /// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -156,7 +156,7 @@ namespace Org.OpenAPITools.Api
         /// Prepare Search for a UTXO State.
         /// </summary>
         /// <remarks>
-        /// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
+        /// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -170,7 +170,7 @@ namespace Org.OpenAPITools.Api
         /// Prepare Search for a UTXO State.
         /// </summary>
         /// <remarks>
-        /// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
+        /// Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -637,7 +637,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Prepare Search for a UTXO State. Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
+        /// Prepare Search for a UTXO State. Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -651,7 +651,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Prepare Search for a UTXO State. Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
+        /// Prepare Search for a UTXO State. Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -729,7 +729,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Prepare Search for a UTXO State. Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
+        /// Prepare Search for a UTXO State. Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>
@@ -745,7 +745,7 @@ namespace Org.OpenAPITools.Api
         }
 
         /// <summary>
-        /// Prepare Search for a UTXO State. Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT&#39;s
+        /// Prepare Search for a UTXO State. Returns a request ID for executing a search for the status ofa UTXO on UTXO based DLT’s
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="authorization"></param>

@@ -1,6 +1,6 @@
 /**
  * Quant Overledger API
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -49,14 +49,14 @@ class ApproveRequestDetailsSchema {
         if (data) {
             obj = obj || new ApproveRequestDetailsSchema();
 
+            if (data.hasOwnProperty('payer')) {
+                obj['payer'] = ApiClient.convertToType(data['payer'], [PayerCreditSchema]);
+            }
             if (data.hasOwnProperty('mandate')) {
                 obj['mandate'] = ApiClient.convertToType(data['mandate'], [PayeeCreditSchema]);
             }
             if (data.hasOwnProperty('overledgerSigningType')) {
                 obj['overledgerSigningType'] = ApiClient.convertToType(data['overledgerSigningType'], 'String');
-            }
-            if (data.hasOwnProperty('payer')) {
-                obj['payer'] = ApiClient.convertToType(data['payer'], [PayerCreditSchema]);
             }
         }
         return obj;
@@ -64,6 +64,12 @@ class ApproveRequestDetailsSchema {
 
 
 }
+
+/**
+ * Who are the payers of this transaction
+ * @member {Array.<module:model/PayerCreditSchema>} payer
+ */
+ApproveRequestDetailsSchema.prototype['payer'] = undefined;
 
 /**
  * Who are the payees of this transaction
@@ -75,12 +81,6 @@ ApproveRequestDetailsSchema.prototype['mandate'] = undefined;
  * @member {String} overledgerSigningType
  */
 ApproveRequestDetailsSchema.prototype['overledgerSigningType'] = undefined;
-
-/**
- * Who are the payers of this transaction
- * @member {Array.<module:model/PayerCreditSchema>} payer
- */
-ApproveRequestDetailsSchema.prototype['payer'] = undefined;
 
 
 

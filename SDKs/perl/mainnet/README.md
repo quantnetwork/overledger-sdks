@@ -2,11 +2,7 @@
 
 WWW::OpenAPIClient::Role - a Moose role for the Quant Overledger API
 
-Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
-
-# Authentication
-
-<!-- ReDoc-Inject: <security-definitions> -->
+Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 # VERSION
 
@@ -238,13 +234,38 @@ use WWW::OpenAPIClient::AddressSearchApi;
 use WWW::OpenAPIClient::BlockSearchApi;
 use WWW::OpenAPIClient::CreateAQRC20CreditTransactionApi;
 use WWW::OpenAPIClient::CreateAQRC20DebitTransactionApi;
-use WWW::OpenAPIClient::CreateSubscriptionApi;
-use WWW::OpenAPIClient::CreateTransactionApi;
-use WWW::OpenAPIClient::MDappTransactionQueryApi;
+use WWW::OpenAPIClient::CreateAQRC721TokenCollectionTransactionApi;
+use WWW::OpenAPIClient::CreateAQRC721TransferTransactionApi;
+use WWW::OpenAPIClient::CreateASubscriptionApi;
+use WWW::OpenAPIClient::CreateATransactionApi;
+use WWW::OpenAPIClient::CreateAndPayFromAQRC20SharedAccountApi;
+use WWW::OpenAPIClient::FungibleTokenControllerApi;
+use WWW::OpenAPIClient::MDAppTransactionQueryApi;
 use WWW::OpenAPIClient::ManageMonitoredResourcesApi;
-use WWW::OpenAPIClient::ManageSubscriptionApi;
+use WWW::OpenAPIClient::ManageQRC20TokenSupplyApi;
+use WWW::OpenAPIClient::ManageQRC721TokenSupplyApi;
+use WWW::OpenAPIClient::ManageSubscriptionsApi;
 use WWW::OpenAPIClient::MonitorAResourceApi;
+use WWW::OpenAPIClient::RetrieveAccountBalanceForAQRC20TokenApi;
+use WWW::OpenAPIClient::RetrieveApprovedAccountAllowanceForAQRC20TokenApi;
+use WWW::OpenAPIClient::RetrieveApprovedAccountInformationForAQRC20TokenApi;
+use WWW::OpenAPIClient::RetrieveApprovedAccountInformationOfAQRC721TokenApi;
+use WWW::OpenAPIClient::RetrieveContractOwnerInformationOfAQRCTokenApi;
+use WWW::OpenAPIClient::RetrieveOwnerInformationForAQRC721TokenApi;
+use WWW::OpenAPIClient::RetrieveSupplyInformationForAQRCTokenApi;
+use WWW::OpenAPIClient::RetrieveTheCountOfQRC721TokensApi;
+use WWW::OpenAPIClient::RetrieveURIInformationForAQRC721TokenApi;
 use WWW::OpenAPIClient::SmartContractSearchApi;
+use WWW::OpenAPIClient::SubscribeToQRC20AccountCreditPaymentsApi;
+use WWW::OpenAPIClient::SubscribeToQRC20AccountDebitPaymentsApi;
+use WWW::OpenAPIClient::SubscribeToQRC20SharedAccountUpdatesApi;
+use WWW::OpenAPIClient::SubscribeToQRC20TokenSupplyChangesApi;
+use WWW::OpenAPIClient::SubscribeToQRC721AssetCollectionUpdatesApi;
+use WWW::OpenAPIClient::SubscribeToQRC721AssetTransfersApi;
+use WWW::OpenAPIClient::SubscribeToQRC721SupplyChangeUpdatesApi;
+use WWW::OpenAPIClient::SupportedFungibleTokensApi;
+use WWW::OpenAPIClient::SupportedNonFungibleTokensApi;
+use WWW::OpenAPIClient::TokenControllerApi;
 use WWW::OpenAPIClient::TransactionSearchApi;
 use WWW::OpenAPIClient::UTXOStatusSearchApi;
 
@@ -252,29 +273,48 @@ use WWW::OpenAPIClient::UTXOStatusSearchApi;
 
 To load the models:
 ```perl
+use WWW::OpenAPIClient::Object::AccountDetails;
+use WWW::OpenAPIClient::Object::AddSecondaryAccountRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::AdditionalOwner;
+use WWW::OpenAPIClient::Object::AdditionalOwnerRemoveSecondarySchema;
 use WWW::OpenAPIClient::Object::AddressBalanceResponse;
 use WWW::OpenAPIClient::Object::AddressMonitoringDetailsSchema;
 use WWW::OpenAPIClient::Object::AddressMonitoringRequestSchema;
 use WWW::OpenAPIClient::Object::AddressMonitoringResponseSchema;
+use WWW::OpenAPIClient::Object::AliasDetails;
 use WWW::OpenAPIClient::Object::ApproveRequestDetailsSchema;
 use WWW::OpenAPIClient::Object::AutoExecSearchAddressSequenceResponseSchema;
 use WWW::OpenAPIClient::Object::AutoExecuteSearchAddressBalanceResponseSchema;
 use WWW::OpenAPIClient::Object::AutoExecuteSearchBlockResponseSchema;
 use WWW::OpenAPIClient::Object::AutoExecuteSearchUTXOResponseSchema;
+use WWW::OpenAPIClient::Object::Beneficiary;
+use WWW::OpenAPIClient::Object::BeneficiaryMintSchemaQrc20;
+use WWW::OpenAPIClient::Object::BeneficiaryMintSchemaQrc721;
 use WWW::OpenAPIClient::Object::Block;
 use WWW::OpenAPIClient::Object::BlockHash;
 use WWW::OpenAPIClient::Object::BlockSize;
+use WWW::OpenAPIClient::Object::Burn;
+use WWW::OpenAPIClient::Object::BurnRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::BurnRequestDetailsSchemaQrc721;
+use WWW::OpenAPIClient::Object::BurnSchema;
+use WWW::OpenAPIClient::Object::Collector;
 use WWW::OpenAPIClient::Object::CreateSmartContractMonitoringSchema;
-use WWW::OpenAPIClient::Object::CreateSubscriptionRequestSchema;
-use WWW::OpenAPIClient::Object::CreateSubscriptionResponseSchema;
+use WWW::OpenAPIClient::Object::CreateWebhookSubscriptionRequestSchema;
+use WWW::OpenAPIClient::Object::CreateWebhookSubscriptionResponseSchema;
+use WWW::OpenAPIClient::Object::Creator;
+use WWW::OpenAPIClient::Object::CreatorMintSchema;
 use WWW::OpenAPIClient::Object::CreditRequestDetailsSchema;
 use WWW::OpenAPIClient::Object::DeleteResourceMonitoringAddressSchema;
 use WWW::OpenAPIClient::Object::Destination;
 use WWW::OpenAPIClient::Object::DestinationPaymentSchema;
 use WWW::OpenAPIClient::Object::DestinationTransferSchema;
+use WWW::OpenAPIClient::Object::Erc20DTO;
 use WWW::OpenAPIClient::Object::Error;
 use WWW::OpenAPIClient::Object::ErrorDetails;
 use WWW::OpenAPIClient::Object::ErrorList;
+use WWW::OpenAPIClient::Object::ErrorResponseMessage;
+use WWW::OpenAPIClient::Object::EventSubscriptionResponse;
+use WWW::OpenAPIClient::Object::EventSubscriptionResponseDetails;
 use WWW::OpenAPIClient::Object::ExecuteSearchBalanceResponse;
 use WWW::OpenAPIClient::Object::ExecuteSearchBlockResponse;
 use WWW::OpenAPIClient::Object::ExecuteSearchSequenceResponse;
@@ -287,36 +327,74 @@ use WWW::OpenAPIClient::Object::ExecuteTransactionResponse;
 use WWW::OpenAPIClient::Object::ExtraFields;
 use WWW::OpenAPIClient::Object::Fee;
 use WWW::OpenAPIClient::Object::Function;
+use WWW::OpenAPIClient::Object::FunctionDTO;
+use WWW::OpenAPIClient::Object::FungibleTokenResponseDTO;
 use WWW::OpenAPIClient::Object::InternalServerErrorSchema;
 use WWW::OpenAPIClient::Object::LinkedBlocks;
-use WWW::OpenAPIClient::Object::ListSubscriptionResponseSchema;
+use WWW::OpenAPIClient::Object::ListWebhookSubscriptionResponseSchema;
 use WWW::OpenAPIClient::Object::Location;
+use WWW::OpenAPIClient::Object::LocationDTO;
+use WWW::OpenAPIClient::Object::LockDetails;
+use WWW::OpenAPIClient::Object::Mandate;
+use WWW::OpenAPIClient::Object::Mint;
+use WWW::OpenAPIClient::Object::MintRequestDetailsSchemaQrc20;
+use WWW::OpenAPIClient::Object::MintRequestDetailsSchemaQrc721;
+use WWW::OpenAPIClient::Object::MintSchemaQrc20;
+use WWW::OpenAPIClient::Object::MintSchemaQrc721;
 use WWW::OpenAPIClient::Object::MonitorSmartContractEventParam;
 use WWW::OpenAPIClient::Object::MonitorSmartContractRequestSchema;
+use WWW::OpenAPIClient::Object::NonFungibleTokenDTO;
+use WWW::OpenAPIClient::Object::NonFungibleTokenResponse;
 use WWW::OpenAPIClient::Object::Origin;
 use WWW::OpenAPIClient::Object::OriginPaymentSchema;
 use WWW::OpenAPIClient::Object::OriginTransferSchema;
 use WWW::OpenAPIClient::Object::OverledgerTransactionResponseSchema;
+use WWW::OpenAPIClient::Object::Owner;
+use WWW::OpenAPIClient::Object::OwnerBurnSchema;
+use WWW::OpenAPIClient::Object::OwnerRemoveSecondarySchema;
+use WWW::OpenAPIClient::Object::Pagination;
 use WWW::OpenAPIClient::Object::Parameter;
+use WWW::OpenAPIClient::Object::Payee;
 use WWW::OpenAPIClient::Object::PayeeCreditSchema;
+use WWW::OpenAPIClient::Object::Payer;
 use WWW::OpenAPIClient::Object::PayerCreditSchema;
 use WWW::OpenAPIClient::Object::Payment;
 use WWW::OpenAPIClient::Object::PaymentRequestDetailsSchema;
 use WWW::OpenAPIClient::Object::PaymentSchema;
+use WWW::OpenAPIClient::Object::PrepareAddSecondaryAccountRequestSchema;
 use WWW::OpenAPIClient::Object::PrepareAndExecuteBalanceDetails;
 use WWW::OpenAPIClient::Object::PrepareAndExecuteOverledgerErrorResponse;
 use WWW::OpenAPIClient::Object::PrepareAndExecuteSearchAddressBalanceResponse;
 use WWW::OpenAPIClient::Object::PrepareAndExecuteTransactionResponse;
 use WWW::OpenAPIClient::Object::PrepareApproveDebitTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::PrepareBurnTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::PrepareBurnTransactionRequestSchemaQrc721;
 use WWW::OpenAPIClient::Object::PrepareCreditTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::PrepareMintTransactionRequestSchemaQrc20;
+use WWW::OpenAPIClient::Object::PrepareMintTransactionRequestSchemaQrc721;
 use WWW::OpenAPIClient::Object::PrepareNativeTransactionRequestSchema;
 use WWW::OpenAPIClient::Object::PreparePaymentTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::PrepareRemoveSecondaryAccountTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::PrepareRequest;
+use WWW::OpenAPIClient::Object::PrepareRequestDetails;
 use WWW::OpenAPIClient::Object::PrepareSearchResponseSchema;
 use WWW::OpenAPIClient::Object::PrepareSearchSchema;
 use WWW::OpenAPIClient::Object::PrepareSearchSmartContractRequestSchema;
 use WWW::OpenAPIClient::Object::PrepareTransactionResponse;
 use WWW::OpenAPIClient::Object::PrepareTransactionSmartContractInvokeRequestSchema;
 use WWW::OpenAPIClient::Object::PrepareTransferTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::ReadAccountBalanceRequestSchema;
+use WWW::OpenAPIClient::Object::ReadApprovedAccountAllowanceRequestSchema;
+use WWW::OpenAPIClient::Object::ReadApprovedAccountRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::ReadApprovedAccountRequestSchema;
+use WWW::OpenAPIClient::Object::ReadBalanceRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::ReadBalanceRequestSchema;
+use WWW::OpenAPIClient::Object::ReadContractOwnerRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::ReadContractOwnerRequestSchema;
+use WWW::OpenAPIClient::Object::ReadTokenOwnerRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::ReadTokenOwnerRequestSchema;
+use WWW::OpenAPIClient::Object::Receiver;
+use WWW::OpenAPIClient::Object::RemoveSecondaryAccountDetailsSchema;
 use WWW::OpenAPIClient::Object::ResourceMonitoredAddressDetails;
 use WWW::OpenAPIClient::Object::ResourceMonitoringAddressDetails;
 use WWW::OpenAPIClient::Object::ResourceMonitoringAddressSchema;
@@ -325,6 +403,10 @@ use WWW::OpenAPIClient::Object::ResourceMonitoringSmartContractEventDetails;
 use WWW::OpenAPIClient::Object::ResourceMonitoringSubscription;
 use WWW::OpenAPIClient::Object::ResourceMonitoringSubscriptionDetails;
 use WWW::OpenAPIClient::Object::ScriptPubKey;
+use WWW::OpenAPIClient::Object::SecondaryAccountAdditionalOwnerSchema;
+use WWW::OpenAPIClient::Object::SecondaryAccountOwnerSchema;
+use WWW::OpenAPIClient::Object::Sender;
+use WWW::OpenAPIClient::Object::SignerAccount;
 use WWW::OpenAPIClient::Object::SmartContract;
 use WWW::OpenAPIClient::Object::SmartContractDestinationSchema;
 use WWW::OpenAPIClient::Object::SmartContractEventHistory;
@@ -343,13 +425,14 @@ use WWW::OpenAPIClient::Object::SmartContractSearchDestinationSchema;
 use WWW::OpenAPIClient::Object::SmartContractSearchFunctionSchema;
 use WWW::OpenAPIClient::Object::SmartContractSearchRequestDetails;
 use WWW::OpenAPIClient::Object::SmartContractSearchSchema;
+use WWW::OpenAPIClient::Object::SmartContractTag;
 use WWW::OpenAPIClient::Object::Status;
 use WWW::OpenAPIClient::Object::StatusUpdateMonitoringRequestSchema;
 use WWW::OpenAPIClient::Object::StatusUpdateSchema;
-use WWW::OpenAPIClient::Object::SubscriptionDeletionResponse;
-use WWW::OpenAPIClient::Object::SubscriptionDetails;
-use WWW::OpenAPIClient::Object::SubscriptionDetailsSchema;
-use WWW::OpenAPIClient::Object::SubscriptionUpdateResponse;
+use WWW::OpenAPIClient::Object::TierFunctionDTO;
+use WWW::OpenAPIClient::Object::TokenReadQRC20Response;
+use WWW::OpenAPIClient::Object::TokenReadQRC721Response;
+use WWW::OpenAPIClient::Object::TokenReadResponseDetails;
 use WWW::OpenAPIClient::Object::Transaction;
 use WWW::OpenAPIClient::Object::Transfer;
 use WWW::OpenAPIClient::Object::TransferRequestDetailsSchema;
@@ -357,10 +440,13 @@ use WWW::OpenAPIClient::Object::TransferSchema;
 use WWW::OpenAPIClient::Object::UTXODestination;
 use WWW::OpenAPIClient::Object::UTXONativeData;
 use WWW::OpenAPIClient::Object::UTXOSmartContract;
-use WWW::OpenAPIClient::Object::UTXOTimestampSchema;
 use WWW::OpenAPIClient::Object::UpdateAddressMonitoringSchema;
-use WWW::OpenAPIClient::Object::UpdateSubscriptionRequestSchema;
+use WWW::OpenAPIClient::Object::UpdateWebhookSubscriptionRequestSchema;
 use WWW::OpenAPIClient::Object::Vout;
+use WWW::OpenAPIClient::Object::WebhookStatusUpdateSchema;
+use WWW::OpenAPIClient::Object::WebhookSubscriptionDetails;
+use WWW::OpenAPIClient::Object::WebhookSubscriptionDetailsSchema;
+use WWW::OpenAPIClient::Object::WebhookSubscriptionStatusUpdateResponse;
 
 ````
 
@@ -376,40 +462,84 @@ use WWW::OpenAPIClient::AddressSearchApi;
 use WWW::OpenAPIClient::BlockSearchApi;
 use WWW::OpenAPIClient::CreateAQRC20CreditTransactionApi;
 use WWW::OpenAPIClient::CreateAQRC20DebitTransactionApi;
-use WWW::OpenAPIClient::CreateSubscriptionApi;
-use WWW::OpenAPIClient::CreateTransactionApi;
-use WWW::OpenAPIClient::MDappTransactionQueryApi;
+use WWW::OpenAPIClient::CreateAQRC721TokenCollectionTransactionApi;
+use WWW::OpenAPIClient::CreateAQRC721TransferTransactionApi;
+use WWW::OpenAPIClient::CreateASubscriptionApi;
+use WWW::OpenAPIClient::CreateATransactionApi;
+use WWW::OpenAPIClient::CreateAndPayFromAQRC20SharedAccountApi;
+use WWW::OpenAPIClient::FungibleTokenControllerApi;
+use WWW::OpenAPIClient::MDAppTransactionQueryApi;
 use WWW::OpenAPIClient::ManageMonitoredResourcesApi;
-use WWW::OpenAPIClient::ManageSubscriptionApi;
+use WWW::OpenAPIClient::ManageQRC20TokenSupplyApi;
+use WWW::OpenAPIClient::ManageQRC721TokenSupplyApi;
+use WWW::OpenAPIClient::ManageSubscriptionsApi;
 use WWW::OpenAPIClient::MonitorAResourceApi;
+use WWW::OpenAPIClient::RetrieveAccountBalanceForAQRC20TokenApi;
+use WWW::OpenAPIClient::RetrieveApprovedAccountAllowanceForAQRC20TokenApi;
+use WWW::OpenAPIClient::RetrieveApprovedAccountInformationForAQRC20TokenApi;
+use WWW::OpenAPIClient::RetrieveApprovedAccountInformationOfAQRC721TokenApi;
+use WWW::OpenAPIClient::RetrieveContractOwnerInformationOfAQRCTokenApi;
+use WWW::OpenAPIClient::RetrieveOwnerInformationForAQRC721TokenApi;
+use WWW::OpenAPIClient::RetrieveSupplyInformationForAQRCTokenApi;
+use WWW::OpenAPIClient::RetrieveTheCountOfQRC721TokensApi;
+use WWW::OpenAPIClient::RetrieveURIInformationForAQRC721TokenApi;
 use WWW::OpenAPIClient::SmartContractSearchApi;
+use WWW::OpenAPIClient::SubscribeToQRC20AccountCreditPaymentsApi;
+use WWW::OpenAPIClient::SubscribeToQRC20AccountDebitPaymentsApi;
+use WWW::OpenAPIClient::SubscribeToQRC20SharedAccountUpdatesApi;
+use WWW::OpenAPIClient::SubscribeToQRC20TokenSupplyChangesApi;
+use WWW::OpenAPIClient::SubscribeToQRC721AssetCollectionUpdatesApi;
+use WWW::OpenAPIClient::SubscribeToQRC721AssetTransfersApi;
+use WWW::OpenAPIClient::SubscribeToQRC721SupplyChangeUpdatesApi;
+use WWW::OpenAPIClient::SupportedFungibleTokensApi;
+use WWW::OpenAPIClient::SupportedNonFungibleTokensApi;
+use WWW::OpenAPIClient::TokenControllerApi;
 use WWW::OpenAPIClient::TransactionSearchApi;
 use WWW::OpenAPIClient::UTXOStatusSearchApi;
 
 # load the models
+use WWW::OpenAPIClient::Object::AccountDetails;
+use WWW::OpenAPIClient::Object::AddSecondaryAccountRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::AdditionalOwner;
+use WWW::OpenAPIClient::Object::AdditionalOwnerRemoveSecondarySchema;
 use WWW::OpenAPIClient::Object::AddressBalanceResponse;
 use WWW::OpenAPIClient::Object::AddressMonitoringDetailsSchema;
 use WWW::OpenAPIClient::Object::AddressMonitoringRequestSchema;
 use WWW::OpenAPIClient::Object::AddressMonitoringResponseSchema;
+use WWW::OpenAPIClient::Object::AliasDetails;
 use WWW::OpenAPIClient::Object::ApproveRequestDetailsSchema;
 use WWW::OpenAPIClient::Object::AutoExecSearchAddressSequenceResponseSchema;
 use WWW::OpenAPIClient::Object::AutoExecuteSearchAddressBalanceResponseSchema;
 use WWW::OpenAPIClient::Object::AutoExecuteSearchBlockResponseSchema;
 use WWW::OpenAPIClient::Object::AutoExecuteSearchUTXOResponseSchema;
+use WWW::OpenAPIClient::Object::Beneficiary;
+use WWW::OpenAPIClient::Object::BeneficiaryMintSchemaQrc20;
+use WWW::OpenAPIClient::Object::BeneficiaryMintSchemaQrc721;
 use WWW::OpenAPIClient::Object::Block;
 use WWW::OpenAPIClient::Object::BlockHash;
 use WWW::OpenAPIClient::Object::BlockSize;
+use WWW::OpenAPIClient::Object::Burn;
+use WWW::OpenAPIClient::Object::BurnRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::BurnRequestDetailsSchemaQrc721;
+use WWW::OpenAPIClient::Object::BurnSchema;
+use WWW::OpenAPIClient::Object::Collector;
 use WWW::OpenAPIClient::Object::CreateSmartContractMonitoringSchema;
-use WWW::OpenAPIClient::Object::CreateSubscriptionRequestSchema;
-use WWW::OpenAPIClient::Object::CreateSubscriptionResponseSchema;
+use WWW::OpenAPIClient::Object::CreateWebhookSubscriptionRequestSchema;
+use WWW::OpenAPIClient::Object::CreateWebhookSubscriptionResponseSchema;
+use WWW::OpenAPIClient::Object::Creator;
+use WWW::OpenAPIClient::Object::CreatorMintSchema;
 use WWW::OpenAPIClient::Object::CreditRequestDetailsSchema;
 use WWW::OpenAPIClient::Object::DeleteResourceMonitoringAddressSchema;
 use WWW::OpenAPIClient::Object::Destination;
 use WWW::OpenAPIClient::Object::DestinationPaymentSchema;
 use WWW::OpenAPIClient::Object::DestinationTransferSchema;
+use WWW::OpenAPIClient::Object::Erc20DTO;
 use WWW::OpenAPIClient::Object::Error;
 use WWW::OpenAPIClient::Object::ErrorDetails;
 use WWW::OpenAPIClient::Object::ErrorList;
+use WWW::OpenAPIClient::Object::ErrorResponseMessage;
+use WWW::OpenAPIClient::Object::EventSubscriptionResponse;
+use WWW::OpenAPIClient::Object::EventSubscriptionResponseDetails;
 use WWW::OpenAPIClient::Object::ExecuteSearchBalanceResponse;
 use WWW::OpenAPIClient::Object::ExecuteSearchBlockResponse;
 use WWW::OpenAPIClient::Object::ExecuteSearchSequenceResponse;
@@ -422,36 +552,74 @@ use WWW::OpenAPIClient::Object::ExecuteTransactionResponse;
 use WWW::OpenAPIClient::Object::ExtraFields;
 use WWW::OpenAPIClient::Object::Fee;
 use WWW::OpenAPIClient::Object::Function;
+use WWW::OpenAPIClient::Object::FunctionDTO;
+use WWW::OpenAPIClient::Object::FungibleTokenResponseDTO;
 use WWW::OpenAPIClient::Object::InternalServerErrorSchema;
 use WWW::OpenAPIClient::Object::LinkedBlocks;
-use WWW::OpenAPIClient::Object::ListSubscriptionResponseSchema;
+use WWW::OpenAPIClient::Object::ListWebhookSubscriptionResponseSchema;
 use WWW::OpenAPIClient::Object::Location;
+use WWW::OpenAPIClient::Object::LocationDTO;
+use WWW::OpenAPIClient::Object::LockDetails;
+use WWW::OpenAPIClient::Object::Mandate;
+use WWW::OpenAPIClient::Object::Mint;
+use WWW::OpenAPIClient::Object::MintRequestDetailsSchemaQrc20;
+use WWW::OpenAPIClient::Object::MintRequestDetailsSchemaQrc721;
+use WWW::OpenAPIClient::Object::MintSchemaQrc20;
+use WWW::OpenAPIClient::Object::MintSchemaQrc721;
 use WWW::OpenAPIClient::Object::MonitorSmartContractEventParam;
 use WWW::OpenAPIClient::Object::MonitorSmartContractRequestSchema;
+use WWW::OpenAPIClient::Object::NonFungibleTokenDTO;
+use WWW::OpenAPIClient::Object::NonFungibleTokenResponse;
 use WWW::OpenAPIClient::Object::Origin;
 use WWW::OpenAPIClient::Object::OriginPaymentSchema;
 use WWW::OpenAPIClient::Object::OriginTransferSchema;
 use WWW::OpenAPIClient::Object::OverledgerTransactionResponseSchema;
+use WWW::OpenAPIClient::Object::Owner;
+use WWW::OpenAPIClient::Object::OwnerBurnSchema;
+use WWW::OpenAPIClient::Object::OwnerRemoveSecondarySchema;
+use WWW::OpenAPIClient::Object::Pagination;
 use WWW::OpenAPIClient::Object::Parameter;
+use WWW::OpenAPIClient::Object::Payee;
 use WWW::OpenAPIClient::Object::PayeeCreditSchema;
+use WWW::OpenAPIClient::Object::Payer;
 use WWW::OpenAPIClient::Object::PayerCreditSchema;
 use WWW::OpenAPIClient::Object::Payment;
 use WWW::OpenAPIClient::Object::PaymentRequestDetailsSchema;
 use WWW::OpenAPIClient::Object::PaymentSchema;
+use WWW::OpenAPIClient::Object::PrepareAddSecondaryAccountRequestSchema;
 use WWW::OpenAPIClient::Object::PrepareAndExecuteBalanceDetails;
 use WWW::OpenAPIClient::Object::PrepareAndExecuteOverledgerErrorResponse;
 use WWW::OpenAPIClient::Object::PrepareAndExecuteSearchAddressBalanceResponse;
 use WWW::OpenAPIClient::Object::PrepareAndExecuteTransactionResponse;
 use WWW::OpenAPIClient::Object::PrepareApproveDebitTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::PrepareBurnTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::PrepareBurnTransactionRequestSchemaQrc721;
 use WWW::OpenAPIClient::Object::PrepareCreditTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::PrepareMintTransactionRequestSchemaQrc20;
+use WWW::OpenAPIClient::Object::PrepareMintTransactionRequestSchemaQrc721;
 use WWW::OpenAPIClient::Object::PrepareNativeTransactionRequestSchema;
 use WWW::OpenAPIClient::Object::PreparePaymentTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::PrepareRemoveSecondaryAccountTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::PrepareRequest;
+use WWW::OpenAPIClient::Object::PrepareRequestDetails;
 use WWW::OpenAPIClient::Object::PrepareSearchResponseSchema;
 use WWW::OpenAPIClient::Object::PrepareSearchSchema;
 use WWW::OpenAPIClient::Object::PrepareSearchSmartContractRequestSchema;
 use WWW::OpenAPIClient::Object::PrepareTransactionResponse;
 use WWW::OpenAPIClient::Object::PrepareTransactionSmartContractInvokeRequestSchema;
 use WWW::OpenAPIClient::Object::PrepareTransferTransactionRequestSchema;
+use WWW::OpenAPIClient::Object::ReadAccountBalanceRequestSchema;
+use WWW::OpenAPIClient::Object::ReadApprovedAccountAllowanceRequestSchema;
+use WWW::OpenAPIClient::Object::ReadApprovedAccountRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::ReadApprovedAccountRequestSchema;
+use WWW::OpenAPIClient::Object::ReadBalanceRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::ReadBalanceRequestSchema;
+use WWW::OpenAPIClient::Object::ReadContractOwnerRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::ReadContractOwnerRequestSchema;
+use WWW::OpenAPIClient::Object::ReadTokenOwnerRequestDetailsSchema;
+use WWW::OpenAPIClient::Object::ReadTokenOwnerRequestSchema;
+use WWW::OpenAPIClient::Object::Receiver;
+use WWW::OpenAPIClient::Object::RemoveSecondaryAccountDetailsSchema;
 use WWW::OpenAPIClient::Object::ResourceMonitoredAddressDetails;
 use WWW::OpenAPIClient::Object::ResourceMonitoringAddressDetails;
 use WWW::OpenAPIClient::Object::ResourceMonitoringAddressSchema;
@@ -460,6 +628,10 @@ use WWW::OpenAPIClient::Object::ResourceMonitoringSmartContractEventDetails;
 use WWW::OpenAPIClient::Object::ResourceMonitoringSubscription;
 use WWW::OpenAPIClient::Object::ResourceMonitoringSubscriptionDetails;
 use WWW::OpenAPIClient::Object::ScriptPubKey;
+use WWW::OpenAPIClient::Object::SecondaryAccountAdditionalOwnerSchema;
+use WWW::OpenAPIClient::Object::SecondaryAccountOwnerSchema;
+use WWW::OpenAPIClient::Object::Sender;
+use WWW::OpenAPIClient::Object::SignerAccount;
 use WWW::OpenAPIClient::Object::SmartContract;
 use WWW::OpenAPIClient::Object::SmartContractDestinationSchema;
 use WWW::OpenAPIClient::Object::SmartContractEventHistory;
@@ -478,13 +650,14 @@ use WWW::OpenAPIClient::Object::SmartContractSearchDestinationSchema;
 use WWW::OpenAPIClient::Object::SmartContractSearchFunctionSchema;
 use WWW::OpenAPIClient::Object::SmartContractSearchRequestDetails;
 use WWW::OpenAPIClient::Object::SmartContractSearchSchema;
+use WWW::OpenAPIClient::Object::SmartContractTag;
 use WWW::OpenAPIClient::Object::Status;
 use WWW::OpenAPIClient::Object::StatusUpdateMonitoringRequestSchema;
 use WWW::OpenAPIClient::Object::StatusUpdateSchema;
-use WWW::OpenAPIClient::Object::SubscriptionDeletionResponse;
-use WWW::OpenAPIClient::Object::SubscriptionDetails;
-use WWW::OpenAPIClient::Object::SubscriptionDetailsSchema;
-use WWW::OpenAPIClient::Object::SubscriptionUpdateResponse;
+use WWW::OpenAPIClient::Object::TierFunctionDTO;
+use WWW::OpenAPIClient::Object::TokenReadQRC20Response;
+use WWW::OpenAPIClient::Object::TokenReadQRC721Response;
+use WWW::OpenAPIClient::Object::TokenReadResponseDetails;
 use WWW::OpenAPIClient::Object::Transaction;
 use WWW::OpenAPIClient::Object::Transfer;
 use WWW::OpenAPIClient::Object::TransferRequestDetailsSchema;
@@ -492,10 +665,13 @@ use WWW::OpenAPIClient::Object::TransferSchema;
 use WWW::OpenAPIClient::Object::UTXODestination;
 use WWW::OpenAPIClient::Object::UTXONativeData;
 use WWW::OpenAPIClient::Object::UTXOSmartContract;
-use WWW::OpenAPIClient::Object::UTXOTimestampSchema;
 use WWW::OpenAPIClient::Object::UpdateAddressMonitoringSchema;
-use WWW::OpenAPIClient::Object::UpdateSubscriptionRequestSchema;
+use WWW::OpenAPIClient::Object::UpdateWebhookSubscriptionRequestSchema;
 use WWW::OpenAPIClient::Object::Vout;
+use WWW::OpenAPIClient::Object::WebhookStatusUpdateSchema;
+use WWW::OpenAPIClient::Object::WebhookSubscriptionDetails;
+use WWW::OpenAPIClient::Object::WebhookSubscriptionDetailsSchema;
+use WWW::OpenAPIClient::Object::WebhookSubscriptionStatusUpdateResponse;
 
 # for displaying the API response data
 use Data::Dumper;
@@ -535,15 +711,22 @@ Class | Method | HTTP request | Description
 *BlockSearchApi* | [**auto_execute_search_block_request**](docs/BlockSearchApi.md#auto_execute_search_block_request) | **POST** /v2/autoexecution/search/block/{blockId} | Prepare and automatically execute a search for a block on a DLT.
 *BlockSearchApi* | [**execute_prepared_search_request_block**](docs/BlockSearchApi.md#execute_prepared_search_request_block) | **POST** /v2/execution/search/block | Execute a search for a block on a DLT
 *BlockSearchApi* | [**prepare_search_block_by_block_id**](docs/BlockSearchApi.md#prepare_search_block_by_block_id) | **POST** /v2/preparation/search/block/{blockId} | Prepare Search Block by Block Id.
+*CreateAQRC20CreditTransactionApi* | [**execute_prepared_request_transaction**](docs/CreateAQRC20CreditTransactionApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on a DLT
 *CreateAQRC20CreditTransactionApi* | [**prepare_credit_request**](docs/CreateAQRC20CreditTransactionApi.md#prepare_credit_request) | **POST** /v2/preparation/credit | Prepare a QRC20 token credit transaction for signing
+*CreateAQRC20DebitTransactionApi* | [**execute_prepared_request_transaction**](docs/CreateAQRC20DebitTransactionApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on a DLT
 *CreateAQRC20DebitTransactionApi* | [**prepare_debit_request**](docs/CreateAQRC20DebitTransactionApi.md#prepare_debit_request) | **POST** /v2/preparation/debit | Prepare a QRC20 token debit transaction for signing
-*CreateSubscriptionApi* | [**subscription**](docs/CreateSubscriptionApi.md#subscription) | **POST** /v2/webhook/subscription | Create a subscription for a transaction or monitored resource 
-*CreateTransactionApi* | [**execute_prepared_request_native_transaction**](docs/CreateTransactionApi.md#execute_prepared_request_native_transaction) | **POST** /v2/execution/nativetransaction | Execute a native transaction on the DLT
-*CreateTransactionApi* | [**execute_prepared_request_transaction**](docs/CreateTransactionApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on the DLT
-*CreateTransactionApi* | [**prepare_native_transaction**](docs/CreateTransactionApi.md#prepare_native_transaction) | **POST** /v2/preparation/nativetransaction | Prepare a DLT native transaction
-*CreateTransactionApi* | [**prepare_transaction_request**](docs/CreateTransactionApi.md#prepare_transaction_request) | **POST** /v2/preparation/transaction | Prepare a DLT transaction for signing
-*MDappTransactionQueryApi* | [**get_ovl_transaction_by_tx_id**](docs/MDappTransactionQueryApi.md#get_ovl_transaction_by_tx_id) | **GET** /v2/mdapptransaction/{overledgertransactionid} | Retrieve information about a specific transaction created by your application in Overledger
-*MDappTransactionQueryApi* | [**get_ovl_transactions_by_client_id**](docs/MDappTransactionQueryApi.md#get_ovl_transactions_by_client_id) | **GET** /v2/mdapptransactions | Retrieve a list of transactions created by your application in Overledger
+*CreateAQRC721TokenCollectionTransactionApi* | [**prepare_collect_request**](docs/CreateAQRC721TokenCollectionTransactionApi.md#prepare_collect_request) | **POST** /v2/tokenise/preparation/transaction/qrc721/collect | Prepare a QRC721 token collection transaction for signing
+*CreateAQRC721TransferTransactionApi* | [**prepare_transaction_request**](docs/CreateAQRC721TransferTransactionApi.md#prepare_transaction_request) | **POST** /v2/tokenise/preparation/transaction/qrc721/transfer | Prepare a QRC721 token transfer transaction for signing
+*CreateASubscriptionApi* | [**subscription**](docs/CreateASubscriptionApi.md#subscription) | **POST** /v2/webhook/subscription | Create a subscription for a transaction or monitored resource 
+*CreateATransactionApi* | [**execute_prepared_request_native_transaction**](docs/CreateATransactionApi.md#execute_prepared_request_native_transaction) | **POST** /v2/execution/nativetransaction | Execute a native transaction on the DLT
+*CreateATransactionApi* | [**execute_prepared_request_transaction**](docs/CreateATransactionApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on a DLT
+*CreateATransactionApi* | [**prepare_native_transaction**](docs/CreateATransactionApi.md#prepare_native_transaction) | **POST** /v2/preparation/nativetransaction | Prepare a DLT native transaction
+*CreateATransactionApi* | [**prepare_transaction_request1**](docs/CreateATransactionApi.md#prepare_transaction_request1) | **POST** /v2/preparation/transaction | Prepare a DLT transaction for signing
+*CreateAndPayFromAQRC20SharedAccountApi* | [**execute_prepared_request_transaction**](docs/CreateAndPayFromAQRC20SharedAccountApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on a DLT
+*CreateAndPayFromAQRC20SharedAccountApi* | [**prepare_secondary_owner_request**](docs/CreateAndPayFromAQRC20SharedAccountApi.md#prepare_secondary_owner_request) | **POST** /v2/preparation/secondaryaccountowner | Prepare a request for a QRC20 shared account
+*FungibleTokenControllerApi* | [**get_token**](docs/FungibleTokenControllerApi.md#get_token) | **GET** /v2/token/fungible | 
+*MDAppTransactionQueryApi* | [**get_ovl_transaction_by_tx_id**](docs/MDAppTransactionQueryApi.md#get_ovl_transaction_by_tx_id) | **GET** /v2/mdapptransaction/{overledgertransactionid} | Retrieve information about a specific transaction created by your application in Overledger
+*MDAppTransactionQueryApi* | [**get_ovl_transactions_by_client_id**](docs/MDAppTransactionQueryApi.md#get_ovl_transactions_by_client_id) | **GET** /v2/mdapptransactions | Retrieve a list of transactions created by your application in Overledger
 *ManageMonitoredResourcesApi* | [**delete_event_monitoring**](docs/ManageMonitoredResourcesApi.md#delete_event_monitoring) | **DELETE** /v2/resourcemonitoring/smartcontractevent/{resourceMonitoringId} | Stop monitoring a smart contract
 *ManageMonitoredResourcesApi* | [**delete_resource_monitoring_address**](docs/ManageMonitoredResourcesApi.md#delete_resource_monitoring_address) | **DELETE** /v2/resourcemonitoring/address/{resourceMonitoringId} | Stop monitoring an address
 *ManageMonitoredResourcesApi* | [**get_list_of_addresses**](docs/ManageMonitoredResourcesApi.md#get_list_of_addresses) | **GET** /v2/resourcemonitoring/addresses | Retrieve a list of addresses being monitored
@@ -553,14 +736,36 @@ Class | Method | HTTP request | Description
 *ManageMonitoredResourcesApi* | [**get_monitored_smart_contract_event_details**](docs/ManageMonitoredResourcesApi.md#get_monitored_smart_contract_event_details) | **GET** /v2/resourcemonitoring/smartcontractevent/{resourceMonitoringId} | Retrieve recorded updates for a specific monitored smart contract
 *ManageMonitoredResourcesApi* | [**update_event_monitoring**](docs/ManageMonitoredResourcesApi.md#update_event_monitoring) | **PATCH** /v2/resourcemonitoring/smartcontractevent/{resourceMonitoringId} | Update the monitoring status of a smart contract
 *ManageMonitoredResourcesApi* | [**update_resource_monitoring_address**](docs/ManageMonitoredResourcesApi.md#update_resource_monitoring_address) | **PATCH** /v2/resourcemonitoring/address/{resourceMonitoringId} | Update the monitoring status of an address
-*ManageSubscriptionApi* | [**delete_subscription**](docs/ManageSubscriptionApi.md#delete_subscription) | **DELETE** /v2/webhook/subscription/{subscriptionId} | Remove a subscription created by your application
-*ManageSubscriptionApi* | [**list_subscriptions**](docs/ManageSubscriptionApi.md#list_subscriptions) | **GET** /v2/webhook/subscriptions | Retrieve a list of subscriptions created by your application
-*ManageSubscriptionApi* | [**update_subscription**](docs/ManageSubscriptionApi.md#update_subscription) | **PATCH** /v2/webhook/subscription/{subscriptionId} | Update a specific subscription created by your application
+*ManageQRC20TokenSupplyApi* | [**execute_prepared_request_transaction**](docs/ManageQRC20TokenSupplyApi.md#execute_prepared_request_transaction) | **POST** /v2/execution/transaction | Execute a transaction on a DLT
+*ManageQRC20TokenSupplyApi* | [**prepare_supply_request1**](docs/ManageQRC20TokenSupplyApi.md#prepare_supply_request1) | **POST** /v2/preparation/supply | Prepare a request to manage QRC20 token supply
+*ManageQRC721TokenSupplyApi* | [**prepare_supply_request**](docs/ManageQRC721TokenSupplyApi.md#prepare_supply_request) | **POST** /v2/tokenise/preparation/transaction/qrc721/supply | Prepare a transaction to manage QRC721 token supply
+*ManageSubscriptionsApi* | [**delete_subscription**](docs/ManageSubscriptionsApi.md#delete_subscription) | **DELETE** /v2/webhook/subscription/{subscriptionId} | Remove a subscription created by your application
+*ManageSubscriptionsApi* | [**list_subscriptions**](docs/ManageSubscriptionsApi.md#list_subscriptions) | **GET** /v2/webhook/subscriptions | Retrieve a list of subscriptions created by your application
+*ManageSubscriptionsApi* | [**update_subscription**](docs/ManageSubscriptionsApi.md#update_subscription) | **PATCH** /v2/webhook/subscription/{subscriptionId} | Update a specific subscription created by your application
 *MonitorAResourceApi* | [**resource_monitoring_address**](docs/MonitorAResourceApi.md#resource_monitoring_address) | **POST** /v2/resourcemonitoring/address | Monitor an address for incoming and outgoing transactions
 *MonitorAResourceApi* | [**track_and_subscribe_event**](docs/MonitorAResourceApi.md#track_and_subscribe_event) | **POST** /v2/resourcemonitoring/smartcontractevent | Monitor a smart contract for an event
+*RetrieveAccountBalanceForAQRC20TokenApi* | [**read_qrc20_smart_contract_balance**](docs/RetrieveAccountBalanceForAQRC20TokenApi.md#read_qrc20_smart_contract_balance) | **POST** /v2/tokenise/tokens/qrc20/account-balance | Retrieve the balance of QRC20 tokens for an account
+*RetrieveApprovedAccountAllowanceForAQRC20TokenApi* | [**read_approved_debit_amount**](docs/RetrieveApprovedAccountAllowanceForAQRC20TokenApi.md#read_approved_debit_amount) | **POST** /v2/tokenise/tokens/qrc20/approved-debit-amount | Retrieve how many QRC20 tokens an address is allowed to debit
+*RetrieveApprovedAccountInformationForAQRC20TokenApi* | [**read_qrc20_secondary_account_owner**](docs/RetrieveApprovedAccountInformationForAQRC20TokenApi.md#read_qrc20_secondary_account_owner) | **POST** /v2/tokenise/tokens/qrc20/secondary-account-owner | Retrieve whether an account is approved to make payments on behalf of another account for a particular QRC20 token.
+*RetrieveApprovedAccountInformationOfAQRC721TokenApi* | [**read_qrc721_smart_contract_approved_account**](docs/RetrieveApprovedAccountInformationOfAQRC721TokenApi.md#read_qrc721_smart_contract_approved_account) | **POST** /v2/tokenise/tokens/qrc721/approved-account | Retrieve which account is approved to collect a QRC721 token
+*RetrieveContractOwnerInformationOfAQRCTokenApi* | [**read_qrc_smart_contract_owner**](docs/RetrieveContractOwnerInformationOfAQRCTokenApi.md#read_qrc_smart_contract_owner) | **POST** /v2/tokenise/tokens/{flowType}/contract-owner | Retrieve which account has contract owner permissions for a QRC token
+*RetrieveOwnerInformationForAQRC721TokenApi* | [**read_qrc721_smart_contract_token_owner**](docs/RetrieveOwnerInformationForAQRC721TokenApi.md#read_qrc721_smart_contract_token_owner) | **POST** /v2/tokenise/tokens/qrc721/token-owner | Retrieve which account currently owns a specific QRC721 token
+*RetrieveSupplyInformationForAQRCTokenApi* | [**read_qrc721_smart_contract_current_supply**](docs/RetrieveSupplyInformationForAQRCTokenApi.md#read_qrc721_smart_contract_current_supply) | **POST** /v2/tokenise/tokens/{flowType}/current-supply | Retrieve how many QRC tokens are currently in supply
+*RetrieveTheCountOfQRC721TokensApi* | [**get_token_count**](docs/RetrieveTheCountOfQRC721TokensApi.md#get_token_count) | **POST** /v2/tokenise/tokens/qrc721/token-count | Retrieve the count of a QRC721 token for a particular account
+*RetrieveURIInformationForAQRC721TokenApi* | [**read_qrc721_smart_contract_uri**](docs/RetrieveURIInformationForAQRC721TokenApi.md#read_qrc721_smart_contract_uri) | **POST** /v2/tokenise/tokens/qrc721/token-uri | Retrieve the URI for a specific QRC721 token
 *SmartContractSearchApi* | [**auto_execute_search_smart_contract_query_request**](docs/SmartContractSearchApi.md#auto_execute_search_smart_contract_query_request) | **POST** /v2/autoexecution/search/smartcontract | Prepare and automatically execute a search for a smart contract query on a DLT.
 *SmartContractSearchApi* | [**execute_prepared_search_request**](docs/SmartContractSearchApi.md#execute_prepared_search_request) | **POST** /v2/execution/search/smartcontract | Execute a read of a smart contract on a DLT
 *SmartContractSearchApi* | [**prepare_smart_contract_query_request**](docs/SmartContractSearchApi.md#prepare_smart_contract_query_request) | **POST** /v2/preparation/search/smartcontract | Prepare a read of a smart contract on a DLT
+*SubscribeToQRC20AccountCreditPaymentsApi* | [**subscribe_credit_event**](docs/SubscribeToQRC20AccountCreditPaymentsApi.md#subscribe_credit_event) | **POST** /v2/tokenise/tokens/subscription/qrc20/credit | Receive updates each time there is a credit payment on your account
+*SubscribeToQRC20AccountDebitPaymentsApi* | [**subscribe_qrc20_debit_event**](docs/SubscribeToQRC20AccountDebitPaymentsApi.md#subscribe_qrc20_debit_event) | **POST** /v2/tokenise/tokens/subscription/qrc20/debit | Receive updates each time there is a debit transaction on QRC20 token or a QRC20 debit is approved
+*SubscribeToQRC20SharedAccountUpdatesApi* | [**subscribe_secondary_owner_event**](docs/SubscribeToQRC20SharedAccountUpdatesApi.md#subscribe_secondary_owner_event) | **POST** /v2/tokenise/tokens/subscription/qrc20/secondaryaccountowner | Receive updates for a shared account
+*SubscribeToQRC20TokenSupplyChangesApi* | [**subscribe_supply_event**](docs/SubscribeToQRC20TokenSupplyChangesApi.md#subscribe_supply_event) | **POST** /v2/tokenise/tokens/subscription/{flowtype}/supply | Receive updates each time a supply changes for a QRC721 or QRC20 token
+*SubscribeToQRC721AssetCollectionUpdatesApi* | [**subscribe_collect_event**](docs/SubscribeToQRC721AssetCollectionUpdatesApi.md#subscribe_collect_event) | **POST** /v2/tokenise/tokens/subscription/qrc721/collect | Receive updates each time a QRC721 token is approved for collection or collected
+*SubscribeToQRC721AssetTransfersApi* | [**subscribe_transfer_event**](docs/SubscribeToQRC721AssetTransfersApi.md#subscribe_transfer_event) | **POST** /v2/tokenise/tokens/subscription/qrc721/transfer | Receive updates each time a QRC721 token is transferred
+*SubscribeToQRC721SupplyChangeUpdatesApi* | [**subscribe_supply_event**](docs/SubscribeToQRC721SupplyChangeUpdatesApi.md#subscribe_supply_event) | **POST** /v2/tokenise/tokens/subscription/{flowtype}/supply | Receive updates each time a supply changes for a QRC721 or QRC20 token
+*SupportedFungibleTokensApi* | [**get_tokens**](docs/SupportedFungibleTokensApi.md#get_tokens) | **GET** /v2/tokens/fungible | Retrieve a list of ERC20 and QRC20 tokens
+*SupportedNonFungibleTokensApi* | [**get_all_non_fungible_tokens**](docs/SupportedNonFungibleTokensApi.md#get_all_non_fungible_tokens) | **GET** /v2/tokenise/tokens/nonfungible | Retrieve a list of ERC721 and QRC721 tokens
+*TokenControllerApi* | [**get_non_fungible_token**](docs/TokenControllerApi.md#get_non_fungible_token) | **GET** /v2/nonfungibletoken | 
 *TransactionSearchApi* | [**auto_execute_search_transaction_request**](docs/TransactionSearchApi.md#auto_execute_search_transaction_request) | **POST** /v2/autoexecution/search/transaction | Prepare and automatically execute a search for a transaction on a DLT.
 *TransactionSearchApi* | [**execute_prepared_search_request_transaction**](docs/TransactionSearchApi.md#execute_prepared_search_request_transaction) | **POST** /v2/execution/search/transaction | Execute a search for a transaction on a DLT
 *TransactionSearchApi* | [**prepare_search_request**](docs/TransactionSearchApi.md#prepare_search_request) | **POST** /v2/preparation/search/transaction | Prepare a search for a transaction on a DLT
@@ -570,29 +775,48 @@ Class | Method | HTTP request | Description
 
 
 # DOCUMENTATION FOR MODELS
+ - [WWW::OpenAPIClient::Object::AccountDetails](docs/AccountDetails.md)
+ - [WWW::OpenAPIClient::Object::AddSecondaryAccountRequestDetailsSchema](docs/AddSecondaryAccountRequestDetailsSchema.md)
+ - [WWW::OpenAPIClient::Object::AdditionalOwner](docs/AdditionalOwner.md)
+ - [WWW::OpenAPIClient::Object::AdditionalOwnerRemoveSecondarySchema](docs/AdditionalOwnerRemoveSecondarySchema.md)
  - [WWW::OpenAPIClient::Object::AddressBalanceResponse](docs/AddressBalanceResponse.md)
  - [WWW::OpenAPIClient::Object::AddressMonitoringDetailsSchema](docs/AddressMonitoringDetailsSchema.md)
  - [WWW::OpenAPIClient::Object::AddressMonitoringRequestSchema](docs/AddressMonitoringRequestSchema.md)
  - [WWW::OpenAPIClient::Object::AddressMonitoringResponseSchema](docs/AddressMonitoringResponseSchema.md)
+ - [WWW::OpenAPIClient::Object::AliasDetails](docs/AliasDetails.md)
  - [WWW::OpenAPIClient::Object::ApproveRequestDetailsSchema](docs/ApproveRequestDetailsSchema.md)
  - [WWW::OpenAPIClient::Object::AutoExecSearchAddressSequenceResponseSchema](docs/AutoExecSearchAddressSequenceResponseSchema.md)
  - [WWW::OpenAPIClient::Object::AutoExecuteSearchAddressBalanceResponseSchema](docs/AutoExecuteSearchAddressBalanceResponseSchema.md)
  - [WWW::OpenAPIClient::Object::AutoExecuteSearchBlockResponseSchema](docs/AutoExecuteSearchBlockResponseSchema.md)
  - [WWW::OpenAPIClient::Object::AutoExecuteSearchUTXOResponseSchema](docs/AutoExecuteSearchUTXOResponseSchema.md)
+ - [WWW::OpenAPIClient::Object::Beneficiary](docs/Beneficiary.md)
+ - [WWW::OpenAPIClient::Object::BeneficiaryMintSchemaQrc20](docs/BeneficiaryMintSchemaQrc20.md)
+ - [WWW::OpenAPIClient::Object::BeneficiaryMintSchemaQrc721](docs/BeneficiaryMintSchemaQrc721.md)
  - [WWW::OpenAPIClient::Object::Block](docs/Block.md)
  - [WWW::OpenAPIClient::Object::BlockHash](docs/BlockHash.md)
  - [WWW::OpenAPIClient::Object::BlockSize](docs/BlockSize.md)
+ - [WWW::OpenAPIClient::Object::Burn](docs/Burn.md)
+ - [WWW::OpenAPIClient::Object::BurnRequestDetailsSchema](docs/BurnRequestDetailsSchema.md)
+ - [WWW::OpenAPIClient::Object::BurnRequestDetailsSchemaQrc721](docs/BurnRequestDetailsSchemaQrc721.md)
+ - [WWW::OpenAPIClient::Object::BurnSchema](docs/BurnSchema.md)
+ - [WWW::OpenAPIClient::Object::Collector](docs/Collector.md)
  - [WWW::OpenAPIClient::Object::CreateSmartContractMonitoringSchema](docs/CreateSmartContractMonitoringSchema.md)
- - [WWW::OpenAPIClient::Object::CreateSubscriptionRequestSchema](docs/CreateSubscriptionRequestSchema.md)
- - [WWW::OpenAPIClient::Object::CreateSubscriptionResponseSchema](docs/CreateSubscriptionResponseSchema.md)
+ - [WWW::OpenAPIClient::Object::CreateWebhookSubscriptionRequestSchema](docs/CreateWebhookSubscriptionRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::CreateWebhookSubscriptionResponseSchema](docs/CreateWebhookSubscriptionResponseSchema.md)
+ - [WWW::OpenAPIClient::Object::Creator](docs/Creator.md)
+ - [WWW::OpenAPIClient::Object::CreatorMintSchema](docs/CreatorMintSchema.md)
  - [WWW::OpenAPIClient::Object::CreditRequestDetailsSchema](docs/CreditRequestDetailsSchema.md)
  - [WWW::OpenAPIClient::Object::DeleteResourceMonitoringAddressSchema](docs/DeleteResourceMonitoringAddressSchema.md)
  - [WWW::OpenAPIClient::Object::Destination](docs/Destination.md)
  - [WWW::OpenAPIClient::Object::DestinationPaymentSchema](docs/DestinationPaymentSchema.md)
  - [WWW::OpenAPIClient::Object::DestinationTransferSchema](docs/DestinationTransferSchema.md)
+ - [WWW::OpenAPIClient::Object::Erc20DTO](docs/Erc20DTO.md)
  - [WWW::OpenAPIClient::Object::Error](docs/Error.md)
  - [WWW::OpenAPIClient::Object::ErrorDetails](docs/ErrorDetails.md)
  - [WWW::OpenAPIClient::Object::ErrorList](docs/ErrorList.md)
+ - [WWW::OpenAPIClient::Object::ErrorResponseMessage](docs/ErrorResponseMessage.md)
+ - [WWW::OpenAPIClient::Object::EventSubscriptionResponse](docs/EventSubscriptionResponse.md)
+ - [WWW::OpenAPIClient::Object::EventSubscriptionResponseDetails](docs/EventSubscriptionResponseDetails.md)
  - [WWW::OpenAPIClient::Object::ExecuteSearchBalanceResponse](docs/ExecuteSearchBalanceResponse.md)
  - [WWW::OpenAPIClient::Object::ExecuteSearchBlockResponse](docs/ExecuteSearchBlockResponse.md)
  - [WWW::OpenAPIClient::Object::ExecuteSearchSequenceResponse](docs/ExecuteSearchSequenceResponse.md)
@@ -605,36 +829,74 @@ Class | Method | HTTP request | Description
  - [WWW::OpenAPIClient::Object::ExtraFields](docs/ExtraFields.md)
  - [WWW::OpenAPIClient::Object::Fee](docs/Fee.md)
  - [WWW::OpenAPIClient::Object::Function](docs/Function.md)
+ - [WWW::OpenAPIClient::Object::FunctionDTO](docs/FunctionDTO.md)
+ - [WWW::OpenAPIClient::Object::FungibleTokenResponseDTO](docs/FungibleTokenResponseDTO.md)
  - [WWW::OpenAPIClient::Object::InternalServerErrorSchema](docs/InternalServerErrorSchema.md)
  - [WWW::OpenAPIClient::Object::LinkedBlocks](docs/LinkedBlocks.md)
- - [WWW::OpenAPIClient::Object::ListSubscriptionResponseSchema](docs/ListSubscriptionResponseSchema.md)
+ - [WWW::OpenAPIClient::Object::ListWebhookSubscriptionResponseSchema](docs/ListWebhookSubscriptionResponseSchema.md)
  - [WWW::OpenAPIClient::Object::Location](docs/Location.md)
+ - [WWW::OpenAPIClient::Object::LocationDTO](docs/LocationDTO.md)
+ - [WWW::OpenAPIClient::Object::LockDetails](docs/LockDetails.md)
+ - [WWW::OpenAPIClient::Object::Mandate](docs/Mandate.md)
+ - [WWW::OpenAPIClient::Object::Mint](docs/Mint.md)
+ - [WWW::OpenAPIClient::Object::MintRequestDetailsSchemaQrc20](docs/MintRequestDetailsSchemaQrc20.md)
+ - [WWW::OpenAPIClient::Object::MintRequestDetailsSchemaQrc721](docs/MintRequestDetailsSchemaQrc721.md)
+ - [WWW::OpenAPIClient::Object::MintSchemaQrc20](docs/MintSchemaQrc20.md)
+ - [WWW::OpenAPIClient::Object::MintSchemaQrc721](docs/MintSchemaQrc721.md)
  - [WWW::OpenAPIClient::Object::MonitorSmartContractEventParam](docs/MonitorSmartContractEventParam.md)
  - [WWW::OpenAPIClient::Object::MonitorSmartContractRequestSchema](docs/MonitorSmartContractRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::NonFungibleTokenDTO](docs/NonFungibleTokenDTO.md)
+ - [WWW::OpenAPIClient::Object::NonFungibleTokenResponse](docs/NonFungibleTokenResponse.md)
  - [WWW::OpenAPIClient::Object::Origin](docs/Origin.md)
  - [WWW::OpenAPIClient::Object::OriginPaymentSchema](docs/OriginPaymentSchema.md)
  - [WWW::OpenAPIClient::Object::OriginTransferSchema](docs/OriginTransferSchema.md)
  - [WWW::OpenAPIClient::Object::OverledgerTransactionResponseSchema](docs/OverledgerTransactionResponseSchema.md)
+ - [WWW::OpenAPIClient::Object::Owner](docs/Owner.md)
+ - [WWW::OpenAPIClient::Object::OwnerBurnSchema](docs/OwnerBurnSchema.md)
+ - [WWW::OpenAPIClient::Object::OwnerRemoveSecondarySchema](docs/OwnerRemoveSecondarySchema.md)
+ - [WWW::OpenAPIClient::Object::Pagination](docs/Pagination.md)
  - [WWW::OpenAPIClient::Object::Parameter](docs/Parameter.md)
+ - [WWW::OpenAPIClient::Object::Payee](docs/Payee.md)
  - [WWW::OpenAPIClient::Object::PayeeCreditSchema](docs/PayeeCreditSchema.md)
+ - [WWW::OpenAPIClient::Object::Payer](docs/Payer.md)
  - [WWW::OpenAPIClient::Object::PayerCreditSchema](docs/PayerCreditSchema.md)
  - [WWW::OpenAPIClient::Object::Payment](docs/Payment.md)
  - [WWW::OpenAPIClient::Object::PaymentRequestDetailsSchema](docs/PaymentRequestDetailsSchema.md)
  - [WWW::OpenAPIClient::Object::PaymentSchema](docs/PaymentSchema.md)
+ - [WWW::OpenAPIClient::Object::PrepareAddSecondaryAccountRequestSchema](docs/PrepareAddSecondaryAccountRequestSchema.md)
  - [WWW::OpenAPIClient::Object::PrepareAndExecuteBalanceDetails](docs/PrepareAndExecuteBalanceDetails.md)
  - [WWW::OpenAPIClient::Object::PrepareAndExecuteOverledgerErrorResponse](docs/PrepareAndExecuteOverledgerErrorResponse.md)
  - [WWW::OpenAPIClient::Object::PrepareAndExecuteSearchAddressBalanceResponse](docs/PrepareAndExecuteSearchAddressBalanceResponse.md)
  - [WWW::OpenAPIClient::Object::PrepareAndExecuteTransactionResponse](docs/PrepareAndExecuteTransactionResponse.md)
  - [WWW::OpenAPIClient::Object::PrepareApproveDebitTransactionRequestSchema](docs/PrepareApproveDebitTransactionRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::PrepareBurnTransactionRequestSchema](docs/PrepareBurnTransactionRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::PrepareBurnTransactionRequestSchemaQrc721](docs/PrepareBurnTransactionRequestSchemaQrc721.md)
  - [WWW::OpenAPIClient::Object::PrepareCreditTransactionRequestSchema](docs/PrepareCreditTransactionRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::PrepareMintTransactionRequestSchemaQrc20](docs/PrepareMintTransactionRequestSchemaQrc20.md)
+ - [WWW::OpenAPIClient::Object::PrepareMintTransactionRequestSchemaQrc721](docs/PrepareMintTransactionRequestSchemaQrc721.md)
  - [WWW::OpenAPIClient::Object::PrepareNativeTransactionRequestSchema](docs/PrepareNativeTransactionRequestSchema.md)
  - [WWW::OpenAPIClient::Object::PreparePaymentTransactionRequestSchema](docs/PreparePaymentTransactionRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::PrepareRemoveSecondaryAccountTransactionRequestSchema](docs/PrepareRemoveSecondaryAccountTransactionRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::PrepareRequest](docs/PrepareRequest.md)
+ - [WWW::OpenAPIClient::Object::PrepareRequestDetails](docs/PrepareRequestDetails.md)
  - [WWW::OpenAPIClient::Object::PrepareSearchResponseSchema](docs/PrepareSearchResponseSchema.md)
  - [WWW::OpenAPIClient::Object::PrepareSearchSchema](docs/PrepareSearchSchema.md)
  - [WWW::OpenAPIClient::Object::PrepareSearchSmartContractRequestSchema](docs/PrepareSearchSmartContractRequestSchema.md)
  - [WWW::OpenAPIClient::Object::PrepareTransactionResponse](docs/PrepareTransactionResponse.md)
  - [WWW::OpenAPIClient::Object::PrepareTransactionSmartContractInvokeRequestSchema](docs/PrepareTransactionSmartContractInvokeRequestSchema.md)
  - [WWW::OpenAPIClient::Object::PrepareTransferTransactionRequestSchema](docs/PrepareTransferTransactionRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::ReadAccountBalanceRequestSchema](docs/ReadAccountBalanceRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::ReadApprovedAccountAllowanceRequestSchema](docs/ReadApprovedAccountAllowanceRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::ReadApprovedAccountRequestDetailsSchema](docs/ReadApprovedAccountRequestDetailsSchema.md)
+ - [WWW::OpenAPIClient::Object::ReadApprovedAccountRequestSchema](docs/ReadApprovedAccountRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::ReadBalanceRequestDetailsSchema](docs/ReadBalanceRequestDetailsSchema.md)
+ - [WWW::OpenAPIClient::Object::ReadBalanceRequestSchema](docs/ReadBalanceRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::ReadContractOwnerRequestDetailsSchema](docs/ReadContractOwnerRequestDetailsSchema.md)
+ - [WWW::OpenAPIClient::Object::ReadContractOwnerRequestSchema](docs/ReadContractOwnerRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::ReadTokenOwnerRequestDetailsSchema](docs/ReadTokenOwnerRequestDetailsSchema.md)
+ - [WWW::OpenAPIClient::Object::ReadTokenOwnerRequestSchema](docs/ReadTokenOwnerRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::Receiver](docs/Receiver.md)
+ - [WWW::OpenAPIClient::Object::RemoveSecondaryAccountDetailsSchema](docs/RemoveSecondaryAccountDetailsSchema.md)
  - [WWW::OpenAPIClient::Object::ResourceMonitoredAddressDetails](docs/ResourceMonitoredAddressDetails.md)
  - [WWW::OpenAPIClient::Object::ResourceMonitoringAddressDetails](docs/ResourceMonitoringAddressDetails.md)
  - [WWW::OpenAPIClient::Object::ResourceMonitoringAddressSchema](docs/ResourceMonitoringAddressSchema.md)
@@ -643,6 +905,10 @@ Class | Method | HTTP request | Description
  - [WWW::OpenAPIClient::Object::ResourceMonitoringSubscription](docs/ResourceMonitoringSubscription.md)
  - [WWW::OpenAPIClient::Object::ResourceMonitoringSubscriptionDetails](docs/ResourceMonitoringSubscriptionDetails.md)
  - [WWW::OpenAPIClient::Object::ScriptPubKey](docs/ScriptPubKey.md)
+ - [WWW::OpenAPIClient::Object::SecondaryAccountAdditionalOwnerSchema](docs/SecondaryAccountAdditionalOwnerSchema.md)
+ - [WWW::OpenAPIClient::Object::SecondaryAccountOwnerSchema](docs/SecondaryAccountOwnerSchema.md)
+ - [WWW::OpenAPIClient::Object::Sender](docs/Sender.md)
+ - [WWW::OpenAPIClient::Object::SignerAccount](docs/SignerAccount.md)
  - [WWW::OpenAPIClient::Object::SmartContract](docs/SmartContract.md)
  - [WWW::OpenAPIClient::Object::SmartContractDestinationSchema](docs/SmartContractDestinationSchema.md)
  - [WWW::OpenAPIClient::Object::SmartContractEventHistory](docs/SmartContractEventHistory.md)
@@ -661,13 +927,14 @@ Class | Method | HTTP request | Description
  - [WWW::OpenAPIClient::Object::SmartContractSearchFunctionSchema](docs/SmartContractSearchFunctionSchema.md)
  - [WWW::OpenAPIClient::Object::SmartContractSearchRequestDetails](docs/SmartContractSearchRequestDetails.md)
  - [WWW::OpenAPIClient::Object::SmartContractSearchSchema](docs/SmartContractSearchSchema.md)
+ - [WWW::OpenAPIClient::Object::SmartContractTag](docs/SmartContractTag.md)
  - [WWW::OpenAPIClient::Object::Status](docs/Status.md)
  - [WWW::OpenAPIClient::Object::StatusUpdateMonitoringRequestSchema](docs/StatusUpdateMonitoringRequestSchema.md)
  - [WWW::OpenAPIClient::Object::StatusUpdateSchema](docs/StatusUpdateSchema.md)
- - [WWW::OpenAPIClient::Object::SubscriptionDeletionResponse](docs/SubscriptionDeletionResponse.md)
- - [WWW::OpenAPIClient::Object::SubscriptionDetails](docs/SubscriptionDetails.md)
- - [WWW::OpenAPIClient::Object::SubscriptionDetailsSchema](docs/SubscriptionDetailsSchema.md)
- - [WWW::OpenAPIClient::Object::SubscriptionUpdateResponse](docs/SubscriptionUpdateResponse.md)
+ - [WWW::OpenAPIClient::Object::TierFunctionDTO](docs/TierFunctionDTO.md)
+ - [WWW::OpenAPIClient::Object::TokenReadQRC20Response](docs/TokenReadQRC20Response.md)
+ - [WWW::OpenAPIClient::Object::TokenReadQRC721Response](docs/TokenReadQRC721Response.md)
+ - [WWW::OpenAPIClient::Object::TokenReadResponseDetails](docs/TokenReadResponseDetails.md)
  - [WWW::OpenAPIClient::Object::Transaction](docs/Transaction.md)
  - [WWW::OpenAPIClient::Object::Transfer](docs/Transfer.md)
  - [WWW::OpenAPIClient::Object::TransferRequestDetailsSchema](docs/TransferRequestDetailsSchema.md)
@@ -675,10 +942,13 @@ Class | Method | HTTP request | Description
  - [WWW::OpenAPIClient::Object::UTXODestination](docs/UTXODestination.md)
  - [WWW::OpenAPIClient::Object::UTXONativeData](docs/UTXONativeData.md)
  - [WWW::OpenAPIClient::Object::UTXOSmartContract](docs/UTXOSmartContract.md)
- - [WWW::OpenAPIClient::Object::UTXOTimestampSchema](docs/UTXOTimestampSchema.md)
  - [WWW::OpenAPIClient::Object::UpdateAddressMonitoringSchema](docs/UpdateAddressMonitoringSchema.md)
- - [WWW::OpenAPIClient::Object::UpdateSubscriptionRequestSchema](docs/UpdateSubscriptionRequestSchema.md)
+ - [WWW::OpenAPIClient::Object::UpdateWebhookSubscriptionRequestSchema](docs/UpdateWebhookSubscriptionRequestSchema.md)
  - [WWW::OpenAPIClient::Object::Vout](docs/Vout.md)
+ - [WWW::OpenAPIClient::Object::WebhookStatusUpdateSchema](docs/WebhookStatusUpdateSchema.md)
+ - [WWW::OpenAPIClient::Object::WebhookSubscriptionDetails](docs/WebhookSubscriptionDetails.md)
+ - [WWW::OpenAPIClient::Object::WebhookSubscriptionDetailsSchema](docs/WebhookSubscriptionDetailsSchema.md)
+ - [WWW::OpenAPIClient::Object::WebhookSubscriptionStatusUpdateResponse](docs/WebhookSubscriptionStatusUpdateResponse.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION
@@ -691,8 +961,8 @@ Class | Method | HTTP request | Description
 - **Scopes**: 
   - **aws.cognito.signin.user.admin**: Grants access to all the User Pool APIs that can be accessed using access tokens alone.
   - **phone**: Grants returning the phone claim, which contains the user's phone number, and phone_number_verified.
-  - **openid**: Grants an application to use OIDC to verify the user's identity.
-  - **profile**: Grants returning basic profile information.
   - **overledger/read.scope**: Grants read access to Overledger.
+  - **openid**: Grants an application to use OIDC to verify the user's identity.
   - **email**: Grants returning the email claim, which contains the user's email address, and email_verified.
+  - **profile**: Grants returning basic profile information.
 

@@ -1,7 +1,7 @@
 /*
  * Quant Overledger API
  *
- * Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!- - ReDoc-Inject: <security-definitions> - ->
+ * Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
  *
  * The version of the OpenAPI document: 2.0
  * 
@@ -33,25 +33,25 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SmartContractInvokeRequestDetailsSchema" /> class.
         /// </summary>
-        /// <param name="origin">origin.</param>
         /// <param name="destination">destination.</param>
-        public SmartContractInvokeRequestDetailsSchema(List<SmartContractRequestDetailsOrigin> origin = default(List<SmartContractRequestDetailsOrigin>), List<SmartContractDestinationSchema> destination = default(List<SmartContractDestinationSchema>))
+        /// <param name="origin">origin.</param>
+        public SmartContractInvokeRequestDetailsSchema(List<SmartContractDestinationSchema> destination = default(List<SmartContractDestinationSchema>), List<SmartContractRequestDetailsOrigin> origin = default(List<SmartContractRequestDetailsOrigin>))
         {
-            this.Origin = origin;
             this.Destination = destination;
+            this.Origin = origin;
         }
-
-        /// <summary>
-        /// Gets or Sets Origin
-        /// </summary>
-        [DataMember(Name="origin", EmitDefaultValue=false)]
-        public List<SmartContractRequestDetailsOrigin> Origin { get; set; }
 
         /// <summary>
         /// Gets or Sets Destination
         /// </summary>
         [DataMember(Name="destination", EmitDefaultValue=false)]
         public List<SmartContractDestinationSchema> Destination { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Origin
+        /// </summary>
+        [DataMember(Name="origin", EmitDefaultValue=false)]
+        public List<SmartContractRequestDetailsOrigin> Origin { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,8 +61,8 @@ namespace Org.OpenAPITools.Model
         {
             var sb = new StringBuilder();
             sb.Append("class SmartContractInvokeRequestDetailsSchema {\n");
-            sb.Append("  Origin: ").Append(Origin).Append("\n");
             sb.Append("  Destination: ").Append(Destination).Append("\n");
+            sb.Append("  Origin: ").Append(Origin).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -98,16 +98,16 @@ namespace Org.OpenAPITools.Model
 
             return 
                 (
-                    this.Origin == input.Origin ||
-                    this.Origin != null &&
-                    input.Origin != null &&
-                    this.Origin.SequenceEqual(input.Origin)
-                ) && 
-                (
                     this.Destination == input.Destination ||
                     this.Destination != null &&
                     input.Destination != null &&
                     this.Destination.SequenceEqual(input.Destination)
+                ) && 
+                (
+                    this.Origin == input.Origin ||
+                    this.Origin != null &&
+                    input.Origin != null &&
+                    this.Origin.SequenceEqual(input.Origin)
                 );
         }
 
@@ -120,10 +120,10 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Origin != null)
-                    hashCode = hashCode * 59 + this.Origin.GetHashCode();
                 if (this.Destination != null)
                     hashCode = hashCode * 59 + this.Destination.GetHashCode();
+                if (this.Origin != null)
+                    hashCode = hashCode * 59 + this.Origin.GetHashCode();
                 return hashCode;
             }
         }

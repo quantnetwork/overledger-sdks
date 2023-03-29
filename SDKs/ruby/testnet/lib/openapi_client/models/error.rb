@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -17,9 +17,9 @@ module OpenapiClient
   class Error
     attr_accessor :code
 
-    attr_accessor :service
-
     attr_accessor :message
+
+    attr_accessor :service
 
     attr_accessor :timestamp
 
@@ -27,8 +27,8 @@ module OpenapiClient
     def self.attribute_map
       {
         :'code' => :'code',
-        :'service' => :'service',
         :'message' => :'message',
+        :'service' => :'service',
         :'timestamp' => :'timestamp'
       }
     end
@@ -42,8 +42,8 @@ module OpenapiClient
     def self.openapi_types
       {
         :'code' => :'Integer',
-        :'service' => :'String',
         :'message' => :'String',
+        :'service' => :'String',
         :'timestamp' => :'Integer'
       }
     end
@@ -73,12 +73,12 @@ module OpenapiClient
         self.code = attributes[:'code']
       end
 
-      if attributes.key?(:'service')
-        self.service = attributes[:'service']
-      end
-
       if attributes.key?(:'message')
         self.message = attributes[:'message']
+      end
+
+      if attributes.key?(:'service')
+        self.service = attributes[:'service']
       end
 
       if attributes.key?(:'timestamp')
@@ -98,19 +98,6 @@ module OpenapiClient
         invalid_properties.push('invalid value for "code", must be greater than or equal to 0.')
       end
 
-      if !@service.nil? && @service.to_s.length > 50
-        invalid_properties.push('invalid value for "service", the character length must be smaller than or equal to 50.')
-      end
-
-      if !@service.nil? && @service.to_s.length < 0
-        invalid_properties.push('invalid value for "service", the character length must be great than or equal to 0.')
-      end
-
-      pattern = Regexp.new(/^[\S\s]{1,50}$/)
-      if !@service.nil? && @service !~ pattern
-        invalid_properties.push("invalid value for \"service\", must conform to the pattern #{pattern}.")
-      end
-
       if !@message.nil? && @message.to_s.length > 300
         invalid_properties.push('invalid value for "message", the character length must be smaller than or equal to 300.')
       end
@@ -124,6 +111,19 @@ module OpenapiClient
         invalid_properties.push("invalid value for \"message\", must conform to the pattern #{pattern}.")
       end
 
+      if !@service.nil? && @service.to_s.length > 50
+        invalid_properties.push('invalid value for "service", the character length must be smaller than or equal to 50.')
+      end
+
+      if !@service.nil? && @service.to_s.length < 0
+        invalid_properties.push('invalid value for "service", the character length must be great than or equal to 0.')
+      end
+
+      pattern = Regexp.new(/^[\S\s]{1,50}$/)
+      if !@service.nil? && @service !~ pattern
+        invalid_properties.push("invalid value for \"service\", must conform to the pattern #{pattern}.")
+      end
+
       invalid_properties
     end
 
@@ -132,12 +132,12 @@ module OpenapiClient
     def valid?
       return false if !@code.nil? && @code > 30
       return false if !@code.nil? && @code < 0
-      return false if !@service.nil? && @service.to_s.length > 50
-      return false if !@service.nil? && @service.to_s.length < 0
-      return false if !@service.nil? && @service !~ Regexp.new(/^[\S\s]{1,50}$/)
       return false if !@message.nil? && @message.to_s.length > 300
       return false if !@message.nil? && @message.to_s.length < 0
       return false if !@message.nil? && @message !~ Regexp.new(/^[\S\s]{1,300}$/)
+      return false if !@service.nil? && @service.to_s.length > 50
+      return false if !@service.nil? && @service.to_s.length < 0
+      return false if !@service.nil? && @service !~ Regexp.new(/^[\S\s]{1,50}$/)
       true
     end
 
@@ -153,25 +153,6 @@ module OpenapiClient
       end
 
       @code = code
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] service Value to be assigned
-    def service=(service)
-      if !service.nil? && service.to_s.length > 50
-        fail ArgumentError, 'invalid value for "service", the character length must be smaller than or equal to 50.'
-      end
-
-      if !service.nil? && service.to_s.length < 0
-        fail ArgumentError, 'invalid value for "service", the character length must be great than or equal to 0.'
-      end
-
-      pattern = Regexp.new(/^[\S\s]{1,50}$/)
-      if !service.nil? && service !~ pattern
-        fail ArgumentError, "invalid value for \"service\", must conform to the pattern #{pattern}."
-      end
-
-      @service = service
     end
 
     # Custom attribute writer method with validation
@@ -193,14 +174,33 @@ module OpenapiClient
       @message = message
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] service Value to be assigned
+    def service=(service)
+      if !service.nil? && service.to_s.length > 50
+        fail ArgumentError, 'invalid value for "service", the character length must be smaller than or equal to 50.'
+      end
+
+      if !service.nil? && service.to_s.length < 0
+        fail ArgumentError, 'invalid value for "service", the character length must be great than or equal to 0.'
+      end
+
+      pattern = Regexp.new(/^[\S\s]{1,50}$/)
+      if !service.nil? && service !~ pattern
+        fail ArgumentError, "invalid value for \"service\", must conform to the pattern #{pattern}."
+      end
+
+      @service = service
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           code == o.code &&
-          service == o.service &&
           message == o.message &&
+          service == o.service &&
           timestamp == o.timestamp
     end
 
@@ -213,7 +213,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [code, service, message, timestamp].hash
+      [code, message, service, timestamp].hash
     end
 
     # Builds the object from hash

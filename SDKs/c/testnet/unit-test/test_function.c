@@ -22,19 +22,13 @@ function_t* instantiate_function(int include_optional) {
   function_t* function = NULL;
   if (include_optional) {
     function = function_create(
-      "a",
-      "a",
       "0",
-      list_create(),
-      list_create()
+      "0"
     );
   } else {
     function = function_create(
-      "a",
-      "a",
       "0",
-      list_create(),
-      list_create()
+      "0"
     );
   }
 

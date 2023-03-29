@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,15 +15,15 @@ require 'time'
 
 module OpenapiClient
   class SmartContractInvokeRequestDetailsSchema
-    attr_accessor :origin
-
     attr_accessor :destination
+
+    attr_accessor :origin
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'origin' => :'origin',
-        :'destination' => :'destination'
+        :'destination' => :'destination',
+        :'origin' => :'origin'
       }
     end
 
@@ -35,8 +35,8 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'origin' => :'Array<SmartContractRequestDetailsOrigin>',
-        :'destination' => :'Array<SmartContractDestinationSchema>'
+        :'destination' => :'Array<SmartContractDestinationSchema>',
+        :'origin' => :'Array<SmartContractRequestDetailsOrigin>'
       }
     end
 
@@ -61,15 +61,15 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'origin')
-        if (value = attributes[:'origin']).is_a?(Array)
-          self.origin = value
-        end
-      end
-
       if attributes.key?(:'destination')
         if (value = attributes[:'destination']).is_a?(Array)
           self.destination = value
+        end
+      end
+
+      if attributes.key?(:'origin')
+        if (value = attributes[:'origin']).is_a?(Array)
+          self.origin = value
         end
       end
     end
@@ -78,14 +78,6 @@ module OpenapiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@origin.nil? && @origin.length > 1
-        invalid_properties.push('invalid value for "origin", number of items must be less than or equal to 1.')
-      end
-
-      if !@origin.nil? && @origin.length < 0
-        invalid_properties.push('invalid value for "origin", number of items must be greater than or equal to 0.')
-      end
-
       if !@destination.nil? && @destination.length > 1
         invalid_properties.push('invalid value for "destination", number of items must be less than or equal to 1.')
       end
@@ -94,31 +86,25 @@ module OpenapiClient
         invalid_properties.push('invalid value for "destination", number of items must be greater than or equal to 0.')
       end
 
+      if !@origin.nil? && @origin.length > 1
+        invalid_properties.push('invalid value for "origin", number of items must be less than or equal to 1.')
+      end
+
+      if !@origin.nil? && @origin.length < 0
+        invalid_properties.push('invalid value for "origin", number of items must be greater than or equal to 0.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@origin.nil? && @origin.length > 1
-      return false if !@origin.nil? && @origin.length < 0
       return false if !@destination.nil? && @destination.length > 1
       return false if !@destination.nil? && @destination.length < 0
+      return false if !@origin.nil? && @origin.length > 1
+      return false if !@origin.nil? && @origin.length < 0
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] origin Value to be assigned
-    def origin=(origin)
-      if !origin.nil? && origin.length > 1
-        fail ArgumentError, 'invalid value for "origin", number of items must be less than or equal to 1.'
-      end
-
-      if !origin.nil? && origin.length < 0
-        fail ArgumentError, 'invalid value for "origin", number of items must be greater than or equal to 0.'
-      end
-
-      @origin = origin
     end
 
     # Custom attribute writer method with validation
@@ -135,13 +121,27 @@ module OpenapiClient
       @destination = destination
     end
 
+    # Custom attribute writer method with validation
+    # @param [Object] origin Value to be assigned
+    def origin=(origin)
+      if !origin.nil? && origin.length > 1
+        fail ArgumentError, 'invalid value for "origin", number of items must be less than or equal to 1.'
+      end
+
+      if !origin.nil? && origin.length < 0
+        fail ArgumentError, 'invalid value for "origin", number of items must be greater than or equal to 0.'
+      end
+
+      @origin = origin
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          origin == o.origin &&
-          destination == o.destination
+          destination == o.destination &&
+          origin == o.origin
     end
 
     # @see the `==` method
@@ -153,7 +153,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [origin, destination].hash
+      [destination, origin].hash
     end
 
     # Builds the object from hash

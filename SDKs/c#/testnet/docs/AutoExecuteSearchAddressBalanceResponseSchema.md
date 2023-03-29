@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExecutionAddressBalanceSearchResponse** | [**PrepareAndExecuteSearchAddressBalanceResponse**](PrepareAndExecuteSearchAddressBalanceResponse.md) |  | [optional] 
 **PrepareAndExecuteOverledgerErrorResponse** | [**PrepareAndExecuteOverledgerErrorResponse**](PrepareAndExecuteOverledgerErrorResponse.md) |  | [optional] 
+**ExecutionAddressBalanceSearchResponse** | [**PrepareAndExecuteSearchAddressBalanceResponse**](PrepareAndExecuteSearchAddressBalanceResponse.md) |  | [optional] 
 **PreparationAddressBalanceSearchResponse** | [**PrepareSearchResponseSchema**](PrepareSearchResponseSchema.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)

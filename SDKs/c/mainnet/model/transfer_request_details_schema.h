@@ -21,18 +21,18 @@ typedef struct transfer_request_details_schema_t transfer_request_details_schema
 
 
 typedef struct transfer_request_details_schema_t {
-    char *overledger_signing_type; // string
-    list_t *origin; //nonprimitive container
     list_t *destination; //nonprimitive container
     char *message; // string
+    char *overledger_signing_type; // string
+    list_t *origin; //nonprimitive container
 
 } transfer_request_details_schema_t;
 
 transfer_request_details_schema_t *transfer_request_details_schema_create(
-    char *overledger_signing_type,
-    list_t *origin,
     list_t *destination,
-    char *message
+    char *message,
+    char *overledger_signing_type,
+    list_t *origin
 );
 
 void transfer_request_details_schema_free(transfer_request_details_schema_t *transfer_request_details_schema);

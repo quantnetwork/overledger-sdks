@@ -22,17 +22,17 @@ transfer_request_details_schema_t* instantiate_transfer_request_details_schema(i
   transfer_request_details_schema_t* transfer_request_details_schema = NULL;
   if (include_optional) {
     transfer_request_details_schema = transfer_request_details_schema_create(
+      list_create(),
       "a",
-      list_create(),
-      list_create(),
-      "a"
+      "a",
+      list_create()
     );
   } else {
     transfer_request_details_schema = transfer_request_details_schema_create(
+      list_create(),
       "a",
-      list_create(),
-      list_create(),
-      "a"
+      "a",
+      list_create()
     );
   }
 

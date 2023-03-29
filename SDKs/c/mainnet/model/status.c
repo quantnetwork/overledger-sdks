@@ -6,8 +6,8 @@
 
 
 status_t *status_create(
-    char *code,
     char *description,
+    char *code,
     char *message,
     char *value,
     char *timestamp
@@ -16,8 +16,8 @@ status_t *status_create(
     if (!status_local_var) {
         return NULL;
     }
-    status_local_var->code = code;
     status_local_var->description = description;
+    status_local_var->code = code;
     status_local_var->message = message;
     status_local_var->value = value;
     status_local_var->timestamp = timestamp;
@@ -31,13 +31,13 @@ void status_free(status_t *status) {
         return ;
     }
     listEntry_t *listEntry;
-    if (status->code) {
-        free(status->code);
-        status->code = NULL;
-    }
     if (status->description) {
         free(status->description);
         status->description = NULL;
+    }
+    if (status->code) {
+        free(status->code);
+        status->code = NULL;
     }
     if (status->message) {
         free(status->message);
@@ -57,17 +57,17 @@ void status_free(status_t *status) {
 cJSON *status_convertToJSON(status_t *status) {
     cJSON *item = cJSON_CreateObject();
 
-    // status->code
-    if(status->code) { 
-    if(cJSON_AddStringToObject(item, "code", status->code) == NULL) {
+    // status->description
+    if(status->description) { 
+    if(cJSON_AddStringToObject(item, "description", status->description) == NULL) {
     goto fail; //String
     }
      } 
 
 
-    // status->description
-    if(status->description) { 
-    if(cJSON_AddStringToObject(item, "description", status->description) == NULL) {
+    // status->code
+    if(status->code) { 
+    if(cJSON_AddStringToObject(item, "code", status->code) == NULL) {
     goto fail; //String
     }
      } 
@@ -108,19 +108,19 @@ status_t *status_parseFromJSON(cJSON *statusJSON){
 
     status_t *status_local_var = NULL;
 
-    // status->code
-    cJSON *code = cJSON_GetObjectItemCaseSensitive(statusJSON, "code");
-    if (code) { 
-    if(!cJSON_IsString(code))
+    // status->description
+    cJSON *description = cJSON_GetObjectItemCaseSensitive(statusJSON, "description");
+    if (description) { 
+    if(!cJSON_IsString(description))
     {
     goto end; //String
     }
     }
 
-    // status->description
-    cJSON *description = cJSON_GetObjectItemCaseSensitive(statusJSON, "description");
-    if (description) { 
-    if(!cJSON_IsString(description))
+    // status->code
+    cJSON *code = cJSON_GetObjectItemCaseSensitive(statusJSON, "code");
+    if (code) { 
+    if(!cJSON_IsString(code))
     {
     goto end; //String
     }
@@ -155,8 +155,8 @@ status_t *status_parseFromJSON(cJSON *statusJSON){
 
 
     status_local_var = status_create (
-        code ? strdup(code->valuestring) : NULL,
         description ? strdup(description->valuestring) : NULL,
+        code ? strdup(code->valuestring) : NULL,
         message ? strdup(message->valuestring) : NULL,
         value ? strdup(value->valuestring) : NULL,
         timestamp ? strdup(timestamp->valuestring) : NULL

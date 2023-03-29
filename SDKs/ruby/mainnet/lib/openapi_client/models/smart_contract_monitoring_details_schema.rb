@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -15,11 +15,11 @@ require 'time'
 
 module OpenapiClient
   class SmartContractMonitoringDetailsSchema
-    attr_accessor :smart_contract_event_history
-
     attr_accessor :smart_contract_event_details
 
     attr_accessor :location
+
+    attr_accessor :smart_contract_event_history
 
     attr_accessor :type
 
@@ -30,9 +30,9 @@ module OpenapiClient
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'smart_contract_event_history' => :'smartContractEventHistory',
         :'smart_contract_event_details' => :'smartContractEventDetails',
         :'location' => :'location',
+        :'smart_contract_event_history' => :'smartContractEventHistory',
         :'type' => :'type',
         :'status' => :'status',
         :'timestamp' => :'timestamp'
@@ -47,12 +47,12 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'smart_contract_event_history' => :'Array<SmartContractEventHistory>',
         :'smart_contract_event_details' => :'ResourceMonitoringSmartContractEventDetails',
         :'location' => :'Location',
+        :'smart_contract_event_history' => :'Array<SmartContractEventHistory>',
         :'type' => :'String',
         :'status' => :'Status',
-        :'timestamp' => :'Time'
+        :'timestamp' => :'String'
       }
     end
 
@@ -77,18 +77,18 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'smart_contract_event_history')
-        if (value = attributes[:'smart_contract_event_history']).is_a?(Array)
-          self.smart_contract_event_history = value
-        end
-      end
-
       if attributes.key?(:'smart_contract_event_details')
         self.smart_contract_event_details = attributes[:'smart_contract_event_details']
       end
 
       if attributes.key?(:'location')
         self.location = attributes[:'location']
+      end
+
+      if attributes.key?(:'smart_contract_event_history')
+        if (value = attributes[:'smart_contract_event_history']).is_a?(Array)
+          self.smart_contract_event_history = value
+        end
       end
 
       if attributes.key?(:'type')
@@ -157,9 +157,9 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          smart_contract_event_history == o.smart_contract_event_history &&
           smart_contract_event_details == o.smart_contract_event_details &&
           location == o.location &&
+          smart_contract_event_history == o.smart_contract_event_history &&
           type == o.type &&
           status == o.status &&
           timestamp == o.timestamp
@@ -174,7 +174,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [smart_contract_event_history, smart_contract_event_details, location, type, status, timestamp].hash
+      [smart_contract_event_details, location, smart_contract_event_history, type, status, timestamp].hash
     end
 
     # Builds the object from hash

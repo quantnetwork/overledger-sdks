@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**preparation_address_sequence_search_response** | [**prepare_search_response_schema_t**](prepare_search_response_schema.md) \* |  | [optional] 
 **prepare_and_execute_overledger_error_response** | [**prepare_and_execute_overledger_error_response_t**](prepare_and_execute_overledger_error_response.md) \* |  | [optional] 
 **execution_address_sequence_search_response** | [**execute_search_sequence_response_t**](execute_search_sequence_response.md) \* |  | [optional] 
+**preparation_address_sequence_search_response** | [**prepare_search_response_schema_t**](prepare_search_response_schema.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

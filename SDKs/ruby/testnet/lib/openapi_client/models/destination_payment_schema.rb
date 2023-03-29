@@ -1,7 +1,7 @@
 =begin
 #Quant Overledger API
 
-#Quant's Overledger API allows developers to create applications for multiple DLT's using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation  # Authentication  <!-- ReDoc-Inject: <security-definitions> -->
+#Quant’s Overledger API allows developers to create applications for multiple DLT’s using a single standard set of operations and data structures.In order to maintain the security of private keys, most operations have two steps – prepare and execute. The prepare step is the point at which all arguments are specified and standardised payloads are sent. Overledger converts this standard payload into a DLT-specific transaction object. In the execute step, the SDK signs the transaction object that Overledger created and submits it to Overledger to perform the operation
 
 The version of the OpenAPI document: 2.0
 
@@ -14,18 +14,18 @@ require 'date'
 require 'time'
 
 module OpenapiClient
-  # The Destination of this transaction
+  # List of the recipients of this transaction.  **Warning:** Bitcoin transaction fees will be deducted from the last destination provided in the transaction payment request. If the last destination payment value is not enough to cover the fees, your Bitcoin payment transaction will fail
   class DestinationPaymentSchema
-    attr_accessor :payment
-
-    # The unique identifiers of the destination
+    # Unique identifier of the destination/recipient
     attr_accessor :destination_id
+
+    attr_accessor :payment
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'payment' => :'payment',
-        :'destination_id' => :'destinationId'
+        :'destination_id' => :'destinationId',
+        :'payment' => :'payment'
       }
     end
 
@@ -37,8 +37,8 @@ module OpenapiClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'payment' => :'PaymentSchema',
-        :'destination_id' => :'String'
+        :'destination_id' => :'String',
+        :'payment' => :'PaymentSchema'
       }
     end
 
@@ -63,12 +63,12 @@ module OpenapiClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'payment')
-        self.payment = attributes[:'payment']
-      end
-
       if attributes.key?(:'destination_id')
         self.destination_id = attributes[:'destination_id']
+      end
+
+      if attributes.key?(:'payment')
+        self.payment = attributes[:'payment']
       end
     end
 
@@ -76,17 +76,25 @@ module OpenapiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@destination_id.nil? && @destination_id.to_s.length > 66
+      if @destination_id.nil?
+        invalid_properties.push('invalid value for "destination_id", destination_id cannot be nil.')
+      end
+
+      if @destination_id.to_s.length > 66
         invalid_properties.push('invalid value for "destination_id", the character length must be smaller than or equal to 66.')
       end
 
-      if !@destination_id.nil? && @destination_id.to_s.length < 0
+      if @destination_id.to_s.length < 0
         invalid_properties.push('invalid value for "destination_id", the character length must be great than or equal to 0.')
       end
 
       pattern = Regexp.new(/^[A-Za-z0-9:]{1,66}/)
-      if !@destination_id.nil? && @destination_id !~ pattern
+      if @destination_id !~ pattern
         invalid_properties.push("invalid value for \"destination_id\", must conform to the pattern #{pattern}.")
+      end
+
+      if @payment.nil?
+        invalid_properties.push('invalid value for "payment", payment cannot be nil.')
       end
 
       invalid_properties
@@ -95,25 +103,31 @@ module OpenapiClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@destination_id.nil? && @destination_id.to_s.length > 66
-      return false if !@destination_id.nil? && @destination_id.to_s.length < 0
-      return false if !@destination_id.nil? && @destination_id !~ Regexp.new(/^[A-Za-z0-9:]{1,66}/)
+      return false if @destination_id.nil?
+      return false if @destination_id.to_s.length > 66
+      return false if @destination_id.to_s.length < 0
+      return false if @destination_id !~ Regexp.new(/^[A-Za-z0-9:]{1,66}/)
+      return false if @payment.nil?
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] destination_id Value to be assigned
     def destination_id=(destination_id)
-      if !destination_id.nil? && destination_id.to_s.length > 66
+      if destination_id.nil?
+        fail ArgumentError, 'destination_id cannot be nil'
+      end
+
+      if destination_id.to_s.length > 66
         fail ArgumentError, 'invalid value for "destination_id", the character length must be smaller than or equal to 66.'
       end
 
-      if !destination_id.nil? && destination_id.to_s.length < 0
+      if destination_id.to_s.length < 0
         fail ArgumentError, 'invalid value for "destination_id", the character length must be great than or equal to 0.'
       end
 
       pattern = Regexp.new(/^[A-Za-z0-9:]{1,66}/)
-      if !destination_id.nil? && destination_id !~ pattern
+      if destination_id !~ pattern
         fail ArgumentError, "invalid value for \"destination_id\", must conform to the pattern #{pattern}."
       end
 
@@ -125,8 +139,8 @@ module OpenapiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          payment == o.payment &&
-          destination_id == o.destination_id
+          destination_id == o.destination_id &&
+          payment == o.payment
     end
 
     # @see the `==` method
@@ -138,7 +152,7 @@ module OpenapiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [payment, destination_id].hash
+      [destination_id, payment].hash
     end
 
     # Builds the object from hash

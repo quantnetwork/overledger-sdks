@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Transfer** | [**Transfer**](Transfer.md) |  | [optional] 
-**SmartContract** | [**SmartContract**](SmartContract.md) |  | [optional] 
 **Payment** | [**Payment**](Payment.md) |  | [optional] 
-**DestinationId** | **string** | The unique identifiers of the destination | [optional] 
+**Transfer** | [**Transfer**](Transfer.md) |  | [optional] 
+**DestinationId** | **string** | The unique identifier of the destination | [optional] 
+**SmartContract** | [**SmartContract**](SmartContract.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)
